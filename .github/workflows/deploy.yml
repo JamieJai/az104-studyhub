@@ -1,0 +1,74 @@
+name: Deploy to Cloudflare Pages
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: pages-deploy
+  cancel-in-progress: false
+
+jobs:
+  # PR·push 공통: 배포 전에 깨진 파일이 없는지 확인
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Functions 문법 검사
+        run: |
+          for f in $(find functions -name '*.js'); do node --check "$f"; done
+      - name: 데이터 파일 JSON 검사
+        run: |
+          node -e '
+            const fs = require("fs");
+            const wrapped = (f) => { const s = fs.readFileSync(f, "utf8"); return JSON.parse(s.slice(s.indexOf("{"), s.lastIndexOf("}") + 1)); };
+            const ch = wrapped("dist/AZ-104_CBT/choices.js");
+            const data = wrapped("dist/AZ-104_CBT/data.js");
+            for (const f of ["dist/data.json", "dist/cbt_questions.json", "dist/offline-assets.json", "dist/_routes.json", "dist/manifest.webmanifest"]) JSON.parse(fs.readFileSync(f, "utf8"));
+            for (const [k, e] of Object.entries(ch)) for (const b of e.boxes || []) {
+              if (!Array.isArray(b.options) || b.answer == null || b.answer < 0 || b.answer >= b.options.length) throw new Error(`choices.js src ${k}: answer index out of range`);
+            }
+            console.log(`choices.js ${Object.keys(ch).length} entries OK, data.js version ${data.version}`);
+          '
+      - name: 서비스워커 버전이 바뀌었는지 확인 (dist 변경 시 캐시 갱신 누락 방지)
+        if: github.event_name == 'pull_request'
+        run: |
+          git fetch origin ${{ github.base_ref }} --depth=1
+          if git diff --quiet origin/${{ github.base_ref }} -- dist ':!dist/service-worker.js'; then
+            echo "dist 변경 없음"
+          elif git diff --quiet origin/${{ github.base_ref }} -- dist/service-worker.js; then
+            echo "::warning::dist/ 가 바뀌었는데 service-worker.js VERSION 이 그대로입니다. PWA 캐시가 갱신되지 않습니다."
+          else
+            echo "service-worker VERSION 변경 확인"
+          fi
+
+  # main 에 push 될 때만 실제 배포
+  deploy:
+    needs: validate
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: https://az104-studyhub-p8.pages.dev
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Pages 배포 (dist + functions + wrangler.toml 바인딩)
+        id: deploy
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy dist --project-name=az104-studyhub-p8 --branch=main --commit-hash=${{ github.sha }} --commit-message="${{ github.event.head_commit.message || 'manual' }}"
+      - name: 배포 후 프로덕션 검증 (읽기 전용 17개 체크)
+        run: |
+          sleep 15
+          node tools/preflight.js https://az104-studyhub-p8.pages.dev x nosignup
