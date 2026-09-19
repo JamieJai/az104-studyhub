@@ -1,0 +1,20 @@
+name = "az104-studyhub-p8"
+pages_build_output_dir = "dist"
+compatibility_date = "2026-01-01"
+
+# 진도 동기화/오답 신고용 KV. 바인딩 변수명은 반드시 PROGRESS (functions/api/*.js 가 env.PROGRESS 참조)
+[[kv_namespaces]]
+binding = "PROGRESS"
+id = "3e533eed1c07458f896f46f2f5422c1d"
+preview_id = "c97c075a3bd048feb1eda2cd5ddcb82c"
+
+# D1: 사용자·진도·신고 (서버가 유일한 기준). KV PROGRESS 는 옛 데이터 이관용으로만 남긴다.
+[[d1_databases]]
+binding = "DB"
+database_name = "az104-studyhub"
+database_id = "d4c72a23-2101-422b-85ea-cb01222711da"
+
+# 관리자 포털(/admin) 로그인. 바꾸려면 여기 수정 후 재배포.
+[vars]
+ADMIN_USER = "admin"
+ADMIN_PASS = "admin"

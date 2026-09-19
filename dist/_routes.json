@@ -1,0 +1,5 @@
+{
+  "version": 1,
+  "include": ["/", "/index.html", "/AZ-104_CBT", "/AZ-104_CBT/", "/AZ-104_CBT/index.html", "/api/*"],
+  "exclude": []
+}

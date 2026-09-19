@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>AZ-104 관리자</title>
+  <style>
+    :root{font-family:"Segoe UI","Malgun Gothic",Arial,sans-serif;color:#172033;background:#f4f7fb}
+    *{box-sizing:border-box}
+    body{margin:0;padding:24px 16px;min-height:100vh}
+    .wrap{max-width:960px;margin:0 auto}
+    .card{background:#fff;border:1px solid #dce3ec;border-radius:14px;padding:22px 24px;box-shadow:0 8px 24px #20305010;margin-bottom:16px}
+    h1{margin:0 0 4px;font-size:20px}
+    h2{margin:0 0 12px;font-size:15px;color:#34425a}
+    .sub{margin:0 0 14px;color:#7a879a;font-size:13px}
+    input{padding:10px 12px;border:1px solid #cdd9e8;border-radius:8px;font:inherit;font-size:14px;outline:none;width:100%;max-width:280px}
+    input:focus{border-color:#0078d4}
+    button{padding:8px 12px;border-radius:8px;border:1px solid #cdd9e8;background:#fff;font:inherit;font-size:13px;font-weight:700;cursor:pointer;color:#34425a}
+    button:hover{background:#eef6ff;border-color:#0078d4;color:#0078d4}
+    button.primary{background:#0078d4;border-color:#0078d4;color:#fff}
+    button.danger{color:#c0392b}
+    button.danger:hover{background:#fdecea;border-color:#c0392b;color:#c0392b}
+    .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+    .msg{font-size:13px;color:#c0392b;min-height:18px;margin:8px 0 0}
+    .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin-bottom:6px}
+    .stat{background:#f4f7fb;border-radius:10px;padding:10px 12px}
+    .stat b{display:block;font-size:20px}
+    .stat span{font-size:12px;color:#7a879a}
+    .tbl{overflow-x:auto}
+    table{width:100%;border-collapse:collapse;font-size:13px}
+    th,td{padding:8px 10px;border-bottom:1px solid #e8eef6;text-align:left;white-space:nowrap}
+    th{color:#7a879a;font-weight:700;font-size:12px}
+    td.num{text-align:right;font-variant-numeric:tabular-nums}
+    td .row{gap:6px}
+    .empty{color:#7a879a;font-size:13px;padding:8px 0}
+    .note{font-size:12px;color:#9aa6b8;white-space:normal;max-width:360px}
+    #app{display:none}
+    .topbar{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:14px}
+    .topbar a{color:#0067b8;font-size:13px}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card" id="login">
+      <h1>관리자 포털</h1>
+      <p class="sub">AZ-104 Study Hub 데이터베이스 관리</p>
+      <form id="lform" class="row" autocomplete="off">
+        <input id="lname" placeholder="아이디" autocomplete="username">
+        <input id="lpw" type="password" placeholder="비밀번호" autocomplete="current-password">
+        <button class="primary" type="submit">로그인</button>
+      </form>
+      <p class="msg" id="lmsg"></p>
+    </div>
+
+    <div id="app">
+      <div class="topbar">
+        <div><h1>관리자 포털</h1><p class="sub" id="updated"></p></div>
+        <div class="row"><a href="/">로그인 페이지</a><button id="refresh">새로고침</button><button id="logout">로그아웃</button></div>
+      </div>
+
+      <div class="card">
+        <h2>저장 현황</h2>
+        <div class="stats" id="stats"></div>
+        <p class="sub" id="quota"></p>
+      </div>
+
+      <div class="card">
+        <h2>사용자</h2>
+        <div class="tbl"><table><thead><tr>
+          <th>#</th><th>이름</th><th>가입</th><th>최근 로그인</th><th>최근 저장</th>
+          <th style="text-align:right">진도</th><th style="text-align:right">모의고사</th><th style="text-align:right">신고</th><th>작업</th>
+        </tr></thead><tbody id="users"></tbody></table></div>
+        <p class="empty" id="usersEmpty" hidden>사용자가 없습니다.</p>
+      </div>
+
+      <div class="card">
+        <div class="row" style="justify-content:space-between"><h2>오답 신고 <span id="rcount"></span></h2><button class="danger" id="delAllReports">신고 전부 삭제</button></div>
+        <div class="tbl"><table><thead><tr><th>시각</th><th>사용자</th><th>문항</th><th>유형</th><th>내 답</th><th>채점</th><th>메모</th></tr></thead><tbody id="reports"></tbody></table></div>
+        <p class="empty" id="reportsEmpty" hidden>신고가 없습니다.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (() => {
+      const $ = id => document.getElementById(id);
+      const API = "/api/admin/";
+      const fmt = iso => iso ? new Date(iso).toLocaleString("ko-KR", { hour12: false }) : "—";
+      const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+      const KIND = { "wrong-answer": "정답 오류", "bad-explanation": "해설 문제", translation: "번역·오탈자", image: "이미지", other: "기타" };
+
+      async function call(path, opts) {
+        const r = await fetch(API + path, { cache: "no-store", ...opts });
+        if (r.status === 401) { show(false); throw new Error("unauthorized"); }
+        const data = await r.json().catch(() => ({}));
+        if (!r.ok) throw new Error(data?.error || r.status);
+        return data;
+      }
+      function show(loggedIn) { $("login").style.display = loggedIn ? "none" : "block"; $("app").style.display = loggedIn ? "block" : "none"; }
+
+      async function load() {
+        const [ov, rp] = await Promise.all([call("overview"), call("reports")]);
+        const t = ov.totals || {};
+        $("stats").innerHTML = [
+          ["사용자", `${t.users} / ${ov.maxUsers ?? "-"}`], ["진도 행", t.progress], ["모의고사", t.exam_runs], ["신고", t.reports], ["세션", t.sessions],
+          ["데이터 크기", (ov.approxBytes / 1024).toFixed(1) + " KB"],
+        ].map(([k, v]) => `<div class="stat"><b>${esc(v)}</b><span>${k}</span></div>`).join("");
+        const rows = (t.progress || 0) + (t.exam_runs || 0) + (t.reports || 0) + (t.sessions || 0) + (t.users || 0);
+        $("quota").textContent = `총 ${rows.toLocaleString()}행 · D1 무료 한도: 저장 5 GB, 하루 읽기 500만 행 / 쓰기 10만 행`;
+        $("updated").textContent = "기준 " + fmt(new Date().toISOString());
+
+        const users = ov.users || [];
+        $("usersEmpty").hidden = users.length > 0;
+        $("users").innerHTML = users.map(u => `<tr>
+          <td>${u.id}</td><td><b>${esc(u.name)}</b></td><td>${fmt(u.created_at)}</td><td>${fmt(u.last_login)}</td><td>${fmt(u.last_saved)}</td>
+          <td class="num">${u.progress}</td><td class="num">${u.exam_runs}</td><td class="num">${u.reports}</td>
+          <td><div class="row">
+            <button data-act="progress" data-id="${u.id}" data-name="${esc(u.name)}">진도 비우기</button>
+            <button data-act="reports" data-id="${u.id}" data-name="${esc(u.name)}">신고 삭제</button>
+            <button class="danger" data-act="user" data-id="${u.id}" data-name="${esc(u.name)}">계정 삭제</button>
+          </div></td></tr>`).join("");
+
+        const reports = rp.reports || [];
+        $("rcount").textContent = `(${reports.length})`;
+        $("reportsEmpty").hidden = reports.length > 0;
+        $("reports").innerHTML = reports.map(r => `<tr>
+          <td>${fmt(r.at)}</td><td>${esc(r.owner)}</td><td>src ${r.source}${r.practice ? ` (P${r.practice})` : ""}</td>
+          <td>${esc(KIND[r.kind] || r.kind)}</td><td>${esc(r.myAnswer)}</td><td>${esc(r.graded)}</td><td class="note">${esc(r.note)}</td></tr>`).join("");
+      }
+
+      $("users").addEventListener("click", async e => {
+        const b = e.target.closest("button[data-act]"); if (!b) return;
+        const { act, id, name } = b.dataset;
+        const q = act === "user" ? `'${name}' 계정과 모든 기록을 삭제합니다. 되돌릴 수 없습니다.`
+                : act === "progress" ? `'${name}'의 진도·세션·모의고사 기록을 비웁니다. 계정은 남습니다.`
+                : `'${name}'의 신고를 모두 삭제합니다.`;
+        if (!confirm(q)) return;
+        try { await call(`${act}?id=${id}`, { method: "DELETE" }); await load(); } catch (err) { alert("실패: " + err.message); }
+      });
+      $("delAllReports").addEventListener("click", async () => {
+        if (!confirm("모든 사용자의 신고를 전부 삭제합니다.")) return;
+        try { await call("reports", { method: "DELETE" }); await load(); } catch (err) { alert("실패: " + err.message); }
+      });
+      $("refresh").addEventListener("click", () => load().catch(() => {}));
+      $("logout").addEventListener("click", async () => { await fetch(API + "logout", { method: "POST" }); show(false); });
+
+      $("lform").addEventListener("submit", async e => {
+        e.preventDefault();
+        $("lmsg").textContent = "";
+        try {
+          await call("login", { method: "POST", headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ name: $("lname").value.trim(), password: $("lpw").value }) });
+          show(true); await load();
+        } catch (err) { $("lmsg").textContent = err.message === "bad_credentials" ? "아이디 또는 비밀번호가 맞지 않습니다." : "실패: " + err.message; }
+      });
+
+      // 이미 관리자 세션이 있으면 바로 표시
+      call("me").then(() => { show(true); return load(); }).catch(() => show(false));
+    })();
+  </script>
+</body>
+</html>
