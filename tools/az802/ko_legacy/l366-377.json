@@ -1,0 +1,79 @@
+{
+"AZ-801-Q225": {
+ "stem": "회사에서 Storage Spaces Direct를 사용합니다.\n\nStorage Spaces Direct 스토리지 풀의 사용 가능한 스토리지를 확인해야 합니다.\n\n무엇을 사용해야 합니까?",
+ "choices": {"A": "Get-StorageSubsystem cmdlet", "B": "파일 서버 리소스 관리자(FSRM)", "C": "디스크 관리", "D": "장애 조치(Failover) 클러스터 관리자"},
+ "explanation": "장애 조치(Failover) 클러스터 관리자는 클러스터 수준에서 Storage Spaces Direct를 관리합니다. **저장소 > 풀** 보기에 Storage Spaces Direct 스토리지 풀과 사용 가능한 스토리지를 포함한 용량 정보가 표시됩니다."
+},
+"AZ-801-Q228": {
+ "stem": "VM1이라는 Azure 가상 머신이 Windows Server를 실행합니다.\n\nVM1의 운영 체제가 네트워크 스택을 완전히 초기화하지 못해 네트워크 연결을 설정할 수 없습니다.\n\n대화형 셸 세션을 열어야 합니다.\n\n무엇을 사용해야 합니까?",
+ "choices": {"A": "Azure Bastion", "B": "직렬 콘솔", "C": "JIT(just-in-time) VM 액세스"},
+ "explanation": "Azure 직렬 콘솔은 VM의 네트워크 상태와 관계없이 COM1 직렬 포트를 통해 Windows 가상 머신에 대화형 텍스트 콘솔을 제공합니다. 따라서 게스트 운영 체제의 네트워크 스택을 사용할 수 없을 때 사용할 수 있습니다."
+},
+"AZ-801-Q232": {
+ "stem": "웹 서버(IIS) 서버 역할이 설치된 VM1이라는 Azure 가상 머신이 있습니다. VM1은 중요한 LOB(기간 업무) 애플리케이션을 호스팅합니다.\n\n회사 보안 팀이 VM1에 새 보안 기준을 배포한 후 사용자들이 애플리케이션이 응답하지 않는다고 보고합니다.\n\n보안 기준이 네트워킹 문제를 일으켰다고 의심됩니다.\n\nVM1에서 네트워크 추적을 실행해야 합니다.\n\n어떻게 해야 합니까?",
+ "choices": {"A": "VM1에서 netstat을 실행한다.", "B": "VM1의 성능 모니터에서 데이터 수집기 집합을 만든다.", "C": "Azure portal에서 VM1의 진단 설정을 구성한다.", "D": "Azure portal에서 VM1의 성능 진단 설정을 구성한다."},
+ "explanation": "Azure VM용 Azure 성능 진단(PerfInsights)에는 네트워크 추적 수집 옵션(`networkTrace`)이 포함되어 있습니다. portal 기반 성능 진단 환경은 주문형 진단을 실행하고 추적과 네트워크 구성 데이터가 담긴 보고서를 제공하므로 진행 중인 네트워킹 문제를 조사하기에 적합합니다."
+},
+"AZ-801-Q234": {
+ "stem": "온-프레미스 네트워크에 Windows Server를 실행하는 서버 10대가 포함된 Active Directory Domain Services(AD DS) 도메인이 있습니다.\n\nWindows Server를 실행하는 가상 머신 10대가 포함된 Azure 구독이 있습니다.\n\nAzure 가상 머신과 온-프레미스 서버에 Azure Monitor 에이전트를 설치해야 합니다.\n\n무엇을 사용해야 합니까?",
+ "blanks": {
+  "azure_virtual_machines": {"label": "Azure 가상 머신:", "options": ["Azure Connected Machine 에이전트", "Windows Installer(MSI) 패키지", "가상 머신 확장"]},
+  "on_premises_servers": {"label": "온-프레미스 서버:", "options": ["그룹 정책 소프트웨어 설치", "Azure Connected Machine 에이전트", "Windows Installer(MSI) 패키지"]}
+ },
+ "explanation": "Azure Monitor 에이전트는 Azure VM 확장 프레임워크를 통해 Azure 가상 머신에 배포됩니다. 온-프레미스 서버는 Azure Connected Machine 에이전트를 설치해 Azure Arc 지원 서버가 되어야 하며, 그 후 Azure Arc 확장으로 Azure Monitor 에이전트를 배포할 수 있습니다."
+},
+"AZ-801-Q241": {
+ "stem": "Windows Server를 실행하며 미국 동부(East US) Azure 지역에 있는 VM1이라는 가상 머신이 포함된 Azure 구독이 있습니다. 구독에는 다음 표의 스토리지 계정이 있습니다.\n\n[[IMG1]]\n\nVM1의 진단 설정을 구성할 계획입니다.\n\n이 설정에 어떤 스토리지 계정을 지정할 수 있습니까?",
+ "choices": {"A": "storage1만", "B": "storage1과 storage2만", "C": "storage1과 storage4만", "D": "storage1, storage2, storage3만", "E": "storage1, storage2, storage3, storage4"},
+ "explanation": "VM 진단/부팅 진단에 사용하는 스토리지 계정은 VM과 같은 지역·구독에 있는 표준 범용 계정이어야 합니다. VM1은 East US에 있으므로 East US 계정만 해당합니다. storage1은 East US의 Standard 범용 v2 계정이므로 유효합니다. storage2(BlockBlobStorage)와 storage3(FileStorage)은 프리미엄 특수 계정이라 진단에 지원되지 않습니다(프리미엄 스토리지는 StorageAccountTypeNotSupported 오류를 반환하고, 이런 종류는 필요한 Blob/Table 엔드포인트를 제공하지 않습니다). storage4는 StorageV2이지만 Central US에 있어 지역이 다릅니다. 따라서 storage1만 지정할 수 있습니다."
+},
+"AZ-801-Q255": {
+ "stem": "VM1이라는 Azure 가상 머신이 있습니다. VM1에 애플리케이션을 설치한 후 가상 머신을 다시 시작합니다.\n\n다시 시작한 후 다음 오류 메시지가 표시됩니다. \"Boot failure. Reboot and Select proper Boot Device or Insert Boot Media in selected Boot Device.\"\n\n문제를 해결하기 위해 VM1의 운영 체제 디스크를 임시 가상 머신에 오프라인으로 연결해야 합니다.\n\n어떤 Azure CLI 명령을 실행해야 합니까?",
+ "choices": {"A": "az vm capture", "B": "az vm repair create", "C": "az vm disk create", "D": "az vm boot-diagnostics enable"},
+ "explanation": "`az vm repair create`는 복구 VM을 만들고 영향을 받은 VM의 OS 디스크 복사본을 데이터 디스크로 연결하므로 부팅할 수 없는 VM을 오프라인으로 문제 해결할 수 있습니다."
+},
+"AZ-801-Q267": {
+ "stem": "Windows Server를 실행하는 Server1이라는 가상 머신이 포함된 Azure 구독이 있습니다.\n\nWorkspace1이라는 새 Log Analytics 작업 영역을 만듭니다.\n\nAzure Monitor를 사용해 Server1에서 성능 메트릭을 수집해야 합니다.\n\n다음에 무엇을 해야 합니까?",
+ "choices": {"A": "보조 키를 다시 생성한다.", "B": "Azure Connected Machine 에이전트를 설치한다.", "C": "데이터 수집 규칙(DCR)을 만든다.", "D": "Windows 이벤트 전달을 배포하고 구성한다."},
+ "explanation": "데이터 수집 규칙(DCR)은 Azure Monitor가 가상 머신에서 어떤 게스트 성능 카운터를 수집해 Log Analytics 작업 영역으로 보낼지 정의합니다. Azure portal에서 구성해 VM에 연결하면 필요한 경우 Azure Monitor가 Azure Monitor 에이전트를 설치합니다."
+},
+"AZ-801-Q280": {
+ "stem": "Windows Server 2025를 실행하는 가상 머신 100대가 포함된 Azure 구독이 있습니다.\n\nAzure Monitor 데이터 수집 규칙(DCR)을 구현해 가상 머신에서 Application 로그와 System 로그를 수집할 계획입니다.\n\n사용자 지정 기준에 따라 수집되는 이벤트를 필터링해야 합니다.\n\n어떤 쿼리 언어를 사용해야 합니까?",
+ "choices": {"A": "LINQ", "B": "KQL", "C": "XPath", "D": "WQL"},
+ "explanation": "Azure Monitor DCR은 `xPathQueries` 속성에 Windows 이벤트 로그 수집 필터를 정의합니다. XPath가 Azure Monitor 에이전트가 수집할 Application 및 System 이벤트의 기준을 지정합니다."
+},
+"AZ-801-Q281": {
+ "stem": "DC1과 DC2 두 대의 도메인 컨트롤러가 포함된 contoso.com이라는 단일 도메인 Active Directory Domain Services(AD DS) 포리스트가 있습니다. DC1과 DC2는 모두 Windows Server를 실행합니다.\n\nDC1에서 SYSVOL의 권한 있는 복원을 수행할 계획입니다. DC1을 격리하고 백업에서 복원합니다.\n\nDC1의 SYSVOL이 DC2로 복제되도록 해야 합니다.\n\n어떤 세 가지 작업을 순서대로 수행해야 합니까?",
+ "items": {
+  "From Active Directory Users and Computers on DC1, select Advanced Features.": "DC1의 Active Directory 사용자 및 컴퓨터에서 고급 기능을 선택한다.",
+  "For the computer object of DC1, select SYSVOL Subscription and modify the value of the msDFSR-Options attribute.": "DC1의 컴퓨터 개체에서 SYSVOL Subscription을 선택하고 msDFSR-Options 특성 값을 수정한다.",
+  "For the computer object of DC2, select SYSVOL Subscription and modify the value of the msDFSR-Options attribute.": "DC2의 컴퓨터 개체에서 SYSVOL Subscription을 선택하고 msDFSR-Options 특성 값을 수정한다.",
+  "From Active Directory Users and Computers on DC2, select Advanced Features.": "DC2의 Active Directory 사용자 및 컴퓨터에서 고급 기능을 선택한다.",
+  "Connect DC1 to the network.": "DC1을 네트워크에 연결한다."
+ },
+ "slots": {"step1": "1단계", "step2": "2단계", "step3": "3단계"},
+ "explanation": "권한 있는 DFS 복제(DFSR) SYSVOL 복원에서는 복원된 도메인 컨트롤러가 격리된 상태에서 그 SYSVOL Subscription 개체의 msDFSR-Options를 1로 설정해 권한 있음으로 지정합니다. Active Directory 사용자 및 컴퓨터에서 이 개체를 표시하려면 고급 기능이 필요합니다. 특성을 설정한 후 DC1을 다시 연결하면 권한 있는 SYSVOL 내용이 DC2로 복제됩니다. DC2는 권한 있음으로 표시하지 않습니다."
+},
+"AZ-801-Q305": {
+ "stem": "회사에서 Storage Spaces Direct를 사용합니다.\n\nStorage Spaces Direct 스토리지 풀의 사용 가능한 스토리지 용량을 확인해야 합니다.\n\n무엇을 사용해야 합니까?",
+ "choices": {"A": "시스템 구성", "B": "파일 서버 리소스 관리자(FSRM)", "C": "Get-StorageFileServer cmdlet", "D": "장애 조치(Failover) 클러스터 관리자"},
+ "explanation": "장애 조치(Failover) 클러스터 관리자는 클러스터된 Storage Spaces Direct 풀에 대한 저장소 > 풀 관리 보기를 제공하며 여기서 용량과 사용 가능한 스토리지를 확인할 수 있습니다. 파일 서버 리소스 관리자와 Get-StorageFileServer cmdlet은 Storage Spaces Direct 풀 용량이 아니라 파일 서버 기능을 관리합니다."
+},
+"AZ-801-Q309": {
+ "stem": "Windows Server를 실행하는 VM1이라는 Azure 가상 머신이 있습니다.\n\n디스크 오류 때문에 VM1의 운영 체제를 시작할 수 없습니다.\n\n오류를 해결해야 합니다.\n\nAzure Cloud Shell에서 어떤 네 가지 명령을 순서대로 실행해야 합니까?",
+ "items": {
+  "az vm disk": "az vm disk",
+  "az vm repair restore": "az vm repair restore",
+  "az vm repair create": "az vm repair create",
+  "az extension add": "az extension add",
+  "az vm repair run": "az vm repair run"
+ },
+ "slots": {"1": "1단계", "2": "2단계", "3": "3단계", "4": "4단계"},
+ "explanation": "Azure VM 복구에는 먼저 VM repair Azure CLI 확장이 필요합니다. 복구 환경을 만들면 영향을 받은 OS 디스크가 연결되고, 복구 명령을 실행하면 복구가 수행되며, 복원하면 복구된 디스크가 원래 VM으로 되돌아갑니다."
+},
+"AZ-801-Q326": {
+ "stem": "Server1이라는 가상 머신이 포함된 Azure 구독이 있습니다.\n\nServer1이 시작되지 않고 \"Getting Windows ready. Don't turn off your computer.\" 메시지가 표시됩니다.\n\nAzure 지원 티켓을 제출하고 Server1의 메모리 덤프를 첨부해야 합니다.\n\nServer1의 어떤 파일을 첨부해야 합니까?",
+ "choices": {"A": "D:\\Pagefile.sys", "B": "C:\\Memory.dmp", "C": "C:\\Windows\\System32\\Config\\SYSTEM", "D": "C:\\Windows\\Memory.dmp"},
+ "explanation": "Windows는 운영 체제 메모리 덤프를 `%SystemRoot%\\MEMORY.DMP`에 저장합니다. Windows 시스템 드라이브가 `C:`이면 파일은 `C:\\Windows\\Memory.dmp`입니다. Microsoft의 Azure VM 지침은 지원 사례에서 연결된 OS 디스크의 Windows 폴더에서 `Memory.dmp`를 찾아 티켓에 첨부하도록 안내합니다."
+}
+}

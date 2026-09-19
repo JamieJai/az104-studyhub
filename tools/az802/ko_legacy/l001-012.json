@@ -1,0 +1,95 @@
+{
+"AZ-800-Q2": {
+ "stem": "Active Directory Domain Services(AD DS) 도메인에 Windows Server를 실행하는 Server1이라는 멤버 서버가 있습니다.\n\nServer1에서 도메인 암호 정책을 관리할 수 있도록 해야 합니다.\n\nServer1에서 먼저 어떤 명령을 실행해야 합니까?",
+ "choices": {"A": "Install-WindowsFeature RSAT-AD-Tools", "B": "Install-WindowsFeature RSAT-ADRMS", "C": "Install-WindowsFeature GPMC", "D": "Install-WindowsFeature RSAT-AD-PowerShell"},
+ "explanation": "도메인 암호 정책은 도메인 그룹 정책 개체(GPO)를 통해 구성합니다. **그룹 정책 관리 콘솔(GPMC)**이 GPO를 관리·편집하는 도구를 제공하므로, 해당 관리에 사용할 Windows Server 컴퓨터에 GPMC를 설치해야 합니다."
+},
+"AZ-800-Q8": {
+ "stem": "네트워크에 Active Directory Domain Services(AD DS) 포리스트가 있습니다. 포리스트에는 다음 그림과 같은 사이트와 사이트 링크가 있습니다.\n\n[[IMG1]]\n\n사이트에는 다음 표의 브리지헤드 도메인 컨트롤러가 있습니다.\n\n[[IMG2]]\n\nIP 사이트 간 전송 컨테이너는 다음 그림과 같이 구성되어 있습니다.\n\n[[IMG3]]\n\n다음 각 문장에 대해, 문장이 참이면 **예**를, 그렇지 않으면 **아니요**를 선택하십시오.",
+ "statements": [
+  "DC1은 DC3으로 직접 복제할 수 있다.",
+  "DC1은 SiteLink3과 SiteLink4를 통해 DC4로 가는 복제 트래픽을 부하 분산한다.",
+  "DC4와 DC2 간 복제가 DC1을 경유하도록 하려면 IP 사이트 간 전송 컨테이너의 구성을 수정해야 한다."
+ ],
+ "explanation": "IP 사이트 간 전송 컨테이너에 **'모든 사이트 링크 브리지(Bridge all site links)'**가 켜져 있어 모든 사이트 링크가 전이적입니다. 브리징이 켜져 있으면 KCC가 인접하지 않은 사이트의 브리지헤드 간에 직접 복제 연결을 만들 수 있으므로, DC1(Site1)은 전이 경로를 통해 DC3(Site3)과 직접 복제할 수 있습니다(**예**).\n\nAD 복제는 병렬 사이트 링크 간에 부하 분산을 하지 않습니다. 비용이 가장 낮은 링크만 사용하므로 Site1–Site4 간에는 SiteLink4(비용 20)만 쓰이고 SiteLink3(비용 60)은 쓰이지 않습니다(**아니요**).\n\n브리징이 켜져 있으면 DC4와 DC2는 DC1을 거치지 않고 직접 복제합니다. DC4–DC2 복제가 DC1을 경유하도록 강제하려면 IP 전송 컨테이너에서 '모든 사이트 링크 브리지'를 해제해 링크를 비전이적으로 만들어야 합니다(**예**)."
+},
+"AZ-800-Q9": {
+ "stem": "*(참고: 케이스 스터디 문항으로 원본 사이트에 시나리오 본문이 누락되어 있습니다. 문맥상 온-프레미스 AD DS 포리스트의 추가 도메인 컨트롤러 DC3을 Azure에 배포하는 상황입니다.)*\n\nDC3을 배포하려면 어떤 구현을 사용해야 합니까?",
+ "choices": {"A": "Azure Active Directory Domain Services(Azure AD DS)", "B": "Azure 가상 머신", "C": "Azure AD 관리 단위", "D": "Azure AD Application Proxy"},
+ "explanation": "Azure에 추가 AD DS 도메인 컨트롤러를 두려면 Azure IaaS **가상 머신**에 배포합니다. 그 VM에서 Windows Server가 AD DS를 실행하고 복제본 도메인 컨트롤러로 승격될 수 있습니다. Microsoft Entra Domain Services는 관리형 도메인이라 고객이 관리하는 도메인 컨트롤러를 추가할 수 없습니다."
+},
+"AZ-800-Q13": {
+ "stem": "*(참고: 이 문제는 동일한 시나리오를 공유하는 시리즈 문항입니다. 원본 사이트에 시나리오 본문이 누락되어 있으며, 해설로 볼 때 목표는 \"GPO1 편집 시 일부 관리 템플릿(Administrative Templates) 설정이 보이지 않는 문제를 해결해 모든 설정을 사용할 수 있게 하는 것\"입니다.)*\n\n솔루션: GPO1의 속성을 수정합니다.\n\n이 방법으로 목표를 달성할 수 있습니까?",
+ "choices": {"A": "예", "B": "아니요"},
+ "explanation": "아니요. 관리 템플릿 설정은 중앙 저장소(Central Store)의 ADMX 파일과 언어별 ADML 파일이 제공합니다. GPO의 속성을 수정해도 이 정책 정의 파일이 추가되거나 복구되지 않으므로 모든 설정을 사용할 수 있게 만들 수 없습니다. 적절한 템플릿을 중앙 저장소에 추가하거나 갱신해야 합니다."
+},
+"AZ-800-Q14": {
+ "stem": "*(참고: 이 문제는 동일한 시나리오를 공유하는 시리즈 문항입니다. 원본 사이트에 시나리오 본문이 누락되어 있으며, 해설로 볼 때 목표는 \"GPO1 편집 시 일부 관리 템플릿(Administrative Templates) 설정이 보이지 않는 문제를 해결해 모든 설정을 사용할 수 있게 하는 것\"입니다.)*\n\n솔루션: `C:\\Windows\\PolicyDefinitions` 폴더의 내용을 중앙 저장소(Central Store)로 복사합니다.\n\n이 방법으로 목표를 달성할 수 있습니까?",
+ "choices": {"A": "예", "B": "아니요"},
+ "explanation": "그룹 정책 도구는 중앙 저장소에 있는 관리 템플릿 파일을 사용합니다. `C:\\Windows\\PolicyDefinitions`의 모든 ADMX 파일과 언어별 ADML 파일을 중앙 저장소로 복사하면 GPO를 편집할 때 해당 정책 설정을 사용할 수 있게 됩니다."
+},
+"AZ-800-Q15": {
+ "stem": "*(참고: 이 문제는 동일한 시나리오를 공유하는 시리즈 문항입니다. 원본 사이트에 시나리오 본문이 누락되어 있으며, 해설로 볼 때 목표는 \"GPO1 편집 시 일부 관리 템플릿(Administrative Templates) 설정이 보이지 않는 문제를 해결해 모든 설정을 사용할 수 있게 하는 것\"입니다.)*\n\n솔루션: `\\\\contoso.com\\SYSVOL\\contoso.com\\Policies\\PolicyDefinitions` 폴더를 삭제합니다.\n\n이 방법으로 목표를 달성할 수 있습니까?",
+ "choices": {"A": "예", "B": "아니요"},
+ "explanation": "그룹 정책 관리 템플릿을 편집할 때 중앙 저장소는 로컬 ADMX 정책 정의 파일보다 우선합니다. SYSVOL에서 `PolicyDefinitions` 폴더를 제거하면 중앙 저장소 사용이 해제되어 편집기가 로컬 ADMX 파일을 대신 사용하므로, 중앙 저장소에 정의가 없어서 보이지 않던 설정을 사용할 수 있게 됩니다."
+},
+"AZ-800-Q24": {
+ "stem": "네트워크에 contoso.com이라는 Active Directory Domain Services(AD DS) 포리스트가 하나 있고, Active Directory 사이트도 하나뿐입니다.\n\nServer1에 읽기 전용 도메인 컨트롤러(RODC)를 새 데이터센터에 배포할 계획입니다. User1은 Server1의 로컬 Administrators 그룹에 속합니다.\n\n다음 요구 사항을 충족하는 배포 계획을 권장해야 합니다.\n\n- User1이 Server1에서 RODC 설치를 수행할 수 있게 한다.\n- Server1으로의 AD DS 복제 일정을 제어할 수 있게 한다.\n- Server1을 RemoteSite1이라는 새 사이트에 둔다.\n- 최소 권한 원칙을 적용한다.\n\n[[IMG1]]\n\n어떤 세 가지 작업을 순서대로 수행해야 합니까?",
+ "items": {
+  "Instruct User1 to run the Active Directory Domain Services installation Wizard on Server1.": "User1에게 Server1에서 Active Directory Domain Services 설치 마법사를 실행하도록 지시한다.",
+  "Create a site and a subnet.": "사이트와 서브넷을 만든다.",
+  "Create a site link.": "사이트 링크를 만든다.",
+  "Pre-create an RODC account.": "RODC 계정을 미리 만든다.",
+  "Add User1 to the Contoso\\Administrators group.": "User1을 Contoso\\Administrators 그룹에 추가한다."
+ },
+ "slots": {"step1": "1단계", "step2": "2단계", "step3": "3단계"},
+ "explanation": "RemoteSite1을 만들고 데이터센터 서브넷을 연결하면 Server1이 필요한 AD DS 사이트에 배치됩니다. 사이트 링크는 사이트를 연결하고 복제 일정 제어 수단을 제공합니다. RODC 계정을 미리 만들면 단계별 배포가 가능하고, User1에게 Domain Admins 권한을 주지 않고도 Server1을 그 RODC 계정에 연결할 권한을 위임할 수 있습니다. 그 후 User1은 기존 RODC 계정을 사용해 AD DS 설치 마법사를 실행할 수 있습니다."
+},
+"AZ-800-Q25": {
+ "stem": "HOTSPOT\n\n네트워크에 contoso.com이라는 Active Directory Domain Services(AD DS) 포리스트가 있습니다.\n\n파트너 회사 ADatum Corporation은 adatum.com이라는 AD DS 포리스트를 갖고 있습니다. 다음 그림과 같은 트러스트 관계를 구성합니다.\n\n[[IMG1]]\n\n포리스트에는 다음 표의 그룹이 있습니다.\n\n[[IMG2]]\n\nADatum 도메인에는 다음 표의 멤버 서버가 있습니다.\n\n[[IMG3]]\n\n다음 각 문장에 대해, 문장이 참이면 **예**를, 그렇지 않으면 **아니요**를 선택하십시오.",
+ "statements": [
+  "Group2에 Server2의 리소스에 대한 권한을 할당할 수 있다.",
+  "Group3을 Group1의 멤버로 추가할 수 있다.",
+  "Group4에 Server1의 리소스에 대한 권한을 할당할 수 있다."
+ ],
+ "explanation": "도메인 로컬 그룹은 자기 도메인 안에서만 권한을 할당받을 수 있으므로, adatum.com의 Group2는 west.adatum.com의 Server2에 권한을 할당받을 수 없습니다. 도메인 로컬 그룹은 신뢰하는 도메인이나 포리스트의 글로벌 그룹을 포함할 수 있으므로 Group3은 Group1의 멤버가 될 수 있습니다. 단방향 트러스트는 adatum.com ID가 contoso.com 리소스에 접근하는 것을 허용할 뿐, contoso.com ID가 adatum.com 리소스에 접근하는 것은 허용하지 않으므로 Group4는 Server1에 권한을 할당받을 수 없습니다."
+},
+"AZ-800-Q31": {
+ "stem": "네트워크에 Active Directory Domain Services(AD DS) 도메인이 있습니다. 도메인에는 Windows Server 2022를 실행하는 Server1과 Server2 두 대의 서버가 있습니다.\n\nServer1과 Server2에 부하 분산되는 App1이라는 앱을 배포할 계획입니다.\n\nServer1과 Server2에서 App1을 실행할 ID를 만들어야 합니다. 솔루션은 다음 요구 사항을 충족해야 합니다.\n\n- ID의 암호가 정기적으로 변경되어야 한다.\n- 관리 작업을 최소화해야 한다.\n\n어떤 세 가지 작업을 순서대로 수행해야 합니까?",
+ "items": {
+  "Create a standalone managed service account (sMSA).": "독립 실행형 관리 서비스 계정(sMSA)을 만든다.",
+  "Create a service principal name (SPN).": "서비스 사용자 이름(SPN)을 만든다.",
+  "Enable constrained delegation for Server1 and Server2.": "Server1과 Server2에 제한 위임을 사용하도록 설정한다.",
+  "Create a Key Distribution Services (KDS) root key.": "KDS(Key Distribution Services) 루트 키를 만든다.",
+  "Create a group managed service account (gMSA).": "그룹 관리 서비스 계정(gMSA)을 만든다.",
+  "Install the service account on Server1 and Server2.": "Server1과 Server2에 서비스 계정을 설치한다."
+ },
+ "slots": {"1": "1단계", "2": "2단계", "3": "3단계"},
+ "explanation": "gMSA는 여러 서버에서 실행되는 서비스에 공유 서비스 ID를 제공하며 암호 생성·순환을 자동으로 관리합니다. gMSA를 만들기 전에 KDS 루트 키가 필요하고, 만든 뒤에는 이를 사용할 각 호스트에 gMSA를 설치해야 합니다. sMSA는 한 서버로 제한되고, SPN이나 제한 위임은 자동 관리되는 공유 서비스 계정이라는 요구를 충족하지 못합니다."
+},
+"AZ-800-Q32": {
+ "stem": "HOTSPOT\n\n네트워크에 다음 표의 도메인이 포함된 contoso.com이라는 Active Directory Domain Services(AD DS) 포리스트가 있습니다.\n\n[[IMG1]]\n\n포리스트의 재해 복구 계획을 작성하고 있습니다.\n\n포리스트 기능을 완전히 유지하려면 최소 몇 개의 도메인 명명 FSMO 역할 보유자와 RID 마스터 FSMO 역할 보유자가 온라인이어야 합니까?",
+ "blanks": {
+  "domain_naming": {"label": "도메인 명명 마스터:", "options": ["1", "2", "3", "5", "11"]},
+  "rid_master": {"label": "RID 마스터:", "options": ["1", "2", "3", "5", "11"]}
+ },
+ "explanation": "도메인 명명 마스터는 포리스트 전체에 하나뿐인 FSMO 역할이므로 온라인 역할 보유자 1개면 충분합니다. RID 마스터는 도메인별 FSMO 역할이므로, 도메인이 5개인 포리스트에는 도메인마다 하나씩 5개의 RID 마스터 역할 보유자가 온라인이어야 합니다."
+},
+"AZ-800-Q41": {
+ "stem": "네트워크에 contoso.com이라는 단일 도메인 Active Directory Domain Services(AD DS) 포리스트가 있습니다. 포리스트에는 다음 표의 서버가 있습니다.\n\n[[IMG1]]\n\nServer1에 LOB(기간 업무) 애플리케이션을 설치할 계획입니다. 이 애플리케이션은 사용자 지정 Windows 서비스를 설치합니다.\n\n새 회사 보안 정책에 따라 모든 사용자 지정 Windows 서비스는 그룹 관리 서비스 계정(gMSA) 컨텍스트에서 실행되어야 합니다. 루트 키는 배포해 두었습니다.\n\n새 애플리케이션이 사용할 gMSA를 만들고, 구성하고, 설치해야 합니다.\n\n어떤 두 가지 작업을 수행해야 합니까? 각 정답은 솔루션의 일부입니다.\n\n참고: 각 올바른 선택은 1점입니다.",
+ "choices": {
+  "A": "Server1에서 setspn 명령을 실행한다.",
+  "B": "DC1에서 New-ADServiceAccount cmdlet을 실행한다.",
+  "C": "Server1에서 Install-ADServiceAccount cmdlet을 실행한다.",
+  "D": "Server1에서 Get-ADServiceAccount cmdlet을 실행한다.",
+  "E": "DC1에서 Set-ADComputer cmdlet을 실행한다.",
+  "F": "DC1에서 Install-ADServiceAccount cmdlet을 실행한다."
+ },
+ "explanation": "`New-ADServiceAccount`는 Active Directory에 gMSA 개체를 만들고 Server1에 관리되는 암호를 검색할 권한을 부여할 수 있습니다. `Install-ADServiceAccount`는 Windows 서비스를 호스팅할 컴퓨터인 Server1에서 실행해 기존 gMSA를 그 컴퓨터에 설치(캐시)해야 합니다."
+},
+"AZ-800-Q51": {
+ "stem": "Contoso, Ltd.에는 포리스트 루트 도메인 contoso.com과 자식 도메인 canada.contoso.com이 포함된 Active Directory Domain Services(AD DS) 포리스트가 있습니다. Server1은 canada.contoso.com의 멤버 서버입니다.\n\nContoso는 다음 기술 요구 사항을 정의했습니다.\n\n- Server1을 canada.contoso.com의 도메인 컨트롤러로 승격한다.\n\n관련 관리 계정은 다음과 같이 구성되어 있습니다.\n\n- **Admin1**은 **Enterprise Admins** 그룹의 멤버입니다.\n- **Admin2**는 **contoso.com**에서만 **Domain Admins** 그룹의 멤버입니다.\n- **Admin3**은 **canada.contoso.com**에서만 **Domain Admins** 그룹의 멤버입니다.\n\nServer1에 대한 기술 요구 사항을 충족해야 합니다.\n\n현재 어떤 사용자가 필요한 작업을 수행할 수 있습니까?",
+ "choices": {"A": "Admin3만", "B": "Admin1과 Admin3만", "C": "Admin1만", "D": "Admin1, Admin2, Admin3"},
+ "explanation": "기존 도메인에 추가 도메인 컨트롤러를 넣으려면 그 도메인의 Domain Admins 그룹 멤버십이 필요하며, Enterprise Admins도 필요한 포리스트 전체 권한을 갖고 있습니다. 따라서 Enterprise Admin과 canada.contoso.com의 Domain Admin은 Server1을 승격할 수 있지만, 별개 도메인인 contoso.com에만 한정된 Domain Admin은 할 수 없습니다. Microsoft는 AD DS 설치에 필요한 이 자격 증명 요구 사항을 문서화하고 있습니다."
+}
+}

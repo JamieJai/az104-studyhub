@@ -7,7 +7,9 @@
   const THEME_KEY = "az802cbt.theme";     // 테마만 기기별 저장. 기록은 전부 서버(D1, exam=az802).
   const EXAM = "az802";
   const PROGRESS_API = `/api/progress?exam=${EXAM}`;
-  const TYPE_LABEL = { multiple_choice: "객관식", dropdown: "HOTSPOT", drag_drop: "DRAG DROP", statements: "예/아니요" };
+  const TYPE_LABEL = { multiple_choice: "객관식", dropdown: "HOTSPOT", drag_drop: "DRAG DROP", statements: "예/아니요", answer_reveal: "자기 채점" };
+  const isLegacy = q => !!q.legacy;
+  const qLabel = q => q.legacy ? `${q.legacy.exam} Q${q.legacy.q}` : `Q${q.n}`;
 
   const $ = id => document.getElementById(id);
 
@@ -187,6 +189,8 @@
     return QUESTIONS.filter(q => {
       const r = state.records[q.n];
       if (filter === "all") return true;
+      if (filter === "scope:current") return !isLegacy(q);
+      if (filter === "scope:legacy") return isLegacy(q);
       if (filter === "unanswered") return !r || !r.result;
       if (filter === "wrong") return r && r.result === "wrong";
       if (filter === "bookmarked") return r && r.bookmarked;
@@ -206,36 +210,42 @@
   }
 
   // 모의고사: 영역 비중 배분 + 미응답/오답 우선
-  function allocateExam(total) {
+  function examPool(includeLegacy) {
+    return QUESTIONS.filter(q => q.type !== "answer_reveal" && (includeLegacy || !isLegacy(q)));
+  }
+  function allocateExam(total, includeLegacy) {
     const topics = DATA.topics;
+    const pool = examPool(includeLegacy);
+    const counts = topics.map(t => pool.filter(q => q.topic === t.en).length);
     const weights = topics.map(t => (t.weight[0] + t.weight[1]) / 2);
     const wsum = weights.reduce((a, b) => a + b, 0);
-    let alloc = topics.map((t, i) => Math.min(t.count, Math.round(total * weights[i] / wsum)));
+    let alloc = topics.map((t, i) => Math.min(counts[i], Math.round(total * weights[i] / wsum)));
     let diff = total - alloc.reduce((a, b) => a + b, 0);
     // 남거나 모자란 만큼 여유 있는 영역에 분배
     let guard = 0;
     while (diff !== 0 && guard++ < 200) {
       for (let i = 0; i < topics.length && diff !== 0; i++) {
-        if (diff > 0 && alloc[i] < topics[i].count) { alloc[i]++; diff--; }
+        if (diff > 0 && alloc[i] < counts[i]) { alloc[i]++; diff--; }
         else if (diff < 0 && alloc[i] > 0) { alloc[i]--; diff++; }
       }
     }
     const picked = [];
     topics.forEach((t, i) => {
-      const pool = QUESTIONS.filter(q => q.topic === t.en).map(q => q.n);
+      const tpool = pool.filter(q => q.topic === t.en).map(q => q.n);
       const pri = n => { const r = state.records[n]; if (!r || !r.result) return 0; if (r.result === "wrong") return 1; return 2; };
-      const groups = [0, 1, 2].map(p => shuffle(pool.filter(n => pri(n) === p)));
+      const groups = [0, 1, 2].map(p => shuffle(tpool.filter(n => pri(n) === p)));
       const ordered = groups.flat();
       picked.push(...ordered.slice(0, alloc[i]));
     });
     return shuffle(picked);
   }
   function startExamSession() {
-    const size = Math.min(QUESTIONS.length, Number($("examSize").value));
-    const queue = allocateExam(size);
+    const includeLegacy = $("examIncludeLegacy").checked;
+    const size = Math.min(examPool(includeLegacy).length, Number($("examSize").value));
+    const queue = allocateExam(size, includeLegacy);
     const timed = $("examTimer").checked;
     startSession({ mode: "exam", queue, order: "sequential", filter: "exam", title: "모의고사" });
-    state.session.timed = timed;
+    state.session.timed = timed; state.session.includeLegacy = includeLegacy;
     if (timed) { state.session.endsAt = Date.now() + size * 120 * 1000; startExamTimer(); }
     saveState();
   }
@@ -262,10 +272,10 @@
     window.scrollTo({ top: 0 });
   }
   function showWelcome() {
-    $("wcTotal").textContent = QUESTIONS.length;
+    $("wcTotal").textContent = QUESTIONS.filter(q => !isLegacy(q)).length;
+    $("wcLegacy").textContent = QUESTIONS.filter(isLegacy).length;
     $("wcMc").textContent = QUESTIONS.filter(q => q.type === "multiple_choice").length;
-    $("wcHs").textContent = QUESTIONS.filter(q => q.type === "dropdown" || q.type === "drag_drop").length;
-    $("wcYn").textContent = QUESTIONS.filter(q => q.type === "statements").length;
+    $("wcHs").textContent = QUESTIONS.filter(q => q.type !== "multiple_choice").length;
     showOnly("welcome");
   }
   function showQuiz() { showOnly("quiz"); }
@@ -276,8 +286,13 @@
     if (!q) return showWelcome();
     pending = {};
     const badge = $("kindBadge"); badge.textContent = TYPE_LABEL[q.type]; badge.className = "pill type-" + q.type;
-    $("sourceNumber").textContent = `Q${q.n}`;
+    $("sourceNumber").textContent = q.legacy ? `#${q.n} · ${qLabel(q)}` : `Q${q.n}`;
     $("topicBadge").textContent = s.mode === "exam" ? "" : q.topicKo;
+    const lb = $("legacyBanner");
+    if (q.legacy) {
+      lb.innerHTML = `<strong>구형 ${escapeHtml(q.legacy.exam)} 문제</strong> · 원본 Q${q.legacy.q}${s.mode === "exam" ? "" : ` · AZ-802 분류: ${escapeHtml(q.topicKo)}${q.legacy.skill ? ` › ${escapeHtml(q.legacy.skill)}` : ""}`}<span class="legacy-sub">${escapeHtml(q.legacy.exam)}은 2026-09-30 은퇴한 시험이지만, 이 문항은 AZ-802 현행 출제 범위에 해당해 남긴 것입니다.${q.koMissing ? " <b>아직 번역 전 — 영어 원문으로 표시됩니다.</b>" : ""}</span>`;
+      lb.classList.remove("hidden");
+    } else lb.classList.add("hidden");
     $("sessionPosition").textContent = `${s.cursor + 1} / ${s.queue.length}`;
     $("sessionMode").textContent = s.mode === "exam" ? `모의고사${s.timed ? " · 시간제한" : ""}` : (s.title || "연습");
     $("sessionBar").style.width = ((s.cursor + 1) / s.queue.length * 100) + "%";
@@ -291,6 +306,7 @@
     $("questionText").innerHTML = mdToHtml(q.stemKo);
     $("questionTextEn").innerHTML = mdToHtml(q.stemEn);
     $("originalWrap").open = false;
+    $("originalWrap").classList.toggle("hidden", !!q.koMissing);
     // 3) 답 입력
     const prior = s.mode === "exam" ? (s.answers[q.n] || null) : (rec.result ? { selected: rec.selected, graded: true } : null);
     renderControls(q, prior);
@@ -359,7 +375,18 @@
       }
       html += `</div>`;
     }
-    if (!locked) html += `<div class="submit-row"><small>${state.session.mode === "exam" ? "제출하면 다음 문항으로 넘어갑니다 (나중에 다시 돌아와 바꿀 수 있음)" : "제출하면 바로 채점하고 해설을 보여줍니다"}</small><button type="button" class="primary" id="submitAnswer">제출</button></div>`;
+    else if (q.type === "answer_reveal") {
+      pending.selected = sel ? { ...sel } : {};
+      const revealed = !!(pending.selected.revealed || locked);
+      html += `<h3 class="answer-title">자기 채점 문항<small>정답이 이미지·서술형이라 자동 채점이 안 됩니다. 먼저 답을 생각한 뒤 정답을 열고 스스로 채점하세요.</small></h3>`;
+      if (!revealed) html += `<div class="submit-row"><small>답을 정했으면 정답을 확인합니다</small><button type="button" class="primary" id="revealAnswer">정답 보기</button></div>`;
+      else {
+        html += `<div class="reveal-box"><strong>정답</strong>${q.answerImages.map((src, i) => `<figure class="q-figure"><img src="${src}" alt="정답 이미지 ${i + 1}" data-answer-img="${i}"><figcaption>정답 이미지 ${i + 1} · 클릭하면 크게 봅니다</figcaption></figure>`).join("")}${q.answerTextKo ? `<div class="explain-body">${mdToHtml(q.answerTextKo)}</div>` : ""}${q.answerTextEn && q.answerTextEn !== q.answerTextKo ? `<details class="explain-en"><summary>EN · 영어 원문</summary><div class="explain-body">${mdToHtml(q.answerTextEn)}</div></details>` : ""}</div>`;
+        if (!locked) html += `<div class="self-grade"><button type="button" class="correct-button" data-self="correct">✅ 맞았어요</button><button type="button" class="wrong-button" data-self="wrong">❌ 틀렸어요</button></div>`;
+        else html += `<div class="self-instruction">자기 채점 결과: ${sel?.self === "correct" ? "정답 처리" : "오답 처리"}</div>`;
+      }
+    }
+    if (!locked && q.type !== "answer_reveal") html += `<div class="submit-row"><small>${state.session.mode === "exam" ? "제출하면 다음 문항으로 넘어갑니다 (나중에 다시 돌아와 바꿀 수 있음)" : "제출하면 바로 채점하고 해설을 보여줍니다"}</small><button type="button" class="primary" id="submitAnswer">제출</button></div>`;
     else if (state.session.mode === "exam") html += `<div class="submit-row"><small>제출된 답입니다. 바꾸려면 아래에서 다시 선택하세요.</small><button type="button" id="changeAnswer">답 바꾸기</button></div>`;
     box.innerHTML = html;
 
@@ -371,6 +398,8 @@
       b.parentElement.querySelectorAll("button").forEach(x => x.classList.toggle("selected", x === b));
     }));
     const sb = $("submitAnswer"); if (sb) sb.addEventListener("click", submitAnswer);
+    const rv = $("revealAnswer"); if (rv) rv.addEventListener("click", () => { pending.selected.revealed = true; renderControls(q, { selected: pending.selected }); });
+    box.querySelectorAll("button[data-self]").forEach(b => b.addEventListener("click", () => { pending.selected = { revealed: true, self: b.dataset.self }; submitAnswer(); }));
     const cb = $("changeAnswer"); if (cb) cb.addEventListener("click", () => { delete state.session.answers[q.n]; saveState(); renderControls(q, null); });
   }
 
@@ -397,6 +426,10 @@
       const parts = q.statements.map((st, i) => ({ id: i, label: st.ko, chosen: sel?.[i] || "", answer: st.answer, answerKo: st.answer === "Yes" ? "예" : st.answer === "No" ? "아니요" : st.answer, ok: (sel?.[i] || "") === st.answer }));
       return { correct: parts.every(p => p.ok), parts };
     }
+    if (q.type === "answer_reveal") {
+      const ok = sel?.self === "correct";
+      return { correct: ok, parts: [{ id: "self", label: "자기 채점", chosen: sel?.self || "", answer: "correct", answerKo: "직접 채점", ok }] };
+    }
     if (q.type === "drag_drop") {
       const parts = q.slots.map(sl => ({ id: sl.id, label: sl.labelKo, chosen: sel?.[sl.id] || "", answer: sl.answer, answerKo: (q.items.find(i => i.en === sl.answer) || {}).ko, ok: (sel?.[sl.id] || "") === sl.answer }));
       return { correct: parts.every(p => p.ok), parts };
@@ -408,6 +441,7 @@
     if (q.type === "dropdown") return q.blanks.every(b => sel?.[b.id]);
     if (q.type === "statements") return q.statements.every((s, i) => sel?.[i]);
     if (q.type === "drag_drop") return q.slots.every(s => sel?.[s.id]);
+    if (q.type === "answer_reveal") return !!sel?.self;
     return false;
   }
 
@@ -437,13 +471,15 @@
     const fb = $("feedback");
     const okParts = g.parts.filter(p => p.ok).length;
     let body = g.correct ? `<strong>정답입니다 ✅</strong>` : `<strong>오답입니다 ❌</strong>`;
-    if (q.type !== "multiple_choice") body += `<div>부분 점수: ${okParts} / ${g.parts.length}</div>`;
+    if (q.type === "answer_reveal") body += `<div>자기 채점 결과입니다</div>`;
+    else if (q.type !== "multiple_choice") body += `<div>부분 점수: ${okParts} / ${g.parts.length}</div>`;
     else if (q.answers.length > 1) body += `<div>정답 ${q.answers.length}개 중 ${okParts}개 일치</div>`;
     const r = state.records[q.n]; if (r && r.attempts > 1) body += `<div style="opacity:.75;font-size:12px;margin-top:4px">이 문항 ${r.attempts}회 풀이 · 오답 ${r.wrongCount}회</div>`;
     fb.className = "feedback " + (g.correct ? "correct" : "wrong"); fb.innerHTML = body; fb.classList.remove("hidden");
   }
 
   function answerSummaryHtml(q, g) {
+    if (q.type === "answer_reveal") return `<strong>정답</strong><div class="explain-body">${mdToHtml(q.answerTextKo || q.answerTextEn || "(위 정답 이미지 참조)")}</div>`;
     if (q.type === "multiple_choice") {
       return `<strong>정답: ${q.answers.join(", ")}</strong><ul>${q.answers.map(a => { const c = q.choices.find(x => x.label === a); return `<li><b>${a}.</b> ${escapeHtml(c.ko)}${c.ko !== c.en ? ` <span style="opacity:.7">(${escapeHtml(c.en)})</span>` : ""}</li>`; }).join("")}</ul>`;
     }
@@ -458,8 +494,11 @@
   function showExplanation(q, g) {
     const ex = $("explanation");
     let html = `<h3>정답 및 해설</h3><div class="answer-summary">${answerSummaryHtml(q, g)}</div>`;
-    html += `<div class="explanation-section"><h4>해설 (한국어)</h4><div class="explain-body">${mdToHtml(q.explanationKo)}</div></div>`;
-    html += `<details class="explain-en"><summary>EN · 영어 원문 해설 보기</summary><div class="explain-body">${mdToHtml(q.explanationEn)}</div></details>`;
+    if (q.koMissing) html += `<div class="explanation-section"><h4>해설 (영어 원문 · 번역 준비 중)</h4><div class="explain-body">${mdToHtml(q.explanationEn)}</div></div>`;
+    else {
+      html += `<div class="explanation-section"><h4>해설 (한국어)</h4><div class="explain-body">${mdToHtml(q.explanationKo)}</div></div>`;
+      html += `<details class="explain-en"><summary>EN · 영어 원문 해설 보기</summary><div class="explain-body">${mdToHtml(q.explanationEn)}</div></details>`;
+    }
     if (q.learnMore.length) html += `<div class="reference-links"><strong>Learn more:</strong>${q.learnMore.map(l => `<a href="${escapeHtml(l.url)}" target="_blank" rel="noopener">${escapeHtml(l.title)}</a>`).join("")}</div>`;
     ex.innerHTML = html; ex.classList.remove("hidden");
   }
@@ -483,7 +522,7 @@
     if (s.mode === "exam") {
       // 기록 반영
       for (const r of results) if (r.answered) updateRecord(r.q, { correct: r.correct }, r.sel); else { const rec = recordFor(r.n); rec.attempts += 1; rec.result = "wrong"; rec.wrongCount += 1; rec.updatedAt = nowIso(); }
-      const run = { id: nowIso(), at: nowIso(), total: results.length, correct: results.filter(r => r.correct).length, timed: !!s.timed, wrong: results.filter(r => !r.correct).map(r => r.n), topics: {} };
+      const run = { id: nowIso(), at: nowIso(), total: results.length, correct: results.filter(r => r.correct).length, timed: !!s.timed, includeLegacy: !!s.includeLegacy, legacyCount: results.filter(r => isLegacy(r.q)).length, wrong: results.filter(r => !r.correct).map(r => r.n), topics: {} };
       for (const t of DATA.topics) { const rs = results.filter(r => r.q.topic === t.en); if (rs.length) run.topics[t.en] = { total: rs.length, correct: rs.filter(r => r.correct).length }; }
       state.examRuns.push(run); state.examRuns = state.examRuns.slice(-30);
       saveState(); updateStats();
@@ -502,7 +541,8 @@
     $("examScore").textContent = `${correct} / ${total}`;
     const pct = total ? Math.round(correct / total * 100) : 0;
     $("examPercent").textContent = pct + "%";
-    $("examSummary").textContent = mode === "exam" ? `${results.length}문항 중 ${correct}문항 정답 (${pct}%). 실제 시험 합격선은 1000점 만점에 700점(약 70%)입니다.` : `이번 세션에서 ${answered.length}문항을 풀어 ${correct}문항을 맞혔습니다.`;
+    const legacyN = results.filter(r => isLegacy(r.q)).length;
+    $("examSummary").textContent = mode === "exam" ? `${results.length}문항 중 ${correct}문항 정답 (${pct}%)${legacyN ? ` · 구형 AZ-800/801 문항 ${legacyN}개 포함` : " · 현행 AZ-802 문항만"}. 실제 시험 합격선은 1000점 만점에 700점(약 70%)입니다.` : `이번 세션에서 ${answered.length}문항을 풀어 ${correct}문항을 맞혔습니다.`;
     const grid = $("resultChapters"); grid.innerHTML = "";
     for (const t of DATA.topics) {
       const rs = results.filter(r => r.q.topic === t.en && (mode === "exam" || r.answered)); if (!rs.length) continue;
@@ -510,7 +550,7 @@
       grid.insertAdjacentHTML("beforeend", `<div class="result-ch${p < 70 ? " low" : ""}"><b>${escapeHtml(t.ko)}</b><div class="rc-bar"><i style="width:${p}%"></i></div><div class="rc-num">${c} / ${rs.length} · ${p}%</div></div>`);
     }
     const wrong = results.filter(r => (mode === "exam" || r.answered) && !r.correct);
-    $("resultWrong").innerHTML = wrong.length ? `<h3>틀린 문항 ${wrong.length}개</h3><div class="rw-list">${wrong.map(r => `<button type="button" class="rw-item" data-n="${r.n}"><span class="rw-no">Q${r.n}</span><span class="rw-txt">${escapeHtml(firstLine(r.q.stemKo))}</span><span class="rw-topic">${escapeHtml(r.q.topicKo)}</span></button>`).join("")}</div>` : `<p class="rw-empty">틀린 문항이 없습니다. 🎉</p>`;
+    $("resultWrong").innerHTML = wrong.length ? `<h3>틀린 문항 ${wrong.length}개</h3><div class="rw-list">${wrong.map(r => `<button type="button" class="rw-item" data-n="${r.n}"><span class="rw-no">${r.q.legacy ? "구형" : "Q" + r.n}</span><span class="rw-txt">${r.q.legacy ? `[${escapeHtml(qLabel(r.q))}] ` : ""}${escapeHtml(firstLine(r.q.stemKo))}</span><span class="rw-topic">${escapeHtml(r.q.topicKo)}</span></button>`).join("")}</div>` : `<p class="rw-empty">틀린 문항이 없습니다. 🎉</p>`;
     $("resultWrong").querySelectorAll(".rw-item").forEach(b => b.addEventListener("click", () => startSession({ queue: [Number(b.dataset.n)], order: "sequential", filter: "review", title: "복습" })));
     $("reviewExamWrong").onclick = () => wrong.length ? startSession({ queue: wrong.map(r => r.n), order: "sequential", filter: "review", title: "세션 오답 복습" }) : toast("틀린 문항이 없습니다");
     showOnly("examResult");
@@ -528,7 +568,7 @@
     const list = wrongList(1); const rep = wrongList(2);
     $("wnTitle").textContent = "오답노트"; $("wnActions").classList.remove("hidden");
     $("wnStats").innerHTML = `<div class="wn-kpi"><strong>${list.length}</strong><span>현재 오답</span></div><div class="wn-kpi"><strong>${rep.length}</strong><span>2회 이상 오답</span></div><div class="wn-kpi"><strong>${Object.values(state.records).filter(r => r.bookmarked).length}</strong><span>북마크</span></div>`;
-    $("wnList").innerHTML = list.length ? list.map(q => `<button type="button" class="wn-item" data-n="${q.n}"><span class="wn-no">Q${q.n}</span><span class="wn-body"><strong>${escapeHtml(q.topicKo)} · ${TYPE_LABEL[q.type]}</strong><em>${escapeHtml(firstLine(q.stemKo))}</em></span><span class="wn-cnt">오답 ${state.records[q.n].wrongCount}회</span></button>`).join("") : `<p class="wn-empty">틀린 문제가 없습니다.</p>`;
+    $("wnList").innerHTML = list.length ? list.map(q => `<button type="button" class="wn-item" data-n="${q.n}"><span class="wn-no">${q.legacy ? "구형" : "Q" + q.n}</span><span class="wn-body"><strong>${q.legacy ? escapeHtml(qLabel(q)) + " · " : ""}${escapeHtml(q.topicKo)} · ${TYPE_LABEL[q.type]}</strong><em>${escapeHtml(firstLine(q.stemKo))}</em></span><span class="wn-cnt">오답 ${state.records[q.n].wrongCount}회</span></button>`).join("") : `<p class="wn-empty">틀린 문제가 없습니다.</p>`;
     $("wnList").querySelectorAll(".wn-item").forEach(b => b.addEventListener("click", () => startSession({ queue: [Number(b.dataset.n)], order: "sequential", filter: "review", title: "오답 복습" })));
     showOnly("wrongNote");
   }
@@ -537,7 +577,7 @@
     const runs = state.examRuns.slice().reverse();
     const best = runs.length ? Math.max(...runs.map(r => Math.round(r.correct / r.total * 100))) : 0;
     $("wnStats").innerHTML = `<div class="wn-kpi"><strong>${runs.length}</strong><span>응시 횟수</span></div><div class="wn-kpi"><strong>${best}%</strong><span>최고 점수</span></div><div class="wn-kpi"><strong>${runs.length ? Math.round(runs.reduce((a, r) => a + r.correct / r.total * 100, 0) / runs.length) : 0}%</strong><span>평균</span></div>`;
-    $("wnList").innerHTML = runs.length ? runs.map((r, i) => `<button type="button" class="wn-item" data-i="${runs.length - 1 - i}"><span class="wn-no">#${runs.length - i}</span><span class="wn-body"><strong>${r.correct} / ${r.total} · ${Math.round(r.correct / r.total * 100)}%${r.timed ? " · 시간제한" : ""}</strong><em>${fmtDate(r.at)} · 오답 ${r.wrong.length}개 → 클릭하면 오답 복습</em></span></button>`).join("") : `<p class="wn-empty">아직 모의고사 기록이 없습니다.</p>`;
+    $("wnList").innerHTML = runs.length ? runs.map((r, i) => `<button type="button" class="wn-item" data-i="${runs.length - 1 - i}"><span class="wn-no">#${runs.length - i}</span><span class="wn-body"><strong>${r.correct} / ${r.total} · ${Math.round(r.correct / r.total * 100)}%${r.timed ? " · 시간제한" : ""}${r.includeLegacy ? ` · 구형 포함(${r.legacyCount || 0})` : " · 현행만"}</strong><em>${fmtDate(r.at)} · 오답 ${r.wrong.length}개 → 클릭하면 오답 복습</em></span></button>`).join("") : `<p class="wn-empty">아직 모의고사 기록이 없습니다.</p>`;
     $("wnList").querySelectorAll(".wn-item").forEach(b => b.addEventListener("click", () => { const run = state.examRuns[Number(b.dataset.i)]; if (run.wrong.length) startSession({ queue: run.wrong, order: "sequential", filter: "review", title: "모의고사 오답 복습" }); else toast("이 회차는 오답이 없습니다"); }));
     showOnly("wrongNote");
   }
@@ -545,11 +585,14 @@
   // ---------- 북마크 / 이동 / 테마 / 라이트박스 ----------
   function toggleBookmark() { const q = currentQuestion(); if (!q) return; const r = recordFor(q.n); r.bookmarked = !r.bookmarked; r.updatedAt = nowIso(); saveState(); updateStats(); renderQuestion(); toast(r.bookmarked ? "북마크 추가" : "북마크 해제"); }
   function jumpTo() {
-    const n = Number($("questionJump").value); if (!BY_N.has(n)) { toast("1~63 사이 번호를 입력하세요"); return; }
+    const raw = $("questionJump").value.trim(); let n = Number(raw);
+    const m = /^(80[01])[-\s]?q?(\d+)$/i.exec(raw);
+    if (m) { const hit = QUESTIONS.find(q => q.legacy && q.legacy.exam === "AZ-" + m[1] && q.legacy.q === Number(m[2])); n = hit ? hit.n : NaN; }
+    if (!BY_N.has(n)) { toast("1~63(현행), 101~(구형) 번호 또는 '800-12' 형식으로 입력하세요"); return; }
     const s = state.session;
     if (s && s.mode !== "exam" && s.queue.includes(n)) { s.cursor = s.queue.indexOf(n); saveState(); showQuiz(); renderQuestion(); }
     else if (s && s.mode === "exam") toast("모의고사 중에는 이동할 수 없습니다");
-    else startSession({ queue: QUESTIONS.map(q => q.n), order: "sequential", filter: "all", title: "연습" }), state.session.cursor = n - 1, saveState(), renderQuestion();
+    else { startSession({ queue: QUESTIONS.map(q => q.n), order: "sequential", filter: "all", title: "연습" }); state.session.cursor = state.session.queue.indexOf(n); saveState(); renderQuestion(); }
     $("questionJump").value = "";
   }
   function applyTheme() { document.body.classList.toggle("dark", state.theme === "dark"); }
@@ -597,6 +640,7 @@
     document.addEventListener("click", e => {
       const chip = e.target.closest(".img-chip"); const img = e.target.closest(".q-figure img");
       const q = currentQuestion(); if (!q) return;
+      if (img && img.dataset.answerImg !== undefined) { openLightbox(img.src, `${qLabel(q)} · 정답 이미지`); return; }
       if (chip) { const i = Number(chip.dataset.img); if (q.images[i - 1]) openLightbox(q.images[i - 1], `Q${q.n} · 이미지 ${i}`); }
       else if (img) openLightbox(img.src, `Q${q.n} · 이미지 ${img.dataset.img}`);
     });
@@ -618,8 +662,12 @@
   }
   function fillTopics() {
     const g = $("topicGroup");
-    for (const t of DATA.topics) g.insertAdjacentHTML("beforeend", `<option value="topic:${escapeHtml(t.en)}">${escapeHtml(t.ko)} (${t.count})</option>`);
-    $("datasetCount").textContent = QUESTIONS.length;
+    for (const t of DATA.topics) g.insertAdjacentHTML("beforeend", `<option value="topic:${escapeHtml(t.en)}">${escapeHtml(t.ko)} (${t.count}+${t.legacyCount || 0})</option>`);
+    $("datasetCount").textContent = QUESTIONS.filter(q => !isLegacy(q)).length;
+    $("legacyCount").textContent = QUESTIONS.filter(isLegacy).length;
+    $("legacyKoCount").textContent = QUESTIONS.filter(q => isLegacy(q) && !q.koMissing).length;
+    $("legacyPoolCount").textContent = examPool(true).length - examPool(false).length;
+    $("arCount").textContent = QUESTIONS.filter(q => q.type === "answer_reveal").length;
     $("mcCount").textContent = QUESTIONS.filter(q => q.type === "multiple_choice").length;
     $("hsCount").textContent = QUESTIONS.filter(q => q.type === "dropdown").length;
     $("ddCount").textContent = QUESTIONS.filter(q => q.type === "drag_drop").length;

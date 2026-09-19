@@ -549,3 +549,18 @@ body.dark .exam-locked { background:#1d2d47; color:#bcd3f5; }
 .wn-body em { white-space:normal; }
 .welcome-cards { grid-template-columns: repeat(4, 1fr); }
 @media (max-width:820px){ .welcome-cards { grid-template-columns:1fr 1fr; } }
+
+/* 구형 문항 배너 · 자기 채점 */
+.legacy-banner { margin: 0 0 12px; padding: 11px 14px; border-radius: 12px; border: 1px solid #f0be83; background: #fff7ea; color: #7a4a00; font-size: 13px; line-height: 1.6; }
+.legacy-banner strong { color: #9a3d00; }
+.legacy-sub { display: block; margin-top: 3px; font-size: 12px; color: #8a5c1f; }
+body.dark .legacy-banner { background: rgba(217,121,4,.16); border-color: #a86b1e; color: #ffd89a; }
+body.dark .legacy-banner strong { color: #ffc27a; }
+body.dark .legacy-sub { color: #e3b878; }
+.pill.type-answer_reveal { background: #ece9ff; color: #4b32b8; }
+.reveal-box { margin: 6px 0 12px; padding: 14px 16px; border: 1px solid #b8e6cb; border-radius: 12px; background: #eefaf3; }
+.reveal-box > strong { display: block; margin-bottom: 8px; color: var(--correct); }
+.reveal-box .q-figure img { max-height: 520px; }
+body.dark .reveal-box { background: #153a2a; border-color: #2c6b48; }
+.self-grade .correct-button, .self-grade .wrong-button { flex: 1; }
+.self-instruction { margin-top: 10px; }

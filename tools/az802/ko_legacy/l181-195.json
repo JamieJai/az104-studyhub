@@ -1,0 +1,88 @@
+{
+"AZ-800-Q201": {
+ "stem": "*(참고: 케이스 스터디 문항으로 원본 사이트에 시나리오 본문이 누락되어 있습니다. 해설로 보면 여러 사무실에 DHCP1·DHCP2 두 대의 DHCP 서버가 있고, 한 서버가 실패해도 DHCP 서비스가 유지되어야 한다는 네트워킹 요구 사항입니다.)*\n\n네트워킹 요구 사항을 충족하는 DHCP 가용성 솔루션을 배포해야 합니다.\n\n어떤 두 가지 작업을 수행해야 합니까? 각 정답은 솔루션의 일부입니다.\n\n**참고:** 각 올바른 선택은 1점입니다.",
+ "choices": {
+  "A": "DHCP1에 Scope2 IP 주소의 25%를 포함하는 범위를 만든다.",
+  "B": "각 사무실의 라우터에 DHCP 릴레이를 구성한다.",
+  "C": "DHCP2에 Scope1 IP 주소의 25%를 포함하는 범위를 구성한다.",
+  "D": "각 DHCP 서버에 장애 조치 클러스터링 기능을 설치하고 DHCP 클러스터 역할을 추가한다.",
+  "E": "각 DHCP 범위에 DHCP 장애 조치(failover)를 구성한다."
+ },
+ "explanation": "DHCP 장애 조치는 두 DHCP 서버 간에 IPv4 범위 구성과 활성 임대를 동기화해, 한 파트너를 사용할 수 없을 때 다른 파트너가 주소 임대를 계속할 수 있게 합니다. DHCP 요청은 서브넷 브로드캐스트로 시작되어 라우터가 보통 전달하지 않으므로, 각 사무실 라우터의 DHCP 릴레이가 요청을 DHCP 서버로 전달합니다. DHCP 장애 조치는 장애 조치 클러스터링이나 25% 분할 범위 구성을 사용하지 않습니다."
+},
+"AZ-800-Q219": {
+ "stem": "네트워크에 DHCP 서버가 있습니다.\n\n새 서브넷을 추가하고 그 서브넷에 Windows Server를 배포할 계획입니다.\n\n이 서버를 DHCP 릴레이 에이전트로 사용해야 합니다.\n\n서버에 어떤 역할을 설치해야 합니까?",
+ "choices": {"A": "네트워크 정책 및 액세스 서비스", "B": "원격 액세스", "C": "네트워크 컨트롤러", "D": "DHCP 서버"},
+ "explanation": "DHCP 릴레이 에이전트는 DHCP 클라이언트 브로드캐스트를 다른 서브넷의 DHCP 서버로 중계하는 **원격 액세스(Remote Access)** 역할의 기능입니다. DHCP 서버 역할에는 포함되어 있지 않습니다."
+},
+"AZ-800-Q235": {
+ "stem": "네트워크에 Active Directory Domain Services(AD DS) 포리스트가 있습니다. 포리스트에는 다음 표의 서버가 있습니다.\n\n[[IMG1]]\n\nServer1에서 다음 그림과 같이 Zone1.com이라는 DNS 영역을 만듭니다.\n\n[[IMG2]]\n\nZone1.com은 어떤 DNS 서버로 복제됩니까?",
+ "choices": {"A": "Server2만", "B": "Server2와 Server3만", "C": "Server2와 Server4만", "D": "Server2, Server3, Server4만", "E": "Server2, Server3, Server4, Server5"},
+ "explanation": "Zone1.com은 복제 범위가 \"이 도메인의 모든 DNS 서버\"로 설정된 Active Directory 통합 영역입니다. AD 통합 영역은 DomainDnsZones 애플리케이션 디렉터리 파티션에 저장되어 Active Directory 복제로 복제되므로, 그 도메인(contoso.com)의 도메인 컨트롤러이면서 DNS 서버인 서버에만 도달합니다. Server2는 contoso.com의 DC + DNS 서버이므로 복사본을 받습니다. Server3은 DNS 서버이지만 도메인 컨트롤러가 아니라 AD 통합 복사본을 가질 수 없고, Server4와 Server5는 east.contoso.com 소속이라 \"이 도메인\" 밖입니다. 영역이 Server1에서 만들어졌으므로 추가로 복제되는 서버는 Server2뿐입니다."
+},
+"AZ-800-Q286": {
+ "stem": "*(참고: 이 문제는 동일한 시나리오를 공유하는 시리즈 문항입니다. 원본 사이트에 시나리오 본문이 누락되어 있으며, 해설로 볼 때 Server1(10.0.1.10)은 부모 영역 contoso.local을 호스팅하고 자식 영역 east.contoso.local(Server2)·west.contoso.local(Server3)에 대한 위임이 있으며, 목표는 \"Server2와 Server3이 모든 내부 네임스페이스와 인터넷 이름을 확인할 수 있게 하는 것\"입니다.)*\n\n솔루션: Server2와 Server3이 DNS 쿼리를 `10.0.1.10`으로 전달하도록 구성합니다.\n\n이 방법으로 목표를 달성할 수 있습니까?",
+ "choices": {"A": "예", "B": "아니요"},
+ "explanation": "Server1은 부모 `contoso.local` 영역을 호스팅하고 두 자식 영역에 대한 위임을 갖고 있으므로 `east.contoso.local`과 `west.contoso.local`의 권한 있는 DNS 서버로 쿼리를 보낼 수 있습니다. 전달자로서 Server1은 루트 힌트로 인터넷 이름도 확인할 수 있습니다. Microsoft 문서에 따르면 부모 영역 DNS 서버는 전달 전에 위임 정보를 사용하며, 루트 힌트가 재귀 확인을 가능하게 합니다."
+},
+"AZ-800-Q287": {
+ "stem": "*(참고: 이 문제는 동일한 시나리오를 공유하는 시리즈 문항입니다. 원본 사이트에 시나리오 본문이 누락되어 있으며, 해설로 볼 때 Server1은 부모 영역 contoso.local을 호스팅하고 자식 영역 east.contoso.local(Server2)·west.contoso.local(Server3)에 대한 위임이 있으며, 목표는 \"Server2와 Server3이 모든 내부 네임스페이스와 인터넷 이름을 확인할 수 있게 하는 것\"입니다.)*\n\n솔루션: Server2에 **contoso.local**과 **west.contoso.local**의 조건부 전달자를 만듭니다. Server3에 **contoso.local**과 **east.contoso.local**의 조건부 전달자를 만듭니다.\n\n이 방법으로 목표를 달성할 수 있습니까?",
+ "choices": {"A": "예", "B": "아니요"},
+ "explanation": "조건부 전달자는 지정한 DNS 접미사에 대한 쿼리를 구성된 DNS 서버로 보내며, 더 구체적인 자식 영역 전달자가 자식 영역 쿼리를 처리합니다. Server1은 부모 영역을 확인하고 위임된 자식 영역 쿼리를 Server2나 Server3에 참조시킬 수 있으며, 두 자식 서버는 서로의 자식 영역으로 직접 전달할 수도 있습니다. 인터넷 호스트는 루트 힌트로 확인합니다."
+},
+"AZ-800-Q288": {
+ "stem": "*(참고: 이 문제는 동일한 시나리오를 공유하는 시리즈 문항입니다. 원본 사이트에 시나리오 본문이 누락되어 있으며, 해설로 볼 때 Server1은 부모 영역 contoso.local을 호스팅하고 자식 영역 east.contoso.local(Server2)·west.contoso.local(Server3)에 대한 위임이 있으며, 목표는 \"Server2와 Server3이 모든 내부 네임스페이스와 인터넷 이름을 확인할 수 있게 하는 것\"입니다.)*\n\n솔루션: Server2와 Server3에 `contoso.local`의 조건부 전달자를 구성합니다.\n\n이 방법으로 목표를 달성할 수 있습니까?",
+ "choices": {"A": "예", "B": "아니요"},
+ "explanation": "조건부 전달자는 지정한 DNS 네임스페이스의 쿼리를 구성된 DNS 서버로 라우팅합니다. Server2와 Server3의 `contoso.local` 쿼리를 Server1으로 전달하면 부모 영역이 확인되고, Server1이 위임을 사용해 east.contoso.local과 west.contoso.local 영역에 도달할 수 있습니다. 인터넷 호스트 쿼리는 루트 힌트로 계속 확인됩니다. DNS 위임은 NS 레코드를 사용해 위임된 자식 영역으로 확인을 이끕니다."
+},
+"AZ-800-Q289": {
+ "stem": "*(참고: 이 문제는 동일한 시나리오를 공유하는 시리즈 문항입니다. 원본 사이트에 시나리오 본문이 누락되어 있으며, 해설로 볼 때 Server1은 부모 영역 contoso.local을 호스팅하고 자식 영역 east.contoso.local(Server2)·west.contoso.local(Server3)에 대한 위임이 있으며, 목표는 \"Server2와 Server3이 모든 내부 네임스페이스와 인터넷 이름을 확인할 수 있게 하는 것\"입니다.)*\n\n솔루션: Server2에 west.contoso.local의 조건부 전달자를 만듭니다. Server3에 east.contoso.local의 조건부 전달자를 만듭니다.\n\n이 방법으로 목표를 달성할 수 있습니까?",
+ "choices": {"A": "예", "B": "아니요"},
+ "explanation": "조건부 전달자는 지정한 DNS 도메인의 쿼리를 구성된 DNS 서버로 보냅니다. east.contoso.local과 west.contoso.local 사이에서만 전달하면 그 두 자식 네임스페이스는 확인되지만, Server2나 Server3이 부모 contoso.local 영역의 레코드를 확인할 방법이 없습니다. 공용 루트 힌트는 사설 contoso.local 네임스페이스를 확인할 수 없으므로 모든 내부 네임스페이스라는 요구를 충족하지 못합니다."
+},
+"AZ-800-Q290": {
+ "stem": "*(참고: 이 문제는 동일한 시나리오를 공유하는 시리즈 문항입니다. 원본 사이트에 시나리오 본문이 누락되어 있으며, 해설로 볼 때 목표는 \"Scope1에서 임대를 받는 프린터들이 항상 같은 IP 주소를 받도록 하는 것\"입니다.)*\n\n솔루션: Scope1의 DHCP 범위 옵션을 구성합니다.\n\n이 방법으로 요구 사항을 충족할 수 있습니까?",
+ "choices": {"A": "예", "B": "아니요"},
+ "explanation": "DHCP 범위 옵션은 DNS 서버·기본 게이트웨이 주소 같은 공통 구성 값을 클라이언트에 적용합니다. 특정 프린터에 같은 IP 주소를 할당하려면 프린터의 MAC 주소를 특정 IP 주소에 매핑하는 DHCP 예약이 필요합니다."
+},
+"AZ-800-Q291": {
+ "stem": "*(참고: 이 문제는 동일한 시나리오를 공유하는 시리즈 문항입니다. 원본 사이트에 시나리오 본문이 누락되어 있으며, 해설로 볼 때 목표는 \"Scope1에서 임대를 받는 프린터들이 항상 같은 IP 주소를 받도록 하는 것\"입니다.)*\n\n솔루션: 모든 프린터에 대해 DHCP 예약을 만듭니다.\n\n이 방법으로 요구 사항을 충족할 수 있습니까?",
+ "choices": {"A": "예", "B": "아니요"},
+ "explanation": "DHCP 예약은 각 프린터의 DHCP 클라이언트 식별자 또는 MAC 주소를 특정 IP 주소와 연결하므로, DHCP 서버가 그 프린터에 항상 같은 주소를 할당합니다."
+},
+"AZ-800-Q292": {
+ "stem": "*(참고: 이 문제는 동일한 시나리오를 공유하는 시리즈 문항입니다. 원본 사이트에 시나리오 본문이 누락되어 있으며, 해설로 볼 때 목표는 \"Scope1에서 임대를 받는 프린터들이 항상 같은 IP 주소를 받도록 하는 것\"입니다.)*\n\n솔루션: 각 프린터에 대해 DHCP 주소 제외를 만듭니다.\n\n이 방법으로 요구 사항을 충족할 수 있습니까?",
+ "choices": {"A": "예", "B": "아니요"},
+ "explanation": "DHCP 주소 제외는 지정한 IP 주소가 범위에서 임대되지 않게 할 뿐입니다. 특정 프린터에 일관된 주소를 할당하지는 않습니다. 고정 IP 할당을 보장하려면 각 프린터의 하드웨어 주소와 연결된 DHCP 예약이 필요합니다."
+},
+"AZ-800-Q293": {
+ "stem": "*(참고: 이 문제는 동일한 시나리오를 공유하는 시리즈 문항입니다. 원본 사이트에 시나리오 본문이 누락되어 있으며, 해설로 볼 때 목표는 \"Scope1에서 임대를 받는 프린터들이 항상 같은 IP 주소를 받도록 하는 것\"입니다.)*\n\n솔루션: 네트워크에 DHCP 릴레이 에이전트를 배포합니다.\n\n이 방법으로 요구 사항을 충족할 수 있습니까?",
+ "choices": {"A": "예", "B": "아니요"},
+ "explanation": "DHCP 릴레이 에이전트는 서브넷 경계를 넘어 DHCP 클라이언트 요청과 서버 응답을 중계할 뿐입니다. 프린터에 특정 주소를 예약하지 않습니다. 일관된 DHCP 할당 주소에는 프린터에 대한 DHCP 예약이 필요합니다."
+},
+"AZ-800-Q299": {
+ "stem": "Windows Server를 실행하고 DNS 서버 역할이 설치된 DNS1이라는 온-프레미스 서버가 있습니다.\n\ncontoso.com이라는 Azure 프라이빗 DNS 영역이 포함된 Azure 구독이 있습니다.\n\nResolver1이라는 Azure DNS Private Resolver를 배포합니다.\n\nDNS1이 Resolver1을 사용해 contoso.com의 이름을 확인할 수 있게 해야 합니다. 솔루션은 관리 작업을 최소화해야 합니다.\n\n무엇을 구성해야 합니까?",
+ "choices": {"A": "DNS 정책", "B": "사이트 간(S2S) VPN 연결", "C": "루트 힌트", "D": "보조 DNS 영역"},
+ "explanation": "Azure DNS Private Resolver 인바운드 엔드포인트는 온-프레미스 DNS 서버의 DNS 쿼리를 받지만, Azure 가상 네트워크 안의 개인 IP 주소를 갖습니다. 사이트 간 VPN이 DNS1에서 그 엔드포인트로의 필요한 사설 네트워크 연결을 제공하므로, DNS1이 contoso.com 쿼리를 Resolver1으로 전달해 확인할 수 있습니다."
+},
+"AZ-800-Q7": {
+ "stem": "Windows Server를 실행하는 SOFS(스케일 아웃 파일 서버) 클러스터와 Hyper-V 역할이 켜진 컴퓨팅 클러스터로 구성된 분리형(disaggregated) 클러스터 배포가 있습니다.\n\nSOFS 클러스터와 Hyper-V 클러스터 사이의 대역폭 사용을 제어할 수 있도록 스토리지 QoS(서비스 품질)를 구현해야 합니다.\n\n각 클러스터에서 어떤 cmdlet을 실행해야 합니까? 각 cmdlet은 한 번, 여러 번 또는 전혀 사용되지 않을 수 있습니다.",
+ "items": {
+  "New-StorageQosPolicy": "New-StorageQosPolicy",
+  "Set-VMHardDiskDrive": "Set-VMHardDiskDrive",
+  "Set-VMSan": "Set-VMSan"
+ },
+ "slots": {"sofs": "SOFS:", "hyperv": "Hyper-V:"},
+ "explanation": "스토리지 QoS 정책은 `New-StorageQosPolicy`로 스케일 아웃 파일 서버 클러스터에서 만듭니다. Hyper-V 호스트는 `Set-VMHardDiskDrive`와 그 StorageQoSPolicyID 설정으로 정책을 VM 가상 하드 디스크에 연결하며, 이렇게 하면 VHD에 정책의 IOPS/대역폭 제한이 적용됩니다. `Set-VMSan`은 가상 SAN 정의만 관리합니다."
+},
+"AZ-800-Q11": {
+ "stem": "다음 표의 폴더가 있는, Windows Server를 실행하는 온-프레미스 서버가 있습니다.\n\n[[IMG1]]\n\nAzure 구독이 있습니다.\n\nAzure File Sync를 배포할 계획입니다.\n\n어떤 폴더를 Azure File Sync 서버 엔드포인트로 추가할 수 있습니까?",
+ "choices": {"A": "Folder1과 Folder2만", "B": "Folder1, Folder2, Folder3", "C": "Folder1만", "D": "Folder2와 Folder3만", "E": "Folder3만", "F": "Folder2만"},
+ "explanation": "Azure File Sync 서버 엔드포인트는 직접 연결된 NTFS 볼륨에서만 만들 수 있습니다. ReFS 볼륨은 지원되지 않으므로 Folder1과 Folder2는 가능하고 Folder3은 불가능합니다."
+},
+"AZ-800-Q17": {
+ "stem": "SVR1, SVR2, SVR3이라는 세 대의 온-프레미스 Windows Server 컴퓨터가 있습니다. SVR1에는 직접 연결 스토리지(DAS) 배열이 있습니다.\n\nSVR2와 SVR3을 사용해 Cluster1이라는 장애 조치 클러스터를 배포할 계획입니다.\n\nSVR1의 DAS 배열이 Cluster1의 공유 스토리지로 사용될 수 있게 해야 합니다. 솔루션은 Cluster1에 스토리지에 대한 블록 수준 액세스를 제공해야 합니다.\n\nSVR1에서 먼저 무엇을 해야 합니까?",
+ "choices": {"A": "start-service -name msiscsi cmdlet을 실행한다.", "B": "iSCSI 대상 서버 역할 서비스를 설치한다.", "C": "파일 서버 역할 서비스를 설치한다.", "D": "Enable-ClusterStorageSpacesDirect cmdlet을 실행한다."},
+ "explanation": "iSCSI 대상 서버 역할 서비스는 Windows Server 호스트에 연결된 스토리지를 iSCSI를 통해 네트워크로 접근 가능한 블록 스토리지로 노출합니다. 이렇게 하면 SVR2와 SVR3이 SVR1의 DAS에 공유 클러스터 스토리지로 연결할 수 있습니다. iSCSI 초기자 서비스는 대상에 연결하는 클라이언트가 사용하는 것이고, 파일 서버는 블록 장치가 아닌 파일을 공유합니다."
+}
+}

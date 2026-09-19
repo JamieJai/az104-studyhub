@@ -1,0 +1,101 @@
+{
+"AZ-800-Q116": {
+ "stem": "Host1은 Hyper-V 서버 역할이 설치된 서버이며 VM1이라는 가상 머신을 호스팅합니다.\n\nServer1은 Windows Server 관리 서버입니다. Server1에서 Hyper-V 관리자를 사용해 Host1을 원격 관리합니다.\n\n가상 머신 연결(Virtual Machine Connection)로 VM1에 연결할 때 Server1에 연결된 USB 하드 드라이브에 액세스할 수 있게 해야 합니다.\n\n어떤 두 가지 작업을 수행해야 합니까? 각 정답은 솔루션의 일부입니다.\n\n참고: 각 올바른 선택은 1점입니다.",
+ "choices": {
+  "A": "Host1의 Hyper-V 설정에서 향상된 세션 모드 허용을 선택한다.",
+  "B": "가상 머신 연결에서 옵션 표시를 선택한 뒤 USB 하드 드라이브를 선택한다.",
+  "C": "가상 머신 연결에서 기본 세션으로 전환한다.",
+  "D": "Host1의 디스크 관리에서 디스크 다시 검색을 선택한다.",
+  "E": "Host1의 디스크 관리에서 가상 하드 디스크를 연결한다."
+ },
+ "explanation": "향상된 세션 모드는 RDP 기반 리디렉션을 사용해 VMConnect를 실행하는 컴퓨터의 로컬 리소스(USB·이동식 드라이브 포함)를 가상 머신에서 사용할 수 있게 합니다. Hyper-V 호스트가 향상된 세션 모드를 허용해야 하고, 리디렉션할 USB 하드 드라이브를 가상 머신 연결 옵션에서 선택해야 합니다."
+},
+"AZ-800-Q123": {
+ "stem": "VM1이라는 Windows Server 가상 머신이 포함된 Azure 구독이 있습니다. VM1의 운영 체제 디스크는 128GB입니다.\n\nVM1의 C 볼륨 크기를 250GB로 늘려야 합니다.\n\n어떤 네 가지 작업을 순서대로 수행해야 합니까?",
+ "items": {
+  "Redeploy VM1.": "VM1을 재배포한다.",
+  "Resize VM1.": "VM1 크기를 조정한다.",
+  "Start VM1.": "VM1을 시작한다.",
+  "Resize the operating system disk.": "운영 체제 디스크 크기를 조정한다.",
+  "Resize volume C.": "C 볼륨 크기를 조정한다.",
+  "Stop VM1.": "VM1을 중지한다."
+ },
+ "slots": {"slot1": "1단계", "slot2": "2단계", "slot3": "3단계", "slot4": "4단계"},
+ "explanation": "Azure OS 디스크를 늘리면 파티션되지 않은 용량이 추가될 뿐 Windows의 C: 볼륨이 자동으로 커지지는 않습니다. VM을 중지(할당 해제)하고, 운영 체제 디스크 크기를 조정하고, 다시 시작한 뒤, Windows 안에서 C:를 확장합니다. VM SKU 크기 조정이나 재배포는 OS 디스크나 볼륨을 확장하지 않습니다."
+},
+"AZ-800-Q128": {
+ "stem": "Hyper-V 역할이 설치된 서버 두 대가 있고, 둘 다 장애 조치 클러스터에 가입되어 있습니다. 각 서버는 iSCSI 스토리지 장치의 같은 디스크에 연결할 수 있습니다.\n\n이 iSCSI 스토리지를 사용해 라이브 마이그레이션을 지원하는 고가용성 Hyper-V 가상 머신을 호스팅하려고 합니다.\n\n이 가상 머신들을 저장할 스토리지 리소스를 장애 조치 클러스터 안에 구성해야 합니다.\n\n무엇을 구성해야 합니까?",
+ "choices": {"A": "클러스터 공유 볼륨(CSV)", "B": "DFS(분산 파일 시스템) 복제", "C": "스토리지 풀", "D": "미러 볼륨"},
+ "explanation": "클러스터 공유 볼륨(CSV)은 Windows Server 장애 조치 클러스터의 여러 노드가 같은 공유 LUN을 동시에 읽고 쓸 수 있게 하며, 이를 하나의 일관된 파일 네임스페이스(보통 C:\\ClusterStorage 아래)로 제공합니다. 모든 노드가 볼륨에 동시 액세스를 유지하므로 디스크 리소스를 분리·재연결하지 않고도 VM이 노드 간에 이동할 수 있어, 라이브 마이그레이션이 가능한 고가용성 Hyper-V 가상 머신에 필요한 스토리지 구성입니다. DFS 복제는 서버·사이트 간 폴더 내용을 복제하는 용도이며 클러스터 VM 스토리지에 필요한 동시 블록 수준 액세스를 제공하지 않습니다. 스토리지 풀과 미러 볼륨은 물리 디스크를 집계·보호하는 Storage Spaces 구성 요소이지, 라이브 마이그레이션을 가능하게 하는 클러스터 리소스가 아닙니다."
+},
+"AZ-800-Q144": {
+ "stem": "*(참고: 케이스 스터디 문항으로 원본 사이트에 시나리오 본문이 누락되어 있습니다. 해설로 볼 때 보안 요구 사항은 \"Azure VM에 대한 RDP 액세스를 요청·승인 후 2시간으로 제한한다\"입니다.)*\n\n보안 요구 사항을 충족하도록 원격 관리를 설정해야 합니다.\n\n무엇을 사용해야 합니까?",
+ "choices": {"A": "Azure Cloud Services용 원격 데스크톱 확장", "B": "JIT(just in time) VM 액세스", "C": "Azure Bastion 호스트", "D": "Microsoft Entra Private Access"},
+ "explanation": "Microsoft Defender for Cloud의 JIT(just-in-time) VM 액세스는 액세스가 요청될 때까지 RDP 같은 관리 포트를 제한합니다. JIT 정책에서 최대 요청 시간을 지정할 수 있으므로 승인된 요청 후 RDP 액세스를 2시간으로 제한할 수 있습니다."
+},
+"AZ-800-Q157": {
+ "stem": "다음 표의 드라이브가 있는 VM1이라는 Azure 가상 머신이 있습니다.\n\n[[IMG1]]\n\nVM1에 App1이라는 앱을 설치할 계획입니다. App1 데이터는 D 드라이브에 매핑된 영구 데이터 디스크에 저장되어야 합니다.\n\n데이터 디스크를 D 드라이브로 할당해야 합니다.\n\nVM1에서 먼저 무엇을 해야 합니까?",
+ "choices": {"A": "임시 스토리지 드라이브의 드라이브 문자를 F로 변경한다.", "B": "pagefile.sys를 운영 체제 드라이브로 옮긴다.", "C": "VM1을 중지(할당 해제)한다.", "D": "임시 스토리지 드라이브를 확장한다."},
+ "explanation": "Azure Windows VM에서 임시 디스크는 보통 D:를 차지하고 `pagefile.sys`를 담고 있습니다. D:를 영구 데이터 디스크용으로 비우려면 먼저 `pagefile.sys`를 운영 체제 드라이브로 옮겨야 합니다. 다시 시작한 후 임시 디스크에 다른 문자를 할당하고 영구 데이터 디스크에 D:를 할당할 수 있습니다. Microsoft는 이 절차를 'Windows VM에서 D: 드라이브를 데이터 드라이브로 사용' 문서에 안내하고 있습니다."
+},
+"AZ-800-Q163": {
+ "stem": "Windows Server를 실행하고 Hyper-V 서버 역할이 설치된 Server1이라는 서버가 있습니다. Server1에는 VM1이라는 Windows Server 가상 머신이 있습니다.\n\nVM1에 Hyper-V 서버 역할을 설치해야 합니다.\n\n먼저 어떤 PowerShell 명령을 실행해야 합니까?",
+ "blanks": {
+  "command": {"label": "명령", "options": ["Set-VM VM1", "Set-VMFirmware VM1", "Set-VMHost Server1", "Set-VMProcessor VM1", "Set-VMSecurity VM1"]},
+  "parameter": {"label": "매개변수", "options": ["-EnableEnhancedSessionMode", "-EnableHostResourceProtection", "-ExposeVirtualizationExtensions", "-CompatibilityForOlderOperatingSystemsEnabled"]}
+ },
+ "explanation": "Hyper-V 중첩 가상화를 하려면 물리 호스트의 가상화 확장을 Hyper-V를 실행할 게스트에 노출해야 합니다. `Set-VMProcessor VM1 -ExposeVirtualizationExtensions $true`가 게스트에 Hyper-V 역할을 설치하기 전에 VM1에 대해 그 노출을 활성화합니다."
+},
+"AZ-800-Q170": {
+ "stem": "*(참고: 케이스 스터디 문항으로 원본 사이트에 시나리오 본문이 누락되어 있습니다. 해설로 볼 때 HyperV1 호스트의 VM2는 RHEL(Linux)을 실행하고 로컬 계정 User2가 있으며, 호스트에서 SSH Direct로 VM2에 연결해야 하는 요구 사항입니다.)*\n\nHyperV1에 대한 기술 요구 사항을 충족해야 합니다.\n\n어떤 명령을 실행해야 합니까?",
+ "blanks": {
+  "command": {"label": "명령", "options": ["Connect-PSSession", "Connect-WSMan", "hvc.exe", "mstsc.exe"]},
+  "target": {"label": "대상", "options": ["User1@VM1", "User1@VM2", "User2@VM2", "VM1"]}
+ },
+ "explanation": "`hvc.exe`는 호스트에서 Hyper-V VM으로의 직접 연결을 시작합니다. VM2는 RHEL을 실행하고 로컬 계정 User2가 있으므로 `User2@VM2`가 필요한 SSH 사용자와 VM 대상을 지정합니다. SSH 명령은 `ssh 사용자@머신` 형식을 사용합니다."
+},
+"AZ-800-Q185": {
+ "stem": "Server1이라는 가상 머신이 포함된 Azure 구독이 있습니다. Server1은 Windows Server 2019 Standard를 실행하며 구성은 다음과 같습니다.\n\n- 크기: Standard_D2_v3\n- vCPU: 2\n- RAM: 8GB\n- 임시 스토리지: 50GB\n- 최대 데이터 디스크: 4\n\nServer1을 다음 구성의 가상 머신으로 크기 조정해야 합니다.\n\n- 크기: Standard_D4_v5\n- vCPU: 4\n- RAM: 16GB\n- 임시 스토리지: 없음\n- 최대 데이터 디스크: 16\n\n먼저 무엇을 해야 합니까?",
+ "choices": {"A": "OS 디스크를 ReFS로 다시 포맷한다.", "B": "Pagefile.sys를 C 드라이브로 옮긴다.", "C": "Server1을 Windows Server 2022 Datacenter: Azure Edition으로 업그레이드한다.", "D": "데이터 디스크를 GPT 디스크로 변환한다."},
+ "explanation": "로컬 임시 디스크가 있는 크기에서 임시 디스크가 없는 크기로 이동하는 Windows Azure VM은 페이징 파일을 임시 디스크에서 OS 디스크로 옮겨야 합니다. Pagefile.sys를 C:로 옮기면 디스크 없는 VM 크기로 마이그레이션하기 전에 그 의존성이 제거됩니다."
+},
+"AZ-800-Q190": {
+ "stem": "Windows Server를 실행하는 VM1이라는 Azure 가상 머신이 있습니다.\n\nVM1에서 다음 작업을 수행합니다.\n\n- C 볼륨에 Folder1이라는 폴더를 만든다.\n- D 볼륨에 Folder2라는 폴더를 만든다.\n- VM1에 새 데이터 디스크를 추가하고 드라이브 문자 E가 할당된 새 볼륨을 만든다.\n- E 볼륨에 App1이라는 앱을 설치한다.\n\nVM1의 크기를 조정할 계획입니다. VM1 크기 조정 후 어떤 개체가 남아 있습니까?",
+ "choices": {"A": "Folder1, E 볼륨, App1만", "B": "Folder1만", "C": "Folder1과 Folder2만", "D": "Folder1, Folder2, App1, E 볼륨"},
+ "explanation": "Azure VM 크기 조정은 OS 디스크나 연결된 데이터 디스크에 영향을 주지 않습니다. 따라서 C:의 Folder1, E: 볼륨, E:에 설치한 App1은 유지됩니다. Windows의 D: 드라이브는 VM의 로컬 임시 디스크로 비영구적이며 크기 조정 중 다시 만들어질 수 있으므로 Folder2는 유지되지 않습니다."
+},
+"AZ-800-Q192": {
+ "stem": "*(참고: 케이스 스터디 문항으로 원본 사이트에 시나리오 본문이 누락되어 있습니다. AZ-802 Q54와 같은 Contoso 시나리오이며, VM1 요구 사항은 \"VM1에서 가상 머신을 실행할 수 있게 한다\"(중첩 가상화)입니다.)*\n\nVM1에 대한 기술 요구 사항을 충족해야 합니다.\n\n먼저 어떤 cmdlet을 실행해야 합니까?",
+ "blanks": {
+  "cmdlet": {"label": "cmdlet", "options": ["Set-VM", "Set-VMBios", "Set-VMHost", "Set-VMFirmware", "Set-VMProcessor"]},
+  "parameter": {"label": "매개변수", "options": ["-NewVMName", "-GuestControlledCacheTypes", "-EnableHostResourceProtection", "-ExposeVirtualizationExtensions"]}
+ },
+ "explanation": "`Set-VMProcessor`는 가상 머신의 프로세서 설정을 구성합니다. `-ExposeVirtualizationExtensions` 매개변수는 프로세서 가상화 확장을 게스트에 노출하며, 이는 중첩 가상화에 필요합니다."
+},
+"AZ-800-Q208": {
+ "stem": "VNet1이라는 가상 네트워크가 포함된 Azure 구독이 있습니다. VNet1에는 Subnet1, Subnet2, Subnet3 세 개의 서브넷이 있습니다.\n\n다음 설정으로 가상 머신을 배포합니다.\n\n- 이름: VM1\n- 서브넷: Subnet2\n- 네트워크 인터페이스 이름: NIC1\n- 운영 체제: Windows Server 2022\n\n관리 작업을 최소화하면서 VM1이 Subnet1과 Subnet3 사이의 트래픽을 라우팅할 수 있게 해야 합니다.\n\n어떻게 해야 합니까?",
+ "blanks": {
+  "azure_portal": {"label": "Azure portal에서:", "options": ["Subnet2에 라우팅 테이블을 연결한다.", "VM1에 인터페이스 두 개를 추가로 연결한다.", "NIC1에 IP 전달을 사용하도록 설정한다."]},
+  "vm1": {"label": "VM1에서:", "options": ["네트워크 컨트롤러를 설치·구성한다.", "라우팅 및 원격 액세스를 설치·구성한다.", "route add 명령을 실행한다."]}
+ },
+ "explanation": "VM이 네트워크 가상 어플라이언스로 동작하려면 Azure가 다른 호스트로 향하는 트래픽의 전달을 허용하도록 네트워크 인터페이스에 Azure IP 전달을 사용하도록 설정해야 합니다. 게스트 운영 체제도 라우팅을 수행해야 하며, Windows Server에서는 라우팅 및 원격 액세스(RRAS)가 그 기능을 제공합니다."
+},
+"AZ-800-Q217": {
+ "stem": "다음 구성의 가상 머신이 포함된 Azure 구독이 있습니다.\n\n- 이름: VM1\n- 크기: Standard DS1 v2\n- 운영 체제: Windows Server 2022 Datacenter: Azure Edition\n\nVM1에는 다음 구성의 Disk0이라는 OS 디스크가 있습니다.\n\n- 크기: 127GB\n- 유형: Standard SSD\n- 중복성: 로컬 중복 스토리지(LRS)\n\n다음 작업을 수행합니다.\n\n- Azure portal에서 VM1에 Disk1이라는 새 데이터 디스크를 추가한다.\n- VM1에 App1이라는 앱을 설치한다.\n\nDisk1이 VM1의 D 드라이브로 사용되도록 해야 합니다. 솔루션은 App1이 D 드라이브에 쓴 데이터가 VM1 다시 시작 후에도 유지되도록 해야 합니다.\n\n먼저 무엇을 해야 합니까?",
+ "choices": {"A": "Pagefile.sys를 C 드라이브로 옮긴다.", "B": "디스크 관리에서 Disk0 볼륨에 할당된 드라이브 문자를 변경한다.", "C": "디스크 관리에서 Disk1 볼륨에 할당된 드라이브 문자를 변경한다.", "D": "VM1을 Standard DS2 v2로 크기 조정한다."},
+ "explanation": "Azure Windows VM에서 D:는 기본적으로 임시 디스크이며 보통 `Pagefile.sys`를 담고 있습니다. 영구 데이터 디스크가 D:를 쓰게 하려면 임시 디스크의 드라이브 문자를 바꾸고 데이터 디스크에 D:를 할당하기 전에 `Pagefile.sys`를 C:로 잠시 옮겨야 합니다. 이렇게 하면 App1 데이터가 임시 스토리지에 저장되는 것을 막을 수 있습니다."
+},
+"AZ-800-Q223": {
+ "stem": "네트워크 관리 애플리케이션을 실행하는 Server1이라는 Azure 가상 머신이 있습니다. Server1의 네트워크 설정은 다음과 같습니다.\n\n- 네트워크 인터페이스: Nic1\n- IP 주소: 10.1.1.1/24\n- 연결: Vnet1/Subnet1\n\nServer1을 Vnet1/Subnet2라는 추가 서브넷에 연결해야 합니다.\n\n어떻게 해야 합니까?",
+ "choices": {"A": "Nic1의 IP 구성을 수정한다.", "B": "Nic1에 IP 구성을 추가한다.", "C": "Server1에 네트워크 인터페이스를 추가한다.", "D": "Subnet2에 프라이빗 엔드포인트를 만든다."},
+ "explanation": "하나의 Azure 네트워크 인터페이스에 있는 모든 IP 구성은 같은 서브넷에 속해야 합니다. 같은 가상 네트워크 안의 다른 서브넷에 가상 머신을 연결하려면 그 서브넷에 연결된 네트워크 인터페이스를 추가로 붙여야 합니다."
+},
+"AZ-800-Q228": {
+ "stem": "Windows Server를 실행하는 Server1이라는 서버가 있습니다. Server1에는 네트워크 인터페이스가 하나 있고 다음 그림의 Hyper-V 가상 스위치가 있습니다.\n\n[[IMG1]]\n\n표시된 정보에 따라 드롭다운 메뉴에서 각 문장을 완성하십시오.",
+ "blanks": {
+  "additional_switches": {"label": "Server1에서 추가로 만들 수 있는 가상 스위치:", "options": ["내부 가상 스위치만", "프라이빗 가상 스위치만", "프라이빗·내부 가상 스위치만", "프라이빗·내부·외부 가상 스위치"]},
+  "share_access": {"label": "Server1이 네트워크 공유에 액세스할 수 있는 가상 머신이 연결된 스위치:", "options": ["VSwitch2만", "VSwitch3만", "VSwitch1 또는 VSwitch2만", "VSwitch2 또는 VSwitch3만", "VSwitch1, VSwitch2, VSwitch3"]}
+ },
+ "explanation": "프라이빗 스위치는 VM 간 통신만 허용하므로 호스트는 VSwitch1을 통해 공유에 액세스할 수 없습니다. 내부 스위치는 호스트와 VM을 연결하고, 외부 스위치는 호스트·VM·물리 네트워크를 연결하므로 VSwitch2와 VSwitch3 모두 호스트 액세스가 가능합니다. 유일한 물리 NIC가 이미 외부 스위치 VSwitch3에 바인딩되어 있으므로 그 NIC로 외부 스위치를 하나 더 만들 수 없고, 내부·프라이빗 스위치는 물리 NIC가 필요 없어 추가로 만들 수 있습니다."
+}
+}

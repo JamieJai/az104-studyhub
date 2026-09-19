@@ -1,0 +1,130 @@
+{
+"AZ-800-Q227": {
+ "stem": "JBOD(Just a Bunch of Disks) 인클로저가 연결된 Server1이라는 Windows Server 컴퓨터가 있습니다. 스토리지 풀과 미러 레이아웃을 사용하는 가상 디스크를 만들 계획입니다.\n\n양방향 미러 레이아웃과 3방향 미러 레이아웃 중에서 결정하고 있습니다. 각 미러 유형에 필요한 최소 디스크 수는 몇 개입니까?",
+ "blanks": {
+  "two_way_mirror": {"label": "양방향 미러", "options": ["1", "2", "3", "4", "5", "6"]},
+  "three_way_mirror": {"label": "3방향 미러", "options": ["1", "2", "3", "4", "5", "6"]}
+ },
+ "explanation": "Windows Server Storage Spaces는 양방향 미러에 물리 디스크가 최소 2개 필요합니다. 3방향 미러는 물리 디스크가 최소 5개 필요하며, 데이터 복사본 세 개를 제공해 디스크 2개가 실패해도 데이터 손실이 없습니다."
+},
+"AZ-800-Q233": {
+ "stem": "네트워크에 adatum.com이라는 Active Directory Domain Services(AD DS) 도메인이 있습니다. 도메인에는 Server1이라는 서버와 다음 표의 사용자가 있습니다.\n\n[[IMG1]]\n\nServer1에는 D:\\Folder1이라는 폴더가 있습니다. Folder1의 고급 보안 설정은 권한 그림과 같이 구성되어 있습니다.\n\n[[IMG2]]\n\nFolder1은 다음 구성으로 공유되어 있습니다.\n\n[[IMG3]]\n\nShare1의 공유 권한은 다음 표와 같습니다.\n\n[[IMG4]]\n\n다음 각 문장에 대해, 문장이 참이면 예를, 그렇지 않으면 아니요를 선택하십시오.",
+ "statements": [
+  "User1은 Share1의 파일을 읽을 수 있다.",
+  "User3은 Share1의 파일을 삭제할 수 있다.",
+  "User2가 파일 탐색기에서 \\\\Server1.adatum.com에 연결하면 Share1이 목록에 표시된다."
+ ],
+ "explanation": "네트워크 액세스의 유효 권한은 공유 권한과 NTFS 권한 모두에 의해 제한됩니다. Group1의 NTFS 읽기 권한으로 User1은 더 넓은 변경(Change) 공유 권한과 무관하게 읽을 수 있습니다. Group3에는 NTFS 허용 항목이 없으므로 모든 권한(Full Control) 공유 권한이 있어도 User3에게 파일 삭제 액세스를 줄 수 없습니다. SMB 폴더 열거가 제한 없음으로 설정되어 있으므로 User2가 내용을 열 권한이 없어도 Share1은 여전히 보입니다."
+},
+"AZ-800-Q239": {
+ "stem": "Windows Server를 실행하는 Server1과 Server2 두 대의 온-프레미스 서버가 있습니다.\n\nstorage1이라는 Azure Storage 계정에 share1이라는 파일 공유가 있습니다. Server1은 Azure File Sync를 사용해 share1과 동기화됩니다.\n\nServer2가 share1과 동기화되도록 구성해야 합니다.\n\n어떤 세 가지 작업을 순서대로 수행해야 합니까?",
+ "items": {
+  "Add a server endpoint to the sync group.": "동기화 그룹에 서버 엔드포인트를 추가한다.",
+  "Register Server2 with the Storage Sync Service.": "Storage Sync Service에 Server2를 등록한다.",
+  "Add a Storage Sync Service to the Azure Subscription.": "Azure 구독에 Storage Sync Service를 추가한다.",
+  "On Server2, install the Azure File Sync agent.": "Server2에 Azure File Sync 에이전트를 설치한다.",
+  "Add a cloud endpoint to the sync group.": "동기화 그룹에 클라우드 엔드포인트를 추가한다."
+ },
+ "slots": {"step1": "1단계", "step2": "2단계", "step3": "3단계"},
+ "explanation": "Azure File Sync 서버는 Azure File Sync 에이전트가 필요하고, 서버 엔드포인트를 가지려면 먼저 Storage Sync Service에 등록되어야 합니다. 기존 동기화 그룹에 Server2의 서버 엔드포인트를 추가하면 그 로컬 경로가 share1의 기존 클라우드 엔드포인트에 연결됩니다."
+},
+"AZ-800-Q248": {
+ "stem": "다음 표와 같은 온-프레미스 Windows Server 파일 서버가 있습니다.\n\n[[IMG1]]\n\n다음 표의 Azure 파일 공유가 있습니다.\n\n[[IMG2]]\n\nSync1이라는 Storage Sync Service와 Group1이라는 Azure File Sync 동기화 그룹을 만듭니다. Group1은 share1을 클라우드 엔드포인트로 사용합니다.\n\nServer1과 Server2를 Sync1에 등록한 뒤, Server1의 D:\\Folder1을 Group1의 서버 엔드포인트로 추가합니다.\n\n다음 각 문장에 대해, 문장이 참이면 예를, 그렇지 않으면 아니요를 선택하십시오.",
+ "statements": [
+  "Group1에 share2를 클라우드 엔드포인트로 추가할 수 있다.",
+  "Group1에 Server1의 E:\\Folder2를 서버 엔드포인트로 추가할 수 있다.",
+  "Group1에 Server2의 D:\\Data를 서버 엔드포인트로 추가할 수 있다."
+ ],
+ "explanation": "동기화 그룹은 클라우드 엔드포인트를 하나만 지원하므로 share2를 추가로 쓸 수 없습니다. 또한 동기화 그룹은 등록된 서버당 서버 엔드포인트 하나만 지원하므로 D:\\Folder1 이후에 Server1의 E:\\Folder2를 추가할 수 없습니다. Server2는 다른 등록 서버이므로 그 D:\\Data 경로는 Group1의 서버 엔드포인트로 추가할 수 있습니다."
+},
+"AZ-800-Q249": {
+ "stem": "Windows Server 2022를 실행하는 Server1이라는 서버가 있습니다.\n\nServer1에 4TB 하드 드라이브 두 개(Disk1, Disk2)를 추가합니다.\n\n다음 요구 사항을 충족하도록 드라이브를 포맷해야 합니다.\n\n- Disk1은 디스크 수준 할당량을 지원해야 한다.\n- Disk2는 데이터 중복 제거를 지원해야 한다.\n\n각 드라이브에 어떤 파일 시스템 유형을 사용해야 합니까?",
+ "blanks": {
+  "disk1": {"label": "Disk1:", "options": ["NTFS만", "ReFS만", "NTFS 또는 exFAT만", "NTFS 또는 ReFS만", "NTFS, exFAT 또는 ReFS"]},
+  "disk2": {"label": "Disk2:", "options": ["NTFS만", "ReFS만", "NTFS 또는 exFAT만", "NTFS 또는 ReFS만", "NTFS, exFAT 또는 ReFS"]}
+ },
+ "explanation": "디스크 할당량은 NTFS 기능입니다. Windows Server 2022에서 데이터 중복 제거는 NTFS와 ReFS 볼륨을 모두 지원하며, ReFS 지원은 Windows Server 2019부터 시작되었습니다."
+},
+"AZ-800-Q271": {
+ "stem": "Windows Server를 실행하고 다음 표의 볼륨이 있는 Server1이라는 파일 서버가 있습니다.\n\n[[IMG1]]\n\nBitLocker 드라이브 암호화(BitLocker)와 디스크 할당량을 사용할 수 있는 볼륨을 고르십시오.",
+ "blanks": {
+  "bitlocker": {"label": "BitLocker:", "options": ["C만", "D만", "C와 D만", "D와 E만", "C, D, E"]},
+  "disk_quotas": {"label": "디스크 할당량:", "options": ["C만", "D만", "C와 D만", "D와 E만", "C, D, E"]}
+ },
+ "explanation": "BitLocker는 NTFS 또는 ReFS로 포맷된 고정 데이터 볼륨을 암호화할 수 있습니다. NTFS 디스크 할당량은 NTFS 볼륨에만 적용되며, ReFS는 NTFS 디스크 할당량을 지원하지 않습니다."
+},
+"AZ-800-Q275": {
+ "stem": "Server1이라는 온-프레미스 Windows Server가 있습니다. Server1은 Share1이라는 파일 공유를 호스팅합니다.\n\nAzure 구독도 있습니다.\n\n다음 작업을 완료했습니다.\n\n- Azure File Sync를 배포했다.\n- Server1에 Azure File Sync 에이전트를 설치했다.\n- Server1을 Azure File Sync에 등록했다.\n\nShare1을 Azure File Sync 서버 엔드포인트로 추가할 수 있게 해야 합니다.\n\n어떤 세 가지 작업을 순서대로 수행해야 합니까?",
+ "items": {
+  "Deploy the Azure Connected Machine agent.": "Azure Connected Machine 에이전트를 배포한다.",
+  "Create an Azure Storage account.": "Azure Storage 계정을 만든다.",
+  "Deploy an Azure VPN gateway.": "Azure VPN 게이트웨이를 배포한다.",
+  "Create an Azure file share.": "Azure 파일 공유를 만든다.",
+  "Create a private endpoint.": "프라이빗 엔드포인트를 만든다.",
+  "Create a sync group.": "동기화 그룹을 만든다."
+ },
+ "slots": {"slot1": "1단계", "slot2": "2단계", "slot3": "3단계"},
+ "explanation": "Azure File Sync 동기화 그룹에는 Azure 파일 공유를 나타내는 클라우드 엔드포인트가 필요합니다. 동기화 그룹을 구성하기 전에 Azure Storage 계정에 파일 공유가 있어야 합니다. 클라우드 기반 동기화 그룹이 만들어지면 등록된 Server1에 Share1을 서버 엔드포인트로 추가할 수 있습니다."
+},
+"AZ-800-Q279": {
+ "stem": "Windows Server를 실행하는 Server1이라는 서버가 있습니다. Server1에는 다음 표의 스토리지 풀이 있습니다.\n\n[[IMG1]]\n\n스토리지 계층을 사용하는 VDisk1이라는 가상 디스크를 만들 계획입니다.\n\nVDisk1을 만드는 데 어떤 풀을 사용할 수 있습니까?",
+ "choices": {"A": "Pool2만", "B": "Pool1만", "C": "Pool1, Pool2, Pool3", "D": "Pool1과 Pool2만", "E": "Pool3만", "F": "Pool2와 Pool3만"},
+ "explanation": "Windows Server Storage Spaces 스토리지 계층은 자주 액세스하는 데이터에 더 빠른 SSD 계층을, 덜 액세스하는 데이터에 더 느린 HDD 계층을 사용합니다. Pool2와 Pool3에는 SSD와 HDD 미디어가 모두 있지만 Pool1에는 SSD가 없습니다."
+},
+"AZ-801-Q4": {
+ "stem": "*(참고: 케이스 스터디 문항으로 원본 사이트에 시나리오 본문이 누락되어 있습니다. 해설로 보면 Server4의 C는 운영 체제 볼륨이고 D·E·F는 NTFS/ReFS 데이터 볼륨입니다.)*\n\nServer4에 BitLocker를 구성해야 합니다.\n\nBitLocker를 사용할 수 있는 볼륨과 자동 잠금 해제를 사용할 수 있는 볼륨을 고르십시오.",
+ "blanks": {
+  "bitlocker": {"label": "BitLocker:", "options": ["D만", "C와 D만", "D, E, F만", "C, D, E, F"]},
+  "auto_unlock": {"label": "자동 잠금 해제:", "options": ["D만", "C와 D만", "D, E, F만", "C, D, E, F"]}
+ },
+ "explanation": "BitLocker는 지원되는 Windows Server 버전의 ReFS 볼륨을 포함해 운영 체제 볼륨과 데이터 볼륨을 암호화할 수 있습니다. 자동 잠금 해제는 BitLocker로 보호된 데이터 볼륨에만 적용되며 운영 체제 볼륨에는 구성할 수 없습니다. 따라서 C, D, E, F는 BitLocker를 쓸 수 있고, 자동 잠금 해제는 D, E, F만 가능합니다."
+},
+"AZ-801-Q46": {
+ "stem": "하이퍼 컨버지드 배포의 Storage Spaces Direct 클러스터가 있습니다. 클러스터에는 Windows Server 2022를 실행하는 노드 세 대가 있고 Hyper-V 가상 머신 20대를 호스팅합니다.\n\n서버를 Windows Server 2025로 업그레이드해야 합니다. 솔루션은 다음 요구 사항을 충족해야 합니다.\n\n- 가상 머신 다운타임을 최소화한다.\n- 관리 작업을 최소화한다.\n\n각 노드에서 어떤 네 가지 작업을 순서대로 수행해야 합니까?",
+ "items": {
+  "Disable storage maintenance mode and resume the node.": "스토리지 유지 관리 모드를 해제하고 노드를 다시 시작(resume)한다.",
+  "Perform an in-place upgrade to Windows Server 2025.": "Windows Server 2025로 인플레이스 업그레이드를 수행한다.",
+  "Run the Suspend-ClusterNode -Drain cmdlet.": "Suspend-ClusterNode -Drain cmdlet을 실행한다.",
+  "Perform a clean install of Windows Server 2025.": "Windows Server 2025를 새로 설치한다.",
+  "Evict the node from the cluster.": "클러스터에서 노드를 제거(evict)한다.",
+  "Manually move the virtual machines to another node.": "가상 머신을 수동으로 다른 노드로 옮긴다.",
+  "Place the server in storage maintenance mode.": "서버를 스토리지 유지 관리 모드로 전환한다."
+ },
+ "slots": {"slot1": "1단계", "slot2": "2단계", "slot3": "3단계", "slot4": "4단계"},
+ "explanation": "롤링 Storage Spaces Direct 업그레이드는 한 번에 노드 하나씩 처리합니다. 노드를 드레인(drain)하면 VM을 포함한 클러스터 워크로드가 먼저 마이그레이션되고, 그 다음 노드를 스토리지 유지 관리 모드로 둡니다. 인플레이스 업그레이드는 노드의 구성과 클러스터 멤버십을 유지해 관리 작업을 줄입니다. 업그레이드 후 스토리지 유지 관리 모드를 해제하고 노드를 다시 시작해 정상 클러스터 운영에 복귀시킵니다."
+},
+"AZ-801-Q57": {
+ "stem": "다음 표와 같이 Windows Server를 실행하는 서버 두 대가 있습니다.\n\n[[IMG1]]\n\nServer1의 E 볼륨 내용을 Server2로 복사해야 합니다. 솔루션은 다음 요구 사항을 충족해야 합니다.\n\n- 현재 사용 중인 파일도 복사되도록 한다.\n- 관리 작업을 최소화한다.\n\n무엇을 사용해야 합니까?",
+ "choices": {"A": "Storage Migration Service", "B": "Azure File Sync", "C": "Azure Backup", "D": "Storage Replica"},
+ "explanation": "Azure File Sync는 Azure 파일 공유를 통해 Windows Server 파일 데이터를 동기화하며, 도메인에 가입되지 않은 서버를 포함해 Active Directory 멤버십이 다른 서버들이 포함된 동기화 그룹을 지원합니다. 이 덕분에 온-프레미스 도메인 멤버와 워크그룹의 Azure VM이 최소한의 지속 관리로 볼륨을 동기화할 수 있습니다. Storage Migration Service는 애플리케이션이 독점적으로 잠근 파일을 마이그레이션하지 않아 부적합하고, 서버 간 Storage Replica는 Active Directory Domain Services 포리스트가 필요합니다."
+},
+"AZ-801-Q73": {
+ "stem": "네트워크에 contoso.com이라는 온-프레미스 Active Directory Domain Services(AD DS) 도메인이 있습니다. 도메인에는 다음 표의 계정이 있습니다.\n\n[[IMG1]]\n\n도메인은 BitLocker 복구 키를 Active Directory에 저장하도록 설정되어 있습니다.\n\nAdmin1과 Admin2가 다음 구성을 수행합니다.\n\n1. Admin1이 Server1의 C 볼륨에 BitLocker 드라이브 암호화(BitLocker)를 사용하도록 설정한다.\n2. Admin1이 Server1을 OU1로 옮긴다.\n3. Admin2가 Server2의 이동식 볼륨 E에 BitLocker를 사용하도록 설정한다.\n4. Admin2가 이동식 볼륨 E를 Server2에서 Server1으로 옮기고 볼륨 잠금을 해제한다.\n\n각 BitLocker 복구 키를 어떤 Active Directory 개체에서 볼 수 있습니까?",
+ "blanks": {
+  "volume_c": {"label": "C 볼륨의 BitLocker 복구 키:", "options": ["Admin1", "contoso.com", "OU1", "OU3", "Server1", "TPM 장치"]},
+  "volume_e": {"label": "E 볼륨의 BitLocker 복구 키:", "options": ["Admin2", "contoso.com", "OU4", "Server1", "Server2", "TPM 장치"]}
+ },
+ "explanation": "AD DS에 저장된 BitLocker 복구 암호는 컴퓨터 개체에 연결됩니다. C: 복구 키는 Server1이 OU1로 옮겨진 뒤에도 Server1 컴퓨터 개체에 연결된 채 남습니다. 이동식 E: 드라이브는 Server2에서 암호화되었으므로, 드라이브를 Server1으로 옮겨 잠금 해제한 뒤에도 복구 정보는 Server2 컴퓨터 개체에 연결된 채 남습니다."
+},
+"AZ-801-Q88": {
+ "stem": "네트워크에 Active Directory Domain Services(AD DS) 포리스트가 있습니다.\n\n컨버지드 Storage Spaces Direct 인프라를 배포해야 합니다. 솔루션은 다음 요구 사항을 충족해야 합니다.\n\n- 이더넷 패브릭을 사용한다.\n- 데이터 센터 브리징(DCB) 요구 사항을 없앤다.\n\n어떤 RDMA(원격 직접 메모리 액세스) 네트워킹 기술을 구현해야 합니까?",
+ "choices": {"A": "InfiniBand", "B": "RoCEv2", "C": "iWARP", "D": "RoCEv1"},
+ "explanation": "iWARP는 이더넷에서 TCP/IP를 통한 RDMA를 제공하므로 TCP의 신뢰성을 사용하며 무손실 이더넷 패브릭이나 데이터 센터 브리징이 필요 없습니다. RoCEv1과 RoCEv2는 일반적으로 무손실 이더넷 구성이 필요하고, InfiniBand는 이더넷 패브릭이 아닙니다. Microsoft는 Storage Spaces Direct의 RDMA 옵션으로 iWARP와 RoCE를 제시하며, iWARP가 구성이 더 간단합니다."
+},
+"AZ-801-Q89": {
+ "stem": "네트워크에 Active Directory Domain Services(AD DS) 도메인이 있습니다.\n\nStorage Spaces Direct 클러스터를 구현해야 합니다. 솔루션은 클러스터가 볼륨 할당 구분(delimited volume allocation)을 지원하도록 해야 합니다.\n\n최소 필요한 서버 수는 몇 대이며, 클러스터 볼륨에 필요한 복원력 유형은 무엇입니까?",
+ "blanks": {
+  "minimum_servers": {"label": "최소 서버 수:", "options": ["5", "6", "8"]},
+  "volume_resiliency": {"label": "볼륨 복원력 유형:", "options": ["미러 가속 패리티만", "3방향 미러만", "3방향 미러 또는 미러 가속 패리티"]}
+ },
+ "explanation": "Storage Spaces Direct의 볼륨 할당 구분은 클러스터에 서버가 최소 6대 있고 3방향 미러 복원력만 사용할 때 지원됩니다. 패리티와 미러 가속 패리티 복원력은 할당 구분에 지원되지 않습니다."
+},
+"AZ-801-Q92": {
+ "stem": "노드 여러 대가 포함된 Cluster1이라는 Storage Spaces Direct 클러스터가 있습니다.\n\n각 노드에 연결된 하드 디스크의 펌웨어 업데이트가 있습니다.\n\n업데이트용으로 File1.xml이라는 구성 파일을 만듭니다.\n\nCluster1 노드에 펌웨어 업데이트 롤아웃을 자동화해야 합니다. 솔루션은 Cluster1에 호스팅된 워크로드의 다운타임을 최소화해야 합니다.\n\nPowerShell 명령을 어떻게 완성해야 합니까?",
+ "blanks": {
+  "cmd1": {"label": "cmd1", "options": ["Get-StorageEnclosureVendorData", "Get-StorageFirmwareInformation", "Get-StorageSubSystem"]},
+  "cmd2": {"label": "cmd2", "options": ["Set-StorageHealthSetting", "Set-StorageProvider", "Set-StorageSetting"]}
+ },
+ "explanation": "`Get-StorageSubSystem`은 Storage Spaces Direct 하위 시스템을 가져옵니다. `Set-StorageHealthSetting`으로 `System.Storage.SupportedComponents.Document`를 설정하면 지원 구성 요소 XML이 클러스터에 업로드되어, Health Service가 실행 중인 워크로드의 I/O 영향을 줄이면서 노드 전체에 펌웨어 롤아웃을 조율합니다."
+}
+}

@@ -1,0 +1,102 @@
+{
+"AZ-800-Q250": {
+ "stem": "네트워크에 contoso.com이라는 Active Directory Domain Services(AD DS) 포리스트가 있고, 그 안에 east.contoso.com이라는 자식 도메인이 있습니다.\n\ncontoso.com에 Admin1과 Admin2 두 사용자를 만듭니다.\n\n최소 권한 원칙을 사용해 다음 작업이 가능하도록 해야 합니다.\n\n- Admin1은 Active Directory 사이트를 만들고 관리할 수 있다.\n- Admin2는 east.contoso.com에 도메인 컨트롤러를 배포할 수 있다.\n\n각 사용자를 어떤 그룹에 추가해야 합니까?",
+ "blanks": {
+  "admin1": {"label": "Admin1:", "options": ["Contoso\\Administrators", "Contoso\\Domain Admins", "Contoso\\Enterprise Admins", "East\\Administrators", "East\\Domain Admins"]},
+  "admin2": {"label": "Admin2:", "options": ["Contoso\\Administrators", "Contoso\\Domain Admins", "Contoso\\Enterprise Admins", "East\\Administrators", "East\\Domain Admins"]}
+ },
+ "explanation": "Microsoft 문서에 따르면 Active Directory 사이트 구성에는 Enterprise Admins 또는 포리스트 루트 도메인의 Domain Admins 멤버십이 필요합니다. 나열된 옵션 중 이 요구를 만족하는 최소 권한은 Contoso\\Domain Admins입니다. 또한 기존 도메인에 추가 도메인 컨트롤러를 설치하려면 Domain Admins가 필요하므로, East\\Domain Admins가 east.contoso.com에 한정된 필요한 권한을 부여합니다."
+},
+"AZ-800-Q253": {
+ "stem": "*(참고: 케이스 스터디 문항으로 원본 사이트에 시나리오 본문이 누락되어 있습니다. AZ-802 Q6과 같은 Contoso 시나리오이며, User1에 대한 요구 사항은 \"User1이 Contoso\\OU3의 모든 그룹 멤버십을 관리할 수 있게 한다\"입니다.)*\n\nUser1의 기술 요구 사항을 충족해야 합니다. 솔루션은 최소 권한 원칙을 따라야 합니다.\n\n어떻게 해야 합니까?",
+ "choices": {
+  "A": "contoso.com의 Server Operators 그룹에 User1을 추가한다.",
+  "B": "contoso.com에 위임(delegation)을 만든다.",
+  "C": "contoso.com의 Account Operators 그룹에 User1을 추가한다.",
+  "D": "OU3에 위임(delegation)을 만든다."
+ },
+ "explanation": "필요한 Active Directory 관리 작업을 OU3에 위임하면 User1의 권한이 그 조직 구성 단위로 한정되며, 광범위한 기본 제공 운영자 그룹 권한이나 도메인 전체 위임을 부여하지 않아도 됩니다. Active Directory 위임은 세부적인 OU 범위에서 구성할 수 있어 최소 권한 관리를 지원합니다."
+},
+"AZ-800-Q257": {
+ "stem": "contoso.com이라는 단일 도메인 Active Directory Domain Services(AD DS) 포리스트를 배포합니다.\n\n도메인에 서버를 배포하고 서비스를 실행하도록 구성합니다.\n\n이 서비스가 인증에 그룹 관리 서비스 계정(gMSA)을 사용할 수 있게 해야 합니다.\n\n어떤 세 개의 PowerShell cmdlet을 순서대로 실행해야 합니까?",
+ "items": {
+  "New-ADServiceAccount": "New-ADServiceAccount",
+  "Install-ADServiceAccount": "Install-ADServiceAccount",
+  "Add-ADComputerServiceAccount": "Add-ADComputerServiceAccount",
+  "Set-KdsConfiguration": "Set-KdsConfiguration",
+  "Add-KdsRootKey": "Add-KdsRootKey",
+  "Add-ADGroupMember": "Add-ADGroupMember"
+ },
+ "slots": {"slot1": "1단계", "slot2": "2단계", "slot3": "3단계"},
+ "explanation": "gMSA가 관리되는 암호를 생성하려면 AD 포리스트에 KDS 루트 키가 먼저 있어야 합니다. `Add-KdsRootKey`로 키를 만들고, `New-ADServiceAccount`로 gMSA를 만든 뒤, `Install-ADServiceAccount`로 서비스 호스트에 gMSA를 설치합니다."
+},
+"AZ-800-Q263": {
+ "stem": "HOTSPOT\n\n네트워크에 Active Directory Domain Services(AD DS) 도메인이 있습니다. 도메인에는 다음 표의 도메인 컨트롤러가 있습니다.\n\n[[IMG1]]\n\nDC3을 도메인의 권한 있는 시간 서버로 구성해야 합니다.\n\n어떤 작업 마스터 역할을 DC3으로 전송해야 하고, 어떤 콘솔을 사용해야 합니까? 답 영역에서 적절한 옵션을 선택하십시오.",
+ "blanks": {
+  "role": {"label": "역할:", "options": ["도메인 명명 마스터", "인프라 마스터", "PDC 에뮬레이터", "RID 마스터", "스키마 마스터"]},
+  "console": {"label": "콘솔:", "options": ["Active Directory 관리 센터", "Active Directory 도메인 및 트러스트", "Active Directory 사이트 및 서비스", "Active Directory 사용자 및 컴퓨터"]}
+ },
+ "explanation": "PDC 에뮬레이터 FSMO 역할은 도메인의 권한 있는 시간 원본이며 외부 원본과 시간을 동기화합니다. 다른 도메인 컨트롤러와 도메인 멤버는 도메인 시간 계층을 따릅니다. 이 역할은 Active Directory 사용자 및 컴퓨터의 작업 마스터(Operations Masters) 대화 상자에서 전송합니다."
+},
+"AZ-800-Q265": {
+ "stem": "네트워크에 contoso.com이라는 Active Directory Domain Services(AD DS) 포리스트가 있습니다. 포리스트에는 다음 표의 도메인 컨트롤러가 있습니다.\n\n[[IMG1]]\n\nfabrikam.com이라는 AD DS 포리스트를 가진 파트너 조직이 있습니다.\n\ncontoso.com과 fabrikam.com 사이에 트러스트 관계를 만듭니다.\n\n트러스트 관계에 선택적 인증을 구성해야 합니다.\n\n어떤 도메인 컨트롤러에 fabrikam.com에 대한 권한을 부여해야 합니까?",
+ "choices": {"A": "DC1", "B": "DC2", "C": "DC3", "D": "DC4"},
+ "explanation": "선택적 인증은 들어오는 포리스트 트러스트의 설정입니다. 포리스트 트러스트 구성은 도메인 명명 마스터 FSMO 역할과 연관된 포리스트 전체 작업이며, DC3이 그 역할을 보유합니다."
+},
+"AZ-800-Q266": {
+ "stem": "네트워크에 Active Directory Domain Services(AD DS) 도메인이 있습니다. 도메인에는 DC1과 DC2 두 대의 도메인 컨트롤러가 있습니다. DC2는 Hyper-V 가상 머신에서 실행됩니다.\n\nDC2를 복제(clone)해 새 도메인 컨트롤러를 배포할 계획입니다.\n\nDC2용 CustomDCCloneAllowList.xml과 DCCloneConfig.xml 파일을 만들어야 합니다.\n\n이 파일들을 어느 폴더에 저장해야 합니까?",
+ "choices": {"A": "C:\\Windows", "B": "C:\\Windows\\Setup", "C": "C:\\", "D": "C:\\Windows\\NTDS"},
+ "explanation": "도메인 컨트롤러 복제에서 이 XML 파일의 기본 위치는 DSA 작업 디렉터리입니다. 표준 설치에서 그 디렉터리는 `%windir%\\NTDS`, 즉 `C:\\Windows\\NTDS`입니다."
+},
+"AZ-800-Q269": {
+ "stem": "contoso.com이라는 단일 도메인 Active Directory Domain Services(AD DS) 포리스트를 배포합니다.\n\n도메인에 서버 5대를 배포하고 ITFarmHosts라는 그룹에 추가합니다.\n\n이 5대 서버를 포함하는 NLBCluster.contoso.com이라는 NLB(네트워크 부하 분산) 클러스터를 구성할 계획입니다.\n\n클러스터 노드의 NLB 서비스가 인증에 그룹 관리 서비스 계정(gMSA)을 사용할 수 있게 해야 합니다.\n\n어떤 세 개의 PowerShell cmdlet을 순서대로 실행해야 합니까?",
+ "items": {
+  "New-ADServiceAccount": "New-ADServiceAccount",
+  "Install-ADServiceAccount": "Install-ADServiceAccount",
+  "Add-ADComputerServiceAccount": "Add-ADComputerServiceAccount",
+  "Set-KdsConfiguration": "Set-KdsConfiguration",
+  "Add-KdsRootKey": "Add-KdsRootKey",
+  "Add-ADGroupMember": "Add-ADGroupMember"
+ },
+ "slots": {"slot1": "1단계", "slot2": "2단계", "slot3": "3단계"},
+ "explanation": "`Add-KdsRootKey`는 gMSA 암호 생성에 필요한 도메인 키 자료를 만듭니다. 그 다음 `New-ADServiceAccount`가 gMSA를 만들고 호스트 그룹이 암호를 검색하도록 권한을 부여합니다. `Install-ADServiceAccount`는 서비스를 실행할 각 서버에 계정을 설치합니다."
+},
+"AZ-800-Q284": {
+ "stem": "*(참고: 케이스 스터디 문항으로 원본 사이트에 시나리오 본문이 누락되어 있습니다. AZ-802 Q5·Q62와 같은 Contoso 시나리오이며, 사이트 링크 요구 사항은 \"모든 사이트 링크의 복제 일정을 30분으로 변경한다\"입니다. Admin1은 Enterprise Admins, Admin2는 contoso.com(포리스트 루트) Domain Admins, Admin3은 canada.contoso.com Domain Admins입니다.)*\n\n사이트 링크에 대한 기술 요구 사항을 충족해야 합니다.\n\n어떤 사용자가 필요한 작업을 수행할 수 있습니까?",
+ "choices": {"A": "Admin1, Admin2, Admin3", "B": "Admin1과 Admin3만", "C": "Admin1만", "D": "Admin1과 Admin2만", "E": "Admin3만"},
+ "explanation": "Active Directory 사이트 링크 구성은 포리스트 전체 작업입니다. Enterprise Admins는 포리스트 전체 구성을 변경할 수 있고, 포리스트 루트 도메인의 Domain Admins도 필요한 기본 관리 권한을 갖습니다. 따라서 이 역할을 가진 Admin1과 Admin2가 사이트 링크를 수정할 수 있으며, 자식 도메인에 한정된 Domain Admin은 기본적으로 할 수 없습니다."
+},
+"AZ-800-Q295": {
+ "stem": "*(참고: 이 문제는 동일한 시나리오를 공유하는 시리즈 문항입니다. 원본 사이트에 시나리오 본문이 누락되어 있으며, 해설로 볼 때 목표는 \"도메인에서 PDC 에뮬레이터 역할을 보유한 서버를 확인하는 것\"입니다.)*\n\n솔루션: 명령 프롬프트에서 `netdom.exe query fsmo`를 실행합니다.\n\n이 방법으로 목표를 달성할 수 있습니까?",
+ "choices": {"A": "예", "B": "아니요"},
+ "explanation": "PDC 에뮬레이터는 FSMO 역할입니다. `netdom query fsmo`는 PDC 에뮬레이터 역할 소유자를 포함해 도메인의 모든 FSMO 역할 현재 소유자를 나열하므로 필요한 서버를 확인할 수 있습니다."
+},
+"AZ-800-Q296": {
+ "stem": "*(참고: 이 문제는 동일한 시나리오를 공유하는 시리즈 문항입니다. 원본 사이트에 시나리오 본문이 누락되어 있으며, 해설로 볼 때 목표는 \"도메인에서 PDC 에뮬레이터 역할을 보유한 서버를 확인하는 것\"입니다.)*\n\n솔루션: Active Directory 도메인 및 트러스트에서 콘솔 트리의 **Active Directory 도메인 및 트러스트**를 마우스 오른쪽 단추로 클릭한 다음 **작업 마스터**를 선택합니다.\n\n이 방법으로 목표를 달성할 수 있습니까?",
+ "choices": {"A": "예", "B": "아니요"},
+ "explanation": "Active Directory 도메인 및 트러스트에서 여는 작업 마스터 대화 상자는 포리스트 수준의 도메인 명명 마스터 역할 소유자를 표시합니다. PDC 에뮬레이터는 도메인 수준 FSMO 역할이라 Active Directory 사용자 및 컴퓨터(또는 도메인 수준 역할을 보여주는 다른 도구)에서 확인해야 합니다."
+},
+"AZ-800-Q297": {
+ "stem": "*(참고: 이 문제는 동일한 시나리오를 공유하는 시리즈 문항입니다. 원본 사이트에 시나리오 본문이 누락되어 있으며, 해설로 볼 때 목표는 \"도메인에서 PDC 에뮬레이터 역할을 보유한 서버를 확인하는 것\"입니다.)*\n\n솔루션: Active Directory 사이트 및 서비스에서 콘솔 트리의 **Default-First-Site-Name**을 마우스 오른쪽 단추로 클릭한 다음 **속성**을 선택합니다.\n\n이 방법으로 목표를 달성할 수 있습니까?",
+ "choices": {"A": "예", "B": "아니요"},
+ "explanation": "PDC 에뮬레이터는 도메인 수준 FSMO 역할입니다. Active Directory 사이트의 속성은 사이트 설정을 보여줄 뿐 PDC 에뮬레이터 역할을 보유한 도메인 컨트롤러를 보여주지 않습니다. 역할 보유자 정보는 도메인의 작업 마스터 정보나 이에 상응하는 디렉터리 쿼리로 확인합니다."
+},
+"AZ-800-Q298": {
+ "stem": "*(참고: 이 문제는 동일한 시나리오를 공유하는 시리즈 문항입니다. 원본 사이트에 시나리오 본문이 누락되어 있으며, 해설로 볼 때 목표는 \"도메인에서 PDC 에뮬레이터 역할을 보유한 서버를 확인하는 것\"입니다.)*\n\n솔루션: Active Directory 사용자 및 컴퓨터에서 콘솔 트리의 **contoso.com**을 마우스 오른쪽 단추로 클릭한 다음 **작업 마스터**를 선택합니다.\n\n이 방법으로 목표를 달성할 수 있습니까?",
+ "choices": {"A": "예", "B": "아니요"},
+ "explanation": "Active Directory 사용자 및 컴퓨터의 작업 마스터 대화 상자에는 도메인의 PDC 에뮬레이터 FSMO 역할을 보유한 도메인 컨트롤러를 보여주는 PDC 탭이 있습니다."
+},
+"AZ-800-Q303": {
+ "stem": "네트워크에 contoso.com이라는 Active Directory Domain Services(AD DS) 도메인이 있습니다. 도메인에는 DC1과 DC2 두 대의 도메인 컨트롤러가 있습니다.\n\n다음을 계획하고 있습니다.\n\n- contoso.com에 DC3과 DC4라는 도메인 컨트롤러 두 대를 추가한다.\n- DC3은 도메인 컨트롤러로, DC4는 읽기 전용 도메인 컨트롤러(RODC)로 구성한다.\n- DC5라는 도메인 컨트롤러에 호스팅되는 east.contoso.com 자식 도메인을 추가한다.\n\n가능한 경우 항상 미디어에서 설치(IFM) 옵션을 사용해야 합니다.\n\nIFM 데이터를 준비하는 데 무엇을 사용할 수 있고, 어떤 도메인 컨트롤러를 IFM으로 승격할 수 있습니까?",
+ "blanks": {
+  "use": {"label": "사용 도구:", "options": ["adprep.exe", "dcpromo.exe", "dcdiag.exe", "ntdsutil.exe"]},
+  "domain_controllers": {"label": "도메인 컨트롤러:", "options": ["DC3만", "DC4만", "DC3과 DC4만", "DC3과 DC5만", "DC3, DC4, DC5"]}
+ },
+ "explanation": "Ntdsutil.exe로 IFM용 AD DS 설치 미디어를 만듭니다. DC3(추가 쓰기 가능 DC)과 DC4(추가 RODC)는 모두 기존 contoso.com 도메인에 가입하므로 IFM으로 승격할 수 있습니다. DC5는 새 자식 도메인의 첫 도메인 컨트롤러이므로 승격에 IFM을 사용할 수 없습니다."
+},
+"AZ-800-Q307": {
+ "stem": "*(참고: 이 문제는 동일한 시나리오를 공유하는 시리즈 문항입니다. 원본 사이트에 시나리오 본문이 누락되어 있으며, 해설로 볼 때 목표는 \"GPO1 편집 시 일부 관리 템플릿(Administrative Templates) 설정이 보이지 않는 문제를 해결해 모든 설정을 사용할 수 있게 하는 것\"입니다.)*\n\n솔루션: GPO1의 WMI 필터링 설정을 수정합니다.\n\n이 방법으로 목표를 달성할 수 있습니까?",
+ "choices": {"A": "예", "B": "아니요"},
+ "explanation": "WMI 필터링은 WMI 쿼리 평가 후 어떤 컴퓨터가 GPO를 적용할 수 있는지를 제어할 뿐, 편집에 사용할 수 있는 관리 템플릿 설정을 제어하지 않습니다. 중앙 저장소가 있으면 그룹 정책 도구는 그곳의 ADMX/ADML 파일을 사용하므로, 빠진 설정은 중앙 저장소의 템플릿 파일을 수정하거나 갱신해 해결해야 합니다."
+}
+}

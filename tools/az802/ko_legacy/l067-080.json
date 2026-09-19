@@ -1,0 +1,90 @@
+{
+"AZ-801-Q74": {
+ "stem": "네트워크에 포리스트·도메인 기능 수준이 Windows Server 2012 R2인 Active Directory Domain Services(AD DS) 도메인이 있습니다. 도메인에는 다음 표의 도메인 컨트롤러가 있습니다.\n\n[[IMG1]]\n\nWindows Server 2025를 실행하는 새 도메인 컨트롤러를 배포할 수 있게 해야 합니다. 솔루션은 관리 작업을 최소화해야 합니다.\n\n어떤 두 가지 작업을 수행해야 합니까? 각 정답은 솔루션의 일부입니다.\n\n참고: 각 올바른 선택은 1점입니다.",
+ "choices": {
+  "A": "DC1, DC2, DC3을 Windows Server 2025로 업그레이드한다.",
+  "B": "DC1을 제거한다.",
+  "C": "포리스트·도메인 기능 수준을 Windows Server 2025로 올린다.",
+  "D": "DC2와 DC3을 제거한다.",
+  "E": "포리스트·도메인 기능 수준을 Windows Server 2016으로 올린다."
+ },
+ "explanation": "Windows Server 2025 도메인 컨트롤러는 기존 도메인이 최소 Windows Server 2016 기능 수준이어야 합니다. 포리스트·도메인 기능 수준을 Windows Server 2016으로 올리려면 현재 모든 도메인 컨트롤러가 Windows Server 2016 이상을 실행해야 합니다. Windows Server 2012 R2 도메인 컨트롤러(DC1)를 제거하면 이 전제 조건이 충족되고, Windows Server 2016 도메인 컨트롤러 두 대는 그대로 둘 수 있습니다."
+},
+"AZ-801-Q119": {
+ "stem": "네트워크에 Active Directory Domain Services(AD DS) 도메인이 있습니다. 도메인에는 다음 표와 같이 구성된, Windows Server 2019를 실행하는 도메인 컨트롤러가 있습니다.\n\n[[IMG1]]\n\n`adprep /domainprep` 명령을 실행할 계획입니다.\n\n명령이 완료되려면 어떤 도메인 컨트롤러가 사용 가능해야 합니까?",
+ "choices": {"A": "DC1", "B": "DC2", "C": "DC3", "D": "DC4"},
+ "explanation": "Microsoft가 문서화한 Adprep 도구 동작에 따르면 `/domainprep` 작업은 준비 대상 도메인의 **인프라 마스터** 작업 마스터 역할을 보유한 도메인 컨트롤러에서 실행되어야 하며, 따라서 그 DC가 온라인이어야 합니다. domainprep은 도메인 전체에서 정확히 한 번만 수행되어야 하는 권한·개체 업데이트를 적용하므로 특정 역할 보유자를 통해 실행해 멱등성을 유지합니다. 반면 `/forestprep`은 스키마 마스터를 대상으로 합니다."
+},
+"AZ-801-Q147": {
+ "stem": "네트워크에 Active Directory Domain Services(AD DS) 포리스트가 있습니다. 포리스트 기능 수준은 Windows Server 2012 R2입니다. 포리스트에는 다음 표의 도메인이 있습니다.\n\n[[IMG1]]\n\nAdmin1이라는 사용자를 만듭니다.\n\nAdmin1이 east.contoso.com 도메인에 Windows Server 2022를 실행하는 새 도메인 컨트롤러를 추가할 수 있게 해야 합니다. 솔루션은 최소 권한 원칙을 따라야 합니다.\n\nAdmin1을 어떤 그룹에 추가해야 합니까?",
+ "choices": {"A": "EAST\\Domain Admins만", "B": "CONTOSO\\Enterprise Admins만", "C": "CONTOSO\\Schema Admins와 EAST\\Domain Admins", "D": "CONTOSO\\Enterprise Admins와 CONTOSO\\Schema Admins"},
+ "explanation": "기존 도메인에 추가 도메인 컨트롤러를 설치하려면 그 도메인의 Domain Admins 그룹 멤버십이 필요합니다. 따라서 EAST\\Domain Admins가 불필요한 포리스트 전체 Enterprise Admins·Schema Admins 권한 없이 east.contoso.com에 필요한 권한을 부여합니다."
+},
+"AZ-801-Q150": {
+ "stem": "네트워크에 contoso.com이라는 Active Directory Domain Services(AD DS) 도메인이 있습니다. 이 도메인은 Windows Server 2025를 실행하는 도메인 컨트롤러로 만들어졌습니다.\n\n레거시 Windows Server 버전을 실행하는 도메인 컨트롤러가 필요한 사용자 지정 앱을 배포할 계획입니다.\n\ncontoso.com의 도메인 컨트롤러에 사용할 수 있는 가장 오래된 Windows Server 버전은 무엇입니까?",
+ "choices": {"A": "Windows Server 2016", "B": "Windows Server 2019", "C": "Windows Server 2022", "D": "Windows Server 2025"},
+ "explanation": "Windows Server 2025 AD DS 포리스트·도메인 기능 수준은 도메인 컨트롤러 운영 체제로 Windows Server 2025만 지원합니다. Windows Server 2016·2019·2022를 포함한 이전 릴리스는 그 기능 수준에서 지원되지 않습니다."
+},
+"AZ-801-Q209": {
+ "stem": "네트워크에 contoso.com이라는 Active Directory Domain Services(AD DS) 도메인이 있습니다. 도메인에는 Site1과 Site2라는 두 사이트가 있고, 다음 표와 같이 구성된 Windows Server 컴퓨터가 있습니다.\n\n[[IMG1]]\n\n도메인에는 Server3을 포함하는 Group1이라는 그룹이 있습니다.\n\nRODC1에는 다음 그림의 암호 복제 정책이 있습니다.\n\n[[IMG2]]\n\ncontoso.com에 다음 표의 사용자 세 명을 만듭니다.\n\n[[IMG3]]\n\nUser2가 Server2에 로그인합니다.\n\n다음 각 문장에 대해, 문장이 참이면 예를, 그렇지 않으면 아니요를 선택하십시오.",
+ "statements": [
+  "User1이 RODC1을 통해 인증하면 사용자의 자격 증명이 RODC1에 저장된다.",
+  "Site1과 Site2 간 연결이 끊겨도 User2는 Server3에 로그인할 수 있다.",
+  "User3은 RODC1에 로컬로 로그인할 수 있다."
+ ],
+ "explanation": "Domain Admins의 암호는 RODC에 캐시될 수 없으므로 User1의 자격 증명은 저장되지 않습니다. Group1은 RODC 암호 복제 정책에서 허용되어 있으므로 User2의 자격 증명이 캐시되어 Site1 연결 장애 중에도 RODC1이 사용할 수 있습니다. 복제 정책은 자격 증명 캐싱만 제어합니다. Account Operators는 도메인 컨트롤러에 로컬 로그온할 기본 권한을 유지하므로 User3은 RODC1에 로컬로 로그인할 수 있습니다."
+},
+"AZ-801-Q221": {
+ "stem": "네트워크에 Active Directory Domain Services(AD DS) 포리스트가 있습니다. 포리스트에는 User1이라는 사용자가 있습니다.\n\nRODC1이라는 읽기 전용 도메인 컨트롤러(RODC)를 배포합니다.\n\nUser1이 RODC1의 로컬 관리자가 되도록 해야 합니다. 솔루션은 최소 권한 원칙을 따라야 합니다.\n\n무엇을 사용해야 합니까?",
+ "choices": {"A": "dsmgmt.exe", "B": "로컬 사용자 및 그룹", "C": "net user", "D": "컴퓨터 관리"},
+ "explanation": "`dsmgmt.exe`는 읽기 전용 도메인 컨트롤러의 로컬 Administrator 역할을 지정한 사용자에게 위임할 수 있습니다. 이렇게 하면 더 넓은 도메인 관리 권한을 부여하지 않고 해당 RODC에 한정된 관리 액세스를 제공합니다."
+},
+"AZ-801-Q248": {
+ "stem": "네트워크에 Active Directory Domain Services(AD DS) 포리스트가 있습니다. 포리스트에는 User1이라는 사용자가 있습니다.\n\nRODC1이라는 읽기 전용 도메인 컨트롤러(RODC)를 배포합니다.\n\nUser1이 RODC1의 로컬 관리자가 되도록 해야 합니다. 솔루션은 최소 권한 원칙을 따라야 합니다.\n\n무엇을 사용해야 합니까?",
+ "choices": {"A": "ntdsutil.exe", "B": "dsamain.exe", "C": "net user", "D": "로컬 사용자 및 그룹"},
+ "explanation": "RODC 관리자 역할 분리(Administrator Role Separation)는 Domain Admins나 기타 도메인 전체 권한 없이 지정한 RODC에서만 도메인 사용자에게 관리 권한을 부여합니다. Ntdsutil.exe는 이런 RODC 로컬 관리 역할을 관리하는 `local roles` 명령을 제공하며, 여기에는 사용자를 Administrators 로컬 역할에 추가하는 것도 포함됩니다."
+},
+"AZ-801-Q250": {
+ "stem": "네트워크에 contoso.com이라는 Active Directory Domain Services(AD DS) 도메인이 있습니다. 이 도메인은 Windows Server 2022를 실행하는 도메인 컨트롤러로 만들어졌습니다.\n\n사용자 지정 앱을 배포할 계획입니다. 이 앱은 이전 버전의 Windows Server를 실행하는 도메인 컨트롤러를 필요로 합니다.\n\ncontoso.com의 도메인 컨트롤러에 사용할 수 있는 가장 오래된 Windows Server 버전은 무엇입니까?",
+ "choices": {"A": "Windows Server 2012 R2", "B": "Windows Server 2016", "C": "Windows Server 2019", "D": "Windows Server 2022"},
+ "explanation": "Windows Server 2022 도메인은 (2025 이전) 가장 최신 AD DS 기능 수준인 Windows Server 2016 기능 수준을 사용합니다. 이 기능 수준은 Windows Server 2016·2019·2022를 실행하는 도메인 컨트롤러를 지원하고 Windows Server 2012 R2는 지원하지 않습니다. 따라서 Windows Server 2016이 가장 오래된 호환 선택지입니다."
+},
+"AZ-801-Q270": {
+ "stem": "네트워크에 User1이라는 사용자가 포함된 Active Directory Domain Services(AD DS) 포리스트가 있습니다.\n\nRODC1이라는 읽기 전용 도메인 컨트롤러(RODC)를 배포합니다.\n\nUser1이 RODC1의 로컬 관리자가 되도록 해야 합니다. 솔루션은 최소 권한 원칙을 따라야 합니다.\n\n무엇을 사용해야 합니까?",
+ "choices": {"A": "시스템 구성", "B": "dsmgmt.exe", "C": "컴퓨터 관리", "D": "Active Directory 사이트 및 서비스"},
+ "explanation": "RODC의 관리자 역할 분리는 사용자를 Domain Admin이나 도메인 기본 제공 Administrators 그룹 멤버로 만들지 않고 지정한 도메인 사용자에게 그 RODC의 로컬 관리 권한을 부여합니다. `dsmgmt.exe`의 `local roles` 명령 컨텍스트가 이런 RODC 로컬 관리 역할을 관리합니다."
+},
+"AZ-801-Q290": {
+ "stem": "*(참고: 케이스 스터디 문항으로 원본 사이트에 시나리오 본문이 누락되어 있습니다. 문맥상 DC4를 새 도메인 컨트롤러로 배포해야 하는 요구 사항이며, 표의 DC1이 RID 마스터를 보유합니다.)*\n\nDC4에 대한 기술 요구 사항을 충족하려면 어떤 도메인 컨트롤러가 온라인이어야 합니까?",
+ "choices": {"A": "DC1", "B": "DC2", "C": "DC3"},
+ "explanation": "도메인 컨트롤러 설치에는 도메인의 RID 마스터에 대한 연결이 필요합니다. DC1이 그 FSMO 역할을 보유하며, 이 역할은 도메인 컨트롤러가 고유한 SID로 보안 주체를 만드는 데 필요한 상대 ID(RID) 풀을 할당합니다."
+},
+"AZ-801-Q321": {
+ "stem": "네트워크에 Active Directory Domain Services(AD DS) 도메인이 있습니다. 도메인에는 Windows Server 2025를 실행하는 Server1이라는 서버가 있습니다. 모든 도메인 컨트롤러는 Windows Server 2019를 실행합니다. 도메인에는 User1이라는 사용자가 있습니다.\n\nUser1이 Server1을 도메인 컨트롤러로 승격할 수 있게 해야 합니다. 솔루션은 최소 권한 원칙을 따라야 합니다.\n\nUser1은 어떤 그룹의 멤버여야 합니까?",
+ "choices": {"A": "Domain Admins만", "B": "Enterprise Admins만", "C": "Domain Admins와 Schema Admins만", "D": "Domain Admins, Enterprise Admins, Schema Admins"},
+ "explanation": "기존 도메인에 추가 도메인 컨트롤러를 넣는 데는 Domain Admins 그룹 멤버십이 필요합니다. Enterprise Admins와 Schema Admins는 포리스트에 첫 번째(새 버전) Windows Server 도메인 컨트롤러를 설치할 때(스키마 확장) 필요하므로, 어느 쪽을 주든 불필요한 권한이 됩니다. (참고: 실제로는 2025 DC를 처음 넣을 때 adprep으로 스키마 확장이 필요하지만, 문제는 dcpromo 권한 자체를 묻습니다.)"
+},
+"AZ-801-Q322": {
+ "stem": "네트워크에 Active Directory Domain Services(AD DS) 포리스트가 있습니다. 포리스트에는 User1이라는 사용자가 있습니다.\n\nRODC1이라는 읽기 전용 도메인 컨트롤러(RODC)를 배포합니다.\n\nUser1이 RODC1의 로컬 관리자가 되도록 해야 합니다. 솔루션은 최소 권한 원칙을 따라야 합니다.\n\n무엇을 사용해야 합니까?",
+ "choices": {"A": "dsmgmt.exe", "B": "dsamain.exe", "C": "net user", "D": "Active Directory 사이트 및 서비스"},
+ "explanation": "`dsmgmt.exe`의 `local roles` 컨텍스트는 RODC의 관리자 역할 분리를 관리합니다. 도메인 수준 관리 권한을 부여하지 않고 RODC1의 로컬 관리 권한을 User1에게 위임할 수 있어 최소 권한을 만족합니다."
+},
+"AZ-800-Q1": {
+ "stem": "네트워크에 온-프레미스 Active Directory Domain Services(AD DS) 도메인이 있습니다. 도메인에는 User1이라는 사용자와 다음 표의 서버가 있습니다.\n\n[[IMG1]]\n\nUser1은 Protected Users 보안 그룹에 속합니다.\n\nUser1은 다음 작업을 수행합니다.\n\n- Server1에서 Server2로 원격 PowerShell 세션을 맺는다.\n- Server2의 PowerShell 세션에서 Backup1의 리소스에 액세스하려고 시도한다.\n\nBackup1 리소스 액세스 시도가 거부됩니다.\n\nUser1이 Server2의 PowerShell 세션을 통해 Backup1의 리소스에 액세스할 수 있게 해야 합니다. 솔루션은 최소 권한 원칙을 따르고 관리 작업을 최소화해야 합니다.\n\n무엇을 구성해야 합니까?",
+ "choices": {
+  "A": "Kerberos 위임 (제한 없음)",
+  "B": "CredSSP",
+  "C": "RunAs를 사용하는 PSSessionConfiguration",
+  "D": "리소스 기반 Kerberos 제한 위임"
+ },
+ "explanation": "Protected Users 그룹의 멤버는 CredSSP나 Kerberos 제한/비제한 위임을 사용할 수 없습니다. RunAs 자격 증명을 사용하는 PowerShell 세션 구성은 Server2에서 별도 계정으로 명령을 실행하며, 그 계정에는 Backup1에 필요한 권한만 부여하고 엔드포인트 액세스는 User1으로 제한할 수 있습니다. 이렇게 하면 User1의 자격 증명을 위임하지 않으면서 최소 권한의 두 번째 홉(second-hop) 해결책이 됩니다."
+},
+"AZ-800-Q6": {
+ "stem": "온-프레미스 네트워크에 contoso.com이라는 Active Directory 도메인과 Windows Server를 실행하는 서버 500대가 있습니다. 모든 서버는 Azure Arc 지원 서버이며 contoso.com에 가입되어 있습니다.\n\n관리 작업을 최소화하면서 모든 서버에 PowerShell DSC(Desired State Configuration)를 구현해야 합니다.\n\nDSC 스크립트를 어디에 저장하고, 서버에 DSC를 적용하는 데 무엇을 사용해야 합니까?",
+ "blanks": {
+  "store": {"label": "저장 위치:", "options": ["Azure App Configuration 저장소", "Azure Automation 계정", "Azure Policy 정의"]},
+  "use": {"label": "적용 방법:", "options": ["Active Directory Domain Services(AD DS)의 그룹 정책 개체(GPO)", "Azure 가상 머신 확장", "Azure Policy의 게스트 구성(guest configuration)"]}
+ },
+ "explanation": "Azure Automation State Configuration은 PowerShell DSC 구성을 저장·관리·컴파일합니다. Azure Policy 게스트 구성(현재 Azure Machine Configuration)은 DSC를 사용해 Azure Arc 지원 서버의 운영 체제 구성을 검사하거나 설정하며, 정책 할당 하나로 서버 전체를 대상으로 삼을 수 있어 서버별 관리 작업을 줄입니다."
+}
+}

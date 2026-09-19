@@ -1,0 +1,94 @@
+{
+"AZ-800-Q64": {
+ "stem": "네트워크에 다음 그림과 같이 세 개의 Active Directory Domain Services(AD DS) 포리스트가 있습니다.\n\n[[IMG1]]\n\n네트워크에는 다음 표의 사용자가 있습니다.\n\n[[IMG2]]\n\n네트워크에는 다음 표의 보안 그룹이 있습니다.\n\n[[IMG3]]\n\n다음 각 문장에 대해, 문장이 참이면 **예**를, 그렇지 않으면 **아니요**를 선택하십시오.",
+ "statements": [
+  "User1을 Group1에 추가할 수 있다.",
+  "User2를 Group3에 추가할 수 있다.",
+  "Group2에 fabrikam.com 도메인의 리소스에 대한 권한을 부여할 수 있다."
+ ],
+ "explanation": "도메인 로컬 그룹은 신뢰하는 포리스트의 계정을 포함할 수 있으므로 contoso.com의 User1은 adatum.com의 Group1에 들어갈 수 있습니다. 유니버설 그룹은 자기 포리스트 내 도메인의 계정만 포함할 수 있으므로 fabrikam.com의 User2는 contoso.com의 Group3에 들어갈 수 없습니다. 포리스트 트러스트는 관련된 두 포리스트 사이에만 트러스트를 만들고 제3의 포리스트로 암묵적으로 확장되지 않으므로, contoso.com은 fabrikam.com과 트러스트 관계가 없어 Group2에 그곳의 액세스 권한을 할당할 수 없습니다."
+},
+"AZ-800-Q68": {
+ "stem": "네트워크에 contoso.com이라는 Active Directory Domain Services(AD DS) 포리스트가 있습니다. 루트 도메인에는 다음 표의 도메인 컨트롤러가 있습니다.\n\n[[IMG1]]\n\n어떤 도메인 컨트롤러가 실패하면 애플리케이션 파티션을 만들 수 없게 됩니까?",
+ "choices": {"A": "DC1", "B": "DC2", "C": "DC3", "D": "DC4", "E": "DC5"},
+ "explanation": "도메인 명명 마스터는 도메인 디렉터리 파티션과 애플리케이션 디렉터리 파티션의 추가·제거를 담당하는 포리스트 전체 FSMO 역할입니다. DC1이 이 역할을 보유하므로 DC1을 사용할 수 없으면 애플리케이션 파티션을 만들 수 없습니다."
+},
+"AZ-800-Q71": {
+ "stem": "회사에 뉴욕 사무실이 있습니다.\n\n네트워크에 Active Directory Domain Services(AD DS) 포리스트가 있습니다.\n\n시애틀에 새 사무실을 열 계획입니다. 시애틀 사무실은 고속 WAN 링크로 뉴욕 사무실과 연결됩니다.\n\n다음 요구 사항을 충족하는 시애틀 사무실용 솔루션을 권장해야 합니다.\n\n- 시애틀 사무실 사용자가 가능한 한 로컬 도메인 컨트롤러에 인증하도록 한다.\n- WAN 장애가 발생해도 시애틀 사무실 사용자가 암호를 변경할 수 있게 한다.\n- 관리 작업을 최소화한다.\n\n권장 사항에 무엇을 포함해야 합니까?",
+ "choices": {
+  "A": "서브넷, SMTP 사이트 링크, 읽기 전용 도메인 컨트롤러(RODC)",
+  "B": "사용자 지정 AD DS 파티션, 서브넷, 사이트 링크 브리지",
+  "C": "서브넷, 사이트, 도메인 컨트롤러",
+  "D": "서브넷, IP 사이트 링크, Active Directory Lightweight Directory Services(AD LDS) 서버"
+ },
+ "explanation": "AD DS 사이트와 거기에 연결된 서브넷이 있어야 DC Locator가 시애틀 클라이언트를 식별하고 로컬 사이트의 도메인 컨트롤러를 우선하게 됩니다. 로컬 도메인 컨트롤러는 **쓰기 가능**해야 합니다. 쓰기 가능한 DC는 암호 변경을 로컬에서 처리하지만, RODC는 암호 변경 요청을 허브의 쓰기 가능한 DC로 전달하므로 WAN 장애 중에는 그 요구 사항을 만족할 수 없습니다."
+},
+"AZ-800-Q80": {
+ "stem": "*(참고: 케이스 스터디 문항으로 원본 사이트에 시나리오 본문이 누락되어 있습니다. AZ-802 Q62와 같은 Contoso 시나리오이며, Server3에 대한 요구 사항은 \"Server3을 DHCP 서버로 설치하고 AD에서 권한을 부여(authorize)한다\"입니다. Admin1은 Enterprise Admins, Admin2는 contoso.com Domain Admins, Admin3은 canada.contoso.com Domain Admins입니다.)*\n\nServer3에 지정된 기술 요구 사항을 완료하는 데 필요한 권한을 가진 사용자는 누구입니까?",
+ "choices": {"A": "Admin3만", "B": "Admin1과 Admin3만", "C": "Admin1만", "D": "Admin1, Admin2, Admin3", "E": "Admin1과 Admin2만"},
+ "explanation": "Active Directory에서 DHCP 서버에 권한을 부여(authorize)하는 것은 포리스트 수준 작업입니다. Enterprise Admins 그룹은 DHCP 서버 권한 부여를 포함한 포리스트 인프라 변경 권한을 갖습니다. 포리스트 루트 도메인이든 자식 도메인이든 Domain Admins 멤버십만으로는 기본적으로 그 포리스트 수준 권한이 부여되지 않습니다.\n\n(참고: 이 문항은 DHCP 권한 부여만 기준으로 Admin1만 정답으로 보지만, AZ-802 Q62 버전에서는 \"설치 + 권한 부여\"를 함께 물어 Admin1과 Admin3을 정답으로 봅니다. 문제가 묻는 범위를 잘 보세요.)"
+},
+"AZ-800-Q83": {
+ "stem": "네트워크에 adatum.com이라는 Active Directory Domain Services(AD DS) 포리스트가 있습니다. adatum.com에는 다음 표의 사용자가 있습니다.\n\n[[IMG1]]\n\nWindows Server를 실행하는 RODC1이라는 워크그룹 서버를 배포합니다. RODC1에는 로컬 Administrators 그룹 멤버인 User4라는 사용자가 있습니다.\n\neast.adatum.com에 RODC1이라는 읽기 전용 도메인 컨트롤러(RODC) 계정을 미리 만들고, RODC 설치·관리 권한을 User3에게 위임합니다.\n\nUser4로 RODC1에 로그인합니다.\n\nRODC1을 east.adatum.com의 RODC로 승격하는 데 어떤 자격 증명을 사용할 수 있습니까?",
+ "choices": {"A": "User3만", "B": "User3과 User1만", "C": "User3과 User2만", "D": "User1, User2, User3"},
+ "explanation": "미리 만든 RODC 계정은 위임된 설치·관리 계정으로 연결할 수 있습니다. 대상 도메인의 Domain Admins와 Enterprise Admins도 필요한 AD DS 관리 권한을 갖습니다. 따라서 User3은 명시적 위임으로, User2는 east.adatum.com Domain Admins 멤버십으로, User1은 Enterprise Admins 멤버십으로 승격할 수 있습니다. 워크그룹 서버의 로컬 Administrator 멤버십만으로는 AD DS 승격 권한이 부여되지 않습니다."
+},
+"AZ-800-Q94": {
+ "stem": "HOTSPOT -\n\n네트워크에 contoso.com이라는 Active Directory Domain Services(AD DS) 포리스트가 있습니다.\n\n다음 표의 리소스를 만듭니다.\n\n[[IMG1]]\n\n다음 표의 그룹 정책 개체(GPO)를 만듭니다.\n\n[[IMG2]]\n\n다음 표의 그룹 정책 기본 설정(Preferences)을 구성합니다.\n\n[[IMG3]]\n\n다음 각 문장에 대해, 문장이 참이면 **예**를, 그렇지 않으면 **아니요**를 선택하십시오.",
+ "statements": [
+  "User1이 Comp1에 로그인하면 컴퓨터 바탕 화면에 Link4라는 바로 가기가 나타난다.",
+  "User2가 Comp1에 로그인하면 컴퓨터 바탕 화면에 Link2라는 바로 가기가 나타난다.",
+  "User3이 Comp1에 로그인하면 컴퓨터 바탕 화면에 Link2라는 바로 가기가 나타난다."
+ ],
+ "explanation": "루프백 처리가 없으면 컴퓨터 설정은 시작 시 컴퓨터의 OU 기준으로, 사용자 설정은 로그인 시 사용자의 OU 기준으로 처리됩니다. 따라서 GPO1의 사용자 바로 가기 Link2는 OU1의 User1·User2에 적용되고, GPO2의 사용자 바로 가기 Link4는 OU2의 User3에만 적용됩니다. Comp1이 OU2에 있다고 해서 GPO2의 사용자 설정이 User1이나 User2에 적용되지는 않습니다."
+},
+"AZ-800-Q111": {
+ "stem": "네트워크에 다음 표와 같이 두 개의 Active Directory Domain Services(AD DS) 포리스트가 있습니다.\n\n[[IMG1]]\n\nwest.fabrikam.com에는 Fileserver01이라는 파일 서버가 있습니다. south.contoso.com에는 Group1이라는 글로벌 그룹이 있습니다.\n\nGroup1 멤버가 Fileserver01의 공유에 액세스할 수 있게 해야 합니다. 솔루션은 fabrikam.com 포리스트의 사용자가 south.contoso.com의 리소스에 액세스하지 못하게 해야 합니다.\n\n어떤 유형의 트러스트를 구현해야 합니까?",
+ "choices": {"A": "영역(realm) 트러스트", "B": "외부(external) 트러스트", "C": "바로 가기(shortcut) 트러스트", "D": "포리스트(forest) 트러스트"},
+ "explanation": "외부 트러스트는 서로 다른 포리스트의 특정 도메인 간에 맺는 비전이적 도메인 수준 트러스트입니다. 이를 단방향으로 구성하면 south.contoso.com의 ID가 west.fabrikam.com의 공유에 인증될 수 있으면서, fabrikam.com의 ID에는 south.contoso.com으로의 액세스 경로가 생기지 않습니다. 포리스트 전체 관계를 만드는 대신 필요한 두 도메인으로만 트러스트를 제한합니다."
+},
+"AZ-800-Q112": {
+ "stem": "온-프레미스 AD DS 포리스트 contoso.com에는 두 개의 도메인과 아래 표의 도메인 컨트롤러가 있습니다.\n\n[[IMG1]]\n\n모든 도메인 컨트롤러는 Azure Backup을 사용합니다. Site3이라는 Active Directory 사이트를 만듭니다. Site1, Site2, Site3은 각각 Hub 사이트로의 전용 사이트 링크를 갖습니다. Site3에 Server1이라는 새 서버를 설치합니다.\n\n미디어에서 설치(IFM)를 사용해 Server1을 child.contoso.com의 RODC로 승격해야 하며, 네트워크 트래픽을 최소화해야 합니다. 어떻게 해야 합니까?",
+ "blanks": {
+  "ifm_source_server": {"label": "IFM 원본을 만들 서버", "options": ["DC1", "DC2", "Server1", "RODC3"]},
+  "ifm_source_tool": {"label": "IFM 원본을 만들 도구", "options": ["Azure Backup", "Dcdiag.exe", "Ntdsutil.exe", "Repadmin.exe", "Windows Server Backup"]}
+ },
+ "explanation": "자식 도메인 RODC용 IFM 미디어는 child.contoso.com의 **쓰기 가능한** 도메인 컨트롤러에서 생성해야 합니다. DC2가 유일한 그런 컨트롤러입니다. Ntdsutil.exe는 RODC 설치 미디어 생성을 지원하며, 대부분의 디렉터리 데이터를 로컬에서 공급해 승격 중 복제 트래픽을 줄입니다."
+},
+"AZ-800-Q113": {
+ "stem": "*(참고: 케이스 스터디 문항으로 원본 사이트에 시나리오 본문이 누락되어 있습니다. 문맥상 IIS 웹 앱 Webapp1의 애플리케이션 풀을 암호가 자동 관리되는 AD DS 계정으로 실행해야 한다는 보안 요구 사항입니다.)*\n\nWebapp1의 보안 요구 사항을 충족하려면 어떤 세 가지 작업을 순서대로 완료해야 합니까?",
+ "items": {
+  "Create a standalone managed service account (sMSA) in AD DS.": "AD DS에 독립 실행형 관리 서비스 계정(sMSA)을 만든다.",
+  "Configure the IIS application pool to run as Network Service.": "IIS 애플리케이션 풀을 Network Service로 실행하도록 구성한다.",
+  "Configure the IIS application pool to run as a specified user account.": "IIS 애플리케이션 풀을 지정된 사용자 계정으로 실행하도록 구성한다.",
+  "Create a group managed service account (gMSA) in Active Directory.": "Active Directory에 그룹 관리 서비스 계정(gMSA)을 만든다.",
+  "Create a system-assigned managed identity in Azure AD.": "Azure AD에 시스템 할당 관리 ID를 만든다.",
+  "Create a user-assigned managed identity in Azure AD.": "Azure AD에 사용자 할당 관리 ID를 만든다.",
+  "Create the Key Distribution Services (KDS) root key in AD DS.": "AD DS에 KDS(Key Distribution Services) 루트 키를 만든다."
+ },
+ "slots": {"step1": "1단계", "step2": "2단계", "step3": "3단계"},
+ "explanation": "gMSA는 암호가 자동으로 관리되는 AD DS 계정이며 IIS 애플리케이션 풀 ID로 사용할 수 있습니다. AD DS가 gMSA 암호를 생성할 수 있도록 먼저 KDS 루트 키를 만들어야 합니다. gMSA를 만든 후 IIS 애플리케이션 풀을 그 계정을 지정 ID로 실행하도록 구성합니다."
+},
+"AZ-800-Q127": {
+ "stem": "네트워크에 아래와 같이 두 개의 Active Directory 포리스트와 도메인 트러스트가 있습니다.\n\n[[IMG1]]\n\n도메인 트러스트는 다음과 같이 구성되어 있습니다.\n\n- 이름: adatum.com\n- 유형: 외부(External)\n- 방향: 단방향, 나가는(outgoing)\n- 나가는 트러스트 인증 수준: 도메인 전체 인증\n\n포리스트에는 다음 표의 사용자가 있습니다.\n\n[[IMG2]]\n\n포리스트에는 다음 표의 네트워크 공유가 있습니다.\n\n[[IMG3]]\n\n다음 각 문장에 대해, 문장이 참이면 **예**를, 그렇지 않으면 **아니요**를 선택하십시오.",
+ "statements": [
+  "User1에 Share3에 대한 권한을 할당할 수 있다.",
+  "User2에 Share1에 대한 권한을 할당할 수 있다.",
+  "User3에 Share1에 대한 권한을 할당할 수 있다."
+ ],
+ "explanation": "나가는(outgoing) 트러스트는 로컬 도메인이 원격 도메인을 신뢰한다는 뜻이므로, adatum.com 사용자에게 east.contoso.com의 리소스 액세스를 부여할 수 있습니다. 따라서 User1은 Share3에 대한 권한을 받을 수 있습니다. 외부 트러스트는 비전이적이며 지정된 도메인에만 적용됩니다. contoso.com 사용자에게 adatum.com 액세스를 주지도, east.contoso.com 사용자가 adatum.com 리소스에 접근하게 하지도 않습니다. 도메인 전체 인증은 트러스트 방향이나 비전이적 범위를 바꾸지 않습니다."
+},
+"AZ-800-Q130": {
+ "stem": "Group1이라는 그룹이 포함된 Active Directory Domain Services(AD DS) 도메인이 있습니다.\n\nAccount1이라는 그룹 관리 서비스 계정(gMSA)을 만들고 Group1이 Account1을 사용할 수 있게 해야 합니다.\n\n스크립트를 어떻게 완성해야 합니까?",
+ "blanks": {
+  "cmdlet": {"label": "cmdlet", "options": ["Add-ADComputerServiceAccount", "Install-ADServiceAccount", "New-ADObject", "New-ADServiceAccount"]},
+  "parameter": {"label": "매개변수", "options": ["-AuthenticationPolicy", "-Instance", "-PrincipalsAllowedToDelegateToAccount", "-PrincipalsAllowedToRetrieveManagedPassword"]}
+ },
+ "explanation": "`New-ADServiceAccount`는 gMSA를 만듭니다. `PrincipalsAllowedToRetrieveManagedPassword` 매개변수는 gMSA를 사용할 수 있는 시스템의 멤버십 정책을 설정하므로 여기에 Group1을 지정해야 합니다."
+},
+"AZ-800-Q136": {
+ "stem": "네트워크에 contoso.com이라는 Active Directory 도메인이 있습니다. 도메인에는 다음 표의 컴퓨터가 있습니다.\n\n[[IMG1]]\n\nServer3에서 GPO1이라는 그룹 정책 개체(GPO)를 만들고 contoso.com에 연결합니다. GPO1에는 다음 그림과 같이 항목 수준 대상 지정이 구성된 Shortcut1이라는 바로 가기 기본 설정이 있습니다.\n\n[[IMG2]]\n\nShortcut1은 어떤 컴퓨터에 적용됩니까?",
+ "choices": {"A": "Server3만", "B": "Computer1과 Server3만", "C": "Server2와 Server3만", "D": "Server1, Server2, Server3만"},
+ "explanation": "운영 체제 항목 수준 대상 지정 조건은 처리하는 컴퓨터의 운영 체제 제품 이름·릴리스·에디션·컴퓨터 역할이 구성된 기준과 일치할 때만 기본 설정 항목을 적용합니다. 구성된 제품은 Windows Server 2022 제품군이며, Server3이 Windows Server 2022를 실행하는 유일한 컴퓨터입니다."
+}
+}

@@ -1,0 +1,116 @@
+{
+"AZ-801-Q99": {
+ "stem": "Windows Server를 실행하는 서버가 여러 대 있습니다.\n\nSystem Insights를 사용해 환경과 시스템에 대한 정보를 수집할 계획입니다.\n\n용량 예측용 기본 System Insights 기능은 몇 개입니까?",
+ "choices": {"A": "3", "B": "4", "C": "5", "D": "6"},
+ "explanation": "System Insights에는 기본 용량 예측 기능이 네 가지 포함되어 있습니다. CPU 용량 예측, 네트워킹 용량 예측, 볼륨 사용량 예측, 총 스토리지 사용량 예측입니다."
+},
+"AZ-801-Q100": {
+ "stem": "네트워크가 다음 그림과 같이 구성되어 있습니다.\n\n[[IMG1]]\n\n서버는 Windows Server를 실행하며 다음 표의 네트워크 구성을 사용합니다.\n\n[[IMG2]]\n\nServer3은 NAT 게이트웨이로 구성되어 있습니다. 모든 서버는 ICMP 요청을 허용합니다.\n\n그림의 정보를 바탕으로 드롭다운 메뉴를 사용해 각 문장을 완성하십시오.",
+ "blanks": {
+  "server1": {"label": "Server1이 성공적으로 ping할 수 있는 대상:", "options": ["NIC1만", "NIC1과 NIC2만", "NIC1, NIC2, NIC3만", "NIC1, NIC2, NIC3, NIC4만", "NIC1, NIC2, NIC3, NIC4, NIC5"]},
+  "server2": {"label": "Server2가 성공적으로 ping할 수 있는 대상:", "options": ["NIC2와 NIC3만", "NIC1, NIC2, NIC3만", "NIC1, NIC2, NIC3, NIC4만", "NIC1, NIC2, NIC3, NIC4, NIC5"]}
+ },
+ "explanation": "Server1은 자기 자신과 직접 연결된 172.16.0.0/24 네트워크의 Server2 NIC2에 도달할 수 있습니다. Server2는 Server1 NIC1과 자신의 NIC2·NIC3에 도달할 수 있습니다. Server2 NIC3과 Server3 NIC4가 같은 주소 192.168.15.1을 사용하므로 Server3 NIC4는 별도 인터페이스로 접근할 수 없으며, 중복 주소는 구성 충돌입니다. Server3의 NAT는 Server1이나 Server2를 위한 라우팅을 제공하지 않습니다."
+},
+"AZ-801-Q113": {
+ "stem": "네트워크에 Server1과 Server2라는 두 대의 Windows Server 컴퓨터가 있는 Active Directory Domain Services(AD DS) 도메인이 있습니다.\n\nServer1에서 Server2의 이벤트를 검색하는 Subscription1이라는 이벤트 구독을 만듭니다. Subscription1의 쿼리 필터 설정은 다음과 같이 구성되어 있습니다.\n\n[[IMG1]]\n\nSubscription1은 이벤트를 Forwarded Events 로그에 저장합니다.\n\nServer1에서 다음과 같이 View1이라는 사용자 지정 보기를 만듭니다.\n\n[[IMG2]]\n\n다음 각 문장에 대해 문장이 참이면 예를, 그렇지 않으면 아니요를 선택하십시오.",
+ "statements": [
+  "Server2의 System 로그에 만들어진 심각(Critical) 이벤트가 View1에 표시된다.",
+  "Server1의 Setup 로그에 만들어진 경고(Warning) 이벤트가 View1에 표시된다.",
+  "Server2의 Application 로그에 만들어진 정보(Information) 이벤트가 Server1로 전달된다."
+ ],
+ "explanation": "Subscription1은 Server2의 Application, Security, Setup 로그에서 경고·정보 이벤트만 전달합니다. 따라서 Server2의 심각 System 이벤트는 수집되지 않습니다. View1에는 Server1의 Setup 로그가 포함되지 않으므로 로컬에서 만들어진 경고 Setup 이벤트는 제외됩니다. Server2 Application 로그의 정보 이벤트는 Subscription1의 두 필터를 모두 충족해 Server1의 Forwarded Events 로그로 전달됩니다."
+},
+"AZ-801-Q114": {
+ "stem": "VM1과 VM2라는 두 대의 Windows Server 가상 머신이 포함된 Azure 구독이 있습니다.\n\nVM1에서 중지 오류가 발생해 시작할 수 없습니다.\n\n오류의 메모리 덤프 파일을 검사해야 합니다.\n\n먼저 무엇을 해야 합니까?",
+ "choices": {"A": "VM2에서 Azure 직렬 콘솔을 실행한다.", "B": "VM1의 OS 디스크를 VM2에 연결한다.", "C": "VM1에서 Azure 직렬 콘솔을 실행한다.", "D": "VM1에 부팅 진단을 사용하도록 설정한다."},
+ "explanation": "부팅할 수 없는 Windows VM의 메모리 덤프는 오프라인으로 액세스해야 합니다. 영향을 받은 VM의 OS 디스크를 정상 동작하는 복구 VM에 데이터 디스크로 연결한 뒤, 연결된 디스크의 Windows 폴더에서 `Memory.dmp`를 찾습니다. Azure 부팅 진단은 부팅 출력을 제공하고, 직렬 콘솔은 기존 덤프 파일을 가져오는 첫 단계가 아닙니다."
+},
+"AZ-801-Q124": {
+ "stem": "네트워크에 Active Directory Domain Services(AD DS) 도메인이 있습니다. 도메인에는 Server1과 Server2라는 두 대의 도메인 컨트롤러와 OU1이라는 조직 구성 단위(OU)가 있습니다. 도메인은 매일 백업됩니다.\n\nOU1의 권한 있는 복원을 수행해야 합니다.\n\n어떤 네 가지 작업을 순서대로 수행해야 합니까?",
+ "items": {
+  "Restart Server1 in Directory Services Restore Mode (DSRM).": "Server1을 디렉터리 서비스 복원 모드(DSRM)로 다시 시작한다.",
+  "From Server1, run ntdsutil.exe and mark OU1 as authoritative.": "Server1에서 ntdsutil.exe를 실행해 OU1을 권한 있음으로 표시한다.",
+  "Restart Server1.": "Server1을 다시 시작한다.",
+  "Restore the system state.": "시스템 상태를 복원한다.",
+  "Restart Server1 in safe mode.": "Server1을 안전 모드로 다시 시작한다.",
+  "From Server2, run ntdsutil.exe and mark OU1 as authoritative.": "Server2에서 ntdsutil.exe를 실행해 OU1을 권한 있음으로 표시한다."
+ },
+ "slots": {"step1": "1단계", "step2": "2단계", "step3": "3단계", "step4": "4단계"},
+ "explanation": "도메인 컨트롤러의 시스템 상태 복원은 디렉터리 서비스 복원 모드에서 수행합니다. 다른 도메인 컨트롤러가 정상 동작하는 도메인에서는 복원된 컨트롤러에서 Ntdsutil로 복원된 OU를 권한 있음으로 표시해야 합니다. 이렇게 하면 관련 개체의 버전이 증가해 복원된 OU가 Server2에 의해 덮어써지지 않고 바깥으로 복제됩니다. Server1을 다시 시작하면 정상 AD DS 동작으로 돌아갑니다."
+},
+"AZ-801-Q126": {
+ "stem": "네트워크에 contoso.com이라는 Active Directory Domain Services(AD DS) 도메인이 있습니다.\n\n각 작업에 어떤 도구를 사용해야 합니까? 각 도구는 한 번, 두 번 이상 사용하거나 전혀 사용하지 않을 수 있습니다.",
+ "items": {
+  "Active Directory Administrative Center": "Active Directory 관리 센터",
+  "Active Directory Users and Computers": "Active Directory 사용자 및 컴퓨터",
+  "Dsamain.exe": "Dsamain.exe",
+  "Dsmgmt.exe": "Dsmgmt.exe",
+  "Ntdsutil.exe": "Ntdsutil.exe"
+ },
+ "slots": {"create_snapshot": "스냅샷 만들기:", "expose_snapshot": "스냅샷을 읽기 전용 AD DS 인스턴스로 노출:"},
+ "explanation": "Ntdsutil.exe는 AD DS 스냅샷을 관리하며 snapshot 하위 명령으로 스냅샷을 만듭니다. Dsamain.exe는 스냅샷 데이터베이스를 탑재해 그 디렉터리 데이터를 LDAP을 통해 읽기 전용 인스턴스로 노출합니다."
+},
+"AZ-801-Q129": {
+ "stem": "HOTSPOT\n\n네트워크에 Active Directory Domain Services(AD DS) 도메인이 있습니다. 도메인에는 User1과 User2라는 두 사용자가 있습니다.\n\n다음 도구를 사용해 Active Directory를 관리합니다.\n\n- Active Directory 사용자 및 컴퓨터\n- Active Directory 관리 센터\n- Ntdsutil\n- Ldp\n\n다음 표의 작업을 수행합니다.\n\n[[IMG1]]\n\n각 사용자를 삭제 취소하려면 무엇을 사용할 수 있습니까?",
+ "blanks": {
+  "user1": {"label": "User1:", "options": ["삭제 취소할 수 없음", "Ldp", "Ldp와 Ntdsutil만", "Active Directory 사용자 및 컴퓨터와 Ldp만", "Active Directory 사용자 및 컴퓨터, Active Directory 관리 센터, Ntdsutil만"]},
+  "user2": {"label": "User2:", "options": ["Active Directory 관리 센터만", "Active Directory 사용자 및 컴퓨터와 Active Directory 관리 센터만", "Active Directory 관리 센터와 Ldp만", "Active Directory 관리 센터와 Ntdsutil만"]}
+ },
+ "explanation": "Active Directory 휴지통은 기능을 사용하도록 설정한 이후에 삭제된 개체만 복원합니다. Active Directory 관리 센터는 그런 개체를 Deleted Objects 컨테이너에 표시합니다. 활성화 전에 삭제된 사용자는 휴지통으로 복원할 수 없으므로 Ldp를 통한 툼스톤 재활성화나 Ntdsutil을 사용한 권한 있는 복원이 필요합니다."
+},
+"AZ-801-Q130": {
+ "stem": "HOTSPOT\n\nWindows Server를 실행하는 VM1이라는 Azure 가상 머신이 있습니다.\n\nVM1에서 다음 작업을 수행해야 합니다.\n\n- 원격 데스크톱 연결을 허용하도록 Windows Defender 방화벽을 구성한다.\n- 가상 머신 콘솔 로그의 저장 위치를 구성한다.\n\n어떤 두 가지 설정을 사용해야 합니까?\n\n[[IMG1]]",
+ "answerText": "방화벽 구성: 직렬 콘솔(Serial console) · 콘솔 로그 저장 위치: 부팅 진단(Boot diagnostics)",
+ "explanation": "직렬 콘솔은 Windows Server 게스트에 대한 콘솔 액세스를 제공하므로 여기서 원격 데스크톱을 허용하도록 Windows Defender 방화벽을 구성할 수 있습니다. 부팅 진단은 VM의 직렬 출력을 캡처하며 그 콘솔 로그의 스토리지 계정을 구성하는 데 사용하는 설정입니다."
+},
+"AZ-801-Q132": {
+ "stem": "온-프레미스 네트워크에 두 개의 서브넷이 있습니다. 서브넷에는 다음 표와 같이 Windows Server를 실행하는 서버가 있습니다.\n\n[[IMG1]]\n\nServer4의 IP 구성은 다음과 같습니다.\n\n```text\nEthernet adapter Ethernet:\nConnection-specific DNS Suffix . . :\nIPv4 Address . . . . . . . . . . . : 192.168.0.10\nSubnet Mask . . . . . . . . . . . : 255.255.255.0\nDefault Gateway . . . . . . . . . : 192.168.0.1\n```\n\nServer4에서 Server1과 Server2를 성공적으로 ping할 수 있습니다. Server3을 ping하면 **Request timed out** 응답을 받습니다.\n\nServer2에서 Server1과 Server3을 성공적으로 ping할 수 있습니다.\n\nServer3의 어떤 구성 요소가 잘못 구성되면 **Request timed out** 응답이 발생할 수 있습니까?",
+ "choices": {"A": "기본 게이트웨이", "B": "IP 주소", "C": "서브넷 마스크", "D": "DNS 서버"},
+ "explanation": "서브넷 마스크는 대상이 로컬인지 원격인지를 결정합니다. Server3의 서브넷 마스크가 잘못되어 지나치게 좁으면 Server2는 로컬로, Server4는 원격으로 취급해 Server3이 ICMP 응답을 Server4로 직접 보내지 않고 라우팅을 통해 보내게 됩니다. 이것이 관찰된 비대칭 연결을 만듭니다. IP 주소로 ping할 때 DNS는 사용되지 않으며, 기본 게이트웨이 문제라면 Server3이 로컬로 간주하는 다른 호스트와의 통신을 막지 않습니다."
+},
+"AZ-801-Q135": {
+ "stem": "Windows Server를 실행하는 Server1이라는 서버가 있습니다.\n\nServer1에 System Insights를 설치합니다.\n\n스토리지 사용량 예측의 일정을 변경해야 합니다.\n\n무엇을 사용해야 합니까?",
+ "choices": {"A": "리소스 모니터", "B": "서버 관리자", "C": "Windows Admin Center", "D": "성능 모니터"},
+ "explanation": "Windows Admin Center에는 System Insights 확장이 포함되어 있어 관리자가 예측 기능을 선택하고 설정 페이지의 일정(Schedule) 탭에서 일정을 업데이트할 수 있습니다."
+},
+"AZ-801-Q136": {
+ "stem": "VM1과 VM2라는 두 대의 가상 머신이 포함된 Azure 구독이 있습니다. VM1은 Windows Server를, VM2는 Ubuntu Linux를 실행합니다.\n\nVM Insights를 사용해 VM1과 VM2를 모니터링해야 합니다. 솔루션은 다음 요구 사항을 충족해야 합니다.\n\n- VM1에서 메모리 사용량을 모니터링할 수 있어야 한다.\n- VM2에서 맵(Map) 기능이 동작해야 한다.\n\n솔루션은 각 가상 머신에 필요한 에이전트 수를 최소화해야 합니다.\n\n각 가상 머신에 어떤 에이전트가 필요합니까?",
+ "blanks": {
+  "vm1": {"label": "VM1:", "options": ["Azure Connected Machine 에이전트만", "Azure Monitor 에이전트만", "Azure Monitor 에이전트와 Dependency 에이전트만", "Azure Monitor 에이전트, Dependency 에이전트, Azure Connected Machine 에이전트"]},
+  "vm2": {"label": "VM2:", "options": ["Azure Linux VM 에이전트만", "Azure Monitor 에이전트만", "Azure Monitor 에이전트와 Dependency 에이전트만", "Azure Monitor 에이전트, Dependency 에이전트, Azure Linux VM 에이전트"]}
+ },
+ "explanation": "Azure Monitor 에이전트는 메모리 사용률을 포함한 VM Insights 성능 데이터를 수집합니다. VM Insights 맵에는 Azure Monitor 에이전트 외에 Dependency 에이전트가 필요합니다. Azure Connected Machine 에이전트는 Azure VM이 아닌 Arc 지원 컴퓨터용이며, Azure Linux VM 에이전트는 명시된 VM Insights 기능에 추가로 필요한 에이전트가 아닙니다."
+},
+"AZ-801-Q140": {
+ "stem": "원격 데스크톱 세션 호스트 역할 서비스를 실행하는 Server1이라는 서버가 있습니다. Server1에는 사용자 지정 애플리케이션 5개가 설치되어 있습니다.\n\nServer1에 로그온하는 사용자들이 서버가 느리다고 보고합니다. 작업 관리자에서 Server1의 평균 CPU 사용률이 90%를 초과하는 것으로 나타납니다. Server1의 사용자 지정 애플리케이션 하나가 프로세서 용량을 과도하게 사용한다고 의심됩니다.\n\n성능 모니터에서 데이터 수집기 집합을 만들어 Server1의 성능 통계를 수집할 계획입니다.\n\n5개 애플리케이션 각각이 사용하는 리소스를 확인해야 합니다.\n\n데이터 수집기 집합에 어떤 개체를 추가해야 합니까?",
+ "choices": {"A": "Processor information", "B": "Processor", "C": "Process", "D": "Processor performance"},
+ "explanation": "**Process** 성능 카운터 개체는 실행 중인 프로세스별로 별도 인스턴스를 노출하므로 각 애플리케이션의 프로세서 시간 같은 리소스 지표를 수집할 수 있습니다. Processor 관련 개체는 프로세서 또는 코어 사용률을 보고할 뿐 리소스를 소비하는 개별 애플리케이션을 식별하지 못합니다."
+},
+"AZ-801-Q145": {
+ "stem": "네트워크에 Server1이라는 Windows Server 컴퓨터가 있는 Active Directory Domain Services(AD DS) 도메인이 있습니다.\n\nAdmin1이라는 도메인 사용자를 추가합니다. 최소 권한 원칙을 준수하면서 Admin1이 Server1에서 데이터 수집기 집합을 만들 수 있게 해야 합니다.\n\nAdmin1을 어떤 보안 그룹에 추가해야 하고, 데이터 수집기 집합을 만들려면 Admin1이 어떤 도구를 사용해야 합니까?",
+ "blanks": {
+  "security_group": {"label": "보안 그룹:", "options": ["Administrators", "Event Log Readers", "Performance Log Users", "Performance Monitor Users", "Power Users"]},
+  "use": {"label": "사용 도구:", "options": ["성능 모니터", "리소스 모니터", "서버 관리자", "Windows Admin Center"]}
+ },
+ "explanation": "성능 모니터가 데이터 수집기 집합 인터페이스를 제공합니다. Performance Log Users는 성능 로그 및 경고 서비스를 사용해 카운터를 기록하고 로그 파일을 만들 권한을 부여하므로 관련 그룹 중 가장 최소 권한입니다. Performance Monitor Users는 기록 없이 카운터 데이터를 보는 용도입니다."
+},
+"AZ-801-Q161": {
+ "stem": "HOTSPOT -\n\nWindows Server를 실행하는 Server1이라는 서버가 있습니다.\n\nServer1에서 Basic 템플릿을 기반으로 CollectorSet1이라는 데이터 수집기 집합을 만듭니다.\n\n다음 요구 사항을 충족하도록 CollectorSet1을 구성해야 합니다.\n\n- 오래된 성능 카운터 로그는 새 로그로 대체되어야 한다.\n- 디스크 여유 공간이 500MB 미만이면 성능 카운터 로깅이 중지되어야 한다.\n\n각 요구 사항에 무엇을 구성해야 합니까?",
+ "blanks": {
+  "older_logs": {"label": "오래된 성능 카운터 로그를 새 로그로 덮어써야 함:", "options": ["Configuration 속성", "Data Manager 속성", "Performance Counter 속성"]},
+  "free_space": {"label": "디스크 여유 공간이 500MB 미만이면 성능 카운터 로깅을 중지해야 함:", "options": ["Configuration 속성", "Data Manager 속성", "Performance Counter 속성"]}
+ },
+ "explanation": "Data Manager 속성은 데이터 수집기 집합의 데이터 보존과 디스크 리소스 정책을 제어합니다. 리소스 정책으로 가장 오래된 로그를 삭제해 새 로그 공간을 확보할 수 있고, 최소 여유 디스크 설정으로 500MB 여유 공간 제한을 적용합니다."
+},
+"AZ-801-Q164": {
+ "stem": "Windows Server를 실행하는 VM1이라는 Azure 가상 머신이 있습니다.\n\nVM1이 제대로 시작되지 않습니다.\n\n문제를 파악하기 위해 직렬 로그를 검사해야 합니다.\n\nAzure portal의 VM1 블레이드에서 무엇을 사용해야 합니까?",
+ "choices": {"A": "문제 진단 및 해결", "B": "부팅 진단", "C": "변경 내용 추적", "D": "성능 진단", "E": "리소스 상태"},
+ "explanation": "Azure 부팅 진단은 가상 머신 시작 실패 문제 해결용으로 설계되어 Azure portal에서 VM의 직렬 로그 정보를 보여 줍니다."
+},
+"AZ-801-Q166": {
+ "stem": "네트워크에 포리스트 기능 수준이 Windows Server 2016인 Active Directory Domain Services(AD DS) 도메인이 있습니다. 도메인에는 DC1이라는 도메인 컨트롤러가 있습니다.\n\nDC1의 SYSVOL 복제 문제를 해결하고 있습니다.\n\nSYSVOL 복제를 수행하는 서비스를 중지해야 합니다.\n\n어떤 서비스를 중지해야 합니까?",
+ "choices": {"A": "Background Intelligent Transfer Service", "B": "File Replication", "C": "DFS Replication", "D": "DS Role Server"},
+ "explanation": "Windows Server 2008 이상 도메인 기능 수준의 도메인에서는 SYSVOL이 DFSR(분산 파일 시스템 복제) 서비스로 복제됩니다. 따라서 Windows Server 2016 포리스트 기능 수준에서는 레거시 파일 복제 서비스(FRS)가 아니라 DFS Replication을 사용합니다."
+}
+}

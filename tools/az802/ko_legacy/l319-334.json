@@ -1,0 +1,105 @@
+{
+"AZ-801-Q15": {
+ "stem": "온-프레미스 네트워크가 Azure에 연결되어 있습니다.\n\nWindows Server를 실행하는 VM1이라는 가상 머신이 포함된 Azure 구독이 있습니다.\n\n온-프레미스 네트워크와 VM1 사이의 지연 시간을 확인해야 합니다.\n\n어떤 Azure Network Watcher 설정을 사용해야 합니까?",
+ "choices": {"A": "IP 흐름 확인", "B": "연결 모니터(Connection monitor)", "C": "VPN 문제 해결", "D": "연결 문제 해결"},
+ "explanation": "Azure Network Watcher 연결 모니터는 온-프레미스 엔드포인트와 Azure VM 간의 하이브리드 연결 모니터링을 지원하며 왕복 시간을 포함한 네트워크 지연 시간을 측정합니다."
+},
+"AZ-801-Q17": {
+ "stem": "네트워크에 Active Directory 사이트 20개가 포함된 Active Directory Domain Services(AD DS) 도메인이 있습니다. 모든 사용자 관리는 중앙 사이트에서 처리됩니다.\n\n그룹에 사용자를 추가했는데 그룹 변경 사항이 원격 사이트의 도메인 컨트롤러에 나타나지 **않는** 것을 발견합니다.\n\n그룹 변경 사항이 다른 도메인 컨트롤러에 나타나는지 확인해야 합니다.\n\n무엇을 사용해야 합니까?",
+ "choices": {"A": "Active Directory 사이트 및 서비스", "B": "Active Directory 복제 상태 도구", "C": "Microsoft 지원 및 복구 도우미", "D": "파일 복제 서비스(FRS) 상태 뷰어"},
+ "explanation": "Active Directory 복제 상태 도구(ADREPLSTATUS)는 단일 도메인 컨트롤러 또는 Active Directory 도메인·포리스트 전체의 도메인 컨트롤러에 대한 Active Directory 복제 오류를 식별하고 보고합니다. 따라서 그룹 멤버십 변경이 다른 도메인 컨트롤러로 복제되었는지 확인하기에 적합합니다. Microsoft의 과거 문서가 이 용도를 설명하지만, 현재는 이 도구를 더 이상 다운로드할 수 없습니다(대안: `repadmin /showrepl`, `Get-ADReplicationPartnerMetadata`)."
+},
+"AZ-801-Q23": {
+ "stem": "VM1이라는 Azure 가상 머신이 있습니다. VM1에서 Process1이라는 프로세스의 크래시 덤프가 활성화되어 있습니다.\n\nVM1의 `process1.exe`가 크래시하면 기술자가 가상 머신의 메모리 덤프 파일에 액세스할 수 있어야 합니다. 기술자는 가상 머신에는 액세스할 수 없어야 합니다.\n\n기술자에게 무엇에 대한 액세스를 부여해야 합니까?",
+ "choices": {"A": "Azure 파일 공유", "B": "Azure Log Analytics 작업 영역", "C": "Azure Blob Storage 컨테이너", "D": "관리 디스크"},
+ "explanation": "Windows용 Azure Diagnostics는 프로세스 크래시 덤프를 Azure Storage 계정의 지정된 Blob 컨테이너에 저장합니다. 그 Azure Blob Storage 컨테이너에 액세스를 부여하면 기술자가 VM1에 액세스하지 않고도 덤프 파일을 가져올 수 있습니다."
+},
+"AZ-801-Q24": {
+ "stem": "네트워크에 contoso.com이라는 Active Directory Domain Services(AD DS) 도메인이 있습니다. 도메인에는 DC1이라는 도메인 컨트롤러, OU1이라는 조직 구성 단위(OU), User1이라는 사용자가 있습니다. Active Directory 휴지통은 비활성화되어 있습니다.\n\nUser1이 OU1에서 실수로 삭제됩니다.\n\nDC1의 백업에서 User1을 복원해야 합니다.\n\n명령을 어떻게 완성해야 합니까?",
+ "blanks": {
+  "tool": {"label": "도구", "options": ["dsamain", "dsdbutil", "ntdsutil"]},
+  "object": {"label": "개체", "options": ["cn=User1,ou=OU1,dc=contoso,dc=com\"", "contoso.com/OU1/User1\"", "User1@contoso.com\""]}
+ },
+ "explanation": "Active Directory 휴지통을 사용할 수 없을 때 시스템 상태 백업에서 삭제된 AD DS 개체를 권한 있는 복원하려면 Ntdsutil을 사용합니다. `restore object` 명령에는 개체의 고유 이름(DN) 경로가 필요하며, contoso.com의 OU1에 있는 User1의 DN은 `cn=User1,ou=OU1,dc=contoso,dc=com`입니다."
+},
+"AZ-801-Q40": {
+ "stem": "Windows Server를 실행하는 VM1이라는 Azure 가상 머신이 있습니다. VM1은 관리형 스토리지 계정을 사용하도록 부팅 진단이 구성되어 있습니다.\n\nVM1의 연결 문제를 해결하고 있습니다.\n\nAzure 직렬 콘솔을 사용해 VM1에서 PowerShell cmdlet을 실행해야 합니다.\n\n어떤 네 가지 작업을 순서대로 수행해야 합니까?",
+ "items": {
+  "From the Azure portal, configure the Boot diagnostics settings for VM1 to use a custom storage account.": "Azure portal에서 VM1의 부팅 진단 설정이 사용자 지정 스토리지 계정을 사용하도록 구성한다.",
+  "From the Azure portal, open the Run command blade.": "Azure portal에서 명령 실행(Run command) 블레이드를 연다.",
+  "From the Azure portal, open the Serial console blade of VM1.": "Azure portal에서 VM1의 직렬 콘솔 블레이드를 연다.",
+  "From the Azure portal, enable just in time (JIT) VM access to VM1.": "Azure portal에서 VM1에 JIT(just in time) VM 액세스를 사용하도록 설정한다.",
+  "From the Serial console, run ch -si 1 and sign in by using a local account.": "직렬 콘솔에서 ch -si 1을 실행하고 로컬 계정으로 로그인한다.",
+  "From the Serial console, run cmd.": "직렬 콘솔에서 cmd를 실행한다."
+ },
+ "slots": {"step1": "1단계", "step2": "2단계", "step3": "3단계", "step4": "4단계"},
+ "explanation": "Azure 직렬 콘솔은 부팅 진단이 사용자 지정 스토리지 계정으로 구성되어 있어야 합니다. 이 액세스 경로에서 관리형 부팅 진단은 지원되지 않습니다. Windows Server에서 직렬 콘솔은 처음에 SAC(특수 관리 콘솔)를 표시합니다. `cmd`를 실행하면 명령 채널이 만들어지고, `ch -si 1`로 그 채널로 전환해 로컬 계정으로 인증한 뒤 PowerShell 명령을 실행할 수 있습니다."
+},
+"AZ-801-Q41": {
+ "stem": "Windows Server를 실행하는 온-프레미스 서버 500대가 있습니다.\n\nWorkspace1이라는 Log Analytics 작업 영역이 포함된 Azure 구독이 있습니다.\n\nAzure Monitor의 VM Insights로 온-프레미스 서버를 모니터링할 계획입니다.\n\n템플릿 스크립트로 서버를 Azure Arc에 온보딩해야 합니다. 솔루션은 다음 요구 사항을 충족해야 합니다.\n\n- 최소 권한 원칙을 따른다.\n- 관리 작업을 최소화한다.\n\n먼저 무엇을 해야 합니까?",
+ "choices": {"A": "그룹 관리 서비스 계정(gMSA)을 만든다.", "B": "Log Analytics 키를 생성한다.", "C": "Microsoft Entra 서비스 주체를 만든다.", "D": "Log Analytics 작업 영역 ID를 다운로드한다."},
+ "explanation": "Microsoft Entra 서비스 주체는 스크립트 기반 대규모 Azure Arc 온보딩을 위한 비대화형 자격 증명을 제공합니다. 대상 리소스 그룹이나 구독으로만 범위를 지정한 Azure Connected Machine Onboarding 역할을 부여할 수 있어, 각 서버에서 수동 인증 없이 서버를 등록하는 데 필요한 최소 권한을 부여합니다."
+},
+"AZ-801-Q63": {
+ "stem": "Azure 가상 머신 5대와 성능 데이터 수집용 전용 Azure Storage 계정이 있습니다.\n\n수집된 데이터를 Azure Storage 계정으로 직접 보내야 합니다.\n\n가상 머신에 무엇을 설치해야 합니까?",
+ "choices": {"A": "Azure Connected Machine 에이전트", "B": "Telegraf 에이전트", "C": "Dependency 에이전트", "D": "Azure Monitor 에이전트", "E": "Azure Diagnostics 확장"},
+ "explanation": "Azure Diagnostics 확장은 Azure 가상 머신에서 성능 카운터를 포함한 게스트 성능 데이터를 수집해 Azure Storage 계정으로 전송합니다. Microsoft 문서에 따르면 Windows·Linux용 Diagnostics 확장은 항상 Azure Storage로 데이터를 수집합니다."
+},
+"AZ-801-Q67": {
+ "stem": "네트워크에 contoso.com이라는 Active Directory Domain Services(AD DS) 도메인이 있습니다. contoso.com에는 server1.contoso.com이라는 멤버 서버가 있습니다.\n\nserver1.contoso.com의 FQDN을 확인할 수 없습니다.\n\nWindows Defender 방화벽이 올바르게 구성되어 있고 서버의 IP 주소로 server1.contoso.com을 성공적으로 ping할 수 있음을 확인했습니다.\n\nserver1.contoso.com의 DNS 레코드가 존재하는지 확인해야 합니다.\n\n어떤 명령을 실행해야 합니까?",
+ "choices": {"A": "tracert", "B": "ipconfig", "C": "pathping", "D": "nslookup"},
+ "explanation": "`nslookup`은 지정한 이름에 대해 DNS를 쿼리하고 반환된 레코드 정보를 표시하므로 `server1.contoso.com`의 호스트 레코드가 존재하는지 검증하기에 적합합니다."
+},
+"AZ-801-Q75": {
+ "stem": "Windows Server를 실행하는 Server1이라는 서버가 있습니다.\n\nServer1과 IP 주소 `192.168.0.100` 사이에 교환되는 SYN 패킷을 캡처해야 합니다.\n\n명령을 어떻게 완성해야 합니까?",
+ "blanks": {
+  "tool": {"label": "도구", "options": ["MessageAnalyzer", "netmon", "pktmon"]},
+  "protocol": {"label": "프로토콜", "options": ["icmp", "tcp", "udp"]}
+ },
+ "explanation": "패킷 모니터(`pktmon`)는 `filter add`로 캡처 필터를 정의합니다. `-i` 옵션은 지정한 IP 주소로 필터링하고, `-t tcp`는 TCP 트래픽을 선택하며, `syn`은 TCP SYN 플래그가 있는 패킷으로 필터를 제한합니다."
+},
+"AZ-801-Q76": {
+ "stem": "다음 표의 리소스가 있습니다.\n\n[[IMG1]]\n\n온-프레미스 네트워크는 사이트 간 VPN으로 VNet1에 연결되어 있습니다.\n\nServer1에서 보낸 네트워크 트래픽이 VM1에 도달하지 못합니다.\n\nServer1에서 VM1으로 보낸 네트워크 트래픽의 내용을 검사해야 합니다.\n\n먼저 무엇을 해야 합니까?",
+ "choices": {"A": "Server1에서 Windows 방화벽 로그를 사용하도록 설정한다.", "B": "Windows Admin Center에서 패킷 모니터링 확장을 사용하도록 설정한다.", "C": "NSG1에서 NSG 흐름 로그를 사용하도록 설정한다.", "D": "Azure Network Watcher에서 패킷 캡처를 추가한다."},
+ "explanation": "Azure Network Watcher 패킷 캡처는 Azure 가상 머신을 오가는 패킷 수준 트래픽을 기록해 클라이언트-서버 통신을 검사할 수 있는 캡처 파일을 만듭니다. VM1을 대상으로 한 캡처는 사이트 간 VPN을 통해 Server1에서 도착하는 트래픽을 수집할 수 있습니다. NSG 흐름 로그는 흐름 정보만 제공하고 이 분석에 필요한 패킷 내용은 제공하지 않습니다."
+},
+"AZ-801-Q77": {
+ "stem": "*(참고: 케이스 스터디 문항으로 원본 사이트에 시나리오 본문이 누락되어 있습니다. 문맥상 온-프레미스 도메인 컨트롤러의 상태를 Azure Monitor로 모니터링하고 경고를 받아야 하는 기술 요구 사항입니다.)*\n\n도메인 컨트롤러에 대한 경고를 구현해야 합니다. 솔루션은 기술 요구 사항을 충족해야 합니다.\n\n도메인 컨트롤러에서 어떤 작업을 하고, Azure에 무엇을 만들어야 합니까?",
+ "blanks": {
+  "domain_controllers": {"label": "도메인 컨트롤러에서:", "options": ["성능 모니터에서 데이터 수집기 집합을 만든다.", "Performance Monitor Users 그룹을 수정한다.", "Azure Monitor 에이전트를 설치한다."]},
+  "azure": {"label": "Azure에서:", "options": ["Azure SQL 데이터베이스를 만든다.", "Storage Sync Service를 만든다.", "Azure Log Analytics 작업 영역을 만든다.", "Azure Storage 계정을 만든다."]}
+ },
+ "explanation": "Azure Monitor 에이전트는 Windows 도메인 컨트롤러에서 모니터링 데이터를 수집해 데이터 수집 규칙을 통해 Log Analytics 작업 영역으로 보냅니다. Log Analytics 경고 규칙이 그 작업 영역을 쿼리해 경고를 트리거합니다. 나열된 다른 리소스는 이 Azure Monitor 모니터링·경고 파이프라인을 구성하지 않습니다."
+},
+"AZ-801-Q79": {
+ "stem": "Active Directory 휴지통이 활성화되어 있고 User1이라는 사용자가 포함된 Active Directory Domain Services(AD DS) 포리스트가 있습니다.\n\nUser1이 실수로 삭제됩니다.\n\nActive Directory 휴지통을 사용해 User1을 복원해야 합니다.\n\n무엇을 사용해야 합니까?",
+ "choices": {"A": "Active Directory 사이트 및 서비스", "B": "Active Directory 도메인 및 트러스트", "C": "Active Directory 관리 센터", "D": "Active Directory 사용자 및 컴퓨터"},
+ "explanation": "Active Directory 관리 센터는 Deleted Objects 컨테이너와 Active Directory 휴지통에 보관된 개체의 복원 작업을 제공합니다."
+},
+"AZ-801-Q80": {
+ "stem": "Server1, Server2, Server3이라는 세 대의 Windows Server 컴퓨터가 있습니다. 각 서버에는 Hyper-V 서버 역할이 설치되어 있고 Cluster1이라는 Storage Spaces Direct 클러스터의 일부로 구성되어 있습니다.\n\nCluster1은 Windows Admin Center가 설치된 VM1이라는 가상 머신을 호스팅합니다. Windows Admin Center로 모든 서버와 클러스터를 관리합니다.\n\nAzure 구독을 구매합니다.\n\n다음에 대한 Azure Monitor 이메일 경고를 구성해야 합니다.\n\n- 10분 동안 디스크 용량 사용률 80% 초과\n- 클러스터 시스템 이벤트 로그의 모든 심각 경고\n- 10분 동안 메모리 사용률 95% 초과\n- 5분 동안 하트비트 5회 미만\n- 10분 동안 CPU 사용률 85% 초과\n- 클러스터의 모든 Health Service 오류\n\n솔루션은 관리 작업을 최소화해야 합니다.\n\n어떻게 해야 합니까?",
+ "choices": {"A": "Azure portal에서 Azure Monitor를 구성하고 Azure Arc로 Cluster1을 온보딩한다.", "B": "Windows Admin Center에서 Azure Monitor를 구성하고 Cluster1을 온보딩한다.", "C": "Azure Monitor를 구성하고 Server1, Server2, Server3에 Microsoft Monitoring Agent를 수동으로 설치한다."},
+ "explanation": "Windows Admin Center는 Storage Spaces Direct 클러스터를 Azure Monitor에 온보딩하고 관련 클러스터 모니터링·경고 규칙을 중앙에서 구성할 수 있습니다. 기본 제공 경고 구성이 CPU·디스크 사용률, 메모리, 하트비트, 심각 클러스터 시스템 이벤트, Health Service 오류를 다루므로 노드별 수동 에이전트 설치·구성이 필요 없습니다."
+},
+"AZ-801-Q87": {
+ "stem": "HOTSPOT\n\n네트워크에 Active Directory Domain Services(AD DS) 도메인이 있습니다. 도메인에는 DC1과 DC2 두 대의 도메인 컨트롤러와 다음 표의 사용자가 있습니다.\n\n[[IMG1]]\n\nAD DS의 복원 전략을 계획합니다.\n\n어떤 사용자가 DC2에서 권한 있는 복원을 수행할 수 있고, 복원을 완료하려면 무엇을 실행해야 합니까?",
+ "blanks": {
+  "users": {"label": "사용자:", "options": ["Contoso\\User2만", "DC2\\Administrator만", "Contoso\\User1과 Contoso\\User2만", "Contoso\\User1과 DC2\\Administrator만", "Contoso\\User1, Contoso\\User2, DC2\\Administrator"]},
+  "use": {"label": "사용 도구:", "options": ["authhost.exe", "dsamain.exe", "dsmgmt.exe", "ntdsutil.exe"]}
+ },
+ "explanation": "권한 있는 AD DS 복원에는 도메인 컨트롤러의 관리 권한이 필요합니다. Enterprise Administrator와 DC2의 로컬 Administrator(DSRM 관리자)가 그 권한을 갖고 있으며, Backup Operators 멤버십만으로는 부족합니다. AD DS를 복원한 후 ntdsutil.exe로 디렉터리 데이터를 권한 있음으로 표시해 다른 도메인 컨트롤러로 복제되게 합니다."
+},
+"AZ-801-Q90": {
+ "stem": "Windows Server를 실행하는 VM1이라는 가상 머신이 포함된 Azure 구독이 있습니다.\n\nVM1의 네트워크 인터페이스가 운영 체제에서 사용 안 함으로 설정되어 있습니다.\n\nAzure 직렬 콘솔을 사용해 네트워크 인터페이스를 사용하도록 설정해야 합니다.\n\n명령을 어떻게 완성해야 합니까?",
+ "blanks": {
+  "command": {"label": "명령", "options": ["ipconfig.exe", "netsh.exe", "WinMgmt.exe", "wmic.exe"]},
+  "context": {"label": "컨텍스트", "options": ["Add", "bridge", "interface", "lan", "netio"]}
+ },
+ "explanation": "`netsh.exe interface set interface name=\"Ethernet\" admin=enabled`가 Ethernet 네트워크 인터페이스를 관리적으로 사용하도록 설정합니다. Netsh의 interface 컨텍스트가 인터페이스 상태를 관리하며, 나열된 다른 유틸리티는 이 명령 구문을 제공하지 않습니다."
+},
+"AZ-801-Q93": {
+ "stem": "Azure Monitor를 사용하는 Azure 구독이 있습니다.\n\nAzure 가상 머신이 꺼질 때 경고를 생성하는 경고 규칙을 만들어야 합니다.\n\n어떤 신호 유형을 사용해야 합니까?",
+ "choices": {"A": "활동 로그", "B": "서비스 상태", "C": "로그"},
+ "explanation": "Azure 활동 로그는 가상 머신이 시작되거나 중지될 때를 포함해 가상 머신에서 수행된 작업을 기록합니다. 따라서 활동 로그 경고가 VM 중지 작업에서 트리거될 수 있습니다."
+}
+}

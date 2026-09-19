@@ -1,0 +1,150 @@
+{
+"AZ-801-Q107": {
+ "stem": "50GB의 파일이 들어 있는 Folder1이라는 폴더가 있는 온-프레미스 Windows Server가 있습니다.\n\nAzure 구독에 share라는 Azure Files 공유가 있습니다.\n\nFolder1의 데이터를 share로 마이그레이션해야 합니다.\n\n어떻게 해야 합니까?",
+ "blanks": {
+  "deploy_to_azure": {"label": "Azure에 배포:", "options": ["ArcBox", "Storage Sync Service 인스턴스", "Azure Migrate 프로젝트", "Azure Storage 계정", "온-프레미스 데이터 게이트웨이"]},
+  "install_on_server1": {"label": "Server1에 설치:", "options": ["Azure File Sync 에이전트", "Azure Connected Machine 에이전트", "Storage Migration Service 기능", "Storage Replica 기능"]}
+ },
+ "explanation": "Azure File Sync에는 Storage Sync Service 리소스와 Windows Server의 Azure File Sync 에이전트가 필요합니다. 기존 Azure Files 공유를 클라우드 엔드포인트로 구성하고 Folder1이 동기화용 서버 엔드포인트가 됩니다."
+},
+"AZ-801-Q108": {
+ "stem": "네트워크에 Active Directory Domain Services(AD DS) 도메인이 있습니다. 도메인에는 Cluster1과 Cluster2라는 두 개의 Windows Server 장애 조치 클러스터(WSFC) 인스턴스가 있습니다. Cluster1은 Hyper-V 가상 머신을 호스팅합니다. Cluster2에는 고가용성 역할이 구성되어 있지 **않습니다**.\n\nCluster1의 가상 머신 하드 디스크 파일을 저장하기 위해 Cluster2에 Storage Spaces Direct 클러스터를 만들어야 합니다.\n\nCluster2에 어떤 역할을 구성해야 합니까?\n\n> **참고:** 각 올바른 선택은 1점입니다.",
+ "choices": {"A": "가상 머신", "B": "iSCSI 대상 서버", "C": "Hyper-V Replica Broker", "D": "파일 서버"},
+ "explanation": "Hyper-V 클러스터에 가상 머신 파일을 제공하는 별도의 Storage Spaces Direct 스토리지 클러스터는 컨버지드(분리형) 배포 모델을 사용합니다. 이 모델은 S2D 볼륨을 Hyper-V 클러스터용 SMB3 파일 공유로 노출하기 위해 스케일 아웃 파일 서버가 필요합니다. 장애 조치 클러스터 관리자에서 스케일 아웃 파일 서버는 **파일 서버** 역할을 선택해 만듭니다."
+},
+"AZ-801-Q115": {
+ "stem": "Node1, Node2, Node3, Node4 네 대의 Windows Server 노드가 포함된 Cluster1이라는 장애 조치 클러스터가 있습니다.\n\nCluster1에 Storage Spaces Direct 가상 디스크를 배포해야 합니다.\n\n모든 노드에 다음 디스크를 추가합니다.\n\n- 512GB NVMe 디스크 3개\n- 3TB HDD 디스크 3개\n- 1TB SSD 디스크 3개\n\nCluster1에서 Storage Spaces Direct를 사용하도록 설정하고 새 디스크를 추가합니다.\n\nStorage Spaces Direct 가상 디스크에 사용할 수 있는 총 디스크 공간은 얼마이며, SSD와 HDD 디스크에 대해 어떤 작업이 캐시됩니까?",
+ "blanks": {
+  "disk_space": {"label": "Storage Spaces Direct 가상 디스크에 사용 가능한 디스크 공간:", "options": ["16TB", "36TB", "40.5TB", "48TB", "53.5TB"]},
+  "ssd_cache": {"label": "SSD 디스크의 캐시 동작:", "options": ["읽기·쓰기 모두 캐시되지 않음", "읽기 작업만 캐시됨", "쓰기 작업만 캐시됨", "읽기·쓰기 작업 모두 캐시됨"]},
+  "hdd_cache": {"label": "HDD 디스크의 캐시 동작:", "options": ["읽기·쓰기 모두 캐시되지 않음", "읽기 작업만 캐시됨", "쓰기 작업만 캐시됨", "읽기·쓰기 작업 모두 캐시됨"]}
+ },
+ "explanation": "Storage Spaces Direct는 가장 빠른 드라이브 유형인 NVMe를 자동으로 캐시 드라이브로 사용하며, 캐시 드라이브는 풀 용량에 포함되지 않습니다. 따라서 SSD와 HDD 용량 드라이브가 12TB + 36TB = 48TB를 제공합니다(4노드 × (3×1TB + 3×3TB)). NVMe·SSD·HDD 배포에서 NVMe는 SSD에 대해서는 쓰기만 캐시하고, HDD에 대해서는 읽기와 쓰기를 모두 캐시합니다."
+},
+"AZ-801-Q171": {
+ "stem": "Windows Server를 실행하고 C와 D 두 볼륨이 있는 Server1이라는 서버가 있습니다.\n\nBitLocker로 암호화되어 있고 E 볼륨이 들어 있는 디스크를 Server1에 연결합니다.\n\n다시 시작 후 암호나 복구 키를 입력하지 않고도 E 볼륨의 데이터에 액세스할 수 있게 해야 합니다.\n\nServer1에서 어떤 세 가지 작업을 순서대로 수행해야 합니까?",
+ "items": {
+  "Encrypt volume D.": "D 볼륨을 암호화한다.",
+  "Install the BitLocker Drive Encryption feature.": "BitLocker 드라이브 암호화 기능을 설치한다.",
+  "Encrypt volume C.": "C 볼륨을 암호화한다.",
+  "Install the BitLocker Drive Encryption Administration Utilities feature.": "BitLocker 드라이브 암호화 관리 유틸리티 기능을 설치한다.",
+  "Turn on auto-unlock.": "자동 잠금 해제를 켠다.",
+  "Install the BitLocker Network Unlock feature.": "BitLocker 네트워크 잠금 해제 기능을 설치한다."
+ },
+ "slots": {"1": "1단계", "2": "2단계", "3": "3단계"},
+ "explanation": "Windows Server에는 BitLocker가 기본으로 없으므로 먼저 'BitLocker 드라이브 암호화' 기능을 추가해야 합니다(`Install-WindowsFeature BitLocker`). 이것이 암호화 엔진 자체이며, '관리 유틸리티' 항목은 RSAT 관리 도구만 추가할 뿐 스스로 암호화할 수 없습니다. 데이터 볼륨의 자동 잠금 해제는 암호화된 운영 체제 볼륨에 저장된 키에 의존하므로, 자동 잠금 해제가 가능하려면 C 볼륨(OS 볼륨)이 먼저 BitLocker로 암호화되어야 합니다. 마지막으로 이미 암호화된 E 볼륨에 자동 잠금 해제(`Enable-BitLockerAutoUnlock`)를 켜면 다시 시작 후 암호나 복구 키 없이 열립니다. D 볼륨은 무관한 데이터 드라이브라 암호화할 필요가 없습니다."
+},
+"AZ-801-Q196": {
+ "stem": "네트워크에 Active Directory Domain Services(AD DS) 도메인이 있습니다.\n\n중첩 복원력(nested resiliency)을 사용하는 Storage Spaces Direct 클러스터를 배포해야 합니다.\n\n클러스터에 배포할 수 있는 최소 노드 수는 몇 개입니까?",
+ "choices": {"A": "2", "B": "4", "C": "12", "D": "16", "E": "32"},
+ "explanation": "Storage Spaces Direct 중첩 복원력은 서버 노드가 정확히 두 대인 클러스터에서만 지원됩니다. 각 서버 안의 로컬 복원력에 서버 간 양방향 미러링을 더합니다."
+},
+"AZ-801-Q227": {
+ "stem": "볼륨 할당 구분(delimited volume allocation)을 지원하는 Cluster1이라는 Storage Spaces Direct 클러스터가 있습니다.\n\n볼륨을 만들고 그 할당을 구분해야 합니다.\n\nPowerShell 스크립트를 어떻게 완성해야 합니까?",
+ "blanks": {
+  "cmdlet": {"label": "cmdlet", "options": ["Get-DiskStorageNodeView", "Get-PhysicalDiskStorageNodeView", "Get-StorageFaultDomain"]},
+  "parameter": {"label": "매개변수", "options": ["-DiskNumber", "-PhysicalDiskRedundancy", "-StorageFaultDomainsToUse"]}
+ },
+ "explanation": "Storage Scale Unit은 Storage Spaces Direct에서 서버에 연결된 스토리지를 나타냅니다. `Get-StorageFaultDomain -Type StorageScaleUnit`이 그 서버 장애 도메인을 가져오고, `-StorageFaultDomainsToUse`가 새 볼륨의 할당을 지정한 인덱스의 장애 도메인으로 제한합니다."
+},
+"AZ-801-Q229": {
+ "stem": "다음 표의 데이터 볼륨이 포함된, 영구 메모리를 사용하는 Storage Spaces Direct 구성이 있습니다.\n\n[[IMG1]]\n\n다음 표와 같이 Storage Spaces Direct에 데이터 볼륨을 추가하려고 합니다.\n\n[[IMG2]]\n\n어떤 볼륨에서 직접 액세스(DAX)를 사용할 수 있습니까?",
+ "choices": {"A": "Volume3만", "B": "Volume4만", "C": "Volume1과 Volume3만", "D": "Volume2와 Volume4만", "E": "Volume3과 Volume4만"},
+ "explanation": "DAX는 NTFS 볼륨에서만 지원되며 NTFS 볼륨을 포맷할 때 사용하도록 설정해야 합니다. 제안된 볼륨 중 Volume3은 NTFS를 사용하고, Volume4는 DAX를 쓸 수 없는 ReFS를 사용합니다. 기존 Volume1은 이미 DAX 없이 만들어졌습니다."
+},
+"AZ-801-Q242": {
+ "stem": "Cluster1이라는 Windows Server 2019 Storage Spaces Direct 클러스터가 있습니다. Cluster1에는 가상 머신을 호스팅하는 노드 네 대가 있습니다.\n\nCluster1을 Windows Server 2022로 인플레이스 업그레이드해야 합니다. 솔루션은 업그레이드 내내 가상 머신이 계속 사용 가능하도록 해야 합니다.\n\n작업을 어떤 순서로 수행해야 합니까?",
+ "items": {
+  "Remove the node from storage maintenance mode.": "노드를 스토리지 유지 관리 모드에서 해제한다.",
+  "Upgrade the node to Windows Server 2022.": "노드를 Windows Server 2022로 업그레이드한다.",
+  "Pause and drain the cluster node.": "클러스터 노드를 일시 중지하고 드레인한다.",
+  "Place the node in storage maintenance mode.": "노드를 스토리지 유지 관리 모드로 전환한다.",
+  "Resume the cluster node.": "클러스터 노드를 다시 시작(resume)한다."
+ },
+ "slots": {"slot1": "1단계", "slot2": "2단계", "slot3": "3단계", "slot4": "4단계", "slot5": "5단계"},
+ "explanation": "클러스터 OS 롤링 업그레이드는 한 번에 노드 하나에서 워크로드를 옮겨 가상 머신이 다른 노드에서 계속 실행되게 합니다. 서비스 작업 전에 드레인하고, Storage Spaces Direct 노드는 OS 업그레이드 전에 스토리지 유지 관리 모드로 들어갔다가 업그레이드 후 그 모드에서 해제되고 다시 시작됩니다."
+},
+"AZ-801-Q245": {
+ "stem": "HOTSPOT -\n\n네트워크에 Active Directory Domain Services(AD DS) 도메인이 있습니다. 도메인에는 Windows Server를 실행하는 Server1이라는 서버가 있습니다.\n\n`Get-BitLockerVolume -MountPoint C,D | fl *`를 실행하면 다음 출력이 나옵니다.\n\n[[IMG1]]\n\n[[IMG2]]\n\nServer1이 다시 시작될 때 D 볼륨이 자동으로 잠금 해제되도록 해야 합니다. 명령을 어떻게 완성해야 합니까?",
+ "items": {
+  "Add-BitLockerKeyProtector": "Add-BitLockerKeyProtector",
+  "Clear-BitLockerAutoUnlock": "Clear-BitLockerAutoUnlock",
+  "Enable-BitLockerAutoUnlock": "Enable-BitLockerAutoUnlock",
+  "-Service": "-Service",
+  "-TPMandPinAndStartupKeyProtector": "-TPMandPinAndStartupKeyProtector",
+  "-TPMandPinProtector": "-TPMandPinProtector"
+ },
+ "slots": {"cmdlet": "cmdlet", "protector_parameter": "보호기 매개변수"},
+ "explanation": "`-ADAccountOrGroupProtector`와 함께 쓰는 `-Service`는 컴퓨터 계정에 대한 서비스 보호기를 추가해 Server1이 시작 시 BitLocker로 보호된 D: 데이터 볼륨을 자동으로 잠금 해제하게 합니다. TPM+PIN 보호기 옵션은 운영 체제 볼륨용이며, C:가 BitLocker로 보호되어 있지 않으므로 OS 볼륨을 이용한 자동 잠금 해제(Enable-BitLockerAutoUnlock)는 사용할 수 없습니다."
+},
+"AZ-801-Q257": {
+ "stem": "네트워크에 Windows Server 2022를 실행하는 서버가 포함된 Active Directory Domain Services(AD DS) 도메인이 있습니다.\n\nNode1과 Node2 두 대의 물리 노드가 있는 SSCluster1이라는 Storage Spaces Direct 클러스터가 있습니다. 노드는 고가용성 가상 머신을 호스팅합니다.\n\nNode1을 Windows Server 2025로 인플레이스 업그레이드할 계획입니다.\n\n업그레이드 중에도 가상 머신이 계속 실행되도록 해야 합니다.\n\nNode1에서 어떤 네 가지 작업을 순서대로 수행해야 합니까?",
+ "items": {
+  "Remove from storage maintenance mode.": "스토리지 유지 관리 모드에서 해제한다.",
+  "Upgrade to Windows Server 2025.": "Windows Server 2025로 업그레이드한다.",
+  "Run Suspend-ClusterResource.": "Suspend-ClusterResource를 실행한다.",
+  "Run Resume-ClusterResource.": "Resume-ClusterResource를 실행한다.",
+  "Run Resume-ClusterNode.": "Resume-ClusterNode를 실행한다.",
+  "Run Suspend-ClusterNode – Drain and place the node in storage maintenance mode.": "Suspend-ClusterNode –Drain을 실행하고 노드를 스토리지 유지 관리 모드로 전환한다."
+ },
+ "slots": {"slot1": "1단계", "slot2": "2단계", "slot3": "3단계", "slot4": "4단계"},
+ "explanation": "클러스터 OS 롤링 업그레이드는 업그레이드 전에 한 노드의 역할을 드레인해 고가용성 VM을 계속 실행시킵니다. Storage Spaces Direct에서는 유지 관리 전에 그 노드의 스토리지를 유지 관리 모드로 두고, OS 업그레이드가 끝나면 스토리지 유지 관리 모드를 해제하고 노드를 다시 시작해 정상 클러스터 운영에 복귀시킵니다."
+},
+"AZ-801-Q263": {
+ "stem": "Storage Spaces Direct로 가상 머신을 저장하는 Hyper-V 하이퍼 컨버지드 클러스터를 만들어야 합니다.\n\n어떤 세 가지 작업을 순서대로 수행해야 합니까?",
+ "items": {
+  "Create a failover cluster.": "장애 조치 클러스터를 만든다.",
+  "Create a Distributed File System (DFS) namespace.": "DFS(분산 파일 시스템) 네임스페이스를 만든다.",
+  "Enable Storage Spaces Direct.": "Storage Spaces Direct를 사용하도록 설정한다.",
+  "Create a volume.": "볼륨을 만든다.",
+  "Add a Scale-Out File Server for application role.": "애플리케이션 데이터용 스케일 아웃 파일 서버 역할을 추가한다.",
+  "Create a file share.": "파일 공유를 만든다."
+ },
+ "slots": {"step1": "1단계", "step2": "2단계", "step3": "3단계"},
+ "explanation": "Storage Spaces Direct는 서버들이 장애 조치 클러스터로 구성된 뒤에만 사용하도록 설정할 수 있습니다. 활성화하면 클러스터된 스토리지 풀이 만들어지고, 거기서 Hyper-V 가상 머신 파일용 볼륨을 만듭니다. Hyper-V 클러스터가 자체 Storage Spaces Direct 볼륨을 사용할 때는 DFS 네임스페이스, 스케일 아웃 파일 서버 역할, SMB 파일 공유가 필요 없습니다."
+},
+"AZ-801-Q274": {
+ "stem": "HOTSPOT\n\nWindows Server를 실행하는 서버 4대가 있습니다. 각 서버에는 다음 표의 직접 연결 스토리지(DAS) 장치가 있습니다.\n\n[[IMG1]]\n\nStorage Spaces Direct를 배포해야 합니다.\n\n어떤 장치 유형이 캐시에 사용되며, 기본 캐시 동작은 무엇입니까?",
+ "blanks": {
+  "device_types": {"label": "캐시용 장치 유형:", "options": ["SSD만", "NVMe만", "SSD와 NVMe만", "SSD, NVMe, HDD"]},
+  "cache_behavior": {"label": "캐시 동작:", "options": ["쓰기 전용만", "읽기/쓰기만", "읽기/쓰기와 쓰기 전용"]}
+ },
+ "explanation": "NVMe·SSD·HDD 드라이브가 있으면 Storage Spaces Direct는 가장 빠른 유형인 NVMe를 캐시로 사용하고 SSD와 HDD는 용량 드라이브로 남습니다. SSD 용량에 대한 캐싱은 쓰기 전용이고 HDD 용량에 대한 캐싱은 읽기/쓰기이므로 두 캐시 동작이 모두 적용됩니다."
+},
+"AZ-801-Q312": {
+ "stem": "다음 표의 클러스터 공유 볼륨(CSV)이 포함된 Cluster1이라는 Windows Server 2022 장애 조치 클러스터가 있습니다.\n\n[[IMG1]]\n\nCluster1의 모든 노드에 BitLocker 드라이브 암호화(BitLocker)가 설치되어 있습니다.\n\nPowerShell을 사용해 Volume1에 BitLocker를 사용하도록 설정해야 합니다.\n\n명령을 어떤 순서로 실행해야 합니까?",
+ "items": {
+  "Get-ClusterSharedVolume -Name \"Volume1\" | Resume-ClusterResource": "Get-ClusterSharedVolume -Name \"Volume1\" | Resume-ClusterResource",
+  "Get-ClusterSharedVolume -Name \"Volume1\" | Suspend-ClusterResource": "Get-ClusterSharedVolume -Name \"Volume1\" | Suspend-ClusterResource",
+  "Enable-BitLocker -MountPoint \"C:\\\\ClusterStorage\\\\Volume1\" -\nRecoveryPasswordProtector": "Enable-BitLocker -MountPoint \"C:\\\\ClusterStorage\\\\Volume1\" -RecoveryPasswordProtector",
+  "Get-ClusterSharedVolume \"Volume1\" | Set-ClusterParameter -Name\nBitLockerProtectorInfo -Value\n\"$KeyProtectorID.keyprotectorid:$KeyProtectorID.RecoveryPassword\" -\nCreate": "Get-ClusterSharedVolume \"Volume1\" | Set-ClusterParameter -Name BitLockerProtectorInfo -Value \"$KeyProtectorID.keyprotectorid:$KeyProtectorID.RecoveryPassword\" -Create"
+ },
+ "slots": {"step1": "1단계", "step2": "2단계", "step4": "4단계", "step5": "5단계"},
+ "explanation": "BitLocker를 사용하도록 설정하기 전에 CSV 리소스를 일시 중지해야 합니다. 복구 암호 보호기를 만들고 그 정보를 가져온 뒤(3단계, 원본 데이터에 누락), 보호기 ID와 복구 암호를 BitLockerProtectorInfo 클러스터 매개변수에 저장해야 합니다. 그 다음 리소스를 다시 시작할 수 있습니다."
+},
+"AZ-801-Q314": {
+ "stem": "Server1과 Server2 두 서버가 포함된 Cluster1이라는 클러스터가 있습니다. Cluster1에는 Storage Spaces Direct가 켜져 있고 Volume1이라는 2TB 3방향 미러 가상 디스크가 있습니다.\n\nVolume1이 가득 찼습니다. Cluster1의 모든 노드에 새 2TB 물리 디스크를 연결합니다.\n\n복원력을 유지하면서 Volume1의 크기를 늘려야 합니다. 스크립트를 완성하십시오.",
+ "blanks": {
+  "add_disk": {"label": "디스크 추가", "options": ["Add-PhysicalDisk -PhysicalDisks (Get-Disk | Where-Object IsOffline -eq $False) -StoragePoolFriendlyName Cluster1", "Add-PhysicalDisk -PhysicalDisks (Get-PhysicalDisk -CanPool $False -FriendlyName *-1) -StoragePoolFriendlyName S2D*", "Add-PhysicalDisk -PhysicalDisks (Get-PhysicalDisk -CanPool $True -FriendlyName *-2) -StoragePoolFriendlyName S2D*"]},
+  "size": {"label": "크기", "options": ["1TB", "2TB", "4TB"]}
+ },
+ "explanation": "`Get-PhysicalDisk -CanPool $True`는 스토리지 풀에 추가할 수 있는 물리 디스크를 반환합니다. 이 디스크들을 Storage Spaces Direct 풀에 추가하면 가상 디스크의 미러 복원력을 바꾸지 않고 풀 용량이 확장됩니다. `Resize-Volume -Size`는 결과 볼륨 크기를 지정하므로 확장 후 크기인 4TB가 필요합니다."
+},
+"AZ-801-Q320": {
+ "stem": "네트워크에 Active Directory Domain Services(AD DS) 도메인이 있습니다.\n\nStorage Spaces Direct 클러스터를 배포해야 합니다. 솔루션은 이중 패리티를 지원해야 합니다.\n\n클러스터에 배포할 수 있는 최소·최대 노드 수는 몇 개입니까?",
+ "blanks": {
+  "minimum": {"label": "최소:", "options": ["2", "3", "4", "5", "6"]},
+  "maximum": {"label": "최대:", "options": ["16", "32", "64", "128"]}
+ },
+ "explanation": "이중 패리티는 하드웨어 장애 도메인이 최소 4개 필요하며, Storage Spaces Direct 클러스터에서는 노드 4대를 뜻합니다. Storage Spaces Direct는 최대 16대 서버를 지원하므로 지원되는 노드 범위는 4~16입니다."
+},
+"AZ-800-Q91": {
+ "stem": "*(참고: 케이스 스터디 문항으로 원본 사이트에 시나리오 본문이 누락되어 있습니다. AZ-802 Q11과 유사한 시나리오이지만, 이 버전의 해설은 세분화된 암호 정책(PSO) 우선순위를 기준으로 판단하며, 세 번째 문장의 정답이 AZ-802 Q11(예)과 다릅니다(아니요). 원본 시나리오 표가 없어 두 버전을 확정 비교하기 어려우니 참고만 하세요.)*\n\n다음 각 문장에 대해, 문장이 참이면 **예**를, 그렇지 않으면 **아니요**를 선택하십시오.",
+ "statements": [
+  "Admin1은 14자 이상의 암호를 사용해야 한다.",
+  "User1은 10자 이상의 암호를 사용해야 한다.",
+  "Admin1이 Server1에 새 로컬 사용자를 만들면, 새 사용자의 암호는 8자 이상이어야 한다."
+ ],
+ "explanation": "세분화된 암호 정책은 서로 다른 도메인 사용자나 글로벌 보안 그룹에 서로 다른 암호 제한을 적용할 수 있으며, 여러 개가 적용되면 우선순위 값이 낮은 것이 우선합니다. Admin1의 결과 정책은 14자를 요구하지 않고, User1의 결과 정책은 10자를 요구합니다. Server1에 만든 로컬 사용자는 도메인 사용자의 세분화된 정책이 아니라 서버의 유효 로컬 암호 정책을 따르며, 이 시나리오에서 그 정책은 8자를 요구하지 않습니다."
+}
+}

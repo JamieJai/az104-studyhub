@@ -1,0 +1,123 @@
+{
+"AZ-800-Q29": {
+ "stem": "Azure File Sync를 사용해 Server1이라는 온-프레미스 서버의 파일을 Azure로 동기화해야 합니다.\n\n클라우드 계층화 정책은 여유 공간 30%와 70일로 구성되어 있습니다. Server1의 E 볼륨은 500GB입니다. 1년 전 Server1의 `E:\\Data`를 Azure File Sync로 동기화하도록 구성했습니다. `E:\\Data`에 보이는 파일은 다음 표와 같습니다.\n\n[[IMG1]]\n\nE 볼륨에는 다른 파일이 없습니다.\n\nFile1과 File3은 어디에 있습니까?",
+ "blanks": {
+  "file1": {"label": "File1:", "options": ["Server1에만", "Azure 파일 공유에만", "Server1과 Azure 파일 공유 모두"]},
+  "file3": {"label": "File3:", "options": ["Server1에만", "Azure 파일 공유에만", "Server1과 Azure 파일 공유 모두"]}
+ },
+ "explanation": "Azure File Sync는 동기화된 모든 파일을 Azure 파일 공유에 보관합니다. 500GB 볼륨에 30% 여유 공간 목표이면 서버에 최소 150GB가 비어 있어야 합니다. 파일이 550GB를 차지하므로 클라우드 계층화가 여유 공간 목표를 맞추기 위해 가장 오래 액세스하지 않은 파일부터 계층화합니다. File4와 File3이 먼저 계층화되므로 File1은 Server1과 Azure 파일 공유 양쪽에 남고, File3은 계층화되어 내용이 Azure 파일 공유에만 있습니다. 볼륨 여유 공간 정책이 날짜 정책보다 우선합니다."
+},
+"AZ-800-Q53": {
+ "stem": "Windows Server를 실행하는 서버가 있습니다.\n\nSMB Direct 연결이 만들어지지 않도록 해야 합니다.\n\n어떤 cmdlet을 실행해야 합니까?",
+ "choices": {"A": "Disable-WindowsOptionalFeature", "B": "Remove-WindowsFeature", "C": "Set-NetAdapterAdvancedProperty", "D": "Disable-NetAdapterBinding"},
+ "explanation": "SMB Direct는 기본으로 켜져 있는 Windows 선택적 기능입니다. `SMBDirect` 기능 이름으로 `Disable-WindowsOptionalFeature`를 실행하면 SMB Direct가 비활성화되어 그 연결이 차단됩니다."
+},
+"AZ-800-Q56": {
+ "stem": "네트워크에 contoso.com이라는 Active Directory Domain Services(AD DS) 도메인이 있습니다. 도메인에는 DFS 네임스페이스 역할 서비스가 설치된 Server1이라는 서버가 있습니다. Server1은 Files라는 도메인 기반 DFS(분산 파일 시스템) 네임스페이스를 호스팅합니다.\n\n도메인에는 Server2라는 파일 서버도 있습니다. Server2에는 Folder1이라는 하위 폴더가 포함된 Share1이라는 공유 폴더가 있습니다.\n\nFiles 네임스페이스에 대상이 `\\\\Server2.contoso.com\\Share1\\Folder1`인 Folder1이라는 폴더를 만듭니다.\n\nM 드라이브 문자를 Folder1에 매핑하는 로그온 스크립트를 구성해야 합니다. 솔루션은 DFS 네임스페이스 경로를 사용해야 합니다.\n\n드라이브 문자를 매핑하는 명령을 어떻게 구성해야 합니까?",
+ "blanks": {
+  "path1": {"label": "경로 1", "options": ["\\\\contoso.com", "\\\\files.contoso.com", "\\\\Server1.contoso.com", "\\\\Server2.contoso.com"]},
+  "path2": {"label": "경로 2", "options": ["\\files\\folder1", "\\files\\share1\\folder1", "\\folder1", "\\share1\\folder1"]}
+ },
+ "explanation": "도메인 기반 DFS 네임스페이스는 UNC 경로에 도메인 이름, 네임스페이스 루트, 네임스페이스 폴더를 사용합니다. 따라서 `\\\\contoso.com\\files\\folder1`이 Folder1 네임스페이스 폴더에 액세스하며, DFS가 클라이언트를 Server2의 구성된 대상으로 안내합니다."
+},
+"AZ-800-Q58": {
+ "stem": "Windows Server를 실행하고 C, D, E 세 볼륨이 있는 Server1이라는 서버가 있습니다.\n\nServer1에는 다음 표와 같이 파일이 저장되어 있습니다.\n\n[[IMG1]]\n\nD 볼륨에 데이터 중복 제거가 켜져 있고 범용 파일 서버로 구성되어 있습니다.\n\n다음 작업을 수행합니다.\n\n- File1을 D 볼륨으로 옮긴다.\n- File2를 D 볼륨으로 복사하고 복사된 파일 이름을 File4로 한다.\n- File3을 E 볼륨으로 옮긴다.\n\n다음 각 문장에 대해, 문장이 참이면 예를, 그렇지 않으면 아니요를 선택하십시오.",
+ "statements": [
+  "중복 제거 작업이 실행된 후 File1이 중복 제거된다.",
+  "중복 제거 작업이 실행된 후 File3이 중복 제거된다.",
+  "중복 제거 작업이 실행된 후 File4가 중복 제거된다."
+ ],
+ "explanation": "범용 파일 서버 데이터 중복 제거 설정은 D 볼륨의 적격 파일을 처리합니다. File1은 D로 옮긴 500KB 파일이라 기본 최소 파일 크기 32KB를 넘으므로 중복 제거됩니다. File3은 데이터 중복 제거가 켜져 있지 않은 E로 옮겨집니다. File4는 10KB로 기본 최소 파일 크기보다 작아 중복 제거에서 제외됩니다."
+},
+"AZ-800-Q61": {
+ "stem": "Server1이라는 서버가 있습니다.\n\nStorage Spaces를 사용해 Server1의 가용 스토리지를 확장할 계획입니다. Server1에 물리 디스크 8개(HDD 4개, SSD 4개)를 연결합니다.\n\n새 디스크 모두의 스토리지를 사용하는 볼륨을 Server1에 만들어야 합니다. 솔루션은 자주 사용하는 파일에 대해 가장 빠른 읽기 성능을 제공해야 합니다.\n\n어떤 세 가지 작업을 순서대로 수행해야 합니까?",
+ "items": {
+  "Create a virtual disk.": "가상 디스크를 만든다.",
+  "Convert each new disk into a dynamic disk.": "각 새 디스크를 동적 디스크로 변환한다.",
+  "Create a storage pool.": "스토리지 풀을 만든다.",
+  "Create a spanned volume.": "스팬 볼륨을 만든다.",
+  "Convert each new disk into a GPT disk.": "각 새 디스크를 GPT 디스크로 변환한다.",
+  "Create a simple volume.": "단순 볼륨을 만든다."
+ },
+ "slots": {"step1": "1단계", "step2": "2단계", "step3": "3단계"},
+ "explanation": "스토리지 풀이 HDD와 SSD를 묶습니다. 그 풀에서 계층화된 가상 디스크를 만들면 Storage Spaces가 자주 액세스하는 데이터를 SSD 계층으로 옮겨 읽기 속도를 높입니다. 그 다음 가상 디스크에 단순 볼륨을 만듭니다. 동적 디스크, GPT 변환, 스팬 볼륨은 이 Storage Spaces 절차의 일부가 아닙니다."
+},
+"AZ-800-Q62": {
+ "stem": "Share1이라는 파일 공유를 호스팅하는 온-프레미스 Windows Server가 있습니다.\n\nAzure 구독에는 azshare1이라는 Azure Files 공유와 Sync1이라는 Azure File Sync 인스턴스가 있습니다. Sync1은 Share1과 azshare1을 동기화합니다.\n\nSync1을 제거해야 합니다.\n\n어떤 네 개의 리소스를 순서대로 삭제해야 합니까?",
+ "items": {
+  "the management group": "관리 그룹",
+  "azshare1": "azshare1",
+  "the cloud endpoint": "클라우드 엔드포인트",
+  "Sync1": "Sync1",
+  "the sync group": "동기화 그룹",
+  "the server endpoint": "서버 엔드포인트"
+ },
+ "slots": {"1": "1단계", "2": "2단계", "3": "3단계", "4": "4단계"},
+ "explanation": "서버 엔드포인트는 동기화에 클라우드 엔드포인트가 필요하므로 클라우드 엔드포인트보다 먼저 제거해야 합니다. 모든 엔드포인트를 제거한 뒤 동기화 그룹을 삭제하고, 그 다음 상위 Storage Sync Service(Sync1)를 삭제합니다. 클라우드 엔드포인트를 삭제해도 기반 Azure 파일 공유 azshare1은 삭제되지 않습니다."
+},
+"AZ-800-Q63": {
+ "stem": "다음 표의 멤버 서버가 포함된 Active Directory Domain Services(AD DS) 도메인이 있습니다.\n\n[[IMG1]]\n\nServer3에는 데이터 중복 제거가 설치된 Disk1이라는 데이터 디스크가 있습니다. Disk1에는 다음 표의 파일이 있습니다.\n\n[[IMG2]]\n\nServer3이 실패합니다.\n\nDisk1의 파일을 복구해야 합니다.\n\nDisk1을 Server1에 연결하면 어떤 파일을 복구할 수 있고, Server2에 연결하면 어떤 파일을 복구할 수 있습니까?",
+ "blanks": {
+  "server1": {"label": "Server1:", "options": ["File1.txt만", "File1.txt와 File2.docx만", "File1.txt와 File3.sys만", "File1.txt, File2.doc, File3.sys, File4.bmp", "복구할 수 있는 파일이 없음"]},
+  "server2": {"label": "Server2:", "options": ["File1.txt만", "File1.txt와 File2.docx만", "File1.txt와 File3.sys만", "File1.txt, File2.doc, File3.sys, File4.bmp", "복구할 수 있는 파일이 없음"]}
+ },
+ "explanation": "데이터 중복 제거는 최적화된 파일 스트림을 재분석 지점(reparse point)으로 바꾸고 Dedup.sys 파일 시스템 필터를 사용해 읽기를 청크 저장소로 리디렉션합니다. 따라서 데이터 중복 제거 역할이 있는 서버는 볼륨의 모든 파일에 액세스할 수 있습니다. 32KB 최소 크기 미만 파일과 제외된 시스템 파일은 최적화되지 않은 채 남아 역할이 없어도 액세스할 수 있지만, 최적화된 파일은 그렇지 않습니다."
+},
+"AZ-800-Q65": {
+ "stem": "네트워크에 Active Directory Domain Services(AD DS) 도메인이 있습니다. 도메인에는 다음 표의 리소스가 있습니다.\n\n[[IMG1]]\n\nStorage Replica를 사용해 Server1에서 Server2로 볼륨을 복제할 계획입니다.\n\nStorage Replica를 구성해야 합니다.\n\nWindows Admin Center를 어디에 설치해야 합니까?",
+ "choices": {"A": "Server1", "B": "CLIENT1", "C": "DC1", "D": "Server2"},
+ "explanation": "Storage Replica는 참여하는 두 서버에 파일 서버와 Storage Replica 역할이 필요하지만, Windows Admin Center는 관리 PC에 설치해 그 서버들에 원격으로 연결합니다. Microsoft의 서버 간 Storage Replica 안내에서는 Windows 10 PC 한 대를 Windows Admin Center 호스트로 지정합니다."
+},
+"AZ-800-Q67": {
+ "stem": "Windows Server를 실행하는 파일 서버 5대가 있습니다.\n\n사용자가 파일 서버의 공유 폴더에 `.mov` 확장자의 비디오 파일을 업로드하지 못하게 해야 합니다. 다른 모든 파일 형식은 계속 허용되어야 합니다. 솔루션은 관리 작업을 최소화해야 합니다.\n\n무엇을 만들어야 합니까?",
+ "choices": {"A": "동적 액세스 제어 중앙 액세스 정책", "B": "데이터 손실 방지(DLP) 정책", "C": "동적 액세스 제어 중앙 액세스 규칙", "D": "파일 차단(file screen)"},
+ "explanation": "파일 서버 리소스 관리자(FSRM)의 파일 차단은 차단된 파일 그룹에 속하는 파일을 사용자가 저장하지 못하도록 능동적으로 막을 수 있습니다. 그 그룹을 `.mov` 확장자로 구성하면 다른 모든 파일 형식은 허용하면서 그 비디오 업로드만 차단하며, 파일 차단 템플릿을 재사용해 여러 서버의 관리를 줄일 수도 있습니다."
+},
+"AZ-800-Q75": {
+ "stem": "물리 디스크 10개가 있는 Windows Server 실행 서버가 있습니다.\n\n이 디스크들로 Storage Spaces를 구현할 계획입니다.\n\n다음 옵션을 평가하고 있습니다.\n\n- 양방향 미러\n- 패리티 스토리지 레이아웃\n\n각 옵션에 대해 데이터 손실 없이 실패할 수 있는 최대 디스크 수를 고르십시오.",
+ "blanks": {
+  "two_way_mirror": {"label": "양방향 미러:", "options": ["1", "2", "3", "4", "5"]},
+  "parity_storage_layout": {"label": "패리티 스토리지 레이아웃:", "options": ["1", "2", "3", "4", "5"]}
+ },
+ "explanation": "양방향 미러는 데이터 복사본 두 개를 저장하며 물리 디스크 1개의 실패를 견딥니다. 단일 패리티 Storage Spaces 레이아웃도 물리 디스크 1개의 실패를 견디며, 두 번째 디스크가 실패하면 데이터가 손실될 수 있습니다."
+},
+"AZ-800-Q82": {
+ "stem": "*(참고: 케이스 스터디 문항으로 원본 사이트에 시나리오 본문이 누락되어 있습니다. 해설로 보면 Azure 파일 공유는 newyorkfiles·seattlefiles·companyfiles 세 개이고, FS1은 newyorkfiles + companyfiles를, FS2는 seattlefiles + companyfiles를 동기화해야 합니다.)*\n\n파일 공유 요구 사항을 충족하도록 Azure File Sync를 구성해야 합니다.\n\n어떻게 해야 합니까?",
+ "blanks": {
+  "sync_groups": {"label": "만들어야 하는 동기화 그룹의 최소 수:", "options": ["1", "2", "3", "4"]},
+  "storage_sync_services": {"label": "만들어야 하는 Storage Sync Service의 최소 수:", "options": ["1", "2", "3", "4"]}
+ },
+ "explanation": "시나리오에는 Azure 파일 공유가 세 개(newyorkfiles, seattlefiles, companyfiles) 있습니다. FS1은 newyorkfiles + companyfiles를, FS2는 seattlefiles + companyfiles를 동기화합니다. 동기화 그룹에는 클라우드 엔드포인트(Azure 파일 공유)가 정확히 하나만 있으므로, 서로 다른 파일 공유 세 개에는 동기화 그룹 세 개가 필요합니다. 공유되는 companyfiles는 FS1과 FS2의 서버 엔드포인트를 모두 담는 하나의 동기화 그룹입니다. Storage Sync Service 하나가 세 동기화 그룹과 등록된 서버 둘을 모두 호스팅할 수 있으므로 Storage Sync Service는 하나면 됩니다."
+},
+"AZ-800-Q84": {
+ "stem": "다음 표의 스토리지 계정이 포함된 Azure 구독이 있습니다.\n\n[[IMG1]]\n\nEast US Azure 지역에 Sync1이라는 Storage Sync Service를 만듭니다.\n\nSync1에 동기화 그룹을 만들어야 합니다.\n\n사용할 수 있는 스토리지 계정과 클라우드 엔드포인트로 지정할 수 있는 항목을 고르십시오.",
+ "blanks": {
+  "storage_accounts": {"label": "스토리지 계정:", "options": ["storage1만", "storage1과 storage3만", "storage1과 storage4만", "storage1, storage2, storage3만", "storage1, storage2, storage3, storage4"]},
+  "cloud_endpoints": {"label": "클라우드 엔드포인트:", "options": ["cont1과 cont2만", "share1과 share3만", "cont1, cont2, cont4만", "share1, share3, share4만", "cont1, cont2, share1, share3만", "cont1, cont2, cont4, share1, share3, share4"]}
+ },
+ "explanation": "Azure File Sync는 Azure 파일 공유를 클라우드 엔드포인트로 사용합니다. 클라우드 엔드포인트의 스토리지 계정은 Azure Files를 지원(StorageV2 또는 FileStorage)하고 Storage Sync Service와 같은 지역에 있어야 합니다. 따라서 적격한 East US 계정은 storage1과 storage3이고, 그 파일 공유 share1과 share3이 클라우드 엔드포인트입니다. (Blob 컨테이너는 클라우드 엔드포인트가 될 수 없습니다.)"
+},
+"AZ-800-Q93": {
+ "stem": "Windows Server를 실행하고 파일 서버 리소스 관리자 역할 서비스가 설치되어 있으며 Share02라는 파일 공유를 호스팅하는 Server1이라는 서버가 있습니다.\n\n다음 요구 사항을 충족하도록 Server1을 구성하십시오.\n\n- 사용자가 Share02에서 50GB 이상의 공간을 사용하면 관리자에게 알린다.\n- Server1의 중복 파일 목록을 매주 관리자에게 이메일로 보낸다.\n\n솔루션은 관리 작업을 최소화해야 합니다.\n\n각 요구 사항에 무엇을 만들어야 합니까?",
+ "blanks": {
+  "usage_notification": {"label": "사용자가 Share02에서 50GB 이상 사용하면 관리자에게 알림:", "options": ["파일 차단", "Share2의 하드 할당량", "할당량 템플릿", "Share2의 소프트 할당량"]},
+  "duplicate_files_report": {"label": "Server1의 중복 파일 목록을 매주 관리자에게 이메일 발송:", "options": ["분류 규칙", "사용자 지정 파일 관리 작업", "파일 차단", "보고서 작업"]}
+ },
+ "explanation": "FSRM 소프트 할당량은 추가 파일 쓰기를 막지 않으면서 구성된 임계값 알림을 생성합니다. 하드 할당량은 할당량 한도를 강제합니다. FSRM 보고서 작업은 중복 파일 저장소 보고서를 예약하고 이메일로 전달할 수 있습니다."
+},
+"AZ-800-Q97": {
+ "stem": "Windows Server를 실행하고 C와 D 두 드라이브가 있는 Server1이라는 서버가 있습니다. Server1은 여러 파일 공유를 호스팅합니다.\n\nD 드라이브에 데이터 중복 제거를 켜고 **범용 파일 서버** 워크로드를 선택합니다.\n\n최근에 수정되거나 삭제된 파일이 사용하는 공간을 최소화해야 합니다.\n\n어떻게 해야 합니까?",
+ "choices": {
+  "A": "Set-DedupVolume cmdlet을 실행하고 스크러빙 작업을 구성한다.",
+  "B": "Set-DedupSchedule cmdlet을 실행하고 GarbageCollection 작업을 구성한다.",
+  "C": "Set-DedupVolume cmdlet을 실행하고 InputOutputScale 설정을 구성한다.",
+  "D": "Set-DedupSchedule cmdlet을 실행하고 최적화 작업을 구성한다."
+ },
+ "explanation": "가비지 수집 작업은 파일이 수정되거나 삭제된 뒤 더 이상 참조되지 않는 중복 제거 청크를 제거해 디스크 공간을 회수합니다. 이 작업의 데이터 중복 제거 일정은 `Set-DedupSchedule`로 구성합니다."
+},
+"AZ-800-Q100": {
+ "stem": "Windows Server를 실행하고 파일 서버 리소스 관리자 역할 서비스가 설치되어 있으며 다음 표의 볼륨이 있는 Server1이라는 서버가 있습니다.\n\n[[IMG1]]\n\nServer1에 파일 차단을 구성할 계획입니다.\n\n어떤 볼륨에 파일 차단을 구성할 수 있습니까?",
+ "choices": {"A": "C, D, E, F", "B": "F만", "C": "C와 F만", "D": "C, E, F만", "E": "E와 F만"},
+ "explanation": "파일 서버 리소스 관리자는 NTFS로 포맷된 볼륨만 지원하며 ReFS는 명시적으로 지원되지 않습니다. 따라서 파일 차단은 두 NTFS 볼륨인 C와 F에 구성할 수 있습니다."
+}
+}

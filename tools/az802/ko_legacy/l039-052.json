@@ -1,0 +1,112 @@
+{
+"AZ-800-Q182": {
+ "stem": "네트워크에 Active Directory Domain Services(AD DS) 도메인이 있습니다. 도메인 컨트롤러 20대, 멤버 서버 100대, 클라이언트 컴퓨터 100대가 있습니다.\n\n그룹 정책 기본 설정(Preferences)이 포함된 GPO1이라는 그룹 정책 개체(GPO)가 있습니다.\n\nGPO1을 도메인에 연결할 계획입니다.\n\nGPO1의 기본 설정이 도메인 멤버 서버에만 적용되고 도메인 컨트롤러나 클라이언트 컴퓨터에는 적용되지 **않도록** 해야 합니다. GPO1의 다른 모든 그룹 정책 설정은 모든 컴퓨터에 적용되어야 합니다. 솔루션은 관리 작업을 최소화해야 합니다.\n\n어떤 유형의 항목 수준 대상 지정을 사용해야 합니까?",
+ "choices": {"A": "도메인", "B": "운영 체제", "C": "보안 그룹", "D": "환경 변수"},
+ "explanation": "운영 체제 항목 수준 대상 지정은 멤버 서버의 운영 체제 제품 유형을 도메인 컨트롤러·클라이언트 컴퓨터와 구분할 수 있습니다. 따라서 별도의 그룹 멤버십 관리 없이 해당 그룹 정책 기본 설정 항목만 멤버 서버로 제한하고, GPO의 나머지 설정은 모든 컴퓨터에 계속 적용됩니다."
+},
+"AZ-800-Q194": {
+ "stem": "네트워크에 Active Directory Domain Services(AD DS) 포리스트가 있습니다. 포리스트에는 다음 표의 그룹이 있습니다.\n\n[[IMG1]]\n\n그룹 중첩 전략을 구현해야 합니다.\n\nGroup12의 멤버로 추가할 수 있는 그룹과 Group21의 멤버로 추가할 수 있는 그룹을 고르십시오.",
+ "blanks": {
+  "group12": {"label": "Group12:", "options": ["Group13만", "Group14만", "Group13과 Group14만", "Group14와 Group21만", "Group11, Group13, Group14만"]},
+  "group21": {"label": "Group21:", "options": ["Group14만", "Group12와 Group13만", "Group12, Group13, Group14만", "Group11, Group12, Group13, Group14"]}
+ },
+ "explanation": "글로벌 그룹은 같은 도메인의 글로벌 그룹만 포함할 수 있으므로 Group12는 Group13은 포함할 수 있지만 유니버설·도메인 로컬 그룹은 포함할 수 없습니다. 유니버설 그룹은 포리스트 내 어느 도메인의 글로벌·유니버설 그룹이든 포함할 수 있으므로 Group21은 Group12, Group13, Group14를 포함할 수 있습니다. 도메인 로컬 그룹은 유니버설 그룹의 멤버가 될 수 없습니다."
+},
+"AZ-800-Q198": {
+ "stem": "네트워크에 양방향 외부 트러스트로 연결된 **contoso.com**과 **adatum.com** 두 개의 Active Directory Domain Services(AD DS) 포리스트가 있습니다. 포리스트에는 다음 표의 서버가 있습니다.\n\n[[IMG1]]\n\ncontoso.com 사용자가 SRV1에 호스팅된 공유 리소스에만 액세스할 수 있게 해야 합니다. 솔루션은 다음을 만족해야 합니다.\n\n- adatum.com 사용자가 contoso.com에 호스팅된 리소스에 액세스할 수 있게 한다.\n- contoso.com 사용자가 adatum.com의 다른 리소스에 액세스하지 못하게 한다.\n\n어떻게 해야 합니까?",
+ "blanks": {
+  "trust": {"label": "트러스트를 수정할 위치:", "options": ["DC1", "DC2", "DC1과 DC2"]},
+  "permissions": {"label": "권한을 수정할 대상:", "options": ["DC1의 컴퓨터 개체", "SRV1의 컴퓨터 개체", "SRV1의 파일 공유"]}
+ },
+ "explanation": "선택적 인증은 외부 트러스트의 adatum.com 리소스 쪽, 즉 DC2에서 구성해야 합니다. 선택적 인증은 contoso.com 사용자가 리소스 컴퓨터에 인증하려면 먼저 그 컴퓨터에 **인증 허용(Allowed to authenticate)** 권한을 갖고 있어야 하도록 요구합니다. 이 권한을 SRV1에만 부여하면 SRV1이 호스팅하는 공유에는 액세스할 수 있고 다른 adatum.com 컴퓨터의 리소스는 차단됩니다. adatum.com에서 contoso.com으로의 반대 방향 액세스는 영향받지 않습니다."
+},
+"AZ-800-Q210": {
+ "stem": "네트워크에 다중 사이트 Active Directory Domain Services(AD DS) 포리스트가 있습니다. 각 Active Directory 사이트는 수동으로 구성한 사이트 링크와 자동 생성된 연결로 연결되어 있습니다.\n\nActive Directory 변경의 수렴 시간을 줄여야 합니다.\n\n어떻게 해야 합니까?",
+ "choices": {
+  "A": "각 사이트 링크의 복제 일정을 수정한다.",
+  "B": "각 사이트 링크의 사이트 링크 비용을 수정한다.",
+  "C": "모든 사이트 링크를 포함하는 사이트 링크 브리지를 만든다.",
+  "D": "각 사이트 링크의 options 특성을 수정한다."
+ },
+ "explanation": "모든 사이트 링크의 `options` 특성을 수정해 **변경 알림(change notification)**을 켭니다. 변경 알림은 디렉터리 변경이 발생하면 일반 예약 복제 간격을 기다리지 않고 사이트 간 복제를 즉시 촉발하므로 Active Directory 수렴 시간이 줄어듭니다."
+},
+"AZ-800-Q212": {
+ "stem": "HOTSPOT\n\n네트워크에 contoso.com이라는 Active Directory Domain Services(AD DS) 포리스트가 있습니다. 포리스트에는 east.contoso.com이라는 자식 도메인과 다음 표의 서버가 있습니다.\n\n[[IMG1]]\n\n포리스트 전체의 그룹 정책 템플릿 파일을 관리할 중앙 저장소(Central Store) 폴더를 만들어야 합니다.\n\n어떤 폴더 이름을 사용하고, 어느 서버에 만들어야 합니까?",
+ "blanks": {
+  "name": {"label": "이름:", "options": ["CentralDefinitions", "PolicyDefinitions", "TemplateDefinitions"]},
+  "server": {"label": "서버:", "options": ["DC1만", "DC2만", "Server1만", "DC1과 DC2만", "DC1, DC2, Server1"]}
+ },
+ "explanation": "그룹 정책 중앙 저장소의 이름은 `PolicyDefinitions`이며 도메인의 SYSVOL Policies 경로에 있습니다. SYSVOL 복제는 서로 다른 도메인 간에는 이루어지지 않으므로 루트 도메인과 자식 도메인 모두에 이 폴더가 필요합니다. DC1과 DC2가 각 도메인의 도메인 컨트롤러이고, Server1은 도메인 컨트롤러가 아닙니다."
+},
+"AZ-800-Q213": {
+ "stem": "네트워크에 contoso.com이라는 Active Directory Domain Services(AD DS) 포리스트가 있습니다. 포리스트 루트 도메인에는 server1.contoso.com이라는 서버가 있습니다.\n\ncontoso.com 포리스트와 fabrikam.com이라는 AD DS 포리스트 사이에 양방향 포리스트 트러스트가 구성되어 있습니다. fabrikam.com 포리스트에는 자식 도메인이 10개 있습니다.\n\nfabrikam\\Group1이라는 그룹의 멤버만 server1.contoso.com에 인증할 수 있게 해야 합니다.\n\n먼저 무엇을 해야 합니까?",
+ "choices": {
+  "A": "server1.contoso.com의 로컬 Users 그룹에 fabrikam\\Group1을 추가한다.",
+  "B": "트러스트에 SID 필터링을 사용하도록 설정한다.",
+  "C": "트러스트에 선택적 인증(Selective authentication)을 사용하도록 설정한다.",
+  "D": "트러스트를 단방향 외부 트러스트로 변경한다."
+ },
+ "explanation": "포리스트 트러스트의 선택적 인증은 다른 포리스트의 사용자가 각 로컬 리소스에 인증하려면 명시적으로 권한을 받아야 하도록 요구합니다. 이를 사용하도록 설정한 후 server1.contoso.com에서 fabrikam\\Group1에 **인증 허용(Allowed to Authenticate)** 권한을 부여하면, 다른 fabrikam.com 사용자는 그 서버에 인증할 수 없습니다."
+},
+"AZ-800-Q214": {
+ "stem": "다음 표의 도메인 컨트롤러가 포함된 Active Directory Domain Services(AD DS) 도메인이 있습니다.\n\n[[IMG1]]\n\n도메인에는 구성 데이터를 사용자 지정 애플리케이션 파티션에 저장하는 App1이라는 앱이 있습니다.\n\nApp1을 폐기합니다.\n\n사용자 지정 애플리케이션 파티션을 제거하려고 하면 작업이 실패합니다.\n\n어떤 도메인 컨트롤러를 사용할 수 없는 상태입니까?",
+ "choices": {"A": "DC1", "B": "DC2", "C": "DC3", "D": "DC4"},
+ "explanation": "애플리케이션 디렉터리 파티션을 삭제하려면 Partitions 컨테이너에서 해당 crossRef 개체를 삭제해야 하는데, 이는 도메인 명명 마스터 FSMO 역할이 처리하는 포리스트 전체 명명 컨텍스트 작업입니다. DC3이 그 역할을 보유하므로 DC3이 사용 가능해야 합니다."
+},
+"AZ-800-Q224": {
+ "stem": "네트워크에 다음 그림과 같이 두 개의 Active Directory Domain Services(AD DS) 포리스트가 있습니다.\n\n[[IMG1]]\n\n포리스트에는 다음 표의 도메인 컨트롤러가 있습니다.\n\n[[IMG2]]\n\nDC1에서 다음 작업을 수행합니다.\n\n- User1이라는 사용자를 만든다.\n- Attribute1이라는 새 특성을 추가해 스키마를 확장한다.\n\nUser1과 Attribute1이 복제되는 도메인 컨트롤러를 고르십시오.",
+ "blanks": {
+  "user1": {"label": "User1:", "options": ["DC2만", "DC3만", "DC2와 DC3만", "DC3과 DC4만", "DC2, DC3, DC4"]},
+  "attribute1": {"label": "Attribute1:", "options": ["DC2만", "DC4만", "DC2와 DC3만", "DC2, DC3, DC4"]}
+ },
+ "explanation": "adatum.com에서 만든 사용자는 그 도메인의 디렉터리 파티션에 저장되어 같은 도메인의 다른 DC인 DC2로 복제됩니다. 스키마 파티션은 adatum.com 포리스트 전체에 복제되므로 새 특성은 DC2와 DC3에 도달합니다. 포리스트 트러스트는 포리스트 간 인증을 가능하게 할 뿐, 디렉터리 파티션을 DC4로 복제하지는 않습니다."
+},
+"AZ-800-Q237": {
+ "stem": "네트워크에 다음 그림의 도메인들이 있습니다.\n\n[[IMG1]]\n\n다음 그림과 같은 트러스트 관계를 수립해야 합니다.\n\n[[IMG2]]\n\nTrust1과 Trust2에 어떤 유형의 트러스트를 사용할 수 있습니까?",
+ "blanks": {
+  "trust1": {"label": "Trust1:", "options": ["외부 트러스트만", "포리스트 트러스트만", "바로 가기 트러스트만", "포리스트 트러스트 또는 외부 트러스트만", "포리스트·바로 가기·외부 트러스트"]},
+  "trust2": {"label": "Trust2:", "options": ["포리스트 트러스트만", "외부 트러스트 또는 바로 가기 트러스트만", "포리스트 트러스트 또는 바로 가기 트러스트만", "포리스트 트러스트 또는 외부 트러스트만", "포리스트·바로 가기·외부 트러스트"]}
+ },
+ "explanation": "바로 가기(shortcut) 트러스트는 같은 Active Directory 포리스트 안의 도메인 사이에 인증 경로를 단축하기 위해 수동으로 만드는 트러스트이므로 contoso.com과 sub.west.contoso.com 사이에 해당합니다. 포리스트 트러스트는 두 AD DS 포리스트를 연결하고, 외부 트러스트는 포리스트를 넘어 도메인끼리 연결할 수 있으므로 둘 다 contoso.com과 fabrikam.com을 연결할 수 있습니다. 바로 가기 트러스트는 포리스트를 넘을 수 없습니다."
+},
+"AZ-800-Q240": {
+ "stem": "사용자 설정만 포함된 GPO1이라는 그룹 정책 개체(GPO)가 있습니다.\n\nGPO1을 Group1이라는 글로벌 보안 그룹에 적용할 계획입니다. GPO1을 도메인에 연결하고 Authenticated Users 그룹에 부여된 모든 권한을 제거합니다.\n\n다음 요구 사항을 충족하도록 GPO1의 권한을 구성해야 합니다.\n\n- GPO1은 Group1의 사용자에게만 적용되어야 한다.\n- 솔루션은 최소 권한 원칙을 사용해야 한다.\n\nGroup1과 Domain Computers 그룹에 어떤 권한을 부여해야 합니까?",
+ "blanks": {
+  "group1": {"label": "Group1", "options": ["그룹 정책 적용 및 읽기", "그룹 정책 적용만", "읽기만"]},
+  "domain_computers": {"label": "Domain Computers", "options": ["그룹 정책 적용 및 읽기", "그룹 정책 적용만", "읽기만"]}
+ },
+ "explanation": "보안 필터링을 위해 Group1에는 읽기와 그룹 정책 적용 권한이 모두 필요합니다. Authenticated Users를 제거하면 컴퓨터 계정이 사용자 GPO 설정을 검색하기 위해 읽기 권한이 필요하므로 Domain Computers에는 그룹 정책 적용 없이 읽기만 부여합니다."
+},
+"AZ-800-Q241": {
+ "stem": "네트워크에 Active Directory Domain Services(AD DS) 도메인이 있습니다. 도메인에는 다음 표의 도메인 컨트롤러가 있습니다.\n\n[[IMG1]]\n\n공격자가 RODC1의 컴퓨터 계정을 침해하더라도 **Employee-Number** AD DS 특성을 볼 수 없도록 해야 합니다.\n\n어떤 파티션을 수정해야 합니까?",
+ "choices": {"A": "구성(configuration)", "B": "글로벌 카탈로그", "C": "도메인", "D": "스키마"},
+ "explanation": "RODC 필터링된 특성 집합(filtered attribute set)은 선택한 특성이 읽기 전용 도메인 컨트롤러로 복제되지 않게 합니다. 이 집합의 멤버십은 특성의 `attributeSchema` 개체에 있는 `searchFlags` 속성으로 구성하며, 이 개체는 스키마 파티션에 저장됩니다."
+},
+"AZ-800-Q242": {
+ "stem": "네트워크에 contoso.com이라는 Active Directory Domain Services(AD DS) 도메인이 있습니다. 도메인에는 다음 표의 사용자가 있습니다.\n\n[[IMG1]]\n\n도메인에는 다음 표의 그룹 정책 개체(GPO)가 있습니다.\n\n[[IMG2]]\n\nGPO들은 다음 표와 같이 H 드라이브를 매핑합니다.\n\n[[IMG3]]\n\n다음 각 문장에 대해, 문장이 참이면 예를, 그렇지 않으면 아니요를 선택하십시오.",
+ "statements": [
+  "User1의 경우 \\\\server2\\share가 H 드라이브에 매핑된다.",
+  "User2의 경우 \\\\server1\\share가 H 드라이브에 매핑된다.",
+  "User3의 경우 \\\\server3\\share가 H 드라이브에 매핑된다."
+ ],
+ "explanation": "적용됨(Enforced)으로 설정된 도메인 연결 GPO는 상속 차단으로 막을 수 없습니다. OU에 연결된 GPO는 도메인 연결 GPO 다음에 처리되므로 User2의 OU1 매핑(\\\\server2\\share)이 도메인 매핑을 덮어씁니다. OU2는 적용됨이 아닌 상속 GPO2를 차단하고, 직접 연결된 GPO3이 User3의 H: 드라이브를 \\\\server3\\share로 매핑합니다. 따라서 세 번째 문장만 참입니다."
+},
+"AZ-800-Q244": {
+ "stem": "네트워크에 다중 사이트 Active Directory Domain Services(AD DS) 포리스트가 있습니다. 각 Active Directory 사이트는 수동으로 구성한 사이트 링크와 자동 생성된 연결로 연결되어 있습니다.\n\nActive Directory 변경의 지연 시간을 최소화해야 합니다.\n\n어떻게 해야 합니까?",
+ "choices": {
+  "A": "각 사이트 링크의 사이트 링크 비용을 수정한다.",
+  "B": "모든 사이트 링크를 포함하는 사이트 링크 브리지를 만든다.",
+  "C": "각 사이트 링크의 options 특성을 수정한다.",
+  "D": "각 사이트 링크의 복제 일정을 수정한다."
+ },
+ "explanation": "사이트 링크의 `options` 특성에 `NTDSSITELINK_OPT_USE_NOTIFY` 플래그를 설정하면 서로 다른 사이트의 도메인 컨트롤러 간에 복제 알림이 켜집니다. 이렇게 하면 사이트 간 복제가 일반 예약 복제 간격을 기다리지 않고 변경 발생 시 이벤트 기반으로 이루어져 변경 전파 지연이 최소화됩니다."
+},
+"AZ-800-Q246": {
+ "stem": "*(참고: 케이스 스터디 문항으로 원본 사이트에 시나리오 본문이 누락되어 있습니다. AZ-802 Q7과 같은 Contoso 시나리오이며, 그룹 표는 Group1 유니버설(contoso.com), Group2 글로벌(contoso.com), Group3 유니버설 또는 도메인 로컬(contoso.com), Group4·Group5 글로벌(canada.contoso.com), Group6 도메인 로컬(canada.contoso.com) 구성입니다. 이 문항의 해설은 Group3을 유니버설로 봅니다.)*\n\nHOTSPOT —\n\nGroup3과 Group5에 추가할 수 있는 그룹은 무엇입니까? 답 영역에서 적절한 옵션을 선택하십시오.",
+ "blanks": {
+  "group3": {"label": "Group3:", "options": ["Group6만", "Group1과 Group2만", "Group1과 Group4만", "Group1, Group2, Group4, Group5만", "Group1, Group2, Group4, Group5, Group6"]},
+  "group5": {"label": "Group5:", "options": ["Group1만", "Group4만", "Group6만", "Group2와 Group4만", "Group4와 Group6만"]}
+ },
+ "explanation": "Group3은 유니버설 그룹으로, 포리스트 내 어느 도메인의 계정·글로벌 그룹·유니버설 그룹이든 포함할 수 있지만 도메인 로컬 그룹은 포함할 수 없습니다. 따라서 Group1, Group2, Group4, Group5는 받아들이지만 도메인 로컬인 Group6은 받지 않습니다. Group5는 글로벌 그룹이며, 글로벌 그룹은 같은 도메인의 계정과 글로벌 그룹만 포함할 수 있으므로 여기서 가능한 것은 같은 도메인의 글로벌 그룹인 Group4뿐입니다. 도메인 로컬인 Group6은 넣을 수 없으므로 \"Group4와 Group6만\"은 틀립니다. 표준 AD 중첩 규칙(AGUDLP)을 따릅니다."
+}
+}

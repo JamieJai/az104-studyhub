@@ -1,0 +1,106 @@
+{
+"AZ-800-Q39": {
+ "stem": "네트워크에 도메인 세 개가 있는 Active Directory Domain Services(AD DS) 포리스트가 있습니다. 각 도메인에는 도메인 컨트롤러가 10대씩 있습니다.\n\nDNS 영역을 사용자 지정 Active Directory 파티션에 저장할 예정입니다.\n\n영역용 Active Directory 파티션을 만들어야 합니다. 이 파티션은 도메인 컨트롤러 4대에만 복제되어야 합니다.\n\n무엇을 사용해야 합니까?",
+ "choices": {"A": "dnscmd.exe", "B": "Active Directory 사이트 및 서비스", "C": "Set-DnsServer", "D": "New-ADObject"},
+ "explanation": "`dnscmd.exe`는 `/createdirectorypartition`으로 사용자 지정 DNS 애플리케이션 디렉터리 파티션을 만듭니다. 또한 `/enlistdirectorypartition`으로 선택한 DNS 서버만 그 파티션의 복제본 집합에 등록할 수 있어 복제를 필요한 도메인 컨트롤러 4대로 제한합니다."
+},
+"AZ-800-Q45": {
+ "stem": "네트워크에 contoso.com이라는 Active Directory Domain Services(AD DS) 포리스트가 있습니다. 포리스트에는 다음 표의 서버가 있습니다.\n\n[[IMG1]]\n\nServer1은 contoso.com의 DNS 영역을 호스팅합니다. contoso.com 속성의 **일반** 탭은 다음 그림과 같이 구성되어 있습니다.\n\n[[IMG2]]\n\nServer3은 east.contoso.com의 DNS 영역을 호스팅하며 다음 그림과 같이 구성되어 있습니다.\n\n[[IMG3]]\n\n다음 각 문장에 대해, 문장이 참이면 **예**를, 그렇지 않으면 **아니요**를 선택하십시오.",
+ "statements": [
+  "Server3에 contoso.com의 보조 DNS 영역을 추가할 수 있다.",
+  "contoso.com에 DNS 레코드를 추가하면 그 레코드가 Server2로 복제된다.",
+  "east.contoso.com에 DNS 레코드를 추가하면 그 레코드가 Server1으로 복제된다."
+ ],
+ "explanation": "보조 영역은 주 영역 호스트가 아닌 서버에 둘 수 있는 읽기 전용 복사본이며 원격 DNS 서버에서 데이터를 가져옵니다. 도메인의 모든 DNS 서버로 복제되는 AD 통합 영역은 AD DS를 통해 DNS를 실행하는 도메인 컨트롤러에만 복제되므로 Server2는 contoso.com 영역 데이터를 받지 않습니다. east.contoso.com 영역은 포리스트 전체 DNS 복제를 사용하므로 같은 포리스트의 도메인 컨트롤러에 있는 DNS 서버인 Server1으로 복제됩니다."
+},
+"AZ-800-Q46": {
+ "stem": "네트워크에 도메인 세 개가 있는 Active Directory Domain Services(AD DS) 포리스트가 있습니다. 각 도메인에는 도메인 컨트롤러가 10대씩 있습니다.\n\nDNS 영역을 사용자 지정 Active Directory 파티션에 저장할 계획입니다.\n\n영역용 Active Directory 파티션을 만들어야 합니다. 이 파티션은 도메인 컨트롤러 4대에만 복제되어야 합니다.\n\n무엇을 사용해야 합니까?",
+ "choices": {"A": "Windows Admin Center", "B": "DNS 관리자", "C": "Active Directory 사이트 및 서비스", "D": "ntdsutil.exe"},
+ "explanation": "애플리케이션 디렉터리 파티션은 Active Directory 포리스트의 선택한 도메인 컨트롤러에만 복제되도록 구성할 수 있습니다. `ntdsutil.exe`는 이런 파티션과 복제본 위치를 만들고 관리하는 Active Directory 도메인 관리 기능을 제공합니다. DNS 관리자는 DNS 영역이 파티션을 사용하도록 구성할 수는 있지만, 선택한 복제 범위를 가진 Active Directory 애플리케이션 파티션을 만들지는 못합니다."
+},
+"AZ-800-Q48": {
+ "stem": "온-프레미스 네트워크에 fabrikam.com이라는 Active Directory Domain Services(AD DS) 도메인이 있습니다. 도메인에는 DC1이라는 도메인 컨트롤러가 있습니다. DC1에는 DNS 서버 역할이 설치되어 있고 fabrikam.com의 주 DNS 영역을 호스팅합니다.\n\nVNet1이라는 가상 네트워크가 포함된 Azure 구독이 있습니다. VNet1에는 VM1이라는 가상 머신이 있습니다.\n\n온-프레미스 네트워크는 사이트 간(S2S) VPN으로 Azure에 연결되어 있습니다.\n\nAzure에서 다음 명령을 실행합니다.\n\n```powershell\nNew-AzPrivateDnsZone -Name azure.fabrikam.com -ResourceGroupName RG1\n\nNew-AzPrivateDnsVirtualNetworkLink -ZoneName \"azure.fabrikam.com\" -ResourceGroupName \"RG1\" -Name \"DNSlink\" -VirtualNetworkId $VNET1.id\n```\n\n다음 각 문장에 대해, 문장이 참이면 예를, 그렇지 않으면 아니요를 선택하십시오.",
+ "statements": [
+  "fabrikam.com에 영역 위임을 추가하면 온-프레미스 호스트가 azure.fabrikam.com의 레코드를 확인할 수 있다.",
+  "DC1에 조건부 전달자를 추가하면 온-프레미스 호스트가 azure.fabrikam.com의 레코드를 확인할 수 있다.",
+  "VM1은 azure.fabrikam.com에 자동으로 등록된다."
+ ],
+ "explanation": "Azure 프라이빗 DNS 영역은 온-프레미스 DNS 서버에 위임 가능한 권한 있는 DNS 영역으로 노출되지 않습니다. 하이브리드 확인에는 Azure DNS Private Resolver 인바운드 엔드포인트 또는 Azure 가상 네트워크 안의 DNS 전달자가 필요하며, DC1의 조건부 전달자만으로는 프라이빗 영역을 확인할 수 없습니다(전달할 대상이 없음). VM 레코드 자동 등록은 가상 네트워크 링크를 `-EnableRegistration`으로 만들어야 하는데 명령에 그 옵션이 없습니다."
+},
+"AZ-800-Q50": {
+ "stem": "Azure Active Directory(Azure AD) 테넌트와 동기화되는 온-프레미스 Active Directory Domain Services(AD DS) 도메인이 있습니다. 온-프레미스 네트워크는 사이트 간 VPN으로 Azure에 연결되어 있습니다.\n\n다음 표의 DNS 영역이 있습니다.\n\n[[IMG1]]\n\n온-프레미스 네트워크에서 fabrikam.com의 이름을 확인할 수 있게 해야 합니다.\n\n어떤 두 가지 작업을 수행해야 합니까? 각 정답은 솔루션의 일부입니다.\n\n참고: 각 올바른 선택은 1점입니다.",
+ "choices": {
+  "A": "DC1에 fabrikam.com의 스텁 영역을 만든다.",
+  "B": "DC1에 fabrikam.com의 조건부 전달자를 만든다.",
+  "C": "DC1에 fabrikam.com의 보조 영역을 만든다.",
+  "D": "Windows Server를 실행하는 Azure 가상 머신을 배포한다. 가상 네트워크의 DNS 서버 설정을 수정한다.",
+  "E": "Windows Server를 실행하는 Azure 가상 머신을 배포한다. 가상 머신을 DNS 전달자로 구성한다."
+ },
+ "explanation": "Azure 프라이빗 DNS 영역 레코드는 연결된 가상 네트워크에서만 확인할 수 있습니다. 온-프레미스 클라이언트를 위해 DC1은 `fabrikam.com` 쿼리를 Azure VM에 호스팅된 DNS 전달자로 조건부 전달해야 합니다. 그 전달자는 가상 네트워크 안에서 Azure 제공 DNS를 쿼리해 연결된 프라이빗 DNS 영역을 확인할 수 있습니다. Azure 프라이빗 DNS는 보조 영역이나 스텁 영역에 필요한 영역 전송 모델을 지원하지 않습니다."
+},
+"AZ-800-Q76": {
+ "stem": "네트워크에 도메인 세 개가 있는 Active Directory Domain Services(AD DS) 포리스트가 있습니다. 각 도메인에는 도메인 컨트롤러가 10대씩 있습니다.\n\nDNS 영역을 사용자 지정 Active Directory 파티션에 저장할 계획입니다.\n\n영역용 Active Directory 파티션을 만들어야 합니다. 이 파티션은 도메인 컨트롤러 4대에만 복제되어야 합니다.\n\n무엇을 사용해야 합니까?",
+ "choices": {"A": "Windows Admin Center", "B": "Set-DnsServer", "C": "New-ADObject", "D": "ntdsutil.exe"},
+ "explanation": "사용자 지정 애플리케이션 디렉터리 파티션은 명시적으로 선택한 도메인 컨트롤러에만 호스팅할 수 있어 DNS 영역의 복제를 그 복제본 도메인 컨트롤러로 제한합니다. `ntdsutil.exe`는 애플리케이션 디렉터리 파티션과 그 복제본을 만들고 관리하는 AD DS 도메인 관리 작업을 제공합니다. DNS 서버 구성 명령이나 일반 디렉터리 개체 생성으로는 이 Active Directory 명명 컨텍스트를 만들 수 없습니다."
+},
+"AZ-800-Q78": {
+ "stem": "네트워크에 Windows Server를 실행하는 서버 10대가 포함된 Active Directory Domain Services(AD DS) 도메인이 있습니다. 서버들은 고정 IPv4 주소를 사용합니다.\n\nDHCP를 사용해 이 서버들에 IPv4 주소를 할당할 계획입니다.\n\n모든 서버가 항상 같은 IPv4 주소를 받도록 해야 합니다.\n\n각 서버의 DHCP 예약을 만드는 데 어떤 식별자 유형을 사용해야 합니까?",
+ "choices": {"A": "FQDN(정규화된 도메인 이름)", "B": "UUID(범용 고유 식별자)", "C": "NetBIOS 이름", "D": "MAC 주소"},
+ "explanation": "DHCP 예약은 클라이언트의 MAC 주소를 지정된 IPv4 주소에 매핑하므로, DHCP 서버가 그 서버에 항상 같은 주소를 할당할 수 있습니다."
+},
+"AZ-800-Q90": {
+ "stem": "네트워크에 Active Directory Domain Services(AD DS) 도메인이 있습니다. 도메인에는 각각 고정 IP 주소를 가진 Windows Server 실행 서버 10대가 있습니다.\n\nDHCP를 사용해 서버에 IP 주소를 할당할 계획입니다. 모든 서버가 항상 같은 IP 주소를 받도록 해야 합니다.\n\n각 서버의 DHCP 예약을 만드는 데 어떤 유형의 식별자를 사용해야 합니까?",
+ "choices": {"A": "NetBIOS 이름", "B": "MAC 주소", "C": "FQDN(정규화된 도메인 이름)", "D": "UUID(범용 고유 식별자)"},
+ "explanation": "DHCP 예약은 특정 IP 주소를 DHCP 클라이언트 식별자에 바인딩합니다. Windows DHCP 클라이언트의 클라이언트 식별자는 NIC의 MAC 주소이므로, 서버가 임대를 요청할 때마다 같은 예약 주소를 받습니다."
+},
+"AZ-800-Q108": {
+ "stem": "네트워크에 클라이언트 컴퓨터용 VLAN 두 개와 데이터센터용 VLAN 한 개가 있습니다. 모든 VLAN에는 IPv4 서브넷이 할당되어 있고, 클라이언트 컴퓨터는 현재 고정 IP 주소를 사용합니다.\n\n데이터센터 VLAN에 DHCP 서버를 배포할 계획입니다. DHCP 서버가 모든 클라이언트 컴퓨터에 IP 구성을 제공해야 합니다.\n\n만들어야 하는 범위와 DHCP 릴레이의 최소 개수는 각각 몇 개입니까?",
+ "blanks": {
+  "dhcp_scopes": {"label": "DHCP 범위:", "options": ["1", "2", "3", "4"]},
+  "dhcp_relays": {"label": "DHCP 릴레이:", "options": ["1", "2", "3", "4"]}
+ },
+ "explanation": "DHCP 범위는 IPv4 서브넷 하나에 주소와 옵션을 제공하므로 클라이언트 VLAN 서브넷 2개에는 범위 2개가 필요합니다. DHCP 서버가 다른 VLAN에 있으므로 각 클라이언트 VLAN에는 브로드캐스트 DHCP 요청을 라우팅된 네트워크 너머의 서버로 전달할 DHCP 릴레이가 필요합니다.\n\n(참고: AZ-802 Q29의 같은 시나리오에서는 데이터센터 VLAN 자체의 범위까지 세어 정답이 3개였습니다. 이 문항은 \"클라이언트 컴퓨터에 제공\"만 기준으로 2개를 정답으로 봅니다. 문제 조건을 잘 읽으세요.)"
+},
+"AZ-800-Q151": {
+ "stem": "DHCP 서버 역할이 설치된 Windows Server를 실행하는 Server1이라는 서버가 있습니다. Server1에는 다음 단일 범위가 있습니다.\n\n- 범위: 192.168.16.0\n- 주소 풀: 192.168.16.1~192.168.16.254\n- 서브넷 마스크: 255.255.255.0\n- 임대 기간: 8일\n\n다음 표와 같이 고정 IP 주소로 구성된 테스트 장치 4대가 있습니다.\n\n[[IMG1]]\n\n테스트 장치는 한 달에 한 번 전원이 켜집니다.\n\n테스트 장치가 오프라인인 동안 Server1이 테스트 장치에 할당된 IP 주소를 다른 장치에 할당하지 않도록 해야 합니다. 솔루션은 관리 작업을 최소화해야 합니다.\n\n어떻게 해야 합니까?",
+ "choices": {"A": "정책을 만든다.", "B": "예약을 만든다.", "C": "범위 옵션을 구성한다.", "D": "제외 범위를 만든다."},
+ "explanation": "제외 범위는 DHCP 서버가 포함된 주소를 DHCP 클라이언트에 임대하지 못하게 합니다. 고정 할당된 연속 주소 192.168.16.242~192.168.16.245는 범위의 주소 풀 안에 있으므로, 그 범위를 제외하면 구성 한 번으로 주소 충돌을 막을 수 있습니다. DHCP 예약은 MAC 주소를 기준으로 DHCP 클라이언트에 주소를 할당하는 것이라 이미 고정 주소로 구성된 장치에는 적합하지 않습니다."
+},
+"AZ-800-Q169": {
+ "stem": "*(참고: 케이스 스터디 문항으로 원본 사이트에 시나리오 본문이 누락되어 있습니다. 해설로 보면 Private Resolver Private1은 VNet1에 배포되고, Zone1.com은 VNet1에, Zone2.com은 VNet2에 가상 네트워크 링크가 있으며, Zone3.com은 링크가 없습니다.)*\n\n계획된 Azure DNS Private Resolver 변경을 구현해야 합니다.\n\n이름 확인에 어떤 프라이빗 DNS 영역을 사용할 수 있습니까?",
+ "choices": {"A": "Zone1.com만", "B": "Zone2.com만", "C": "Zone1.com과 Zone2.com만", "D": "Zone2.com과 Zone3.com만", "E": "Zone1.com, Zone2.com, Zone3.com"},
+ "explanation": "Azure DNS Private Resolver 인바운드 엔드포인트는 리졸버가 배포된 가상 네트워크에 연결된 프라이빗 DNS 영역을 확인합니다. Private1은 VNet1에 배포되어 있고, VNet1에 가상 네트워크 링크가 있는 영역은 Zone1.com뿐입니다. Zone2.com은 VNet2에 연결되어 있고 Zone3.com은 가상 네트워크에 연결되어 있지 않습니다."
+},
+"AZ-800-Q183": {
+ "stem": "*(참고: 케이스 스터디 문항으로 원본 사이트에 시나리오 본문이 누락되어 있습니다. 해설로 보면 Azure VNet1의 VM들이 AD 도메인 corp.fabrikam.com의 이름과 온-프레미스 이름을 확인해야 하고, VNet1에는 도메인 컨트롤러 DC3이 있습니다.)*\n\n네트워킹 요구 사항을 충족하는 이름 확인 솔루션을 구현해야 합니다.\n\n어떤 두 가지 작업을 수행해야 합니까? 각 정답은 솔루션의 일부입니다.\n\n참고: 각 올바른 선택은 1점입니다.",
+ "choices": {
+  "A": "Vnet1의 DNS 서버 설정을 구성한다.",
+  "B": "DC3에 DNS 서버 역할을 설치한다.",
+  "C": "corp.fabrikam.com Azure 프라이빗 DNS 영역에 가상 네트워크 링크를 만든다.",
+  "D": "DC3에 조건부 전달자를 구성한다.",
+  "E": "corp.fabrikam.com Azure 프라이빗 DNS 영역에서 자동 등록을 사용하도록 설정한다.",
+  "F": "corp.fabrikam.com이라는 Azure 프라이빗 DNS 영역을 만든다."
+ },
+ "explanation": "Vnet1이 DC3을 사용자 지정 DNS 서버로 사용하도록 구성해야 그 가상 머신들이 DNS 쿼리를 DC3으로 보냅니다. DC3은 Active Directory 도메인에 대한 쿼리에 답하고 필요한 온-프레미스 이름을 확인하기 위해 DNS 서버 역할을 실행해야 합니다. Azure 가상 네트워크 DNS 설정은 지정한 DNS 서버를 연결된 VM에 적용하고, DNS 서버 역할은 Windows Server에 DNS 서비스 기능을 설치합니다."
+},
+"AZ-800-Q188": {
+ "stem": "네트워크에 `contoso.com`이라는 Active Directory Domain Services(AD DS) 도메인이 있습니다. 도메인에는 Server1이라는 DNS 서버가 있습니다. Server1은 DNSSEC으로 서명된 `fabrikam.com`이라는 DNS 영역을 호스팅합니다.\n\n도메인의 모든 멤버 서버가 `fabrikam.com` 네임스페이스에 대해 DNSSEC 유효성 검사를 수행하도록 해야 합니다.\n\n어떻게 해야 합니까?",
+ "choices": {
+  "A": "Server1에서 Add-DnsServerTrustAnchor cmdlet을 실행한다.",
+  "B": "각 멤버 서버에서 Add-DnsServerTrustAnchor cmdlet을 실행한다.",
+  "C": "그룹 정책 개체(GPO)에서 이름 확인 정책 테이블(NRPT)에 규칙을 추가한다.",
+  "D": "그룹 정책 개체(GPO)에서 네트워크 목록 관리자 정책을 수정한다."
+ },
+ "explanation": "이름 확인 정책 테이블(NRPT)을 사용하면 Windows DNS 클라이언트가 지정한 네임스페이스에 대해 DNSSEC 유효성 검사를 요구하게 할 수 있습니다. 도메인 GPO로 `fabrikam.com`에 대한 NRPT 규칙을 배포하면 그 유효성 검사 요구가 도메인의 멤버 서버에 적용됩니다. DNS 서버 트러스트 앵커는 DNS 서버의 유효성 검사 구성에 영향을 줄 뿐, 도메인 전체 클라이언트 DNSSEC 정책이 아닙니다."
+},
+"AZ-800-Q196": {
+ "stem": "DHCP 서버 역할이 설치된 Windows Server 실행 서버가 있습니다. Scope1이라는 범위가 있고 설정은 다음과 같습니다.\n\n- 주소 범위: 192.168.0.2~192.168.1.254\n- 마스크: 255.255.254.0\n- 라우터: 192.168.0.1\n- 임대 기간: 3일\n- DNS 서버: 172.16.0.254\n\n[[IMG1]]\n\n같은 공급업체의 Microsoft Teams Phone 장치 50대가 있습니다. 이들의 MAC 주소는 모두 같은 범위 안에 있습니다.\n\nScope1에서 임대를 받는 모든 Teams Phone 장치가 192.168.1.100~192.168.1.200 범위의 IP 주소를 받도록 해야 합니다. 솔루션은 Scope1에서 IP 구성을 받는 다른 DHCP 클라이언트에 영향을 주지 **않아야** 합니다.\n\n무엇을 만들어야 합니까?",
+ "choices": {"A": "범위", "B": "필터", "C": "범위 옵션", "D": "정책"},
+ "explanation": "범위 수준 DHCP 정책은 MAC 주소 조건으로 Teams Phone 장치를 식별하고 그 정책을 IP 범위 192.168.1.100~192.168.1.200과 연결할 수 있습니다. 정책에 맞지 않는 Scope1의 다른 클라이언트는 일반 범위에서 계속 할당받습니다. Microsoft의 DHCP 정책 cmdlet은 MAC 주소 조건을 지원하고, DHCP 정책에는 연결된 IPv4 주소 범위를 둘 수 있습니다."
+},
+"AZ-800-Q199": {
+ "stem": "네트워크에 도메인 세 개가 있는 Active Directory Domain Services(AD DS) 포리스트가 있습니다. 각 도메인에는 도메인 컨트롤러가 10대씩 있습니다.\n\nDNS 영역을 사용자 지정 Active Directory 파티션에 저장할 계획입니다. 영역용 Active Directory 파티션을 만들어야 하며, 이 파티션은 도메인 컨트롤러 4대에만 복제되어야 합니다.\n\n무엇을 사용해야 합니까?",
+ "choices": {"A": "Active Directory 관리 센터", "B": "Set-DnsServer", "C": "New-ADObject", "D": "ntdsutil.exe"},
+ "explanation": "애플리케이션 디렉터리 파티션은 포리스트의 선택한 도메인 컨트롤러 집합에만 복제할 수 있습니다. `ntdsutil.exe`의 파티션 관리 명령으로 애플리케이션 디렉터리 파티션을 만들고 선택한 도메인 컨트롤러를 복제본 집합에 추가할 수 있어 파티션을 복제본 4개로 제한할 수 있습니다."
+}
+}

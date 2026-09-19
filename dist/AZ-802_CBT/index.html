@@ -41,7 +41,9 @@
         <h2>문제 구성</h2>
         <label>대상 문제
           <select id="questionFilter">
-            <option value="all">전체 문제</option>
+            <option value="all">전체 문제 (현행 + 구형)</option>
+            <option value="scope:current">현행 AZ-802 문제만</option>
+            <option value="scope:legacy">구형 AZ-800/801 문제만</option>
             <option value="unanswered">미응답 문제</option>
             <option value="wrong">오답 문제</option>
             <option value="bookmarked">북마크 문제</option>
@@ -50,6 +52,7 @@
               <option value="type:dropdown">HOTSPOT(드롭다운)만</option>
               <option value="type:drag_drop">DRAG DROP만</option>
               <option value="type:statements">예/아니요만</option>
+              <option value="type:answer_reveal">자기 채점(답 공개형)만</option>
             </optgroup>
             <optgroup label="출제 영역별" id="topicGroup"></optgroup>
           </select>
@@ -77,12 +80,14 @@
             <option value="20" selected>20문항 · 가볍게</option>
             <option value="30">30문항</option>
             <option value="40">40문항</option>
-            <option value="63">63문항 · 전체</option>
+            <option value="50">50문항 · 실전</option>
+            <option value="60">60문항</option>
           </select>
         </label>
+        <label class="check-row"><input type="checkbox" id="examIncludeLegacy"> 구형 AZ-800/801 문제 포함 (<span id="legacyPoolCount">0</span>문항)</label>
         <label class="check-row"><input type="checkbox" id="examTimer"> 시간 제한 사용 (문항당 2분)</label>
         <button class="primary wide" id="examStartSide">모의고사 시작</button>
-        <p class="hint-note">공식 출제 비중대로 영역별 배분하며, 안 푼 문항과 틀린 문항을 먼저 출제합니다.</p>
+        <p class="hint-note">공식 출제 비중대로 영역별 배분하며, 안 푼 문항과 틀린 문항을 먼저 출제합니다. 구형 문제를 포함하면 AZ-802 범위로 재분류된 AZ-800/801 문항이 섞여 나오고, 각 문항 상단에 출처가 표시됩니다.</p>
       </section>
 
       <section class="side-section compact-actions">
@@ -91,14 +96,14 @@
         <button class="danger-text" id="resetProgress">전체 기록 초기화</button>
       </section>
 
-      <p class="dataset-note"><span id="datasetCount">63</span>문항 · 객관식 <span id="mcCount">0</span> · HOTSPOT <span id="hsCount">0</span> · 드래그 <span id="ddCount">0</span> · 예/아니요 <span id="ynCount">0</span><br>출처: examcademy.com AZ-802 · 번역: 한국어(원문 병기)</p>
+      <p class="dataset-note">현행 AZ-802 <span id="datasetCount">63</span>문항 + 구형 AZ-800/801 <span id="legacyCount">0</span>문항 (번역 <span id="legacyKoCount">0</span>)<br>객관식 <span id="mcCount">0</span> · HOTSPOT <span id="hsCount">0</span> · 드래그 <span id="ddCount">0</span> · 예/아니요 <span id="ynCount">0</span> · 자기채점 <span id="arCount">0</span><br>출처: examcademy.com · 번역: 한국어(원문 병기)</p>
     </aside>
 
     <main class="main">
       <header class="topbar">
         <button class="icon-button mobile-only" id="menuToggle" aria-label="메뉴 열기">☰</button>
         <div class="search-wrap">
-          <input id="questionJump" inputmode="numeric" placeholder="문항 번호로 이동 (1~63)">
+          <input id="questionJump" inputmode="numeric" placeholder="문항 번호 (1~63 현행 · 101~ 구형)">
           <button id="jumpButton">이동</button>
         </div>
         <span id="examTimerDisplay" class="exam-timer hidden"></span>
@@ -108,12 +113,12 @@
       <section class="welcome hidden" id="welcome">
         <p class="eyebrow">AZ-802 CBT · 진행상황 서버 저장 · 어느 기기에서든 이어서</p>
         <h1>AZ-802 문제를<br>실전처럼 풀어보세요.</h1>
-        <p>문항은 <strong>이미지 → 한국어 번역 → 답 입력 → 정답·해설</strong> 순서로 표시됩니다. 실제 시험은 영어이므로 각 문항 아래에서 영어 원문도 바로 펼쳐볼 수 있습니다. 틀린 문제는 오답노트에서 다시 풉니다.</p>
+        <p>문항은 <strong>이미지 → 한국어 번역 → 답 입력 → 정답·해설</strong> 순서로 표시됩니다. 실제 시험은 영어이므로 각 문항 아래에서 영어 원문도 바로 펼쳐볼 수 있습니다. 구형 AZ-800/801 문항 중 AZ-802 범위에 남은 것도 같은 영역으로 분류해 두었고, 해당 문항은 상단에 출처를 표시합니다.</p>
         <div class="welcome-cards">
-          <div><strong id="wcTotal">63</strong><span>전체 문항</span></div>
+          <div><strong id="wcTotal">63</strong><span>현행 AZ-802 문항</span></div>
+          <div><strong id="wcLegacy">0</strong><span>구형 AZ-800/801 (범위 내)</span></div>
           <div><strong id="wcMc">0</strong><span>객관식</span></div>
-          <div><strong id="wcHs">0</strong><span>HOTSPOT · 드래그</span></div>
-          <div><strong id="wcYn">0</strong><span>예/아니요</span></div>
+          <div><strong id="wcHs">0</strong><span>HOTSPOT · 드래그 · 예/아니요</span></div>
         </div>
         <div class="hero-actions"><button class="primary hero-button" id="quickStart">순서대로 시작</button><button class="hero-button secondary" id="examStart">모의고사 시작</button><button class="hero-button secondary" id="openWrongNote">오답노트</button><button class="hero-button secondary" id="openExamRuns">모의고사 기록</button></div>
         <p class="exam-note">모의고사는 공식 출제 영역 비중대로 문항을 뽑아 출제하며, 정답과 해설은 세션 종료 전까지 공개하지 않습니다. 문항수·시간 제한은 왼쪽 모의고사 설정에서 바꿀 수 있습니다.</p>
@@ -157,6 +162,7 @@
           <div class="bar"><i id="sessionBar"></i></div>
         </div>
 
+        <div id="legacyBanner" class="legacy-banner hidden"></div>
         <article class="question-card">
           <div id="questionImages" class="question-images"></div>
           <div class="question-text-wrap">

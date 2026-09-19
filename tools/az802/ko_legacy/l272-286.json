@@ -1,0 +1,124 @@
+{
+"AZ-801-Q71": {
+ "stem": "App1이라는 앱을 호스팅하는 Windows Server 실행 서버가 있습니다.\n\nApp1이 외부 SMTP 서버에 액세스하지 못하게 해야 합니다. 솔루션은 다음 요구 사항을 충족해야 합니다.\n\n- App1의 외부 HTTP 서버 액세스에 미치는 영향을 최소화한다.\n- 서버의 다른 앱에 미치는 영향을 최소화한다.\n- 관리 작업을 최소화한다.\n\nWindows Defender 방화벽에서 무엇을 구현해야 합니까?",
+ "choices": {"A": "아웃바운드 프로그램 규칙", "B": "인바운드 사용자 지정 규칙", "C": "아웃바운드 사용자 지정 규칙", "D": "인바운드 프로그램 규칙", "E": "아웃바운드 포트 규칙"},
+ "explanation": "아웃바운드 사용자 지정 규칙은 특정 App1 실행 파일에서 TCP 25 같은 원격 SMTP 포트로 가는 트래픽을 차단할 수 있습니다. 이렇게 하면 제한이 App1의 SMTP 연결에만 국한되어 App1의 아웃바운드 HTTP 액세스는 유지되고 다른 애플리케이션의 SMTP 액세스도 막지 않습니다. Microsoft 문서에 따르면 아웃바운드 프로그램/서비스 규칙은 지정한 포트나 프로토콜로 제한할 수 있지만(사용자 지정 규칙), 아웃바운드 포트 규칙은 모든 프로그램에 적용됩니다."
+},
+"AZ-801-Q72": {
+ "stem": "Server1이라는 온-프레미스 Windows Server와 Microsoft Defender for Cloud를 사용하는 Azure 구독이 있습니다.\n\nServer1을 Defender for Cloud에 온보딩해야 합니다.\n\n어떤 작업을 순서대로 수행해야 합니까? 각 작업은 한 번, 여러 번 또는 전혀 사용되지 않을 수 있습니다.",
+ "items": {
+  "Create a private endpoint.": "프라이빗 엔드포인트를 만든다.",
+  "Create an Azure Storage account.": "Azure Storage 계정을 만든다.",
+  "Create and configure a data collection rule (DCR).": "데이터 수집 규칙(DCR)을 만들고 구성한다.",
+  "Create and configure an Azure runbook.": "Azure runbook을 만들고 구성한다.",
+  "Create and upgrade a Log Analytics workspace.": "Log Analytics 작업 영역을 만들고 업그레이드한다."
+ },
+ "slots": {"step1": "1단계", "step3": "3단계"},
+ "explanation": "데이터 수집 규칙은 대상으로 Log Analytics 작업 영역이 필요하므로 작업 영역을 먼저 만듭니다. 온-프레미스 서버에 Azure Connected Machine 에이전트를 설치하면(2단계, 원본 데이터에 누락) Azure Arc에 연결됩니다. 그 다음 DCR을 구성해 서버 데이터를 수집하고 작업 영역으로 보낼 수 있습니다. 프라이빗 엔드포인트, 스토리지 계정, Automation runbook은 이 온보딩 흐름의 전제 조건이 아닙니다."
+},
+"AZ-801-Q83": {
+ "stem": "Azure Active Directory(Azure AD) 테넌트와 동기화되는 온-프레미스 Active Directory Domain Services(AD DS) 도메인이 있습니다. AD DS 도메인에는 인터넷 액세스가 **없는** DC1이라는 도메인 컨트롤러가 있습니다.\n\n온-프레미스 사용자의 암호 보안을 구성해야 합니다. 솔루션은 다음 요구 사항을 충족해야 합니다.\n\n- 사용자가 알려진 취약한 암호를 사용하지 못하게 한다.\n- 사용자가 암호에 회사 이름을 사용하지 못하게 한다.\n\n어떻게 해야 합니까? 구성은 한 번, 여러 번 또는 전혀 사용되지 않을 수 있습니다.",
+ "items": {
+  "Configure Azure AD Identity Protection.": "Azure AD Identity Protection을 구성한다.",
+  "Configure Azure AD Password Protection.": "Azure AD Password Protection을 구성한다.",
+  "Install the Azure AD Pass-through Authentication Agent.": "Azure AD 통과 인증 에이전트를 설치한다.",
+  "Install the Azure AD Password Protection DC agent.": "Azure AD Password Protection DC 에이전트를 설치한다.",
+  "Install the Azure AD Password Protection proxy service.": "Azure AD Password Protection 프록시 서비스를 설치한다."
+ },
+ "slots": {"dc1": "DC1에서:", "member_server": "멤버 서버에서:", "azure": "Azure에서:"},
+ "explanation": "Azure AD Password Protection은 Microsoft의 전역 금지 암호 목록과 테넌트 사용자 지정 금지 암호 목록을 강제하므로 회사 이름을 금지할 수 있습니다. DC 에이전트가 온-프레미스 AD DS 암호 변경 시 그 정책을 강제합니다. 인터넷에 연결된 멤버 서버의 Password Protection 프록시 서비스가 DC 에이전트를 위해 Azure AD에서 정책을 가져오므로 DC1 자체는 인터넷 액세스가 필요 없습니다."
+},
+"AZ-801-Q84": {
+ "stem": "*(참고: 케이스 스터디 문항으로 원본 사이트에 시나리오 본문이 누락되어 있습니다. 해설로 보면 Default Domain Policy는 최소 8자, User1에게 적용되는 PSO1은 9자, Admin1에게 적용되는 PSO는 없고 OU 연결 GPO에 별도 길이가 있는 구성입니다.)*\n\nUser1과 Admin1의 유효 최소 암호 길이는 각각 얼마입니까?",
+ "blanks": {
+  "user1": {"label": "User1:", "options": ["8", "9", "10", "11", "12"]},
+  "admin1": {"label": "Admin1:", "options": ["8", "9", "10", "11", "12"]}
+ },
+ "explanation": "세분화된 암호 정책은 할당된 사용자나 그룹에 대해 기본 도메인 암호 정책을 재정의합니다. 여러 개가 적용되면 우선순위 값이 낮은 정책이 우선하므로 User1은 PSO1의 9자 최소 길이를 받습니다. Admin1에게는 적용되는 PSO가 없어 Default Domain GPO의 8자 최소 길이를 받습니다. OU에 연결된 암호 정책은 도메인 계정 암호 정책을 바꾸지 않습니다."
+},
+"AZ-801-Q94": {
+ "stem": "*(참고: 케이스 스터디 문항으로 원본 사이트에 시나리오 본문이 누락되어 있습니다. 해설로 보면 User1의 요구 사항은 삭제된 AD 개체 복원 등 도메인 수준 Active Directory 작업을 수행하는 것입니다.)*\n\nUser1에 대한 기술 요구 사항을 충족해야 합니다.\n\ncontoso.com의 어떤 그룹에 User1을 추가해야 합니까?",
+ "choices": {"A": "Domain Admins", "B": "Account Operators", "C": "Schema Admins", "D": "Backup Operators"},
+ "explanation": "Domain Admins 그룹 멤버는 삭제된 개체 처리·복원 같은 도메인 수준 Active Directory 작업에 필요한 액세스를 포함해 도메인 전체 관리 권한을 갖습니다. 나열된 다른 그룹은 계정 관리, 스키마, 백업으로 책임이 좁아 동등한 도메인 전체 관리 액세스를 제공하지 않습니다."
+},
+"AZ-801-Q95": {
+ "stem": "VM1이라는 Azure 가상 머신이 있습니다.\n\nVM1에 Microsoft Defender SmartScreen을 사용하도록 설정합니다.\n\n사용자에게 표시되는 SmartScreen 메시지가 기록되도록 해야 합니다.\n\n어떻게 해야 합니까?",
+ "choices": {"A": "명령 프롬프트에서 WinRM quickconfig를 실행한다.", "B": "로컬 그룹 정책에서 고급 감사 정책 구성 설정을 수정한다.", "C": "이벤트 뷰어에서 디버그 로그를 사용하도록 설정한다.", "D": "Windows 보안 앱에서 바이러스 및 위협 방지 설정을 구성한다."},
+ "explanation": "Microsoft Defender SmartScreen은 사용자에게 표시되는 이벤트를 `Microsoft-Windows-SmartScreen/Debug` 이벤트 로그에 기록합니다. 이 디버그 로그는 기본으로 꺼져 있으므로 이벤트 뷰어에서 사용하도록 설정하면 SmartScreen 메시지가 기록됩니다."
+},
+"AZ-801-Q96": {
+ "stem": "네트워크에 contoso.com이라는 Active Directory Domain Services(AD DS) 도메인이 있습니다. 도메인에는 민감한 워크로드를 실행하는 서버가 포함된 OU1이라는 조직 구성 단위(OU)가 있습니다.\n\n다음 요구 사항을 충족하는 연결 보안 규칙을 추가할 계획입니다.\n\n- OU1의 서버는 도메인에 가입된 컴퓨터의 연결만 받아들여야 한다.\n- OU1의 서버는 도메인에 가입된 컴퓨터와만 통신해야 한다.\n\nGPO1이라는 그룹 정책 개체(GPO)를 만들고 contoso.com에 연결합니다.\n\n고급 보안이 포함된 Windows Defender 방화벽을 사용해 GPO1에 연결 보안 규칙을 구성해야 합니다.\n\n규칙을 어떻게 구성해야 합니까?",
+ "blanks": {
+  "rule_type": {"label": "규칙 유형:", "options": ["인증 예외", "격리(Isolation)", "터널"]},
+  "requirements": {"label": "요구 사항:", "options": ["인바운드·아웃바운드 연결에 인증 요청", "인바운드·아웃바운드 연결에 인증 필요", "인바운드 연결에는 인증 필요, 아웃바운드 연결에는 인증 요청"]},
+  "authentication_method": {"label": "인증 방법:", "options": ["컴퓨터 인증서", "컴퓨터(Kerberos V5)", "미리 공유한 키"]}
+ },
+ "explanation": "격리 연결 보안 규칙은 IPsec 기반의 인증된 통신을 수립합니다. 인바운드·아웃바운드 연결 모두에 인증을 요구하면 서버가 인증된 피어와만 통신할 수 있습니다. Kerberos V5 컴퓨터 인증은 AD DS 도메인에 가입된 컴퓨터에 적합하며, 인증서와 미리 공유한 키는 대체 인증 방식입니다."
+},
+"AZ-801-Q106": {
+ "stem": "네트워크에 Active Directory Domain Services(AD DS) 도메인이 있습니다. 도메인에는 Domain Admins 그룹에 속한 User1과 User2 두 사용자가 있습니다.\n\n도메인의 보안을 강화해야 합니다. 솔루션은 다음 요구 사항을 충족해야 합니다.\n\n- Domain Admins 그룹과 도메인 내 권한 상승에 관련된 위험을 최소화한다.\n- 기본 제공 관리자 계정이 포리스트 복구 작업을 수행할 수 있게 한다.\n- Domain Admins 그룹의 공격 표면을 줄인다.\n- 최소 권한 원칙을 따른다.\n\nDomain Admins 그룹을 어떻게 수정하고, 어떤 사용자 권한을 할당해야 합니까? 각 구성 요소는 한 번, 여러 번 또는 전혀 사용되지 않을 수 있습니다.",
+ "items": {
+  "Add additional accounts.": "계정을 추가한다.",
+  "Remove the built-in administrator account.": "기본 제공 관리자 계정을 제거한다.",
+  "Remove all accounts except for the built-in administrator account": "기본 제공 관리자 계정을 제외한 모든 계정을 제거한다.",
+  "Allow access to this computer from the network\nAllow log on as a batch job\nAllow log on as a service\nAllow log on locally\nAllow log on through Remote Desktop Services user rights": "네트워크에서 이 컴퓨터 액세스 허용 / 일괄 작업으로 로그온 허용 / 서비스로 로그온 허용 / 로컬 로그온 허용 / 원격 데스크톱 서비스를 통한 로그온 허용 사용자 권한",
+  "Deny access to this computer from the network\nDeny log on as a batch job\nDeny log on as a service\nDeny log on locally\nDeny log on through Remote Desktop Services user rights": "네트워크에서 이 컴퓨터 액세스 거부 / 일괄 작업으로 로그온 거부 / 서비스로 로그온 거부 / 로컬 로그온 거부 / 원격 데스크톱 서비스를 통한 로그온 거부 사용자 권한",
+  "Create a token object\nCreate global objects\nEnable computer and user objects to be trusted for delegation\nManage auditing and security log\nReplace a process level token": "토큰 개체 만들기 / 전역 개체 만들기 / 위임할 수 있도록 컴퓨터 및 사용자 계정 트러스트 / 감사 및 보안 로그 관리 / 프로세스 수준 토큰 바꾸기"
+ },
+ "slots": {"domain_admins": "Domain Admins 그룹:", "user_rights": "사용자 권한:"},
+ "explanation": "Domain Admins 멤버십은 비상(break-glass) 시나리오용으로 남겨 두어야 합니다. 기본 제공 Administrator 계정은 기본 멤버이며 포리스트 복구를 위해 멤버십을 유지해야 합니다. Domain Admins에 네트워크·일괄 작업·서비스·로컬·원격 데스크톱 서비스 로그온을 거부하면 멤버 컴퓨터에서 높은 권한의 자격 증명이 노출되거나 재사용될 기회가 줄어듭니다."
+},
+"AZ-801-Q116": {
+ "stem": "Windows Server를 실행하는 서버가 있습니다.\n\n다음 보안 기능을 사용하도록 설정해야 합니다.\n\n- 코어 격리\n- 이미지에 대한 무작위화 강제(필수 ASLR)\n\n각 기능을 사용하도록 설정하려면 어떤 Windows 보안 타일을 사용해야 합니까?",
+ "blanks": {
+  "core_isolation": {"label": "코어 격리:", "options": ["앱 및 브라우저 컨트롤", "장치 보안", "방화벽 및 네트워크 보호", "바이러스 및 위협 방지"]},
+  "mandatory_aslr": {"label": "이미지에 대한 무작위화 강제(필수 ASLR):", "options": ["앱 및 브라우저 컨트롤", "장치 보안", "방화벽 및 네트워크 보호", "바이러스 및 위협 방지"]}
+ },
+ "explanation": "코어 격리 설정은 장치 보안 아래에 있습니다. 필수 ASLR은 Exploit protection 시스템 설정으로, 앱 및 브라우저 컨트롤을 통해 접근합니다."
+},
+"AZ-801-Q117": {
+ "stem": "*(참고: 케이스 스터디 문항으로 원본 사이트에 시나리오 본문이 누락되어 있습니다. 문맥상 온-프레미스 AD 도메인의 서버에서 승인된 애플리케이션만 실행되도록 하는 보안 요구 사항입니다.)*\n\n애플리케이션을 승인하고 보안 요구 사항을 충족하는 보안 정책 솔루션을 구현해야 합니다. 어떤 서비스가 보안 정책을 강제하고, 무엇으로 정책 설정을 관리해야 합니까?",
+ "blanks": {
+  "enforce_policy": {"label": "보안 정책 강제:", "options": ["Microsoft Defender Application Control", "Microsoft Defender Application Guard", "Microsoft Defender Credential Guard", "Microsoft Defender for Endpoint"]},
+  "manage_settings": {"label": "정책 설정 관리:", "options": ["Microsoft Intune의 구성 프로필", "Microsoft Intune의 준수 정책", "그룹 정책 개체(GPO)"]}
+ },
+ "explanation": "Microsoft Defender Application Control(WDAC)은 신뢰할 수 있는 코드를 정의하고 신뢰할 수 없는 애플리케이션의 실행을 막는 애플리케이션 제어 정책을 강제합니다. WDAC 정책 배포와 관리는 그룹 정책 개체(GPO)로 수행할 수 있습니다."
+},
+"AZ-801-Q118": {
+ "stem": "네트워크에 Server1, Server2, Server3 세 대의 Windows Server 컴퓨터가 포함된 Active Directory Domain Services(AD DS) 도메인이 있습니다. 세 서버는 같은 네트워크에 있고 서로 통신할 수 있습니다.\n\nServer1의 Windows Defender 방화벽에는 모든 IP 주소와 도메인·개인·공용 프로필에 적용되는 Rule1이라는 서버 간 연결 보안 규칙이 있습니다. 이 규칙은 인바운드 연결에 인증을 요구하고 아웃바운드 연결에 인증을 요청하며, 컴퓨터(Kerberos V5)를 사용합니다.\n\nServer2에는 연결 보안 규칙이 없습니다.\n\nServer3의 Windows Defender 방화벽에는 모든 IP 주소와 도메인·개인·공용 프로필에 적용되는 Rule1이라는 서버 간 연결 보안 규칙이 있습니다. 이 규칙은 인바운드·아웃바운드 연결 모두에 인증을 요청하며, 컴퓨터(Kerberos V5)를 사용합니다.\n\n다음 각 문장에 대해, 문장이 참이면 예를, 그렇지 않으면 아니요를 선택하십시오.",
+ "statements": [
+  "Server1이 Server2와 네트워크 연결을 수립하면 그 연결은 암호화된다.",
+  "Server2는 Server3과 네트워크 연결을 수립할 수 있다.",
+  "Server3이 Server1과 네트워크 연결을 수립하면 그 연결은 암호화된다."
+ ],
+ "explanation": "Windows Defender 방화벽의 연결 보안 규칙은 IPsec으로 두 피어를 인증하지만, 암호화를 명시적으로 요구하지 않는 한 트래픽을 암호화하지 않습니다. 기본적으로 '암호화 필요' 옵션이 꺼져 있어 인증만 암호화 없이 이루어집니다. 따라서 Server1→Server2 연결도 Server3→Server1 연결도 암호화되지 않으므로 문장 1과 3은 아니요입니다. Server2에는 연결 보안 규칙이 없고 Server3은 인바운드 연결에 인증을 요청만(요구가 아님) 하므로 Server3은 비보호 통신으로 폴백해 Server2가 연결할 수 있어 문장 2는 예입니다. 인증 요청은 인증할 수 없는 피어를 차단하지 않으며, 요구만 차단합니다."
+},
+"AZ-801-Q128": {
+ "stem": "VM1이라는 Windows Server 가상 머신이 포함된 Azure 구독이 있습니다.\n\nMicrosoft Defender for Servers Plan 2를 사용하도록 설정합니다.\n\n파일 무결성 모니터링(FIM)을 구현해야 합니다.\n\n먼저 무엇을 만들어야 합니까?",
+ "choices": {"A": "Log Analytics 작업 영역", "B": "프라이빗 엔드포인트", "C": "스토리지 계정", "D": "데이터 수집 규칙(DCR)"},
+ "explanation": "Microsoft Defender for Servers Plan 2의 파일 무결성 모니터링은 모니터링된 파일·레지스트리 변경 이벤트를 Log Analytics 작업 영역에 저장합니다. 따라서 FIM을 구성하기 전에 작업 영역이 필요하며, 기존 작업 영역이든 구성 중에 만든 것이든 상관없습니다."
+},
+"AZ-801-Q131": {
+ "stem": "Windows Server를 실행하는 Server1이라는 서버가 있습니다.\n\nServer1에 기본 App Control for Business 정책을 감사 모드로 사용하도록 설정합니다.\n\nServer1에 설치된 특정 타사 애플리케이션이 App Control for Business에 의해 실행 허용되도록 해야 합니다.\n\n어떤 네 가지 작업을 순서대로 수행해야 합니까?",
+ "items": {
+  "Run the Set-CIPolicyVersion and Set-CIPolicyIdInfo cmdlets.": "Set-CIPolicyVersion과 Set-CIPolicyIdInfo cmdlet을 실행한다.",
+  "Run the Enable-OSConfigDriftControl cmdlet.": "Enable-OSConfigDriftControl cmdlet을 실행한다.",
+  "Run the Set-OSConfigDesiredConfiguration cmdlet.": "Set-OSConfigDesiredConfiguration cmdlet을 실행한다.",
+  "From the Windows Defender App Control Policy Wizard, generate an XML file.": "Windows Defender App Control 정책 마법사에서 XML 파일을 생성한다.",
+  "From Event Viewer, generate an EVTX file.": "이벤트 뷰어에서 EVTX 파일을 생성한다.",
+  "Run the New-CIPolicy and New-CIPolicyRule cmdlets.": "New-CIPolicy와 New-CIPolicyRule cmdlet을 실행한다."
+ },
+ "slots": {"step1": "1단계", "step2": "2단계", "step3": "3단계", "step4": "4단계"},
+ "explanation": "App Control 감사 모드는 타사 애플리케이션 활동을 CodeIntegrity 이벤트 ID 3076으로 기록합니다. 이 이벤트를 EVTX로 내보내면 App Control 마법사가 허용 규칙이 포함된 보조 정책 XML을 만들 수 있습니다. 그 다음 보조 정책의 정책 ID와 버전을 설정한 뒤 OSConfig로 서버에 배포합니다."
+},
+"AZ-801-Q144": {
+ "stem": "Sub1이라는 Azure 구독이 포함된 MG1이라는 관리 그룹이 있습니다. Sub1에는 다음 표의 리소스가 있습니다.\n\n[[IMG1]]\n\nMicrosoft Defender for Servers를 사용하도록 설정해야 합니다.\n\nAzure portal에서 어떤 두 리소스에 Defender for Servers를 사용하도록 설정할 수 있습니까? 각 정답은 완전한 솔루션입니다.\n\n참고: 각 올바른 선택은 1점입니다.",
+ "choices": {"A": "RG1", "B": "Workspace1", "C": "Sub1", "D": "MG1", "E": "VNet1", "F": "VM1"},
+ "explanation": "Microsoft Defender for Servers는 Microsoft Defender for Cloud에서 구독 수준으로 사용하도록 설정할 수 있으며, 그 구독의 해당 리소스를 보호합니다. Defender for Servers는 Log Analytics 작업 영역 수준의 플랜으로도 제공됩니다. 리소스 그룹, 관리 그룹, 가상 네트워크, 개별 VM은 여기서 적용 가능한 활성화 범위가 아닙니다."
+},
+"AZ-801-Q148": {
+ "stem": "Microsoft Defender for Cloud가 활성화된 Azure 구독이 있습니다.\n\nWindows Server를 실행하는 Azure 가상 머신 50대가 있습니다.\n\n가상 머신에서 감지된 보안 익스플로잇이 Defender for Cloud로 전송되도록 해야 합니다.\n\n가상 머신에 어떤 확장을 사용하도록 설정해야 합니까?",
+ "choices": {"A": "머신용 취약성 평가", "B": "Microsoft Dependency 에이전트", "C": "Azure VM용 Log Analytics 에이전트", "D": "게스트 구성 에이전트"},
+ "explanation": "Azure VM용 Log Analytics 에이전트는 가상 머신에서 보안 관련 구성과 이벤트 로그를 수집해 Log Analytics 작업 영역으로 복사하며, Microsoft Defender for Cloud가 이를 분석해 보안 위협을 감지합니다. Microsoft는 이후 현재 배포에서 이 에이전트를 사용 중지했지만(AMA로 대체), 제시된 선택지 중에서는 이 확장이 요구 사항을 충족합니다."
+}
+}

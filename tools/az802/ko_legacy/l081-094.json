@@ -1,0 +1,131 @@
+{
+"AZ-800-Q12": {
+ "stem": "sub1이라는 Azure 구독과 Windows Server를 실행하는 온-프레미스 가상 머신 500대가 있습니다.\n\nAzure Arc 배포 스크립트를 실행해 온-프레미스 가상 머신을 Azure Arc에 온보딩할 계획입니다.\n\n스크립트가 sub1에 대한 액세스를 인증하는 데 사용할 ID를 만들어야 합니다. 솔루션은 최소 권한 원칙을 따라야 합니다.\n\n명령을 어떻게 완성해야 합니까?",
+ "blanks": {
+  "identity": {"label": "ID 생성 cmdlet", "options": ["New-AzADAppCredential", "New-AzADServicePrincipal", "New-AzUserAssignedIdentity"]},
+  "role": {"label": "역할", "options": ["'Azure Connected Machine Onboarding'", "'Virtual Machine Contributor'", "'Virtual Machine User Login'"]}
+ },
+ "explanation": "서비스 주체(service principal)는 대규모 스크립트 기반 Azure Arc 온보딩에 적합한 비대화형 ID입니다. Azure Connected Machine Onboarding 기본 제공 역할은 확장 관리나 일반 가상 머신 권한 없이 Arc 지원 서버 리소스의 생성·읽기만 허용하므로 최소 권한입니다."
+},
+"AZ-800-Q19": {
+ "stem": "Azure Arc 지원 서버인 Windows Server 실행 온-프레미스 서버 100대와 Azure 구독이 있습니다. 다음 ARM 템플릿을 사용해 서버에 Custom Script Extension을 배포합니다.\n\n[[IMG1]]\n\n스토리지 계정 키를 다시 생성하고 템플릿을 업데이트합니다.\n\n다음 요구 사항을 충족해야 합니다.\n\n- 서버에서 스크립트가 다시 실행되도록 한다.\n- 서버에서 키가 유출될 위험을 최소화한다.\n\n어떻게 해야 합니까?",
+ "blanks": {
+  "runs_again": {"label": "스크립트가 다시 실행되도록 하려면:", "options": ["autoUpgradeMinorVersion 속성 값을 true로 변경한다.", "typeHandlerVersion 속성 값을 올린다.", "timestamp 속성 값을 수정한다."]},
+  "minimize_key_risk": {"label": "키 유출 위험을 최소화하려면:", "options": ["storageAccountName 속성과 storageAccountKey 속성을 protectedSettings 개체로 옮긴다.", "storageAccountKey 속성을 제거하고 settings 개체에 managedIdentity 속성을 추가한다.", "storageAccountKey 속성을 제거하고 protectedSettings 개체에 managedIdentity 속성을 추가한다."]}
+ },
+ "explanation": "`timestamp`를 다른 정수로 바꾸면 Custom Script Extension이 다시 실행됩니다. 스토리지 계정 자격 증명은 암호화되는 `protectedSettings`에 함께 두어야 합니다. 이 확장의 관리 ID 인증은 Azure Arc 지원 서버에서 지원되지 않습니다."
+},
+"AZ-800-Q27": {
+ "stem": "Azure Active Directory(Azure AD) 테넌트와 동기화되는 온-프레미스 Active Directory Domain Services(AD DS) 도메인이 있습니다. 도메인에는 Server1과 Server2 두 대의 서버가 있습니다.\n\nAdmin1이라는 사용자는 Server1과 Server2의 로컬 Administrators 그룹에 속합니다.\n\nAzure Arc로 Server1과 Server2를 관리할 계획입니다. Azure Arc 개체는 RG1이라는 리소스 그룹에 추가됩니다.\n\nAdmin1이 Server1과 Server2를 Azure Arc로 관리되도록 구성할 수 있게 해야 합니다.\n\n먼저 무엇을 해야 합니까?",
+ "choices": {
+  "A": "Azure portal에서 새 온보딩 스크립트를 생성한다.",
+  "B": "RG1에 대해 Admin1에게 Azure Connected Machine Onboarding 역할을 할당한다.",
+  "C": "Server1과 Server2를 하이브리드 Azure AD 조인한다.",
+  "D": "Admin1용 Azure 클라우드 전용 계정을 만든다."
+ },
+ "explanation": "서버를 Azure Arc에 온보딩하려면 Azure Arc 지원 서버 리소스가 만들어질 리소스 그룹에 대한 Azure RBAC 권한이 필요합니다. Azure Connected Machine Onboarding 역할은 그 리소스를 만들고 읽을 권한을 부여하며, Admin1의 로컬 관리자 멤버십으로 필요한 서버 쪽 구성이 가능합니다. 따라서 RG1 범위에서 역할을 할당하는 것이 필요한 첫 작업입니다."
+},
+"AZ-800-Q38": {
+ "stem": "네트워크에 Active Directory Domain Services(AD DS) 도메인이 있습니다. 도메인에는 Server1이라는 서버가 있습니다.\n\nServer1에 Windows Admin Center를 설치하고, 이를 사용해 허용된 그룹에서 BUILTIN\\Users를 제거합니다.\n\n그런데 모든 사용자가 여전히 Windows Admin Center에 로그인할 수 있습니다.\n\n권한 없는 사용자가 Windows Admin Center에 로그인하지 못하게 해야 합니다.\n\nWindows Admin Center에서 무엇을 해야 합니까?",
+ "choices": {
+  "A": "성능 프로필을 켬으로 설정한다.",
+  "B": "'다른 계정으로 관리 세션에 재인증 요구'를 켬으로 설정한다.",
+  "C": "프록시 설정에서 우회 목록을 구성한다.",
+  "D": "허용된 그룹에 보안 그룹을 추가한다."
+ },
+ "explanation": "Windows Admin Center는 Active Directory 또는 로컬 컴퓨터 그룹으로 게이트웨이 액세스를 제어합니다. 액세스 그룹이 정의되어 있지 않으면 게이트웨이 역할은 게이트웨이 서버에 대한 Windows 계정 액세스를 그대로 반영합니다. 보안 그룹을 허용된 그룹으로 추가하면 명시적인 권한 부여 그룹이 만들어져 게이트웨이 액세스가 그 멤버로 제한됩니다."
+},
+"AZ-800-Q44": {
+ "stem": "Azure 구독과 Windows 11을 실행하는 Computer1이라는 컴퓨터가 있습니다.\n\nAzure portal에서 기본 설정으로 VM1이라는 Windows Server 가상 머신을 배포합니다.\n\nPowerShell 원격 관리로 VM1에 연결할 수 있게 해야 합니다.\n\n어떤 cmdlet을 어디에서 실행해야 합니까?",
+ "blanks": {
+  "run_from": {"label": "실행 위치:", "options": ["Computer1의 PowerShell 세션", "VM1의 PowerShell 세션", "Azure Cloud Shell"]},
+  "cmdlet": {"label": "cmdlet:", "options": ["Enable-AzVMPSRemoting", "Enable-PSRemoting -Force", "Enable-PSSessionConfiguration"]}
+ },
+ "explanation": "`Enable-AzVMPSRemoting`은 Azure Cloud Shell에서 실행해 Azure VM의 PowerShell 원격 관리를 구성합니다. 대상 VM의 Windows 원격 관리 구성과 필요한 네트워크 액세스를 함께 활성화합니다. `Enable-PSRemoting` 같은 게스트 로컬 명령은 새로 배포된 VM에 도달하는 데 필요한 Azure 네트워킹을 구성하지 않습니다."
+},
+"AZ-800-Q47": {
+ "stem": "개인 IP 주소만 있는 VM1이라는 Azure 가상 머신이 있습니다.\n\nVM1에 Windows Admin Center 확장을 구성합니다.\n\n서버 관리에 사용하는 Windows 11 실행 온-프레미스 컴퓨터가 있습니다.\n\nAzure portal의 Windows Admin Center로 VM1을 관리할 수 있게 해야 합니다.\n\n무엇을 구성해야 합니까?",
+ "choices": {
+  "A": "VM1이 있는 가상 네트워크에 Azure Bastion 호스트",
+  "B": "VM1이 있는 가상 네트워크로의 VPN 연결",
+  "C": "VM1이 있는 가상 네트워크에 프라이빗 엔드포인트",
+  "D": "포트 443의 인바운드 트래픽을 허용하는 네트워크 보안 그룹(NSG) 규칙"
+ },
+ "explanation": "Azure portal의 Windows Admin Center는 Windows Admin Center가 설치된 포트로 VM의 IP 주소에 직접 인바운드 연결이 필요합니다. 개인 IP만 있는 VM에는 가상 네트워크로의 VPN 연결이 필요한 사설 네트워크 연결을 제공합니다. Microsoft 문서에 따르면 Azure portal의 Windows Admin Center는 Azure Bastion을 지원하지 않으며, 문서화된 Windows Admin Center 인바운드 포트는 기본 6516이지 443이 아닙니다."
+},
+"AZ-800-Q70": {
+ "stem": "네트워크에 Server1이라는 서버가 포함된 Active Directory Domain Services(AD DS) 도메인이 있습니다.\n\nServer1에 JEA(Just Enough Administration)를 구현합니다.\n\nJEA만 사용해 Server1에서 원격 관리 작업을 수행해야 합니다.\n\n무엇을 사용해야 합니까?",
+ "choices": {
+  "A": "PowerShell만",
+  "B": "원격 서버 관리 도구(RSAT)만",
+  "C": "PowerShell 또는 원격 데스크톱만",
+  "D": "PowerShell 또는 원격 서버 관리 도구(RSAT)만",
+  "E": "원격 서버 관리 도구(RSAT) 또는 원격 데스크톱만",
+  "F": "PowerShell, 원격 서버 관리 도구(RSAT) 또는 원격 데스크톱"
+ },
+ "explanation": "JEA(Just Enough Administration)는 PowerShell 엔드포인트를 통해 관리를 위임·제한하며, 사용자를 세션에 허용된 cmdlet·함수·외부 명령으로 제한합니다. 원격 서버 관리 도구(RSAT)와 원격 데스크톱은 제한된 JEA 엔드포인트 모델을 사용하지 않습니다."
+},
+"AZ-800-Q73": {
+ "stem": "네트워크에 Active Directory Domain Services(AD DS) 도메인이 있습니다. 도메인에는 다음 표의 서버가 있습니다.\n\n[[IMG1]]\n\nServer1의 Windows Admin Center가 Server2의 DHCP 서버 역할을 관리할 수 있게 해야 합니다.\n\n먼저 무엇을 해야 합니까?",
+ "choices": {
+  "A": "Server1에 DHCP 서버 도구 기능을 설치한다.",
+  "B": "Windows Admin Center 확장을 설치한다.",
+  "C": "Server2에 DHCP 서버 도구 기능을 설치한다.",
+  "D": "Server2의 PowerShell 원격 관리 설정을 수정한다."
+ },
+ "explanation": "Windows Admin Center는 확장 피드에서 제공되는 DHCP 확장을 통해 DHCP 서버 관리를 제공합니다. 이 확장을 Windows Admin Center 게이트웨이에 설치하면 대상 서버의 DHCP 범위·예약 및 관련 DHCP 구성을 관리할 수 있습니다."
+},
+"AZ-800-Q79": {
+ "stem": "Windows Server를 실행하는 가상 머신 여러 대가 포함된 Azure 구독이 있습니다.\n\nAzure Machine Configuration 패키지를 만들어야 합니다.\n\n어떤 세 가지 작업을 순서대로 수행해야 합니까?",
+ "items": {
+  "Create a YAML file.": "YAML 파일을 만든다.",
+  "Generate a CAB file.": "CAB 파일을 생성한다.",
+  "Generate a MOF file.": "MOF 파일을 생성한다.",
+  "Generate a ZIP file.": "ZIP 파일을 생성한다.",
+  "Create a PS1 file.": "PS1 파일을 만든다."
+ },
+ "slots": {"step1": "1단계", "step2": "2단계", "step3": "3단계"},
+ "explanation": "Windows용 Azure Machine Configuration 패키지는 PowerShell DSC 구성(.ps1)에서 시작합니다. 그 구성을 컴파일하면 MOF(Managed Object Format) 문서가 생성되고, MOF와 필요한 리소스를 Machine Configuration용 ZIP 파일로 패키징합니다."
+},
+"AZ-800-Q86": {
+ "stem": "Windows Admin Center가 설치된 Server1이라는 서버가 있습니다. Windows Admin Center가 사용하는 인증서는 인증 기관(CA)이 발급했으며 만료되었습니다.\n\n그 인증서를 교체해야 합니다.\n\n어떤 세 가지 작업을 순서대로 수행해야 합니까?",
+ "items": {
+  "Obtain and install a new certificate.": "새 인증서를 발급받아 설치한다.",
+  "From Internet Information Services (IIS) Manager, bind a certificate.": "IIS(인터넷 정보 서비스) 관리자에서 인증서를 바인딩한다.",
+  "Run Windows Admin Center Setup and select Remove.": "Windows Admin Center 설치 프로그램을 실행하고 제거를 선택한다.",
+  "Run Windows Admin Center Setup and select Repair.": "Windows Admin Center 설치 프로그램을 실행하고 복구를 선택한다.",
+  "Run Windows Admin Center Setup and select Change.": "Windows Admin Center 설치 프로그램을 실행하고 변경을 선택한다.",
+  "Copy the certificate thumbprint.": "인증서 지문(thumbprint)을 복사한다."
+ },
+ "slots": {"step1": "1단계", "step2": "2단계", "step3": "3단계"},
+ "explanation": "Windows Admin Center의 인증서 업데이트 절차는 먼저 유효한 TLS 인증서가 로컬에 설치되어 있어야 하고, 그 인증서의 지문을 설치 프로그램의 변경 마법사에 입력해야 합니다. IIS 인증서 바인딩은 Windows Admin Center 게이트웨이를 구성하지 않으며, 제거나 복구는 교체 TLS 인증서를 선택하지 않습니다."
+},
+"AZ-800-Q87": {
+ "stem": "*(참고: 케이스 스터디 문항으로 원본 사이트에 시나리오 본문이 누락되어 있습니다. 문맥상 Task1은 Azure Automation runbook으로 자동화할 작업입니다.)*\n\nTask1에 사용할 수 있는 두 가지 언어는 무엇입니까? 각 정답은 완전한 솔루션입니다.\n\n[[IMG1]]\n\n[[IMG2]]\n\n[[IMG3]]\n\n[[IMG4]]\n\n[[IMG5]]\n\n[[IMG6]]\n\n[[IMG7]]",
+ "choices": {"A": "Bicep", "B": "Python", "C": "Java", "D": "PowerShell", "E": "JavaScript"},
+ "explanation": "Azure Automation은 PowerShell과 Python runbook을 지원합니다. Bicep은 Azure 리소스 배포에 사용되며, Java와 JavaScript는 Azure Automation runbook 유형이 아닙니다."
+},
+"AZ-800-Q88": {
+ "stem": "네트워크에 contoso.com이라는 Active Directory Domain Services(AD DS) 도메인이 있습니다. 도메인에는 Server1과 Server2 두 대의 Windows Server 서버가 있습니다. 또한 User1과 User2 두 사용자가 있습니다.\n\n다음 작업을 수행합니다.\n\n- Server2에서 원격 SSH 액세스를 사용하도록 설정한다.\n- Server1에 User1으로 로그인한다.\n\nServer1에서 Server2로 SSH 세션을 맺고 User2로 로그인해야 합니다.\n\n어떤 명령을 실행해야 합니까?",
+ "choices": {"A": "sshd Contoso\\User2@Server2", "B": "ssh Contoso\\User2@Server2", "C": "ssh Server2 Contoso\\User2", "D": "sshd Server2 Contoso\\User2"},
+ "explanation": "Windows OpenSSH 클라이언트는 지정한 도메인 사용자로 원격 SSH 서버에 연결할 때 `ssh 도메인\\사용자이름@서버이름` 구문을 사용합니다. 따라서 `ssh Contoso\\User2@Server2`가 Contoso\\User2로 Server2에 연결합니다. `sshd`는 서버 데몬이지 클라이언트 연결 명령이 아닙니다."
+},
+"AZ-800-Q89": {
+ "stem": "네트워크에 contoso.com과 fabrikam.com이라는 두 개의 Active Directory Domain Services(AD DS) 포리스트가 있습니다. 두 포리스트 사이에 양방향 포리스트 트러스트가 구성되어 있습니다. 각 포리스트에는 도메인이 하나씩 있습니다.\n\n도메인에는 다음 표의 서버가 있습니다.\n\n[[IMG1]]\n\ncontoso.com의 사용자가 Server1의 Windows Admin Center를 사용해 Server2에 연결할 수 있도록 리소스 기반 제한 위임을 구성해야 합니다. 명령을 어떻게 완성해야 합니까?",
+ "blanks": {
+  "identity": {"label": "-Identity", "options": ["(Get-ADComputer server1.contoso.com)", "(Get-ADComputer server2.fabrikam.com)", "(Get-ADGroup 'Contoso\\Domain Users')", "(Get-ADGroup 'Fabrikam\\Domain Users')"]},
+  "principals": {"label": "-PrincipalsAllowedToDelegateToAccount", "options": ["(Get-ADComputer server1.contoso.com)", "(Get-ADComputer server2.fabrikam.com)", "(Get-ADGroup 'Contoso\\Domain Users')", "(Get-ADGroup 'Fabrikam\\Domain Users')"]}
+ },
+ "explanation": "리소스 기반 제한 위임은 백엔드 리소스 컴퓨터에서 구성합니다. 따라서 Server2가 Windows Admin Center 게이트웨이 컴퓨터인 Server1이 사용자를 대신해 동작하도록 허용해야 합니다. `PrincipalsAllowedToDelegateToAccount` 매개변수는 컴퓨터 계정의 `msDS-AllowedToActOnBehalfOfOtherIdentity` 특성을 설정합니다."
+},
+"AZ-800-Q95": {
+ "stem": "Windows Server를 실행하는 Server1이라는 온-프레미스 서버가 있습니다.\n\nAzure 구독이 있습니다. 구독에는 Windows Server를 실행하는 VM1이라는 가상 머신이 있습니다. 구독에는 다음과 같은 사용자 지정 규칙이 있는 NSG1이라는 네트워크 보안 그룹(NSG)이 있습니다.\n\n[[IMG1]]\n\nVM1의 네트워크 인터페이스는 NSG1에 연결되어 있습니다.\n\nAzure portal의 Windows Admin Center를 사용해 Server1에서 VM1을 관리할 계획입니다.\n\nAzure portal을 통해 VM1에 Windows Admin Center를 설치할 수 있게 해야 합니다. 솔루션은 관리 작업을 최소화해야 합니다.\n\n어떻게 해야 합니까?",
+ "choices": {
+  "A": "Rule2의 우선순위를 수정하고 아웃바운드 포트 규칙을 추가한다.",
+  "B": "Rule1의 우선순위를 수정하고 인바운드 포트 규칙을 추가한다.",
+  "C": "Rule2의 우선순위를 수정하고 인바운드 포트 규칙을 추가한다.",
+  "D": "Rule1의 우선순위를 수정하고 아웃바운드 포트 규칙을 추가한다."
+ },
+ "explanation": "Windows Admin Center Azure 확장을 설치하려면 VM에서 `WindowsAdminCenter` 서비스 태그로의 아웃바운드 TCP 443 연결이 필요합니다. 우선순위 100의 `VirtualNetwork`→`Internet` 아웃바운드 TCP 거부 규칙은 숫자가 더 큰 우선순위의 새 규칙보다 먼저 적용됩니다. 그 규칙의 우선순위를 바꾸면 Windows Admin Center 서비스에 대한 특정 아웃바운드 허용 규칙이 먼저 평가될 수 있습니다."
+}
+}

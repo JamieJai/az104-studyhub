@@ -1,0 +1,101 @@
+{
+"AZ-800-Q294": {
+ "stem": "네트워크에 Active Directory Domain Services(AD DS) 도메인이 있습니다. 도메인에는 Server1과 Server2 두 대의 서버와 다음 표의 사용자가 있습니다.\n\n[[IMG1]]\n\n어떤 사용자가 Server1에서 Server2로 PowerShell 원격 세션을 만들 수 있습니까?",
+ "choices": {"A": "User1과 User3만", "B": "User2와 User4만", "C": "User3과 User4만", "D": "User1, User3, User4만", "E": "User1, User2, User3, User4"},
+ "explanation": "PowerShell 원격 관리 권한은 **원격 컴퓨터**의 해당 그룹 멤버십으로 결정됩니다. Server2의 Administrators와 Remote Management Users는 연결이 허용되므로 도메인 관리자, Server2 관리자, Server2의 Remote Management Users 멤버가 연결할 수 있습니다. Server1의 Remote Management Users 멤버십은 Server2에 대한 원격 관리 권한을 주지 않습니다."
+},
+"AZ-800-Q304": {
+ "stem": "시뮬레이션\n\nSRV1의 Windows Admin Center를 통해 DC1을 관리할 수 있게 해야 합니다.\n\n필요한 원본 파일은 `\\\\dc1.contoso.com\\install`에 있습니다.\n\nWindows Admin Center에 연결하려면 Microsoft Edge를 열고 다음 주소를 입력합니다.\n\n`https://localhost`",
+ "answerText": "1. SRV1에서 파일 탐색기를 열어 `\\\\dc1.contoso.com\\install`로 이동한 뒤, Windows Admin Center 설치 프로그램(`WindowsAdminCenter.msi`)을 SRV1의 로컬 폴더(예: `C:\\Temp`)로 복사합니다.\n2. SRV1에서 `WindowsAdminCenter.msi`를 실행해 게이트웨이 모드로 설치합니다. 사용 조건에 동의하고 기본 옵션(포트 443 사용, 설치 프로그램이 자체 서명 TLS 인증서 생성)을 선택한 뒤 설치를 마칩니다.\n3. SRV1에서 Microsoft Edge를 실행해 `https://localhost`로 이동해 Windows Admin Center를 열고 관리자 계정으로 로그인합니다.\n4. Windows Admin Center에서 **추가**를 선택하고 **관리 대상 추가 > 서버**를 선택한 뒤 `DC1`(또는 `DC1.contoso.com`)을 입력하고 **제출**을 선택해 DC1이 **모든 연결** 목록에 관리 서버로 나타나게 합니다.",
+ "explanation": "Windows Admin Center(WAC)는 로컬에 배포하는 브라우저 기반 관리 도구입니다. 한 머신에 게이트웨이 모드로 설치하면 그 머신이 클라이언트 콘솔이나 서버별 에이전트 없이 WinRM으로 다른 서버를 관리하는 포털이 됩니다. SRV1에 게이트웨이를 설치한 뒤 DC1을 관리 연결로 추가하는 것이 SRV1에서 DC1을 WAC로 관리하게 만드는 절차입니다. WAC 설치 프로그램을 실행하거나 접속하는 것만으로 *다른* 서버의 관리 권한이 생기지는 않으며, 이후 서버를 연결로 명시적으로 추가해야 합니다. 설치 프로그램은 빠른 설치 또는 사용자 지정 설치를 제공하며, 빠른 설치는 자체 서명 인증서로 기본 HTTPS 포트의 `https://localhost`에 게이트웨이를 바인딩하므로 설치 직후 Edge로 `https://localhost`에 접속하는 시나리오와 맞습니다. 네트워크 공유 `\\\\dc1.contoso.com\\install`에서 설치 프로그램을 먼저 복사하는 이유는 게이트웨이 머신(SRV1)이 `.msi`/`.exe` 패키지를 실행하려면 로컬 액세스가 필요하기 때문입니다. WAC가 SRV1에서 실행되면 DC1은 다른 서버와 마찬가지로 **추가 > 서버**에서 대상 이름을 입력해 WinRM 기반 연결을 맺는 방식으로 추가합니다(추가를 수행하는 계정은 DC1의 관리 권한이 있어야 하고, DC1에서 WinRM/PowerShell 원격 관리가 켜져 있어야 하는데 최신 Windows Server에서는 기본으로 켜져 있습니다)."
+},
+"AZ-800-Q305": {
+ "stem": "Windows Server를 실행하고 Azure Arc 지원 서버인 Server1이라는 서버가 있습니다.\n\nServer1에 Microsoft Monitoring Agent가 설치되지 않도록 해야 합니다.\n\n명령을 어떻게 완성해야 합니까?",
+ "blanks": {
+  "command": {"label": "명령", "options": ["az", "azcmagent", "waappagent"]},
+  "subcommand": {"label": "하위 명령", "options": ["arcapppliance", "config", "connectedmachine"]}
+ },
+ "explanation": "Azure Connected Machine 에이전트는 `azcmagent config set extensions.blocklist`로 지정한 Azure Arc 확장의 설치를 거부합니다. Microsoft Monitoring Agent 확장 식별자는 `Microsoft.EnterpriseCloud.Monitoring/MicrosoftMonitoringAgent`이므로 이를 차단 목록에 넣으면 설치가 방지됩니다."
+},
+"AZ-800-Q310": {
+ "stem": "다음 표의 리소스가 포함된 Azure 구독이 있습니다.\n\n[[IMG1]]\n\nAzure Machine Configuration을 사용한 리소스 관리를 평가하고 있습니다.\n\nMachine Configuration 패키지로 관리할 수 있는 리소스는 무엇입니까?",
+ "choices": {"A": "VM1만", "B": "VM2만", "C": "VM1과 VM2만", "D": "VM1과 Server1만", "E": "VM1, VM2, VM3만", "F": "VM1, VM2, Server1만"},
+ "explanation": "Azure 가상 머신은 Machine Configuration 서비스에 인증하기 위해 Machine Configuration 확장과 시스템 할당 관리 ID가 필요합니다. Azure Arc 지원 서버는 필요한 기능이 Arc Connected Machine 에이전트에 포함되어 있어 관리할 수 있습니다. 따라서 VM1과 Server1이 해당되고, 사용자 할당 ID만 있거나 시스템 할당 ID가 꺼진 VM은 Azure VM 전제 조건을 충족하지 못합니다."
+},
+"AZ-800-Q311": {
+ "stem": "RG1이라는 리소스 그룹이 포함된 Azure 구독이 있습니다. RG1에는 Windows Server를 실행하는 가상 머신 여러 대가 있습니다.\n\n다음 그림은 정책 할당을 보여줍니다.\n\n[[IMG1]]\n\n그림의 정보를 바탕으로 각 문장을 완성하십시오.",
+ "blanks": {
+  "scope": {"label": "시간대가 UTC-12:00으로 설정되는 대상", "options": ["RG1의 기존 및 새로 만드는 모든 가상 머신", "구독의 기존 및 새로 만드는 모든 가상 머신", "RG1에서 새로 만드는 가상 머신만", "구독에서 새로 만드는 가상 머신만"]},
+  "identity": {"label": "수정(remediation)이 수행되는 가상 머신 조건", "options": ["시스템 할당 관리 ID", "Owner 역할이 할당된 사용자", "Virtual Machine Contributor 역할이 할당된 사용자", "사용자 할당 관리 ID"]}
+ },
+ "explanation": "할당의 범위는 RG1이며, 활성화된 정책은 그 범위의 리소스에 적용됩니다. 수정 작업(remediation task)은 기존의 비준수 가상 머신을 수정할 수 있고, 정책은 새로 만들거나 업데이트되는 가상 머신에도 적용됩니다. 할당은 사용자 할당 관리 ID Managed1로 구성되어 있으며, Azure Policy는 이를 수정 권한 부여에 사용합니다."
+},
+"AZ-801-Q139": {
+ "stem": "*(참고: 케이스 스터디 문항으로 원본 사이트에 시나리오 본문이 누락되어 있습니다. 해설로 보면 Server4는 원격 데스크톱이 켜져 있고 NLA를 요구하며, Group2는 '원격 데스크톱 서비스를 통한 로그온 허용', Group3은 '원격 데스크톱 서비스를 통한 로그온 거부', Group4는 '네트워크에서 이 컴퓨터 액세스 거부' 권한이 있습니다. User1은 Group2·Group4, User2는 Group2, User3은 Group3·Group4 멤버입니다.)*\n\n다음 각 문장에 대해, 문장이 참이면 **예**를, 그렇지 않으면 **아니요**를 선택하십시오.",
+ "statements": [
+  "User1은 원격 데스크톱으로 Server4에 로그인할 수 있다.",
+  "User2는 원격 데스크톱으로 Server4에 로그인할 수 있다.",
+  "User3은 원격 데스크톱으로 Server4에 로그인할 수 있다."
+ ],
+ "explanation": "Server4는 원격 데스크톱이 켜져 있고, Windows Server는 기본적으로 원격 데스크톱에 네트워크 수준 인증(NLA)을 요구합니다. NLA는 원격 데스크톱 세션 로그온('원격 데스크톱 서비스를 통한 로그온 허용/거부'가 관장) 전에 네트워크 유형 로그온('네트워크에서 이 컴퓨터 액세스' 및 '네트워크에서 이 컴퓨터 액세스 거부' 권한이 관장)으로 연결 사용자를 인증합니다.\n\n- User1(Group2, Group4): Group2로 원격 데스크톱 허용 권한이 있지만 Group4가 네트워크 액세스를 거부당하므로 NLA 사전 인증에 실패해 원격 데스크톱 로그온 단계까지 가지 못합니다.\n- User2(Group2): 원격 데스크톱 허용 권한이 있고, 거부 그룹에 없으며, Everyone·Users 항목으로 네트워크 액세스를 유지합니다.\n- User3(Group3, Group4): Group3에 의해 원격 데스크톱 서비스 로그온이 명시적으로 거부됩니다(거부 권한은 항상 허용보다 우선). 추가로 Group4에 의해 네트워크 액세스도 거부됩니다."
+},
+"AZ-801-Q317": {
+ "stem": "Windows Server를 실행하는 온-프레미스 서버 20대가 있고, 그중 Server1이라는 서버가 있습니다. Windows Admin Center는 인터넷에 연결된 Server1에 배포되어 있습니다.\n\nAzure 구독이 있습니다.\n\nAzure 서비스가 온-프레미스 서버를 관리·모니터링할 수 있도록 Windows Admin Center를 Azure와 통합해야 합니다.\n\n먼저 무엇을 해야 합니까?",
+ "choices": {
+  "A": "Server1에 Microsoft Entra Connect Sync를 설치한다.",
+  "B": "Server1에서 Connect-AzAccount cmdlet을 실행한다.",
+  "C": "관리되는 각 서버에서 Azure Arc를 사용하도록 설정한다.",
+  "D": "Server1에서 Set-AzWebApp cmdlet을 실행한다."
+ },
+ "explanation": "Azure Arc는 Connected Machine 에이전트를 설치하고 각 서버를 Azure Arc 지원 서버로 등록해 온-프레미스 서버를 Azure에 연결합니다. Windows Admin Center가 이 온보딩을 수행할 수 있으며, 그 후 Azure 서비스와 관리 솔루션을 서버에 적용할 수 있습니다."
+},
+"AZ-800-Q21": {
+ "stem": "Hyper-V 서버 역할이 설치된 Server1이라는 서버가 있습니다. Server1은 다음 그림의 가상 머신을 호스팅합니다.\n\n[[IMG1]]\n\n표시된 정보를 바탕으로 드롭다운 메뉴에서 각 문장을 완성하십시오.",
+ "blanks": {
+  "production_checkpoints": {"label": "프로덕션 체크포인트를 가질 수 있는 VM:", "options": ["VM1만", "VM1과 VM2만", "VM1, VM2, VM3"]},
+  "hibernated": {"label": "최대 절전 모드로 전환할 수 있는 VM:", "options": ["VM1만", "VM1과 VM2만", "VM1, VM2, VM3"]}
+ },
+ "explanation": "프로덕션 체크포인트는 VM 구성 버전 6.2 이상이 필요하며, VM1(10.0), VM2(9.0), VM3(8.0) 모두 이를 넘습니다. Hyper-V 최대 절전 모드 지원은 버전 9.0 이상이 필요하므로 VM1과 VM2는 지원되지만 VM3은 지원되지 않습니다."
+},
+"AZ-800-Q49": {
+ "stem": "Windows Server를 실행하는 Server1이라는 Azure 가상 머신을 만듭니다. Server1의 디스크 구성은 다음 그림과 같습니다.\n\n[[IMG1]]\n\nServer1에 새 100GB 볼륨을 만들어야 합니다.\n\n어떤 세 가지 작업을 순서대로 수행해야 합니까?",
+ "items": {
+  "Shut down Server1.": "Server1을 종료한다.",
+  "Initialize the disk.": "디스크를 초기화한다.",
+  "Create a new simple volume.": "새 단순 볼륨을 만든다.",
+  "Start Server1.": "Server1을 시작한다.",
+  "Create and attach a new data disk.": "새 데이터 디스크를 만들어 연결한다.",
+  "Create a new spanned volume.": "새 스팬 볼륨을 만든다."
+ },
+ "slots": {"step1": "1단계", "step2": "2단계", "step3": "3단계"},
+ "explanation": "기존 디스크로는 100GB의 할당되지 않은 여유 용량을 확보할 수 없습니다. 연결한 빈 Azure 데이터 디스크는 Windows에서 초기화되지 않은(raw) 상태로 나타나므로, 단순 볼륨을 만들고 포맷하기 전에 초기화해야 합니다. 스팬 볼륨은 불필요하고, VM 중지·시작은 이 절차에 포함되지 않습니다."
+},
+"AZ-800-Q60": {
+ "stem": "Azure Active Directory(Azure AD) 테넌트와 동기화되는 온-프레미스 Active Directory Domain Services(AD DS) 도메인이 있습니다.\n\nWindows Server를 실행할 새 Azure 가상 머신 100대를 배포할 계획입니다.\n\n모든 새 가상 머신이 AD DS 도메인에 가입되도록 해야 합니다.\n\n무엇을 사용해야 합니까?",
+ "choices": {"A": "ARM(Azure Resource Manager) 템플릿", "B": "그룹 정책 개체(GPO)", "C": "Azure AD Connect", "D": "Azure 관리 그룹"},
+ "explanation": "ARM(Azure Resource Manager) 템플릿은 모든 Windows Server 가상 머신을 일관되게 배포하면서 Active Directory 도메인 가입 VM 확장을 포함할 수 있어, 배포 시점에 기존 AD DS 도메인 가입을 자동화합니다."
+},
+"AZ-800-Q66": {
+ "stem": "VM1이라는 가상 머신이 포함된 Azure 구독이 있습니다. VM1은 Windows Server를 실행하며 다음 디스크를 갖고 있습니다.\n\n- **OS 디스크: Disk1**\n  - 크기: 512GiB\n  - 여유 공간: 260GiB\n  - 암호화: SSE(PMK)\n  - 스토리지 유형: Standard SSD\n\n- **데이터 디스크: Disk2**\n  - 크기: 512GiB\n  - 여유 공간: 45GiB\n  - 스토리지 유형: Standard HDD\n  - 암호화: 플랫폼 관리 키\n\nVM1의 유지 관리 전략을 계획하고 있습니다.\n\nVM1의 다운타임 없이 Disk2에서 수행할 수 있는 작업을 결정해야 합니다.\n\nDisk2에 무엇을 해야 합니까?",
+ "choices": {"A": "크기를 늘린다.", "B": "암호화 유형을 변경한다.", "C": "크기를 줄인다.", "D": "스토리지 유형을 Premium SSD로 변경한다."},
+ "explanation": "Azure 관리 데이터 디스크는 VM을 할당 해제하지 않고 확장할 수 있습니다. 512GiB Standard HDD 디스크는 4TiB 경계를 넘지 않는 한 온라인으로 늘릴 수 있습니다. 기존 디스크 축소는 지원되지 않고, 디스크 유형 변경은 VM 다시 시작이 필요하며, 서버 쪽 암호화 키 관리 방식 변경은 디스크가 실행 중인 VM에 연결되어 있지 않아야 합니다."
+},
+"AZ-800-Q69": {
+ "stem": "관리형 스위치에 연결된 Server1이라는 Hyper-V 호스트가 있습니다. 스위치는 여러 VLAN에 연결되어 있습니다.\n\nServer1에 VM1이라는 새 가상 머신을 구성합니다.\n\nVM1이 모든 VLAN과 통신하도록 구성해야 합니다. 태그가 없는 네트워크 트래픽은 모두 VLAN 20으로 보내야 합니다.\n\nPowerShell 명령을 어떻게 완성해야 합니까?",
+ "blanks": {
+  "cmdlet": {"label": "cmdlet", "options": ["Set-VMNetworkAdapter", "Set-VMNetworkAdapterTeamMapping", "Set-VMNetworkAdapterVlan"]},
+  "vlan_configuration": {"label": "VLAN 구성", "options": ["-Access -VlanId 20", "-Trunk -NativeVlanId 20", "-Untagged", "-VmqWeight 20"]}
+ },
+ "explanation": "`Set-VMNetworkAdapterVlan`은 VM 네트워크 어댑터의 VLAN 설정을 구성합니다. 트렁크 모드는 어댑터가 여러 VLAN의 트래픽을 실어 나를 수 있게 하고, `-NativeVlanId 20`은 태그 없는 트래픽을 VLAN 20에 매핑합니다."
+},
+"AZ-800-Q85": {
+ "stem": "Windows Server를 실행하는 VM1이라는 Azure 가상 머신이 있습니다.\n\n다음 요구 사항을 충족하도록 VM1 관리를 구성해야 합니다.\n\n- 관리자가 원격 데스크톱 연결을 맺기 전에 VM1에 대한 액세스를 요청하도록 요구한다.\n- VM1 액세스를 특정 원본 IP 주소로 제한한다.\n- VM1 액세스를 특정 관리 포트로 제한한다.\n\n무엇을 구성해야 합니까?",
+ "choices": {"A": "네트워크 보안 그룹(NSG)", "B": "Azure Active Directory(Azure AD) Privileged Identity Management(PIM)", "C": "Microsoft Defender for Cloud", "D": "Azure Front Door"},
+ "explanation": "Microsoft Defender for Cloud는 RDP 같은 관리 포트를 열기 전에 액세스 요청을 요구하는 JIT(just-in-time) VM 액세스를 제공합니다. 정책에서 보호할 포트와 허용할 원본 IP 주소를 정의할 수 있고, 승인 후 해당 NSG 또는 Azure Firewall 규칙을 일시적으로 구성합니다."
+},
+"AZ-800-Q104": {
+ "stem": "다음 표의 가상 네트워크가 포함된 Azure 구독이 있습니다.\n\n[[IMG1]]\n\nVM1이라는 Windows Server 가상 머신을 배포합니다. VM1은 Subnet11에 연결되어 있습니다.\n\nVM1에 NIC1이라는 네트워크 인터페이스를 추가할 계획입니다.\n\nNIC1을 어떤 서브넷에 연결할 수 있습니까?",
+ "choices": {"A": "Subnet11만", "B": "Subnet12만", "C": "Subnet11과 Subnet12만", "D": "Subnet12와 Subnet21만", "E": "Subnet11, Subnet12, Subnet21, Subnet31"},
+ "explanation": "같은 Azure VM의 여러 네트워크 인터페이스는 서브넷들이 **같은 가상 네트워크**에 있을 때만 서로 다른 서브넷에 연결할 수 있습니다. VM1이 이미 VNet1의 Subnet11에 연결되어 있으므로 NIC1은 VNet1에 속한 Subnet11 또는 Subnet12에 연결할 수 있고, VNet2나 VNet3의 서브넷에는 연결할 수 없습니다."
+}
+}

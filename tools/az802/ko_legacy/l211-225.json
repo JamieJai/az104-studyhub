@@ -1,0 +1,95 @@
+{
+"AZ-800-Q106": {
+ "stem": "Windows Server를 실행하는 서버에 UserData라는 공유 폴더가 있습니다.\n\nUserData에서 각 사용자가 사용할 수 있는 저장 공간을 제한해야 합니다.\n\n무엇을 사용해야 합니까?",
+ "choices": {"A": "Storage Spaces", "B": "작업 폴더(Work Folders)", "C": "DFS(분산 파일 시스템) 네임스페이스", "D": "파일 서버 리소스 관리자(FSRM)"},
+ "explanation": "파일 서버 리소스 관리자(FSRM)는 폴더에 허용되는 공간을 제한하는 할당량 관리를 제공합니다. 자동 적용 할당량은 기존 및 새로 만들어지는 사용자 하위 폴더에 할당량 템플릿을 적용할 수 있어 사용자별 저장 한도를 둘 수 있습니다."
+},
+"AZ-800-Q109": {
+ "stem": "Server1이라는 파일 서버가 포함된 Active Directory 도메인이 있습니다. Server1은 Windows Server를 실행하며 다음 표의 파일 공유를 호스팅합니다.\n\n[[IMG1]]\n\n사용자가 네트워크에 로그인하면 다음 네트워크 드라이브 매핑을 받습니다.\n\n- H: → `\\\\server1\\users\\%UserName%`\n- G: → `\\\\server1\\%Department%`\n\nServer1에서 사용자가 소비하는 저장 공간을 제한해야 합니다. 솔루션은 다음 요구 사항을 충족해야 합니다.\n\n- 사용자가 H: 드라이브에서 5GB 이상 사용하지 못하게 한다.\n- Accounts 부서 사용자가 G: 드라이브에서 10GB 이상 사용하지 못하게 한다.\n- Marketing 부서 사용자가 G: 드라이브에서 15GB 이상 사용하지 못하게 한다.\n- Customer Service 부서 사용자가 G: 드라이브에서 2GB 이상 사용하지 못하게 한다.\n- 관리 작업을 최소화한다.\n\n무엇을 사용해야 합니까?",
+ "choices": {"A": "파일 서버 리소스 관리자(FSRM) 할당량", "B": "스토리지 계층화", "C": "NTFS 디스크 할당량", "D": "그룹 정책 기본 설정"},
+ "explanation": "파일 서버 리소스 관리자(FSRM) 할당량 관리는 폴더에 저장 한도를 강제할 수 있습니다. 자동 적용 할당량은 부모 폴더의 기존·미래 하위 폴더마다 할당량을 만들어 5GB 템플릿 하나로 개별 사용자 폴더를 관리할 수 있습니다. 별도의 폴더 할당량으로 필요한 부서별 한도를 강제할 수 있고, 할당량 템플릿이 관리를 중앙화합니다. (NTFS 디스크 할당량은 볼륨 단위·사용자 단위라 부서별 폴더 한도를 표현할 수 없습니다.)"
+},
+"AZ-800-Q118": {
+ "stem": "Windows Server를 실행하는 Server1이라는 서버가 있습니다. Server1의 디스크는 다음 그림과 같이 구성되어 있습니다.\n\n[[IMG1]]\n\nE 볼륨을 ReFS로 변환해야 합니다. 솔루션은 다음 요구 사항을 충족해야 합니다.\n\n- E 볼륨의 데이터를 유지해야 한다.\n- 관리 작업을 최소화해야 한다.\n\n먼저 무엇을 해야 합니까?",
+ "choices": {"A": "E 볼륨의 데이터를 백업한다.", "B": "디스크 2를 오프라인으로 전환한다.", "C": "디스크 2를 동적 디스크로 변환한다.", "D": "convert.exe를 실행한다."},
+ "explanation": "exFAT 볼륨은 ReFS로 제자리 변환할 수 없습니다. ReFS는 볼륨을 포맷할 때 선택하며, 포맷은 기존 데이터를 삭제합니다. E 볼륨을 ReFS로 포맷하기 전에 백업하고 포맷 후 데이터를 복원해야 합니다. `convert` 명령은 FAT/FAT32 볼륨을 NTFS로 변환하는 것을 지원할 뿐 exFAT→ReFS 변환은 지원하지 않습니다."
+},
+"AZ-800-Q120": {
+ "stem": "Windows Server를 실행하고 Share1이라는 파일 공유를 호스팅하는 Server1이라는 서버가 있습니다.\n\n사용자가 Share1에 MP4 파일을 저장하지 못하게 해야 합니다. 솔루션은 사용자가 공유에 다른 파일 형식을 저장하는 것은 허용해야 합니다.\n\nServer1에 무엇을 구성해야 합니까?",
+ "choices": {"A": "파일 관리 작업", "B": "NTFS 할당량", "C": "NTFS 권한", "D": "파일 차단(file screen)"},
+ "explanation": "파일 서버 리소스 관리자의 파일 차단은 허용된 파일 형식은 막지 않으면서, `.mp4`를 포함해 구성된 파일 그룹이나 확장자에 맞는 파일을 사용자가 저장하지 못하도록 능동적으로 차단할 수 있습니다."
+},
+"AZ-800-Q122": {
+ "stem": "*(참고: 케이스 스터디 문항으로 원본 사이트에 시나리오 본문이 누락되어 있습니다. 해설로 보면 온-프레미스 서버의 Data1 폴더를 Azure File Sync로 Azure 파일 공유와 동기화하는 계획입니다. 원본 문제는 4단계이며 2단계(서버 등록/에이전트 설치)는 원본 데이터에 빠져 있습니다.)*\n\nData1에 대한 계획된 변경을 구현해야 합니다.\n\n어떤 작업을 순서대로 수행해야 합니까? 각 작업은 한 번, 여러 번 또는 전혀 사용되지 않을 수 있습니다.",
+ "items": {
+  "Add a server endpoint.": "서버 엔드포인트를 추가한다.",
+  "Create a sync group.": "동기화 그룹을 만든다.",
+  "Deploy the Azure Storage Sync service.": "Azure Storage Sync 서비스를 배포한다.",
+  "Install the DFS Replication role service.": "DFS 복제 역할 서비스를 설치한다.",
+  "Install the Storage Replica feature.": "Storage Replica 기능을 설치한다."
+ },
+ "slots": {"step1": "1단계", "step3": "3단계", "step4": "4단계"},
+ "explanation": "Azure File Sync에는 Storage Sync Service와 Azure File Sync 에이전트를 실행하는 등록된 서버가 필요합니다. 동기화 그룹은 Azure 파일 공유 클라우드 엔드포인트를 로컬 서버 엔드포인트에 연결하며, 서버 엔드포인트를 추가하면 Data1 폴더가 동기화 대상으로 매핑됩니다. DFS 복제와 Storage Replica는 Azure File Sync와 무관합니다."
+},
+"AZ-800-Q125": {
+ "stem": "네트워크에 contoso.com이라는 Active Directory Domain Services(AD DS) 도메인이 있습니다. 도메인에는 Server1과 Server2 두 대의 서버가 있습니다.\n\nServer1에는 Disk2라는 디스크가 있습니다. Disk2에는 UserData라는 폴더가 있습니다. UserData는 Domain Users 그룹에 공유되어 있습니다. Disk2는 중복 제거가 구성되어 있습니다. Server1은 Azure Backup으로 보호됩니다.\n\nServer1이 실패합니다.\n\nDisk2를 Server2에 연결합니다.\n\nDisk2의 모든 파일에 가능한 한 빨리 액세스할 수 있게 해야 합니다.\n\n어떻게 해야 합니까?",
+ "choices": {"A": "스토리지 풀을 만든다.", "B": "Azure Backup에서 파일을 복원한다.", "C": "파일 서버 리소스 관리자 서버 역할을 설치한다.", "D": "데이터 중복 제거 서버 역할을 설치한다."},
+ "explanation": "중복 제거된 볼륨은 파일 데이터가 중복 제거 청크 저장소와 재분석 지점 처리로 저장되므로, 이를 액세스하는 서버에 데이터 중복 제거 기능이 있어야 합니다. Server2에 데이터 중복 제거 서버 역할을 설치하면 연결된 Disk2에 직접 액세스할 수 있어 백업에서 파일을 복원하는 지연을 피할 수 있습니다."
+},
+"AZ-800-Q152": {
+ "stem": "다음 표의 스토리지 계정이 포함된 Azure 구독이 있습니다.\n\n[[IMG1]]\n\nWest US Azure 지역에 SyncA라는 Storage Sync Service를 만듭니다.\n\nGroupA라는 동기화 그룹을 만들 계획입니다.\n\nGroupA가 사용할 수 있는 클라우드 엔드포인트의 최대 수는 몇 개입니까?",
+ "choices": {"A": "1", "B": "2", "C": "3", "D": "4"},
+ "explanation": "Azure File Sync 동기화 그룹은 Azure 파일 공유 하나를 나타내는 클라우드 엔드포인트 하나만 지원합니다. 클라우드 엔드포인트의 스토리지 계정은 Storage Sync Service와 같은 지역에 있어야 하지만, 이 지역 요구 사항이 동기화 그룹당 엔드포인트 하나라는 제한을 바꾸지는 않습니다."
+},
+"AZ-800-Q165": {
+ "stem": "*(참고: 케이스 스터디 문항으로 원본 사이트에 시나리오 본문이 누락되어 있습니다. 해설로 보면 스토리지 공간 SSPace1의 Disk1은 3방향 미러, Disk2는 단일 패리티 가상 디스크입니다.)*\n\nSSPace1의 데이터 가용성이 기술 요구 사항을 충족하도록 해야 합니다.\n\n각 디스크에서 실패할 수 있는 물리 디스크의 최대 수는 몇 개입니까?",
+ "blanks": {
+  "disk1": {"label": "Disk1:", "options": ["1", "2", "3", "4", "5"]},
+  "disk2": {"label": "Disk2:", "options": ["1", "2", "3", "4", "5"]}
+ },
+ "explanation": "3방향 미러링은 데이터 복사본 세 개를 유지하며 물리 디스크 2개의 실패를 견딥니다. 단일 패리티 Storage Spaces 가상 디스크는 물리 디스크 1개의 실패를 견딜 수 있습니다."
+},
+"AZ-800-Q171": {
+ "stem": "*(참고: 케이스 스터디 문항으로 원본 사이트에 시나리오 본문이 누락되어 있습니다. 해설로 보면 VM3(파일 서버)에 폴더별 저장 한도를 적용해야 하는 요구 사항입니다.)*\n\nVM3이 기술 요구 사항을 충족하도록 해야 합니다.\n\n먼저 무엇을 설치해야 합니까?",
+ "choices": {"A": "향상된 저장소(Enhanced Storage)", "B": "iSNS 서버 서비스", "C": "파일 서버 리소스 관리자(FSRM)", "D": "Windows 표준 기반 스토리지 관리"},
+ "explanation": "파일 서버 리소스 관리자(FSRM)는 개별 폴더에 저장 한도를 적용할 수 있는 할당량 관리를 제공합니다. FSRM을 설치하면 VM3에 필요한 폴더별 할당량 기능을 사용할 수 있습니다."
+},
+"AZ-800-Q178": {
+ "stem": "`share1`이라는 Azure Files 공유가 포함된 Azure 구독이 있습니다.\n\n사용자가 `share1`에 저장된 파일의 이전 버전을 보고 복원할 수 있게 해야 합니다. 솔루션은 관리 작업을 최소화해야 합니다.\n\n어떻게 해야 합니까?",
+ "choices": {"A": "공유 스냅샷을 만든다.", "B": "share1을 호스팅하는 스토리지 계정에 특정 시점 복원을 구성한다.", "C": "Azure Files에 일시 삭제(soft delete)를 사용하도록 설정한다.", "D": "Azure Backup에 Recovery Services 자격 증명 모음을 구성한다."},
+ "explanation": "Azure Files 공유 스냅샷은 파일 공유의 특정 시점 읽기 전용 버전을 제공합니다. 사용자는 SMB 공유의 '이전 버전'을 통해 스냅샷을 탐색하고 파일이나 디렉터리의 이전 버전을 복원할 수 있습니다. 공유 스냅샷이 파일 버전 복구를 위한 Azure Files의 직접적인 메커니즘입니다."
+},
+"AZ-800-Q184": {
+ "stem": "네트워크에 `contoso.com`이라는 Active Directory Domain Services(AD DS) 도메인이 있습니다. 도메인에는 다음 표의 서버가 있습니다.\n\n[[IMG1]]\n\n다음을 포함하는 DFS(분산 파일 시스템) 네임스페이스를 만들어야 합니다.\n\n- `\\\\contoso.com\\Public`이라는 도메인 기반 네임스페이스\n- `Finance`라는 폴더\n\n`Finance` 폴더의 폴더 대상으로 어떤 서버를 구성할 수 있습니까?",
+ "choices": {"A": "Server3만", "B": "Server2와 Server3만", "C": "Server1과 Server3만", "D": "Server1, Server2, Server3만", "E": "Server1, Server2, Server3, Server4"},
+ "explanation": "DFS 네임스페이스 폴더 대상은 DFS 폴더에 연결된 공유 폴더(또는 다른 네임스페이스)의 UNC 경로입니다. 그런 공유 폴더를 호스팅하는 데는 서버에 DFS 네임스페이스나 DFS 복제 역할 서비스가 설치되어 있을 필요가 없습니다. 따라서 네 서버 모두 공유 폴더를 호스팅해 `Finance` 폴더 대상으로 구성할 수 있습니다."
+},
+"AZ-800-Q191": {
+ "stem": "네트워크에 Active Directory Domain Services(AD DS) 도메인이 있습니다. 도메인에는 Windows Server 2022를 실행하는 Server1이라는 서버가 있습니다.\n\nServer1에서 스토리지 QoS(서비스 품질)를 원격으로 관리해야 합니다.\n\n어떤 원격 서버 관리 도구(RSAT) 기능을 설치해야 합니까?",
+ "choices": {"A": "RSAT: 장애 조치 클러스터링 도구", "B": "RSAT: 파일 서비스 도구", "C": "RSAT: Windows PowerShell용 Storage Replica 모듈", "D": "RSAT: 데이터 센터 브리징 LLDP 도구"},
+ "explanation": "스토리지 QoS는 장애 조치 클러스터링 관리 구성 요소를 통해 관리합니다. RSAT-Clustering 선택적 기능에는 스토리지 QoS를 포함한 장애 조치 클러스터링 원격 관리를 위한 Windows PowerShell 모듈이 들어 있습니다."
+},
+"AZ-800-Q195": {
+ "stem": "*(참고: 케이스 스터디 문항으로 원본 사이트에 시나리오 본문이 누락되어 있습니다. AZ-802 Q30과 같은 Contoso 시나리오이며, VM3 볼륨은 C(NTFS, 시스템), D(NTFS), E(ReFS), F(exFAT)이고 요구 사항은 \"이 기능을 지원하는 모든 볼륨에 데이터 중복 제거를 사용하도록 설정한다\"입니다.)*\n\nVM3에 대한 기술 요구 사항을 충족해야 합니다.\n\n어떤 볼륨에 데이터 중복 제거를 사용하도록 설정할 수 있습니까?",
+ "choices": {"A": "C와 D만", "B": "D만", "C": "C, D, E, F", "D": "D와 E만", "E": "D, E, F만"},
+ "explanation": "데이터 중복 제거는 운영 체제/부팅 볼륨에는 사용할 수 없습니다. Windows Server는 Windows Server 2019부터 ReFS를 포함한 적격 데이터 볼륨에서 데이터 중복 제거를 지원하므로, 적격한 비시스템 볼륨은 D와 E입니다. (exFAT는 지원되지 않습니다.)"
+},
+"AZ-800-Q202": {
+ "stem": "HOTSPOT -\n\n다음 표와 같이 Windows Server를 실행하는 온-프레미스 서버가 있습니다.\n\n[[IMG1]]\n\nFile2.docx와 File3.docx 두 파일이 들어 있는 share1이라는 Azure 파일 공유가 있습니다.\n\n다음 엔드포인트를 포함하는 Azure File Sync 동기화 그룹을 만듭니다.\n\n- share1\n- Server1의 D:\\Folder1\n- Server2의 D:\\Data1\n\n다음 각 문장에 대해, 문장이 참이면 예를, 그렇지 않으면 아니요를 선택하십시오.",
+ "statements": [
+  "Server1의 D:\\Folder1에 File2.docx라는 파일을 새로 만들 수 있다.",
+  "Server2의 D:\\Data1에 File1.docx라는 파일을 새로 만들 수 있다.",
+  "File3.docx가 Server1으로 동기화된다."
+ ],
+ "explanation": "Azure File Sync는 동기화 그룹의 클라우드 엔드포인트와 모든 서버 엔드포인트 사이에서 네임스페이스와 파일 내용을 동기화합니다. share1의 File2.docx가 Server1 엔드포인트에 존재하고, Server1의 File1.docx가 Server2 엔드포인트로 동기화되므로, 그 경로에 같은 이름의 파일을 새 파일로 만들 수 없습니다. share1의 File3.docx는 Server1으로 동기화됩니다."
+},
+"AZ-800-Q218": {
+ "stem": "네트워크에 adatum.com이라는 Active Directory Domain Services(AD DS) 도메인이 있습니다. 도메인에는 Server1이라는 파일 서버와 User1, User2, User3 세 사용자가 있습니다.\n\nServer1은 다음 구성의 Share1이라는 공유 폴더를 호스팅합니다.\n\n[[IMG1]]\n\nShare1의 공유 권한은 다음과 같이 구성되어 있습니다.\n\n[[IMG2]]\n\nShare1에는 File1.txt라는 파일이 있습니다. File1.txt의 고급 보안 설정은 다음과 같이 구성되어 있습니다.\n\n[[IMG3]]\n\n다음 각 문장에 대해, 문장이 참이면 **예**를, 그렇지 않으면 **아니요**를 선택하십시오.",
+ "statements": [
+  "User1이 \\\\Server1.adatum.com\\Share1\\에 연결하면 File1.txt의 소유권을 가져올 수 있다.",
+  "User2가 \\\\Server1.adatum.com\\Share1\\에 연결하면 File1.txt가 보인다.",
+  "User3이 \\\\Server1.adatum.com\\Share1\\에 연결하면 File1.txt가 보인다."
+ ],
+ "explanation": "SMB를 통한 유효 액세스는 공유 권한과 NTFS 권한 모두에 의해 제한됩니다. 공유 수준의 변경(Change) 권한은 소유권 가져오기 기능을 부여하지 않으므로 User1은 소유권을 가져올 수 없습니다. User2는 NTFS 읽기 권한이 있어 파일을 열거할 수 있습니다. User3은 NTFS 쓰기 권한만 있는데, 액세스 기반 열거(ABE)는 읽기 액세스가 없으면 파일을 표시하지 않습니다."
+}
+}
