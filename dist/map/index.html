@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" data-theme="dark">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -74,10 +74,6 @@ body{
   position:absolute;bottom:34px;font-size:11.5px;color:#4E5E6C;letter-spacing:.14em;
   font-weight:200;opacity:0;animation:fadeIn .6s ease 2.1s forwards;
 }
-@media (prefers-reduced-motion:reduce){
-  #intro *{animation-duration:.01ms!important;animation-delay:0ms!important;opacity:1!important}
-  #intro .sh,#intro .spine{stroke-dashoffset:0}
-}
 
 /* ============ 헤더 ============ */
 header.bar{
@@ -125,6 +121,7 @@ svg#map{display:block;width:100%;height:100%;touch-action:manipulation}
 .dlabel{font-family:"Barlow Condensed",sans-serif;font-weight:600;pointer-events:none;
   transition:opacity .4s ease;letter-spacing:.2em}
 .dko{font-family:"IBM Plex Sans KR",sans-serif;font-weight:200;letter-spacing:.34em}
+#dcard-ko:empty,#sh-ko:empty{display:none}
 .line{fill:none;stroke-linecap:round;stroke-linejoin:round;transition:opacity .45s ease}
 .line.req{stroke-width:8}
 .line.rec{stroke-width:4.5;stroke-opacity:.8}
@@ -309,9 +306,6 @@ svg#strip{display:block;width:100%;height:auto}
   .stage.mzoom .mhome{display:none}
   .stage.mzoom .stripwrap{display:block}
 }
-@media (prefers-reduced-motion:reduce){
-  .back,.dcard,.panel,.node,.line,.blob{transition-duration:.01ms!important}
-}
 </style>
 </head>
 <body>
@@ -347,8 +341,7 @@ svg#strip{display:block;width:100%;height:auto}
     <span class="right">
       <span class="who" id="who" title="로그인 계정"></span>
       <button class="tog" id="logout" type="button">로그아웃</button>
-      <span class="yr">2026.09</span>
-      <button class="tog" id="tog" aria-label="밝기 전환">◐</button>
+      <span class="yr" id="since" title="로그인한 시각 · 경과 시간">접속 --:--</span>
     </span>
   </header>
 
@@ -619,9 +612,7 @@ for(const k in D){
   gBlob.appendChild(g);
   const a=el("text",{x:x+w/2,y:y+h-30,class:"dlabel","text-anchor":"middle",fill:d.c,"font-size":"34","fill-opacity":".28"});
   a.textContent=d.en;
-  const b=el("text",{x:x+w/2,y:y+h-58,class:"dlabel dko","text-anchor":"middle",fill:d.c,"font-size":"19","fill-opacity":".42"});
-  b.textContent=d.ko+" 구역";
-  a.dataset.d=k;b.dataset.d=k;gDL.append(b,a);
+  a.dataset.d=k;gDL.append(a);   // 영문 구역 라벨만 (한국어 라벨은 뺐다)
 }
 LINKS.forEach(([a,b,kind])=>{
   const A=byId[a],B=byId[b];
@@ -654,7 +645,7 @@ ORDER.forEach(k=>{
     <span class="bar" style="background:${d.c}"></span>
     <div class="body">
       <div class="en" style="color:${d.c}">${d.en}</div>
-      <h3>${d.ko} 구역</h3>
+      <h3>${d.en}</h3>
       <p class="ds">${d.desc}</p>
       <div class="codes">${ids.map(i=>`<span>${i}</span>`).join("")}</div>
     </div>
@@ -780,7 +771,6 @@ const stage=document.getElementById("stage"),panel=document.getElementById("pane
 const setVB=v=>{vb=v;map.setAttribute("viewBox",v.join(" "));};
 const ease=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
 function animVB(to,ms=660){
-  if(matchMedia("(prefers-reduced-motion: reduce)").matches){setVB(to);return;}
   cancelAnimationFrame(raf);
   const from=[...vb],t0=performance.now();
   (function step(now){
@@ -799,7 +789,7 @@ function openStrip(k){
   cur=k;const d=D[k];
   buildStrip(k);
   document.getElementById("sh-en").textContent=d.en;
-  document.getElementById("sh-ko").textContent=d.ko+" 구역";
+  document.getElementById("sh-ko").textContent="";
   document.getElementById("sh-desc").textContent=d.desc;
   stage.classList.add("mzoom");
   document.getElementById("stripwrap").scrollTop=0;
@@ -811,7 +801,7 @@ function zoomTo(k){
   animVB(fit(d.box,70,80));apply();
   dcard.classList.add("on");
   document.getElementById("dcard-en").textContent=d.en;
-  document.getElementById("dcard-ko").textContent=d.ko+" 구역";
+  document.getElementById("dcard-ko").textContent="";
   document.getElementById("dcard-desc").textContent=d.desc;
   backBtn.classList.add("on");hint.style.opacity="0";
 }
@@ -909,12 +899,6 @@ document.getElementById("legtoggle").addEventListener("click",e=>{
   const l=document.getElementById("legend");l.classList.toggle("folded");
   e.target.textContent=l.classList.contains("folded")?"범례 펼치기":"접기";
 });
-document.getElementById("tog").addEventListener("click",()=>{
-  const r=document.documentElement;
-  const dark=r.getAttribute("data-theme")==="dark"||
-    (!r.getAttribute("data-theme")&&!matchMedia("(prefers-color-scheme: light)").matches);
-  r.setAttribute("data-theme",dark?"light":"dark");
-});
 let rt;addEventListener("resize",()=>{
   clearTimeout(rt);
   rt=setTimeout(()=>{
@@ -927,19 +911,14 @@ let rt;addEventListener("resize",()=>{
 /* ===================== 인트로 ===================== */
 const intro=document.getElementById("intro");
 let introDone=false;
-let skipIntro=false;
-try{ skipIntro=sessionStorage.getItem("ash.intro")==="1"; sessionStorage.removeItem("ash.intro"); }catch{}
-if(skipIntro){ intro.remove(); introDone=true; }
 function endIntro(){
   if(introDone)return;introDone=true;
   intro.classList.add("out");
   setTimeout(()=>intro.remove(),950);
 }
-if(!skipIntro){
-  intro.addEventListener("click",endIntro);
-  document.addEventListener("keydown",function once(){endIntro();document.removeEventListener("keydown",once);});
-  setTimeout(endIntro, matchMedia("(prefers-reduced-motion: reduce)").matches?400:2900);
-}
+intro.addEventListener("click",endIntro);
+document.addEventListener("keydown",function once(){endIntro();document.removeEventListener("keydown",once);});
+setTimeout(endIntro, 2900);
 
 /* ===================== 계정 ===================== */
 (async()=>{
@@ -948,6 +927,12 @@ if(!skipIntro){
     if(r.status===401){ location.replace("/?next=%2Fmap%2F"); return; }
     const d=await r.json(); const who=document.getElementById("who");
     if(d.user&&who) who.textContent=d.user.name;
+    if(d.user&&d.user.since){
+      const since=new Date(d.user.since*1000), el=document.getElementById("since");
+      const hhmm=`${String(since.getHours()).padStart(2,"0")}:${String(since.getMinutes()).padStart(2,"0")}`;
+      const tick=()=>{ const m=Math.max(0,Math.floor((Date.now()-since)/60000)); el.textContent=`접속 ${hhmm} · ${m<60?m+"분":Math.floor(m/60)+"시간 "+(m%60)+"분"}`; };
+      tick(); setInterval(tick,30000);
+    }
   }catch{}
 })();
 document.getElementById("logout").addEventListener("click",async()=>{

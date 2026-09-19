@@ -1,50 +1,63 @@
 <!doctype html>
-<html lang="ko">
+<html lang="ko" data-theme="dark">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="robots" content="noindex">
-  <title>AZ-104 관리자</title>
+  <title>Azure Study Home · 관리자</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Sans+KR:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
-    :root{font-family:"Segoe UI","Malgun Gothic",Arial,sans-serif;color:#172033;background:#f4f7fb}
+    /* 노선도(/map/)·로그인과 같은 다크 팔레트 */
+    :root{
+      --bg:#070D14; --plate:#111E29; --plate-hi:#182835; --gold:#C6A05C; --gold-2:#E0C48A; --gold-soft:rgba(198,160,92,.3);
+      --ink:#E9EFF5; --ink2:#AABAC8; --muted:#71828F; --hair:rgba(198,160,92,.18); --hair2:rgba(160,185,205,.12);
+      --infra:#3D9BE9; --sec:#9A78E0; --bad:#E0645A; --ok:#49B37A;
+    }
     *{box-sizing:border-box}
-    body{margin:0;padding:24px 16px;min-height:100vh}
-    .wrap{max-width:960px;margin:0 auto}
-    .card{background:#fff;border:1px solid #dce3ec;border-radius:14px;padding:22px 24px;box-shadow:0 8px 24px #20305010;margin-bottom:16px}
-    h1{margin:0 0 4px;font-size:20px}
-    h2{margin:0 0 12px;font-size:15px;color:#34425a}
-    .sub{margin:0 0 14px;color:#7a879a;font-size:13px}
-    input{padding:10px 12px;border:1px solid #cdd9e8;border-radius:8px;font:inherit;font-size:14px;outline:none;width:100%;max-width:280px}
-    input:focus{border-color:#0078d4}
-    button{padding:8px 12px;border-radius:8px;border:1px solid #cdd9e8;background:#fff;font:inherit;font-size:13px;font-weight:700;cursor:pointer;color:#34425a}
-    button:hover{background:#eef6ff;border-color:#0078d4;color:#0078d4}
-    button.primary{background:#0078d4;border-color:#0078d4;color:#fff}
-    button.danger{color:#c0392b}
-    button.danger:hover{background:#fdecea;border-color:#c0392b;color:#c0392b}
+    body{margin:0;padding:24px 16px;min-height:100vh;background:var(--bg);color:var(--ink);font-family:"IBM Plex Sans KR",system-ui,sans-serif;font-size:14px;line-height:1.6;-webkit-font-smoothing:antialiased;
+      background-image:radial-gradient(1200px 600px at 50% -10%, rgba(61,155,233,.08), transparent 60%)}
+    .wrap{max-width:1040px;margin:0 auto}
+    .card{background:var(--plate);border:1px solid var(--hair);border-radius:4px;padding:20px 22px;box-shadow:0 18px 50px rgba(0,0,0,.4);margin-bottom:14px}
+    h1{margin:0 0 2px;font-family:"Barlow Condensed",sans-serif;font-weight:600;font-size:22px;letter-spacing:.2em;color:var(--ink)}
+    h2{margin:0 0 12px;font-family:"Barlow Condensed",sans-serif;font-weight:600;font-size:15px;letter-spacing:.18em;color:var(--gold)}
+    .sub{margin:0 0 14px;color:var(--muted);font-size:12.5px;font-weight:300}
+    input{padding:10px 12px;background:var(--plate-hi);color:var(--ink);border:1px solid var(--hair2);border-radius:3px;font:inherit;font-size:14px;outline:none;width:100%;max-width:280px}
+    input::placeholder{color:var(--muted)}
+    input:focus{border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-soft)}
+    button{padding:7px 12px;border-radius:3px;border:1px solid var(--hair2);background:transparent;font-family:"Barlow Condensed",sans-serif;font-size:14px;font-weight:600;letter-spacing:.1em;cursor:pointer;color:var(--ink2);transition:.15s}
+    button:hover{border-color:var(--gold);color:var(--gold)}
+    button.primary{background:var(--gold);border-color:var(--gold);color:#0B141C}
+    button.primary:hover{background:var(--gold-2)}
+    button.danger{color:var(--bad)}
+    button.danger:hover{border-color:var(--bad);background:rgba(224,100,90,.12)}
     .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-    .msg{font-size:13px;color:#c0392b;min-height:18px;margin:8px 0 0}
-    .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin-bottom:6px}
-    .stat{background:#f4f7fb;border-radius:10px;padding:10px 12px}
-    .stat b{display:block;font-size:20px}
-    .stat span{font-size:12px;color:#7a879a}
+    .msg{font-size:13px;color:var(--bad);min-height:18px;margin:8px 0 0}
+    .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin-bottom:6px}
+    .stat{background:var(--plate-hi);border:1px solid var(--hair2);border-radius:3px;padding:10px 12px}
+    .stat b{display:block;font-family:"Barlow Condensed",sans-serif;font-size:22px;font-weight:600;letter-spacing:.04em;color:var(--gold-2)}
+    .stat span{font-size:11.5px;color:var(--muted);letter-spacing:.06em}
     .tbl{overflow-x:auto}
     table{width:100%;border-collapse:collapse;font-size:13px}
-    th,td{padding:8px 10px;border-bottom:1px solid #e8eef6;text-align:left;white-space:nowrap}
-    th{color:#7a879a;font-weight:700;font-size:12px}
+    th,td{padding:8px 10px;border-bottom:1px solid var(--hair2);text-align:left;white-space:nowrap;vertical-align:top}
+    th{color:var(--muted);font-family:"Barlow Condensed",sans-serif;font-weight:600;font-size:12.5px;letter-spacing:.14em}
     td.num{text-align:right;font-variant-numeric:tabular-nums}
-    td .row{gap:6px}
-    .empty{color:#7a879a;font-size:13px;padding:8px 0}
-    .note{font-size:12px;color:#9aa6b8;white-space:normal;max-width:360px}
+    td .row{gap:6px;flex-wrap:nowrap}
+    .exam{display:inline-block;padding:1px 8px;border-radius:2px;font-family:"Barlow Condensed",sans-serif;font-weight:600;font-size:12.5px;letter-spacing:.1em;border:1px solid}
+    .exam.az104{color:var(--infra);border-color:rgba(61,155,233,.5)} .exam.az802{color:var(--sec);border-color:rgba(154,120,224,.5)}
+    .empty{color:var(--muted);font-size:13px;padding:8px 0}
+    .note{font-size:12px;color:var(--ink2);white-space:pre-wrap;max-width:420px;font-weight:300}
     #app{display:none}
     .topbar{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:14px}
-    .topbar a{color:#0067b8;font-size:13px}
+    .topbar a{color:var(--muted);font-size:13px}
   </style>
 </head>
 <body>
   <div class="wrap">
     <div class="card" id="login">
-      <h1>관리자 포털</h1>
-      <p class="sub">AZ-104 Study Hub 데이터베이스 관리</p>
+      <h1>ADMIN PORTAL</h1>
+      <p class="sub">Azure Study Home · 사용자·진도·오답 신고 관리</p>
       <form id="lform" class="row" autocomplete="off">
         <input id="lname" placeholder="아이디" autocomplete="username">
         <input id="lpw" type="password" placeholder="비밀번호" autocomplete="current-password">
@@ -55,7 +68,7 @@
 
     <div id="app">
       <div class="topbar">
-        <div><h1>관리자 포털</h1><p class="sub" id="updated"></p></div>
+        <div><h1>ADMIN PORTAL</h1><p class="sub" id="updated"></p></div>
         <div class="row"><a href="/">로그인 페이지</a><button id="refresh">새로고침</button><button id="logout">로그아웃</button></div>
       </div>
 
@@ -76,7 +89,7 @@
 
       <div class="card">
         <div class="row" style="justify-content:space-between"><h2>오답 신고 <span id="rcount"></span></h2><button class="danger" id="delAllReports">신고 전부 삭제</button></div>
-        <div class="tbl"><table><thead><tr><th>시각</th><th>사용자</th><th>문항</th><th>유형</th><th>내 답</th><th>채점</th><th>메모</th></tr></thead><tbody id="reports"></tbody></table></div>
+        <div class="tbl"><table><thead><tr><th>시각</th><th>사용자</th><th>시험</th><th>문항</th><th>유형</th><th>내 답</th><th>채점</th><th>메모</th></tr></thead><tbody id="reports"></tbody></table></div>
         <p class="empty" id="reportsEmpty" hidden>신고가 없습니다.</p>
       </div>
     </div>
@@ -88,6 +101,7 @@
       const API = "/api/admin/";
       const fmt = iso => iso ? new Date(iso).toLocaleString("ko-KR", { hour12: false }) : "—";
       const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+      const EXAM_LABEL = { az104: "AZ-104", az802: "AZ-802" };
       const KIND = { "wrong-answer": "정답 오류", "bad-explanation": "해설 문제", translation: "번역·오탈자", image: "이미지", other: "기타" };
 
       async function call(path, opts) {
@@ -125,7 +139,7 @@
         $("rcount").textContent = `(${reports.length})`;
         $("reportsEmpty").hidden = reports.length > 0;
         $("reports").innerHTML = reports.map(r => `<tr>
-          <td>${fmt(r.at)}</td><td>${esc(r.owner)}</td><td>src ${r.source}${r.practice ? ` (P${r.practice})` : ""}</td>
+          <td>${fmt(r.at)}</td><td>${esc(r.owner)}</td><td><span class="exam ${esc(r.exam || "az104")}">${esc(EXAM_LABEL[r.exam] || r.exam || "AZ-104")}</span></td><td>src ${r.source}${r.practice ? ` (P${r.practice})` : ""}</td>
           <td>${esc(KIND[r.kind] || r.kind)}</td><td>${esc(r.myAnswer)}</td><td>${esc(r.graded)}</td><td class="note">${esc(r.note)}</td></tr>`).join("");
       }
 

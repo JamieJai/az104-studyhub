@@ -75,9 +75,10 @@ export async function verifyToken(token, secret) {
   }
 }
 
-export function tokenPayload(user) {
+export function tokenPayload(user, loginAt) {
   const now = Math.floor(Date.now() / 1000);
-  return { uid: user.id, name: user.name, adm: user.is_admin ? 1 : 0, iat: now, exp: now + SESSION_TTL_S };
+  // lat = 처음 로그인한 시각. 미들웨어가 토큰을 연장해도 그대로 넘긴다 (화면의 "접속 시각" 표시용).
+  return { uid: user.id, name: user.name, adm: user.is_admin ? 1 : 0, iat: now, lat: loginAt || now, exp: now + SESSION_TTL_S };
 }
 
 export function readCookie(request, name) {

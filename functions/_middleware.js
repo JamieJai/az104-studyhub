@@ -48,7 +48,7 @@ export async function onRequest(context) {
 
   // 세션 연장: 15분 넘게 지난 토큰이면 새로 발급
   if (user && Math.floor(Date.now() / 1000) - (user.iat || 0) > 15 * 60) {
-    const fresh = await signToken(tokenPayload({ id: user.uid, name: user.name, is_admin: user.adm }), env.AUTH_SECRET);
+    const fresh = await signToken(tokenPayload({ id: user.uid, name: user.name, is_admin: user.adm }, user.lat || user.iat), env.AUTH_SECRET);
     const out = new Response(res.body, res);
     out.headers.append("Set-Cookie", cookieHeader(fresh));
     return out;
