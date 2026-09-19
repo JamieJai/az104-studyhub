@@ -1,0 +1,107 @@
+{
+"184": {
+ "stem": "Microsoft 365 테넌트가 있습니다.\n\nAzure Active Directory(Azure AD) 테넌트가 온-프레미스 Active Directory 도메인과 동기화되어 있습니다.\n\nEmergency1이라는 긴급 액세스 관리 계정을 만들 계획입니다. Emergency1에는 Azure AD의 Global administrator 역할이 부여됩니다.\n\nEmergency1은 Azure AD 기능이 실패하거나 온-프레미스 인프라가 실패했을 때 사용됩니다.\n\n긴급 상황에서 Emergency1의 로그인이 차단될 가능성을 줄여야 합니다.\n\n무엇을 해야 합니까?",
+ "choices": {"A": "Emergency1이 수정되거나 로그인하면 경고를 생성하도록 Azure Monitor를 구성합니다.", "B": "Emergency1에 대해 Global administrator 역할의 Azure AD Privileged Identity Management(PIM) 활성화를 요구합니다.", "C": "Emergency1의 로그인 위치를 회사 네트워크로만 제한하는 조건부 액세스 정책을 구성합니다.", "D": "Emergency1에 다단계 인증(MFA)을 요구하는 조건부 액세스 정책을 구성합니다."},
+ "explanation": "긴급 액세스 관리 계정은 중단 중에 사용할 수 없게 되거나 잘못 구성될 수 있는 제어와 독립적이어야 합니다. PIM 활성화, 회사 네트워크 위치, MFA를 요구하면 이 계정이 대응해야 할 긴급 상황에서 액세스가 막힐 수 있습니다. 수정이나 로그인을 모니터링하고 경고하면 액세스는 유지하면서 사용이나 무단 변경을 탐지할 수 있습니다."
+},
+"185": {
+ "stem": "User1이라는 사용자가 포함된 Microsoft Entra 테넌트가 있습니다.\n\n관리자가 User1을 삭제합니다.\n\n다음을 식별하세요.\n\n- User1 계정을 복원할 수 있는 최대 일수\n- User1을 복원할 수 있는 최소 권한 역할",
+ "blanks": {
+  "days": {"label": "일수:", "options": ["15", "30", "90", "180"]},
+  "role": {"label": "역할:", "options": ["User Administrator", "Network Administrator", "Helpdesk Administrator", "Domain Name Administrator"]}
+ },
+ "explanation": "Microsoft Entra ID는 삭제된 사용자를 30일 동안 일시 중단된 복원 가능 상태로 보존합니다. 삭제된 사용자를 복원하려면 최소 User Administrator 역할이 필요하며, 나머지 역할은 삭제된 사용자 복원 권한을 부여하지 않습니다."
+},
+"186": {
+ "stem": "다음 표의 Key Vault가 포함된 Azure 구독이 있습니다.\n\n[[IMG1]]\n\n구독에는 다음 표의 사용자가 있습니다.\n\n[[IMG2]]\n\n6월 1일에 Admin4가 다음 작업을 수행합니다.\n\n- KeyVault1에서 Certificate1이라는 인증서를 삭제\n- KeyVault2에서 Secret1이라는 비밀을 삭제\n\n다음 각 문장이 참이면 예, 그렇지 않으면 아니요를 선택하세요.",
+ "statements": ["Admin1은 6월 7일에 Secret1을 복구할 수 있다.", "Admin2는 6월 12일에 Certificate1을 영구 삭제(purge)할 수 있다.", "Admin3은 6월 14일에 Certificate1을 영구 삭제(purge)할 수 있다."],
+ "explanation": "삭제된 Key Vault 개체는 구성된 보존 기간 동안 복구할 수 있습니다. Admin1은 모든 데이터 평면 작업을 허용하는 Key Vault Administrator 역할이 있으므로 6월 7일에 Secret1을 복구할 수 있습니다. KeyVault1은 제거 보호(purge protection)가 사용하도록 설정되어 있어 역할과 관계없이 15일 보존 기간이 끝날 때까지 Certificate1을 영구 삭제할 수 없으므로, Admin2와 Admin3 모두 해당 날짜에 영구 삭제할 수 없습니다. 또한 Key Vault Contributor는 자격 증명 모음 개체에 대한 데이터 평면 액세스를 부여하지 않습니다."
+},
+"187": {
+ "stem": "contoso.com이라는 Azure Active Directory(Azure AD) 테넌트가 있습니다.\n\nAzure AD에 등록된 애플리케이션을 실행하는 모든 사용자에게 조건부 액세스 정책이 적용됩니다.\n\n사용자가 레거시 인증을 사용하지 못하게 해야 합니다.\n\n레거시 인증 시도를 걸러내기 위해 조건부 액세스 정책에 무엇을 포함해야 합니까?",
+ "choices": {"A": "클라우드 앱 또는 작업 조건", "B": "사용자 위험 조건", "C": "클라이언트 앱 조건", "D": "로그인 위험 조건"},
+ "explanation": "클라이언트 앱 조건은 클라이언트 유형을 구분하고 레거시 인증 클라이언트를 대상으로 지정할 수 있어, 조건부 액세스 정책으로 그 로그인을 차단할 수 있습니다. Microsoft의 레거시 인증 정책 지침은 관리자가 클라이언트 앱 조건을 구성하고 레거시 클라이언트 범주를 선택하도록 안내합니다."
+},
+"188": {
+ "stem": "User1이라는 사용자가 포함된 Microsoft 365 E5 구독이 있습니다.\n\n앱 거버넌스 통합을 구성합니다.\n\nUser1이 앱 거버넌스 대시보드를 볼 수 있어야 합니다. 최소 권한 원칙을 따라야 합니다.\n\nUser1에게 어떤 역할을 할당하고, User1은 어떤 포털에서 대시보드를 봐야 합니까?",
+ "blanks": {
+  "role": {"label": "역할:", "options": ["Application Administrator", "Application Developer", "Cloud Application Administrator"]},
+  "portal": {"label": "포털:", "options": ["Microsoft 365 관리 센터", "Microsoft 365 Defender 포털", "Microsoft Defender for Cloud Apps 포털", "Microsoft Purview 규정 준수 포털"]}
+ },
+ "explanation": "Microsoft 365 Defender 포털이 앱 거버넌스 대시보드를 호스팅합니다. Cloud Application Administrator는 Application Administrator와 동일한 애플리케이션 관리 권한을 갖되 애플리케이션 프록시 관리는 제외되므로 나열된 역할 중 최소 권한입니다. Application Developer는 애플리케이션 등록 생성으로 제한됩니다."
+},
+"189": {
+ "stem": "`fabrikam.com` 도메인 이름을 사용하는 Microsoft 365 테넌트가 있습니다.\n\n외부 협업 설정은 Collaboration 그림과 같이 구성되어 있습니다. (Collaboration 탭을 선택하세요.)\n\n[[IMG1]]\n\n테넌트에 **게스트용 이메일 일회용 암호** 설정이 사용하도록 설정되어 있습니다.\n\n`user1@fabrikam.com`이라는 사용자가 다음 표의 사용자와 Microsoft SharePoint Online 문서 라이브러리를 공유합니다.\n\n[[IMG2]]\n\n이메일로 암호를 받는 사용자는 누구입니까?",
+ "choices": {"A": "User1만", "B": "User2만", "C": "User1과 User2만", "D": "User1, User2, User3"},
+ "explanation": "이메일 일회용 암호 인증은 게스트가 초대를 수락하거나 공유 리소스에 액세스할 때 다른 적용 가능한 인증 방법이 없는 경우에 사용됩니다. 이미 초대를 수락한 게스트는 수락 절차를 이미 지났으므로 이 설정을 사용하도록 설정해도 영향을 받지 않습니다. 테넌트 리소스에 액세스한 적이 없는 게스트는 액세스를 수락해야 하며 암호를 받습니다. 내부 사용자는 B2B 게스트 수락을 사용하지 않습니다."
+},
+"190": {
+ "stem": "다음 표의 사용자가 포함된 Azure 구독이 있습니다.\n\n[[IMG1]]\n\nAzure AD Privileged Identity Management(PIM)를 구현해야 합니다.\n\nPIM을 사용하여 역할 권한을 활성화할 수 있는 사용자는 누구입니까?",
+ "choices": {"A": "Admin1만", "B": "Admin2만", "C": "Admin3만", "D": "Admin1과 Admin2만", "E": "Admin2와 Admin3만", "F": "Admin1, Admin2, Admin3"},
+ "explanation": "Privileged Identity Management는 클래식 구독 관리자 역할인 Account Administrator나 Service Administrator를 관리할 수 없습니다. SharePoint Administrator는 적격 Microsoft Entra 역할로 관리하고 PIM으로 활성화할 수 있는 지원되는 Microsoft 365 관리자 역할입니다."
+},
+"191": {
+ "stem": "fabrikam.com 도메인 이름을 사용하는 Microsoft 365 테넌트가 있습니다. Azure Active Directory(Azure AD) 게스트 초대 설정은 그림과 같이 구성되어 있습니다. (Exhibit 탭을 클릭하세요.)\n\n[[IMG1]]\n\nuser1@fabrikam.com이라는 사용자가 다음 표의 사용자와 Microsoft SharePoint Online 문서 라이브러리를 공유합니다.\n\n[[IMG2]]\n\n이메일로 암호를 받는 사용자는 누구입니까?",
+ "choices": {"A": "User2만", "B": "User1만", "C": "User1과 User2만", "D": "User1, User2, User3"},
+ "explanation": "이메일 일회용 암호 인증은 Microsoft Entra ID, Microsoft 계정 또는 구성된 다른 ID 공급자로 인증할 수 없는 B2B 게스트 사용자에게 사용됩니다. 이 기능이 사용하도록 설정되어 있으면 외부 contoso.com 게스트가 암호를 받습니다. Outlook.com 사용자는 Microsoft 계정으로 인증할 수 있고, fabrikam.com 사용자는 내부 사용자입니다."
+},
+"192": {
+ "stem": "contoso.com이라는 Azure Active Directory(Azure AD) 테넌트가 있습니다.\n\nAzure AD External Identities 요금이 월간 활성 사용자(MAU) 기준으로 계산되도록 해야 합니다.\n\n무엇을 구성해야 합니까?",
+ "choices": {"A": "사용자 흐름", "B": "사용 약관", "C": "연결된 구독", "D": "액세스 검토"},
+ "explanation": "Azure AD External Identities 요금 청구는 월간 활성 사용자 기준이며, 청구를 위해 테넌트를 Azure 구독에 연결해야 합니다. 연결된 구독을 구성하면 해당 MAU 기반 요금이 적용됩니다."
+},
+"193": {
+ "stem": "다음 표의 사용자가 포함된 Azure Active Directory(Azure AD) 테넌트가 있습니다.\n\n[[IMG1]]\n\nUser1은 Group1의 소유자입니다. 다음 설정으로 액세스 검토를 만듭니다.\n\n- 검토할 사용자: 그룹의 구성원\n- 범위: 모든 사람\n- 그룹: Group1\n- 검토자: 구성원(자체)\n\nUser3에 대한 액세스 검토를 수행할 수 있는 사용자는 누구입니까?",
+ "choices": {"A": "User1, User2, User3", "B": "User3만", "C": "User1만", "D": "User1과 User2만"},
+ "explanation": "구성원(자체)으로 구성된 그룹 액세스 검토에서는 각 구성원이 자신의 그룹 액세스를 검토하도록 할당됩니다. User3은 Group1의 구성원이고 범위에 포함되므로 User3이 자체 검토할 수 있으며, 이 검토자 설정에서는 그룹 소유자나 다른 구성원이 User3을 검토할 수 없습니다."
+},
+"194": {
+ "stem": "Microsoft 365 구독이 있습니다.\n\n다음 구성의 App1이라는 앱을 배포할 계획입니다.\n\n- Microsoft Entra에 등록됩니다.\n- Microsoft Graph API를 사용하여 로그인한 사용자의 Microsoft Outlook 일정에 액세스합니다.\n\nApp1이 Microsoft Graph에 액세스할 수 있도록 해야 합니다.\n\n무엇을 사용해야 합니까?",
+ "choices": {"A": "애플리케이션 권한", "B": "위임된 권한", "C": "사용자 지정 역할 기반 액세스 제어(RBAC) 역할", "D": "기본 제공 역할 기반 액세스 제어(RBAC) 역할"},
+ "explanation": "위임된 권한을 사용하면 애플리케이션이 로그인한 사용자를 대신하여 Microsoft Graph를 호출하며, 그 사용자가 액세스할 수 있는 리소스로 액세스가 제한됩니다. 따라서 로그인한 사용자의 Outlook 일정에 액세스하려면 적절한 Calendars 위임 범위 같은 위임된 Microsoft Graph 권한이 필요합니다."
+},
+"195": {
+ "stem": "User1이라는 사용자가 포함된 Azure 구독이 있습니다.\n\n다음 요구 사항을 충족해야 합니다.\n\n- User1이 새로 등록된 앱의 소유자가 되지 않도록 합니다.\n- User1이 애플리케이션 프록시 설정을 관리할 수 있어야 합니다.\n- User1이 앱을 등록할 수 있어야 합니다.\n- 최소 권한 원칙을 적용합니다.\n\nUser1에게 어떤 역할을 할당해야 합니까?",
+ "choices": {"A": "Application developer", "B": "Cloud application administrator", "C": "Service support administrator", "D": "Application administrator"},
+ "explanation": "Application Administrator 역할은 애플리케이션 등록과 애플리케이션 프록시 설정을 만들고 관리할 수 있습니다. 이 역할이 할당된 사용자는 새 애플리케이션 등록을 만들 때 소유자로 추가되지 않으므로, 필요한 기능을 제공하면서 소유권 제한도 충족합니다."
+},
+"196": {
+ "stem": "User1이라는 사용자가 포함된 Microsoft 365 E5 구독이 있습니다.\n\nUser1이 Microsoft Entra 역할에 대한 액세스 검토를 만들 수 있도록 해야 합니다. 최소 권한 원칙을 따라야 합니다.\n\nUser1에게 어떤 역할을 할당해야 합니까?",
+ "choices": {"A": "Identity Governance Administrator", "B": "User Access Administrator", "C": "User Administrator", "D": "Privileged Role Administrator"},
+ "explanation": "Microsoft Entra 역할에 대한 액세스 검토 생성은 최소 Privileged Role Administrator 역할이 필요한 Privileged Identity Management 기능입니다. 이 역할은 더 넓은 관리 액세스를 할당하지 않고 필요한 권한을 부여합니다."
+},
+"197": {
+ "stem": "SecAdmin1이라는 사용자가 포함된 Azure Active Directory(Azure AD) 테넌트가 있습니다. SecAdmin1에게는 Security administrator 역할이 할당되어 있습니다.\n\nSecAdmin1이 Azure AD Identity Protection 포털에서 암호를 재설정할 수 없다고 말합니다.\n\nSecAdmin1이 비관리 사용자의 암호를 관리하고 세션을 무효화할 수 있도록 해야 합니다. 최소 권한 원칙을 따라야 합니다.\n\nSecAdmin1에게 어떤 역할을 할당해야 합니까?",
+ "choices": {"A": "Authentication administrator", "B": "Helpdesk administrator", "C": "Privileged authentication administrator", "D": "Security operator"},
+ "explanation": "Authentication Administrator 역할은 비관리 사용자에 대해 암호 재설정을 포함한 인증 방법 관리를 허용합니다. Global Administrator를 포함한 관리자의 인증 방법까지 관리할 수 있는 Privileged Authentication Administrator의 더 넓은 권한 없이 필요한 인증 관리 기능을 제공합니다."
+},
+"198": {
+ "stem": "db1이라는 Azure SQL 데이터베이스가 포함된 Azure 구독이 있습니다.\n\n익명으로 App1에 연결하는 사용자에게 제품 정보를 제공하는 App1이라는 Azure App Service 웹앱을 배포합니다.\n\nApp1에 db1에 대한 액세스 권한을 부여해야 합니다. 다음 요구 사항을 충족해야 합니다.\n\n- 자격 증명은 App1에서만 사용할 수 있어야 합니다.\n- 관리 작업을 최소화해야 합니다.\n\n어떤 유형의 자격 증명을 사용해야 합니까?",
+ "choices": {"A": "시스템 할당 관리 ID", "B": "Azure Active Directory(Azure AD) 사용자 계정", "C": "SQL Server 계정", "D": "사용자 할당 관리 ID"},
+ "explanation": "시스템 할당 관리 ID는 개별 App Service 앱에 바인딩되며 Azure가 관리합니다. 그 ID에 Azure SQL Database 액세스 권한을 부여하면 App1에 자격 증명을 저장하거나 관리하지 않고 암호 없는 인증이 가능합니다. 수명 주기가 App1에 묶여 있어 ID가 그 앱 전용으로 유지되고 관리가 최소화됩니다."
+},
+"199": {
+ "stem": "Azure AD 테넌트가 있습니다.\n\n로그인 실패 10회를 잠금 임계값으로 하는 스마트 잠금을 구현해야 합니다.\n\nAzure AD 관리 센터에서 무엇을 구성해야 합니까?",
+ "choices": {"A": "인증 강도", "B": "암호 보호", "C": "사용자 위험 정책", "D": "로그인 위험 정책"},
+ "explanation": "Microsoft Entra 스마트 잠금은 **암호 보호**에서 구성합니다. 설정에는 최초 잠금 전에 허용되는 로그인 실패 횟수를 지정하는 잠금 임계값이 포함됩니다."
+},
+"200": {
+ "stem": "다음 표의 그룹이 포함된 Microsoft 365 E5 구독이 있습니다.\n\n[[IMG1]]\n\n그룹의 수명 주기를 관리할 계획입니다.\n\n만료되도록 구성할 수 있는 그룹은 무엇이며, 구성할 수 있는 가장 짧은 그룹 수명은 얼마입니까?",
+ "blanks": {
+  "can_expire": {"label": "만료 가능:", "options": ["Group1만", "Group2만", "Group1과 Group3만", "Group3과 Group4만", "Group2, Group3, Group4만"]},
+  "shortest_lifetime": {"label": "가장 짧은 수명:", "options": ["3일", "7일", "14일", "30일", "45일"]}
+ },
+ "explanation": "Microsoft 365 그룹 만료 정책은 Microsoft 365 그룹에만 적용됩니다. Group2가 유일한 Microsoft 365 그룹이고, 나머지 그룹은 보안 그룹, 메일 사용 보안 그룹 또는 메일 그룹입니다. 사용자 지정 그룹 수명은 최소 30일이어야 합니다."
+},
+"201": {
+ "stem": "`contoso.onmicrosoft.com` 도메인 이름을 사용하는 새 Microsoft 365 테넌트가 있습니다.\n\n도메인 등록 기관에 `contoso.com`을 등록합니다.\n\n`contoso.com`을 새 Microsoft 365 사용자의 기본 도메인 이름으로 만들어야 합니다.\n\n순서대로 수행해야 하는 네 가지 작업은 무엇입니까?",
+ "items": {"Delete the contoso.onmicrosoft.com domain.": "contoso.onmicrosoft.com 도메인을 삭제합니다.", "Add a custom domain name of contoso.com.": "contoso.com 사용자 지정 도메인 이름을 추가합니다.", "Set the domain to primary.": "도메인을 기본(primary)으로 설정합니다.", "Create a new TXT record in DNS.": "DNS에 새 TXT 레코드를 만듭니다.", "Successfully verify the domain name.": "도메인 이름을 확인(verify)합니다."},
+ "slots": {"step1": "1단계", "step2": "2단계", "step3": "3단계", "step4": "4단계"},
+ "explanation": "Microsoft 365 사용자 지정 도메인은 기본 도메인으로 만들기 전에 추가하고 DNS TXT 레코드로 소유권을 확인해야 합니다. 원래의 `onmicrosoft.com` 도메인은 테넌트의 초기 대체 도메인으로 남으며 삭제되지 않습니다."
+},
+"202": {
+ "stem": "Group3이라는 그룹과 Department1이라는 관리 단위가 포함된 Azure Active Directory(Azure AD) 테넌트가 있습니다.\n\nDepartment1에는 Users 그림의 사용자가 포함되어 있습니다. (Users 탭을 클릭하세요.)\n\n[[IMG1]]\n\nDepartment1에는 Groups 그림의 그룹이 포함되어 있습니다. (Groups 탭을 클릭하세요.)\n\n[[IMG2]]\n\nDepartment1에는 Assignments 그림의 User Administrator 할당이 있습니다. (Assignments 탭을 클릭하세요.)\n\n[[IMG3]]\n\nGroup2의 멤버 자격은 Group2 그림과 같습니다. (Group2 탭을 클릭하세요.)\n\n[[IMG4]]\n\n다음 각 문장이 참이면 예, 그렇지 않으면 아니요를 선택하세요.",
+ "statements": ["Admin1은 User3과 User4의 암호를 재설정할 수 있다.", "Admin1은 User1을 Group2에 추가할 수 있다.", "Admin2는 User1의 암호를 재설정할 수 있다."],
+ "explanation": "관리 단위에 추가된 그룹은 그 자체가 관리 범위에 들어가지만 그 구성원은 들어가지 않습니다. 따라서 Admin1의 Department1 범위 User Administrator 역할로는 User3과 User4의 암호를 재설정할 수 없습니다. User1과 Group2는 Department1의 직접 개체이므로 Admin1은 Group2 멤버 자격을 관리하고 User1을 추가할 수 있습니다. Admin2는 디렉터리 범위의 User Administrator 역할이 있어 User1의 암호를 재설정할 수 있습니다."
+}
+}

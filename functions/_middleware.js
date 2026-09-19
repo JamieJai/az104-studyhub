@@ -29,7 +29,7 @@ export async function onRequest(context) {
   context.data.user = user;
 
   // 로그인해야 들어갈 수 있는 페이지 (dist/_routes.json 의 include 와 맞춘다)
-  const PROTECTED = ["/map", "/AZ-104_CBT", "/AZ-802_CBT"];
+  const PROTECTED = ["/map", "/AZ-104_CBT", "/AZ-802_CBT", "/SC-300_CBT"];
   const protectedPage = PROTECTED.some(p => path === p || path === p + "/" || path === p + "/index.html");
   if (!user && protectedPage && isNav) {
     const nextPath = encodeURIComponent(path + url.search);

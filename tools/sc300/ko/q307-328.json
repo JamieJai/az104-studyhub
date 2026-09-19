@@ -1,0 +1,113 @@
+{
+"307": {
+ "stem": "AU1이라는 관리 단위와 User1, User2라는 두 사용자가 포함된 contoso.com이라는 Microsoft Entra 테넌트가 있습니다. User1은 AU1에 속합니다.\n\n다음 역할 할당을 해야 합니다.\n\n- User1: Security Administrator\n- User2: User Administrator\n\n각 사용자는 어떤 범위로 역할을 받을 수 있습니까?",
+ "blanks": {
+  "user1": {"label": "User1:", "options": ["AU1만", "contoso.com만", "AU1과 contoso.com"]},
+  "user2": {"label": "User2:", "options": ["AU1만", "contoso.com만", "AU1과 contoso.com"]}
+ },
+ "explanation": "Security Administrator는 Microsoft Entra ID가 관리 단위 범위로 할당을 지원하는 역할이 아니므로, User1에게는 contoso.com 테넌트 전체로만 그 역할을 할당할 수 있습니다. User Administrator는 관리 단위 범위를 지원하는 역할 목록에 있고, 사용자·역할 할당 가능 그룹·서비스 주체는 자신의 관리 단위 멤버 자격과 관계없이 관리 단위 범위의 역할 할당을 받을 수 있으므로, User2에게는 AU1 범위 또는 contoso.com 테넌트 전체로 User Administrator를 할당할 수 있습니다."
+},
+"308": {
+ "stem": "contoso.com과 fabrikam.com이라는 두 Microsoft Entra 테넌트가 있습니다. contoso.com에는 다음 표의 사용자가 포함되어 있습니다.\n\n[[IMG1]]\n\n다음 설정으로 contoso.com에서 fabrikam.com으로의 테넌트 간 동기화를 구성합니다.\n\n- 사용자 및 그룹: Group1\n- 프로비저닝 모드: 자동\n- 특성 매핑\n  - 원본 개체 범위: Filter1, Filter2\n\nFilter1은 다음 표와 같이 구성되어 있습니다.\n\n[[IMG2]]\n\nFilter2는 다음 표와 같이 구성되어 있습니다.\n\n[[IMG3]]\n\n다음 각 문장이 참이면 예, 그렇지 않으면 아니요를 선택하세요.",
+ "statements": ["User1이 fabrikam.com으로 동기화된다.", "User2가 fabrikam.com으로 동기화된다.", "User3이 fabrikam.com으로 동기화된다."],
+ "explanation": "선택한 사용자 및 그룹 범위는 동기화를 Group1 구성원인 User1과 User3으로 제한하며, User2는 구성원이 아닙니다. 범위 지정 필터 내의 절은 AND 논리를 사용하고, 여러 범위 지정 필터는 OR 논리를 사용합니다. User1은 Filter1을 통과하고, User3은 Montreal에 \"M\"이 포함되어 Filter2를 통과합니다."
+},
+"309": {
+ "stem": "App1이라는 엔터프라이즈 애플리케이션이 포함된 contoso.com이라는 Microsoft Entra 테넌트가 있습니다.\n\n계약자가 user1@fabrikam.com의 자격 증명을 사용합니다.\n\n계약자에게 App1에 대한 액세스 권한을 부여할 수 있어야 합니다. 계약자는 user1@fabrikam.com으로 인증할 수 있어야 합니다.\n\n무엇을 해야 합니까?",
+ "choices": {"A": "New-MgUser cmdlet을 실행합니다.", "B": "contoso.com에 사용자 지정 도메인 이름을 추가합니다.", "C": "New-MgInvitation cmdlet을 실행합니다.", "D": "Microsoft Entra Connect 동기화를 구현합니다."},
+ "explanation": "Microsoft Entra B2B 초대는 외부 사용자를 게스트로 추가하고, 그 사용자가 기존 외부 자격 증명으로 인증하여 초대를 수락할 수 있게 합니다. `New-MgInvitation`이 이 초대를 만들어 게스트에게 엔터프라이즈 애플리케이션 액세스를 할당할 수 있게 합니다."
+},
+"310": {
+ "stem": "Microsoft Entra 테넌트가 있습니다.\n\n다음 설정으로 **HR Apps**라는 엔터프라이즈 애플리케이션 컬렉션을 만듭니다.\n\n- 애플리케이션: App1, App2, App3\n- 소유자: Admin1\n- 사용자 및 그룹: HRUsers\n\n세 앱 모두 다음 **속성** 설정을 갖고 있습니다.\n\n- 사용자가 로그인할 수 있도록 설정: 예\n- 사용자 할당 필요: 예\n- 사용자에게 표시: 예\n\n사용자들이 내 앱 포털에서 App1과 App2만 볼 수 있다고 보고합니다.\n\n사용자가 App3도 볼 수 있도록 해야 합니다.\n\nApp3에서 무엇을 해야 합니까?",
+ "choices": {"A": "Single Sign-On에서 로그온 방법을 구성합니다.", "B": "권한에서 사용자 동의 권한을 검토합니다.", "C": "사용자 및 그룹에서 HRUsers를 추가합니다.", "D": "속성에서 \"사용자 할당 필요\"를 아니요로 변경합니다."},
+ "explanation": "내 앱 컬렉션은 사용자가 이미 할당된 애플리케이션만 표시합니다. 사용자 할당이 필요한 경우 App3의 사용자 및 그룹 설정에서 HRUsers를 App3에 직접 할당해야 합니다. 그룹을 컬렉션에만 할당해서는 애플리케이션에 대한 액세스가 부여되지 않습니다."
+},
+"311": {
+ "stem": "contoso.com이라는 Azure AD 테넌트에 연결된 Azure 구독이 있습니다. 구독에는 Group1이라는 그룹과 VM1이라는 가상 머신이 있습니다.\n\n다음 요구 사항을 충족해야 합니다.\n\n- VM1에 대해 시스템 할당 관리 ID를 사용하도록 설정합니다.\n- VM1을 Group1에 추가합니다.\n\nPowerShell 스크립트를 완성하세요. 각 cmdlet은 한 번, 여러 번 사용하거나 전혀 사용하지 않을 수 있습니다.",
+ "items": {"Get-AzADGroup": "Get-AzADGroup", "Get-AzADServicePrincipal": "Get-AzADServicePrincipal", "Get-AzVM": "Get-AzVM", "Update-AzADServicePrincipal": "Update-AzADServicePrincipal", "Update-AzVM": "Update-AzVM"},
+ "slots": {"cmdlet1": "cmdlet 1", "cmdlet2": "cmdlet 2"},
+ "explanation": "Get-AzVM은 Update-AzVM에 필요한 VM 개체를 가져옵니다. `-IdentityType SystemAssigned`를 사용한 Update-AzVM은 VM의 시스템 할당 관리 ID를 사용하도록 설정합니다. 그 ID는 Microsoft Entra ID에서 서비스 주체로 표현되며, Get-AzADServicePrincipal이 표시 이름으로 이를 가져와 그룹에 추가할 때 구성원 개체 ID로 제공할 수 있게 합니다."
+},
+"312": {
+ "stem": "다음 표의 사용자가 포함된 Azure Active Directory(Azure AD) 테넌트가 있습니다.\n\n[[IMG1]]\n\nAzure AD에서 직함(Job title) 속성과 사용 위치(Usage location) 속성을 구성할 수 있는 사용자는 누구입니까?",
+ "blanks": {
+  "job_title": {"label": "직함 속성:", "options": ["User2만", "User1과 User2만", "User2와 User3만", "User1, User2, User3"]},
+  "usage_location": {"label": "사용 위치 속성:", "options": ["User2만", "User1과 User2만", "User2와 User3만", "User1, User2, User3"]}
+ },
+ "explanation": "디렉터리 동기화된 사용자의 경우 직함 같은 직무 정보는 온-프레미스 Active Directory 원본에서 관리하므로 User1의 그 속성은 Azure AD에서 직접 구성할 수 없습니다. User2와 User3은 디렉터리 동기화되지 않으므로 직함을 구성할 수 있습니다. 사용 위치는 Microsoft Entra ID 특성이라 동기화된 사용자에 대해서도 직접 변경할 수 있고, 게스트 사용자 개체에 대해서도 관리할 수 있습니다. 따라서 세 사용자 모두에 대해 구성할 수 있습니다."
+},
+"313": {
+ "stem": "다음 표의 디바이스가 포함된 Microsoft Entra 테넌트가 있습니다.\n\n[[IMG1]]\n\nMicrosoft Entra Private Access를 구성할 계획입니다.\n\n호환되는 디바이스에 Global Secure Access 클라이언트를 배포합니다.\n\n어떤 디바이스에서 Private Access를 사용할 수 있습니까?",
+ "choices": {"A": "Device1만", "B": "Device2만", "C": "Device2와 Device4만", "D": "Device1, Device2, Device3만", "E": "Device1, Device2, Device3, Device4"},
+ "explanation": "Global Secure Access 클라이언트는 Microsoft Entra 조인 또는 등록된 지원되는 Windows 10 및 Windows 11 디바이스에서 Microsoft Entra Private Access를 지원합니다. Microsoft Entra 등록 Windows 디바이스는 Private Access 트래픽을 지원하고, 모바일 클라이언트도 Android 디바이스에서 Private Access를 지원합니다."
+},
+"314": {
+ "stem": "Azure AD Identity Protection 정책이 적용된 contoso.com이라는 Azure Active Directory(Azure AD) 테넌트가 있습니다.\n\nAzure Sentinel 인스턴스를 만들고 Azure Active Directory 커넥터를 구성합니다.\n\nAzure Sentinel이 Azure AD Identity Protection에서 발생한 위험 경고로부터 인시던트를 생성할 수 있도록 해야 합니다.\n\n먼저 무엇을 해야 합니까?",
+ "choices": {"A": "Microsoft Sentinel 데이터 커넥터를 추가합니다.", "B": "Azure AD Identity Protection의 알림 설정을 구성합니다.", "C": "Microsoft Sentinel 플레이북을 만듭니다.", "D": "Azure AD의 진단 설정을 수정합니다."},
+ "explanation": "Azure AD 진단 설정이 Identity Protection 위험 로그를 Microsoft Sentinel이 사용하는 Log Analytics 작업 영역으로 보내야 합니다. 이 로그가 Sentinel 분석이 경고와 인시던트를 만드는 데 사용할 위험 탐지 데이터를 제공합니다. 알림 설정과 플레이북은 그 데이터를 수집하지 않습니다."
+},
+"315": {
+ "stem": "Microsoft 365 테넌트가 있습니다.\n\n모든 사용자에게 휴대폰과 Windows 10 노트북이 있습니다.\n\n사용자들은 Wi-Fi나 휴대폰 연결이 없는 원격 위치에서 자주 일합니다. 이런 원격 위치에서 사용자는 노트북을 인터넷이 되는 유선 네트워크에 연결합니다.\n\n다단계 인증(MFA)을 구현할 계획입니다.\n\n사용자가 원격 위치에서 사용할 수 있는 MFA 인증 방법은 무엇입니까?",
+ "choices": {"A": "Windows Hello 비즈니스용", "B": "앱 암호", "C": "Microsoft Authenticator 앱을 통한 알림", "D": "보안 질문"},
+ "explanation": "Windows Hello 비즈니스용은 디바이스에 바인딩된 키와 PIN 또는 생체 인식 제스처를 함께 사용하여 Microsoft Entra MFA 요구 사항을 충족합니다. Windows 노트북은 휴대폰 연결 없이 유선 인터넷 연결로 Microsoft Entra와 통신할 수 있습니다. 앱 암호는 추가 확인 프롬프트가 없는 레거시 클라이언트용 우회 수단이고, 보안 질문은 셀프 서비스 암호 재설정에만 사용됩니다."
+},
+"316": {
+ "stem": "Admin1이라는 사용자가 포함된 Azure AD 테넌트가 있습니다.\n\nAdmin1이 다음 작업만 수행할 수 있도록 해야 합니다.\n\n- Microsoft 365 관리 센터에서 서비스 요청을 만들고 관리합니다.\n- Microsoft 365 관리 센터에서 서비스 상태를 읽고 구성합니다.\n- Azure Portal에서 지원 티켓을 만들고 관리합니다.\n\n관리 작업을 최소화해야 합니다.\n\n무엇을 해야 합니까?",
+ "choices": {"A": "관리 단위를 만들고 Admin1을 추가합니다.", "B": "Admin1에 대해 Azure AD Privileged Identity Management(PIM)를 사용하도록 설정합니다.", "C": "Admin1에게 Helpdesk Administrator 역할을 할당합니다.", "D": "사용자 지정 역할을 만들어 Admin1에게 할당합니다."},
+ "explanation": "Helpdesk Administrator 기본 제공 역할에는 Microsoft 365 서비스 요청 생성 및 관리, Microsoft 365 관리 센터의 서비스 상태 읽기 및 구성, Azure 지원 티켓 생성 및 관리 권한이 포함됩니다. 기본 제공 역할을 할당하면 사용자 지정 역할을 만들고 유지하는 관리 부담을 피할 수 있습니다."
+},
+"317": {
+ "stem": "*(참고: ADatum 사례 연구(Q129 참조) 문항입니다. 문제점: 영업 사용자가 디바이스 한도(5대)에 도달함. 계획: 최대 디바이스 수를 10으로 늘림.)*\n\n영업 부서 사용자에게 영향을 주는 문제를 해결해야 합니다.\n\nAzure AD 테넌트에서 무엇을 구성해야 합니까?",
+ "choices": {"A": "디바이스 설정", "B": "액세스 검토 설정", "C": "사용자 설정", "D": "보안 기본값"},
+ "explanation": "이 문항은 영업 부서 사용자가 각각 최대 5대의 디바이스를 갖고 있어 Microsoft Entra ID에 디바이스를 추가로 조인하려면 반복해서 지원 부서에 연락해야 하는 사례 연구에서 나온 것입니다. 그 증상은 사용자 설정, 액세스 검토, 보안 기본값이 아니라 디바이스 설정에 있는 테넌트 전체 디바이스 조인/할당량 구성으로 해결합니다."
+},
+"318": {
+ "stem": "Azure 구독이 있습니다.\n\n다음 요구 사항을 충족하는 Role1과 Role2라는 두 사용자 지정 역할을 만들어야 합니다.\n\n- Role1이 할당된 사용자는 Azure Container Apps 인스턴스를 만들거나 삭제할 수 있습니다.\n- Role2가 할당된 사용자는 적응형 네트워크 강화 규칙을 적용할 수 있습니다.\n\n각 역할에 필요한 리소스 공급자 권한은 무엇입니까?",
+ "blanks": {
+  "role1": {"label": "Role1:", "options": ["Microsoft.App", "Microsoft.Compute", "Microsoft.Management", "Microsoft.Security"]},
+  "role2": {"label": "Role2:", "options": ["Microsoft.App", "Microsoft.Compute", "Microsoft.Network", "Microsoft.Security"]}
+ },
+ "explanation": "Azure Container Apps는 Microsoft.App 리소스 공급자를 사용하며, 사용자 지정 역할 작업에는 containerApps/write와 containerApps/delete가 포함됩니다. 적응형 네트워크 강화 규칙 적용은 Microsoft.Security/adaptiveNetworkHardenings/enforce/action을 사용하며, 이는 관련 네트워크 보안 그룹에 일치하는 보안 규칙을 만듭니다."
+},
+"319": {
+ "stem": "Microsoft Office 365 Enterprise E3 라이선스가 할당된 사용자 2,500명이 있습니다. 라이선스는 개별 사용자에게 직접 할당되어 있습니다.\n\nMicrosoft Entra 관리 센터의 **그룹** 블레이드에서 모든 사용자가 포함된 그룹에 Microsoft Office 365 Enterprise E5 라이선스를 할당합니다.\n\n최소한의 관리 작업으로 사용자에게서 Office 365 Enterprise E3 라이선스를 제거해야 합니다.\n\n무엇을 사용해야 합니까?",
+ "choices": {"A": "Set-MgUserLicense cmdlet", "B": "Microsoft Entra 관리 센터의 Identity Governance 블레이드", "C": "Set-WindowsProductKey cmdlet", "D": "Microsoft Entra 관리 센터의 관리 단위 블레이드"},
+ "explanation": "그룹 기반 라이선스는 직접 사용자 라이선스의 대안입니다. 그룹에 E5를 할당해도 사용자에게 직접 할당된 E3 라이선스는 제거되지 않습니다. `Set-MgUserLicense`는 사용자에게서 라이선스를 제거할 수 있으며, 대량 PowerShell 프로세스에서 영향받는 모든 사용자의 직접 E3 할당을 제거하는 데 사용할 수 있습니다."
+},
+"320": {
+ "stem": "네트워크에 Microsoft Entra Connect를 사용하여 Microsoft Entra ID와 동기화되는 contoso.com이라는 온-프레미스 Active Directory 도메인이 있습니다. 도메인에는 다음 표의 사용자가 있습니다.\n\n[[IMG1]]\n\nActive Directory 사용자 및 컴퓨터에서 다음 사용자를 추가합니다.\n\n- 이름: User3\n- UPN: user3@contoso.com\n- 프록시 주소: smtp: user3@contoso.com, smtp: sales@contoso.com\n\nActive Directory 사용자 및 컴퓨터에서 각 사용자의 `proxyAddresses` 특성을 다음 표와 같이 업데이트합니다.\n\n[[IMG2]]\n\n수동 동기화를 트리거합니다.\n\nMicrosoft Entra Connect는 각 사용자에 대해 어떤 동기화 상태를 반환합니까? 각 상태는 한 번, 여러 번 사용하거나 전혀 사용하지 않을 수 있습니다.",
+ "items": {"AttributeValueMustBeUnique error occurs": "AttributeValueMustBeUnique 오류 발생", "InvalidSoftMatch error occurs.": "InvalidSoftMatch 오류 발생", "ObjectTypeMismatch error occurs.": "ObjectTypeMismatch 오류 발생", "Successfully synced": "동기화 성공"},
+ "slots": {"user1": "User1@contoso.com", "user2": "User2@contoso.com", "user3": "User3@contoso.com"},
+ "explanation": "이미 동기화된 개체와 프록시 주소로는 일치하지만 변경 불가능 ID(immutable ID)가 다른 새 개체는 InvalidSoftMatch 오류를 발생시킵니다. 이미 동기화된 개체를 다른 Microsoft Entra ID 개체에 이미 할당된 `proxyAddresses` 값으로 업데이트하면 AttributeValueMustBeUnique가 발생합니다. `smtp:admin@contoso.com`은 고유하므로 User1은 성공적으로 동기화됩니다."
+},
+"321": {
+ "stem": "Microsoft 365 테넌트가 있습니다.\n\nAzure Active Directory(Azure AD) 테넌트가 온-프레미스 Active Directory 도메인과 동기화됩니다.\n\n사용자는 회사의 하드웨어 방화벽을 통해 인터넷에 액세스합니다. 사용자는 Active Directory 자격 증명으로 방화벽에 인증합니다.\n\nAzure AD를 사용하여 외부 애플리케이션에 대한 액세스를 관리할 계획입니다.\n\n방화벽 로그를 사용하여 관리되지 않는 외부 애플리케이션과 그것에 액세스하는 사용자의 목록을 만들어야 합니다.\n\n정보를 수집하는 데 무엇을 사용해야 합니까?",
+ "choices": {"A": "Azure Monitor의 Application Insights", "B": "Azure AD의 액세스 검토", "C": "Microsoft Cloud App Security의 Cloud App Discovery", "D": "Azure AD의 엔터프라이즈 애플리케이션"},
+ "explanation": "Microsoft Cloud App Security의 Cloud App Discovery는 방화벽과 프록시 트래픽 로그를 분석하여 섀도 IT를 포함한 사용 중인 클라우드 애플리케이션을 검색하고 관련 사용자를 보고합니다. 이는 관리되지 않는 외부 애플리케이션과 그것에 액세스하는 사용자를 식별하는 데 직접 도움이 됩니다."
+},
+"322": {
+ "stem": "Microsoft 365 테넌트가 있습니다.\n\n모든 사용자에게 휴대폰과 노트북이 있습니다. 사용자들은 Wi-Fi나 휴대폰 연결이 없는 원격 위치에서 자주 일합니다. 이런 원격 위치에서 사용자는 노트북을 인터넷이 되는 유선 네트워크에 연결합니다.\n\n다단계 인증(MFA)을 구현할 계획입니다.\n\n사용자가 원격 위치에서 사용할 수 있는 MFA 인증 방법은 무엇입니까?",
+ "choices": {"A": "Microsoft Authenticator 앱을 통한 알림", "B": "앱 암호", "C": "Windows Hello 비즈니스용", "D": "SMS"},
+ "explanation": "Windows Hello 비즈니스용은 사용자 노트북에 저장된 자격 증명과 PIN 또는 생체 인식 제스처를 결합하는 디바이스 바인딩 2단계 인증 방법입니다. Microsoft Entra MFA 요구 사항을 충족하며 사용자 휴대폰의 Wi-Fi나 셀룰러 연결 없이 노트북의 유선 인터넷 연결로 인증할 수 있습니다."
+},
+"325": {
+ "stem": "Azure AD 테넌트가 있습니다.\n\nAzure AD Privileged Identity Management(PIM)를 구현할 계획입니다.\n\nPIM으로 관리할 수 있는 역할은 무엇입니까?",
+ "choices": {"A": "Global Administrator만", "B": "Global Administrator와 Security Administrator만", "C": "Global Administrator, Security Administrator, Security Contributor만", "D": "Account Administrator, Global Administrator, Security Administrator, Security Contributor만"},
+ "explanation": "Privileged Identity Management는 Global Administrator와 Security Administrator를 포함한 Microsoft Entra 역할과 Security Contributor를 포함한 Azure RBAC 리소스 역할의 JIT 관리를 지원합니다. Account Administrator는 PIM으로 관리할 수 없는 클래식 구독 관리자 역할입니다."
+},
+"326": {
+ "stem": "Microsoft 365 테넌트가 있습니다.\n\n온-프레미스 Active Directory 도메인이 Azure AD 테넌트와 동기화되도록 구성되어 있습니다. 도메인에는 다음 표의 서버가 포함되어 있습니다.\n\n[[IMG1]]\n\n도메인 컨트롤러는 인터넷과 통신할 수 없습니다.\n\nServer1과 Server2에 Azure AD 암호 보호를 구현합니다.\n\nWindows Server 2022를 실행하는 Server4라는 새 서버를 배포합니다.\n\n서버 한 대가 실패해도 Azure AD 암호 보호가 계속 동작하도록 해야 합니다.\n\nServer4에 무엇을 구현해야 합니까?",
+ "choices": {"A": "Azure AD Connect", "B": "Azure AD 애플리케이션 프록시", "C": "암호 변경 알림 서비스(PCNS)", "D": "Azure AD 암호 보호 프록시 서비스"},
+ "explanation": "Microsoft Entra 암호 보호는 온-프레미스 도메인 컨트롤러를 위해 클라우드에서 정책 데이터를 가져오는 프록시 서버를 사용합니다. Microsoft는 이중화를 위해 포리스트당 최소 두 대의 암호 보호 프록시 서버를 권장하며, 두 번째 프록시가 있으면 한 대가 실패해도 DC 에이전트가 다른 프록시를 사용할 수 있습니다."
+},
+"327": {
+ "stem": "네트워크에 Azure AD Connect를 사용하여 contoso.com이라는 Azure Active Directory(Azure AD) 테넌트에 연결된 contoso.com이라는 Active Directory 포리스트가 있습니다.\n\nextensionAttribute15 특성이 NoSync로 설정된 사용자의 동기화를 막아야 합니다.\n\nAzure AD Connect에서 무엇을 해야 합니까?",
+ "choices": {"A": "Windows Azure Active Directory 커넥터에 대한 인바운드 동기화 규칙을 만듭니다.", "B": "전체 가져오기(Full Import) 실행 프로필을 구성합니다.", "C": "Active Directory Domain Services 커넥터에 대한 인바운드 동기화 규칙을 만듭니다.", "D": "내보내기(Export) 실행 프로필을 구성합니다."},
+ "explanation": "온-프레미스 사용자에 대한 특성 기반 부정 필터링은 Active Directory Domain Services 커넥터에 대한 인바운드 동기화 규칙으로 구성합니다. 규칙의 범위를 `extensionAttribute15 = NoSync`로 지정하고 `cloudFiltered = True`를 흐르게 하면 일치하는 사용자가 Microsoft Entra ID로 동기화되지 않습니다."
+},
+"328": {
+ "stem": "Microsoft 365 구독이 있습니다.\n\nApp1이라는 Azure App Service 웹앱이 포함된 Azure 구독이 있습니다.\n\nMicrosoft Intune에 등록된 Windows 디바이스가 여러 대 있습니다.\n\nIntune을 사용하여 디바이스에 Global Secure Access 클라이언트를 배포합니다.\n\nApp1에 대한 프라이빗 액세스를 구성해야 합니다.\n\n다음으로 무엇을 해야 합니까?",
+ "choices": {"A": "원격 네트워크를 만듭니다.", "B": "트래픽 전달 프로필을 구성합니다.", "C": "프라이빗 네트워크 커넥터를 배포합니다.", "D": "애플리케이션 보안 그룹을 만듭니다."},
+ "explanation": "Microsoft Entra Private Access는 Global Secure Access 서비스에서 백엔드 리소스로 가는 트래픽을 중개하는 프라이빗 네트워크 커넥터를 사용합니다. 클라이언트 트래픽을 라우팅하기 전에 Azure App Service 웹앱에 도달할 수 있는 네트워크 위치에 커넥터를 배포해야 합니다. [Microsoft Entra 프라이빗 네트워크 커넥터](https://learn.microsoft.com/en-us/entra/global-secure-access/concept-connectors)"
+}
+}

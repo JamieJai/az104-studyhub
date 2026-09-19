@@ -68,6 +68,17 @@
       ]
     },
     {
+      "name": "SC-300 CBT",
+      "short_name": "SC-300",
+      "url": "./SC-300_CBT/",
+      "icons": [
+        {
+          "src": "./icons/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
       "name": "Lab Portal",
       "short_name": "Lab",
       "url": "./AZ-104_Lab_Portal/",

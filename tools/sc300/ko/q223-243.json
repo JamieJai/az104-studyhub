@@ -1,0 +1,105 @@
+{
+"223": {
+ "stem": "다음 표의 사용자가 포함된 Microsoft Entra 테넌트가 있습니다.\n\n[[IMG1]]\n\n테넌트에는 다음 표의 Microsoft 365 그룹이 포함되어 있습니다.\n\n[[IMG2]]\n\n다음 설정으로 Access1이라는 액세스 검토를 만듭니다.\n\n- **검토 대상 선택:** Teams + 그룹\n- **검토 범위:** 게스트 사용자가 있는 모든 Microsoft 그룹\n- **범위:** 게스트 사용자만\n- **검토자 선택:** 사용자가 자신의 액세스를 검토\n\n다음 각 문장이 참이면 예, 그렇지 않으면 아니요를 선택하세요.",
+ "statements": ["User1은 Access1을 사용하여 Group1의 자기 멤버 자격을 검토할 수 있다.", "User2는 Access1을 사용하여 Group3의 자기 멤버 자격을 검토할 수 있다.", "User3은 Access1을 사용하여 Group2의 자기 멤버 자격을 검토할 수 있다."],
+ "explanation": "Access1은 \"게스트 사용자가 있는 모든 Microsoft 365 그룹\" 검토 범위를 사용하며, 이 범위는 동적 그룹과 역할 할당 가능 그룹을 자동으로 제외하고 실제로 게스트 사용자가 포함된 그룹에 대해서만 검토 인스턴스를 생성합니다. Group1은 역할 할당이 허용되어 있어 역할 할당 가능 그룹이므로 게스트인 User2가 속해 있어도 Access1에서 제외되며, User1은 어차피 게스트가 아닙니다. Group3은 동적 그룹이므로 User2가 게스트 구성원이어도 마찬가지로 Access1에서 제외됩니다. Group2는 정적이고 역할 할당 불가 그룹이지만 게스트 사용자가 없고(User1과 User3 모두 비게스트 구성원) 검토 범위 밖이며, User3은 어차피 게스트가 아닙니다."
+},
+"224": {
+ "stem": "다음 표의 리소스가 포함된 Azure 구독이 있습니다.\n\n[[IMG1]]\n\n특성 기반 액세스 제어(ABAC)를 사용하여 리소스에 대한 권한을 부여해야 합니다.\n\n어떤 리소스에 권한을 부여할 수 있습니까?",
+ "choices": {"A": "Vault1", "B": "VM1", "C": "App1", "D": "Storage1"},
+ "explanation": "Azure ABAC는 Blob Storage, Azure Data Lake Storage Gen2, Azure Queue를 포함한 지원되는 Azure Storage 데이터 작업에 대한 Azure RBAC 역할 할당에 조건을 추가합니다. 따라서 스토리지 계정이 해당되는 리소스 유형입니다."
+},
+"226": {
+ "stem": "User1이라는 사용자가 Microsoft Defender for Cloud Apps 포털에 액세스하려고 할 때 오류 메시지가 표시됩니다.\n\n관리 작업을 최소화하면서 오류의 원인을 파악해야 합니다.\n\n무엇을 사용해야 합니까?",
+ "choices": {"A": "Log Analytics", "B": "로그인 로그", "C": "감사 로그", "D": "프로비저닝 로그"},
+ "explanation": "Microsoft Entra 로그인 로그는 사용자 인증 시도와 실패 세부 정보를 기록하므로, 로그 내보내기를 구성하거나 별도의 분석 작업 영역을 쿼리하지 않고도 User1이 Microsoft Defender for Cloud Apps 포털에 액세스하지 못한 이유를 조사할 수 있습니다."
+},
+"227": {
+ "stem": "**contoso.com**을 기본 도메인 이름으로 사용하는 새 Microsoft 365 테넌트를 구성합니다.\n\n조건부 액세스 정책을 사용하여 Microsoft 365 리소스에 대한 액세스를 제어할 수 있도록 해야 합니다.\n\n먼저 무엇을 해야 합니까?",
+ "choices": {"A": "보안 기본값을 사용하지 않도록 설정합니다.", "B": "Azure AD 테넌트에 암호 보호를 구성합니다.", "C": "다단계 인증(MFA) 등록 정책을 구성합니다.", "D": "사용자 동의 설정을 사용하지 않도록 설정합니다."},
+ "explanation": "보안 기본값과 Microsoft Entra 조건부 액세스 정책은 동시에 사용하도록 설정할 수 없습니다. 조건부 액세스로 Microsoft 365 리소스 액세스를 세밀하게 제어하려면 먼저 보안 기본값을 사용하지 않도록 설정해야 합니다."
+},
+"228": {
+ "stem": "RG1이라는 리소스 그룹이 포함된 Sub1이라는 Azure 구독이 있습니다. RG1에는 DB1이라는 Azure Cosmos DB 데이터베이스와 AKS1이라는 Azure Kubernetes Service(AKS) 클러스터가 있습니다. AKS1은 관리 ID를 사용합니다.\n\nAKS1이 DB1에 액세스할 수 있도록 해야 합니다. 다음 요구 사항을 충족해야 합니다.\n\n- AKS1이 관리 ID를 사용하여 DB1에 액세스해야 합니다.\n- 최소 권한 원칙을 따릅니다.\n\nAKS1의 관리 ID에 어떤 역할을 할당해야 합니까?",
+ "choices": {"A": "Sub1에 대해 Owner 역할을 할당합니다.", "B": "DB1에 대해 Azure Cosmos DB Account Reader Role 역할을 할당합니다.", "C": "RG1에 대해 Azure Cosmos DB Data Reader Role 역할을 할당합니다.", "D": "RG1에 대해 Reader 역할을 할당합니다."},
+ "explanation": "Microsoft Entra 관리 ID로 Azure Cosmos DB에 저장된 데이터를 읽으려면 Data Reader 역할 같은 Cosmos DB 데이터 평면 역할이 필요합니다. Cosmos DB Account Reader Role이나 일반 Reader 같은 컨트롤 플레인 역할은 계정 메타데이터와 키만 노출할 뿐 데이터 작업을 허가할 수 없습니다. DB1이 포함된 리소스 그룹 범위로 Data Reader 역할을 할당하면 할당 범위를 최대한 좁게 유지하면서 AKS1에 필요한 읽기 액세스를 부여합니다."
+},
+"229": {
+ "stem": "Azure AD 테넌트가 있으며 다음 표의 작업을 수행합니다.\n\n[[IMG1]]\n\n4월 5일에 관리자가 App1, App2, App3, App4를 삭제합니다.\n\n앱과 그 설정을 복원해야 합니다. 4월 16일에 복원할 수 있는 앱은 무엇이며, 4월 16일에 복원할 수 있는 App4 설정은 무엇입니까?",
+ "blanks": {
+  "apps": {"label": "앱:", "options": ["없음", "App4만", "App3과 App4만", "App2, App3, App4만", "App1, App2, App3, App4"]},
+  "app4_settings": {"label": "App4 설정:", "options": ["없음", "셀프 서비스만", "앱 역할과 클라이언트 비밀만", "사용자 및 그룹과 셀프 서비스만", "앱 역할, 사용자 및 그룹, 클라이언트 비밀, 셀프 서비스"]}
+ },
+ "explanation": "삭제된 애플리케이션 등록은 30일 동안 복구할 수 있습니다. 그 기간 안에 복원하면 등록과 홈 테넌트의 테넌트별 사용자·그룹 할당을 포함한 보존된 구성이 복원됩니다. 4월 16일은 4월 5일 삭제로부터 30일 이내이므로 네 앱 모두와 나열된 App4 설정 모두 복구할 수 있습니다."
+},
+"231": {
+ "stem": "온-프레미스 네트워크에 Active Directory Domain Services(AD DS) 도메인이 있습니다. 도메인에는 Share1이라는 공유 폴더를 호스팅하는 Server1이라는 Windows Server 컴퓨터가 있습니다. 도메인에는 Windows 11을 실행하는 디바이스 500대가 있습니다.\n\n도메인과 동기화된 Microsoft 365 E5 구독이 있습니다.\n\nGlobal Secure Access에서 프라이빗 액세스 프로필을 사용하도록 설정하고 모든 디바이스에 Global Secure Access 클라이언트를 배포합니다.\n\n디바이스가 Global Secure Access를 사용하여 Share1에 원격으로 연결할 수 있도록 해야 합니다.\n\n순서대로 수행해야 하는 세 가지 작업은 무엇입니까?",
+ "items": {"Create an enterprise application.": "엔터프라이즈 애플리케이션을 만듭니다.", "Create an application segment.": "애플리케이션 세그먼트를 만듭니다.", "Allow internet inbound traffic on TCP 443 to Server1.": "Server1으로의 TCP 443 인터넷 인바운드 트래픽을 허용합니다.", "Install a connector on Server1.": "Server1에 커넥터를 설치합니다.", "Create an app protection policy.": "앱 보호 정책을 만듭니다."},
+ "slots": {"1": "1단계", "2": "2단계", "3": "3단계"},
+ "explanation": "Global Secure Access Private Access는 프라이빗 네트워크의 커넥터를 사용하여 내부 리소스에 도달하며, 커넥터가 서비스로의 아웃바운드 연결을 설정합니다. 그런 다음 Private Access 엔터프라이즈 애플리케이션을 만들고, 애플리케이션 세그먼트로 사용자와 디바이스가 액세스할 수 있는 내부 리소스(Share1 등)를 정의합니다. Server1으로의 인바운드 TCP 443 규칙은 필요하지 않고, 앱 보호 정책은 프라이빗 네트워크 리소스를 게시하지 않습니다."
+},
+"232": {
+ "stem": "Microsoft 365 테넌트가 있습니다.\n\n모든 사용자에게 휴대폰과 Windows 11 노트북이 있습니다.\n\n사용자들은 Wi-Fi나 휴대폰 연결이 없는 원격 위치에서 자주 일합니다. 이런 원격 위치에서 사용자는 노트북을 인터넷이 되는 유선 네트워크에 연결합니다.\n\n다단계 인증(MFA)을 구현할 계획입니다.\n\n사용자가 원격 위치에서 사용할 수 있는 MFA 인증 방법은 무엇입니까?",
+ "choices": {"A": "이메일", "B": "Windows Hello 비즈니스용", "C": "음성", "D": "앱 암호"},
+ "explanation": "Windows Hello 비즈니스용은 디바이스에 바인딩된 자격 증명과 PIN 또는 생체 인식 제스처를 결합하여 필요한 다중 요소를 제공하고 Microsoft Entra MFA 요구 사항을 충족합니다. 노트북이 유선 인터넷으로 Microsoft 365에 액세스하는 동안 Windows 11 노트북에서 사용할 수 있으며 Wi-Fi나 휴대폰 서비스가 필요하지 않습니다. 앱 암호는 레거시 애플리케이션을 위해 MFA를 우회하고, 음성 확인은 전화 연결이 필요합니다."
+},
+"233": {
+ "stem": "HOTSPOT -\n\n네트워크에 contoso.com이라는 온-프레미스 Active Directory 도메인이 있습니다. 도메인에는 다음 표의 개체가 포함되어 있습니다.\n\n[[IMG1]]\n\nAzure AD Connect를 설치합니다. 도메인 및 OU 필터링 설정을 Domain and OU Filtering 그림과 같이 구성합니다. (**Domain and OU Filtering** 탭을 클릭하세요.)\n\n[[IMG2]]\n\n사용자 및 디바이스 필터링 설정을 Filter Users and Devices 그림과 같이 구성합니다. (**Filter Users and Devices** 탭을 클릭하세요.)\n\n[[IMG3]]\n\n다음 각 문장이 참이면 **예**, 그렇지 않으면 **아니요**를 선택하세요.",
+ "statements": ["User1이 Azure AD로 동기화된다.", "User2가 Azure AD로 동기화된다.", "Group2가 Azure AD로 동기화된다."],
+ "explanation": "관련된 두 OU 모두 포함되어 있습니다. Azure AD Connect 그룹 기반 필터링은 선택한 그룹의 직접 구성원을 동기화합니다. User1과 Group2는 Group1의 직접 구성원이므로 둘 다 동기화됩니다. User2는 Group1의 구성원이 아닙니다. 중첩 멤버 자격은 확인되지 않습니다. 그룹을 직접 구성원으로 추가하면 그 그룹은 동기화되지만 중첩을 통한 구성원은 동기화되지 않습니다."
+},
+"234": {
+ "stem": "App1이라는 Azure AD 엔터프라이즈 애플리케이션이 포함된 contoso.com이라는 Azure Active Directory(Azure AD) 테넌트가 있습니다.\n\n계약자가 user1@fabrikam.com의 자격 증명을 사용합니다.\n\n계약자에게 App1에 대한 액세스 권한을 부여할 수 있어야 합니다. 계약자는 user1@fabrikam.com으로 인증할 수 있어야 합니다.\n\n무엇을 해야 합니까?",
+ "choices": {"A": "New-AzADUser cmdlet을 실행합니다.", "B": "외부 협업 설정을 구성합니다.", "C": "WS-Fed ID 공급자를 추가합니다.", "D": "contoso.com에 게스트 사용자 계정을 만듭니다."},
+ "explanation": "Microsoft Entra B2B 게스트 계정을 사용하면 외부 계약자가 기존 외부 ID로 인증하면서 contoso.com 테넌트의 리소스에 액세스할 수 있습니다. 그런 다음 게스트를 엔터프라이즈 애플리케이션에 할당할 수 있습니다."
+},
+"235": {
+ "stem": "온-프레미스 네트워크에 Microsoft Entra 테넌트와 Microsoft Entra Connect 동기화를 사용하는 Active Directory 도메인이 있습니다.\n\n다음 요구 사항을 충족하도록 Microsoft Entra Connect 동기화를 구성합니다.\n\n- Microsoft Entra 로그인이 Active Directory 도메인 컨트롤러에서 인증되어야 합니다.\n- Active Directory 도메인 사용자가 Microsoft Entra 셀프 서비스 암호 재설정(SSPR)을 사용할 수 있어야 합니다.\n- 관리 작업을 최소화해야 합니다.\n\n각 요구 사항에 무엇을 사용해야 합니까?",
+ "blanks": {
+  "authentication_by_domain_controller": {"label": "도메인 컨트롤러에 의한 인증:", "options": ["Active Directory Federation Services(AD FS)와의 페더레이션", "통과 인증", "암호 해시 동기화"]},
+  "sspr": {"label": "SSPR:", "options": ["디바이스 쓰기 저장", "그룹 쓰기 저장", "암호 해시 동기화", "암호 쓰기 저장"]}
+ },
+ "explanation": "통과 인증은 Microsoft Entra 로그인 암호를 온-프레미스 Active Directory에 직접 대조하여 검증합니다. 암호 쓰기 저장은 Microsoft Entra의 SSPR 암호 변경을 온-프레미스 Active Directory로 다시 보냅니다. 이는 AD FS보다 적은 관리 부담으로 두 요구 사항을 모두 충족합니다."
+},
+"236": {
+ "stem": "*(참고: 원본 사이트에 사례 연구 본문이 빠진 문항입니다. 해설로 보면 \"일반 사용자의 앱 등록을 제한하되 User1은 앱을 등록할 수 있어야 한다\"는 위임 요구 사항 시나리오입니다.)*\n\n위임 요구 사항을 충족하도록 Azure AD에서 앱 등록을 구성해야 합니다.\n\n무엇을 해야 합니까?",
+ "blanks": {
+  "tenant_setting": {"label": "수정할 Azure AD 테넌트 수준 설정:", "options": ["사용자가 애플리케이션을 등록할 수 있음", "사용자가 자신을 대신하여 회사 데이터에 액세스하는 앱에 동의할 수 있음", "사용자가 동의할 수 없는 앱에 대해 관리자 동의를 요청할 수 있음"]},
+  "user1_role": {"label": "User1에게 할당할 역할:", "options": ["Application administrator", "Application developer", "Cloud application administrator"]}
+ },
+ "explanation": "애플리케이션 등록 설정은 일반 사용자가 앱 등록을 만들 수 있는지 제어합니다. 테넌트 전체에서 그 기능을 제한한 경우, 선택한 사용자에게 Application Developer 역할을 할당하면 애플리케이션 등록 생성을 허용할 수 있으며, 이는 Application administrator나 Cloud application administrator보다 좁은 권한입니다."
+},
+"237": {
+ "stem": "Microsoft Entra 테넌트에 연결된 Azure 구독이 있습니다. 테넌트에는 User1, User2, User3의 세 사용자가 있습니다.\n\n다음 표의 디바이스가 있습니다.\n\n[[IMG1]]\n\n다음 구성으로 가상 머신을 배포합니다.\n\n- 이름: VM1\n- 리소스 그룹: RG1\n- 운영 체제: Windows Server\n- Microsoft Entra ID로 로그인: 사용\n\nAzure 역할 할당은 다음 표와 같습니다.\n\n[[IMG2]]\n\n각 문장이 참이면 **예**, 그렇지 않으면 **아니요**를 선택하세요.",
+ "statements": ["User1은 Device1에서 Microsoft Entra 자격 증명으로 VM1에 로그인할 수 있다.", "User2는 Device2에서 Microsoft Entra 자격 증명으로 VM1에 로그인할 수 있다.", "User3은 Device3에서 Microsoft Entra 자격 증명으로 VM1에 로그인할 수 있다."],
+ "explanation": "Microsoft Entra VM 로그인에는 Virtual Machine User Login 또는 Virtual Machine Administrator Login 역할이 필요합니다. Virtual Machine Local User Login으로는 부족하므로 User1은 로그인할 수 없습니다. Device2는 Microsoft Entra 조인 또는 등록되어 있지 않으므로 User2는 그 디바이스로 Microsoft Entra RDP 로그인을 할 수 없습니다. 이 로그인 방식은 Microsoft Entra 조인, 하이브리드 조인 또는 등록된 Windows 10 이상 클라이언트 PC만 지원하므로, Android 디바이스는 지원되지 않아 User3은 해당 관리자 역할이 있어도 Device3에서 로그인할 수 없습니다."
+},
+"238": {
+ "stem": "다음 그림의 그룹이 포함된 Azure AD 테넌트가 있습니다.\n\n[[IMG1]]\n\n그림의 정보를 바탕으로 각 문장을 완성하는 답을 드롭다운 메뉴에서 선택하세요.",
+ "blanks": {
+  "managed_identity": {"label": "관리 ID를 추가할 수 있는 그룹:", "options": ["Group2만", "All Company와 Group1만", "Group2, Group3, Group4만", "All Company, Group1, Group2만", "All Company, Group1, Group2, Group3, Group4"]},
+  "cloud_user": {"label": "Azure AD 클라우드 사용자를 추가할 수 있는 그룹:", "options": ["Group2만", "All Company와 Group1만", "Group2, Group3, Group4만", "All Company, Group1, Group2만", "All Company, Group1, Group2, Group3, Group4"]}
+ },
+ "explanation": "관리 ID는 서비스 주체입니다. 보안 그룹은 서비스 주체를 포함할 수 있지만 Microsoft 365 그룹은 사용자만 포함할 수 있습니다. 동적 멤버 자격은 규칙으로 계산되고, 온-프레미스 AD에서 동기화된 그룹은 온-프레미스에서만 관리할 수 있습니다. 따라서 Azure AD 클라우드 사용자는 할당된 클라우드 Microsoft 365 그룹과 할당된 클라우드 보안 그룹에만 수동으로 추가할 수 있습니다."
+},
+"240": {
+ "stem": "Azure AD Privileged Identity Management(PIM)를 사용하는 Azure 구독이 있습니다.\n\nCloud Application Administrator 역할에 대해 적격(eligible)인 사용자를 식별해야 합니다.\n\nPrivileged Identity Management 설정의 어떤 블레이드를 사용해야 합니까?",
+ "choices": {"A": "Azure 리소스", "B": "권한 있는 액세스 그룹", "C": "액세스 검토", "D": "Azure AD 역할"},
+ "explanation": "Cloud Application Administrator는 Microsoft Entra 기본 제공 디렉터리 역할입니다. Privileged Identity Management는 디렉터리 역할의 적격성을 Azure AD 역할 블레이드에서 관리하며, Azure 리소스 블레이드는 Azure RBAC 리소스 역할에 사용됩니다."
+},
+"241": {
+ "stem": "Microsoft Entra 테넌트가 있습니다.\n\n테넌트에 많은 수의 새 애플리케이션이 추가된 것을 발견합니다.\n\n새 엔터프라이즈 애플리케이션에 대한 승인 워크플로를 구현해야 합니다.\n\n무엇을 해야 합니까?",
+ "choices": {"A": "Microsoft Defender 포털에서 앱 커넥터를 구성합니다.", "B": "Microsoft Entra 관리 센터에서 액세스 검토를 구성합니다.", "C": "Microsoft Defender 포털에서 앱 검색 정책을 만듭니다.", "D": "Microsoft Entra 관리 센터에서 관리자 동의 설정을 구성합니다."},
+ "explanation": "Microsoft Entra 관리자 동의 설정은 관리자 동의 워크플로를 제공하여, 사용자가 애플리케이션에 대한 동의를 요청하고 지정된 검토자나 관리자가 그 요청을 검토해 승인하거나 거부할 수 있게 합니다. 이를 통해 새 엔터프라이즈 애플리케이션의 승인을 제어합니다."
+},
+"242": {
+ "stem": "다음 표의 사용자가 포함된 Azure AD 테넌트가 있습니다.\n\n[[IMG1]]\n\n모든 사용자에 대해 셀프 서비스 암호 재설정(SSPR)을 사용하도록 설정하고 보안 질문을 SSPR의 유일한 인증 방법으로 구성합니다.\n\n암호를 재설정할 때 보안 질문을 사용해야 하는 사용자는 누구입니까?",
+ "choices": {"A": "User4만", "B": "User3과 User4만", "C": "User1과 User4만", "D": "User1, User3, User4만", "E": "User1, User2, User3, User4"},
+ "explanation": "Microsoft Entra는 User Administrator와 Password Administrator 계정에 별도의 필수 2단계 SSPR 정책을 적용하며, 이 정책은 보안 질문을 허용하지 않습니다. Security Reader는 그 관리자 정책의 대상 역할이 아니고, 일반 User는 관리자가 아닙니다. 따라서 이 둘은 구성된 보안 질문 방법을 사용합니다."
+},
+"243": {
+ "stem": "contoso.com SMTP 주소 공간을 사용하는 Microsoft Exchange 조직이 있습니다.\n\n여러 사용자가 contoso.com 이메일 주소로 Azure AD에 셀프 서비스 등록합니다.\n\n셀프 등록한 사용자가 포함된 Azure AD 테넌트의 Global Administrator 권한을 확보합니다.\n\n사용자가 Microsoft 365 서비스에 대한 셀프 서비스 등록을 통해 contoso.com Azure AD 테넌트에 사용자 계정을 만들지 못하게 해야 합니다.\n\n어떤 PowerShell cmdlet을 실행해야 합니까?",
+ "choices": {"A": "Update-MgOrganization", "B": "Update-MgPolicyPermissionGrantPolicyExclude", "C": "Update-MgDomain", "D": "Update-MgDomainFederationConfiguration"},
+ "explanation": "의도한 제어는 셀프 서비스 등록을 통한 이메일 확인 계정 생성을 차단하는 조직 전체 설정입니다. 권한 부여 제외는 애플리케이션 동의를 관리하고, 도메인 및 페더레이션 구성 업데이트는 테넌트 전체의 셀프 서비스 계정 생성 제어가 아니라 도메인 설정과 인증 페더레이션을 관리합니다."
+}
+}

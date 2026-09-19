@@ -1,0 +1,105 @@
+{
+"203": {
+ "stem": "User1이라는 사용자가 포함된 Azure 구독이 있습니다. 구독은 Microsoft Entra Permissions Management에 온보딩되어 있습니다.\n\nUser1에게 Permissions Management 액세스 권한을 부여해야 합니다. 다음 요구 사항을 충족해야 합니다.\n\n- 최소 권한 원칙을 따릅니다.\n- 관리 작업을 최소화합니다.\n\n먼저 무엇을 해야 합니까?",
+ "choices": {"A": "Permissions Management의 Role/Policy Template 하위 탭에서 템플릿을 만듭니다.", "B": "Microsoft Entra 관리 센터에서 보안 그룹을 만듭니다.", "C": "Permissions Management의 My Requests 하위 탭에서 새 요청을 만듭니다.", "D": "Microsoft Entra 관리 센터에서 User1에게 역할을 할당합니다."},
+ "explanation": "Microsoft Entra 보안 그룹에 적절한 Permissions Management 역할을 할당하면 구성원이 그 액세스를 상속받습니다. 그룹으로 액세스를 관리하면 필요한 역할만 할당할 수 있어 최소 권한을 지원하고, 개별 역할 할당을 유지하는 것보다 지속적인 관리 작업이 줄어듭니다. Permissions Management Administrator 역할은 서비스의 모든 측면을 관리하므로, 액세스만 필요한 경우 개인에게 직접 할당하는 것은 필요 이상으로 넓습니다."
+},
+"204": {
+ "stem": "contoso.com이라는 Azure Active Directory(Azure AD) 테넌트가 있습니다.\n\nFabrikam, Inc.의 사용자에게 리소스 액세스를 제공하기 위해 권한 관리(entitlement management)를 구현합니다. Fabrikam은 fabrikam.com 도메인을 사용합니다.\n\nFabrikam 사용자의 액세스가 더 이상 필요하지 않으면 테넌트에서 자동으로 제거되어야 합니다.\n\n다음 설정을 구성해야 합니다.\n\n- 외부 사용자가 이 디렉터리에 로그인하지 못하게 차단: 아니요\n- 외부 사용자 제거: 예\n- 이 디렉터리에서 외부 사용자를 제거하기까지의 일수: 90\n\nIdentity Governance 블레이드에서 무엇을 구성해야 합니까?",
+ "choices": {"A": "액세스 패키지", "B": "권한 관리 설정", "C": "사용 약관", "D": "액세스 검토 설정"},
+ "explanation": "권한 관리 설정은 외부 사용자가 마지막 액세스 패키지 할당을 잃은 후의 수명 주기를 제어합니다. 이 설정에는 로그인 차단 여부, 외부 사용자 제거 여부, 디렉터리에서 제거하기까지의 일수가 포함됩니다."
+},
+"205": {
+ "stem": "HOTSPOT -\n\nMicrosoft Entra ID P2 서비스 플랜이 있는 Microsoft Entra 테넌트가 있습니다. 테넌트에는 다음 표의 사용자가 포함되어 있습니다.\n\n[[IMG1]]\n\n디바이스 설정은 다음 그림과 같습니다.\n\n[[IMG2]]\n\nUser1에게는 다음 표의 디바이스가 있습니다.\n\n[[IMG3]]\n\n다음 각 문장이 참이면 예, 그렇지 않으면 아니요를 선택하세요.",
+ "statements": ["User1은 Windows 10 디바이스 4대를 추가로 Microsoft Entra ID에 조인할 수 있다.", "Admin1은 \"디바이스를 Microsoft Entra 조인 또는 Microsoft Entra 등록하려면 다단계 인증 필요\"를 예로 설정할 수 있다.", "Admin2는 Device3의 로컬 관리자다."],
+ "explanation": "최대 디바이스 설정은 Microsoft Entra 조인 디바이스와 Microsoft Entra 등록 디바이스를 모두 계산합니다. 기존 디바이스 4대에 한도가 5이므로 User1은 1대만 더 추가할 수 있습니다. Cloud Device Administrator는 MFA 요구 사항을 포함한 디바이스 설정을 수정할 수 있습니다. Microsoft Entra Joined Device Local Administrator는 Microsoft Entra 조인 Windows 디바이스에서만 로컬 관리자 권한을 받으며, Device3 같은 Microsoft Entra 등록 디바이스에서는 받지 않습니다."
+},
+"206": {
+ "stem": "Microsoft Office 365 Enterprise E3 라이선스가 할당된 사용자 2,500명이 있습니다. 라이선스는 개별 사용자에게 직접 할당되어 있습니다.\n\nAzure Active Directory 관리 센터의 **그룹** 블레이드에서 모든 사용자가 포함된 그룹에 Microsoft Office 365 Enterprise E5 라이선스를 할당합니다.\n\n최소한의 관리 작업으로 사용자에게서 Office 365 Enterprise E3 라이선스를 제거해야 합니다.\n\n무엇을 사용해야 합니까?",
+ "choices": {"A": "Azure Active Directory 관리 센터의 그룹 블레이드", "B": "Set-AzureAdUser cmdlet", "C": "Azure Active Directory 관리 센터의 Identity Governance 블레이드", "D": "Azure Active Directory 관리 센터의 라이선스 블레이드"},
+ "explanation": "**라이선스** 블레이드는 제품 라이선스의 직접 사용자 할당을 중앙에서 대량으로 관리합니다. Office 365 Enterprise E3 라이선스를 선택하고 직접 할당을 제거하면, 그룹 기반 E5 할당은 유지하면서 2,500명의 E3를 효율적으로 제거할 수 있습니다. 그룹 기반 라이선스는 직접 사용자 라이선스의 대안이지만, 그룹 라이선스 관리가 기존 직접 할당을 제거하지는 않습니다."
+},
+"207": {
+ "stem": "HOTSPOT -\n\n네트워크에 Azure Active Directory(Azure AD) 테넌트와 동기화되는 온-프레미스 Active Directory 도메인이 있습니다. 테넌트에는 다음 표의 그룹이 있습니다.\n\n[[IMG1]]\n\n테넌트에는 다음 표의 사용자가 있습니다.\n\n[[IMG2]]\n\n다음 표와 같이 액세스 검토를 만듭니다.\n\n[[IMG3]]\n\n다음 각 문장이 참이면 예, 그렇지 않으면 아니요를 선택하세요.",
+ "statements": ["User1이 검토 요청에 응답하지 않으면 Group1에서 자동으로 제거된다.", "User2가 검토 요청에 응답하지 않으면 Group3에서 자동으로 제거된다.", "User3이 검토 요청에 응답하지 않으면 Group2에서 자동으로 제거된다."],
+ "explanation": "액세스 검토는 Group2와 Group3만 대상으로 합니다. 응답하지 않은 검토자에 대한 자동 제거는 검토 대상 멤버 자격에 적용되며, 선택되지 않은 그룹이나 속하지 않은 그룹에서 사용자를 제거하지 않습니다. User1은 Group1, User2는 Group2, User3은 Group3의 구성원이므로 명시된 제거는 어느 것도 발생하지 않습니다."
+},
+"208": {
+ "stem": "Microsoft Entra 테넌트가 있습니다.\n\n다음 설정으로 셀프 서비스 암호 재설정(SSPR)을 구성합니다.\n\n- 로그인 시 사용자 등록 필요: **예**\n- 재설정에 필요한 방법 수: **1**\n\n사용자가 사용할 수 있는 인증 방법은 무엇입니까?",
+ "choices": {"A": "모바일 앱 알림", "B": "FIDO2 보안 토큰", "C": "Microsoft Teams 채팅", "D": "조직 외부 주소로의 이메일"},
+ "explanation": "인증 방법 하나를 요구하도록 구성된 SSPR에서 Microsoft Authenticator 모바일 앱 옵션은 푸시 알림이 아닌 확인 코드를 지원합니다. SSPR은 조직 외부의 대체 이메일 주소를 포함한 이메일 일회용 암호를 지원하지만, FIDO2 보안 키와 Microsoft Teams 채팅은 유효한 SSPR 재설정 방법이 아닙니다."
+},
+"209": {
+ "stem": "User1, User2, User3의 세 사용자와 App1이라는 엔터프라이즈 앱이 포함된 Microsoft 365 구독이 있습니다. 구독에는 다음 표의 디바이스가 포함되어 있습니다.\n\n[[IMG1]]\n\n구독에는 다음 표의 그룹이 포함되어 있습니다.\n\n[[IMG2]]\n\n다음 설정으로 조건부 액세스 정책 두 개를 만듭니다.\n\n- **이름:** Policy1\n  - **사용자:**\n    - **포함:** Group1\n    - **제외:** Group3\n  - **대상 리소스:**\n    - **포함:** 모든 리소스\n  - **액세스 제어:** 액세스 차단\n\n- **이름:** Policy2\n  - **사용자:**\n    - **포함:** Group2\n  - **대상 리소스:**\n    - **포함:** App1\n  - **액세스 제어:**\n    - **액세스 허용:** 디바이스가 규격으로 표시되어야 함\n\n다음 각 문장이 참이면 예, 그렇지 않으면 아니요를 선택하세요.",
+ "statements": ["User1은 Device1에서 App1에 로그인할 수 있다.", "User2는 Device2에서 App1에 로그인할 수 있다.", "User3은 Device3에서 App1에 로그인할 수 있다."],
+ "explanation": "조건부 액세스 정책에서 제외된 사용자는 그 정책의 적용을 받지 않으므로 User1은 Policy1에 의해 차단되지 않습니다. Device1은 규격입니다. User2는 Policy2만 적용받으며 Device2가 규격이므로 App1에 액세스할 수 있습니다. User3은 Policy1과 Policy2 모두에 해당하지만 Policy1이 액세스를 차단합니다. 적용되는 조건부 액세스 정책에 차단과 허용 제어가 모두 있으면 차단 제어가 우선합니다."
+},
+"210": {
+ "stem": "Microsoft 365 테넌트가 있습니다.\n\n모든 사용자에게 휴대폰과 Windows 10 노트북이 있습니다.\n\n사용자들은 Wi-Fi나 휴대폰 연결이 없는 원격 위치에서 자주 일합니다. 이런 원격 위치에서 사용자는 노트북을 인터넷이 되는 유선 네트워크에 연결합니다.\n\n다단계 인증(MFA)을 구현할 계획입니다.\n\n사용자가 원격 위치에서 사용할 수 있는 MFA 인증 방법은 무엇입니까?",
+ "choices": {"A": "Microsoft Authenticator 앱의 확인 코드", "B": "SMS", "C": "앱 암호", "D": "Microsoft Authenticator 앱을 통한 알림"},
+ "explanation": "Microsoft Authenticator는 30초마다 OATH 확인 코드를 로컬에서 생성하므로 휴대폰에 Wi-Fi나 셀룰러 신호가 없어도 코드를 사용할 수 있습니다. 사용자는 유선 인터넷에 연결된 노트북에서 그 코드를 입력할 수 있습니다. SMS와 푸시 알림은 휴대폰 연결이 필요하고, 앱 암호는 최신 인증을 사용할 수 없는 레거시 애플리케이션용입니다."
+},
+"211": {
+ "stem": "Automation1이라는 Azure Automation 계정과 Vault1이라는 Azure Key Vault가 포함된 Azure 구독이 있습니다. Vault1에는 Secret1이라는 비밀이 있습니다.\n\nAutomation1에 대해 시스템 할당 관리 ID를 사용하도록 설정합니다.\n\nAutomation1이 Secret1의 내용을 읽을 수 있도록 해야 합니다. 다음 요구 사항을 충족해야 합니다.\n\n- Automation1이 Vault1에 저장된 다른 비밀에 액세스하지 못하게 합니다.\n- 최소 권한 원칙을 따릅니다.\n\n무엇을 해야 합니까?",
+ "choices": {"A": "Vault1에서 액세스 제어(IAM) 설정을 구성합니다.", "B": "Automation1에서 ID 설정을 구성합니다.", "C": "Automation1에서 실행 계정(Run as accounts) 설정을 구성합니다.", "D": "Secret1에서 액세스 제어(IAM) 설정을 구성합니다."},
+ "explanation": "Azure RBAC는 개별 비밀 범위에서의 Key Vault 데이터 평면 역할 할당을 지원합니다. Automation1의 관리 ID에 Secret1에 대한 **Key Vault Secrets User** 역할을 할당하면 Vault1의 다른 비밀에 대한 액세스 권한 없이 그 비밀의 내용만 읽을 수 있습니다."
+},
+"212": {
+ "stem": "온-프레미스 네트워크에 Azure AD Connect를 사용하여 Azure AD 테넌트와 동기화하는 Active Directory 도메인이 있습니다.\n\n다음 요구 사항을 충족하도록 Azure AD Connect를 구성합니다.\n\n- Azure AD 사용자 로그인이 Active Directory 도메인 컨트롤러에서 인증되어야 합니다.\n- Active Directory 도메인 사용자가 Azure AD 셀프 서비스 암호 재설정(SSPR)을 사용할 수 있어야 합니다.\n\n각 요구 사항에 무엇을 사용해야 합니까?",
+ "blanks": {
+  "authentication_by_domain_controller": {"label": "도메인 컨트롤러에 의한 인증:", "options": ["Active Directory Federation Services(AD FS)와의 페더레이션", "통과 인증", "암호 해시 동기화"]},
+  "sspr": {"label": "SSPR:", "options": ["디바이스 쓰기 저장", "그룹 쓰기 저장", "암호 해시 동기화", "암호 쓰기 저장"]}
+ },
+ "explanation": "통과 인증은 Azure AD 로그인 검증을 온-프레미스 Azure AD Connect 인증 에이전트로 보내며, 에이전트가 Active Directory 도메인 컨트롤러에 대해 자격 증명을 검증합니다. 암호 쓰기 저장(password writeback)은 Azure AD SSPR이 변경되거나 재설정된 암호를 온-프레미스 Active Directory에 다시 기록할 수 있게 합니다."
+},
+"213": {
+ "stem": "개별 Microsoft Office 365 Enterprise E3 라이선스가 할당된 사용자 2,500명이 있습니다.\n\nMicrosoft Entra 관리 센터의 **그룹** 블레이드에서 모든 사용자가 포함된 그룹에 Microsoft Office 365 Enterprise E5 라이선스를 할당합니다.\n\n최소한의 관리 작업으로 사용자에게서 Office 365 Enterprise E3 라이선스를 제거해야 합니다.\n\n무엇을 사용해야 합니까?",
+ "choices": {"A": "Microsoft Entra 관리 센터의 라이선스 블레이드", "B": "Microsoft Entra 관리 센터의 관리 단위 블레이드", "C": "Microsoft Entra 관리 센터의 Identity Governance 블레이드", "D": "Update-MgUser cmdlet"},
+ "explanation": "그룹 기반 라이선스는 모든 그룹 구성원에게 E5를 할당하지만 사용자의 기존 직접 E3 할당을 자동으로 제거하지는 않습니다. 라이선스 블레이드는 제품의 직접 할당을 중앙에서 나열하고 그 직접 사용자 라이선스 할당을 대규모로 제거할 수 있습니다. 직접 라이선스는 사용자가 상속받은 그룹 라이선스에 영향을 주지 않고 제거할 수 있습니다."
+},
+"214": {
+ "stem": "Azure Active Directory(Azure AD) 테넌트와 동기화되는 Active Directory 도메인이 있습니다.\n\n온-프레미스 네트워크에는 온-프레미스 Active Directory 도메인에 대해 인증하는 VPN 서버가 있습니다. VPN 서버는 Azure 다단계 인증(MFA)을 지원하지 **않습니다**.\n\nVPN 연결에 Azure MFA를 제공하는 솔루션을 추천해야 합니다.\n\n추천에 무엇을 포함해야 합니까?",
+ "choices": {"A": "Azure AD 애플리케이션 프록시", "B": "Azure AD 암호 보호 프록시", "C": "네트워크 정책 서버(NPS)", "D": "통과 인증 프록시"},
+ "explanation": "Microsoft Entra MFA NPS 확장을 설치한 네트워크 정책 서버(NPS)는 VPN 서버의 RADIUS 서버 역할을 합니다. 온-프레미스 Active Directory 자격 증명을 검증하고 VPN 연결의 두 번째 인증 요소로 Azure MFA를 요청합니다."
+},
+"215": {
+ "stem": "Azure Active Directory(Azure AD) 테넌트가 있습니다.\n\n템플릿 파일을 업로드하여 새 사용자 계정 25개를 대량으로 만들어야 합니다.\n\n템플릿 파일에 필수인 속성은 무엇입니까?",
+ "choices": {"A": "displayName, identityIssuer, usageLocation, userType", "B": "accountEnabled, givenName, surname, userPrincipalName", "C": "accountEnabled, displayName, userPrincipalName, passwordProfile", "D": "accountEnabled, passwordProfile, usageLocation, userPrincipalName"},
+ "explanation": "대량 사용자 생성 CSV에는 표시 이름, 사용자 계정 이름(UPN), 초기 암호(`passwordProfile`), 로그인 차단 값(`accountEnabled`)이 필요합니다. 나머지 나열된 속성은 선택 사항이거나 이 템플릿에 해당하지 않습니다."
+},
+"216": {
+ "stem": "VM1과 VM2라는 두 가상 머신과 SQL1이라는 Azure SQL Managed Instance가 포함된 Azure 구독이 있습니다.\n\nVM1과 VM2가 SQL1에서 데이터를 검색할 수 있도록 해야 합니다.\n\n관리 작업을 최소화해야 합니다.\n\n먼저 무엇을 만들어야 합니까?",
+ "choices": {"A": "인증서", "B": "공유 액세스 서명(SAS) 토큰", "C": "관리 ID", "D": "Microsoft Entra 사용자 계정"},
+ "explanation": "사용자 할당 관리 ID는 두 가상 머신에 모두 연결할 수 있고, Azure SQL Managed Instance에 대한 암호 없는 Microsoft Entra 인증에 사용할 수 있습니다. 그 ID에 필요한 SQL 권한을 부여하면 별도의 자격 증명이나 사용자 계정을 관리하지 않고 두 VM 모두 액세스할 수 있습니다."
+},
+"217": {
+ "stem": "User1이라는 사용자가 포함된 contoso.com이라는 Azure Active Directory(Azure AD) 테넌트가 있습니다. User1에게는 다음 표의 디바이스가 있습니다.\n\n[[IMG1]]\n\n2020년 11월 5일에 contoso.com에서 다음 설정으로 사용 약관을 만들고 적용합니다.\n\n- 이름: Terms1\n- 표시 이름: Contoso terms of use\n- 사용자가 사용 약관을 펼치도록 요구: 켬\n- 사용자가 모든 디바이스에서 동의하도록 요구: 켬\n- 동의 만료: 켬\n- 만료 시작일: 2020년 12월 10일\n- 빈도: 매월\n\n2020년 11월 15일에 User1이 Device3에서 Terms1에 동의합니다.\n\n다음 각 문장이 참이면 예, 그렇지 않으면 아니요를 선택하세요.",
+ "statements": ["2020년 11월 20일에 User1은 Device1에서 Terms1에 동의할 수 있다.", "2020년 12월 11일에 User1은 Device2에서 Terms1에 동의할 수 있다.", "2020년 12월 7일에 User1은 Device3에서 Terms1에 동의할 수 있다."],
+ "explanation": "디바이스별 사용 약관은 등록된 각 디바이스마다 별도의 동의가 필요합니다. Device1은 등록되어 있으므로 자체 동의가 필요합니다. Device2는 등록되어 있지 않아 디바이스별 사용 약관을 충족할 수 없습니다. Device3의 11월 15일 동의는 구성된 만료 시작일인 12월 10일까지 만료되지 않으므로 12월 7일에도 여전히 유효합니다."
+},
+"218": {
+ "stem": "Azure Active Directory(Azure AD) 테넌트가 있습니다.\n\n다음 설정으로 셀프 서비스 암호 재설정(SSPR)을 구성합니다.\n\n- 로그인 시 사용자 등록 필요: 예\n- 재설정에 필요한 방법 수: 1\n\n사용자에게 유효한 인증 방법은 무엇입니까?",
+ "choices": {"A": "조직 외부 주소로의 이메일", "B": "스마트 카드", "C": "FIDO2 보안 토큰", "D": "Microsoft Teams 채팅"},
+ "explanation": "조직 외부의 대체 이메일 주소를 등록하여 Azure AD 셀프 서비스 암호 재설정에 사용할 수 있습니다. SSPR은 이메일 기반 확인을 지원하지만, 스마트 카드, FIDO2 보안 토큰, Microsoft Teams 채팅은 SSPR 재설정 방법이 아닙니다."
+},
+"219": {
+ "stem": "새 Azure AD 테넌트를 배포하려고 합니다.\n\n테넌트에 기본적으로 사용하도록 설정되는 다단계 인증(MFA) 방법은 무엇입니까?",
+ "choices": {"A": "Microsoft Authenticator", "B": "SMS", "C": "음성 통화", "D": "이메일 OTP"},
+ "explanation": "새 Microsoft Entra ID 테넌트의 보안 기본값은 사용자가 Microsoft Authenticator 알림으로 MFA를 등록하고 사용하도록 요구합니다. SMS와 음성 통화는 별도로 구성할 수 있는 방법이며, 이메일 OTP는 기본 MFA 방법이 아닙니다. [Microsoft Entra ID의 보안 기본값 구성](https://learn.microsoft.com/en-us/entra/fundamentals/security-defaults)"
+},
+"220": {
+ "stem": "Azure Active Directory(Azure AD) 테넌트가 있습니다.\n\n다음 설정으로 셀프 서비스 암호 재설정(SSPR)을 구성합니다.\n\n- 로그인 시 사용자 등록 필요: 예\n- 재설정에 필요한 방법 수: 1\n\n사용자에게 유효한 인증 방법은 무엇입니까?",
+ "choices": {"A": "Microsoft Teams 채팅", "B": "모바일 앱 알림", "C": "모바일 앱 코드", "D": "FIDO2 보안 토큰"},
+ "explanation": "셀프 서비스 암호 재설정에 인증 방법 하나만 필요한 경우 모바일 앱은 확인 코드를 제공하는 용도로만 사용할 수 있습니다. 모바일 앱 푸시 알림은 재설정 방법 두 개가 필요할 때 사용할 수 있습니다."
+},
+"221": {
+ "stem": "User1이라는 사용자와 다음 표의 조건부 액세스 정책이 포함된 Azure Active Directory(Azure AD) 테넌트가 있습니다.\n\n[[IMG1]]\n\nUser1이 서로 다른 IP 주소에서 로그인을 시도할 때 어떤 정책이 User1에게 적용되는지 평가해야 합니다.\n\n어떤 기능을 사용해야 합니까?",
+ "choices": {"A": "액세스 검토", "B": "Identity Secure Score", "C": "What If 도구", "D": "Microsoft 365 네트워크 연결 테스트 도구"},
+ "explanation": "조건부 액세스 What If 도구는 위치/IP 주소를 포함한 정의된 로그인 조건으로 특정 사용자의 로그인을 시뮬레이션하고, 적용되거나 적용되지 않는 조건부 액세스 정책을 보여주는 보고서를 생성합니다. 사용하도록 설정된 정책과 보고 전용 정책을 모두 평가합니다."
+},
+"222": {
+ "stem": "Azure Active Directory(Azure AD) 테넌트가 있습니다.\n\n다음 설정으로 **HR Apps**라는 엔터프라이즈 애플리케이션 컬렉션을 만듭니다.\n\n- 애플리케이션: App1, App2, App3\n- 소유자: Admin1\n- 사용자 및 그룹: HRUsers\n\n세 앱 모두 다음 **속성** 설정을 갖고 있습니다.\n\n- 사용자가 로그인할 수 있도록 설정: 예\n- 사용자 할당 필요: 예\n\n사용자에게 표시: 예 -\n\n[[IMG1]]\n\n사용자들이 내 앱 포털을 열면 App1과 App2만 보인다고 보고합니다.\n\n사용자가 App3도 볼 수 있도록 해야 합니다.\n\nApp3에서 무엇을 해야 합니까?",
+ "choices": {"A": "사용자 및 그룹에서 HRUsers를 추가합니다.", "B": "Single Sign-On에서 로그온 방법을 구성합니다.", "C": "속성에서 \"사용자 할당 필요\"를 아니요로 변경합니다.", "D": "권한에서 사용자 동의 권한을 검토합니다."},
+ "explanation": "내 앱 컬렉션은 사용자가 이미 액세스 권한을 가진 애플리케이션만 표시하며, 컬렉션 멤버 자격이 개별 애플리케이션에 사용자를 할당하지는 않습니다. App3은 사용자 할당이 필요하므로 **사용자 및 그룹**에서 HRUsers를 App3에 할당해야 합니다. 그러면 할당된 사용자가 내 앱에서 표시되는 애플리케이션을 볼 수 있습니다."
+}
+}

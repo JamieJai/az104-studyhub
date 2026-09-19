@@ -1,0 +1,120 @@
+{
+"265": {
+ "stem": "*(참고: 원본 사이트에 시나리오 본문이 빠진 문항입니다. 해설로 보면 \"기존 로그인 실패 경고 이메일이 새 보안 관리자에게 가도록 해야 한다\" 시리즈 문항입니다.)*\n\n해결책: Azure AD에서 **진단 설정**을 수정합니다.\n\n이것이 목표를 달성합니까?",
+ "choices": {"A": "예", "B": "아니요"},
+ "explanation": "진단 설정은 Microsoft Entra ID(Azure AD) 활동 로그의 대상을 제어합니다. Azure Monitor 작업 그룹이 이메일 주소를 포함한 경고 알림 수신자를 정의합니다. 따라서 진단 설정을 바꿔도 기존 로그인 실패 경고 이메일이 새 보안 관리자에게 전달되지 않습니다."
+},
+"266": {
+ "stem": "*(참고: 원본 사이트에 시나리오 본문이 빠진 문항입니다. 해설로 보면 \"기존 로그인 실패 경고 이메일이 새 보안 관리자에게 가도록 해야 한다\" 시리즈 문항입니다.)*\n\n해결책: Azure AD에서 Insights administrator 역할 할당을 만듭니다.\n\n이것이 목표를 충족합니까?",
+ "choices": {"A": "예", "B": "아니요"},
+ "explanation": "Insights administrator 역할은 Azure AD 모니터링 정보에 대한 액세스를 부여할 뿐 Azure Monitor 경고 알림 수신자를 변경하지 않습니다. 이메일 알림을 받는 사람은 Azure Monitor 작업 그룹이 정의하므로, 이 역할을 할당해도 기존 경고가 새 보안 관리자에게 전달되지 않습니다."
+},
+"267": {
+ "stem": "*(참고: 원본 사이트에 시나리오 본문이 빠진 문항입니다. 해설로 보면 \"기존 로그인 실패 경고 이메일이 새 보안 관리자에게 가도록 해야 한다\" 시리즈 문항입니다.)*\n\n해결책: Azure Monitor에서 작업 그룹을 수정합니다.\n\n이것이 목표를 충족합니까?",
+ "choices": {"A": "예", "B": "아니요"},
+ "explanation": "Azure Monitor 작업 그룹은 경고가 발생할 때 사용되는 알림 기본 설정과 수신자를 정의합니다. 작업 그룹의 이메일 알림 수신자를 업데이트하면 기존 로그인 실패 경고가 새 보안 관리자에게 전달됩니다."
+},
+"268": {
+ "stem": "*(참고: 원본 사이트에 시나리오 본문이 빠진 문항입니다. 해설로 보면 \"기존 로그인 실패 경고 이메일이 새 보안 관리자에게 가도록 해야 한다\" 시리즈 문항입니다.)*\n\n해결책: Azure Monitor에서 데이터 수집 규칙을 만듭니다.\n\n이것이 목표를 달성합니까?",
+ "choices": {"A": "예", "B": "아니요"},
+ "explanation": "Azure Monitor 데이터 수집 규칙은 원격 분석 데이터를 수집·처리하여 모니터링 데이터 대상으로 보내는 방법을 지정합니다. 경고 알림 수신자는 경고 발생 시 이메일 등의 알림을 받을 사람을 정의하는 작업 그룹에서 구성합니다."
+},
+"269": {
+ "stem": "다음 표의 사용자가 포함된 Microsoft 365 E5 구독이 있습니다.\n\n[[IMG1]]\n\nMicrosoft Entra Internet Access를 구성합니다.\n\nMicrosoft Entra Internet Access를 관리할 수 있는 사용자는 누구입니까?",
+ "choices": {"A": "User1만", "B": "User2만", "C": "User3만", "D": "User1과 User2만", "E": "User1, User2, User3"},
+ "explanation": "Global Administrator는 Microsoft Entra Internet Access를 포함한 Global Secure Access에 대한 관리 액세스 권한이 있습니다. Global Secure Access Administrator 역할은 Microsoft Entra Internet Access의 모든 측면을 만들고 관리할 수 있습니다. Privileged Role Administrator 역할은 Microsoft Entra Internet Access 구성이 아니라 역할 할당과 Privileged Identity Management를 관리합니다."
+},
+"270": {
+ "stem": "Microsoft 365 테넌트가 있습니다.\n\n모든 사용자에게 휴대폰과 노트북이 있습니다. 사용자들은 Wi-Fi도 휴대폰 연결도 없는 원격 위치에서 자주 일합니다. 이런 원격 위치에서 사용자는 노트북을 인터넷이 되는 유선 네트워크에 연결합니다.\n\n다단계 인증(MFA)을 구현할 계획입니다.\n\n사용자가 원격 위치에서 사용할 수 있는 MFA 인증 방법은 무엇입니까?",
+ "choices": {"A": "Microsoft Authenticator 앱의 확인 코드", "B": "보안 질문", "C": "음성", "D": "SMS"},
+ "explanation": "Microsoft Authenticator는 30초마다 OATH 확인 코드를 로컬에서 생성할 수 있으므로, 인터넷에 연결된 노트북에 그 코드를 입력할 때 휴대폰에 Wi-Fi나 셀룰러 서비스가 필요하지 않습니다. SMS와 음성 MFA는 전화 연결이 필요하고, 보안 질문은 MFA 방법이 아닙니다."
+},
+"271": {
+ "stem": "*(참고: 원본 사이트에 사례 연구 본문이 빠진 문항입니다. Azure AD 역할 할당과 Azure 리소스 역할 할당을 최소 권한으로 위임하는 요구 사항 시나리오입니다.)*\n\n위임 요구 사항을 충족하면서 역할 할당을 관리하는 데 사용할 역할을 결정해야 합니다.\n\n무엇을 해야 합니까?",
+ "blanks": {
+  "azure_ad_built_in": {"label": "Azure AD 기본 제공 역할 할당을 관리하려면 사용:", "options": ["Global administrator", "Privileged role administrator", "Security administrator", "User access administrator"]},
+  "azure_built_in": {"label": "Azure 기본 제공 역할 할당을 관리하려면 사용:", "options": ["Global administrator", "Privileged role administrator", "Security administrator", "User access administrator"]}
+ },
+ "explanation": "Privileged Role Administrator는 Microsoft Entra ID(Azure AD) 역할 할당을 관리할 수 있어 위임된 디렉터리 역할 관리를 지원합니다. User Access Administrator는 Azure 리소스에 대한 Azure RBAC 역할 할당을 관리할 수 있습니다."
+},
+"272": {
+ "stem": "다음 표의 호스트가 포함된 온-프레미스 데이터 센터가 있습니다.\n\n[[IMG1]]\n\nActive Directory 포리스트는 Azure Active Directory(Azure AD) 테넌트와 동기화됩니다. Azure AD에 다단계 인증(MFA)이 적용되어 있습니다.\n\nAzure AD 사용자가 App1을 사용할 수 있도록 해야 합니다. Server4와 Firewall1에 무엇을 구성해야 합니까?",
+ "blanks": {
+  "server4_service": {"label": "Server4에 설치할 서비스:", "options": ["Azure AD 애플리케이션 프록시", "Azure AD 암호 보호 DC 에이전트", "Azure AD 암호 보호 프록시 서비스", "Windows Server의 웹 애플리케이션 프록시"]},
+  "firewall1_rule": {"label": "Firewall1에 구성할 규칙:", "options": ["Azure AD에서 Server4로의 인바운드 HTTPS 연결 허용", "Azure AD에서 Server4로의 인바운드 IPSec 연결 허용", "Server4에서 Azure AD로의 아웃바운드 HTTPS 연결 허용", "Server4에서 Azure AD로의 아웃바운드 IPSec 연결 허용"]}
+ },
+ "explanation": "Microsoft Entra 애플리케이션 프록시는 Microsoft Entra ID를 통해 온-프레미스 웹 애플리케이션을 사용자에게 게시합니다. 커넥터는 온-프레미스 Windows 서버에 설치되어 클라우드 서비스로 아웃바운드 HTTPS 연결을 만들며, Azure AD로부터의 인바운드 HTTPS나 IPsec은 필요하지 않습니다. Server4에 설치하면 내부 네트워크를 통해 Server3의 애플리케이션에 도달할 수 있습니다."
+},
+"273": {
+ "stem": "HOTSPOT –\n\nAzure Active Directory(Azure AD) 테넌트에 기본 **앱 등록** 설정이 있습니다. 테넌트에는 다음 표의 사용자가 포함되어 있습니다.\n\n[[IMG1]]\n\nApp1과 App2라는 두 클라우드 앱을 구매합니다. Global Administrator가 App1을 Azure AD에 등록합니다.\n\nApp1에 사용자를 할당할 수 있는 사람과 App2를 Azure AD에 등록할 수 있는 사람을 식별하세요.",
+ "blanks": {
+  "assign_app1": {"label": "App1에 사용자를 할당할 수 있음:", "options": ["Admin1만", "Admin3만", "Admin1과 Admin3만", "Admin1, Admin2, Admin3만", "Admin1, Admin2, Admin3, User1"]},
+  "register_app2": {"label": "App2를 Azure AD에 등록할 수 있음:", "options": ["Admin1만", "Admin3만", "Admin1과 Admin3만", "Admin1, Admin2, Admin3만", "Admin1, Admin2, Admin3, User1"]}
+ },
+ "explanation": "Application Administrator와 Cloud Application Administrator는 모두 엔터프라이즈 애플리케이션에 사용자와 그룹을 할당할 수 있는 역할입니다. 기본 애플리케이션 등록 설정에서는 구성원 사용자가 애플리케이션을 등록할 수 있으므로, 나열된 모든 사용자가 App2를 등록할 수 있습니다."
+},
+"274": {
+ "stem": "HOTSPOT —\n\nUser1, User2, User3의 세 사용자가 포함된 Sub1이라는 Azure 구독이 있습니다. Sub1에는 다음 표의 리소스가 포함된 storage1이라는 스토리지 계정이 있습니다.\n\n[[IMG1]]\n\nSub1에는 다음 표의 사용자가 포함되어 있습니다.\n\n[[IMG2]]\n\nFile1을 읽을 수 있는 사용자와 File2를 읽을 수 있는 사용자는 누구입니까?",
+ "blanks": {
+  "file1": {"label": "File1:", "options": ["User2만", "User3만", "User1과 User2만", "User2와 User3만", "User1, User2, User3"]},
+  "file2": {"label": "File2:", "options": ["User2만", "User3만", "User1과 User2만", "User2와 User3만", "User1, User2, User3"]}
+ },
+ "explanation": "Storage Blob Data Reader는 File1이 컨테이너의 Blob 데이터이므로 User2에게 File1 읽기 액세스를 부여합니다. Reader만으로는 User1에게 스토리지 데이터 액세스가 없습니다. Storage Contributor는 User3이 스토리지 계정 키를 얻을 수 있게 하며, 계정 키는 Blob Storage와 Azure Files의 데이터 모두에 대한 액세스를 허가하므로 User3은 File1과 File2를 읽을 수 있습니다."
+},
+"275": {
+ "stem": "다음 표의 리소스가 포함된 Azure 구독이 있습니다.\n\n[[IMG1]]\n\n액세스 검토를 만들 수 있는 리소스는 무엇입니까?",
+ "choices": {"A": "Group1, Role1, Contributor만", "B": "Group1만", "C": "Group1, App1, Contributor, Role1", "D": "Role1과 Contributor만"},
+ "explanation": "Microsoft Entra 액세스 검토는 그룹 멤버 자격과 엔터프라이즈 애플리케이션 액세스를 지원합니다. Privileged Identity Management도 Azure 리소스 역할과 Microsoft Entra 디렉터리 역할에 대한 액세스 검토를 지원합니다. 따라서 할당된 멤버 자격 그룹, 엔터프라이즈 애플리케이션, 구독 수준 Contributor 역할, Microsoft Entra 역할 모두 검토할 수 있습니다."
+},
+"276": {
+ "stem": "Microsoft 365 구독이 있습니다.\n\n사용자가 엔터프라이즈 애플리케이션에 자신의 프로필 액세스 권한을 부여할 수 있도록 해야 합니다. 사용자가 **User.Read**와 **profile** 위임된 권한에만 동의할 수 있어야 합니다.\n\n먼저 무엇을 구성해야 합니까?",
+ "choices": {"A": "Identity Protection 설정", "B": "권한 분류", "C": "관리자 동의 설정", "D": "보안 기본값"},
+ "explanation": "권한 분류는 어떤 위임된 권한이 낮은 영향이며 사용자 동의 정책에서 사용할 수 있는지 식별합니다. 먼저 **User.Read**와 **profile**을 분류하면, 사용자 동의 설정에서 선택한 낮은 영향 권한에 대해서만 동의를 허용할 수 있습니다."
+},
+"277": {
+ "stem": "조건부 액세스 정책을 사용하는 Azure Active Directory(Azure AD) 테넌트가 있습니다.\n\n타사 SIEM(보안 정보 및 이벤트 관리) 솔루션을 사용하여 조건부 액세스 사용 현황을 분석할 계획입니다.\n\n관리 포털을 사용하여 Azure AD 로그를 다운로드해야 합니다. 로그 파일에는 조건부 액세스 정책의 변경 사항이 포함되어야 합니다.\n\nAzure AD에서 무엇을 내보내야 합니까?",
+ "choices": {"A": "CSV 형식의 감사 로그", "B": "CSV 형식의 로그인", "C": "JSON 형식의 감사 로그", "D": "JSON 형식의 로그인"},
+ "explanation": "Microsoft Entra 감사 로그는 정책 생성, 업데이트, 삭제를 포함한 조건부 액세스 정책의 변경 사항을 기록합니다. 관리 포털은 활동 로그를 JSON으로 내보내는 것을 지원하며, 이는 SIEM 분석을 위한 구조화된 이벤트 데이터를 보존합니다."
+},
+"278": {
+ "stem": "User1이라는 사용자가 포함된 Azure 구독이 있습니다.\n\nAzure AD 테넌트의 앱 등록 설정은 다음 그림과 같이 구성되어 있습니다.\n\n[[IMG1]]\n\nUser1이 App1이라는 ASP.NET 웹앱을 개발합니다.\n\nUser1이 App1을 등록할 수 있도록 해야 합니다. 최소 권한 원칙을 따라야 합니다.\n\nUser1에게 어떤 역할을 할당해야 합니까?",
+ "choices": {"A": "Application Developer", "B": "Cloud App Security Administrator", "C": "Cloud Application Administrator", "D": "Application Administrator"},
+ "explanation": "사용자가 애플리케이션을 등록할 수 있도록 허용하는 테넌트 설정이 **아니요**일 때, Microsoft Entra Application Developer 역할은 사용자가 애플리케이션 등록을 만들 수 있게 합니다. 필요한 앱 등록 기능만 부여하는 반면, Application Administrator와 Cloud Application Administrator는 더 넓은 애플리케이션 관리 권한을 부여합니다."
+},
+"279": {
+ "stem": "Group1이라는 그룹과 User1, User2라는 두 사용자가 포함된 Azure 구독이 있습니다. User1은 Group1에 속합니다.\n\nApp1이라는 엔터프라이즈 애플리케이션을 등록합니다.\n\n다음 설정으로 App1에 대한 셀프 서비스 애플리케이션 액세스를 사용하도록 설정합니다.\n\n- 사용자가 이 애플리케이션에 대한 액세스를 요청할 수 있도록 허용: 예\n- 할당된 사용자를 추가할 그룹: Group1\n- 이 애플리케이션에 대한 액세스를 부여하기 전에 승인 필요: 예\n- 이 애플리케이션에 대한 액세스를 승인할 수 있는 사람: User2\n\n각 문장이 참이면 **예**, 그렇지 않으면 **아니요**를 선택하세요.",
+ "statements": ["User1은 앱을 사용하기 전에 App1에 대한 액세스를 요청해야 한다.", "User2가 App1에 대한 액세스를 요청하면 자동으로 Group1에 추가된다.", "User2는 Microsoft Entra 관리 센터를 사용하여 App1 요청을 승인할 수 있다."],
+ "explanation": "엔터프라이즈 애플리케이션에 할당된 그룹의 구성원은 이미 애플리케이션 액세스 권한이 있으므로, 기존 Group1 구성원인 User1은 셀프 서비스 요청을 제출할 필요가 없습니다. 승인을 요구하면 User2의 요청을 포함한 모든 셀프 서비스 요청이 승인자가 처리할 때까지 보류되므로, 요청 시점에 Group1 멤버 자격이 자동으로 부여되지 않습니다. 셀프 서비스 애플리케이션 액세스의 비즈니스 승인자는 Microsoft Entra 관리 센터와 별개의 환경인 내 앱 포털(myapps.microsoft.com)에서 작업하므로, User2는 관리 센터가 아니라 그곳에서 App1 요청을 승인하거나 거부합니다."
+},
+"281": {
+ "stem": "여러 스토리지 계정이 포함된 Microsoft Entra 테넌트가 있습니다.\n\n스토리지 계정에 대한 액세스가 필요한 여러 Azure App Service 앱을 배포할 계획입니다.\n\n관리 작업을 최소화하면서 앱에 스토리지 계정 액세스를 제공하는 ID 솔루션을 추천해야 합니다.\n\n어떤 ID 유형을 추천해야 하며, 스토리지 계정 액세스 제어에 무엇을 사용해야 합니까?",
+ "blanks": {
+  "identity_type": {"label": "ID 유형:", "options": ["Microsoft Entra 사용자", "서비스 주체", "시스템 할당 관리 ID", "사용자 할당 관리 ID"]},
+  "access_control": {"label": "액세스 제어에 사용:", "options": ["Microsoft Entra Domain Services", "역할 기반 액세스 제어(RBAC)", "공유 액세스 서명(SAS) 토큰", "X.509 인증서"]}
+ },
+ "explanation": "사용자 할당 관리 ID는 여러 App Service 앱에 할당할 수 있어 ID와 자격 증명 관리 부담을 줄입니다. 그 관리 ID에 적절한 범위에서 Azure RBAC를 통해 필요한 Azure Storage 데이터 평면 역할을 부여합니다."
+},
+"282": {
+ "stem": "Microsoft Office 365 Enterprise E3 라이선스가 할당된 사용자 2,500명이 있습니다. 라이선스는 사용자에게 개별적으로 할당되어 있습니다.\n\nAzure Active Directory 관리 센터의 **그룹** 블레이드에서 사용자에게 Microsoft 365 Enterprise E5 라이선스를 할당합니다.\n\n최소한의 관리 작업으로 사용자에게서 Office 365 Enterprise E3 라이선스를 제거해야 합니다.\n\n무엇을 사용해야 합니까?",
+ "choices": {"A": "Azure Active Directory 관리 센터의 Identity Governance 블레이드", "B": "Set-AzureAdUser cmdlet", "C": "Azure Active Directory 관리 센터의 라이선스 블레이드", "D": "Set-WindowsProductKey cmdlet"},
+ "explanation": "라이선스 블레이드는 특정 제품 라이선스가 할당된 사용자를 보고 그 라이선스를 대량으로 할당 해제하는 것을 지원합니다. 이렇게 하면 그룹 기반 Microsoft 365 Enterprise E5 할당은 유지하면서 직접 할당된 Office 365 Enterprise E3를 제거할 수 있습니다."
+},
+"283": {
+ "stem": "**게스트용 이메일 일회용 암호**가 예로 설정된 contoso.com이라는 Azure Active Directory(Azure AD) 테넌트가 있습니다. 다음 표의 게스트 사용자를 초대합니다.\n\n[[IMG1]]\n\n일회용 암호를 받는 사용자와 그 암호가 유효한 기간을 선택하세요.",
+ "blanks": {
+  "users": {"label": "사용자:", "options": ["Guest1만", "Guest2만", "Guest3만", "Guest1과 Guest2만", "Guest2와 Guest3만", "Guest1, Guest2, Guest3"]},
+  "valid_for": {"label": "유효 기간:", "options": ["30분", "60분", "24시간", "48시간"]}
+ },
+ "explanation": "이메일 일회용 암호는 Microsoft Entra ID, Microsoft 계정 또는 구성된 페더레이션 ID 공급자로 인증할 수 없는 B2B 게스트를 위한 대체 수단으로 사용됩니다. Guest1은 Azure AD 계정이 있고 Guest2는 Microsoft 계정이 있으므로 둘 다 대체 수단을 사용하지 않습니다. Guest3이 암호를 받으며, 암호는 30분 후 만료됩니다. 게스트 세션은 최대 24시간 유지될 수 있지만 그것은 코드 유효 기간이 아닙니다."
+},
+"284": {
+ "stem": "*(참고: 원본 사이트에 시나리오 본문이 빠진 문항입니다. 해설로 보면 \"User1이 Identity Secure Score 개선 작업의 상태를 업데이트할 수 있어야 한다(최소 권한)\" 시리즈 문항입니다.)*\n\n해결책: User1에게 Exchange Administrator 역할을 할당합니다.\n\n이것이 목표를 충족합니까?",
+ "choices": {"A": "예", "B": "아니요"},
+ "explanation": "Identity Secure Score 개선 작업의 상태를 업데이트하려면 최소 SharePoint Administrator 역할이 필요합니다. Exchange Administrator 역할은 필요한 권한을 제공하지 않습니다."
+},
+"285": {
+ "stem": "*(참고: 원본 사이트에 시나리오 본문이 빠진 문항입니다. 해설로 보면 \"User1이 Identity Secure Score 개선 작업의 상태를 업데이트할 수 있어야 한다(최소 권한)\" 시리즈 문항입니다.)*\n\n해결책: User1에게 User Administrator 역할을 할당합니다.\n\n이것이 목표를 충족합니까?",
+ "choices": {"A": "예", "B": "아니요"},
+ "explanation": "Identity Secure Score 개선 작업의 상태를 업데이트하려면 최소 SharePoint Administrator 역할이 필요합니다. User Administrator 역할은 이 권한을 제공하지 않습니다."
+}
+}

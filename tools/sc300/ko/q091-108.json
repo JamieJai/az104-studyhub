@@ -1,0 +1,95 @@
+{
+"91": {
+ "stem": "Group3이라는 그룹과 Department1이라는 관리 단위가 포함된 Microsoft Entra 테넌트가 있습니다.\n\nDepartment1에는 Users 그림의 사용자가 포함되어 있습니다. (**Users** 탭을 선택하세요.)\n\n[[IMG1]]\n\nDepartment1에는 Groups 그림의 그룹이 포함되어 있습니다. (**Groups** 탭을 선택하세요.)\n\n[[IMG2]]\n\nUser Administrator 역할 할당은 Assignments 그림과 같습니다. (**Assignments** 탭을 선택하세요.)\n\n[[IMG3]]\n\nGroup2의 멤버 자격은 Group2 그림과 같습니다. (**Group2** 탭을 선택하세요.)\n\n[[IMG4]]\n\n각 문장이 참이면 **예**, 그렇지 않으면 **아니요**를 선택하세요.",
+ "statements": ["Admin1은 User3과 User4의 암호를 재설정할 수 있다.", "Admin1은 User1을 Group3에 추가할 수 있다.", "Admin3은 User1의 암호를 재설정할 수 있다."],
+ "explanation": "관리 단위 범위의 User Administrator는 그 관리 단위의 직접 구성원만 관리할 수 있습니다. 그룹 멤버 자격만으로는 User3과 User4가 Department1의 사용자 관리 범위에 들어오지 않고, Group3은 Department1 밖에 있으므로 Admin1은 그 암호를 재설정하거나 Group3 멤버 자격을 변경할 수 없습니다. Admin3은 디렉터리 범위이므로 User1의 암호를 재설정할 수 있습니다."
+},
+"92": {
+ "stem": "**contoso.com** SMTP 주소 공간을 사용하는 온-프레미스 Microsoft Exchange 조직이 있습니다.\n\n사용자들이 자신의 이메일 주소로 Microsoft 365 서비스에 셀프 서비스 등록(self-service sign up)한 것을 발견합니다.\n\n셀프 등록한 사용자가 포함된 Azure Active Directory(Azure AD) 테넌트의 Global Administrator 권한을 확보해야 합니다.\n\n순서대로 수행해야 하는 네 가지 작업은 무엇입니까?",
+ "items": {"Sign in to the Microsoft 365 admin center.": "Microsoft 365 관리 센터에 로그인합니다.", "Create a self-signed user account in the Azure AD tenant.": "Azure AD 테넌트에 셀프 등록 사용자 계정을 만듭니다.", "From the Microsoft 365 admin center, add the domain name.": "Microsoft 365 관리 센터에서 도메인 이름을 추가합니다.", "Respond to the Become the admin message.": "\"관리자 되기(Become the admin)\" 메시지에 응답합니다.", "From the Microsoft 365 admin center, remove the domain name.": "Microsoft 365 관리 센터에서 도메인 이름을 제거합니다.", "Create a TXT record in the contoso.com DNS zone.": "contoso.com DNS 영역에 TXT 레코드를 만듭니다."},
+ "slots": {"step1": "1단계", "step2": "2단계", "step3": "3단계", "step4": "4단계"},
+ "explanation": "관리되지 않는(unmanaged) Microsoft Entra 테넌트의 내부 인수(internal takeover)는 그 테넌트에 계정을 만들고 Microsoft 365 관리 센터에 로그인하는 것으로 시작합니다. \"관리자 되기\" 프롬프트를 선택한 다음, 지정된 DNS TXT 레코드를 추가하여 기존 사용자 지정 도메인의 소유권을 확인합니다. 확인이 완료되면 관리자에게 Global Administrator 권한이 부여됩니다."
+},
+"93": {
+ "stem": "Microsoft Entra 테넌트가 있습니다.\n\n테넌트의 위험한 사용자 활동을 쿼리해야 합니다.\n\n위험한 사용자 활동 로그는 얼마 동안 보존됩니까?",
+ "choices": {"A": "30일", "B": "60일", "C": "90일", "D": "180일"},
+ "explanation": "Microsoft Entra ID Protection에서 위험한 사용자 조사를 뒷받침하는 위험 탐지 활동 레코드는 라이선스 계층과 관계없이 고정 90일 동안 보존됩니다. 이는 위험한 사용자 레코드 자체(위험이 수정될 때까지 보존)나 위험한 로그인(라이선스에 따라 7·30·90일 보존)과는 다릅니다. 위험한 사용자 활동을 쿼리할 때 적용되는 기간은 90일입니다."
+},
+"94": {
+ "stem": "Site1이라는 Microsoft SharePoint Online 사이트가 포함된 Microsoft 365 E5 구독이 있습니다. Site1에는 PDF 파일이 있습니다.\n\n사용자가 Site1에서 파일을 직접 인쇄하지 못하게 해야 합니다.\n\nMicrosoft Defender for Cloud Apps 포털에서 어떤 정책 유형을 만들어야 합니까?",
+ "choices": {"A": "활동 정책", "B": "액세스 정책", "C": "파일 정책", "D": "세션 정책"},
+ "explanation": "세션 정책은 클라우드 앱 브라우저 세션 중에 수행되는 작업에 대한 실시간 제어를 제공합니다. Microsoft Defender for Cloud Apps에서 **활동 차단(Block activities)**을 사용하는 세션 정책으로 SharePoint Online의 **인쇄(Print)** 활동을 차단할 수 있습니다."
+},
+"95": {
+ "stem": "다음 표의 리소스가 포함된 Azure 구독이 있습니다.\n\n[[IMG1]]\n\n다음 요구 사항을 충족하면서 Vault1에 대한 액세스를 구성해야 합니다.\n\n- User1이 Vault1에서 키를 관리하고 만들 수 있어야 합니다.\n- User2가 Vault1에 저장된 인증서에 액세스할 수 있어야 합니다.\n- 최소 권한 원칙을 적용합니다.\n\n각 사용자에게 어떤 역할을 할당해야 합니까?",
+ "blanks": {
+  "user1": {"label": "User1:", "options": ["Key Vault Certificates Officer", "Key Vault Crypto Officer", "Key Vault Secrets Officer"]},
+  "user2": {"label": "User2:", "options": ["Key Vault Certificates Officer", "Key Vault Crypto Officer", "Key Vault Secrets Officer"]}
+ },
+ "explanation": "Key Vault Crypto Officer는 키 생성을 포함해 키를 관리할 권한을 부여하므로 User1에게 적합합니다. Key Vault Certificates Officer는 인증서를 관리할 권한을 부여하며, User2에게 사용할 수 있는 인증서 전용 선택지이고 키나 비밀 관리 권한은 부여하지 않습니다."
+},
+"96": {
+ "stem": "*(참고: 원본 사이트에 사례 연구 본문이 빠진 문항입니다. ADatum 사용자를 Azure AD Connect로 동기화해야 하는 기술 요구 사항 시나리오입니다.)*\n\nADatum 사용자를 동기화해야 합니다. 기술 요구 사항을 충족해야 합니다.\n\n무엇을 해야 합니까?",
+ "choices": {"A": "Microsoft Azure Active Directory Connect 마법사에서 \"동기화 옵션 사용자 지정\"을 선택합니다.", "B": "PowerShell에서 Set-ADSyncScheduler를 실행합니다.", "C": "PowerShell에서 Start-ADSyncSyncCycle을 실행합니다.", "D": "Microsoft Azure Active Directory Connect 마법사에서 \"사용자 로그인 변경\"을 선택합니다."},
+ "explanation": "`Start-ADSyncSyncCycle`은 Microsoft Entra Connect 동기화 주기를 트리거하여 사용자 업데이트 같은 디렉터리 변경 사항을 동기화할 수 있게 합니다. `Set-ADSyncScheduler`는 주기를 시작하는 것이 아니라 동기화 스케줄러를 구성합니다."
+},
+"97": {
+ "stem": "User1이라는 사용자와 RG1, RG2라는 두 리소스 그룹이 포함된 Azure 구독이 있습니다.\n\nUser1이 다음 작업을 수행할 수 있도록 해야 합니다.\n\n- 모든 리소스 보기\n- 가상 머신 다시 시작\n- RG1에서만 가상 머신 만들기\n- RG1에서만 스토리지 계정 만들기\n\n필요한 역할 기반 액세스 제어(RBAC) 역할 할당의 최소 개수는 몇 개입니까?",
+ "choices": {"A": "1", "B": "2", "C": "3", "D": "4"},
+ "explanation": "Reader 역할은 모든 Azure 리소스에 대한 컨트롤 플레인 읽기 액세스를 부여합니다. Virtual Machine Contributor에는 다시 시작 같은 가상 머신 작업이 포함되고, Contributor는 할당된 범위의 리소스에 대한 관리 액세스를 부여하여 RG1에서 가상 머신과 스토리지 계정을 모두 만들 수 있게 합니다. 이 역할들을 구독과 RG1 범위에 할당하려면 역할 할당 3개가 필요합니다."
+},
+"98": {
+ "stem": "다음 표의 사용자가 포함된 Microsoft Entra 테넌트가 있습니다.\n\n[[IMG1]]\n\nUser Administrator 역할에 다음 할당을 추가합니다.\n\n- 범위 유형: 디렉터리\n- 선택한 구성원: Group1\n- 할당 유형: 활성(Active)\n- 할당 시작: 2022년 8월 15일\n- 할당 종료: 2022년 12월 15일\n\nExchange Administrator 역할에 다음 할당을 추가합니다.\n\n- 범위 유형: 디렉터리\n- 선택한 구성원: Group2\n- 할당 유형: 적격(Eligible)\n- 할당 시작: 2022년 10월 15일\n- 할당 종료: 2023년 1월 15일\n\n다음 각 문장이 참이면 예, 그렇지 않으면 아니요를 선택하세요.",
+ "statements": ["2022년 11월 15일에 Admin1은 Admin2의 암호를 재설정할 수 있다.", "2022년 10월 15일에 Admin2가 로그인하면 Exchange Online을 관리할 수 있다.", "2022년 9월 1일에 Admin3은 Admin1의 암호를 재설정할 수 있다."],
+ "explanation": "Admin1과 Admin3은 Group1 멤버 자격을 통해 2022년 8월 15일부터 12월 15일까지 User Administrator 역할을 활성 할당으로 받고, Admin2는 Group2를 통해 2022년 10월 15일부터 2023년 1월 15일까지 Exchange Administrator 역할을 적격 PIM 할당으로만 받으며 사용 전에 별도로 활성화해야 합니다. 2022년 11월 15일에 Admin2는 Exchange Administrator 역할을 활성화하지 않았으므로 현재 관리자 역할이 없고, Admin1의 활성 User Administrator 역할로 Admin2의 암호를 재설정할 수 있습니다. 2022년 10월 15일에 로그인만 해서는 적격 PIM 할당이 활성화되지 않으며, Admin2는 Exchange Online을 관리하기 전에 Privileged Identity Management에서 역할을 명시적으로 활성화해야 합니다. 2022년 9월 1일에 Admin3의 적격 Exchange Administrator 할당은 아직 시작되지 않았으므로 Admin3은 활성 User Administrator 역할만 갖고 있고, User Administrator는 다른 User Administrator의 암호를 재설정할 수 있으므로 Admin3은 Admin1의 암호를 재설정할 수 있습니다."
+},
+"99": {
+ "stem": "다음 표의 사용자가 포함된 Azure Active Directory(Azure AD) 테넌트가 있습니다.\n\n[[IMG1]]\n\n테넌트에는 다음 표의 인증 방법이 있습니다.\n\n[[IMG2]]\n\n앱에 표시된 숫자와 휴대폰에 표시된 숫자를 맞추는 방식으로 클라우드 앱에 로그인하는 사용자는 누구입니까?",
+ "choices": {"A": "User1만", "B": "User2만", "C": "User3만", "D": "User1과 User2만", "E": "User2와 User3만"},
+ "explanation": "Microsoft Authenticator 전화 로그인은 로그인 화면에 숫자를 표시하고 사용자가 Authenticator 앱에 일치하는 숫자를 입력하도록 요구합니다. Authenticator 방법은 Group1에만 사용하도록 설정되어 있고 그 구성원은 User1입니다. FIDO2는 보안 키 또는 패스키 확인을 사용하고, SMS 로그인은 문자 메시지로 전송된 코드를 입력해야 합니다. [Microsoft Learn: Authenticator를 사용한 암호 없는 로그인](https://learn.microsoft.com/en-us/entra/identity/authentication/howto-authentication-passwordless-phone)"
+},
+"100": {
+ "stem": "RG1이라는 리소스 그룹이 포함된 Azure 구독이 있습니다. RG1에는 Microsoft Entra ID 로그인이 사용하도록 설정된 VM1과 VM2, 두 가상 머신이 있습니다.\n\n구독에는 다음 표의 사용자가 포함되어 있습니다.\n\n[[IMG1]]\n\nVM1에 로그인할 수 있는 사용자와 VM2에 로그인할 수 있는 사용자는 누구입니까?",
+ "blanks": {
+  "vm1": {"label": "VM1:", "options": ["User1만", "User2만", "User3만", "User1과 User3만", "User2와 User3만", "User1, User2, User3"]},
+  "vm2": {"label": "VM2:", "options": ["User1만", "User2만", "User3만", "User1과 User3만", "User2와 User3만", "User1, User2, User3"]}
+ },
+ "explanation": "Azure VM에 Microsoft Entra로 로그인하려면 Virtual Machine User Login 또는 Virtual Machine Administrator Login 역할이 필요합니다. Azure RBAC 역할 할당은 하위 범위로 상속되므로, User1의 구독 범위 Virtual Machine User Login 할당은 두 VM 모두에 적용되고, User3의 VM1 범위 Virtual Machine Administrator Login 할당은 VM1에만 적용됩니다. Virtual Machine Contributor는 대화형 Microsoft Entra 로그인 권한을 부여하지 않습니다."
+},
+"101": {
+ "stem": "RG1이라는 리소스 그룹이 포함된 Sub1이라는 Azure 구독이 있습니다. RG1에는 Azure 역할 기반 액세스 제어(Azure RBAC)를 사용하는 KV1과 KV2, 두 Azure Key Vault가 있습니다.\n\n구독에는 다음 표의 사용자가 포함되어 있습니다.\n\n[[IMG1]]\n\nKV1에는 Secret1이라는 비밀이 있습니다. KV2에는 Secret2라는 비밀이 있습니다.\n\n각 비밀의 값을 읽을 수 있는 사용자는 누구입니까?",
+ "blanks": {
+  "secret1": {"label": "Secret1:", "options": ["User1만", "User2만", "User3만", "User1과 User3만", "User2와 User3만", "User1, User2, User3"]},
+  "secret2": {"label": "Secret2:", "options": ["User1만", "User2만", "User3만", "User1과 User3만", "User2와 User3만", "User1, User2, User3"]}
+ },
+ "explanation": "Key Vault Administrator는 할당된 범위에서 비밀 값 읽기를 포함한 모든 Key Vault 데이터 평면 작업을 부여하므로, User1의 구독 수준 할당은 두 자격 증명 모음 모두를 포괄합니다. Key Vault Reader는 비밀 내용에 대한 액세스를 부여하지 않습니다. Key Vault Secrets User는 비밀 내용을 읽을 수 있지만 User3의 할당은 KV1로만 범위가 지정되어 있습니다. 따라서 Secret1은 User1과 User3이 읽을 수 있고, Secret2는 User1만 읽을 수 있습니다."
+},
+"102": {
+ "stem": "Microsoft Entra 테넌트가 있습니다.\n\n테넌트에 대한 관리 액세스를 제어하는 조건부 액세스 정책을 만들어야 합니다. 관리자가 피싱 방지(phishing-resistant) 다단계 인증(MFA) 방법으로 인증하도록 해야 합니다.\n\n솔루션에 포함해야 하는 인증 방법 세 가지는 무엇입니까? 각 정답은 완전한 해결책입니다.",
+ "choices": {"A": "Windows Hello 비즈니스용", "B": "FIDO2 보안 키", "C": "인증서 기반 인증(다단계)", "D": "음성 통화", "E": "SMS", "F": "이메일 OTP"},
+ "explanation": "Microsoft Entra는 Windows Hello 비즈니스용, FIDO2 보안 키, 인증서 기반 인증(MFA를 충족하도록 구성된 경우)을 피싱 방지 인증 방법으로 분류합니다. 음성 통화, SMS, 이메일 일회용 암호는 사회 공학이나 피싱으로 탈취될 수 있으므로 피싱 방지 MFA 요구 사항을 충족하지 못합니다."
+},
+"103": {
+ "stem": "클라우드 기반 엔터프라이즈 앱이 포함된 Azure Active Directory(Azure AD) 테넌트가 있습니다.\n\n내 앱(My Apps) 포털에서 관련 앱을 범주별로 정리해야 합니다.\n\n무엇을 만들어야 합니까?",
+ "choices": {"A": "태그", "B": "컬렉션", "C": "명명 정책", "D": "동적 그룹"},
+ "explanation": "내 앱 컬렉션은 관련 엔터프라이즈 애플리케이션을 그룹화하여 별도의 탭에 표시하므로, 역할·작업·프로젝트 기반의 범주를 만들 수 있습니다."
+},
+"105": {
+ "stem": "Microsoft 365 E5 구독이 있습니다.\n\n사용자가 구독에 로그인할 때 사용자 지정 사용 약관(ToU)에 동의하라는 메시지가 표시되도록 해야 합니다.\n\n무엇을 구성해야 합니까?",
+ "choices": {"A": "액세스 패키지", "B": "조건부 액세스 정책", "C": "수명 주기 워크플로", "D": "인증 방법"},
+ "explanation": "Microsoft Entra 사용 약관 정책은 조건부 액세스를 통해 적용되고 시행됩니다. 조건부 액세스 정책으로 사용자가 액세스를 받기 전에 로그인 과정에서 사용자 지정 사용 약관 문서에 동의하도록 요구할 수 있습니다."
+},
+"106": {
+ "stem": "*(참고: 원본 사이트에 사례 연구 본문이 빠진 문항입니다. User administrator 역할의 PIM 동작(승인·MFA·기간 등)을 바꾸는 계획된 변경 사항 시나리오입니다.)*\n\n**User administrator** 역할에 대한 계획된 변경 사항을 구현해야 합니다.\n\n무엇을 해야 합니까?",
+ "choices": {"A": "액세스 검토를 만듭니다.", "B": "관리 단위를 만듭니다.", "C": "활성 할당을 수정합니다.", "D": "역할 설정을 수정합니다."},
+ "explanation": "Microsoft Entra Privileged Identity Management 역할 설정은 역할별로 구성되며, 승인이나 다단계 인증 요구 사항, 할당 기간, 알림 같은 그 역할의 할당·활성화 속성을 제어합니다. 따라서 User administrator 역할의 동작을 변경하려면 역할 설정을 수정해야 합니다."
+},
+"108": {
+ "stem": "Azure 구독이 있습니다.\n\n권한 관리(Entitlement management)에서 사용자 지정 확장(custom extension)이 포함된 Catalog1이라는 카탈로그를 만들려고 합니다.\n\n먼저 무엇을 만들어야 하며, Catalog1을 배포하려면 무엇을 사용해야 합니까?",
+ "blanks": {
+  "first_create": {"label": "먼저 만들 것:", "options": ["관리 계정", "Azure Automation 계정", "Azure 논리 앱"]},
+  "distribute_catalog1": {"label": "Catalog1 배포에 사용할 것:", "options": ["플레이북", "워크플로", "액세스 패키지"]}
+ },
+ "explanation": "권한 관리 사용자 지정 확장은 확장 워크플로를 실행하는 Azure Logic Apps에 연결됩니다. 카탈로그는 리소스의 컨테이너이고, 액세스 패키지는 카탈로그 리소스와 정책을 결합하여 사용자가 요청하고 받을 수 있는 항목으로 만듭니다."
+}
+}

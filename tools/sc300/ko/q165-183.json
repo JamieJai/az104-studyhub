@@ -1,0 +1,99 @@
+{
+"165": {
+ "stem": "*(참고: 원본 사이트에 시나리오 본문이 빠진 문항입니다. 해설로 보면 \"Microsoft Defender for Cloud Apps로 OAuth 앱 인증 요청(앱 권한 부여)을 모니터링해야 한다\" 시리즈 문항입니다.)*\n\n해결책: Microsoft 365 Defender 포털에서 Microsoft Azure 앱 커넥터를 추가합니다.\n\n이것이 목표를 충족합니까?",
+ "choices": {"A": "예", "B": "아니요"},
+ "explanation": "Microsoft Azure 커넥터는 Azure Resource Manager 활동만 모니터링합니다. Microsoft Defender for Cloud Apps의 OAuth 앱 권한 모니터링은 Microsoft 365, Google Workspace, Salesforce 같은 지원 플랫폼에 적용되며, Azure 커넥터를 추가해도 그 OAuth 가시성은 제공되지 않습니다."
+},
+"166": {
+ "stem": "*(참고: 원본 사이트에 시나리오 본문이 빠진 문항입니다. 해설로 보면 \"Microsoft Defender for Cloud Apps로 OAuth 앱 인증 요청(앱 권한 부여)을 모니터링해야 한다\" 시리즈 문항입니다.)*\n\n해결책: Microsoft 365 Defender 포털에서 Amazon Web Services 앱 커넥터를 추가합니다.\n\n이것이 목표를 충족합니까?",
+ "choices": {"A": "예", "B": "아니요"},
+ "explanation": "Microsoft Defender for Cloud Apps의 OAuth 앱 모니터링은 연결된 Microsoft 365, Google Workspace, Salesforce 플랫폼에 적용됩니다. Amazon Web Services 커넥터는 AWS 보안 감사와 활동 가시성용이므로 OAuth 인증 요청 모니터링을 가능하게 하지 않습니다."
+},
+"167": {
+ "stem": "*(참고: 원본 사이트에 시나리오 본문이 빠진 문항입니다. 해설로 보면 \"Microsoft Defender for Cloud Apps로 OAuth 앱 인증 요청(앱 권한 부여)을 모니터링해야 한다\" 시리즈 문항입니다.)*\n\n해결책: Microsoft 365 Defender 포털에서 Google Workspace 앱 커넥터를 추가합니다.\n\n이것이 목표를 충족합니까?",
+ "choices": {"A": "예", "B": "아니요"},
+ "explanation": "Microsoft Defender for Cloud Apps는 Google Workspace가 앱 커넥터로 연결되어 있으면 Google Workspace의 OAuth 앱에 대한 가시성을 제공하고 OAuth 권한 부여 활동을 감사할 수 있습니다. 커넥터가 지원 플랫폼에 필요한 연결을 제공합니다."
+},
+"168": {
+ "stem": "*(참고: 원본 사이트에 시나리오 본문이 빠진 문항입니다. 해설로 보면 \"Microsoft Defender for Cloud Apps로 OAuth 앱 인증 요청(앱 권한 부여)을 모니터링해야 한다\" 시리즈 문항입니다.)*\n\n해결책: Microsoft 365 Defender 포털에서 GitHub 앱 커넥터를 추가합니다.\n\n이것이 목표를 달성합니까?",
+ "choices": {"A": "예", "B": "아니요"},
+ "explanation": "Microsoft Defender for Cloud Apps는 Microsoft 365, Google Workspace, Salesforce 같은 지원 플랫폼에 대해 OAuth 앱 권한 가시성을 제공합니다. GitHub 앱 커넥터는 OAuth 인증 요청 모니터링을 가능하게 하지 않으므로 이 요구 사항을 충족하지 못합니다."
+},
+"169": {
+ "stem": "User1이라는 사용자가 포함된 Microsoft 365 E5 구독이 있습니다. User1은 Application Administrator 역할에 대해 적격(eligible)입니다.\n\nUser1이 애플리케이션 프록시의 새 커넥터 그룹을 구성해야 합니다.\n\nUser1의 역할을 활성화하려면 무엇을 사용해야 합니까?",
+ "choices": {"A": "Microsoft 365 Defender 포털", "B": "Microsoft 365 관리 센터", "C": "Microsoft Intune 관리 센터", "D": "Azure Active Directory 관리 센터"},
+ "explanation": "적격 Microsoft Entra 관리 역할은 Microsoft Entra 관리 센터(이전 Azure Active Directory 관리 센터)의 Privileged Identity Management(PIM)에서 활성화합니다. PIM은 적격 Application Administrator 할당을 일시적으로 활성 상태로 만들어 그 권한을 사용할 수 있게 합니다."
+},
+"170": {
+ "stem": "User1이라는 사용자와 Group1이라는 Microsoft 365 그룹이 포함된 Azure AD 테넌트가 있습니다. User1은 Group1을 소유합니다.\n\nUser1이 3개월마다 Group1의 게스트 멤버 자격을 확인하라는 알림을 받도록 해야 합니다.\n\n무엇을 해야 합니까?",
+ "choices": {"A": "외부 협업 설정을 구성합니다.", "B": "액세스 검토를 만듭니다.", "C": "액세스 패키지를 구성합니다.", "D": "그룹 만료 정책을 만듭니다."},
+ "explanation": "Microsoft Entra 액세스 검토는 Microsoft 365 그룹의 게스트 구성원만 검토하고, 그룹 소유자를 검토자로 지정하며, 분기마다 반복하고, 각 검토가 시작될 때 검토자에게 알릴 수 있습니다."
+},
+"171": {
+ "stem": "Microsoft 365 테넌트가 있습니다.\n\n모든 사용자에게 휴대폰과 노트북이 있습니다. 사용자들은 Wi-Fi나 휴대폰 연결이 없는 원격 위치에서 자주 일합니다. 이런 원격 위치에서 사용자는 노트북을 인터넷이 되는 유선 네트워크에 연결합니다.\n\n다단계 인증(MFA)을 구현할 계획입니다.\n\n사용자가 원격 위치에서 사용할 수 있는 MFA 인증 방법은 무엇입니까?",
+ "choices": {"A": "Microsoft Authenticator 앱을 통한 알림", "B": "이메일", "C": "보안 질문", "D": "Microsoft Authenticator 앱의 확인 코드"},
+ "explanation": "Microsoft Authenticator는 30초마다 OATH 확인 코드를 로컬에서 생성하므로 휴대폰에 Wi-Fi나 셀룰러 연결이 필요하지 않습니다. 사용자는 유선 네트워크로 인터넷에 연결된 노트북에서 로그인할 때 그 코드를 입력할 수 있습니다."
+},
+"172": {
+ "stem": "Microsoft Entra 테넌트가 있습니다.\n\nMicrosoft Entra 통합 문서(workbook)를 사용하여 ID 활동을 모니터링해야 합니다.\n\n진단 설정의 **대상 세부 정보**에 무엇을 구성해야 합니까?",
+ "choices": {"A": "스토리지 계정에 보관", "B": "파트너 솔루션으로 보내기", "C": "이벤트 허브로 스트리밍", "D": "Log Analytics 작업 영역으로 보내기"},
+ "explanation": "Microsoft Entra 통합 문서는 Log Analytics 작업 영역의 ID 활동 데이터를 쿼리합니다. 관련 Microsoft Entra 로그를 그 작업 영역으로 보내도록 진단 설정을 구성하세요. [Microsoft Learn: Microsoft Entra 통합 문서 사용 방법](https://learn.microsoft.com/en-us/entra/identity/monitoring-health/howto-use-workbooks)"
+},
+"173": {
+ "stem": "Server1이라는 온-프레미스 Windows Server 컴퓨터와 App1이라는 앱 등록이 포함된 Microsoft Entra 테넌트가 있습니다. App1에는 Microsoft Graph 애플리케이션 권한이 있습니다.\n\n다음 요구 사항을 충족하면서 App1을 지원하도록 환경을 구성합니다.\n\n- App1은 회사 네트워크에서만 액세스할 수 있어야 합니다.\n- App1 자격 증명을 일반 텍스트로 저장하면 **안 됩니다**.\n- Server1의 비대화형 예약 작업이 App1에 인증할 수 있어야 합니다.\n\n무엇을 해야 합니까?",
+ "blanks": {
+  "tenant_configure": {"label": "테넌트에서 구성할 것:", "options": ["인증 방법", "조건부 액세스 정책", "Microsoft Entra 애플리케이션 프록시", "권한 분류"]},
+  "server_authentication": {"label": "Server1의 예약 작업이 인증에 사용하도록 구성할 것:", "options": ["인증서", "클라이언트 비밀", "시스템 할당 관리 ID", "사용자 할당 관리 ID"]}
+ },
+ "explanation": "App1의 서비스 주체를 대상으로 하는 위치 기반 조건부 액세스 정책으로 회사 공용 IP 범위 밖에서의 액세스를 차단할 수 있습니다. 인증서 자격 증명은 무인 클라이언트 자격 증명 인증을 지원하며 프로덕션 애플리케이션에서는 클라이언트 비밀보다 선호됩니다. 개인 키는 Windows 인증서 저장소에서 보호할 수 있습니다."
+},
+"174": {
+ "stem": "조직에 contoso.com이라는 Azure Active Directory(Azure AD) 테넌트가 있습니다.\n\n조직에서 App1이라는 웹 서비스를 개발하고 있습니다.\n\nApp1이 Microsoft Graph를 사용하여 contoso.com의 디렉터리 데이터를 읽을 수 있도록 해야 합니다.\n\n순서대로 수행해야 하는 세 가지 작업은 무엇입니까?",
+ "items": {"Add a group claim.": "그룹 클레임을 추가합니다.", "Create an app registration.": "앱 등록을 만듭니다.", "Grant admin consent.": "관리자 동의를 부여합니다.", "Add delegated permissions.": "위임된 권한을 추가합니다.", "Add app permissions.": "앱 권한을 추가합니다."},
+ "slots": {"step1": "1단계", "step2": "2단계", "step3": "3단계"},
+ "explanation": "애플리케이션 권한은 로그인한 사용자가 없는 서비스에 적합한 앱 전용 액세스를 지원합니다. 먼저 앱을 등록하고, 필요한 Microsoft Graph 애플리케이션 권한을 구성한 다음, 테넌트 관리자가 관리자 동의를 부여합니다. 위임된 권한은 로그인한 사용자가 필요하고, 그룹 클레임은 디렉터리 읽기 액세스를 부여하지 않습니다."
+},
+"175": {
+ "stem": "다음 표의 개체가 포함된 Azure Active Directory(Azure AD) 테넌트가 있습니다.\n\n[[IMG1]]\n\nGroup3의 구성원으로 추가할 수 있는 개체는 무엇입니까?",
+ "choices": {"A": "User2와 Group2만", "B": "User2, Group1, Group2만", "C": "User1, User2, Group1, Group2", "D": "User1과 User2만", "E": "User2만"},
+ "explanation": "메일 사용 보안 그룹은 직접 할당된 라이선스 여부와 관계없이 사용자 구성원을 포함할 수 있습니다. Microsoft Entra는 메일 사용 보안 그룹에 보안 그룹을 중첩하는 것을 지원하지 않으며, 보안 그룹에 Microsoft 365 그룹을 추가하는 것도 지원하지 않습니다. 따라서 User1과 User2만 가능합니다."
+},
+"176": {
+ "stem": "다음 표의 사용자가 포함된 Microsoft Entra 테넌트가 있습니다.\n\n[[IMG1]]\n\n테넌트에는 다음 표의 관리 단위가 있습니다.\n\n[[IMG2]]\n\n테넌트에는 다음 표의 그룹이 있습니다.\n\n[[IMG3]]\n\n다음 작업을 수행합니다.\n\n- User1에게 AU2에 대한 User Administrator 역할을 할당합니다.\n- User3에게 AU1에 대한 Groups Administrator 역할을 할당합니다.\n- User5에게 AU3에 대한 Authentication Administrator 역할을 할당합니다.\n\n다음 각 문장이 참이면 예, 그렇지 않으면 아니요를 선택하세요.",
+ "statements": ["User1은 User3의 암호를 재설정할 수 있다.", "User3은 User4를 Group2에 추가할 수 있다.", "User5는 모든 Group4 구성원이 암호 없는 로그인을 사용하도록 요구하는 인증 방법 정책을 구성할 수 있다."],
+ "explanation": "관리 단위 범위의 User Administrator는 그 단위에 직접 포함된 비관리자 사용자의 암호를 재설정할 수 있으므로 User1은 AU2의 User3 암호를 재설정할 수 있습니다. AU1 범위의 Groups Administrator는 AU2의 Group2에 대한 권한이 없습니다. Authentication Administrator는 할당된 관리 단위의 비관리자 사용자에 대한 인증 방법을 보고 설정하고 재설정할 수 있지만, 암호 없는 로그인을 위해 그룹을 대상으로 지정하는 것을 포함해 인증 방법 정책을 관리하려면 Authentication Policy Administrator 이상이 필요합니다."
+},
+"177": {
+ "stem": "Microsoft Entra 테넌트가 있습니다.\n\n권한 있는 사용자가 피싱 방지 다단계 인증(MFA)을 사용해야 하도록 보호된 작업(protected actions)을 구성해야 합니다.\n\n먼저 무엇을 해야 합니까?",
+ "choices": {"A": "액세스 패키지를 만듭니다.", "B": "테넌트에 대한 인증 강도를 구성합니다.", "C": "인증 컨텍스트를 추가합니다.", "D": "조건부 액세스 정책을 만듭니다."},
+ "explanation": "보호된 작업은 조건부 액세스 인증 컨텍스트를 사용하여 특정 권한에 정책 적용을 연결합니다. 기본 제공 피싱 방지 MFA 인증 강도를 요구하는 조건부 액세스 정책에 연결하기 전에 먼저 인증 컨텍스트를 만들어야 합니다."
+},
+"178": {
+ "stem": "회사에서는 사용자가 회사 애플리케이션에 액세스하기 전에 액세스를 요청하도록 요구합니다.\n\nAzure Active Directory(Azure AD)에 MyApp1이라는 새 엔터프라이즈 애플리케이션을 등록하고 MyApp1에 대한 Single Sign-On(SSO)을 구성합니다.\n\n다음으로 MyApp1에 대해 어떤 설정을 구성해야 합니까?",
+ "choices": {"A": "셀프 서비스", "B": "프로비저닝", "C": "애플리케이션 프록시", "D": "역할 및 관리자"},
+ "explanation": "셀프 서비스 애플리케이션 액세스를 사용하면 사용자가 엔터프라이즈 애플리케이션을 검색하고 액세스를 요청할 수 있습니다. 액세스를 부여하기 전에 승인을 요구할 수 있고 관리자가 비즈니스 승인자를 지정할 수 있으므로, 액세스 전 요청 요구 사항을 충족합니다."
+},
+"180": {
+ "stem": "Site1이라는 Microsoft SharePoint Online 사이트가 포함된 Microsoft 365 E5 구독이 있습니다.\n\n사용자가 1분 안에 Site1에서 파일을 50개 넘게 다운로드하면 알림을 받아야 합니다.\n\nMicrosoft Defender for Cloud Apps에서 어떤 정책 유형을 만들어야 합니까?",
+ "choices": {"A": "세션 정책", "B": "활동 정책", "C": "파일 정책", "D": "앱 검색 정책"},
+ "explanation": "활동 정책은 다운로드를 포함한 지정된 사용자 활동을 모니터링하고, 특정 활동의 비정상적으로 높은 빈도를 탐지할 수 있습니다. 따라서 Site1의 다운로드가 1분 안에 50개를 넘으면 알림을 생성할 수 있습니다."
+},
+"181": {
+ "stem": "네트워크에 Windows 11 디바이스 500대가 포함된 온-프레미스 Active Directory Domain Services(AD DS) 도메인이 있습니다.\n\nMicrosoft 365 구독이 도메인과 동기화되며, Policy1이라는 조건부 액세스 정책을 만듭니다.\n\n다음 요구 사항을 충족해야 합니다.\n\n- Policy1을 모든 Windows 디바이스에 적용합니다.\n- Windows 디바이스의 Policy1 준수 여부를 평가합니다.\n\n각 요구 사항에 대해 무엇을 해야 합니까?",
+ "blanks": {
+  "apply_policy": {"label": "Policy1을 모든 Windows 디바이스에 적용:", "options": ["디바이스를 구독에 Microsoft Entra 하이브리드 조인합니다.", "디바이스를 구독에 Microsoft Entra 조인합니다.", "디바이스를 구독에 Microsoft Entra 등록합니다."]},
+  "assess_compliance": {"label": "Windows 디바이스의 Policy1 준수 여부 평가:", "options": ["디바이스를 Microsoft Intune에 등록합니다.", "디바이스를 Microsoft Defender for Endpoint에 온보딩합니다.", "디바이스를 Microsoft Purview에 온보딩합니다."]}
+ },
+ "explanation": "Microsoft Entra 하이브리드 조인은 기존 온-프레미스 AD DS 조인을 Microsoft Entra ID로 확장하여 도메인 가입 Windows 디바이스를 조건부 액세스에서 사용할 수 있게 합니다. Microsoft Intune 등록은 디바이스 준수 평가를 제공하며, Intune은 조건부 액세스 결정을 위해 준수 상태를 Microsoft Entra ID로 보냅니다. Defender for Endpoint는 디바이스 위험 신호를 제공하고, Purview는 일반적인 디바이스 준수 평가가 아니라 데이터 거버넌스 기능을 제공합니다."
+},
+"182": {
+ "stem": "Microsoft Entra 테넌트가 있습니다.\n\n애플리케이션 로그인에 대한 지속적인 액세스 평가(CAE)를 설정하고, 그 구성을 Application Administrator 역할이 있는 사용자에게 할당해야 합니다.\n\n무엇을 구성해야 합니까?",
+ "choices": {"A": "로그인 위험 정책", "B": "액세스 검토", "C": "조건부 액세스 정책", "D": "관리자 동의 설정"},
+ "explanation": "조건부 액세스 정책은 지속적인 액세스 평가를 사용자 지정하는 데 사용되는 세션 제어를 제공하며, Application Administrator를 포함한 디렉터리 역할 기반으로 사용자를 대상으로 하는 할당을 지원합니다."
+},
+"183": {
+ "stem": "East US Azure 지역에 Managed1이라는 사용자 할당 관리 ID가 포함된 Azure 구독이 있습니다. 구독에는 다음 표의 리소스가 포함되어 있습니다.\n\n[[IMG1]]\n\nManaged1을 ID로 사용할 수 있는 리소스는 무엇입니까?",
+ "choices": {"A": "WebApp1만", "B": "storage1과 WebApp1만", "C": "VM1과 WebApp1만", "D": "VM1, storage1, WebApp1"},
+ "explanation": "사용자 할당 관리 ID는 같은 지역의 여러 지원되는 Azure 리소스에 연결할 수 있습니다. 가상 머신과 Azure App Service 앱은 사용자 할당 ID를 지원하고, Azure Storage 계정은 사용자 할당 ID 하나를 지원하므로 VM1, storage1, WebApp1이 Managed1을 사용할 수 있습니다."
+}
+}

@@ -1,0 +1,113 @@
+{
+"244": {
+ "stem": "Microsoft Entra 테넌트가 있습니다.\n\n위험 탐지 보고서를 엽니다.\n\n사용자 위험으로 분류되는 위험 탐지 유형은 무엇입니까?",
+ "choices": {"A": "암호 스프레이", "B": "익명 IP 주소", "C": "익숙하지 않은 로그인 속성", "D": "Microsoft Entra 위협 인텔리전스"},
+ "explanation": "Microsoft Entra 위협 인텔리전스에는 사용자 위험 탐지 유형이 있습니다. Microsoft의 내부·외부 위협 인텔리전스 연구를 바탕으로 사용자에게 비정상적이거나 알려진 공격 패턴과 일치하는 활동을 식별합니다."
+},
+"245": {
+ "stem": "User1이라는 사용자가 포함된 Sub1이라는 Azure 구독이 있습니다.\n\nUser1이 Sub1에 대한 Microsoft Entra Permissions Management 라이선스를 구매할 수 있도록 해야 합니다. 최소 권한 원칙을 따라야 합니다.\n\nUser1에게 어떤 역할을 할당해야 합니까?",
+ "choices": {"A": "Global Administrator", "B": "Billing Administrator", "C": "Permissions Management Administrator", "D": "User Access Administrator"},
+ "explanation": "Billing Administrator 역할은 사용자가 구매를 하고 구독을 관리할 수 있게 합니다. Global Administrator의 광범위한 테넌트 전체 권한 없이 필요한 라이선스 구매 기능을 제공합니다. Permissions Management Administrator 역할은 서비스가 사용 가능해진 후 Microsoft Entra Permissions Management를 관리하며 구매 권한은 부여하지 않습니다."
+},
+"246": {
+ "stem": "contoso.com이라는 Azure Active Directory(Azure AD) 테넌트가 있습니다.\n\nAzure AD B2B(business-to-business) 협업 사용자를 대량으로 초대할 계획입니다.\n\n대량 초대를 만들 때 필요한 두 매개 변수는 무엇입니까? 각 정답은 해결책의 일부입니다.\n\n**참고:** 각 정답 선택은 1점입니다.",
+ "choices": {"A": "이메일 주소", "B": "리디렉션 URL", "C": "사용자 이름", "D": "공유 키", "E": "암호"},
+ "explanation": "대량 B2B 초대 CSV 파일에는 초대받는 사람의 이메일 주소와 리디렉션 URL이 필요합니다. 이메일 주소는 초대를 받을 외부 게스트를 식별하고, 리디렉션 URL은 그 사용자가 초대를 수락한 후 이동할 위치를 지정합니다. 사용자 이름, 공유 키, 암호는 이 초대 프로세스에 필요하지 않습니다."
+},
+"247": {
+ "stem": "App1이라는 등록된 앱이 포함된 Azure 구독이 있습니다.\n\nApp1 로그인 활동을 검토해야 합니다. 다음 요구 사항을 충족해야 합니다.\n\n- 로그인 실패 횟수를 파악합니다.\n- 로그인 성공률을 파악합니다.\n- 관리 작업을 최소화합니다.\n\n무엇을 사용해야 합니까?",
+ "choices": {"A": "로그인 로그", "B": "액세스 검토", "C": "감사 로그", "D": "사용량 및 인사이트"},
+ "explanation": "Microsoft Entra 사용량 및 인사이트는 로그인 실패 횟수와 로그인 성공률을 포함한 애플리케이션 중심의 로그인 데이터 보기를 제공합니다. 개별 로그인 로그 이벤트를 수동으로 필터링하고 계산하지 않고도 필요한 요약을 제공합니다."
+},
+"248": {
+ "stem": "Azure 구독이 있습니다.\n\n다음 요구 사항을 충족하는 Role1과 Role2라는 두 사용자 지정 역할을 만들어야 합니다.\n\n- Role1이 할당된 사용자는 애플리케이션 보안 그룹을 관리할 수 있습니다.\n- Role2가 할당된 사용자는 Azure Firewall을 관리할 수 있습니다.\n\n각 역할에 필요한 리소스 공급자 권한은 무엇입니까?",
+ "blanks": {
+  "role1": {"label": "Role1:", "options": ["Microsoft.App", "Microsoft.Computer", "Microsoft.Network", "Microsoft.Security"]},
+  "role2": {"label": "Role2:", "options": ["Microsoft.App", "Microsoft.Management", "Microsoft.Network", "Microsoft.Security"]}
+ },
+ "explanation": "애플리케이션 보안 그룹은 Microsoft.Network/applicationSecurityGroups 리소스 유형을 사용하고, Azure Firewall은 Microsoft.Network 서비스입니다. 따라서 둘 다 관리 작업에 Microsoft.Network 리소스 공급자를 사용합니다."
+},
+"249": {
+ "stem": "Azure AD 테넌트가 있습니다.\n\n사용자가 확인된 게시자의 앱에 동의를 부여할 수 있도록 **사용자 동의 설정**을 구성합니다.\n\n사용자가 낮은 영향 권한만 필요로 하는 앱에만 동의할 수 있도록 해야 합니다.\n\n무엇을 해야 합니까?",
+ "choices": {"A": "엔터프라이즈 애플리케이션 컬렉션을 만듭니다.", "B": "액세스 검토를 만듭니다.", "C": "액세스 패키지를 만듭니다.", "D": "권한 분류를 구성합니다."},
+ "explanation": "권한 분류는 위임된 권한을 낮음을 포함한 영향 수준별로 지정합니다. 확인된 게시자 애플리케이션에 대한 사용자 동의 정책은 이 분류를 사용하여 사용자가 낮은 영향으로 분류된 권한에만 동의하도록 제한합니다."
+},
+"250": {
+ "stem": "Microsoft 365 테넌트가 있습니다. 로그인 활동 보고서에 외부 계약자가 Exchange 관리 센터에 로그인한 것으로 나타납니다.\n\n매월 말에 Exchange 관리 센터에 대한 액세스를 검토하고 필요할 때 로그인을 차단해야 합니다.\n\n무엇을 만들어야 합니까?",
+ "choices": {"A": "디렉터리 외부 사용자를 대상으로 하는 액세스 패키지", "B": "디렉터리 내부 사용자를 대상으로 하는 액세스 패키지", "C": "게스트 사용자를 대상으로 하는 그룹 기반 액세스 검토", "D": "게스트 사용자를 대상으로 하는 애플리케이션 기반 액세스 검토"},
+ "explanation": "Exchange 관리 센터에 대한 액세스는 일반적으로 역할 할당 가능 보안 그룹의 멤버 자격을 통해 부여되므로, 외부 계약자가 그 액세스를 계속 필요로 하는지 주기적으로 재인증하는 메커니즘은 그룹 기반 액세스 검토입니다. 검토 범위를 게스트 사용자로 지정하고 거부된 사용자에 대한 작업을 로그인 차단으로 구성하면 월간 검토와 로그인 차단 요구 사항을 모두 충족합니다."
+},
+"251": {
+ "stem": "네트워크에 Azure Active Directory(Azure AD) 테넌트와 동기화되는 온-프레미스 Active Directory 도메인이 있습니다. 테넌트에는 다음 표의 사용자가 포함되어 있습니다.\n\n[[IMG1]]\n\n모든 사용자가 원격으로 근무합니다. Azure AD Connect는 Azure AD에서 다음 그림과 같이 구성되어 있습니다.\n\n[[IMG2]]\n\n온-프레미스 도메인의 인터넷 연결이 끊어집니다. Azure AD에 로그인할 수 있는 사용자는 누구입니까?",
+ "choices": {"A": "User1과 User3만", "B": "User1만", "C": "User1, User2, User3", "D": "User1과 User2만"},
+ "explanation": "통과 인증은 인증 에이전트를 통해 온-프레미스 Active Directory에 대해 자격 증명을 검증하므로, 온-프레미스 환경이 Microsoft Entra ID로의 인터넷 연결을 잃으면 동기화된 사용자는 인증될 수 없습니다. 통과 인증은 클라우드 전용 사용자에게는 적용되지 않고, 게스트 사용자는 이 테넌트의 동기화된 온-프레미스 디렉터리로 인증되지 않습니다. 따라서 User1과 User3은 로그인할 수 있습니다."
+},
+"252": {
+ "stem": "HOTSPOT –\n\n네트워크에 Azure AD와 동기화되는 온-프레미스 Active Directory Domain Services(AD DS) 도메인이 있으며, 다음 표의 사용자가 포함되어 있습니다.\n\n[[IMG1]]\n\nAzure AD Connect에서 도메인/OU 필터링은 다음 그림과 같이 설정되어 있습니다.\n\n[[IMG2]]\n\nAzure AD Connect는 다음 그림과 같이 구성되어 있습니다.\n\n[[IMG3]]\n\n다음 각 문장이 참이면 예, 그렇지 않으면 아니요를 선택하세요.",
+ "statements": ["User1은 셀프 서비스 암호 재설정(SSPR)을 사용하여 자신의 암호를 재설정할 수 있다.", "User1이 Microsoft Exchange Online에 액세스하면 온-프레미스 도메인 컨트롤러에서 인증된다.", "User2를 Microsoft SharePoint Online 사이트에 구성원으로 추가할 수 있다."],
+ "explanation": "OU 기반 필터링은 선택한 OU의 개체만 동기화합니다. User1은 OU1에서 동기화되지만 OU2의 User2는 제외됩니다. 암호 쓰기 저장은 동기화된 통과 인증 사용자가 SSPR을 사용하고 새 암호를 온-프레미스 AD DS에 다시 기록할 수 있게 합니다. 통과 인증에서는 온-프레미스 인증 에이전트가 자격 증명 확인을 AD DS 도메인 컨트롤러에 제출합니다. User2는 Azure AD로 동기화되지 않으므로 SharePoint Online 멤버 자격을 할당할 수 없습니다."
+},
+"253": {
+ "stem": "Terms1이라는 사용 약관(ToU)이 포함된 Microsoft Entra 테넌트가 있습니다.\n\nTerms1을 배포하기 위해 Policy1이라는 조건부 액세스 정책을 만듭니다.\n\n사용자가 Terms1에 동의하도록 Policy1을 구성해야 합니다.\n\nPolicy1의 어떤 설정을 구성해야 합니까?",
+ "choices": {"A": "조건", "B": "세션", "C": "허용", "D": "대상 리소스"},
+ "explanation": "Microsoft Entra 사용 약관 정책은 조건부 액세스 **허용(Grant)** 제어를 통해 적용됩니다. 액세스 허용을 구성하고 필요한 사용 약관 정책을 선택하면 액세스가 허용되기 전에 동의가 요구됩니다."
+},
+"254": {
+ "stem": "App1이라는 엔터프라이즈 애플리케이션이 포함된 contoso.com이라는 Microsoft Entra 테넌트가 있습니다.\n\n계약자가 user1@fabrikam.com의 자격 증명을 사용합니다.\n\n계약자에게 App1에 대한 액세스 권한을 부여할 수 있어야 합니다. 계약자는 user1@fabrikam.com으로 인증할 수 있어야 합니다.\n\n무엇을 해야 합니까?",
+ "choices": {"A": "Microsoft Entra Connect 동기화를 구현합니다.", "B": "contoso.com에 사용자 지정 도메인 이름을 추가합니다.", "C": "Microsoft Entra 애플리케이션 프록시를 구현합니다.", "D": "New-MgInvitation cmdlet을 실행합니다."},
+ "explanation": "Microsoft Entra B2B 협업은 초대를 통해 게스트 사용자를 만들어 외부 계약자가 조직 리소스에 액세스할 수 있게 합니다. `New-MgInvitation`은 그 초대를 만들어 계약자가 초대를 수락하고 기존 외부 이메일 ID로 인증한 뒤 App1에 대한 액세스를 할당받을 수 있게 합니다."
+},
+"255": {
+ "stem": "Azure Active Directory(Azure AD) 테넌트가 있습니다.\n\n테넌트의 **사용자가 애플리케이션을 등록할 수 있음**이 **아니요**로 설정되어 있습니다.\n\nAdmin1이라는 사용자가 App1이라는 새 클라우드 앱을 배포해야 합니다.\n\nAdmin1이 App1을 Azure AD에 등록할 수 있도록 해야 합니다. 최소 권한 원칙을 따라야 합니다.\n\nAdmin1에게 어떤 역할을 할당해야 합니까?",
+ "choices": {"A": "Subscription1에 대한 Managed Application Contributor", "B": "Azure AD의 Application developer", "C": "Azure AD의 Cloud application administrator", "D": "Subscription1에 대한 App Configuration Data Owner"},
+ "explanation": "Microsoft Entra ID Application Developer 역할은 **사용자가 애플리케이션을 등록할 수 있음** 설정이 사용 안 함일 때 선택한 사용자에게 애플리케이션 등록을 만들고 업데이트할 수 있는 권한을 부여합니다. Cloud Application Administrator의 더 넓은 엔터프라이즈 애플리케이션 관리 권한 없이 필요한 등록 권한을 제공합니다."
+},
+"256": {
+ "stem": "HOTSPOT -\n\nGroup1 그림과 같은 Group1이라는 그룹이 포함된 Microsoft 365 테넌트가 있습니다. (Group1 탭을 클릭하세요.)\n\n[[IMG1]]\n\nApp1 Properties 그림과 같이 App1이라는 엔터프라이즈 애플리케이션을 만듭니다. (App1 Properties 탭을 클릭하세요.)\n\n[[IMG2]]\n\nApp1 Self-service 그림과 같이 App1에 대한 셀프 서비스를 구성합니다. (App1 Self-service 탭을 클릭하세요.)\n\n[[IMG3]]\n\n다음 각 문장이 참이면 예, 그렇지 않으면 아니요를 선택하세요.",
+ "statements": ["Group3의 구성원은 User1의 승인 없이 App1에 액세스할 수 있다.", "App1에 셀프 서비스를 구성한 후 Group1의 소유자는 User1이다.", "App1이 User4의 Microsoft Office 365 앱 시작 관리자에 표시된다."],
+ "explanation": "엔터프라이즈 애플리케이션에 대한 그룹 기반 할당은 중첩 그룹으로 전파되지 않으므로 Group3의 구성원은 Group1의 할당을 얻지 못합니다. 셀프 서비스 승인은 요청자의 액세스를 제어할 뿐 Group1의 소유자를 바꾸지 않습니다. 사용자에게 표시되지 않도록 구성된 애플리케이션은 사용자의 Microsoft 365 앱 시작 관리자에 나타나지 않습니다."
+},
+"257": {
+ "stem": "App1이라는 등록된 애플리케이션이 포함된 contoso.com이라는 Microsoft Entra ID P2 테넌트가 있습니다.\n\nApp1이 1월 1일에 삭제되었습니다.\n\nApp1을 복원해야 합니다.\n\nApp1을 복원할 수 있는 마지막 날짜는 언제입니까?",
+ "choices": {"A": "1월 14일", "B": "1월 30일", "C": "3월 30일", "D": "6월 30일"},
+ "explanation": "Microsoft Entra 애플리케이션 등록은 삭제 후 30일 동안 일시 삭제 상태로 복원할 수 있습니다. 따라서 1월 1일에 삭제된 애플리케이션은 1월 30일까지 복원할 수 있으며, 30일이 지나면 복원할 수 없습니다."
+},
+"258": {
+ "stem": "HOTSPOT -\n\ncontoso.com이라는 Azure Active Directory(Azure AD) 테넌트가 있습니다. All Company라는 그룹이 있고 Identity Governance 설정은 다음과 같습니다.\n\n- 외부 사용자가 이 디렉터리에 로그인하지 못하게 차단: 예\n- 외부 사용자 제거: 예\n- 이 디렉터리에서 외부 사용자를 제거하기까지의 일수: 30\n\n2022년 3월 11일에 다음 설정으로 Package1이라는 액세스 패키지를 만듭니다.\n\n- **리소스 역할**\n  1. 이름: All Company\n  2. 유형: 그룹 및 팀\n  3. 역할: 구성원\n- **수명 주기**\n  1. 액세스 패키지 할당 만료: 지정 날짜\n  2. 할당 만료 날짜: 2022년 4월 1일\n\n2022년 3월 1일에 다음 표의 게스트 사용자에게 Package1을 할당합니다.\n\n[[IMG1]]\n\n2022년 3월 2일에 Guest1에게 Reports reader 역할을 할당합니다.\n\n2022년 4월 1일에 Guest3이라는 게스트 사용자를 contoso.com에 초대합니다.\n\n2022년 4월 4일에 Guest3을 All Company 그룹에 추가합니다.\n\n다음 각 문장이 참이면 예, 그렇지 않으면 아니요를 선택하세요.",
+ "statements": ["2022년 5월 5일에 Guest1 계정이 contoso.com에 있다.", "2022년 5월 5일에 Guest2 계정이 contoso.com에 있다.", "2022년 5월 5일에 Guest3 계정이 contoso.com에 있다."],
+ "explanation": "외부 게스트가 마지막 액세스 패키지 할당을 잃으면 권한 관리는 게스트를 차단하고 구성된 지연 후 계정을 제거할 수 있습니다. Guest1과 Guest2는 4월 1일에 Package1을 잃고 30일 후 제거됩니다. 별도의 역할 할당은 액세스 패키지 할당으로 간주되지 않습니다. Guest3은 Package1 밖에서 초대되어 그룹 멤버 자격을 받았으므로 패키지 만료 수명 주기가 그 계정을 제거하지 않습니다."
+},
+"259": {
+ "stem": "네트워크에 fabrikam.com이라는 온-프레미스 Active Directory Domain Services(AD DS) 도메인이 있습니다. 도메인에는 Active Directory Federation Services(AD FS) 인스턴스와 Windows Server를 실행하는 Server1이라는 멤버 서버가 있습니다. 도메인에는 다음 표의 사용자가 포함되어 있습니다.\n\n[[IMG1]]\n\nMicrosoft 365 구독에 연결된 contoso.com이라는 Microsoft Entra 테넌트가 있습니다.\n\n다음 그림과 같이 구성된 Microsoft Entra Connect 인스턴스를 사용하여 fabrikam.com과 contoso.com 사이에 페더레이션을 설정합니다.\n\n[[IMG2]]\n\ncontoso.com에서 다음 작업을 수행합니다.\n\n- Group1이라는 그룹을 만듭니다.\n- User2를 사용하지 않도록 설정합니다.\n- User3을 사용하도록 설정합니다.\n\n다음 각 문장이 참이면 예, 그렇지 않으면 아니요를 선택하세요.",
+ "statements": ["User1을 Group1에 추가할 수 있다.", "User2는 Server1에 로그인할 수 있다.", "User3은 Microsoft 365에 로그인할 수 있다."],
+ "explanation": "클라우드에서 만든 Microsoft Entra ID 그룹은 동기화된 사용자를 포함할 수 있으므로 User1을 Group1에 추가할 수 있습니다. Microsoft Entra ID에서 User2를 사용하지 않도록 설정해도 온-프레미스 AD DS 계정은 비활성화되지 않으므로, 여전히 사용 중인 도메인 계정으로 Server1에 로그인할 수 있습니다. AD FS를 통한 페더레이션은 사용자 인증을 온-프레미스에서 수행하는데, User3의 온-프레미스 AD DS 계정이 여전히 사용 안 함이므로 User3은 Microsoft 365에 로그인할 수 없습니다."
+},
+"260": {
+ "stem": "하나의 Microsoft Entra 테넌트에 연결된 Azure 구독 세 개가 있습니다.\n\n높은 권한 계정과 관련된 위험을 평가하고 수정해야 합니다. 관리 작업을 최소화해야 합니다.\n\n무엇을 사용해야 합니까?",
+ "choices": {"A": "Global Secure Access", "B": "Privileged Identity Management(PIM)", "C": "Microsoft Entra Permissions Management", "D": "Microsoft Entra Verified ID"},
+ "explanation": "Microsoft Entra Privileged Identity Management(PIM)는 Azure와 Microsoft Entra 리소스에 대한 권한 있는 액세스를 관리하고 모니터링합니다. 불필요하거나 과도한 권한 할당을 식별하고, 액세스 검토와 적격·시간 제한·JIT 역할 활성화를 통해 위험을 수정하여 상시 관리 권한을 줄이는 데 도움이 됩니다."
+},
+"261": {
+ "stem": "다음 개체가 포함된 Azure Active Directory(Azure AD) 테넌트가 있습니다.\n\n- Device1이라는 디바이스\n- User1, User2, User3, User4, User5라는 사용자\n- Group1, Group2, Group3, Group4, Group5의 다섯 그룹\n\n[[IMG1]]\n\n그룹은 다음 표와 같이 구성되어 있습니다.\n\n[[IMG2]]\n\nGroup1에 Microsoft 365 Enterprise E5 라이선스를 할당하면 몇 개의 라이선스가 소비됩니까?",
+ "choices": {"A": "0", "B": "2", "C": "3", "D": "4"},
+ "explanation": "Microsoft Entra 그룹 기반 라이선스는 중첩 그룹을 지원하지 않습니다. Group1에 할당된 라이선스는 직접 사용자 구성원인 User1과 User3에게만 적용되며, Group2나 Group4를 통해 그 구성원에게 전달되지 않습니다. 따라서 라이선스 2개가 사용됩니다."
+},
+"262": {
+ "stem": "App1이라는 엔터프라이즈 애플리케이션이 포함된 contoso.com이라는 Microsoft Entra 테넌트가 있습니다.\n\n계약자가 user1@fabrikam.com의 자격 증명을 사용합니다.\n\n계약자에게 App1에 대한 액세스 권한을 부여할 수 있어야 합니다. 계약자는 user1@fabrikam.com으로 인증할 수 있어야 합니다.\n\n무엇을 해야 합니까?",
+ "choices": {"A": "contoso.com에 사용자 지정 도메인 이름을 추가합니다.", "B": "외부 협업 설정을 구성합니다.", "C": "contoso.com에 게스트 사용자 계정을 만듭니다.", "D": "WS-Fed ID 공급자를 추가합니다."},
+ "explanation": "Microsoft Entra B2B 협업을 사용하면 외부 사용자가 리소스 테넌트에서 Guest 사용자 개체로 표현되면서 기존 자격 증명을 계속 사용할 수 있습니다. user1@fabrikam.com에 대한 게스트 사용자를 만들고 초대하면 contoso.com ID를 만들거나 별도의 페더레이션 공급자를 구성하지 않고도 그 사용자에게 App1 액세스를 할당할 수 있습니다."
+},
+"263": {
+ "stem": "Group1과 Group2, 두 그룹과 다음 표의 사용자가 포함된 Microsoft 365 E5 구독이 있습니다.\n\n[[IMG1]]\n\n구독에는 다음과 같이 구성된 조건부 액세스 정책이 있습니다.\n\n- **이름:** Policy1\n- **할당**\n  - **포함**\n    - **사용자 및 그룹:** Group1\n    - **디렉터리 역할:** Global Administrator\n  - **제외**\n    - **사용자 및 그룹:** Group2\n  - **대상 리소스**\n    - **포함:** 모든 클라우드 앱\n- **액세스 제어**\n  - **허용:** 다단계 인증 필요\n\n각 문장이 참이면 **예**, 그렇지 않으면 **아니요**를 선택하세요.",
+ "statements": ["User1은 Microsoft 365 앱에 로그인할 때 다단계 인증(MFA)을 사용해야 한다.", "User2는 Microsoft 365 앱에 로그인할 때 다단계 인증(MFA)을 사용해야 한다.", "User3은 Microsoft 365 앱에 로그인할 때 다단계 인증(MFA)을 사용해야 한다."],
+ "explanation": "조건부 액세스는 직접, 그룹을 통해, 또는 할당된 디렉터리 역할을 통해 포함된 사용자에게 적용됩니다. Group2 제외는 User2의 Group1 포함보다 우선합니다. 따라서 User1은 Group1을 통해 MFA를 완료해야 하고, User2는 제외되며, User3은 Global Administrator 디렉터리 역할을 통해 MFA를 완료해야 합니다."
+},
+"264": {
+ "stem": "Microsoft 365 E5 구독이 있습니다.\n\n사용자 프로필에 부서가 정의되지 않은 모든 사용자를 포함하는 동적 사용자 그룹을 만들어야 합니다.\n\n멤버 자격 규칙을 어떻게 완성해야 합니까?",
+ "blanks": {
+  "operator": {"label": "연산자", "options": ["-eq", "-match", "-ne", "-notIn"]},
+  "value": {"label": "값", "options": ["\"\"", "null", "$null", "\"null\""]}
+ },
+ "explanation": "Microsoft Entra 동적 멤버 자격 규칙은 정의되지 않은 문자열 특성을 따옴표 없는 `null` 리터럴로 표현합니다. `user.department`를 `-eq`로 그 값과 비교하면 부서 특성에 값이 없는 사용자만 포함됩니다. `\"null\"`은 대신 문자 그대로의 텍스트 null을 의미합니다."
+}
+}

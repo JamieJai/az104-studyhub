@@ -1,0 +1,97 @@
+{
+"73": {
+ "stem": "Microsoft 365 E5 구독과 Azure 구독이 있습니다.\n\n각 기능은 한 번, 여러 번 사용하거나 전혀 사용하지 않을 수 있습니다.",
+ "items": {"Azure AD built-in roles": "Azure AD 기본 제공 역할", "Azure AD managed identities": "Azure AD 관리 ID", "Azure role-based access control (Azure RBAC)": "Azure 역할 기반 액세스 제어(Azure RBAC)"},
+ "slots": {"vm_signin": "사용자가 Microsoft 365 자격 증명으로 Azure 가상 머신에 로그인할 수 있도록:", "create_vm": "새 가상 머신을 만들 수 있는 권한 위임:"},
+ "explanation": "Azure RBAC는 Azure 리소스에 대한 권한 부여를 제어합니다. Virtual Machine User Login과 Virtual Machine Administrator Login 역할은 Azure AD 사용자가 조직 자격 증명으로 Azure VM에 로그인하도록 허용합니다. Azure RBAC는 또한 필요한 관리 범위에서 Virtual Machine Contributor 같은 역할로 VM 생성을 위임합니다. Azure AD 기본 제공 역할은 디렉터리 기능을 관리하고, 관리 ID는 애플리케이션의 Azure AD ID를 제공할 뿐 Azure VM 리소스 생성을 위임하는 메커니즘이 아닙니다."
+},
+"74": {
+ "stem": "다음 클라우드 플랫폼에 계정이 있습니다.\n\n- Azure\n- Alibaba Cloud\n- Amazon Web Services(AWS)\n- Google Cloud Platform(GCP)\n\nAzure에서만 권한을 관리하도록 Microsoft Entra Permissions Management를 사용하는 Azure 구독을 구성합니다.\n\nPermissions Management가 관리할 수 있는 다른 클라우드 플랫폼은 무엇입니까?",
+ "choices": {"A": "AWS만", "B": "Alibaba Cloud와 AWS만", "C": "Alibaba Cloud와 GCP만", "D": "AWS와 GCP만", "E": "Alibaba Cloud, AWS, GCP"},
+ "explanation": "Microsoft Entra Permissions Management는 Microsoft Azure, Amazon Web Services(AWS), Google Cloud Platform(GCP)의 권한 부여 시스템을 지원했습니다. Alibaba Cloud는 지원되지 않았으므로 추가로 관리할 수 있는 플랫폼은 AWS와 GCP입니다."
+},
+"75": {
+ "stem": "User1이라는 사용자가 포함된 Azure AD 테넌트가 있습니다.\n\nUser1은 라이선스 할당을 관리하고 사용자 암호를 재설정해야 합니다.\n\nUser1에게 어떤 역할을 할당해야 합니까?",
+ "choices": {"A": "Helpdesk administrator", "B": "Billing administrator", "C": "License administrator", "D": "User administrator"},
+ "explanation": "User Administrator 역할은 사용자 라이선스 할당과 암호 재설정을 포함해 사용자를 관리할 수 있습니다. License Administrator 역할은 라이선스를 관리하지만 암호 재설정 권한은 없고, Helpdesk Administrator 역할은 라이선스 관리가 아니라 암호 지원용입니다."
+},
+"76": {
+ "stem": "Azure Active Directory(Azure AD) 테넌트와 App1이라는 Azure 웹앱이 있습니다.\n\n게스트 사용자에게 App1에 대한 셀프 서비스 등록을 제공해야 합니다. 다음 요구 사항을 충족해야 합니다.\n\n- 게스트 사용자가 일회용 암호를 사용하여 등록할 수 있어야 합니다.\n- 사용자가 등록 중에 이름, 성, 도시, 이메일 주소를 제공해야 합니다.\n\n각 요구 사항에 대해 Azure Active Directory 관리 센터에서 무엇을 구성해야 합니까?",
+ "blanks": {
+  "one_time_password": {"label": "일회용 암호:", "options": ["연결된 구독", "ID 공급자", "Azure AD Privileged Identity Management(PIM)", "외부 협업 설정"]},
+  "user_details": {"label": "사용자 세부 정보:", "options": ["사용자 흐름", "액세스 검토", "액세스 패키지", "테넌트 속성"]}
+ },
+ "explanation": "게스트 인증용 이메일 일회용 암호는 외부 협업 설정에서 구성합니다. 셀프 서비스 등록 사용자 흐름은 ID 공급자와 함께 이름, 성, 도시, 이메일 주소 등 등록 중에 수집할 사용자 특성을 지정합니다."
+},
+"78": {
+ "stem": "다음 표의 사용자가 포함된 Azure Active Directory(Azure AD) 테넌트가 있습니다.\n\n[[IMG1]]\n\nApp1이라는 엔터프라이즈 애플리케이션을 Azure AD에 추가하고 User1을 App1의 소유자로 구성합니다. App1은 사용하기 전에 Azure AD에 액세스하기 위한 관리자 동의가 필요합니다.\n\n관리자 동의 요청 설정을 다음 그림과 같이 구성합니다.\n\n[[IMG2]]\n\nAdmin1, Admin2, Admin3, User1이 검토자로 추가됩니다.\n\n관리자 동의 요청을 검토하고 승인할 수 있는 사용자는 누구입니까?",
+ "choices": {"A": "Admin1만", "B": "Admin1, Admin2, Admin3만", "C": "Admin1, Admin2, User1만", "D": "Admin1과 Admin2만", "E": "Admin1, Admin2, Admin3, User1"},
+ "explanation": "관리자 동의 검토자로 지정된다고 해서 사용자의 권한이 상승하지는 않습니다. 요청을 승인하려면 검토자가 테넌트 전체 관리자 동의를 부여할 수 있는 역할도 가지고 있어야 합니다. Cloud Application Administrator와 Application Administrator에게는 그 권한이 있지만, Security Administrator와 디렉터리 역할이 없는 애플리케이션 소유자에게는 없습니다."
+},
+"79": {
+ "stem": "Azure AD 테넌트가 있습니다.\n\n테넌트에 많은 수의 새 앱이 추가된 것을 발견합니다.\n\n새 엔터프라이즈 애플리케이션에 대한 승인 프로세스를 수립해야 합니다.\n\n무엇을 해야 합니까?",
+ "choices": {"A": "Microsoft Defender for Cloud Apps 포털에서 Cloud Discovery 비정상 탐지 정책을 만듭니다.", "B": "Microsoft Entra 관리 센터에서 관리자 동의 설정을 구성합니다.", "C": "Microsoft Defender for Cloud Apps 포털에서 앱 커넥터를 구성합니다.", "D": "Microsoft Entra 관리 센터에서 액세스 검토를 구성합니다."},
+ "explanation": "Microsoft Entra 관리자 동의 설정은 관리자 동의 워크플로를 제공하여, 사용자가 앱 승인을 요청하고 그 요청이 지정된 검토자에게 전달되도록 합니다. 이는 엔터프라이즈 애플리케이션 동의 승인을 중앙화하고, 사용자 동의를 통해 승인되지 않은 앱이 추가되는 것을 막는 데 도움이 됩니다."
+},
+"80": {
+ "stem": "App1이라는 웹앱이 포함된 Microsoft 365 E5 구독이 있습니다.\n\n게스트 사용자에게 정기적으로 App1 액세스 권한이 부여됩니다.\n\n최근 30일 동안 App1에 액세스하지 **않은** 게스트 사용자의 액세스가 제거되도록 해야 합니다. 관리 작업을 최소화해야 합니다.\n\n무엇을 구성해야 합니까?",
+ "choices": {"A": "조건부 액세스 정책", "B": "규정 준수 정책", "C": "게스트 액세스 검토", "D": "애플리케이션 액세스에 대한 액세스 검토"},
+ "explanation": "애플리케이션 액세스에 대한 Microsoft Entra 액세스 검토는 App1에 할당된 게스트 사용자로 범위를 지정할 수 있습니다. 비활성 권장 사항은 해당 애플리케이션에 대한 사용자의 마지막 로그인을 평가하며, 이전 30일 동안 앱 로그인이 없는 사용자는 거부가 권장됩니다. 검토 결과 자동 적용을 구성하면 거부된 사용자의 App1 액세스가 최소한의 지속 관리로 제거됩니다."
+},
+"81": {
+ "stem": "HOTSPOT -\n\n다음 표의 사용자가 포함된 하이브리드 Microsoft 365 구독이 있습니다.\n\n[[IMG1]]\n\nApp1이라는 온-프레미스 앱을 배포할 계획입니다. App1은 Azure AD에 등록되고 Azure AD 애플리케이션 프록시를 사용합니다.\n\n애플리케이션 프록시 커넥터 설치를 위임하고 User1이 App1을 Azure AD에 등록할 수 있도록 해야 합니다. 최소 권한 원칙을 따라야 합니다.\n\n어떤 사용자가 설치를 수행해야 하며, User1에게 어떤 역할을 할당해야 합니까?",
+ "blanks": {
+  "installer": {"label": "설치를 수행해야 하는 사용자:", "options": ["Admin1", "Admin2", "Admin3", "Admin4"]},
+  "user1_role": {"label": "User1에게 할당할 역할:", "options": ["Application Administrator", "Application Developer", "Cloud Application Administrator", "Global Administrator"]}
+ },
+ "explanation": "애플리케이션 프록시 커넥터 설치는 Application Administrator에게 위임할 수 있습니다. Global Administrator도 가능하지만 불필요한 권한을 부여합니다. Application Developer 역할은 애플리케이션 등록을 만들고 등록할 수 있게 하므로, User1에게 나열된 역할 중 최소 권한입니다."
+},
+"82": {
+ "stem": "contoso.com이라는 Microsoft Entra 테넌트가 있는 Contoso, Ltd.에서 근무합니다.\n\nContoso는 다음 두 파트너 회사와 프로젝트를 협업하고 있습니다.\n\n- adatum.com이라는 Microsoft Entra 테넌트가 있는 A. Datum Corporation\n- fabrikam.com이라는 Microsoft Entra 테넌트가 있는 Fabrikam, Inc.\n\nadatum.com의 새 게스트 사용자를 contoso.com에 초대하려고 하면 오류 메시지가 나타납니다.\n\nfabrikam.com의 새 게스트 사용자는 contoso.com에 성공적으로 초대할 수 있습니다.\n\nadatum.com의 새 게스트 사용자를 contoso.com에 초대할 수 있어야 합니다.\n\n무엇을 구성해야 합니까?",
+ "choices": {"A": "게스트 초대 설정", "B": "검증 가능한 자격 증명", "C": "명명된 위치", "D": "협업 제한"},
+ "explanation": "Microsoft Entra 협업 제한은 허용 목록 또는 차단 목록으로 외부 도메인별 B2B 게스트 초대를 제어합니다. 해당 제한에서 adatum.com을 허용하면 그 도메인의 초대가 가능해집니다. 게스트 초대 설정은 어떤 파트너 도메인이 초대를 받을 수 있는지가 아니라 누가 초대를 보낼 수 있는지를 제어합니다."
+},
+"83": {
+ "stem": "Terms1이라는 사용 약관(ToU)과 액세스 패키지가 포함된 Contoso라는 Azure Active Directory(Azure AD) 테넌트가 있습니다. Contoso 사용자는 Fabrikam이라는 외부 조직과 협업합니다. Fabrikam 사용자는 액세스 패키지를 사용하기 전에 Terms1에 동의해야 합니다.\n\n어떤 사용자가 Terms1에 동의했거나 거부했는지 확인해야 합니다.\n\n무엇을 사용해야 합니까?",
+ "choices": {"A": "로그인 로그", "B": "사용량 및 인사이트 보고서", "C": "프로비저닝 로그", "D": "감사 로그"},
+ "explanation": "Microsoft Entra 감사 로그는 **Accept Terms Of Use**와 **Decline Terms Of Use**를 포함한 사용 약관 동의 이벤트를 기록하므로, Terms1에 대한 동의 또는 거부 상태를 식별할 수 있습니다."
+},
+"84": {
+ "stem": "Azure Active Directory Premium P2 테넌트가 있습니다.\n\nLog Analytics 작업 영역을 만듭니다.\n\nAzure Monitor를 사용하여 Azure Active Directory(Azure AD) 감사 로그 정보를 볼 수 있도록 해야 합니다.\n\n먼저 무엇을 해야 합니까?",
+ "choices": {"A": "Set-AzureADTenantDetail cmdlet을 실행합니다.", "B": "Azure AD 통합 문서(workbook)를 만듭니다.", "C": "Azure AD의 진단 설정을 수정합니다.", "D": "Get-AzureADAuditDirectoryLogs cmdlet을 실행합니다."},
+ "explanation": "Log Analytics 작업 영역을 통해 Azure Monitor에서 Azure AD 감사 로그를 보려면, 먼저 Azure Active Directory에서 감사 및 로그인 로그를 그 작업 영역으로 라우팅하도록 진단 설정을 구성해야 합니다."
+},
+"85": {
+ "stem": "Azure AD Identity Protection이 사용하도록 설정된 contoso.com이라는 Azure Active Directory(Azure AD) 테넌트가 있습니다.\n\n사용자 액세스를 차단하지 않고 로그인 위험 수정 정책을 구현해야 합니다.\n\n먼저 무엇을 해야 합니까?",
+ "choices": {"A": "Azure AD에서 액세스 검토를 구성합니다.", "B": "Azure AD 암호 보호를 적용합니다.", "C": "모든 사용자에 대해 셀프 서비스 암호 재설정(SSPR)을 구성합니다.", "D": "모든 사용자에 대해 다단계 인증(MFA)을 구현합니다."},
+ "explanation": "Microsoft Entra ID Protection 로그인 위험 정책은 액세스를 허용하면서 다단계 인증을 요구할 수 있습니다. MFA를 완료하면 위험한 로그인이 수정되므로, 그 수정 제어를 사용하려면 먼저 사용자가 MFA를 사용하도록 설정되고 등록되어 있어야 합니다."
+},
+"86": {
+ "stem": "Microsoft 365 E5 구독이 있습니다.\n\nApp1이라는 타사 SaaS(Software as a Service) 앱을 배포할 계획입니다.\n\nApp1을 Microsoft Defender for Cloud Apps에 온보딩해야 합니다. 세션 제어 정책을 구현할 수 있어야 합니다.\n\n먼저 무엇을 해야 합니까?",
+ "choices": {"A": "Microsoft Defender 포털에서 Cloud Discovery를 구성합니다.", "B": "Microsoft Entra 관리 센터에서 App1에 대한 Single Sign-On(SSO)을 구성합니다.", "C": "Microsoft Defender 포털에서 OAuth 앱 정책을 만듭니다.", "D": "Microsoft Entra 관리 센터에서 트래픽 전달 프로필을 구성합니다."},
+ "explanation": "Microsoft Defender for Cloud Apps 세션 제어를 사용하려면 애플리케이션이 SAML 2.0 또는 OpenID Connect 2.0을 사용하는 Microsoft Entra ID 같은 지원되는 Single Sign-On으로 구성되어 있어야 합니다. Microsoft Entra에서 App1 SSO를 구성하면 앱을 조건부 액세스 앱 제어에 온보딩하고 세션 정책을 적용하기 위한 전제 조건이 갖춰집니다."
+},
+"87": {
+ "stem": "Windows Server를 실행하는 가상 머신 50대가 포함된 Azure 구독이 있습니다.\n\n가상 머신에 대해 Microsoft Entra 로그인을 사용하도록 설정합니다.\n\n사용자들이 Microsoft Entra 자격 증명으로 가상 머신에 로그인할 수 없다고 보고합니다.\n\n사용자가 가상 머신에 로그인할 수 있도록 해야 합니다.\n\n먼저 무엇을 해야 합니까?",
+ "choices": {"A": "Microsoft Entra 관리 센터에서 가상 머신의 디바이스 등록을 삭제합니다.", "B": "기본 새로 고침 토큰(PRT)을 해지합니다.", "C": "OpenSSH용 SSH 클라이언트 지원을 사용하도록 설정합니다.", "D": "가상 머신이 https://enterpriseregistration.windows.net에 액세스할 수 있는지 확인합니다."},
+ "explanation": "Azure Windows 가상 머신에 대한 Microsoft Entra 인증은 디바이스 등록을 위해 `https://enterpriseregistration.windows.net`으로의 아웃바운드 TCP 443 액세스가 필요합니다. VM이 이 엔드포인트에 연결할 수 있도록 하면 Microsoft Entra 로그인에 필요한 등록 흐름이 가능해집니다."
+},
+"88": {
+ "stem": "다음 표의 사용자 지정 역할이 포함된 Azure 구독이 있습니다.\n\n[[IMG1]]\n\nAzure Portal을 사용하여 Role3이라는 사용자 지정 Azure 구독 역할을 만들어야 합니다. Role3은 기존 역할의 기본 권한을 사용합니다.\n\nRole3을 만들기 위해 복제할 수 있는 역할은 무엇입니까?",
+ "choices": {"A": "Role2만", "B": "기본 제공 Azure 구독 역할만", "C": "기본 제공 Azure 구독 역할과 Role2만", "D": "기본 제공 Azure 구독 역할과 기본 제공 Azure AD 역할만", "E": "Role1, Role2, 기본 제공 Azure 구독 역할, 기본 제공 Azure AD 역할"},
+ "explanation": "Azure Portal에서 Azure RBAC 사용자 지정 역할을 만들 때는 기존의 기본 제공 또는 사용자 지정 Azure RBAC 역할을 복제할 수 있습니다. 따라서 Azure 구독 기본 제공 역할과 기존 Azure 구독 사용자 지정 역할인 Role2가 기본 권한을 제공할 수 있습니다. Role1을 포함한 Microsoft Entra ID(Azure AD) 역할은 디렉터리 역할이며 이 작업에서의 Azure 구독 RBAC 역할이 아닙니다."
+},
+"89": {
+ "stem": "표의 사용자가 포함된 Azure Active Directory(Azure AD) 테넌트가 있습니다. [[IMG1]]\n\nAzure AD Identity Protection을 구현할 계획입니다. 어떤 사용자가 사용자 위험 정책을 구성할 수 있고, 어떤 사용자가 위험한 사용자 보고서를 볼 수 있는지 판단하세요.",
+ "blanks": {
+  "configure": {"label": "사용자 위험 정책 구성:", "options": ["User3만", "User3과 User4만", "User1, User2, User3만", "User1, User3, User4만", "User1, User2, User3, User4"]},
+  "view": {"label": "위험한 사용자 보고서 보기:", "options": ["User3만", "User3과 User4만", "User1, User2, User3만", "User1, User3, User4만", "User1, User2, User3, User4"]}
+ },
+ "explanation": "Azure AD Identity Protection에서 사용자 위험 정책 같은 위험 기반 조건부 액세스 정책을 만들고 구성할 수 있는 사용자는 Security Administrator 또는 Global Administrator 역할이 할당된 사용자뿐입니다. 반면 위험한 사용자 보고서는 Security Administrator, Security Operator, Security Reader, Global Administrator 역할이 할당된 사용자가 볼 수 있습니다. Conditional Access Administrator와 Authentication Administrator 역할은 Identity Protection 권한을 부여하지 않습니다. 따라서 나열된 사용자 중 User3(Security administrator)만 사용자 위험 정책을 구성할 수 있고, User3(Security administrator)과 User4(Security operator)가 위험한 사용자 보고서를 볼 수 있습니다."
+},
+"90": {
+ "stem": "Microsoft 365 구독이 있습니다.\n\n브라우저 언어가 스페인어로 구성된 Microsoft Edge에서 Microsoft 365 포털에 액세스하는 사용자에게 스페인어 로그인 양식이 표시되도록 해야 합니다.\n\nMicrosoft Entra 관리 센터에서 무엇을 해야 합니까?",
+ "choices": {"A": "사용자 설정에서 사용 위치(Usage location) 설정을 구성합니다.", "B": "Global Secure Access에서 세션 관리 설정을 구성합니다.", "C": "회사 브랜딩 설정을 구성합니다.", "D": "조건부 액세스 정책을 만듭니다."},
+ "explanation": "Microsoft Entra 회사 브랜딩은 특정 브라우저 언어에 대한 사용자 지정 로그인 환경을 지원합니다. 회사 브랜딩을 구성하고 스페인어를 브라우저 언어로 추가하면, 브라우저가 스페인어로 설정되었을 때 스페인어 전용 브랜딩과 로그인 양식 설정이 적용됩니다."
+}
+}

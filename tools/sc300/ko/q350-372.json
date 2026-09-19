@@ -1,0 +1,118 @@
+{
+"351": {
+ "stem": "*(참고: 원본 사이트에 사례 연구 본문이 빠진 문항입니다. ADatum 사용자를 Azure AD Connect로 동기화해야 하는 기술 요구 사항 시나리오입니다.)*\n\nADatum 사용자를 동기화해야 합니다. 기술 요구 사항을 충족해야 합니다.\n\n무엇을 해야 합니까?",
+ "choices": {"A": "Microsoft Azure Active Directory Connect 마법사에서 \"동기화 옵션 사용자 지정\"을 선택합니다.", "B": "PowerShell에서 Set-ADSyncScheduler를 실행합니다.", "C": "PowerShell에서 Start-ADSyncSyncCycle을 실행합니다.", "D": "Microsoft Azure Active Directory Connect 마법사에서 \"사용자 로그인 변경\"을 선택합니다."},
+ "explanation": "`Start-ADSyncSyncCycle`은 Microsoft Entra Connect 동기화 주기를 트리거하여 사용자에 대한 디렉터리 변경 사항을 즉시 동기화할 수 있게 합니다. `Set-ADSyncScheduler`는 동기화 주기를 시작하는 것이 아니라 스케줄러를 구성합니다."
+},
+"352": {
+ "stem": "`contoso.com` SMTP 주소 공간을 사용하는 Microsoft Exchange 조직이 있습니다.\n\n여러 사용자가 `contoso.com` 이메일 주소로 Azure Active Directory(Azure AD)에 셀프 서비스 등록합니다.\n\n셀프 등록한 사용자가 포함된 Azure AD 테넌트의 Global Administrator 권한을 확보합니다.\n\n사용자가 Microsoft 365 서비스에 대한 셀프 서비스 등록을 통해 `contoso.com` Azure AD 테넌트에 사용자 계정을 만들지 못하게 해야 합니다.\n\n어떤 PowerShell cmdlet을 실행해야 합니까?",
+ "choices": {"A": "Set-MsolCompanySettings", "B": "Set-MsolDomainFederationSettings", "C": "Update-MsolfederatedDomain", "D": "Set-MsolDomain"},
+ "explanation": "`Set-MsolCompanySettings`는 이메일 확인 사용자가 조직에 참여할 수 있는지, 사용자가 이메일 기반 셀프 서비스 구독을 만들 수 있는지를 포함한 레거시 테넌트 전체 셀프 서비스 제어를 구성합니다. 해당 설정을 사용하지 않도록 설정하면 확인된 `contoso.com` 도메인에 대한 셀프 서비스 계정 생성이 차단됩니다. 현재 Microsoft Entra 문서에서는 동등한 테넌트 전체 제어를 `allowEmailVerifiedUsersToJoinOrganization`과 `allowedToSignUpEmailBasedSubscriptions`로 설명합니다."
+},
+"353": {
+ "stem": "*(참고: 원본 사이트에 사례 연구 본문이 빠진 문항입니다. 온-프레미스 애플리케이션과 SharePoint Online에 대한 인증·액세스 제한 요구 사항 시나리오입니다.)*\n\n인증 및 액세스 요구 사항을 충족하도록 온-프레미스 애플리케이션과 SharePoint Online에 대한 제한을 구현해야 합니다.\n\n무엇을 해야 합니까?",
+ "blanks": {
+  "on_premises": {"label": "온-프레미스 애플리케이션:", "options": ["Cloud App Security 정책을 구성합니다.", "엔터프라이즈 애플리케이션의 사용자 동의 설정을 수정합니다.", "Azure AD 애플리케이션 프록시를 사용하여 애플리케이션을 게시합니다."]},
+  "sharepoint_online": {"label": "SharePoint Online:", "options": ["앱 적용 제한을 구성합니다.", "엔터프라이즈 애플리케이션의 사용자 동의 설정을 수정합니다.", "Azure AD 애플리케이션 프록시를 사용하여 애플리케이션을 게시합니다."]}
+ },
+ "explanation": "Microsoft Entra 애플리케이션 프록시는 온-프레미스 웹 애플리케이션을 Microsoft Entra ID를 통한 원격 액세스용으로 게시하여 중앙 집중식 인증과 조건부 액세스를 가능하게 합니다. SharePoint Online 앱 적용 제한은 관리되지 않는 디바이스에서의 액세스 제한 같은 SharePoint 사이트 수준 액세스 제한을 적용하는 조건부 액세스 세션 제어입니다."
+},
+"354": {
+ "stem": "다음 표의 사용자가 포함된 Microsoft Entra 테넌트가 있습니다.\n\n[[IMG1]]\n\nAdmin4가 **Azure 관리에 다단계 인증 필요** 템플릿을 사용하여 Policy1이라는 조건부 액세스 정책을 만듭니다.\n\n다음 로그인 시 다단계 인증(MFA)을 사용해야 하는 사용자는 누구입니까?",
+ "choices": {"A": "Admin2와 Admin3만", "B": "Admin1과 Admin4만", "C": "Admin1, Admin2, Admin3만", "D": "Admin1, Admin2, Admin3, Admin4"},
+ "explanation": "사용자를 대상으로 하는 조건부 액세스 템플릿 정책은 정책을 만드는 사용자만 자동으로 제외합니다. 따라서 Azure 관리 MFA 템플릿은 Admin1, Admin2, Admin3에게 MFA를 요구하고, 정책 작성자인 Admin4는 제외합니다."
+},
+"355": {
+ "stem": "다음 표의 사용자가 포함된 Azure Active Directory(Azure AD) 테넌트가 있습니다.\n\n[[IMG1]]\n\nAu1이라는 관리 단위가 있습니다. Group1, User2, User3이 Au1의 구성원입니다.\n\nUser5에게 Au1에 대한 User administrator 역할이 할당되어 있습니다.\n\nUser5가 암호를 재설정할 수 있는 사용자는 누구입니까?",
+ "choices": {"A": "User1, User2, User3", "B": "User1과 User2만", "C": "User3과 User4만", "D": "User2와 User3만"},
+ "explanation": "관리 단위 범위로 할당된 User Administrator는 그 관리 단위의 직접 구성원인 사용자의 암호만 재설정할 수 있습니다. Group1을 Au1에 추가하면 그룹 자체의 관리 범위만 지정되고 Group1의 개별 구성원 관리는 포함되지 않습니다. 따라서 User5는 직접 할당된 사용자인 User2와 User3의 암호를 재설정할 수 있습니다."
+},
+"356": {
+ "stem": "*(참고: 원본 사이트에 사례 연구 본문이 빠진 문항입니다. 해설로 보면 \"하이브리드 계정의 유출된 자격 증명을 탐지해야 한다\"는 인증 요구 사항 시나리오입니다.)*\n\n유출된 자격 증명에 대한 인증 요구 사항을 충족해야 합니다.\n\n무엇을 해야 합니까?",
+ "choices": {"A": "Azure AD Connect에서 암호 해시 동기화를 사용하도록 설정합니다.", "B": "Azure AD 암호 보호를 구성합니다.", "C": "Azure AD에서 인증 방법 정책을 구성합니다.", "D": "Azure AD Connect에서 PingFederate와의 페더레이션을 사용하도록 설정합니다."},
+ "explanation": "암호 해시 동기화를 사용하면 Microsoft Entra ID Protection이 새로 발견된 손상 자격 증명을 현재 동기화된 암호 해시와 대조하여 하이브리드 계정의 유출된 자격 증명을 탐지할 수 있습니다. PHS를 사용하도록 설정한 후 발견된 자격 증명만 처리됩니다."
+},
+"357": {
+ "stem": "Microsoft Office 365 Enterprise E3 라이선스가 할당된 사용자 2,500명이 있습니다. 라이선스는 개별 사용자에게 직접 할당되어 있습니다.\n\nMicrosoft Entra 관리 센터의 **그룹** 블레이드에서 모든 사용자가 포함된 그룹에 Microsoft Office 365 Enterprise E5 라이선스를 할당합니다.\n\n최소한의 관리 작업으로 사용자에게서 Office 365 Enterprise E3 라이선스를 제거해야 합니다.\n\n무엇을 사용해야 합니까?",
+ "choices": {"A": "Set-MgUserLicense cmdlet", "B": "Microsoft Entra 관리 센터의 Identity Governance 블레이드", "C": "Microsoft Entra 관리 센터의 그룹 블레이드", "D": "Update-MgGroup cmdlet"},
+ "explanation": "`Set-MgUserLicense`는 사용자 계정에서 지정한 라이선스 SKU ID를 제거하는 것을 지원하며, 영향받는 모든 사용자에 대한 대량 PowerShell 프로세스에 사용할 수 있습니다. 이렇게 하면 그룹 기반 Office 365 Enterprise E5 할당은 유지하면서 직접 할당된 Office 365 Enterprise E3 라이선스를 제거할 수 있습니다."
+},
+"358": {
+ "stem": "네트워크에 contoso.com이라는 온-프레미스 Active Directory Domain Services(AD DS) 도메인이 있습니다. contoso.com에는 다음 표의 ID가 포함되어 있습니다.\n\n[[IMG1]]\n\nUser1이라는 사용자가 포함된 Microsoft Entra 테넌트가 있습니다.\n\nMicrosoft Entra Cloud Sync를 배포하고 다음 문자열로 범위 지정 필터를 구성합니다.\n\n`CN=Group1,OU=OU1,DC=contoso,DC=com`\n\n각 문장이 참이면 **예**, 그렇지 않으면 **아니요**를 선택하세요.",
+ "statements": ["Contoso\\User1이 contoso.com에서 테넌트로 동기화된다.", "Contoso\\User2가 contoso.com에서 테넌트로 동기화된다.", "Contoso\\Group1이 contoso.com에서 테넌트로 동기화된다."],
+ "explanation": "그룹 기반 Cloud Sync 범위 지정 필터는 선택한 그룹과 그 직접 구성원을 동기화합니다. Group1은 User1과 Group2를 직접 포함하므로 User1과 Group1이 동기화됩니다. User2는 중첩된 Group2의 구성원일 뿐이며, 중첩 그룹 멤버 자격은 재귀적으로 확장되지 않습니다."
+},
+"359": {
+ "stem": "회사에 다음 표의 사용자가 포함된 Azure AD 테넌트가 있습니다.\n\n[[IMG1]]\n\n다음 표의 앱 등록이 있습니다.\n\n[[IMG2]]\n\n회사 정책상 사용자 권한을 변경할 수 없습니다.\n\n회사의 모든 사용자 일정에 약속을 만들 수 있는 사용자는 누구입니까?",
+ "choices": {"A": "User1", "B": "User2", "C": "User3", "D": "User4"},
+ "explanation": "애플리케이션 권한으로서의 Microsoft Graph `Calendars.ReadWrite`는 로그인한 사용자 없이 앱이 모든 일정의 이벤트를 만들고 읽고 업데이트하고 삭제할 수 있게 합니다. User2는 그 애플리케이션 권한이 있는 App2를 사용합니다. `Calendars.Read`는 일정 데이터 읽기만 허용하며, Azure AD 관리 역할 자체는 일정 쓰기 액세스를 부여하지 않습니다."
+},
+"360": {
+ "stem": "Microsoft 365 E5 구독이 있습니다.\n\n사용자가 타사 클라우드 앱에 자신의 데이터 액세스 권한을 부여합니다.\n\n앱이 높은 권한을 요구하고 20명이 넘는 사용자가 권한을 부여했을 때 트리거되는 경고를 구성해야 합니다.\n\nMicrosoft Defender for Cloud Apps 포털에서 어떤 정책 유형을 만들어야 합니까?",
+ "choices": {"A": "비정상 탐지 정책", "B": "OAuth 앱 정책", "C": "액세스 정책", "D": "활동 정책"},
+ "explanation": "OAuth 앱 정책은 요청된 권한과 권한을 부여한 사용자를 기준으로 OAuth 애플리케이션을 모니터링합니다. 높은 권한 수준을 요구하고 지정된 권한 부여 횟수 임계값을 초과하는 앱에 대해 경고를 생성할 수 있습니다."
+},
+"361": {
+ "stem": "*(참고: 원본 사이트에 사례 연구 본문이 빠진 문항입니다. 해설로 보면 LWGroup1은 \"모든 게스트 사용자를 포함하는 동적 그룹\"이어야 하는 관리 요구 사항입니다.)*\n\n관리 요구 사항을 충족하도록 LWGroup1 그룹을 만들어야 합니다.\n\n동적 멤버 자격 규칙을 어떻게 완성해야 합니까?",
+ "blanks": {
+  "object_id": {"label": "objectId 비교 값", "options": ["“Guest”", "“Member”", "Null"]},
+  "user_type": {"label": "userType 비교 값", "options": ["“Guest”", "“Member”", "Null"]}
+ },
+ "explanation": "`user.objectId -ne null`은 개체 ID가 있는 사용자 개체를 선택하고, `user.userType -eq \"Guest\"`는 그 집합을 게스트 계정으로 필터링합니다. Microsoft 문서는 동적 게스트 그룹에 대해 정확히 이 패턴을 안내합니다."
+},
+"362": {
+ "stem": "App1이라는 엔터프라이즈 애플리케이션이 포함된 contoso.com이라는 Microsoft Entra 테넌트가 있습니다.\n\n계약자가 user1@fabrikam.com의 자격 증명을 사용합니다.\n\n계약자에게 App1에 대한 액세스 권한을 부여할 수 있어야 합니다. 계약자는 user1@fabrikam.com으로 인증할 수 있어야 합니다.\n\n무엇을 해야 합니까?",
+ "choices": {"A": "Microsoft Entra Connect 동기화를 구현합니다.", "B": "contoso.com에 게스트 사용자 계정을 만듭니다.", "C": "외부 협업 설정을 구성합니다.", "D": "New-MgUser cmdlet을 실행합니다."},
+ "explanation": "Microsoft Entra B2B 협업은 외부 사용자가 자신의 기존 자격 증명으로 로그인할 수 있게 하면서 리소스 테넌트에 게스트 사용자를 만듭니다. 그 게스트 사용자에게 App1 같은 엔터프라이즈 애플리케이션 액세스를 할당할 수 있습니다."
+},
+"363": {
+ "stem": "회사에 User1이라는 사용자가 포함된 Microsoft Entra 테넌트가 있습니다.\n\n회사에는 마케팅과 재무, 두 부서가 있습니다.\n\nUser1에게 마케팅 부서의 사용자만 관리할 수 있는 권한을 부여해야 합니다.\n\n먼저 무엇을 만들어야 합니까?",
+ "choices": {"A": "Microsoft 365 그룹", "B": "관리 단위", "C": "관리 그룹(management group)", "D": "리소스 그룹"},
+ "explanation": "관리 단위는 마케팅 사용자를 포함하고 디렉터리 역할의 관리 권한을 그 구성원으로 제한할 수 있는 Microsoft Entra 컨테이너입니다. 그 후 User1에게 재무 사용자 관리 권한 없이 그 관리 단위 범위의 관리 역할을 부여할 수 있습니다."
+},
+"364": {
+ "stem": "Azure Active Directory(Azure AD) 테넌트가 있습니다.\n\n위험 탐지 보고서를 엽니다.\n\n사용자 위험으로 분류되는 위험 탐지 유형은 무엇입니까?",
+ "choices": {"A": "불가능한 이동(impossible travel)", "B": "익명 IP 주소", "C": "악성 IP 주소", "D": "Azure AD 위협 인텔리전스"},
+ "explanation": "Azure AD 위협 인텔리전스는 Microsoft의 내부·외부 위협 인텔리전스를 사용하여 사용자에게 비정상적이거나 알려진 공격 패턴과 일치하는 사용자 활동을 식별하므로 사용자 위험 탐지입니다. 불가능한 이동, 익명 IP 주소, 악성 IP 주소는 로그인 위험 탐지입니다."
+},
+"365": {
+ "stem": "Microsoft Office 365 Enterprise E3 라이선스가 할당된 사용자 2,500명이 있습니다. 라이선스는 개별 사용자에게 직접 할당되어 있습니다.\n\nMicrosoft Entra 관리 센터의 **그룹** 블레이드에서 모든 사용자가 포함된 그룹에 Microsoft Office 365 Enterprise E5 라이선스를 할당합니다.\n\n최소한의 관리 작업으로 사용자에게서 Office 365 Enterprise E3 라이선스를 제거해야 합니다.\n\n무엇을 사용해야 합니까?",
+ "choices": {"A": "Microsoft Entra 관리 센터의 Identity Governance 블레이드", "B": "Update-MgGroup cmdlet", "C": "Set-MgUserLicense cmdlet", "D": "Microsoft Entra 관리 센터의 관리 단위 블레이드"},
+ "explanation": "사용자가 그룹 기반 라이선스로도 라이선스를 받더라도 직접 라이선스 할당은 그대로 남습니다. `Set-MgUserLicense`는 사용자에게서 지정한 라이선스 SKU를 제거하는 것을 지원하며, Microsoft 문서는 그룹을 통해 같은 라이선스를 상속받는 사용자의 불필요한 직접 라이선스를 스크립트로 제거하는 데 이를 사용하도록 안내합니다."
+},
+"366": {
+ "stem": "Microsoft Entra 테넌트에 연결된 Azure 구독이 있습니다. 그 테넌트에는 App1이라는 등록된 앱이 있습니다.\n\nMicrosoft Entra 테넌트가 있는 파트너 조직이 있습니다. 그 테넌트에는 App2라는 등록된 앱이 있습니다.\n\nApp1이 App2에 액세스할 수 있도록 해야 합니다.\n\nApp1이 사용할 수 있는 자격 증명 유형 두 가지는 무엇입니까? 각 정답은 완전한 해결책입니다.\n\n참고: 각 정답 선택은 1점입니다.",
+ "choices": {"A": "인증서", "B": "관리 ID", "C": "비밀(secret)", "D": "사용자 계정", "E": "일회용 암호"},
+ "explanation": "기밀 클라이언트로 동작하는 Microsoft Entra 등록 애플리케이션은 클라이언트 인증서 또는 클라이언트 비밀로 인증하여 보호된 리소스에 대한 애플리케이션 토큰을 얻을 수 있습니다. 이 자격 증명은 앱 등록에 구성하며, 대상 테넌트가 필요한 동의와 권한을 부여하면 테넌트 간 클라이언트 자격 증명 인증을 지원합니다."
+},
+"367": {
+ "stem": "User1이라는 사용자가 포함된 contoso.com이라는 Microsoft Entra 테넌트가 있습니다.\n\nUser1에게는 다음 표의 디바이스가 있습니다.\n\n[[IMG1]]\n\n2025년 11월 5일에 contoso.com에서 다음 설정으로 사용 약관을 만들고 적용합니다.\n\n- 이름: Terms1\n- 표시 이름: Contoso terms of use\n- 사용자가 사용 약관을 펼치도록 요구: 켬\n- 사용자가 모든 디바이스에서 동의하도록 요구: 켬\n- 동의 만료: 켬\n- 만료 시작일: 2025년 12월 10일\n- 빈도: 매월\n\n2025년 11월 15일에 User1이 Device3에서 Terms1에 동의합니다.\n\n다음 각 문장이 참이면 예, 그렇지 않으면 아니요를 선택하세요.",
+ "statements": ["2025년 11월 20일에 User1은 Device1에서 Terms1에 동의할 수 있다.", "2025년 12월 11일에 User1은 Device2에서 Terms1에 동의할 수 있다.", "2025년 12월 7일에 User1은 Device3에서 Terms1에 동의할 수 있다."],
+ "explanation": "디바이스별 사용 약관은 Microsoft Entra 등록 디바이스의 디바이스 ID를 사용하므로 사용자는 Device1에서 별도로 약관에 동의해야 합니다. Device2는 등록되어 있지 않으므로 디바이스별 사용 약관을 충족할 수 없습니다. 11월 15일에 Device3에서 수락한 동의는 12월 7일까지 유효하며, 예약된 만료는 12월 10일에 시작되어 그 이후 동의가 만료되고 주기적 재동의가 적용됩니다."
+},
+"368": {
+ "stem": "다음 표의 사용자가 포함된 Microsoft Entra 테넌트가 있습니다.\n\n[[IMG1]]\n\n테넌트에는 다음 표의 인증 방법이 있습니다.\n\n[[IMG2]]\n\n숫자 일치(number matching)를 사용하여 클라우드 앱에 로그인하는 사용자는 누구입니까?",
+ "choices": {"A": "User1만", "B": "User2만", "C": "User3만", "D": "User1과 User2만", "E": "User2와 User3만"},
+ "explanation": "숫자 일치는 Microsoft Authenticator 푸시 알림과 함께 사용됩니다. Microsoft Authenticator는 User1이 속한 Group1에 사용하도록 설정되어 있습니다. FIDO2 보안 키와 인증서 기반 인증은 Microsoft Authenticator 숫자 일치 프롬프트를 사용하지 않습니다."
+},
+"369": {
+ "stem": "Azure AD 테넌트가 있습니다.\n\nApp1이라는 새 엔터프라이즈 애플리케이션을 배포합니다.\n\n사용자가 App1에 테넌트 액세스 권한을 부여하려고 하면 시도가 실패합니다.\n\n사용자가 App1에 대한 관리자 동의를 요청할 수 있도록 해야 합니다. 최소 권한 원칙을 따라야 합니다.\n\n먼저 무엇을 해야 합니까?",
+ "choices": {"A": "테넌트에 대한 관리자 동의 요청을 사용하도록 설정합니다.", "B": "테넌트에 대한 관리자 동의 요청 검토자를 지정합니다.", "C": "App1의 권한 설정에서 App1에 테넌트 관리자 동의를 부여합니다.", "D": "App1에 대한 조건부 액세스 정책을 만듭니다."},
+ "explanation": "Microsoft Entra 관리자 동의 워크플로를 사용하면 애플리케이션에 동의할 수 없는 사용자가 관리자 동의 요청을 제출할 수 있습니다. 관리자 동의 요청을 사용하도록 설정하면 그 워크플로가 활성화되고, 그 후 검토자를 구성하여 App1에 미리 테넌트 전체 동의를 부여하지 않고 요청을 평가할 수 있습니다."
+},
+"370": {
+ "stem": "Sub1이라는 Azure 구독이 있습니다.\n\nMicrosoft Entra Permissions Management 라이선스를 구매합니다.\n\nPermissions Management를 온보딩해야 합니다.\n\n어떤 두 작업을 수행해야 합니까? 각 정답은 해결책의 일부입니다.\n\n> **참고:** 각 정답 선택은 1점입니다.",
+ "choices": {"A": "Microsoft Entra 애플리케이션 프록시를 구현합니다.", "B": "Microsoft Entra Permissions Management에서 데이터 수집을 구성합니다.", "C": "Sub1에 대한 역할 할당을 만듭니다.", "D": "Microsoft Entra 관리 센터에서 진단 설정을 구성합니다.", "E": "Microsoft Entra 관리 센터에서 앱 등록을 만듭니다.", "F": "Azure Portal에서 데이터 수집 규칙(DCR)을 만듭니다."},
+ "explanation": "Microsoft Entra Permissions Management의 Azure 온보딩에는 Azure 데이터 수집기 구성을 만들고 Cloud Infrastructure Entitlement Management 애플리케이션에 구독 또는 관리 그룹 범위의 Reader 역할을 부여하는 작업이 필요합니다. 역할 할당은 Sub1의 권한 부여 데이터를 읽고 수집하는 데 필요한 액세스를 제공합니다."
+},
+"371": {
+ "stem": "HOTSPOT —\n\n다음 그룹이 포함된 Azure Active Directory(Azure AD) 테넌트가 있습니다.\n\n- 이름: Group1\n- 구성원: User1, User2\n- 소유자: User3\n\n2021년 1월 15일에 그림과 같이 액세스 검토를 만듭니다. [[IMG1]]\n\n사용자들이 Review1 질문에 다음 표와 같이 응답합니다. [[IMG2]]\n\n다음 각 문장이 참이면 예, 그렇지 않으면 아니요를 선택하세요.",
+ "statements": ["2021년 2월 5일에 User1은 Review1 질문에 다시 답할 수 있다.", "2021년 1월 25일에 User2는 Review1 질문에 다시 답할 수 있다.", "2021년 1월 22일에 User3은 Review1 질문에 답할 수 있다."],
+ "explanation": "1월 15일에 시작하는 14일짜리 검토 회차는 2월 5일 전에 닫히고, 다음 월간 회차는 2월 15일에 시작합니다. 자체 검토자는 검토 인스턴스가 끝날 때까지 응답을 바꿀 수 있으므로 User2는 1월 20일의 응답을 1월 25일에 바꿀 수 있습니다. 구성원(자체)은 검토자를 Group1 구성원으로 제한하며, User3은 소유자일 뿐이라 자체 검토 자격이 없습니다."
+},
+"372": {
+ "stem": "Microsoft Outlook 2016과 Outlook 2013 클라이언트를 실행하는 사용자가 포함된 Microsoft 365 구독이 있습니다.\n\n관리 작업을 최소화하면서 테넌트 제한(tenant restrictions)을 구현해야 합니다.\n\n먼저 무엇을 해야 합니까?",
+ "choices": {"A": "Outlook 2013 클라이언트가 최신 인증을 사용하도록 구성합니다.", "B": "Outlook 2013 클라이언트를 Outlook 2016으로 업그레이드합니다.", "C": "Exchange 관리 센터에서 조직 공유를 구성합니다.", "D": "모든 Outlook 클라이언트를 Outlook 2019로 업그레이드합니다."},
+ "explanation": "Outlook을 포함한 Microsoft 365 씩(thick) 클라이언트는 최신 인증을 사용할 때만 테넌트 제한을 적용할 수 있습니다. Outlook 2013은 최신 인증을 지원하지만 기본적으로 사용하도록 설정되어 있지 않으므로, 해당 클라이언트에서 이를 사용하도록 설정하는 것이 필요한 첫 번째 작업이며 불필요한 클라이언트 업그레이드를 피할 수 있습니다."
+}
+}

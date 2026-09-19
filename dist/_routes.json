@@ -12,6 +12,9 @@
     "/AZ-802_CBT",
     "/AZ-802_CBT/",
     "/AZ-802_CBT/index.html",
+    "/SC-300_CBT",
+    "/SC-300_CBT/",
+    "/SC-300_CBT/index.html",
     "/api/*"
   ],
   "exclude": []

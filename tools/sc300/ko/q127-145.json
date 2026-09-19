@@ -1,0 +1,112 @@
+{
+"127": {
+ "stem": "Microsoft 365 E5 구독이 있습니다.\n\n사용자가 타사 클라우드 앱이 자신의 데이터에 액세스하도록 권한을 부여합니다.\n\n앱이 높은 권한을 요구하고 20명이 넘는 사용자가 권한을 부여했을 때 트리거되는 경고를 구성해야 합니다.\n\nMicrosoft Defender for Cloud Apps에서 어떤 정책 유형을 만들어야 합니까?",
+ "choices": {"A": "앱 검색 정책", "B": "액세스 정책", "C": "OAuth 앱 정책", "D": "활동 정책"},
+ "explanation": "OAuth 앱 정책은 요청된 권한 수준과 앱에 권한을 부여한 사용자 수를 포함한 OAuth 애플리케이션 특성을 평가하며, 그 조건이 충족되면 경고를 생성할 수 있습니다."
+},
+"128": {
+ "stem": "contoso.com과 fabrikam.com이라는 두 Microsoft Entra 테넌트가 있습니다. contoso.com에는 다음 표의 ID가 포함되어 있습니다.\n\n[[IMG1]]\n\ncontoso.com에서 fabrikam.com으로의 테넌트 간 동기화를 구성합니다.\n\nfabrikam.com과 동기화되는 ID는 무엇입니까?",
+ "choices": {"A": "User1만", "B": "User1과 Group1만", "C": "User1과 Group2만", "D": "User1, Group1, Group2"},
+ "explanation": "Microsoft Entra 테넌트 간 동기화는 원본 테넌트의 사용자 개체만 대상 테넌트에 B2B 협업 사용자로 프로비저닝합니다. 그룹, 디바이스, 연락처는 이 기능으로 동기화되지 않습니다. 따라서 표시된 ID 중 User1만 fabrikam.com으로 동기화됩니다."
+},
+"129": {
+ "stem": "HOTSPOT –\n\n사례 연구\n\n개요\n\nADatum Corporation은 몬트리올에 있는 컨설팅 회사입니다.\n\nADatum은 최근 밴쿠버에 본사를 둔 Litware, Inc.라는 회사를 인수했습니다.\n\n기존 환경 — ADatum 환경\n\nADatum 온-프레미스 네트워크에는 `adatum.com`이라는 Active Directory Domain Services(AD DS) 포리스트가 있습니다.\n\nADatum에는 Microsoft 365 E5 구독이 있습니다. 구독에는 Azure AD Connect를 사용하여 `adatum.com` AD DS 도메인과 동기화되는 확인된 도메인이 있습니다.\n\nADatum에는 `adatum.com`이라는 Azure Active Directory(Azure AD) 테넌트가 있습니다. 테넌트에서 보안 기본값은 사용 안 함입니다.\n\n테넌트에는 다음 표의 사용자가 포함되어 있습니다.\n\n[[IMG1]]\n\n테넌트에는 다음 표의 그룹이 포함되어 있습니다.\n\n[[IMG2]]\n\n기존 환경 — Litware 환경\n\nLitware에는 `litware.com`이라는 AD DS 포리스트가 있습니다.\n\n기존 환경 — 문제점\n\nADatum은 다음 문제를 파악했습니다.\n\n- 영업 부서의 여러 사용자에게 디바이스가 최대 5대 있습니다. 영업 사용자들은 디바이스 한도에 도달해 디바이스를 Azure AD 테넌트에 조인하려면 때때로 지원 부서에 연락해야 한다고 보고합니다.\n- 최근 보안 인시던트에서 여러 사용자의 자격 증명이 유출되었고, 의심스러운 브라우저가 로그인에 사용되었으며, 익명 IP 주소에서 리소스에 액세스한 것이 드러났습니다.\n- IT_Group1에 Device Administrators 역할을 할당하려고 할 때 그 그룹이 선택 목록에 나타나지 **않습니다**.\n- 다른 게스트와 비관리자를 포함해 조직의 누구나 게스트 사용자를 초대할 수 있습니다.\n- 헬프데스크가 사용자 암호 재설정에 너무 많은 시간을 씁니다.\n- 사용자는 현재 인증에 암호만 사용합니다.\n\n요구 사항 — 계획된 변경 사항\n\nADatum은 다음 변경을 구현할 계획입니다.\n\n- 셀프 서비스 암호 재설정(SSPR)을 구성합니다.\n- 모든 사용자에 대해 다단계 인증(MFA)을 구성합니다.\n- Package1이라는 액세스 패키지에 대한 액세스 검토를 구성합니다.\n- 애플리케이션의 조직 데이터 액세스에 관리자 승인을 요구합니다.\n- `litware.com`의 AD DS 사용자와 그룹을 Azure AD 테넌트와 동기화합니다.\n- 특정 관리자 역할이 할당된 사용자만 게스트 사용자를 초대할 수 있도록 합니다.\n- Azure AD에 조인하거나 등록할 수 있는 최대 디바이스 수를 10으로 늘립니다.\n\n요구 사항 — 기술 요구 사항\n\nADatum은 다음 기술 요구 사항을 파악했습니다.\n\n- User administrator 역할이 할당된 사용자는 필요할 때 최대 1년 동안 역할 사용 권한을 요청할 수 있어야 합니다.\n- 사용자에게 MFA 등록 메시지를 표시하되, 유예 기간 동안 등록을 건너뛸 수 있는 옵션이 있어야 합니다.\n- 사용자는 SSPR로 암호를 재설정할 때 인증 방법을 하나 제공해야 합니다. 사용 가능한 방법에 다음이 포함되어야 합니다.\n  - 이메일\n  - 전화\n  - 보안 질문\n  - Microsoft Authenticator 앱\n- `adatum.com`과 `litware.com` AD DS 도메인 간에 트러스트 관계를 설정하면 **안 됩니다**.\n- 최소 권한 원칙을 사용해야 합니다.\n\n계획된 SSPR 변경 사항을 구현합니다.\n\nUser3이 SSPR을 사용하려고 하면 어떻게 됩니까?",
+ "blanks": {
+  "number_of_authentication_methods_required": {"label": "필요한 인증 방법 수:", "options": ["1", "2", "3", "4"]},
+  "authentication_methods_that_can_be_used": {"label": "사용할 수 있는 인증 방법:", "options": ["Microsoft Authenticator만", "보안 질문만", "이메일과 전화만", "전화와 Microsoft Authenticator만", "이메일, 전화, Microsoft Authenticator만", "이메일, 전화, Microsoft Authenticator, 보안 질문"]}
+ },
+ "explanation": "Microsoft Entra ID는 User administrator 계정에 별도의 관리자 SSPR 정책을 적용합니다. 이 강력한 2단계(two-gate) 정책은 인증 방법 두 개를 요구하고 보안 질문을 허용하지 않으므로, 사용할 수 있는 선택지는 이메일, 전화, Microsoft Authenticator입니다."
+},
+"130": {
+ "stem": "Microsoft Entra Permissions Management에 온보딩된 Microsoft 365 구독이 있습니다.\n\n권한이 할당된 관리 ID를 식별하고 90일 동안 사용하지 않은 권한을 제거해야 합니다. 관리 작업을 최소화해야 합니다.\n\nEntra Permissions Management 포털에서 무엇을 해야 합니까?",
+ "choices": {"A": "Autopilot 규칙을 구성합니다.", "B": "권한 분석 보고서를 예약합니다.", "C": "Microsoft Entra Insights에서 \"권한 있는 역할이 할당된 서비스 주체\"를 검토합니다.", "D": "감사 쿼리를 실행합니다."},
+ "explanation": "Autopilot 규칙은 최소 권한 수정을 자동화하여, 정의된 비활성 기간에 따라 관리 ID의 사용하지 않는 권한을 제거할 수 있게 합니다. 보고서, Insights, 감사 쿼리는 주로 권한 데이터를 보거나 조사하는 데 사용되며 제거를 자동으로 수행하지는 않습니다."
+},
+"131": {
+ "stem": "Site1이라는 Microsoft SharePoint Online 사이트와 Group1이라는 Microsoft 365 그룹이 포함된 Microsoft 365 구독이 있습니다.\n\nGroup1 구성원이 90일 동안 Site1에 액세스할 수 있도록 해야 합니다. 관리 작업을 최소화해야 합니다.\n\n무엇을 사용해야 합니까?",
+ "choices": {"A": "액세스 패키지", "B": "액세스 검토", "C": "수명 주기 워크플로", "D": "조건부 액세스 정책"},
+ "explanation": "Microsoft Entra 권한 관리 액세스 패키지는 SharePoint Online 사이트에 대한 액세스를 부여할 수 있고, 90일처럼 지정한 일수 후에 만료되도록 할당 수명 주기를 구성할 수 있습니다. 만료되면 할당된 액세스가 자동으로 제거되므로 최소한의 지속 관리로 기간 제한 액세스를 제공합니다."
+},
+"132": {
+ "stem": "*(참고: 원본 사이트에 시나리오 본문이 빠진 문항입니다. 해설로 보면 \"사용자가 요청하지 않은 MFA 요청(사기)을 신고하면 자동으로 차단되도록 해야 한다\" 시리즈 문항입니다.)*\n\n해결책: Azure Portal에서 다단계 인증(MFA)의 **계정 잠금** 설정을 구성합니다.\n\n이것이 목표를 달성합니까?",
+ "choices": {"A": "예", "B": "아니요"},
+ "explanation": "MFA 계정 잠금 설정은 로그인 실패 후의 잠금 동작을 관리하며, 사용자가 신고한 사기성 MFA 프롬프트의 처리와는 관련이 없습니다. Microsoft Entra의 의심스러운 활동 신고(Report suspicious activity) 기능은 그런 신고를 높은 사용자 위험으로 기록하며, 액세스를 자동으로 차단하려면 위험 기반 조건부 액세스 정책이나 자동화가 필요합니다."
+},
+"133": {
+ "stem": "*(참고: 원본 사이트에 시나리오 본문이 빠진 문항입니다. 해설로 보면 \"사용자가 요청하지 않은 MFA 요청(사기)을 신고하면 자동으로 차단되도록 해야 한다\" 시리즈 문항입니다.)*\n\n해결책: Azure Portal에서 다단계 인증(MFA)의 **사용자 차단/차단 해제** 설정을 구성합니다.\n\n이것이 목표를 충족합니까?",
+ "choices": {"A": "예", "B": "아니요"},
+ "explanation": "사용자 차단/차단 해제는 수동 MFA 관리 기능이며, 사용자가 요청하지 않은 MFA 요청을 신고했을 때 그 사용자를 자동으로 차단하지 않습니다. Microsoft Entra의 현행 의심스러운 활동 신고 기능은 그런 신고를 높은 사용자 위험으로 기록하며, 자동 액세스 차단에는 적절한 위험 기반 정책이나 자동화가 필요합니다. 레거시 사용자 차단/차단 해제 기능은 2025년 3월 1일에 제거되었습니다."
+},
+"134": {
+ "stem": "*(참고: 원본 사이트에 시나리오 본문이 빠진 문항입니다. 해설로 보면 \"사용자가 요청하지 않은 MFA 요청(사기)을 신고하면 자동으로 차단되도록 해야 한다\" 시리즈 문항입니다.)*\n\n해결책: Azure Portal에서 다단계 인증(MFA)의 **알림** 설정을 구성합니다.\n\n이것이 목표를 달성합니까?",
+ "choices": {"A": "예", "B": "아니요"},
+ "explanation": "MFA 알림 설정은 사용자가 사기성 확인 요청을 신고한 후 사용자 계정을 자동으로 차단하지 않습니다. Microsoft는 알림 설정과 사기 신고 기능을 구분합니다. 현행 의심스러운 활동 신고 기능은 그런 신고를 높은 사용자 위험으로 기록하며, 액세스를 자동으로 제한하려면 위험 기반 정책이나 수정 워크플로가 필요합니다. [Microsoft Entra 다단계 인증 구성](https://learn.microsoft.com/en-us/entra/identity/authentication/howto-mfa-mfasettings)"
+},
+"135": {
+ "stem": "*(참고: 원본 사이트에 시나리오 본문이 빠진 문항입니다. 해설로 보면 \"사용자가 요청하지 않은 MFA 요청(사기)을 신고하면 자동으로 차단되도록 해야 한다\" 시리즈 문항입니다.)*\n\n해결책: Azure Portal에서 다단계 인증(MFA)의 사기 경고(Fraud alert) 설정을 구성합니다.\n\n이것이 목표를 달성합니까?",
+ "choices": {"A": "예", "B": "아니요"},
+ "explanation": "Azure AD MFA 사기 경고 설정을 사용하면 사용자가 사기성 MFA 요청을 의심스러운 활동으로 신고할 수 있고, 적절히 구성하면 수정될 때까지 사용자가 MFA에 대해 자동으로 차단될 수 있습니다."
+},
+"136": {
+ "stem": "*(참고: 원본 사이트에 시나리오 본문이 빠진 문항입니다. 해설로 보면 \"사용자가 요청하지 않은 Microsoft Authenticator 요청을 신고하면 자동으로 차단되도록 해야 한다\" 시리즈 문항입니다.)*\n\n해결책: Azure Active Directory 관리 센터에서 다단계 인증(MFA)의 **사용자 차단/차단 해제** 설정을 구성합니다.\n\n이것이 목표를 충족합니까?",
+ "choices": {"A": "예", "B": "아니요"},
+ "explanation": "사용자 차단/차단 해제는 MFA 차단 계정을 관리하는 기능이며, 요청하지 않은 Microsoft Authenticator 요청을 신고했을 때 신고한 사용자를 자동으로 차단하지 않습니다. 그 결과를 얻으려면 MFA 사기 신고 기능이 필요합니다. Microsoft Entra의 현행 대체 기능인 의심스러운 활동 신고는 사용자가 사기성 MFA 요청을 신고하게 하고 이를 높은 사용자 위험으로 표시하며, 이후 자동 액세스 제한에는 적절한 위험 기반 정책이나 워크플로가 필요합니다."
+},
+"137": {
+ "stem": "Microsoft Entra 테넌트에 연결된 Azure 구독이 있습니다. 테넌트에는 다음 표의 ID가 포함되어 있습니다.\n\n[[IMG1]]\n\n테넌트는 Permissions Management에 온보딩되어 있습니다.\n\n다음 표의 Azure 리소스를 만듭니다.\n\n[[IMG2]]\n\nMicrosoft Entra Insights에서 **높은 권한 역할이 할당된 계정**에 포함되는 ID와 **권한 있는 역할이 할당된 서비스 주체**에 포함되는 ID를 식별하세요.",
+ "blanks": {
+  "highly_privileged_accounts": {"label": "높은 권한 역할이 할당된 계정:", "options": ["User1", "User2", "Group1", "Group2"]},
+  "privileged_service_principals": {"label": "권한 있는 역할이 할당된 서비스 주체:", "options": ["App1", "Managed1", "Managed2", "SPrincipal1"]}
+ },
+ "explanation": "Global Administrator는 높은 권한의 Microsoft Entra 역할이므로 그 역할이 할당된 그룹이 높은 권한 계정 인사이트에 포함됩니다. Security Operator는 나열된 서비스 주체에 대한 권한 있는 역할 할당이므로 SPrincipal1이 권한 있는 서비스 주체 인사이트에 포함됩니다."
+},
+"138": {
+ "stem": "Microsoft Defender for Cloud Apps와 Yammer를 사용하는 Microsoft 365 E5 구독이 있습니다.\n\n사용자가 고위험 위치에서 Yammer에 로그인하지 못하게 해야 합니다.\n\nMicrosoft Defender for Cloud Apps 포털에서 무엇을 해야 합니까?",
+ "choices": {"A": "액세스 정책을 만듭니다.", "B": "활동 정책을 만듭니다.", "C": "Yammer를 승인 취소합니다.", "D": "비정상 탐지 정책을 만듭니다."},
+ "explanation": "Microsoft Defender for Cloud Apps 액세스 정책은 위치나 IP 주소 등의 조건에 따라 클라우드 앱에 대한 액세스를 차단할 수 있습니다. Yammer와 해당 고위험 위치 조건으로 범위를 지정한 액세스 정책이 필요한 로그인 제한을 적용합니다."
+},
+"139": {
+ "stem": "다음 표의 ID가 포함된 Microsoft Entra 테넌트가 있습니다.\n\n[[IMG1]]\n\nGroup1의 구성은 다음과 같습니다.\n\n- 소유자: User1, User4\n- 구성원: User1, Managed2, Group2\n\n다음 설정으로 액세스 검토를 만듭니다.\n\n- 이름: Review1\n- 검토 범위: Teams + 그룹 선택\n- 그룹: Group1\n- 범위: 모든 사용자\n- 검토자 선택: 그룹 소유자\n\n**대체 검토자** 설정은 구성되어 있지 않습니다.\n\n다음 각 문장이 참이면 **예**, 그렇지 않으면 **아니요**를 선택하세요.",
+ "statements": ["User1은 User1에 대한 액세스 검토를 수행할 수 있다.", "User1은 Managed2에 대한 액세스 검토를 수행할 수 있다.", "User1은 User3에 대한 액세스 검토를 수행할 수 있다."],
+ "explanation": "그룹 액세스 검토에서는 그룹 소유자가 검토자로 할당되지만, 검토자는 자신의 액세스를 검토할 수 없습니다. User1은 Group1의 직접 구성원인 Managed2를 검토할 수 있습니다. 그룹 액세스 검토에서는 중첩 그룹이 평면화되므로, Group1에 중첩된 Group2의 구성원인 User3도 검토 대상에 포함됩니다."
+},
+"140": {
+ "stem": "Policy1이라는 조건부 액세스 정책이 포함된 Microsoft 365 E5 구독이 있습니다.\n\n다음 작업을 수행해야 합니다.\n\n- Custom1이라는 조건부 액세스 앱 제어 사용자 지정 정책을 만듭니다.\n- Policy1이 Custom1을 사용하도록 구성합니다.\n\nCustom1을 만드는 데 무엇을 사용해야 하며, Policy1의 어떤 설정에서 조건부 액세스 앱 제어를 사용하도록 설정해야 합니까?",
+ "blanks": {
+  "use": {"label": "사용:", "options": ["Microsoft 365 관리 센터", "Microsoft Defender 포털", "Microsoft Entra 관리 센터", "Microsoft Intune 관리 센터", "Microsoft Purview 규정 준수 포털"]},
+  "settings": {"label": "설정:", "options": ["세션", "조건의 클라이언트 앱", "조건의 디바이스 필터", "허용", "대상 리소스"]}
+ },
+ "explanation": "조건부 액세스 앱 제어는 Microsoft Defender 포털에서 구성하는 Microsoft Defender for Cloud Apps 기능입니다. 조건부 액세스 정책은 세션 제어를 통해 해당 세션을 그 기능으로 라우팅합니다."
+},
+"141": {
+ "stem": "*(참고: ADatum 사례 연구(Q129 참조) 문항입니다. 기술 요구 사항: \"User administrator 역할이 할당된 사용자는 필요할 때 최대 1년 동안 역할 사용 권한을 요청할 수 있어야 한다.\")*\n\n기술 요구 사항을 충족하도록 User administrator 역할의 설정을 변경해야 합니다.\n\n역할에 대해 수행해야 하는 두 가지 작업은 무엇입니까? 각 정답은 해결책의 일부입니다.\n\n**참고:** 각 정답 선택은 1점입니다.",
+ "choices": {"A": "\"활성화 시 근거 필요\"를 선택합니다.", "B": "\"활성화 시 티켓 정보 필요\"를 선택합니다.", "C": "\"적격 할당 만료 기간\" 설정을 수정합니다.", "D": "모든 할당을 적격(Eligible)으로 설정합니다.", "E": "모든 할당을 활성(Active)으로 설정합니다."},
+ "explanation": "활성화 시 근거와 승인을 요구하는 것은 적격 할당에만 효과가 있습니다. 활성화는 적격 역할의 개념이며, 활성 할당은 상시 액세스를 부여하므로 근거나 승인 워크플로가 붙을 활성화 단계가 없기 때문입니다. User administrator 역할에 활성화 시 근거와 승인을 적용하려면 먼저 모든 구성원의 할당 유형을 적격으로 바꾸고, \"활성화 시 근거 필요\" 설정을 사용하도록 설정해야 합니다."
+},
+"142": {
+ "stem": "Group1과 Group2라는 두 그룹이 포함된 Microsoft 365 E5 구독이 있습니다. 구독에는 다음 표의 사용자가 포함되어 있습니다.\n\n[[IMG1]]\n\n다음 조건부 액세스 정책을 만듭니다.\n\n- **이름:** Policy1\n  - **사용자:**\n    - **포함:** Group1\n    - **제외:** Group2\n  - **대상 리소스:**\n    - **포함:** 모든 클라우드 앱\n  - **허용:**\n    - **액세스 허용:** 다단계 인증 필요\n  - **세션:**\n    - **영구 브라우저 세션:** 영구적이지 않음\n\n- **이름:** Policy2\n  - **사용자:**\n    - **포함:**\n      - **디렉터리 역할:** Global Administrator\n      - **사용자 및 그룹:** User3\n    - **제외:** Group2\n  - **대상 리소스:**\n    - **포함:** 모든 클라우드 앱\n  - **세션:**\n    - **로그인 빈도:**\n      - **주기적 재인증:** 2시간\n\n다음 각 문장이 참이면 예, 그렇지 않으면 아니요를 선택하세요.",
+ "statements": ["User1이 Microsoft 365 포털에 로그인하면 \"로그인 상태 유지\" 옵션이 표시된다.", "User2는 2시간마다 Microsoft 365 앱에 다시 인증해야 한다.", "User3은 2시간마다 Microsoft 365 앱에 다시 인증해야 한다."],
+ "explanation": "조건부 액세스의 영구 브라우저 세션 제어는 \"로그인 상태를 유지하시겠습니까?\" 프롬프트를 표시하지 않으므로 User1에게는 표시되지 않습니다. 조건부 액세스에서 제외는 포함보다 우선합니다. User2와 User3은 제외된 Group2의 구성원이므로 Policy2의 2시간 주기적 재인증 제어가 두 사용자 모두에게 적용되지 않습니다."
+},
+"143": {
+ "stem": "사용자 1,000명이 포함된 Microsoft Entra 테넌트가 있습니다. 사용자에게는 Microsoft Entra Suite 라이선스가 있습니다.\n\n다음 작업을 수행합니다.\n\n- Global Secure Access를 배포합니다.\n- Profile1이라는 Global Secure Access 보안 프로필을 만듭니다.\n- 다음 조건부 액세스 정책을 만듭니다.\n  - **이름:** CApolicy1\n\n    **대상 리소스:** Global Secure Access를 사용하는 모든 인터넷 리소스\n\n  - **이름:** CApolicy2\n\n    **세션:** Global Secure Access 보안 프로필 사용: Profile1\n\nCApolicy1이 연결되는 Global Secure Access 트래픽 전달 프로필과 Profile1이 적용되는 프로필을 식별하세요.",
+ "blanks": {
+  "capolicy1_link": {"label": "CApolicy1이 연결되는 프로필:", "options": ["Microsoft 트래픽 프로필과 인터넷 액세스 프로필", "Microsoft 트래픽 프로필과 프라이빗 액세스 프로필", "프라이빗 액세스 프로필과 인터넷 액세스 프로필"]},
+  "profile1_applies": {"label": "Profile1이 적용되는 프로필:", "options": ["인터넷 액세스 프로필", "Microsoft 트래픽 프로필", "프라이빗 액세스 프로필"]}
+ },
+ "explanation": "\"Global Secure Access를 사용하는 모든 인터넷 리소스\" 조건부 액세스 대상은 Microsoft 트래픽과 인터넷 액세스 터널에 대한 권한을 부여하므로, CApolicy1은 그 두 전달 프로필에 연결됩니다. 조건부 액세스 세션 제어로 선택한 보안 프로필은 사용자·컨텍스트 인식 Internet Access 보안 정책의 전달 메커니즘이므로 Profile1은 인터넷 액세스 프로필에 적용됩니다."
+},
+"144": {
+ "stem": "Sub1이라는 Azure 구독이 있습니다.\n\nMicrosoft Entra Permissions Management를 사용하여 Sub1을 관리할 계획입니다.\n\nPermissions Management가 다음 작업을 수행할 수 있도록 해야 합니다.\n\n- 애플리케이션과 관리 ID에 할당된 사용하지 않는 권한을 식별합니다.\n- 사용자에게 제거할 권한에 대한 권장 사항을 제공합니다.\n- 사용하지 않는 권한을 제거합니다.\n\n최소 권한 원칙을 따라야 합니다.\n\nPermissions Management 서비스 주체에 어떤 역할을 할당해야 하며, 권장 사항 제공과 사용하지 않는 권한 제거에 무엇을 사용해야 합니까?",
+ "blanks": {
+  "role": {"label": "역할:", "options": ["Access Review Operator Service Role", "Owner", "Reader", "User Access Administrator"]},
+  "use": {"label": "사용:", "options": ["사용자 지정 보고서", "역할 템플릿", "감사 쿼리", "Autopilot 규칙"]}
+ },
+ "explanation": "User Access Administrator는 Owner가 부여하는 광범위한 리소스 관리 권한 없이 Azure RBAC 역할 할당의 제거를 포함한 관리를 할 수 있습니다. Autopilot 규칙은 권장 사항을 제공하고 사용하지 않는 권한의 수정을 자동화합니다."
+},
+"145": {
+ "stem": "*(참고: 원본 사이트에 사례 연구 본문이 빠진 문항입니다. Boston 사무실에서 연결하는 사용자의 MFA 및 액세스 요구 사항 시나리오입니다.)*\n\nBoston 사무실에서 연결하는 사용자에 대한 MFA 설정을 구성해야 합니다. 인증 및 액세스 요구 사항을 충족해야 합니다.\n\n구성에 무엇을 포함해야 합니까?",
+ "choices": {"A": "개인 IP 주소 범위가 있는 명명된 위치", "B": "공용 IP 주소 범위가 있는 명명된 위치", "C": "공용 IP 주소 범위가 있는 신뢰할 수 있는 IP", "D": "개인 IP 주소 범위가 있는 신뢰할 수 있는 IP"},
+ "explanation": "Microsoft Entra 조건부 액세스는 인터넷 송신 지점에서 보이는 공용 IP 주소로 사용자의 네트워크 위치를 판단합니다. Boston 사무실의 공용 IP 범위가 있는 IP 기반 명명된 위치는 MFA와 액세스 제어 모두를 위한 조건부 액세스 정책에 사용할 수 있습니다. 개인 클라이언트 네트워크 범위는 Microsoft Entra가 평가하는 주소가 아니며, 레거시 MFA 신뢰할 수 있는 IP는 더 넓은 액세스 요구 사항에 적합한 제어가 아닙니다."
+}
+}

@@ -1,0 +1,249 @@
+{
+ "421": {
+  "stem": "Group1과 Group2, 두 그룹과 다음 표의 사용자가 포함된 Microsoft Entra 테넌트가 있습니다.\n\n[[IMG1]]\n\nGroup2는 Group1에 속합니다.\n\n다음 설정으로 액세스 검토를 구성합니다.\n\n- **이름:** Review1\n- **검토 대상 선택:** Teams + 그룹\n- **검토 범위:** Teams + 그룹 선택\n- **그룹:** Group1\n- **범위:** 게스트 사용자만\n- **검토자 선택:** 그룹 소유자\n\n각 문장이 참이면 **예**, 그렇지 않으면 **아니요**를 선택하세요.",
+  "statements": [
+   "User3은 User1에 대한 액세스 검토를 수행할 수 있다.",
+   "User3은 User4에 대한 액세스 검토를 수행할 수 있다.",
+   "User3은 User5에 대한 액세스 검토를 수행할 수 있다."
+  ],
+  "explanation": "그룹 액세스 검토에서는 그룹 소유자가 검토자이므로 User3이 Group1의 범위 내 사용자를 검토합니다. 검토 범위는 구성원 사용자인 User1과 User4를 제외합니다. 그룹 액세스 검토는 중첩 그룹을 자동으로 평면화하므로 Group2의 게스트 User5가 Group1의 게스트 사용자 검토 범위에 포함됩니다."
+ },
+ "422": {
+  "stem": "Microsoft Entra ID Premium 라이선스를 사용하는 Microsoft Entra 테넌트가 있습니다.\n\n테넌트에 사용 약관(ToU)을 구성할 계획입니다.\n\nToU 문서를 업로드해야 합니다.\n\n어떤 문서 형식을 사용해야 합니까?",
+  "choices": {
+   "A": "HTML",
+   "B": "RTF",
+   "C": "PDF",
+   "D": "DOCX"
+  },
+  "explanation": "Microsoft Entra 사용 약관 정책은 업로드할 사용 약관 문서가 PDF 형식이어야 합니다."
+ },
+ "423": {
+  "stem": "*(참고: 원본 사이트에 사례 연구 본문이 빠진 문항입니다. 해설로 보면 Azure AD 감사 로그를 Log Analytics로 보내야 하는 감사 요구 사항입니다.)*\n\nLog Analytics 작업 영역을 만듭니다.\n\n감사에 대한 기술 요구 사항을 구현해야 합니다.\n\nAzure AD에서 무엇을 구성해야 합니까?",
+  "choices": {
+   "A": "회사 브랜딩",
+   "B": "진단 설정",
+   "C": "External Identities",
+   "D": "앱 등록"
+  },
+  "explanation": "Azure AD 진단 설정은 수집할 활동 로그를 선택하고 감사·분석을 위해 Log Analytics 작업 영역으로 보냅니다. 회사 브랜딩, External Identities, 앱 등록은 감사 로그 라우팅을 구성하지 않습니다."
+ },
+ "424": {
+  "stem": "**fabrikam.com** 도메인을 사용하는 Microsoft 365 테넌트가 있습니다. Azure Active Directory(Azure AD) **게스트 초대 설정**은 그림과 같이 구성되어 있습니다. (Exhibit 탭을 클릭하세요.)\n\n[[IMG1]]\n\nuser1@fabrikam.com이라는 사용자가 다음 표의 사용자와 Microsoft SharePoint Online 문서 라이브러리를 공유합니다.\n\n[[IMG2]]\n\n이메일로 암호를 받는 사용자는 누구입니까?",
+  "choices": {
+   "A": "User2만",
+   "B": "User1만",
+   "C": "User1과 User2만",
+   "D": "User1, User2, User3"
+  },
+  "explanation": "이메일 일회용 암호는 B2B 게스트가 초대를 수락하거나 공유 리소스에 액세스할 때 인증하는 데 사용됩니다. User2는 이전에 fabrikam.com 리소스에 액세스한 적이 없는 새 외부 수신자이므로 이메일 암호 흐름이 필요합니다. User1은 이미 테넌트의 게스트이고 User3은 내부 fabrikam.com 사용자이므로, 둘 다 이 공유 작업에 새 이메일 암호가 필요하지 않습니다."
+ },
+ "425": {
+  "stem": "다음 가상 머신이 포함된 Azure 구독이 있습니다.\n\n- 이름: V1\n- Azure 지역: East US\n- 시스템 할당 관리 ID: 사용 안 함\n\n다음 표의 관리 ID를 만듭니다.\n\n[[IMG1]]\n\n그런 다음 다음 작업을 수행합니다.\n\n- Managed1을 V1에 할당합니다.\n- West US 지역에 RG1이라는 리소스 그룹을 만듭니다.\n\n다음 각 문장이 참이면 예, 그렇지 않으면 아니요를 선택하세요.",
+  "statements": [
+   "Managed2를 V1에 할당할 수 있다.",
+   "Managed3을 V1에 할당할 수 있다.",
+   "VM1에 RG1에 대한 Owner 역할을 할당할 수 있다."
+  ],
+  "explanation": "사용자 할당 관리 ID의 Microsoft Entra 서비스 주체는 지역과 관계없이 사용할 수 있으므로, 관리 ID는 어느 Azure 지역의 가상 머신에도 할당할 수 있습니다. Managed2(East US)와 Managed3(West US) 모두 East US의 V1에 할당할 수 있습니다. V1의 시스템 할당 관리 ID는 사용 안 함 상태이므로 V1에는 자체 ID가 없어 RBAC 역할 할당의 주체로 선택할 수 없습니다. 이미 연결된 사용자 할당 ID인 Managed1만 RG1에 대한 Owner 역할을 받을 수 있습니다."
+ },
+ "426": {
+  "stem": "Sub1과 Sub2, 두 Azure 구독이 포함된 Group1이라는 관리 그룹이 있습니다. 구독은 User1이라는 사용자가 포함된 Microsoft Entra 테넌트에 연결되어 있습니다.\n\nUser1이 Sub1을 Permissions Management에 온보딩할 수 있도록 해야 합니다. 최소 권한 원칙을 따라야 합니다.\n\nUser1에게 어떤 권한을 부여해야 합니까?",
+  "choices": {
+   "A": "Sub1에 대한 Microsoft.Authorization/roleAssignments/read",
+   "B": "Group1에 대한 Microsoft.Authorization/roleAssignments/write",
+   "C": "Sub1에 대한 Microsoft.Authorization/roleAssignments/write",
+   "D": "Group1에 대한 Microsoft.Authorization/roleAssignments/read"
+  },
+  "explanation": "Sub1 구독 범위에서 Microsoft.Authorization/roleAssignments/write를 부여하면 User1은 그 구독만 온보딩할 수 있습니다. 관리 그룹 범위는 Sub2까지 포함하므로 최소 권한에 위배됩니다."
+ },
+ "427": {
+  "stem": "Microsoft Office 365 Enterprise E3 라이선스가 할당된 사용자 2,500명이 있습니다. 라이선스는 개별 사용자에게 직접 할당되어 있습니다.\n\nAzure Active Directory 관리 센터의 **그룹** 블레이드에서 모든 사용자가 포함된 그룹에 Microsoft Office 365 Enterprise E5 라이선스를 할당합니다.\n\n최소한의 관리 작업으로 사용자에게서 Office 365 Enterprise E3 라이선스를 제거해야 합니다.\n\n무엇을 사용해야 합니까?",
+  "choices": {
+   "A": "Azure Active Directory 관리 센터의 그룹 블레이드",
+   "B": "Set-AzureADGroup cmdlet",
+   "C": "Azure Active Directory 관리 센터의 Identity Governance 블레이드",
+   "D": "Set-MsolUserLicense cmdlet"
+  },
+  "explanation": "그룹 기반 라이선스는 사용자에게 직접 할당된 라이선스를 자동으로 제거하지 않습니다. 직접 라이선스 할당은 사용자 계정에서 제거해야 하며, 이 규모에서는 PowerShell 대량 작업이 가장 적은 노력이 드는 방법입니다. Microsoft 문서는 사용자가 그룹을 통해 라이선스를 상속받을 때 불필요한 직접 라이선스를 제거하도록 안내하며, 현재 Microsoft Graph 대응물은 `Set-MgUserLicense`입니다."
+ },
+ "428": {
+  "stem": "*(참고: 원본 사이트에 사례 연구 본문이 빠진 문항입니다. 해설로 보면 애플리케이션 액세스 할당 관리를 카탈로그 소유자에게 위임해야 하는 요구 사항입니다.)*\n\nIdentity Governance를 사용하여 애플리케이션 액세스 할당을 추적해야 합니다. 위임 요구 사항을 충족해야 합니다.\n\n먼저 무엇을 해야 합니까?",
+  "choices": {
+   "A": "엔터프라이즈 애플리케이션의 사용자 동의 설정을 수정합니다.",
+   "B": "카탈로그를 만듭니다.",
+   "C": "프로그램을 만듭니다.",
+   "D": "엔터프라이즈 애플리케이션의 관리자 동의 요청 설정을 수정합니다."
+  },
+  "explanation": "Microsoft Entra 권한 관리에서 카탈로그는 관련 리소스와 액세스 패키지를 담으며 위임 경계 역할을 합니다. 카탈로그 소유자를 할당하여 카탈로그를 관리하게 할 수 있으므로 애플리케이션 액세스 할당의 위임된 관리가 가능합니다."
+ },
+ "429": {
+  "stem": "HOTSPOT -\n\ncontoso.com이라는 Microsoft 365 테넌트가 있습니다. 게스트 사용자 액세스가 사용하도록 설정되어 있습니다.\n\n다음 표와 같이 사용자들이 contoso.com과 협업하도록 초대되었습니다.\n\n[[IMG1]]\n\nAzure Active Directory 관리 센터의 외부 협업 설정에서 협업 제한을 다음 그림과 같이 구성합니다.\n\n[[IMG2]]\n\nMicrosoft SharePoint Online 사이트에서 한 사용자가 user3@adatum.com을 사이트에 초대합니다.\n\n다음 각 문장이 참이면 **예**, 그렇지 않으면 **아니요**를 선택하세요.",
+  "statements": [
+   "User1은 초대를 수락하고 엔터프라이즈 애플리케이션에 대한 액세스를 얻을 수 있다.",
+   "User2는 엔터프라이즈 애플리케이션에 액세스할 수 있다.",
+   "User3은 초대를 수락하고 SharePoint 사이트에 대한 액세스를 얻을 수 있다."
+  ],
+  "explanation": "허용 목록은 Outlook.com에 대한 초대만 허용합니다. 허용된 Outlook.com 주소의 보류 중인 초대는 수락할 수 있습니다. 이미 초대를 수락한 게스트는 이후 구성된 허용/거부 목록의 영향을 소급해서 받지 않으므로 기존의 승인된 액세스는 유지됩니다. adatum.com처럼 허용 목록 밖의 도메인에 대한 초대는 차단되어 SharePoint 액세스를 제공할 수 없습니다."
+ },
+ "430": {
+  "stem": "Azure Active Directory(Azure AD) 테넌트와 동기화된 Active Directory 포리스트가 있습니다. 테넌트는 통과 인증을 사용합니다.\n\n회사 보안 정책은 다음을 규정합니다.\n\n- 도메인 컨트롤러는 인터넷과 직접 통신해서는 안 됩니다.\n- 서버에는 필요한 소프트웨어만 설치해야 합니다.\n\nActive Directory 도메인에는 다음 표의 온-프레미스 서버가 포함되어 있습니다.\n\n[[IMG1]]\n\n서버 한 대가 실패해도 사용자가 Azure AD에 인증할 수 있도록 해야 합니다.\n\n추가 통과 인증 에이전트를 어떤 서버에 설치해야 합니까?",
+  "choices": {
+   "A": "Server4",
+   "B": "Server2",
+   "C": "Server1",
+   "D": "Server3"
+  },
+  "explanation": "고가용성을 위해 추가 독립 실행형 통과 인증 에이전트는 Azure AD Connect 서버가 아닌 다른 서버에서 실행해야 합니다. 인증 에이전트는 아웃바운드 인터넷 액세스가 필요하므로 도메인 컨트롤러 중 하나에 설치하면 보안 정책에 위배됩니다. 할당되지 않은 멤버 서버라면 도메인 컨트롤러에 불필요한 소프트웨어를 설치하지 않고 필요한 추가 에이전트를 호스팅할 수 있습니다."
+ },
+ "431": {
+  "stem": "`contoso.com` SMTP 주소 공간을 사용하는 Microsoft Exchange 조직이 있습니다.\n\n여러 사용자가 `contoso.com` 이메일 주소로 Microsoft Entra에 셀프 서비스 등록합니다.\n\n셀프 등록한 사용자가 포함된 Microsoft Entra 테넌트의 Global Administrator 권한을 확보합니다.\n\n사용자가 Microsoft 365 서비스에 대한 셀프 서비스 등록을 통해 `contoso.com` Microsoft Entra 테넌트에 사용자 계정을 만들지 못하게 해야 합니다.\n\n어떤 PowerShell cmdlet을 실행해야 합니까?",
+  "choices": {
+   "A": "Update-MgPolicyAuthorizationPolicy",
+   "B": "Update-MgDomain",
+   "C": "Update-MgPolicyPermissionGrantPolicyExclude",
+   "D": "Update-MgDomainFederationConfiguration"
+  },
+  "explanation": "Microsoft Entra는 이메일 확인 사용자가 테넌트에 참여할 수 있는지, 사용자가 이메일 기반 구독에 등록할 수 있는지를 권한 부여 정책(authorization policy)으로 제어합니다. `Update-MgPolicyAuthorizationPolicy`가 그 정책을 업데이트하며, 해당 셀프 서비스 등록 속성을 `false`로 설정하면 이 과정을 통한 이메일 확인 계정 생성이 차단됩니다."
+ },
+ "432": {
+  "stem": "Microsoft 365 테넌트와 `adatum.com`이라는 Active Directory 도메인이 있습니다. 기본 설정(Express Settings)으로 Azure AD Connect를 배포합니다.\n\n다음 요구 사항을 충족하도록 셀프 서비스 암호 재설정(SSPR)을 구성합니다.\n\n- 사용자가 암호를 재설정할 때 모바일 앱 알림에 응답하거나 미리 정의된 보안 질문 세 개에 답해야 합니다.\n- 암호가 어디서 재설정되었든 테넌트와 도메인 간에 동기화되어야 합니다.\n\n무엇을 해야 합니까?",
+  "blanks": {
+   "sspr_blade": {
+    "label": "Azure Active Directory 관리 센터의 암호 재설정 블레이드에서 구성:",
+    "options": [
+     "인증 방법",
+     "알림",
+     "속성",
+     "등록"
+    ]
+   },
+   "connect_feature": {
+    "label": "Azure AD Connect에서 사용하도록 설정:",
+    "options": [
+     "Active Directory Federation Services(AD FS)와의 페더레이션",
+     "통과 인증",
+     "암호 해시 동기화",
+     "암호 쓰기 저장"
+    ]
+   }
+  },
+  "explanation": "SSPR 인증 방법은 Microsoft Authenticator 알림과 보안 질문을 포함해 사용자가 등록하고 사용할 수 있는 확인 방법을 제어합니다. Azure AD Connect의 암호 쓰기 저장은 SSPR로 변경하거나 재설정한 암호를 온-프레미스 Active Directory에 다시 기록합니다. 기본 설정은 온-프레미스에서 클라우드 방향으로 이미 암호 해시 동기화를 사용합니다."
+ },
+ "433": {
+  "stem": "온-프레미스 네트워크에 Active Directory Domain Services(AD DS) 도메인과 CA1이라는 인증 기관(CA)이 있습니다.\n\nAzure AD 테넌트가 있습니다.\n\nAzure AD에서 인증서 기반 인증을 구현해야 합니다. 사용자가 CA1이 발급한 인증서로 로그인할 수 있어야 합니다. 먼저 무엇을 해야 합니까?",
+  "choices": {
+   "A": "Azure Key Vault를 배포합니다.",
+   "B": "CA1을 Microsoft Entra ID 테넌트에 인증 기관으로 추가합니다.",
+   "C": "CA1에 대해 자동 등록을 사용하도록 설정합니다.",
+   "D": "Windows Hello 비즈니스용을 배포합니다."
+  },
+  "explanation": "Microsoft Entra 인증서 기반 인증은 발급 CA 체인이 테넌트에서 신뢰할 수 있도록 구성된 경우에만 사용자 인증서를 검증합니다. CA1을 인증 기관으로 추가하면 그 신뢰가 설정됩니다. Key Vault, 자동 등록, Windows Hello 비즈니스용은 Azure AD가 CA1이 발급한 인증서를 검증하도록 구성하지 않습니다."
+ },
+ "434": {
+  "stem": "*(참고: 원본 사이트에 사례 연구 본문이 빠진 문항입니다. 해설로 보면 Microsoft Sentinel로 다단계 공격을 탐지해야 하는 모니터링 요구 사항입니다.)*\n\n모니터링 요구 사항을 충족하도록 다단계(multistage) 공격 탐지를 구성해야 합니다.\n\n무엇을 해야 합니까?",
+  "choices": {
+   "A": "Microsoft Sentinel 규칙 논리를 사용자 지정합니다.",
+   "B": "통합 문서를 만듭니다.",
+   "C": "Microsoft Sentinel 데이터 커넥터를 추가합니다.",
+   "D": "Microsoft Sentinel 플레이북을 추가합니다."
+  },
+  "explanation": "Microsoft Sentinel의 Fusion 기능은 **고급 다단계 공격 탐지(Advanced Multistage Attack Detection)** 분석 규칙을 통해 다단계 공격을 탐지합니다. 그 규칙을 구성하면 환경에 맞게 상태, 포함할 원본 신호, 탐지 패턴을 제어할 수 있습니다. 통합 문서는 시각화, 데이터 커넥터는 수집, 플레이북은 대응 작업 자동화를 제공합니다."
+ },
+ "435": {
+  "stem": "Microsoft 365 테넌트가 있습니다.\n\n사용자들이 때때로 자신의 Microsoft 365 데이터에 제한된 액세스가 필요한 외부 타사 애플리케이션을 사용합니다. 사용자는 이 애플리케이션을 Azure AD에 등록합니다.\n\n등록된 애플리케이션에 사용자 이메일에 대한 읽기 및 쓰기 액세스 권한이 부여되면 경고를 받아야 합니다.\n\n무엇을 해야 합니까?",
+  "blanks": {
+   "tool": {
+    "label": "사용할 도구:",
+    "options": [
+     "Azure AD Identity Protection",
+     "Identity Governance",
+     "Microsoft Defender for Cloud Apps",
+     "Microsoft Endpoint Manager"
+    ]
+   },
+   "policy": {
+    "label": "만들 정책 유형:",
+    "options": [
+     "앱 검색",
+     "앱 보호",
+     "조건부 액세스",
+     "OAuth 앱",
+     "로그인 위험",
+     "사용자 위험"
+    ]
+   }
+  },
+  "explanation": "Microsoft Defender for Cloud Apps는 Entra ID에 등록된 OAuth 앱을 모니터링하고, 사서함 데이터에 대한 읽기 및 쓰기 액세스 같은 지정된 권한 조건을 앱이 충족하면 경고하는 OAuth 앱 정책을 만들 수 있습니다."
+ },
+ "436": {
+  "stem": "다음 표의 개체가 포함된 Azure Active Directory(Azure AD) 테넌트가 있습니다.\n\n[[IMG1]]\n\nAzure AD 역할에 대해 Azure AD Privileged Identity Management(PIM)에서 적격(eligible)으로 추가할 수 있는 개체는 무엇입니까?",
+  "choices": {
+   "A": "User1, Guest1, Identity1",
+   "B": "User1과 Guest1만",
+   "C": "User1만",
+   "D": "User1과 Identity1만"
+  },
+  "explanation": "게스트 사용자를 포함한 사용자 개체는 PIM에서 Microsoft Entra ID 역할에 대해 적격으로 만들 수 있습니다. 관리 ID는 서비스 주체이며, 서비스 주체는 PIM에서 Microsoft Entra 역할에 대해 적격으로 할당할 수 없고 기간 제한 활성 할당만 받을 수 있습니다."
+ },
+ "437": {
+  "stem": "Microsoft Defender for Cloud Apps와 조건부 액세스 정책을 사용하는 Microsoft 365 E5 구독이 있습니다.\n\n사용자가 높은 위험으로 평가되면 클라우드 앱에 대한 액세스를 차단해야 합니다.\n\nMicrosoft Defender for Cloud Apps에서 어떤 정책 유형을 만들어야 합니까?",
+  "choices": {
+   "A": "앱 검색 정책",
+   "B": "OAuth 앱 정책",
+   "C": "활동 정책",
+   "D": "액세스 정책"
+  },
+  "explanation": "Microsoft Defender for Cloud Apps 액세스 정책은 조건부 액세스 앱 제어를 통해 클라우드 앱에 대한 사용자 액세스를 실시간으로 제어합니다. 위험 요소에 따라 특정 사용자와 앱의 액세스를 차단할 수 있는 반면, 활동 정책은 앱 내에서 수행되는 작업을 관리합니다."
+ },
+ "438": {
+  "stem": "Azure Active Directory(Azure AD)에 등록된 App1이라는 사용자 지정 클라우드 앱이 있습니다. App1은 그림과 같이 구성되어 있습니다.\n\n[[IMG1]]\n\n*(참고: 아래 빈칸 문장 번역 — \"[빈칸 1]이(가) 홈페이지 URL로 App1에 액세스할 수 있습니다. App1은 [빈칸 2]의 Microsoft Office 365 시작 관리자에 표시됩니다.\")*",
+  "blanks": {
+   "access": {
+    "label": "홈페이지 URL로 App1에 액세스할 수 있는 사용자",
+    "options": [
+     "모든 사용자",
+     "아무도 없음",
+     "소유자 블레이드에 나열된 사용자만",
+     "사용자 및 그룹 블레이드에 나열된 사용자만"
+    ]
+   },
+   "launcher": {
+    "label": "Microsoft Office 365 시작 관리자에 App1이 표시되는 사용자",
+    "options": [
+     "모든 사용자",
+     "아무도 없음",
+     "소유자 블레이드에 나열된 사용자만",
+     "사용자 및 그룹 블레이드에 나열된 사용자만"
+    ]
+   }
+  },
+  "explanation": "사용자 할당이 필요하지 않으면 모든 사용자가 엔터프라이즈 애플리케이션에 로그인할 수 있습니다. 표시 여부를 예로 설정하면 앱이 할당된 사용자에게만 내 앱과 Microsoft 365 시작 관리자에 표시되므로, 할당이 없으면 아무에게도 표시되지 않습니다."
+ },
+ "439": {
+  "stem": "Azure 구독이 있습니다.\n\nAzure AD 로그가 Log Analytics 작업 영역으로 전송됩니다.\n\n로그를 쿼리하여 사용자별 로그인 횟수를 그래프로 표시해야 합니다.\n\n쿼리를 어떻게 완성해야 합니까?",
+  "blanks": {
+   "op1": {
+    "label": "연산자 1",
+    "options": [
+     "extend",
+     "print",
+     "project",
+     "render",
+     "summarize"
+    ]
+   },
+   "op2": {
+    "label": "연산자 2",
+    "options": [
+     "extend",
+     "print",
+     "project",
+     "render",
+     "summarize"
+    ]
+   }
+  },
+  "explanation": "summarize 연산자는 count()를 사용하고 Identity로 그룹화하여 성공한 로그인 레코드를 집계해 사용자별 로그인 횟수를 만듭니다. 그런 다음 render 연산자가 그 결과를 세로 막대형 차트로 표시합니다."
+ }
+}

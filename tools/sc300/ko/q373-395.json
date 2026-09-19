@@ -1,0 +1,133 @@
+{
+"374": {
+ "stem": "*(참고: ADatum 사례 연구(Q129 참조) 문항입니다. 기술 요구 사항: \"사용자에게 MFA 등록 메시지를 표시하되, 유예 기간 동안 등록을 건너뛸 수 있는 옵션이 있어야 한다.\")*\n\n계획된 변경 사항을 지원하고 MFA 기술 요구 사항을 충족해야 합니다.\n\n어떤 기능을 사용해야 하며, 사용자가 등록을 완료하기까지 얼마나 시간이 있습니까?",
+ "blanks": {
+  "feature": {"label": "기능:", "options": ["인증 방법 정책", "조건부 액세스 정책", "MFA 등록 정책", "Multi-Factor Authentication Server 설정"]},
+  "grace_period": {"label": "유예 기간:", "options": ["7일", "14일", "28일"]}
+ },
+ "explanation": "MFA 등록 정책은 MFA 등록 프롬프트와 그 유예 기간을 제어합니다. 사용자는 등록이 필수가 되기 전 14일 동안 MFA 등록을 미룰 수 있습니다."
+},
+"375": {
+ "stem": "User1이라는 사용자가 포함된 Microsoft 365 E5 구독이 있습니다.\n\nUser1이 Azure AD 역할에 대한 액세스 검토를 만들 수 있도록 해야 합니다. 최소 권한 원칙을 따라야 합니다.\n\nUser1에게 어떤 역할을 할당해야 합니까?",
+ "choices": {"A": "Privileged role administrator", "B": "Identity Governance Administrator", "C": "User administrator", "D": "User Access Administrator"},
+ "explanation": "Privileged Identity Management에서 Microsoft Entra ID(Azure AD) 역할에 대한 액세스 검토를 만들려면 최소 Privileged Role Administrator 역할이 필요합니다. User Access Administrator는 Microsoft Entra 역할이 아니라 Azure 리소스 역할의 액세스 검토와 관련이 있습니다."
+},
+"376": {
+ "stem": "Package1이라는 액세스 패키지와 User1이라는 사용자가 포함된 Azure AD 테넌트가 있습니다. Package1은 다음 그림과 같이 구성되어 있습니다.\n\n[[IMG1]]\n\nUser1이 Package1의 검토 빈도를 변경할 수 있도록 해야 합니다. 최소 권한 원칙을 따라야 합니다.\n\nUser1에게 어떤 역할을 할당해야 합니까?",
+ "choices": {"A": "Security administrator", "B": "Privileged role administrator", "C": "External Identity Provider administrator", "D": "User administrator"},
+ "explanation": "검토 빈도는 액세스 패키지 할당 정책의 액세스 검토 수명 주기 설정의 일부로 구성됩니다. 이 시나리오에 적용되는 Azure AD 역할 모델에서 User Administrator 역할은 더 넓은 관리 역할보다 적은 권한으로 그 설정을 관리할 수 있는 능력을 제공하며, 나머지 나열된 역할은 액세스 패키지 검토 구성이 아니라 보안, 권한 있는 역할 할당, 외부 ID 공급자를 관리합니다."
+},
+"377": {
+ "stem": "User1이라는 사용자와 Vault1이라는 Azure Key Vault가 포함된 Azure 구독이 있습니다.\n\nUser1이 Vault1에 저장된 인증서, 키, 비밀의 메타데이터를 읽을 수 있도록 해야 합니다. 최소 권한 원칙을 따라야 합니다.\n\nUser1에게 어떤 역할을 할당해야 합니까?",
+ "choices": {"A": "Key Vault Secrets User", "B": "Key Vault Crypto User", "C": "Key Vault Reader", "D": "Key Vault Crypto Officer"},
+ "explanation": "Key Vault Reader 역할은 Key Vault와 그 인증서, 키, 비밀의 메타데이터 읽기를 허용하지만 비밀 내용이나 키 자료 같은 민감한 값에 대한 액세스는 허용하지 않습니다. 이는 최소 권한으로 정확히 필요한 읽기 전용 메타데이터 액세스를 제공합니다."
+},
+"378": {
+ "stem": "Microsoft 365 E5 구독과 Azure 구독이 있습니다.\n\nAzure Monitor를 사용하여 Microsoft Entra 로그인 로그를 분석할 계획입니다.\n\nMicrosoft Entra 진단 설정을 구성해야 합니다.\n\n로그인 로그에 대해 어떤 대상을 구성해야 합니까?",
+ "choices": {"A": "Azure 이벤트 허브", "B": "Azure SQL 데이터베이스", "C": "Log Analytics 작업 영역", "D": "Azure Storage 계정"},
+ "explanation": "Microsoft Entra 로그인 로그를 Azure Monitor 로그와 통합하여 쿼리하고 분석하려면 Log Analytics 작업 영역으로 보내야 합니다. Microsoft의 구성 지침은 이 통합을 위해 **Log Analytics 작업 영역으로 보내기**를 선택하도록 안내합니다."
+},
+"379": {
+ "stem": "User1이라는 사용자와 App1이라는 등록된 앱이 포함된 Azure AD 테넌트가 있습니다.\n\nUser1이 App1의 앱 등록을 삭제합니다.\n\n앱 등록을 복원해야 합니다.\n\n삭제 후 앱 등록을 복원할 수 있는 최대 일수는 며칠입니까?",
+ "choices": {"A": "14", "B": "30", "C": "60", "D": "180"},
+ "explanation": "삭제된 애플리케이션 등록은 30일 동안 일시 삭제되어 복원 가능한 상태로 남습니다. 30일이 지나면 영구 삭제되어 등록을 복원할 수 없습니다."
+},
+"380": {
+ "stem": "다음 표의 사용자가 포함된 Microsoft 365 구독이 있습니다.\n\n[[IMG1]]\n\n테넌트의 그룹에 대한 명명 정책을 구성합니다.\n\n명명 정책의 영향을 받는 사용자는 누구입니까?",
+ "choices": {"A": "User2만", "B": "User3만", "C": "User2와 User3만", "D": "User3과 User4만", "E": "User1, User2, User3만", "F": "User1, User2, User3, User4"},
+ "explanation": "Microsoft 365 그룹 명명 정책은 Global Administrator와 User Administrator를 면제합니다. Groups Administrator는 명명 정책을 구성할 수 있지만 면제 역할이 아니며, 나열된 관리 역할이 없는 사용자도 정책의 적용을 받습니다."
+},
+"381": {
+ "stem": "Azure Active Directory(Azure AD) 테넌트에 다음 표의 그룹이 포함되어 있습니다.\n\n[[IMG1]]\n\nAzure AD에서 App1이라는 새 엔터프라이즈 애플리케이션을 만듭니다. App1에 할당할 수 있는 그룹은 무엇입니까?",
+ "choices": {"A": "Group1만", "B": "Group2만", "C": "Group3만", "D": "Group1과 Group4", "E": "Group1과 Group3"},
+ "explanation": "Microsoft Entra ID에서 엔터프라이즈 애플리케이션에 대한 그룹 기반 할당은 보안 그룹과 SecurityEnabled 속성이 true로 설정된 Microsoft 365 그룹에 대해서만 지원됩니다. 메일 그룹과 기타 지원되지 않는 그룹 유형은 할당할 수 없습니다. 보안 그룹인 Group1과 Microsoft 365 그룹인 Group3은 이 요구 사항을 충족하지만 나머지 그룹은 그렇지 않습니다."
+},
+"382": {
+ "stem": "VM1이라는 가상 머신이 포함된 Sub1이라는 Azure 구독이 있습니다.\n\nVM1에 대해 Microsoft Entra 로그인을 사용하도록 설정하고 VM1이 Sub1의 리소스에 액세스하도록 구성해야 합니다.\n\nVM1에 어떤 ID 유형을 할당해야 합니까?",
+ "choices": {"A": "Microsoft Entra 사용자 계정", "B": "사용자 할당 관리 ID", "C": "Azure Automation 계정", "D": "시스템 할당 관리 ID"},
+ "explanation": "Azure VM에서 Microsoft Entra 로그인을 사용하려면 Microsoft Entra 로그인 VM 확장을 설치하기 전에 시스템 할당 관리 ID가 필요합니다. 그 ID는 VM1에 묶여 있으며 Sub1의 리소스에 대한 Azure RBAC 역할을 부여받을 수 있어, VM 워크로드가 Microsoft Entra 토큰을 얻어 권한 있는 리소스에 액세스할 수 있습니다."
+},
+"383": {
+ "stem": "storage1이라는 스토리지 계정이 포함된 Sub1이라는 Azure 구독이 있습니다.\n\n다음 구성으로 App1과 App2라는 두 앱을 배포해야 합니다.\n\n- App1은 Sub1에 등록된 앱으로 배포됩니다.\n- App1은 Microsoft Entra 인증을 사용하여 storage1에 액세스합니다.\n- App2는 단일 Microsoft Entra ID를 사용하여 storage1에 액세스합니다.\n- App2는 VM1과 VM2라는 두 새 가상 머신에서 호스팅됩니다.\n\n관리 작업을 최소화해야 합니다.\n\n각 앱은 storage1에 액세스하는 데 어떤 ID 유형을 사용합니까?",
+ "blanks": {
+  "app1": {"label": "App1:", "options": ["사용자 할당 관리 ID", "Microsoft Entra 그룹 계정", "Microsoft Entra 사용자 계정", "서비스 주체", "시스템 할당 관리 ID"]},
+  "app2": {"label": "App2:", "options": ["사용자 할당 관리 ID", "Microsoft Entra 그룹 계정", "Microsoft Entra 사용자 계정", "서비스 주체", "시스템 할당 관리 ID"]}
+ },
+ "explanation": "등록된 Microsoft Entra 애플리케이션은 인증과 권한 부여를 위한 애플리케이션의 ID를 제공하는 서비스 주체로 표현됩니다. 사용자 할당 관리 ID는 여러 리소스에 할당할 수 있어 VM1과 VM2가 스토리지 액세스에 하나의 ID를 공유할 수 있습니다. 시스템 할당 ID는 단일 리소스에 묶여 있습니다."
+},
+"384": {
+ "stem": "Vault1이라는 Azure Key Vault와 Automation1이라는 Azure Automation 계정이 포함된 Sub1이라는 Azure 구독이 있습니다.\n\n다음 요구 사항을 충족하면서 Automation1이 Vault1에 액세스할 수 있도록 합니다.\n\n- Automation1이 삭제되면 Vault1에 부여된 권한이 자동으로 제거됩니다.\n- Automation1에서 만든 Runbook이 Vault1에 저장된 비밀 값을 읽을 수 있습니다.\n- 최소 권한 원칙을 따릅니다.\n\nAutomation1에 무엇을 구성해야 하며, Vault1 액세스에 어떤 기본 제공 역할을 사용해야 합니까?",
+ "blanks": {
+  "identity": {"label": "Automation1에 구성할 것:", "options": ["서비스 계정", "시스템 할당 관리 ID", "사용자 할당 관리 ID", "앱 등록", "엔터프라이즈 애플리케이션"]},
+  "role": {"label": "역할:", "options": ["Key Vault Crypto Officer", "Key Vault Crypto User", "Key Vault Reader", "Key Vault Secrets Officer", "Key Vault Secrets User"]}
+ },
+ "explanation": "시스템 할당 관리 ID는 Automation1에 바인딩되며 리소스와 함께 삭제됩니다. Key Vault Secrets User는 Key Vault Reader와 달리 비밀 내용 읽기를 허용하며, Key Vault Secrets Officer의 더 넓은 비밀 관리 권한은 부여하지 않습니다."
+},
+"385": {
+ "stem": "다음 표의 사용자가 포함된 Microsoft 365 E5 구독이 있습니다.\n\n[[IMG1]]\n\n사용자에게는 다음 표의 역할이 있습니다.\n\n[[IMG2]]\n\nUser1과 User4가 암호를 재설정할 수 있는 사용자를 식별하세요.",
+ "blanks": {
+  "user1": {"label": "User1:", "options": ["User3만", "User2와 User5만", "User3과 User5만", "User2, User3, User5만", "User3, User4, User5만", "User2, User3, User4, User5"]},
+  "user4": {"label": "User4:", "options": ["User3만", "User2와 User3만", "User3과 User5만", "User1, User2, User3만"]}
+ },
+ "explanation": "Microsoft의 암호 재설정 권한 표에 따르면 Password Administrator는 관리 역할이 없는 사용자 또는 Directory Readers, Guest Inviter, Password Administrator 역할이 있는 사용자의 암호만 재설정할 수 있습니다. 그 외의 역할(Global Reader 등)은 Privileged Authentication Administrator나 Global Administrator만 재설정할 수 있습니다. User1은 테넌트 범위 Password Administrator이므로 User3(역할 없음), User5(역할 없음), User4(Password Administrator)는 재설정할 수 있지만 User2(Global Reader)는 재설정할 수 없어 'User3, User4, User5만'입니다. User4는 AU1 범위의 Password Administrator이므로 AU1 구성원(User1, User2, User3)에게만 작업할 수 있고 User5는 범위 밖입니다. User2(Global Reader)는 Password Administrator가 재설정할 수 없으므로 유효한 대상은 User3뿐이며, 답은 'User3만'입니다."
+},
+"386": {
+ "stem": "Microsoft Entra 테넌트에 연결된 Azure 구독이 있습니다. 테넌트에는 다음 표의 그룹이 포함되어 있습니다.\n\n[[IMG1]]\n\nPrivileged Identity Management(PIM)를 사용하여 관리할 수 있는 그룹은 무엇입니까?",
+ "choices": {"A": "Group2만", "B": "Group1과 Group2만", "C": "Group2와 Group4만", "D": "Group1, Group2, Group3만", "E": "Group1, Group2, Group3, Group4"},
+ "explanation": "PIM for Groups는 역할 할당 가능 여부와 관계없이 모든 Microsoft Entra 보안 그룹 또는 Microsoft 365 그룹의 JIT 멤버 자격이나 소유권을 관리할 수 있습니다. 동적 멤버 자격 그룹과 온-프레미스 환경에서 동기화된 그룹만 제외되며, 네 그룹 중 어느 것에도 그런 제한이 표시되어 있지 않습니다. [Microsoft Learn: PIM for Groups](https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/concept-pim-for-groups)"
+},
+"387": {
+ "stem": "개별 Microsoft Office 365 Enterprise E3 라이선스가 할당된 사용자 2,500명이 있습니다.\n\nAzure Active Directory 관리 센터의 **그룹** 블레이드에서 모든 사용자가 포함된 그룹에 Microsoft Office 365 Enterprise E5 라이선스를 할당합니다.\n\n최소한의 관리 작업으로 사용자에게서 Office 365 Enterprise E3 라이선스를 제거해야 합니다.\n\n무엇을 사용해야 합니까?",
+ "choices": {"A": "Update-MgGroup cmdlet", "B": "Azure Active Directory 관리 센터의 라이선스 블레이드", "C": "Set-WindowsProductKey cmdlet", "D": "Azure Active Directory 관리 센터의 관리 단위 블레이드"},
+ "explanation": "Microsoft Entra 그룹 기반 라이선스는 그룹 멤버 자격을 통해 E5 권한을 추가하지만 기존 직접 E3 할당을 제거하지는 않습니다. 라이선스 블레이드는 라이선스 할당 해제를 포함한 중앙 집중식 라이선스 할당 관리를 제공하므로, 직접 E3 할당을 대규모로 제거하는 데 적합한 저관리 방법입니다."
+},
+"388": {
+ "stem": "Sub1이라는 Azure 구독이 있습니다.\n\nMicrosoft Entra Permissions Management를 온보딩할 계획입니다.\n\n최소 권한 원칙을 따르면서 Permissions Management 사용자가 Sub1의 역할 할당을 관리할 수 있도록 해야 합니다.\n\n어떤 역할을 할당해야 하며, 어떤 ID에 할당해야 합니까?",
+ "blanks": {
+  "role": {"label": "역할:", "options": ["Contributor", "Reader", "Security Admin", "User Access Administrator"]},
+  "identity": {"label": "ID:", "options": ["Azure Credential Configuration Endpoint Service", "Cloud Infrastructure Entitlements Management", "Microsoft Azure Management"]}
+ },
+ "explanation": "User Access Administrator Azure RBAC 역할은 광범위한 리소스 관리 권한 없이 역할 할당을 관리할 권한을 부여하므로 최소 권한을 충족합니다. 이를 Sub1 범위에서 Microsoft Entra Permissions Management가 사용하는 Cloud Infrastructure Entitlements Management 서비스 ID에 할당합니다."
+},
+"389": {
+ "stem": "다음 표의 리소스가 포함된 Azure 구독이 있습니다.\n\n[[IMG1]]\n\nUser1이라는 Microsoft Entra 사용자를 만듭니다.\n\nVM1과 App1에 추가할 수 있는 ID는 무엇입니까?",
+ "blanks": {
+  "vm1": {"label": "VM1:", "options": ["User1만", "Managed2만", "Managed1과 Managed2만", "Managed2와 User1만", "Managed1, Managed2, User1"]},
+  "app1": {"label": "App1:", "options": ["User1만", "Managed2만", "Managed2와 User1만", "시스템 할당 관리 ID만", "시스템 할당 관리 ID와 Managed2만", "시스템 할당 관리 ID, Managed2, User1"]}
+ },
+ "explanation": "Microsoft Entra 사용자는 Azure 리소스에 할당할 수 있는 관리 ID가 아닙니다. 사용자 할당 관리 ID는 가상 머신과 App Service 앱에 할당할 수 있는 독립 실행형 Azure 리소스이며, VM은 여러 사용자 할당 ID를 가질 수 있습니다. App Service 앱은 자체 시스템 할당 ID를 사용자 할당 ID와 함께 사용할 수도 있습니다."
+},
+"390": {
+ "stem": "Microsoft Entra Permissions Management에 온보딩된 Azure 구독이 있습니다.\n\n다음 작업을 수행해야 합니다.\n\n- 청구 대상 Azure 리소스를 식별합니다.\n- 사용하지 않는 리소스의 권한을 제거하는 규칙을 만듭니다.\n\nEntra Permissions Management 포털에서 어떤 두 옵션을 사용해야 합니까?\n\n[[IMG1]]",
+ "answerText": "",
+ "explanation": "Settings는 권한 부여 시스템의 청구 대상 리소스(Billable resources) 보기를 제공합니다. Autopilot은 Azure 애플리케이션과 관리 ID에서 사용하지 않는 권한을 제거하는 규칙을 포함한 권한 수정 규칙을 만듭니다."
+},
+"391": {
+ "stem": "Microsoft 365 테넌트가 있습니다.\n\n조건부 액세스 정책을 Conditional Access policy 그림과 같이 구성합니다. (**Conditional Access policy** 탭을 선택하세요.)\n\n[[IMG1]]\n\nRole setting details 그림의 User administrator 역할 설정을 검토합니다. (**Role setting details** 탭을 선택하세요.)\n\n[[IMG2]]\n\nRole assignments 그림의 User administrator 역할 할당을 검토합니다. (**Role assignments** 탭을 선택하세요.)\n\n[[IMG3]]\n\n아래 각 문장이 참이면 **예**, 그렇지 않으면 **아니요**를 선택하세요.",
+ "statements": ["Admin1이 User administrator 역할이 필요한 작업을 수행하기 전에 승인자가 활성화 요청을 승인해야 한다.", "Admin2는 2시간 동안 User administrator 역할 활성화를 요청할 수 있다.", "Admin3이 Azure Active Directory 관리 센터에 연결한 다음 User administrator 역할을 활성화하면 다단계 인증(MFA)으로 두 번 인증하라는 메시지가 표시된다."],
+ "explanation": "PIM 역할 설정은 해당 역할의 모든 할당에 적용됩니다. 승인을 요구하면 적격 사용자의 활성화 요청은 승인자가 승인할 때까지 보류되고, 2시간 활성화는 구성된 최대 8시간보다 짧으므로 유효합니다. 조건부 액세스와 PIM 모두 MFA를 요구하지만 PIM은 세션당 한 번만 MFA를 요구하며, 세션에 이미 설정된 MFA 클레임이 있으면 두 번째 프롬프트가 표시되지 않습니다."
+},
+"392": {
+ "stem": "Azure AD 테넌트가 있습니다.\n\n다음 설정으로 셀프 서비스 암호 재설정(SSPR)을 구성합니다.\n\n- 로그인 시 사용자 등록 필요: 예\n- 재설정에 필요한 방법 수: 1\n\n사용자가 사용할 수 있는 인증 방법은 무엇입니까?",
+ "choices": {"A": "FIDO2 보안 토큰", "B": "모바일 앱 코드", "C": "Microsoft Teams 채팅", "D": "Windows Hello PIN"},
+ "explanation": "모바일 앱 코드는 지원되는 SSPR 인증 방법입니다. 암호 재설정에 방법 하나가 필요할 때 사용할 수 있는 모바일 앱 옵션은 확인 코드입니다."
+},
+"393": {
+ "stem": "Microsoft 365 구독이 있습니다.\n\nGlobal Secure Access 보안 프로필을 사용하는 조건부 액세스 정책을 만들어야 합니다. 사용자가 URL에 `gambling`이라는 단어가 포함된 웹 사이트에 액세스하지 못하게 해야 합니다.\n\n먼저 무엇을 해야 합니까?",
+ "choices": {"A": "웹 콘텐츠 필터링 정책을 만듭니다.", "B": "명명된 위치를 만듭니다.", "C": "적응형 액세스 설정을 구성합니다.", "D": "네트워크 보안 그룹(NSG)을 만듭니다."},
+ "explanation": "Global Secure Access 보안 프로필에는 연결된 웹 콘텐츠 필터링 정책이 포함되며, 그 프로필은 조건부 액세스를 통해 할당할 수 있습니다. 웹 콘텐츠 필터링 정책이 URL 기반 필터링 규칙을 제공하므로, 조건부 액세스가 사용하는 보안 프로필에 연결하기 전에 먼저 만들어야 합니다."
+},
+"394": {
+ "stem": "회사에 contoso.com이라는 Azure Active Directory(Azure AD) 테넌트가 있습니다. 회사에는 Fabrikam, Inc.라는 비즈니스 파트너가 있습니다.\n\nFabrikam은 Azure AD를 사용하며 fabrikam.com과 litwareinc.com이라는 두 개의 확인된 도메인 이름이 있습니다. 두 도메인 모두 Fabrikam 이메일 주소에 사용됩니다.\n\nFabrikam 사용자만 사용할 수 있는 package1이라는 액세스 패키지를 만들 계획입니다. Fabrikam에 대한 연결된 조직을 만듭니다.\n\npackage1이 fabrikam.com 이메일 주소를 가진 사용자만 액세스할 수 있도록 해야 합니다. 무엇을 해야 합니까?",
+ "blanks": {
+  "allow_fabrikam": {"label": "fabrikam.com 이메일 주소 사용자의 액세스를 허용하려면 구성:", "options": ["Identity Governance의 액세스 패키지 할당", "Identity Governance의 액세스 패키지 정책", "Azure AD의 조건부 액세스 정책", "Azure AD의 외부 협업 설정"]},
+  "block_litwareinc": {"label": "litwareinc.com 이메일 주소 사용자의 액세스를 차단하려면 구성:", "options": ["Identity Governance의 액세스 패키지 할당", "Identity Governance의 액세스 패키지 정책", "Azure AD의 조건부 액세스 정책", "Azure AD의 외부 협업 설정"]}
+ },
+ "explanation": "액세스 패키지 정책은 어떤 외부 연결된 조직이 액세스 패키지를 요청할 수 있는지 제어합니다. 외부 협업 설정은 이메일 도메인에 대한 B2B 허용 목록 또는 차단 목록을 지원하므로, litwareinc.com에 대한 초대를 거부하면 그 도메인 사용자는 초대받지 못하고 fabrikam.com 주소를 가진 Fabrikam 사용자는 허용됩니다."
+},
+"395": {
+ "stem": "다음 그림의 외부 사용자가 포함된 Azure AD 테넌트가 있습니다.\n\n[[IMG1]]\n\n사용자의 이메일 주소를 업데이트합니다.\n\n사용자가 업데이트된 이메일 주소로 인증할 수 있도록 해야 합니다.\n\n사용자에 대해 무엇을 해야 합니까?",
+ "choices": {"A": "인증 방법 설정을 수정합니다.", "B": "암호를 재설정합니다.", "C": "활성 세션을 해지합니다.", "D": "초대 수락(redemption) 상태를 재설정합니다."},
+ "explanation": "Microsoft Entra B2B 게스트가 다른 이메일 주소로 로그인하려면 이메일을 업데이트한 후 게스트의 초대 수락 상태를 재설정해야 합니다. 그러면 사용자가 기존 게스트 개체, 그룹 멤버 자격, 앱 할당을 바꾸지 않고 새 초대를 수락하고 새 이메일 주소로 로그인할 수 있습니다."
+}
+}

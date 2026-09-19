@@ -1,0 +1,88 @@
+{
+"57": {
+ "stem": "HOTSPOT -\n\nMicrosoft 365 테넌트가 있습니다.\n\n고위험 국가 목록이 포함된 HighRiskCountries라는 명명된 위치를 만듭니다.\n\n고위험 국가에서 연결할 때 사용자가 인증 상태를 유지할 수 있는 시간을 제한해야 합니다.\n\n조건부 액세스 정책에서 무엇을 구성해야 합니까?",
+ "blanks": {
+  "high_risk_countries": {"label": "HighRiskCountries를 구성하는 데 사용할 것:", "options": ["클라우드 앱 또는 작업", "조건", "허용 제어", "세션 제어"]},
+  "sign_in_frequency": {"label": "로그인 빈도를 구성하는 데 사용할 것:", "options": ["클라우드 앱 또는 작업", "조건", "허용 제어", "세션 제어"]}
+ },
+ "explanation": "명명된 위치는 조건부 액세스의 위치/네트워크 조건을 통해 포함합니다. 로그인 빈도는 사용자가 언제 다시 인증해야 하는지 지정하는 세션 제어입니다."
+},
+"58": {
+ "stem": "Automation1이라는 Azure Automation 계정이 포함된 Azure 구독이 있습니다.\n\nAutomation1에 Azure 리소스에 대한 액세스 권한을 제공해야 합니다. 다음 요구 사항을 충족해야 합니다.\n\n- 계정이 삭제되면 Automation1에 부여된 모든 권한이 제거되어야 합니다.\n- 관리 작업을 최소화해야 합니다.\n\n무엇을 사용해야 합니까?",
+ "choices": {"A": "클라이언트 비밀", "B": "시스템 할당 관리 ID", "C": "인증서", "D": "사용자 할당 관리 ID"},
+ "explanation": "시스템 할당 관리 ID는 단일 Azure 리소스에 직접 연결되며 그 리소스의 수명 주기를 따릅니다. Automation 계정이 삭제되면 Azure가 ID를 삭제하므로, 인증하거나 부여된 Azure RBAC 권한을 사용할 수 없게 됩니다. 관리 ID는 클라이언트 비밀이나 인증서 자격 증명을 관리할 필요도 없앱니다."
+},
+"59": {
+ "stem": "HOTSPOT -\n\nMicrosoft Entra 테넌트에 연결된 Sub1이라는 Azure 구독이 있습니다. 테넌트에는 다음 표의 사용자가 포함되어 있습니다.\n\n[[IMG1]]\n\nSub1에는 RG1이라는 리소스 그룹이 있습니다.\n\n테넌트에는 다음 표의 그룹이 포함되어 있습니다.\n\n[[IMG2]]\n\nRG1에 VM1이라는 가상 머신을 배포합니다. VM1은 Windows Server를 실행하며 Microsoft Entra 로그인이 사용하도록 설정되어 있습니다.\n\n다음 각 문장이 참이면 예, 그렇지 않으면 아니요를 선택하세요.",
+ "statements": ["User1은 VM1에 로그인할 수 있다.", "User2는 VM1에 로그인할 수 있다.", "User3은 VM1에 로그인할 수 있다."],
+ "explanation": "Virtual Machine User Login은 Microsoft Entra가 사용하도록 설정된 VM에 일반 사용자 로그인을 허용합니다. 구독 범위의 역할 할당은 그 안의 리소스 그룹에 있는 리소스에 적용되고, 리소스 그룹 범위의 할당은 그 그룹의 VM에 적용되므로 User1과 User2는 로그인할 수 있습니다. Virtual Machine Contributor만으로는 VM 로그인 권한이 없으므로 User3은 로그인할 수 없습니다."
+},
+"60": {
+ "stem": "Windows 또는 Linux를 실행하는 온-프레미스 디바이스가 여러 대 있습니다.\n\nMicrosoft 365 E5 구독이 있습니다.\n\nMicrosoft Entra Internet Access를 구성합니다.\n\n모든 온-프레미스 디바이스가 Global Secure Access를 통해 인터넷에 액세스하도록 해야 합니다.\n\nMicrosoft Entra 관리 센터에서 무엇을 해야 합니까?",
+ "choices": {"A": "원격 네트워크를 만듭니다.", "B": "명명된 위치를 만듭니다.", "C": "액세스 패키지를 만듭니다.", "D": "Global Secure Access 클라이언트를 배포합니다."},
+ "explanation": "원격 네트워크는 고객 구내 장비에서 IPsec 또는 GRE 터널을 통해 온-프레미스 네트워크를 Global Secure Access에 연결하여, 각 디바이스에 클라이언트를 설치하지 않고도 사이트 수준의 트래픽 전달을 가능하게 합니다. 이는 Windows와 Linux가 혼합된 디바이스 환경을 지원합니다."
+},
+"61": {
+ "stem": "Microsoft 365 테넌트가 있습니다. 모든 사용자에게 Windows 10을 실행하는 컴퓨터가 있습니다. 대부분의 컴퓨터는 회사 소유이며 Azure Active Directory(Azure AD)에 조인되어 있습니다. 일부 컴퓨터는 사용자 소유이며 Azure AD에 등록만 되어 있습니다.\n\n사용자 소유 컴퓨터에서 Microsoft SharePoint Online에 액세스하는 사용자가 파일을 다운로드하거나 동기화하지 못하게 해야 합니다. 다른 사용자는 제한되지 **않아야** 합니다.\n\n어떤 정책 유형을 만들어야 합니까?",
+ "choices": {"A": "Microsoft Office 365 거버넌스 작업이 구성된 Microsoft Cloud App Security 활동 정책", "B": "세션 제어가 구성된 Azure AD 조건부 액세스 정책", "C": "클라이언트 앱 조건이 구성된 Azure AD 조건부 액세스 정책", "D": "거버넌스 작업이 구성된 Microsoft Cloud App Security 앱 검색 정책"},
+ "explanation": "Azure AD 조건부 액세스 세션 제어는 SharePoint Online의 앱 적용 제한(app-enforced restrictions)을 사용하여 관리되지 않는 디바이스를 다운로드·동기화 기능이 없는 브라우저 전용 액세스로 제한할 수 있습니다. 이렇게 하면 Azure AD 조인된 회사 소유 디바이스는 전체 액세스를 유지하고, Azure AD 등록된 사용자 소유 디바이스만 제한됩니다."
+},
+"62": {
+ "stem": "Microsoft Defender for Cloud Apps를 사용하는 Microsoft 365 E5 구독이 있습니다.\n\n어떤 사용자가 자신의 디바이스와 브라우저에서 Facebook에 액세스하는지 확인해야 합니다. 관리 작업을 최소화해야 합니다.\n\n먼저 무엇을 해야 합니까?",
+ "choices": {"A": "조건부 액세스 정책을 만듭니다.", "B": "Defender for Cloud Apps 액세스 정책을 만듭니다.", "C": "Microsoft Endpoint Manager에서 앱 구성 정책을 만듭니다.", "D": "Microsoft Defender for Cloud Apps 포털에서 Facebook을 승인 취소(unsanction)합니다."},
+ "explanation": "Defender for Cloud Apps에서 검색된 앱을 **승인되지 않음(Unsanctioned)**으로 표시하면 Cloud Discovery 필터로 그 앱의 사용을 더 쉽게 모니터링할 수 있습니다. Cloud Discovery는 앱 활동을 사용자·디바이스와 연결하므로, 새로운 액세스 정책, 조건부 액세스 정책, 디바이스 관리 정책을 만드는 관리 부담 없이 필요한 가시성을 제공합니다."
+},
+"63": {
+ "stem": "AU1이라는 관리 단위가 포함된 Microsoft Entra 테넌트가 있습니다. AU1은 할당된 멤버 자격을 사용합니다.\n\n테넌트에는 다음 표의 사용자가 포함되어 있습니다.\n\n[[IMG1]]\n\n테넌트에는 다음 표의 그룹이 포함되어 있습니다.\n\n[[IMG2]]\n\nAU1에 대해 다음 설정을 업데이트합니다.\n\n- 멤버 자격 유형: 동적 사용자\n- 동적 멤버 자격 규칙: `(user.department -eq \"hr\")`\n\n각 문장이 참이면 **예**, 그렇지 않으면 **아니요**를 선택하세요.",
+ "statements": ["HR은 AU1의 구성원이다.", "User1은 AU1의 구성원이다.", "User2는 AU1의 구성원이다."],
+ "explanation": "동적 사용자 관리 단위는 사용자 특성을 평가하며 그룹이 아닌 사용자의 동적 포함만 지원합니다. 따라서 HR 그룹은 포함되지 않습니다. User1의 HR 부서는 규칙과 일치하지만 User2의 IT 부서는 일치하지 않습니다."
+},
+"64": {
+ "stem": "Microsoft 365 E5 구독이 있습니다.\n\nReview1이라는 액세스 검토를 만듭니다. Review1은 Microsoft 365 그룹 소유자가 6개월마다 자기 그룹의 게스트 사용자 액세스를 검토하도록 요구합니다.\n\n그룹 소유자가 Review1 멤버 자격을 검토하지 않으면 게스트 사용자가 자동으로 제거되도록 해야 합니다.\n\nReview1에 대해 어떤 설정을 구성해야 합니까?",
+ "choices": {"A": "검토자", "B": "일반", "C": "고급 설정", "D": "완료 시 설정"},
+ "explanation": "완료 시 설정에는 응답하지 않는 검토자에 대한 작업과 검토 결과의 자동 적용이 모두 있습니다. 무응답 시 액세스 제거로 설정하고 자동 적용을 사용하도록 설정하면, 검토 기간이 끝날 때 해당 게스트 사용자의 그룹 액세스가 제거됩니다."
+},
+"65": {
+ "stem": "Microsoft 365 구독이 있습니다.\n\n다음 구성의 App1이라는 앱을 배포할 계획입니다.\n\n- Microsoft Entra에 등록됩니다.\n- 사용자 상호 작용 없이 서비스로 실행됩니다.\n- 사용자 로그인과 관련된 감사 로그를 수집합니다.\n- Microsoft Graph API를 사용하여 리소스에 액세스합니다.\n\nApp1이 Microsoft Graph에 액세스할 수 있도록 해야 합니다.\n\n무엇을 사용해야 합니까?",
+ "choices": {"A": "기본 제공 역할 기반 액세스 제어(RBAC) 역할", "B": "사용자 지정 역할 기반 액세스 제어(RBAC) 역할", "C": "애플리케이션 권한", "D": "위임된 권한"},
+ "explanation": "Microsoft Graph 애플리케이션 권한은 로그인한 사용자 없이 서비스가 자체 ID로 Microsoft Graph를 호출하는 앱 전용 액세스를 지원합니다. 관리자 동의가 필요하며, 로그인 감사 로그를 수집하는 백그라운드 서비스에 적합합니다."
+},
+"66": {
+ "stem": "Microsoft 365 E5 구독이 있습니다.\n\nMicrosoft Entra 테넌트에 연결된 Azure 구독도 있습니다. 테넌트에는 User1이라는 사용자가 있습니다.\n\nMicrosoft Entra Permissions Management를 배포할 계획입니다.\n\nUser1이 Azure 구독을 Permissions Management에 온보딩할 수 있어야 합니다. 최소 권한 원칙을 따라야 합니다.\n\nUser1에게 어떤 Microsoft Entra 역할을 할당해야 합니까?",
+ "choices": {"A": "Permissions Management Administrator", "B": "Global Administrator", "C": "Security Administrator", "D": "Application Administrator"},
+ "explanation": "Permissions Management Administrator 기본 제공 역할은 클라우드 구독 온보딩을 포함해 Microsoft Entra Permissions Management의 모든 측면을 관리할 수 있습니다. Global Administrator 역할의 광범위한 테넌트 전체 권한 없이 필요한 서비스별 관리 기능을 제공합니다."
+},
+"67": {
+ "stem": "Microsoft 365 E5 구독이 있습니다.\n\n앱 거버넌스 추가 기능 라이선스를 구매합니다.\n\n앱 거버넌스 통합을 켜야 합니다.\n\n어떤 포털을 사용해야 합니까?",
+ "choices": {"A": "Microsoft Defender for Cloud Apps 포털", "B": "Microsoft 365 관리 센터", "C": "Microsoft 365 Defender", "D": "Azure Active Directory 관리 센터", "E": "Microsoft Purview 규정 준수 포털"},
+ "explanation": "앱 거버넌스는 Microsoft Defender 보안 환경에서 설정 → 클라우드 앱 → 앱 거버넌스로 이동해 **앱 거버넌스 사용**을 선택하여 사용하도록 설정합니다. 이 문항의 포털 명칭으로는 Microsoft 365 Defender에 해당합니다."
+},
+"68": {
+ "stem": "다음 표의 그룹이 포함된 Azure Active Directory(Azure AD) 테넌트가 있습니다.\n\n[[IMG1]]\n\nGroup1에 대한 액세스 검토를 다음 표와 같이 만듭니다.\n\n[[IMG2]]\n\nGroup2에 대한 액세스 검토를 다음 표와 같이 만듭니다.\n\n[[IMG3]]\n\n각 그룹에 필요한 Azure Active Directory Premium P2 라이선스의 최소 개수는 몇 개입니까?",
+ "blanks": {
+  "group1": {"label": "Group1:", "options": ["1", "500", "525"]},
+  "group2": {"label": "Group2:", "options": ["1", "100", "295", "395"]}
+ },
+ "explanation": "Azure AD Premium P2 라이선스는 검토 작업을 수행하는 구성원 사용자(지정 검토자, 자체 검토자, 검토하는 그룹/애플리케이션 소유자) 수로 계산하며, 게스트 사용자는 External Identities MAU 요금 모델로 처리되어 P2 시트를 소비하지 않습니다. Group1은 모든 사용자를 대상으로 '사용자가 자신의 액세스를 검토'하도록 설정되어 있으므로 내부 구성원 500명 모두 자체 검토를 수행해 P2 라이선스가 필요하고, 게스트 25명은 MAU로 청구되어 500개입니다. Group2는 게스트 사용자만 대상으로 하고 그룹 소유자가 검토하므로 검토 작업을 하는 사람은 구성원 소유자(User2) 한 명뿐이라 P2 라이선스는 정확히 1개가 필요하며, 검토 대상 게스트 100명은 MAU로 처리되어 P2가 필요하지 않습니다."
+},
+"69": {
+ "stem": "App1이라는 온-프레미스 애플리케이션이 있습니다.\n\nMicrosoft Entra 테넌트가 있습니다.\n\nMicrosoft Entra Private Access를 사용하여 App1을 게시할 계획입니다.\n\n프라이빗 액세스 프로필을 사용하도록 설정해야 합니다.\n\nMicrosoft Entra 관리 센터의 어떤 블레이드를 사용해야 합니까?",
+ "choices": {"A": "원격 네트워크", "B": "트래픽 전달", "C": "보안 프로필", "D": "커넥터"},
+ "explanation": "Private Access 트래픽 전달 프로필은 Microsoft Entra 관리 센터의 **Global Secure Access > 연결 > 트래픽 전달**에서 사용하도록 설정합니다. 이 프로필은 App1 같은 프라이빗 리소스로 가는 트래픽을 Microsoft Entra Private Access를 통해 라우팅합니다."
+},
+"70": {
+ "stem": "`storage1`이라는 스토리지 계정이 포함된 Azure 구독이 있습니다.\n\n여러 가상 머신에서 호스팅될 App1이라는 앱을 배포할 계획입니다. 가상 머신은 비밀(secret)을 사용하여 타사 API에 인증합니다.\n\n가상 머신을 위한 인증 솔루션을 추천해야 합니다. 다음 요구 사항을 충족해야 합니다.\n\n- 비밀을 안전하게 저장합니다.\n- 자격 증명을 App1 코드에 저장할 필요가 **없어야** 합니다.\n- 가상 머신이 Microsoft Entra 인증을 사용하여 Azure 리소스에 액세스할 수 있어야 합니다.\n- 관리 작업을 최소화합니다.\n\n추천에 무엇을 포함해야 합니까?",
+ "choices": {"A": "사용자 계정과 Storage Service Encryption", "B": "사용자 할당 관리 ID와 Azure Key Vault", "C": "사용자 계정과 Azure Key Vault", "D": "시스템 할당 관리 ID와 Storage Service Encryption"},
+ "explanation": "Azure Key Vault는 API 비밀을 안전하게 저장합니다. 사용자 할당 관리 ID는 여러 가상 머신에 연결할 수 있어, 각 App1 호스트가 애플리케이션 코드에 자격 증명을 넣지 않고 Microsoft Entra 인증을 사용해 동일한 권한을 받을 수 있습니다. 공유되는 독립적 수명 주기 덕분에 VM마다 별도의 ID와 권한을 관리할 필요가 없습니다."
+},
+"71": {
+ "stem": "다음 표의 Azure 리소스가 있습니다.\n\n[[IMG1]]\n\nRG1에 대한 Contributor 역할을 할당할 수 있는 ID는 무엇입니까?",
+ "choices": {"A": "User1만", "B": "User1과 Group1만", "C": "User1과 VM1만", "D": "User1, VM1, App1만", "E": "User1, Group1, VM1, App1"},
+ "explanation": "리소스 그룹 범위의 Contributor를 포함한 Azure RBAC 역할은 사용자, 보안 그룹, 서비스 주체, 관리 ID에 할당할 수 있습니다. 동적 멤버 자격 보안 그룹도 Azure RBAC에 유효한 보안 그룹 주체이고, 시스템 할당 관리 ID도 역할 할당을 받을 수 있으며, 엔터프라이즈 애플리케이션에는 역할 할당을 받을 수 있는 서비스 주체가 있습니다."
+},
+"72": {
+ "stem": "Microsoft Defender for Cloud Apps를 사용하는 Microsoft 365 구독이 있습니다.\n\n여러 타사 앱이 구독의 리소스에 액세스합니다.\n\n타사 앱의 액세스를 모니터링해야 합니다.\n\n무엇을 만들어야 합니까?",
+ "choices": {"A": "액세스 정책", "B": "앱 권한 정책", "C": "OAuth 앱 정책", "D": "엔드포인트 보호 정책"},
+ "explanation": "OAuth 앱 정책은 Microsoft 365 데이터에 대한 액세스 권한을 부여받은 타사 OAuth 애플리케이션을 모니터링하고 요청된 권한을 평가합니다. Microsoft Defender for Cloud Apps는 이 정책으로 OAuth 앱 권한을 조사하고 위험한 앱에 대해 경고하거나 수정 조치를 할 수 있습니다."
+}
+}

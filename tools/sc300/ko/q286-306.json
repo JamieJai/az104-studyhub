@@ -1,0 +1,117 @@
+{
+"286": {
+ "stem": "*(참고: 원본 사이트에 시나리오 본문이 빠진 문항입니다. 해설로 보면 \"User1이 Identity Secure Score 개선 작업의 상태를 업데이트할 수 있어야 한다(최소 권한)\" 시리즈 문항입니다.)*\n\n해결책: User1에게 SharePoint Administrator 역할을 할당합니다.\n\n이것이 목표를 충족합니까?",
+ "choices": {"A": "예", "B": "아니요"},
+ "explanation": "SharePoint Administrator 역할은 Identity Secure Score 개선 작업의 상태를 업데이트하기에 충분합니다."
+},
+"287": {
+ "stem": "*(참고: 원본 사이트에 시나리오 본문이 빠진 문항입니다. 해설로 보면 \"User1이 Identity Secure Score 개선 작업의 상태를 업데이트할 수 있어야 한다(최소 권한)\" 시리즈 문항입니다.)*\n\n해결책: User1에게 Security Operator 역할을 할당합니다.\n\n이것이 목표를 달성합니까?",
+ "choices": {"A": "예", "B": "아니요"},
+ "explanation": "Identity Secure Score 개선 작업의 상태를 업데이트하려면 최소 SharePoint Administrator 역할이 필요합니다. Security Operator 역할만으로는 그 권한 요구 사항을 충족하지 못합니다."
+},
+"288": {
+ "stem": "네트워크에 Azure AD 테넌트와 동기화되는 온-프레미스 Active Directory Domain Services(AD DS) 도메인이 있습니다. AD DS 도메인에는 다음 표의 조직 구성 단위(OU)가 있습니다.\n\n[[IMG1]]\n\nBreakGlass라는 비상(break-glass) 계정을 만들어야 합니다.\n\nBreakGlass를 어디에 만들어야 하며, 어떤 역할을 할당해야 합니까?",
+ "blanks": {
+  "location": {"label": "위치:", "options": ["Azure AD", "OU1", "OU2"]},
+  "role": {"label": "역할:", "options": ["Billing Administrator", "Global Administrator", "Owner", "Privileged Role Administrator"]}
+ },
+ "explanation": "긴급 액세스 계정은 온-프레미스 AD DS에서 동기화하지 않고 클라우드 전용으로 만들어야 온-프레미스 ID나 동기화 중단 시에도 계속 사용할 수 있습니다. Global Administrator 긴급 계정은 테넌트에 대한 관리 액세스를 복구할 수 있습니다."
+},
+"289": {
+ "stem": "storage1과 storage2, 두 스토리지 계정과 다음 표의 Blob 컨테이너가 포함된 Sub1이라는 Azure 구독이 있습니다.\n\n[[IMG1]]\n\nSub1에는 다음 표의 사용자가 포함되어 있습니다.\n\n[[IMG2]]\n\nCondition1은 다음과 같이 정의되어 있습니다.\n\n[[IMG3]]",
+ "statements": ["User1은 blob2의 내용을 읽을 수 있다.", "User1은 blob3의 내용을 읽을 수 있다.", "User2는 blob1의 내용을 읽을 수 있다."],
+ "explanation": "Condition1은 Blob 읽기 작업을 cont1이라는 컨테이너로 제한합니다. blob2와 blob3은 모두 cont1에 있고, User1의 Storage Blob Data Reader 할당은 구독 범위에 적용됩니다. Condition2는 Blob 쓰기만 제한하므로 읽기를 제한하지 않습니다. 따라서 storage1에 대한 User2의 Storage Blob Data Owner 할당으로 storage1의 blob1을 읽을 수 있습니다."
+},
+"290": {
+ "stem": "Microsoft 365 E5 구독이 있습니다.\n\nReview1이라는 액세스 검토를 만듭니다. Review1은 Microsoft 365 그룹 소유자가 6개월마다 자기 그룹의 게스트 사용자 액세스를 검토하도록 요구합니다.\n\n그룹 소유자가 Review1 멤버 자격을 검토하지 않으면 게스트 사용자가 자동으로 제거되도록 해야 합니다.\n\nReview1에 대해 어떤 설정을 구성해야 합니까?",
+ "choices": {"A": "일정", "B": "완료 시", "C": "일반", "D": "검토자"},
+ "explanation": "**완료 시(When completed)** 설정은 액세스 검토가 끝난 후의 결과를 제어합니다. **검토자가 응답하지 않는 경우**를 **액세스 제거**로 구성하고 **결과를 리소스에 자동 적용**을 사용하도록 설정하면 검토되지 않은 게스트 사용자가 검토 대상 그룹에서 자동으로 제거됩니다. 반복 주기는 일정에서 별도로 구성합니다."
+},
+"291": {
+ "stem": "Microsoft Entra 테넌트가 있습니다.\n\n다음 설정으로 셀프 서비스 암호 재설정(SSPR)을 구성합니다.\n\n- 로그인 시 사용자 등록 필요: 예\n- 재설정에 필요한 방법 수: 1\n\n사용자에게 유효한 인증 방법은 무엇입니까?",
+ "choices": {"A": "Windows Hello PIN", "B": "스마트 카드", "C": "모바일 앱 알림", "D": "조직 외부 주소로의 이메일"},
+ "explanation": "인증 방법 하나를 요구하는 SSPR 구성에서 모바일 앱은 확인 코드 검증만 지원하며, 모바일 앱 알림은 방법 두 개가 필요합니다. 이메일은 지원되는 SSPR 인증 방법이고, 사용자는 조직 외부의 이메일 주소를 재설정 이메일 주소로 사용할 수 있습니다."
+},
+"292": {
+ "stem": "다음 표의 ID가 포함된 Microsoft Entra 테넌트가 있습니다.\n\n[[IMG1]]\n\n테넌트에 App1이라는 앱을 등록합니다.\n\nApp1의 Owner 역할을 할당할 수 있는 ID는 무엇입니까?",
+ "choices": {"A": "User1만", "B": "User1과 Group1만", "C": "User1과 SP1만", "D": "User1, Group1, Group2만", "E": "User1, Group1, SP1만", "F": "User1, Group1, Group2, SP1"},
+ "explanation": "Microsoft Entra 애플리케이션 등록은 사용자와 서비스 주체를 애플리케이션 소유자로 지원합니다. User1은 사용자이고 SP1은 서비스 주체인 반면, Group1과 Group2는 그룹이므로 애플리케이션 개체의 소유자로 할당할 수 없습니다."
+},
+"293": {
+ "stem": "Microsoft Entra 테넌트가 있습니다.\n\n사용자가 엔터프라이즈 애플리케이션의 높은 권한 요청에 동의하지 못하게 하면서, 낮은 위험의 권한 요청에는 동의할 수 있도록 해야 합니다.\n\n먼저 무엇을 수정해야 합니까?",
+ "choices": {"A": "관리자 동의 설정", "B": "권한 분류", "C": "사용자 동의 설정", "D": "앱 등록"},
+ "explanation": "권한 분류는 권한을 조직 위험 영향별로 식별하며, 동의 정책이 사용자가 동의할 수 있는 권한을 결정하는 데 사용됩니다. 낮은 위험 권한만 허용하는 사용자 동의 정책을 적용하기 전에 허용할 위임된 권한을 낮은 영향으로 분류해야 하며, 더 높은 권한은 허용 집합 밖에 남습니다."
+},
+"294": {
+ "stem": "Microsoft Defender for Cloud Apps를 사용하는 Microsoft 365 E5 구독이 있습니다.\n\n구독의 앱 보안을 강화할 계획입니다.\n\n사용자 인증이 필요하지 **않은** 앱을 식별해야 합니다.\n\nMicrosoft 365 Defender 포털에서 무엇을 해야 합니까?",
+ "choices": {"A": "클라우드 앱 카탈로그를 검토합니다.", "B": "OAuth 정책을 만들고 경고를 검토합니다.", "C": "스냅샷 Cloud Discovery 보고서를 만듭니다.", "D": "검색된 앱 쿼리를 만듭니다."},
+ "explanation": "검색된 앱 쿼리는 익명 사용을 허용하는 클라우드 앱에 대한 추천 쿼리를 사용할 수 있습니다. 이를 통해 사용자 인증이 필요하지 않은 검색된 앱을 필터링하여 잠재적 보안 위험으로 식별할 수 있습니다."
+},
+"295": {
+ "stem": "User1이라는 사용자가 포함된 Microsoft 365 E5 구독이 있습니다. User1은 Application administrator 역할에 대해 적격(eligible)입니다.\n\nUser1이 애플리케이션 프록시의 새 커넥터 그룹을 구성해야 합니다.\n\nUser1의 역할을 활성화하려면 무엇을 사용해야 합니까?",
+ "choices": {"A": "Microsoft Defender for Cloud Apps 포털", "B": "Microsoft 365 관리 센터", "C": "Azure Active Directory 관리 센터", "D": "Microsoft 365 Defender 포털"},
+ "explanation": "적격 Microsoft Entra 관리 역할은 Azure Active Directory 관리 센터(현재 Microsoft Entra 관리 센터)의 Privileged Identity Management에서 활성화합니다. Application Administrator 역할은 커넥터 그룹을 포함한 애플리케이션 프록시 설정을 구성하는 데 필요한 권한을 제공합니다."
+},
+"296": {
+ "stem": "User1과 User2, 두 사용자가 포함된 Microsoft 365 E5 구독이 있습니다.\n\nUser1이 그룹에 대한 액세스 검토를 만들 수 있고, User2가 완료된 모든 액세스 검토의 기록 보고서를 검토할 수 있도록 해야 합니다. 최소 권한 원칙을 따라야 합니다.\n\n각 사용자에게 어떤 역할을 할당해야 합니까? 각 역할은 한 번, 여러 번 사용하거나 전혀 사용하지 않을 수 있습니다.",
+ "items": {"Global administrator": "Global administrator", "Global reader": "Global reader", "Reports reader": "Reports reader", "Security operator": "Security operator", "Security reader": "Security reader", "User administrator": "User administrator"},
+ "slots": {"user1": "User1:", "user2": "User2:"},
+ "explanation": "User Administrator는 Global Administrator의 더 넓은 권한 없이 그룹과 애플리케이션에 대한 액세스 검토를 만들고 관리할 수 있습니다. Global Reader는 액세스 검토와 완료된 검토 결과/기록에 대한 테넌트 전체 읽기 전용 액세스 권한이 있어, 수정 권한 없이 완료된 모든 액세스 검토를 검토할 수 있습니다."
+},
+"297": {
+ "stem": "RG1과 RG2, 두 리소스 그룹이 포함된 Sub1이라는 Azure 구독이 있습니다. Sub1에는 다음 표의 사용자가 포함되어 있습니다.\n\n[[IMG1]]\n\nSub1에는 다음 표의 리소스가 포함되어 있습니다.\n\n[[IMG2]]\n\n다음 표의 역할 기반 액세스 제어(RBAC) 역할 할당을 만듭니다.\n\n[[IMG3]]\n\n다음 각 문장이 참이면 **예**, 그렇지 않으면 **아니요**를 선택하세요.",
+ "statements": ["User1은 Vault1에 저장된 비밀의 내용을 읽을 수 있다.", "User2는 Vault2에 저장된 비밀의 내용을 읽을 수 있다.", "User3은 VM1의 구성을 업데이트할 수 있다."],
+ "explanation": "Azure RBAC 범위는 상위 범위에서만 상속됩니다. RG2 권한은 RG1의 리소스에 적용되지 않습니다. Reader는 관리 평면 읽기 액세스를 제공하지만 Key Vault 비밀 값은 읽지 못하므로 User1은 Vault1 비밀을 읽을 수 없습니다. Key Vault Secrets User는 RG2 범위에서 비밀 내용을 읽을 수 있으므로 User2는 Vault2의 비밀을 읽을 수 있습니다. Owner는 RG1 내 리소스에 대한 전체 액세스를 부여하므로 User3은 VM1의 구성을 업데이트할 수 있습니다."
+},
+"298": {
+ "stem": "온-프레미스에 호스팅된 Linux 디바이스가 있습니다.\n\nMicrosoft 365 E5 구독이 있습니다.\n\nGlobal Secure Access Internet Access를 구성할 계획입니다.\n\n디바이스가 Global Secure Access에 연결할 수 있도록 해야 합니다.\n\n무엇을 해야 합니까?",
+ "choices": {"A": "적응형 액세스 설정을 구성합니다.", "B": "디바이스에 Azure Connected Machine 에이전트를 설치합니다.", "C": "원격 네트워크를 만듭니다.", "D": "프라이빗 네트워크 커넥터를 배포합니다."},
+ "explanation": "Global Secure Access 원격 네트워크 연결은 디바이스별 클라이언트를 설치하지 않고 Linux 시스템 같은 온-프레미스 디바이스에 대한 Internet Access를 지원합니다. 원격 네트워크는 IPsec 터널을 통해 온-프레미스 장비에서 Global Secure Access로의 사이트 수준 연결을 설정합니다."
+},
+"299": {
+ "stem": "그림을 바탕으로 각 문장을 완성하는 답을 드롭다운 메뉴에서 선택하세요.\n\n[[IMG1]]",
+ "blanks": {
+  "mfa_setting": {"label": "User1이 클라우드 앱에 액세스할 때 다단계 인증(MFA)을 요구받도록 하려면 구성해야 하는 것:", "options": ["조건 설정", "정책 사용 설정", "허용 설정", "세션 설정", "사용자 및 그룹 설정"]},
+  "reauth_setting": {"label": "User1이 8시간마다 인증을 요구받도록 하려면 구성해야 하는 것:", "options": ["조건 설정", "정책 사용 설정", "허용 설정", "세션 설정", "사용자 및 그룹 설정"]}
+ },
+ "explanation": "조건부 액세스 허용 제어에는 다단계 인증 필요가 포함됩니다. 세션 제어에는 사용자가 다시 인증을 요구받기 전까지 로그인 상태를 유지하는 기간을 결정하는 로그인 빈도가 포함되며, 8시간으로 설정할 수 있습니다."
+},
+"300": {
+ "stem": "Microsoft Entra 테넌트가 있습니다.\n\n다음 표의 디바이스가 있습니다.\n\n[[IMG1]]\n\n테넌트에 Microsoft Entra Internet Access를 구성합니다.\n\nGlobal Secure Access를 사용할 수 있는 디바이스는 무엇입니까?",
+ "choices": {"A": "Device1만", "B": "Device3만", "C": "Device1과 Device2만", "D": "Device1, Device3, Device4만", "E": "Device1, Device2, Device3, Device4"},
+ "explanation": "Windows 디바이스의 경우 Microsoft Entra 등록 디바이스는 Private Access 트래픽만 지원하며, Microsoft Entra Internet Access가 사용하는 인터넷 트래픽 프로필은 지원하지 않습니다. Microsoft Entra 조인된 Windows 10 디바이스는 Global Secure Access 클라이언트와 Internet Access 트래픽을 지원합니다. 따라서 Device3만 해당됩니다."
+},
+"301": {
+ "stem": "App1이라는 Azure AD 엔터프라이즈 애플리케이션이 포함된 contoso.com이라는 Azure Active Directory(Azure AD) 테넌트가 있습니다.\n\n계약자가 user1@fabrikam.com의 자격 증명을 사용합니다.\n\n계약자에게 App1에 대한 액세스 권한을 부여할 수 있어야 합니다. 계약자는 user1@fabrikam.com으로 인증할 수 있어야 합니다.\n\n무엇을 해야 합니까?",
+ "choices": {"A": "New-AzureADMSInvitation cmdlet을 실행합니다.", "B": "외부 협업 설정을 구성합니다.", "C": "WS-Fed ID 공급자를 추가합니다.", "D": "Azure AD Connect를 구현합니다."},
+ "explanation": "Azure AD B2B 초대는 외부 사용자를 테넌트에 게스트로 만들어, 그 사용자가 초대를 수락하고 기존 이메일 ID로 할당된 애플리케이션에 액세스할 수 있게 합니다. `New-AzureADMSInvitation` cmdlet이 이 게스트 초대를 만듭니다. Microsoft의 현재 대응물은 Entra/Graph 초대 cmdlet이지만, 나열된 Azure AD cmdlet이 해당하는 선택지입니다. [Microsoft Learn: 게스트 사용자 추가 및 초대 보내기](https://learn.microsoft.com/en-us/entra/external-id/b2b-quickstart-add-guest-users-portal)"
+},
+"302": {
+ "stem": "App1이라는 엔터프라이즈 애플리케이션이 포함된 contoso.com이라는 Microsoft Entra 테넌트가 있습니다.\n\n계약자가 user1@fabrikam.com의 자격 증명을 사용합니다.\n\n계약자에게 App1에 대한 액세스 권한을 부여할 수 있어야 합니다. 계약자는 user1@fabrikam.com으로 인증할 수 있어야 합니다.\n\n무엇을 해야 합니까?",
+ "choices": {"A": "외부 협업 설정을 구성합니다.", "B": "New-MgUser cmdlet을 실행합니다.", "C": "contoso.com에 게스트 사용자 계정을 만듭니다.", "D": "contoso.com에 사용자 지정 도메인 이름을 추가합니다."},
+ "explanation": "Microsoft Entra B2B 게스트 계정은 리소스 테넌트에서 외부 사용자를 나타내면서 그 사용자가 기존 외부 자격 증명으로 인증할 수 있게 합니다. 그런 다음 게스트에게 엔터프라이즈 애플리케이션 액세스를 할당할 수 있습니다."
+},
+"303": {
+ "stem": "다음 표의 리소스가 포함된 Sub1이라는 Azure 구독이 있습니다.\n\n[[IMG1]]\n\nSub1에는 다음 표의 관리 ID가 포함되어 있습니다.\n\n[[IMG2]]\n\nSub1에는 다음 표의 역할 기반 액세스 제어(RBAC) 역할 할당이 있습니다.\n\n[[IMG3]]\n\n각 문장이 참이면 **예**, 그렇지 않으면 **아니요**를 선택하세요.",
+ "statements": ["Automation1은 Vault1에 저장된 비밀의 내용에 액세스할 수 있다.", "Identity2를 Automation2에 할당하여 Vault1에 저장된 비밀의 내용에 액세스할 수 있다.", "VM1은 Vault1에 저장된 비밀의 내용에 액세스할 수 있다."],
+ "explanation": "RG2에 할당된 RBAC 권한은 RG1의 자격 증명 모음에 적용되지 않으므로 Automation1은 Identity1로 Vault1에 액세스할 수 없습니다. 시스템 할당 관리 ID는 단일 부모 리소스에만 연결되며 독립적으로 할당할 수 없습니다. Identity3의 RG1 범위 Key Vault Secrets User 할당은 RG1의 Vault1에 적용되므로 VM1은 그 비밀을 읽을 수 있습니다."
+},
+"304": {
+ "stem": "Microsoft 365 E3 라이선스가 할당된 사용자 2,500명이 있습니다. 라이선스는 개별 사용자에게 직접 할당되어 있습니다.\n\n모든 사용자가 포함된 그룹에 Microsoft 365 E5 라이선스를 할당합니다.\n\n최소한의 관리 작업으로 사용자에게서 Microsoft 365 E3 라이선스를 제거해야 합니다.\n\n무엇을 사용해야 합니까?",
+ "choices": {"A": "Update-MgGroup cmdlet", "B": "Set-WindowsProductKey cmdlet", "C": "Set-MgUserLicense cmdlet", "D": "Microsoft Entra 관리 센터의 라이선스 블레이드"},
+ "explanation": "그룹 기반 E5 라이선스가 모든 구성원에게 대체 권한을 제공하므로, 중복되는 직접 E3 할당을 대량으로 제거할 수 있습니다. Microsoft Entra 관리 센터의 라이선스 블레이드는 그 직접 라이선스 할당을 대규모로 관리하는 관리 인터페이스이며, 개별 사용자 PowerShell 작업을 피할 수 있습니다."
+},
+"305": {
+ "stem": "회사에서 새 Microsoft 365 E5 구독과 App1이라는 앱을 구매합니다.\n\nApp1에 대한 Microsoft Defender for Cloud Apps 액세스 정책을 만들어야 합니다.\n\n먼저 무엇을 해야 합니까?",
+ "choices": {"A": "앱 적용 제한을 사용하도록 조건부 액세스 정책을 구성합니다.", "B": "App1에 대한 토큰 구성을 구성합니다.", "C": "App1에 대한 API 권한을 추가합니다.", "D": "조건부 액세스 앱 제어를 사용하도록 조건부 액세스 정책을 구성합니다."},
+ "explanation": "Microsoft Defender for Cloud Apps 액세스 정책은 **조건부 액세스 앱 제어 사용** 세션 제어로 구성된 Microsoft Entra 조건부 액세스 정책에 의존합니다. 이 정책이 Defender for Cloud Apps가 액세스 정책을 적용하는 데 필요한 트래픽 제어 권한을 활성화합니다."
+},
+"306": {
+ "stem": "*(참고: 원본 사이트에 사례 연구 본문이 빠진 문항입니다. 해설로 보면 \"헬프데스크 관리자가 자기 지사 사무실의 사용자 라이선스만 관리해야 한다\"는 기술 요구 사항 시나리오입니다.)*\n\n헬프데스크 관리자의 라이선스 관리에 대한 기술 요구 사항을 충족해야 합니다.\n\n먼저 무엇을 만들어야 하며, 어떤 도구를 사용해야 합니까?",
+ "blanks": {
+  "object_to_create": {"label": "각 지사 사무실에 대해 만들 개체:", "options": ["관리 단위", "사용자 지정 역할", "동적 사용자 보안 그룹", "OU"]},
+  "tool_to_use": {"label": "사용할 도구:", "options": ["Azure Active Directory 관리 센터", "Active Directory 관리 센터", "Windows PowerShell용 Active Directory 모듈", "Microsoft 365 관리 센터"]}
+ },
+ "explanation": "관리 단위는 지사나 지역 지원을 포함한 위임된 관리를 위한 Microsoft Entra ID 범위를 제공합니다. 관리 단위 범위의 관리자는 Microsoft 365 관리 센터에서 사용자 라이선스를 관리할 수 있습니다."
+}
+}

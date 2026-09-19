@@ -1,0 +1,81 @@
+{
+"441": {
+ "stem": "Microsoft Entra 테넌트가 있습니다.\n\n위험 탐지 보고서를 엽니다.\n\n사용자 위험으로 분류되는 위험 탐지 유형은 무엇입니까?",
+ "choices": {"A": "불가능한 이동(impossible travel)", "B": "익명 IP 주소", "C": "비정형 이동(atypical travel)", "D": "유출된 자격 증명"},
+ "explanation": "유출된 자격 증명은 사용자의 자격 증명이 노출된 것으로 알려졌음을 나타내므로 사용자 위험 탐지입니다. 불가능한 이동, 익명 IP 주소, 비정형 이동은 로그인 위험 탐지입니다."
+},
+"442": {
+ "stem": "User1이라는 사용자가 포함된 Microsoft 365 E5 구독이 있습니다.\n\nUser1이 다음 작업을 완료해야 합니다.\n\n- 동적 사용자 멤버 자격을 가진 Group1이라는 Microsoft 365 그룹을 만듭니다.\n- Group1에 Microsoft Entra Suite 라이선스를 할당합니다.\n\nUser1은 각 작업을 어떤 포털에서 완료할 수 있습니까?",
+ "blanks": {
+  "create_group1": {"label": "Group1 만들기:", "options": ["Microsoft Entra 관리 센터만", "Microsoft 365 관리 센터만", "Microsoft Entra 관리 센터와 Microsoft 365 관리 센터만", "Microsoft Entra 관리 센터와 Microsoft Intune 관리 센터만", "Microsoft Entra 관리 센터, Microsoft 365 관리 센터, Microsoft Intune 관리 센터"]},
+  "assign_entra_suite_license": {"label": "Group1에 Microsoft Entra Suite 라이선스 할당:", "options": ["Microsoft Entra 관리 센터만", "Microsoft 365 관리 센터만", "Microsoft Entra 관리 센터와 Microsoft 365 관리 센터만", "Microsoft Entra 관리 센터와 Microsoft Intune 관리 센터", "Microsoft Entra 관리 센터, Microsoft 365 관리 센터, Microsoft Intune 관리 센터"]}
+ },
+ "explanation": "Microsoft Intune은 동적 그룹 멤버 자격을 지원하는 Microsoft Entra 그룹 인터페이스를 제공하며, 같은 Entra 그룹을 Microsoft Entra, Microsoft 365, Intune 관리 센터에서 사용할 수 있습니다. 그룹 기반 라이선스는 Microsoft 365 관리 센터에서 관리하며, 그곳에서 Microsoft 365 그룹에 라이선스를 할당할 수 있습니다."
+},
+"443": {
+ "stem": "Group1이라는 그룹이 포함된 contoso.com이라는 Microsoft Entra 테넌트가 있습니다. Group1에는 회사 IT 부서 사용자 50명과 회계 부서 사용자 50명이 있습니다.\n\n파트너 회사에 fabrikam.com이라는 Microsoft Entra 테넌트가 있습니다. contoso.com과 fabrikam.com 사이에 테넌트 간 동기화를 구성합니다.\n\n다음 요구 사항을 충족하면서 Group1의 구성원을 fabrikam.com으로 동기화해야 합니다.\n\n- IT 부서 사용자만 fabrikam.com과 동기화되도록 합니다.\n- 관리 작업을 최소화합니다.\n\n테넌트 간 동기화 설정에서 무엇을 해야 합니까?",
+ "blanks": {
+  "configuration_object": {"label": "구성 개체에 대해:", "options": ["식 작성기에서 식을 만듭니다.", "주문형 프로비저닝에서 Group1을 추가합니다.", "사용자 및 그룹에서 Group1을 추가합니다.", "사용자 및 그룹에서 IT 부서 사용자를 추가합니다."]},
+  "configuration_object_settings": {"label": "설정에서 구성 개체에 대해:", "options": ["범위 지정 필터 추가", "새 특성 매핑 추가", "특성 매핑 수정"]}
+ },
+ "explanation": "사용자 및 그룹에서 Group1을 추가하면 IT 사용자를 개별적으로 관리하지 않고 동기화 구성의 범위를 그룹으로 지정할 수 있습니다. 그런 다음 부서 특성을 평가하는 범위 지정 필터로 혼합된 그룹 멤버 자격을 IT 사용자로 제한합니다. 특성 매핑은 범위에 포함될 사용자가 아니라 동기화할 특성 값을 결정하며, 주문형 프로비저닝은 테스트나 즉각적인 일회성 프로비저닝용입니다."
+},
+"445": {
+ "stem": "AU1과 AU2, 두 관리 단위가 포함된 Microsoft 365 E5 구독이 있습니다.\n\n다음 표와 같이 사용자 다섯 명을 만듭니다.\n\n[[IMG1]]\n\nUser2와 User3이 암호를 재설정할 수 있는 사용자를 식별하세요.",
+ "blanks": {
+  "user2": {"label": "User2가 암호를 재설정할 수 있는 사용자:", "options": ["User1과 User4만", "User1, User3, User4, User5", "User3만", "User4만", "User5만"]},
+  "user3": {"label": "User3이 암호를 재설정할 수 있는 사용자:", "options": ["User1만", "User1과 User2만", "User1, User2, User4", "User2와 User4만", "User5만"]}
+ },
+ "explanation": "관리 단위 범위로 할당된 Helpdesk Administrator는 그 단위의 비관리자 사용자 암호만 재설정할 수 있습니다. 따라서 AU1 범위의 User2는 User5는 재설정할 수 있지만 AU1의 관리자인 User4는 재설정할 수 없습니다. Privileged Authentication Administrator는 관리자를 포함한 모든 사용자의 암호를 재설정할 수 있으므로, User3의 AU2 범위에는 User1과 User2가 포함됩니다."
+},
+"446": {
+ "stem": "HOTSPOT\n\n다음 표의 사용자가 포함된 Microsoft Entra 테넌트가 있습니다.\n\n[[IMG1]]\n\n테넌트에는 다음 표의 ID가 포함되어 있습니다.\n\n[[IMG2]]\n\n다음 표의 사용자 지정 보안 특성이 포함된 Custom1이라는 특성 집합이 있습니다.\n\n[[IMG3]]\n\n다음 각 문장이 참이면 예, 그렇지 않으면 아니요를 선택하세요.",
+ "statements": ["Admin1은 User1에게 Attribute1을 할당할 수 있다.", "Admin2는 Attribute1을 수정할 수 있다.", "Admin2는 Group1에 Attribute2를 할당할 수 있다."],
+ "explanation": "Global Administrator는 기본적으로 사용자 지정 보안 특성 권한이 없습니다. Attribute Assignment Administrator는 특성 값을 할당할 수 있지만 특성 정의를 수정할 수는 없습니다. 사용자 지정 보안 특성은 보안 그룹이 아니라 사용자와 서비스 주체에만 할당할 수 있습니다."
+},
+"447": {
+ "stem": "다음 표의 관리 단위가 포함된 Microsoft 365 테넌트가 있습니다.\n\n[[IMG1]]\n\n구독에는 다음 표의 관리자가 포함되어 있습니다.\n\n[[IMG2]]\n\n구독에는 다음 표의 사용자가 포함되어 있습니다.\n\n[[IMG3]]\n\n각 문장이 참이면 **예**, 그렇지 않으면 **아니요**를 선택하세요.",
+ "statements": ["Admin1은 User1의 암호를 재설정할 수 있다.", "Admin2는 User2의 암호를 재설정할 수 있다.", "Admin3은 User3의 암호를 재설정할 수 있다."],
+ "explanation": "AU1의 Department1 규칙에 User1이 포함되므로, AU1 범위의 Password Administrator인 Admin1은 그 비관리자 사용자의 암호를 재설정할 수 있습니다. User2는 AU2가 아닌 AU1에 있으므로 Admin2의 AU2 범위 Password Administrator 역할은 적용되지 않습니다. Admin3의 전역 Password Administrator 할당은 테넌트 전체에서 비관리자 User3의 암호를 재설정할 수 있습니다."
+},
+"452": {
+ "stem": "네트워크에 `contoso.com`이라는 온-프레미스 Active Directory Domain Services(AD DS) 도메인과 `WebApp1`이라는 웹앱이 있습니다. `WebApp1`은 통합 Windows 인증을 사용합니다.\n\n원격 사용자는 온-프레미스 네트워크에 VPN 연결을 설정하고 `https//webapp1.contoso.com` URL을 사용하여 `WebApp1`에 액세스합니다.\n\n`contoso.com`과 동기화되는 Microsoft Entra 테넌트가 있습니다.\n\n다음 작업을 수행합니다.\n\n- Microsoft Entra Private Access를 배포합니다.\n- `Connector1`이라는 커넥터가 포함된 커넥터 그룹을 구성합니다.\n\n원격 사용자가 Microsoft Entra Private Access를 사용하여 `WebApp1`에 액세스할 수 있도록 해야 합니다.\n\n무엇을 해야 합니까?",
+ "choices": {"A": "원격 사용자의 디바이스를 Microsoft Defender for Endpoint에 등록합니다.", "B": "Microsoft Entra Internet Access를 배포합니다.", "C": "조건부 액세스 정책을 만듭니다.", "D": "애플리케이션 세그먼트를 만듭니다."},
+ "explanation": "Microsoft Entra Private Access는 Global Secure Access 클라이언트가 선택한 커넥터 그룹을 통해 라우팅해야 하는 프라이빗 리소스 대상, 포트, 프로토콜을 정의하는 애플리케이션 세그먼트가 필요합니다. `webapp1.contoso.com` HTTPS 엔드포인트를 애플리케이션 세그먼트로 정의하면 프라이빗 웹앱에 액세스할 수 있습니다."
+},
+"453": {
+ "stem": "Microsoft 365 구독이 있습니다.\n\nGateway1이라는 타사 웹 게이트웨이를 배포합니다.\n\nGateway1을 Microsoft Defender for Cloud Apps와 통합해야 합니다. 다음 요구 사항을 충족해야 합니다.\n\n- 데이터가 Defender for Cloud Apps로 자동으로 흐르도록 합니다.\n- 관리 작업을 최소화합니다.\n\n먼저 무엇을 해야 합니까?",
+ "choices": {"A": "데이터 원본을 추가합니다.", "B": "스냅샷 보고서를 만듭니다.", "C": "앱 등록을 만듭니다.", "D": "로그 수집기를 추가합니다."},
+ "explanation": "Defender for Cloud Apps는 Cloud Discovery 자동 로그 업로드를 사용하여 방화벽이나 프록시에서 트래픽 로그를 자동으로 받습니다. 구성은 그 게이트웨이에 맞는 데이터 원본을 만드는 것으로 시작하며, 그 후 로그 수집기를 구성하여 데이터 원본과 연결합니다."
+},
+"456": {
+ "stem": "Microsoft Defender for Cloud Apps를 사용하는 Microsoft 365 E5 구독이 있습니다.\n\n사용자들이 승인되지 않은 타사 앱에 연결하는 것을 발견합니다.\n\n위험 점수가 5 이상이고 일일 트래픽이 200GB를 넘는 승인되지 않은 앱의 사용을 자동으로 식별하고 차단해야 합니다. 관리 작업을 최소화해야 합니다.\n\n무엇을 해야 합니까?",
+ "choices": {"A": "Microsoft Defender 포털에서 앱 거버넌스 정책을 만듭니다.", "B": "\"새로운 인기 앱\" 템플릿을 사용하여 앱 검색 정책을 만듭니다.", "C": "Microsoft Entra 관리 센터에서 조건부 액세스 정책을 만듭니다.", "D": "\"새로운 위험한 앱\" 템플릿을 사용하여 앱 검색 정책을 만듭니다."},
+ "explanation": "**새로운 위험한 앱(New risky app)** 앱 검색 정책 템플릿은 위험하거나 규정을 준수하지 않는 클라우드 앱 사용을 탐지하기 위한 것입니다. 위험 점수와 일일 트래픽 조건을 필요한 값으로 사용자 지정할 수 있고, 거버넌스 작업으로 일치하는 앱을 승인되지 않음으로 태그하면 액세스가 자동으로 차단됩니다. 이 템플릿에서 시작하면 구성 작업이 최소화됩니다."
+},
+"457": {
+ "stem": "네트워크에 온-프레미스 Active Directory Domain Services(AD DS) 도메인이 있습니다. 도메인은 Microsoft Entra Connect Sync를 사용하여 Microsoft 365 구독과 동기화됩니다.\n\n새 사용자 300명을 만들 계획입니다. 사용자 계정 정보는 Microsoft Excel 스프레드시트에 저장되어 있습니다.\n\n사용자 생성을 자동화해야 합니다. 다음 요구 사항을 충족해야 합니다.\n\n- 사용자가 Microsoft 365 구독의 리소스에 액세스할 수 있어야 합니다.\n- 사용자가 온-프레미스 네트워크의 리소스에 액세스할 수 있어야 합니다.\n- 관리 작업을 최소화해야 합니다.\n\n솔루션에 어떤 PowerShell cmdlet을 포함해야 합니까?",
+ "choices": {"A": "New-MgUser와 Get-Content", "B": "Set-MgUser와 Import-CSV", "C": "Set-ADUser와 Get-Content", "D": "New-ADUser와 Import-CSV"},
+ "explanation": "`New-ADUser`는 온-프레미스 AD DS 도메인에 필요한 계정을 만들어 온-프레미스 리소스 액세스를 가능하게 합니다. Microsoft Entra Connect Sync가 그 AD DS 계정을 Microsoft 365로 동기화할 수 있습니다. `Import-Csv`는 Excel 스프레드시트를 내보낸 CSV에서 사용자 데이터를 행 단위로 읽어 최소한의 관리 작업으로 대량 계정 생성을 가능하게 합니다. Microsoft 문서는 여러 Active Directory 사용자 개체를 만들 때 `Import-Csv`와 `New-ADUser`를 함께 사용하도록 안내합니다."
+},
+"458": {
+ "stem": "User1이라는 사용자가 포함되고 Privileged Identity Management(PIM)를 사용하는 Microsoft Entra 테넌트가 있습니다.\n\n화요일 08:00에 User1이 승인이 필요한 Microsoft Entra 역할의 활성화를 요청합니다.\n\n승인자가 응답하지 **않으면** 요청이 자동으로 삭제되는 시점을 결정해야 합니다.\n\n무엇을 식별해야 합니까?",
+ "choices": {"A": "일요일 08:00", "B": "목요일 08:00", "C": "수요일 08:00", "D": "화요일 20:00"},
+ "explanation": "Microsoft Entra PIM은 위임된 승인자가 역할 활성화 요청을 승인할 수 있도록 24시간을 허용합니다. 승인되지 않은 요청은 이 고정 기간 후 만료되므로, 화요일 08:00에 한 요청은 수요일 08:00에 삭제됩니다."
+},
+"461": {
+ "stem": "contoso.com이라는 Microsoft Entra 테넌트가 있습니다.\n\n다음 문이 포함된 Query1이라는 쿼리가 있습니다.\n\n[[IMG1]]\n\nQuery1을 Microsoft Entra 활동 로그에 대해 실행할 수 있도록 해야 합니다. 관리 작업을 최소화해야 합니다.\n\n먼저 무엇을 해야 합니까?",
+ "choices": {"A": "Microsoft Entra 관리 센터의 진단 설정에서 로그를 Log Analytics 작업 영역으로 보냅니다.", "B": "Microsoft Entra 관리 센터의 진단 설정에서 로그를 Azure 이벤트 허브로 스트리밍합니다.", "C": "Microsoft Entra 관리 센터의 진단 설정에서 로그를 스토리지 계정에 보관합니다.", "D": "Azure Portal에서 데이터 수집 규칙(DCR)을 만듭니다."},
+ "explanation": "`SignInLogs` 테이블은 Microsoft Entra 진단 설정을 통해 Microsoft Entra 로그인 로그를 Log Analytics 작업 영역으로 보낸 후 그곳에서 쿼리합니다. 이벤트 허브로 보내는 것은 스트리밍용, 스토리지 계정 보관은 보존용이며, Microsoft Entra 활동 로그를 Log Analytics로 라우팅하는 데 데이터 수집 규칙은 필요하지 않습니다."
+},
+"462": {
+ "stem": "Microsoft Entra ID Protection을 사용하며 다음 표의 사용자가 포함된 Microsoft Entra 테넌트가 있습니다.\n\n[[IMG1]]\n\n위험한 사용자에 대한 수정을 요구하는 조건부 액세스 정책을 구현해야 합니다.\n\n정책을 만들 수 있는 사용자는 누구입니까?",
+ "choices": {"A": "User1만", "B": "User1과 User2만", "C": "User1과 User3만", "D": "User1, User2, User3"},
+ "explanation": "Conditional Access Administrator와 Security Administrator는 조건부 액세스 정책을 만들고 관리할 수 있는 역할입니다. Authentication Administrator는 조건부 액세스 정책 생성 권한을 부여하지 않습니다. 조건부 액세스 정책에서 Identity Protection 위험 신호를 사용하려면 Microsoft Entra ID P2가 필요합니다."
+},
+"463": {
+ "stem": "HOTSPOT\n\nUser1, User2, User3, User4의 네 사용자가 포함된 Microsoft Entra ID P2 테넌트가 있습니다. 테넌트에는 다음 표의 그룹이 있습니다.\n\n[[IMG1]]\n\nGroup2는 Privileged Identity Management(PIM)에 온보딩되어 있습니다.\n\nGroup2에 다음 표의 역할을 할당합니다.\n\n[[IMG2]]\n\n다음 각 문장이 참이면 예, 그렇지 않으면 아니요를 선택하세요.",
+ "statements": ["User2는 PIM을 사용하여 Group1의 구성원이 되도록 요청할 수 있다.", "User3은 PIM을 사용하여 Group2의 구성원이 되도록 요청할 수 있다.", "User4는 PIM을 사용하여 Group2의 구성원이 되도록 요청할 수 있다."],
+ "explanation": "PIM for Groups는 PIM으로 관리되는 그룹의 적격 멤버 자격 또는 소유권 할당에 대해서만 활성화를 제공합니다. Group1은 온보딩되지 않았으므로 User2는 그 그룹의 멤버 자격을 활성화할 수 없습니다. Group1의 활성 구성원인 사용자는 Group1이 보유한 적격 Group2 멤버 자격을 활성화할 수 있으며, 활성화하면 중첩 그룹 전체가 아니라 요청한 그 사용자가 Group2의 활성 구성원이 됩니다. User4는 이미 Group2의 활성 소유자이고 활성화할 적격 구성원 할당이 없습니다."
+}
+}

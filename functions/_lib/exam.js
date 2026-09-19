@@ -7,6 +7,7 @@ import { json } from "./auth.js";
 export const EXAMS = {
   az104: { title: "AZ-104", path: "/AZ-104_CBT/" },
   az802: { title: "AZ-802", path: "/AZ-802_CBT/" },
+  sc300: { title: "SC-300", path: "/SC-300_CBT/" },
 };
 export const DEFAULT_EXAM = "az104";   // 옛 클라이언트(exam 미지정)는 AZ-104
 

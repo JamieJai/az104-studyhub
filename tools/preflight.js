@@ -23,6 +23,10 @@ const req = async (p, opt = {}) => {
   check('middleware: /AZ-802_CBT/ unauth → 302 /?next=', r.status === 302 && r.loc.includes('?next='), `${r.status} ${r.loc}`);
   r = await req('/AZ-802_CBT/data.js');
   check('AZ-802 data.js served', r.status === 200 && r.text.includes('AZ802_DATA'), String(r.status));
+  r = await req('/SC-300_CBT/', { headers: { Accept: 'text/html' } });
+  check('middleware: /SC-300_CBT/ unauth → 302 /?next=', r.status === 302 && r.loc.includes('?next='), `${r.status} ${r.loc}`);
+  r = await req('/SC-300_CBT/data.js');
+  check('SC-300 data.js served', r.status === 200 && r.text.includes('SC300_DATA'), String(r.status));
   r = await req('/api/progress?exam=nope');
   check('bad exam → 401 before auth (unauth)', r.status === 401, String(r.status));
   r = await req('/cbt', { headers: { Accept: 'text/html' } });
@@ -72,6 +76,8 @@ const req = async (p, opt = {}) => {
     check('AZ-802 page 200 when logged in', r.status === 200 && r.text.includes('AZ-802 CBT'), String(r.status));
     r = await req('/api/progress?exam=nope');
     check('bad exam → 400 bad_exam', r.status === 400 && r.json && r.json.error === 'bad_exam', r.text.slice(0, 80));
+    r = await req('/api/progress?exam=sc300');
+    check('sc300 exam accepted (empty)', r.status === 200 && r.json && r.json.exam === 'sc300', r.text.slice(0, 80));
     r = await req('/api/progress', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ records: { '229': { result: 'ok', updatedAt: new Date().toISOString() } }, session: { cursor: 1 } }) });
     check('progress POST', r.status === 200 && r.json && r.json.ok, r.text.slice(0, 80));
     r = await req('/api/progress');

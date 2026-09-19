@@ -1,0 +1,85 @@
+{
+"27": {
+ "stem": "RemoteNetwork1과 RemoteNetwork2라는 두 원격 네트워크와 다음 표의 사용자가 포함된 Microsoft Entra 테넌트가 있습니다.\n\n[[IMG1]]\n\n다음 표의 디바이스가 있습니다.\n\n[[IMG2]]\n\n다음 설정의 조건부 액세스 정책이 있습니다.\n\n- **이름:** CAPolicy1\n- **할당**\n  - **사용자:** Group1, Group2\n  - **대상 리소스:** Global Secure Access를 사용하는 모든 인터넷 리소스\n- **액세스 제어**\n  - **허용:** 다단계 인증 필요\n- **정책 사용:** 켬\n\nGlobal Secure Access 트래픽 전달은 다음 그림과 같이 구성되어 있습니다.\n\n[[IMG3]]\n\n다음 각 문장이 참이면 예, 그렇지 않으면 아니요를 선택하세요.",
+ "statements": ["User1이 Microsoft Exchange Online에 로그인하면 다단계 인증(MFA)을 요구받는다.", "User2가 Microsoft SharePoint Online에 로그인하면 다단계 인증(MFA)을 요구받는다.", "User3이 Microsoft Exchange Online에 로그인하면 다단계 인증(MFA)을 요구받는다."],
+ "explanation": "원격 네트워크에 할당된 Microsoft 트래픽 프로필은 그 원격 네트워크 뒤에 있는 디바이스의 Microsoft 서비스 트래픽을 획득하며, 디바이스별 Global Secure Access 클라이언트는 필요하지 않습니다. 따라서 User1과 User2는 RemoteNetwork1을 통해 적용 대상이 되고 CAPolicy1이 MFA를 요구합니다. RemoteNetwork2는 프로필에 할당되어 있지 않으므로 User3은 이 트래픽에 대해 CAPolicy1의 적용을 받지 않습니다."
+},
+"28": {
+ "stem": "사용자 1,000명이 포함된 Microsoft Entra 테넌트가 있습니다. 사용자에게는 Microsoft Entra Suite 라이선스가 있습니다.\n\nGlobal Secure Access를 배포하고 있습니다.\n\nwww.microsoft.com 연결이 Global Secure Access를 우회(bypass)하도록 해야 합니다.\n\n어떤 프로필을 업데이트해야 합니까?",
+ "choices": {"A": "인터넷 액세스 프로필만", "B": "Microsoft 트래픽 프로필만", "C": "Microsoft 트래픽 프로필과 인터넷 액세스 프로필만", "D": "Microsoft 트래픽 프로필, 프라이빗 액세스 프로필, 인터넷 액세스 프로필"},
+ "explanation": "www.microsoft.com 같은 FQDN은 Microsoft 트래픽 프로필이 관리하며, 인터넷 액세스 프로필은 Microsoft 트래픽 프로필이 이미 다루는 대상을 별도로 획득하지 않습니다. 따라서 Microsoft 트래픽 프로필에서 해당 규칙을 우회(Bypass)로 설정하는 것만으로 그 트래픽을 Global Secure Access 터널에서 제외할 수 있고, 인터넷 액세스나 프라이빗 액세스 프로필을 업데이트할 필요는 없습니다."
+},
+"29": {
+ "stem": "다음 표의 리소스가 포함된 Azure 구독이 있습니다.\n\n[[IMG1]]\n\n구독에는 다음 표의 가상 머신이 포함되어 있습니다.\n\n[[IMG2]]\n\nRG1에 대한 Owner 역할을 받을 수 있는 ID는 무엇이고, Managed2를 할당할 수 있는 가상 머신은 무엇입니까?",
+ "blanks": {
+  "owner_identities": {"label": "Owner 역할을 받을 수 있는 ID:", "options": ["Managed1만", "Managed1, VM1, VM3만", "Managed1, Managed2, VM1만", "Managed1, Managed2, VM1, VM2만", "Managed1, Managed2, VM1, VM2, VM3만"]},
+  "managed2_vms": {"label": "Managed2를 할당할 수 있는 가상 머신:", "options": ["VM4만", "VM2와 VM4만", "VM1, VM2, VM4만", "VM1, VM2, VM3, VM4"]}
+ },
+ "explanation": "Azure RBAC 역할 할당은 보안 주체의 Microsoft Entra 서비스 주체를 대상으로 하며 이는 지역과 무관하게 사용할 수 있으므로, Managed1, Managed2, 그리고 VM1과 VM2의 시스템 할당 ID 모두 RG1 범위에서 Owner 역할을 받을 수 있습니다. VM3에는 자체 시스템 할당 ID가 없고 연결된 사용자 할당 ID Managed1만 사용하는데, Managed1은 이미 역할을 받는 주체이므로 VM3을 별도의 주체로 선택할 수 없으며, VM4에는 ID가 전혀 없습니다. 같은 이유로 사용자 할당 관리 ID의 서비스 주체는 지역 독립적이므로 Managed2(West US)는 어느 지역의 가상 머신에도 연결할 수 있어 VM1, VM2, VM3, VM4 모두에 Managed2를 할당할 수 있습니다."
+},
+"30": {
+ "stem": "다음 표의 사용자가 포함된 Azure Active Directory(Azure AD) 테넌트가 있습니다.\n\n[[IMG1]]\n\n다음 표의 위치가 있습니다.\n\n[[IMG2]]\n\n테넌트에는 다음 설정의 명명된 위치(named location)가 있습니다.\n\n- 이름: Location1\n- 신뢰할 수 있는 위치로 표시: 사용\n- IPv4 범위: 10.10.0.0/16\n\nMFA에는 193.17.17.0/24의 신뢰할 수 있는 IP 주소 범위가 있습니다.\n\nCAPolicy1은 다음과 같이 구성되어 있습니다.\n\n- **할당**\n  - 사용자 또는 워크로드 ID: Group1\n  - 클라우드 앱 또는 작업: 모든 클라우드 앱\n- **조건**\n  - 위치: 신뢰할 수 있는 모든 위치\n- **액세스 제어**\n  - 액세스 허용: 다단계 인증 필요\n  - 세션: 선택한 제어 0개\n- 정책 사용: 켬\n\n다음 각 문장이 참이면 예, 그렇지 않으면 아니요를 선택하세요.",
+ "statements": ["User1이 IP 주소 10.10.0.150에서 테넌트에 연결하면 MFA를 요구받는다.", "User2가 IP 주소 10.10.1.160에서 테넌트에 연결하면 MFA를 요구받는다.", "User2가 IP 주소 192.168.1.20에서 테넌트에 연결하면 MFA를 요구받는다."],
+ "explanation": "CAPolicy1은 신뢰할 수 있는 위치에서의 Group1 로그인에 MFA를 요구하며, 10.10.0.150은 신뢰할 수 있는 Location1 범위 안에 있습니다. User2는 조건부 액세스 정책 대상이 아니지만 사용자별 MFA가 적용(enforced)되어 있고, User2의 두 원본 주소 모두 구성된 MFA 신뢰 IP 범위 193.17.17.0/24에 속하지 않습니다."
+},
+"31": {
+ "stem": "Microsoft 365 E5 구독이 있습니다.\n\n사용자가 Global Secure Access 클라이언트가 연결된 디바이스에서만 구독의 리소스에 액세스할 수 있도록 해야 합니다.\n\n먼저 무엇을 해야 합니까?",
+ "choices": {"A": "Global Secure Access 신호(signaling)를 사용하도록 설정합니다.", "B": "테넌트 제한을 적용하기 위한 태깅을 사용하도록 설정합니다.", "C": "명명된 위치를 만듭니다.", "D": "원격 네트워크를 만듭니다."},
+ "explanation": "조건부 액세스용 Global Secure Access 신호를 사용하도록 설정하면 규격 네트워크(compliant network) 검사가 가능해져, Microsoft Entra 조건부 액세스가 테넌트의 Global Secure Access 서비스를 통해 연결된 트래픽을 식별할 수 있습니다. 신호를 사용하도록 설정한 뒤에 규격 네트워크 명명된 위치와 조건부 액세스 정책으로 액세스 요구 사항을 적용할 수 있습니다."
+},
+"32": {
+ "stem": "네트워크에 Azure Active Directory(Azure AD) 테넌트와 동기화되는 온-프레미스 Active Directory 도메인이 있습니다.\n\n사용자는 Windows 10을 실행하는 도메인 가입 컴퓨터에 로그인합니다.\n\nAzure AD Seamless Single Sign-On(Azure AD Seamless SSO)을 구현할 계획입니다. Windows 10 컴퓨터가 Azure AD Seamless SSO를 지원하도록 구성해야 합니다.\n\n무엇을 해야 합니까?",
+ "choices": {"A": "설정 앱에서 로그인 옵션을 구성합니다.", "B": "Enterprise State Roaming을 사용하도록 설정합니다.", "C": "로컬 인트라넷 영역(Local intranet Zone) 설정을 수정합니다.", "D": "Azure AD Connect 인증 에이전트를 설치합니다."},
+ "explanation": "Azure AD Seamless SSO는 Kerberos 기반 통합 Windows 인증을 사용합니다. 브라우저가 필요한 Kerberos 티켓을 서비스 엔드포인트로 보내도록 Azure AD Seamless SSO URL을 사용자의 로컬 인트라넷 영역 설정에 추가해야 합니다. Microsoft는 그룹 정책으로 `https://autologon.microsoftazuread-sso.com`을 인트라넷 영역에 구성하도록 안내합니다."
+},
+"33": {
+ "stem": "HOTSPOT -\n\n다음 표의 사용자가 포함된 Azure AD 테넌트가 있습니다.\n\n[[IMG1]]\n\n다음 표의 Azure AD Identity Protection 정책이 있습니다.\n\n[[IMG2]]\n\n위험한 사용자 보고서와 위험한 로그인 보고서를 검토하고, 각 사용자에 대해 다음 표의 작업을 수행합니다.\n\n[[IMG3]]\n\n다음 각 문장이 참이면 예, 그렇지 않으면 아니요를 선택하세요.",
+ "statements": ["User1은 다단계 인증(MFA)을 사용하여 로그인할 수 있다.", "User2는 다단계 인증(MFA)을 사용하여 로그인할 수 있다.", "User3은 익명 IP 주소에서 로그인할 수 있다."],
+ "explanation": "사용자를 손상됨으로 확인(confirm compromised)하면 그 사용자의 위험이 높음으로 설정되며, 구성된 사용자 위험 정책이 낮음 이상의 모든 사용자를 차단하므로 MFA로 차단을 우회할 수 없습니다. 로그인을 안전함으로 확인해도 User2의 기존 중간 사용자 위험은 제거되지 않으므로 이 사용자도 차단됩니다. User3의 사용자 위험을 해제(dismiss)하면 사용자 위험 정책의 차단이 제거되고, 익명 IP 주소는 구성된 높음 로그인 위험 임계값보다 낮은 중간 로그인 위험 탐지입니다."
+},
+"34": {
+ "stem": "Azure AD Premium P2 테넌트가 있습니다.\n\nLog Analytics 작업 영역을 만듭니다.\n\nAzure Monitor를 사용하여 Azure AD 감사 로그 정보를 볼 수 있도록 해야 합니다.\n\n먼저 무엇을 해야 합니까?",
+ "choices": {"A": "Azure AD의 진단 설정을 수정합니다.", "B": "Update-MgOrganization cmdlet을 실행합니다.", "C": "Update-MgDomain cmdlet을 실행합니다.", "D": "Azure AD 통합 문서(workbook)를 만듭니다."},
+ "explanation": "Microsoft Entra ID 진단 설정은 활동 로그를 Azure Monitor로 내보내도록 구성합니다. 감사 데이터를 Log Analytics 작업 영역에서 쿼리하거나 시각화하려면 먼저 감사 로그 범주를 선택하고 작업 영역으로 보내도록 설정해야 합니다. [Microsoft Entra 로그를 Azure Monitor 로그와 통합](https://learn.microsoft.com/en-us/entra/identity/monitoring-health/howto-integrate-activity-logs-with-azure-monitor-logs)"
+},
+"35": {
+ "stem": "VM1이라는 Linux 가상 머신이 포함된 Azure 구독이 있습니다.\n\nVM1에 대한 강화된 보안을 구성해야 합니다. 다음 요구 사항을 충족해야 합니다.\n\n- 사용자가 Microsoft Entra 자격 증명으로 VM1에 로그인할 수 있어야 합니다.\n- 사용자가 다단계 대역 외(out-of-band) 인증으로 인증해야 합니다.\n- 사용자가 암호로 VM1에 로그인하지 못하게 해야 합니다.\n\n솔루션에 포함할 수 있는 인증 방법 두 가지는 무엇입니까? 각 정답은 완전한 해결책입니다.\n\n참고: 각 정답 선택은 1점입니다.",
+ "choices": {"A": "Microsoft Authenticator 앱", "B": "FIDO2 보안 키", "C": "임시 액세스 패스(Temporary Access Pass)", "D": "SMS", "E": "Windows Hello 비즈니스용"},
+ "explanation": "Azure Linux VM에 대한 Microsoft Entra 인증은 OpenSSH 인증서 기반 로그인을 사용하며, 다단계 인증을 요구하는 조건부 액세스 정책을 지원합니다. Microsoft Authenticator와 FIDO2 보안 키는 암호 없는 Microsoft Entra 인증을 지원합니다. FIDO2는 보안 키와 사용자 확인을 함께 사용하고, Authenticator는 등록된 모바일 디바이스를 통해 암호 없는 MFA를 제공할 수 있습니다."
+},
+"36": {
+ "stem": "다음 개체가 포함된 Azure Active Directory(Azure AD) 테넌트가 있습니다.\n\n- Device1이라는 디바이스\n- User1, User2, User3, User4, User5라는 사용자\n- Group1, Group2, Group3, Group4, Group5라는 그룹\n\n그룹은 다음 표와 같이 구성되어 있습니다.\n\n[[IMG1]]\n\nMicrosoft Office 365 Enterprise E5 라이선스를 직접 할당할 수 있는 그룹은 무엇입니까?",
+ "choices": {"A": "Group1과 Group4만", "B": "Group1, Group2, Group3, Group4, Group5", "C": "Group1과 Group2만", "D": "Group1만", "E": "Group1, Group2, Group4, Group5만"},
+ "explanation": "그룹 기반 라이선스는 할당된 멤버 자격과 동적 사용자 멤버 자격을 포함해 보안 그룹과 Microsoft 365 그룹을 지원합니다. 라이선스는 사용자에게 할당되므로 동적 디바이스 그룹은 사용자 라이선스 할당을 받을 수 없습니다. Group1, Group2, Group4, Group5는 가능하고 Group3은 불가능합니다."
+},
+"37": {
+ "stem": "User1이라는 사용자가 포함된 Azure Active Directory(Azure AD) 테넌트가 있습니다.\n\n관리자가 User1을 삭제합니다.\n\n다음을 식별하세요.\n\n- User1 계정이 삭제된 후 복원할 수 있는 일수\n- User1을 복원할 수 있는 최소 권한 역할\n\n무엇을 식별해야 합니까?",
+ "blanks": {
+  "days": {"label": "일수:", "options": ["15", "30", "90", "180"]},
+  "role": {"label": "역할:", "options": ["User administrator", "Network administrator", "Helpdesk administrator", "Domain name administrator"]}
+ },
+ "explanation": "삭제된 Microsoft Entra ID 사용자는 30일 동안 삭제된 사용자 목록에 보존되며 그 기간 안에 복원할 수 있습니다. User administrator 역할은 삭제된 사용자를 복원할 수 있지만, 나머지 역할은 디렉터리 사용자 관리와 관련이 없습니다."
+},
+"38": {
+ "stem": "User1이라는 사용자가 다음의 잘못된 암호로 테넌트 로그인을 시도합니다.\n\n- Pa55w0rd12\n- Pa55w0rd12\n- Pa55w0rd12\n- Pa55w.rd12\n- Pa55w.rd123\n- Pa55w.rd123\n- Pa55w.rd123\n- Pa55word12\n- Pa55word12\n- Pa55word12\n- Pa55w.rd12\n\nUser1에 대해 추적되는 로그인 시도 횟수와, 300초 잠금 기간이 끝나기 전에 User1이 계정을 잠금 해제할 수 있는 방법을 식별하세요.",
+ "blanks": {
+  "tracked_sign_in_attempts": {"label": "추적되는 로그인 시도:", "options": ["4", "5", "10", "11"]},
+  "unlock_by": {"label": "잠금 해제 방법:", "options": ["브라우저 캐시 지우기", "InPrivate 브라우징 모드로 로그인", "셀프 서비스 암호 재설정(SSPR) 수행"]}
+ },
+ "explanation": "Microsoft Entra 스마트 잠금은 서로 다른 잘못된 암호 해시를 기록하며, 이미 본 잘못된 암호를 반복해 시도한 것은 무시합니다. 나열된 순서에는 서로 다른 잘못된 암호가 4개 있습니다. 셀프 서비스 암호 재설정은 스마트 잠금 카운터를 재설정하지만, 브라우저 캐시 지우기와 InPrivate 브라우징은 계정을 잠금 해제하지 않습니다."
+},
+"39": {
+ "stem": "`storage1`이라는 스토리지 계정과 `WebApp1`이라는 웹앱이 포함된 Azure 구독이 있습니다. `WebApp1`은 시스템 할당 관리 ID를 사용합니다.\n\n`WebApp1`이 그 시스템 할당 관리 ID를 사용하여 `storage1`에 파일을 읽고 쓸 수 있도록 해야 합니다.\n\nAzure Portal에서 `storage1`에 대해 무엇을 구성해야 합니까?",
+ "choices": {"A": "데이터 보호", "B": "공유 액세스 서명(SAS)", "C": "액세스 제어(IAM) 설정", "D": "파일 공유 설정", "E": "액세스 키"},
+ "explanation": "Azure RBAC 역할 할당은 관리 ID에 Azure Storage 데이터에 액세스할 권한을 부여합니다. 웹앱의 시스템 할당 관리 ID에 스토리지 계정 범위로 적절한 Storage Data Contributor 역할을 할당하는 작업은 **액세스 제어(IAM)**에서 구성합니다."
+},
+"40": {
+ "stem": "Microsoft 365 테넌트가 있습니다.\n\n자격 증명이 유출된 사용자를 식별해야 합니다. 다음 요구 사항을 충족해야 합니다.\n\n- 자격 증명이 유출된 것으로 의심되는 사용자의 로그인을 식별합니다.\n- 해당 로그인을 높은 위험 이벤트로 표시합니다.\n- 사용자가 애플리케이션에 계속 액세스할 수 있게 하면서 위험을 완화하는 제어를 즉시 적용합니다.\n\n무엇을 사용해야 합니까?",
+ "blanks": {
+  "classify": {"label": "유출된 자격 증명을 높은 위험으로 분류하는 데 사용할 것:", "options": ["Azure Active Directory(Azure AD) Identity Protection", "Azure Active Directory(Azure AD) Privileged Identity Management(PIM)", "Identity Governance", "셀프 서비스 암호 재설정(SSPR)"]},
+  "trigger": {"label": "수정을 트리거하는 데 사용할 것:", "options": ["최신 인증을 사용하지 않는 클라이언트 앱", "디바이스 상태", "로그인 위험", "사용자 위치", "사용자 위험"]},
+  "mitigate": {"label": "위험을 완화하기 위해 선택할 것:", "options": ["앱 적용 제한 적용", "액세스 차단", "액세스 허용하되 앱 보호 정책 필요", "액세스 허용하되 암호 변경 필요"]}
+ },
+ "explanation": "Azure AD Identity Protection은 유출된 자격 증명을 탐지하고 해당 사용자를 높은 위험으로 표시합니다. 유출된 자격 증명은 사용자 위험 신호이므로 사용자 위험 정책으로 수정을 시작할 수 있습니다. 암호 변경을 요구하면 손상된 자격 증명이 교체되고, 수정 후 사용자가 애플리케이션에 계속 액세스할 수 있습니다."
+}
+}

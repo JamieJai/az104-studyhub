@@ -1,0 +1,146 @@
+{
+"396": {
+ "stem": "User1이라는 사용자와 다음 표의 그룹이 포함된 Azure Active Directory(Azure AD) 테넌트가 있습니다.\n\n[[IMG1]]\n\n테넌트에 다음 표의 그룹을 만듭니다.\n\n[[IMG2]]\n\nGroupA와 GroupB에 추가할 수 있는 구성원은 무엇입니까?",
+ "blanks": {
+  "groupA": {"label": "GroupA:", "options": ["User1만", "User1과 Group1만", "User1, Group1, Group2만", "User1, Group1, Group4만", "User1, Group1, Group2, Group3만", "User1, Group1, Group2, Group3, Group4"]},
+  "groupB": {"label": "GroupB:", "options": ["User1만", "User1과 Group4만", "User1, Group1, Group4만", "User1, Group1, Group2, Group4만", "User1, Group1, Group2, Group3, Group4"]}
+ },
+ "explanation": "보안 그룹은 사용자와 다른 보안 그룹(할당 또는 동적 멤버 자격 보안 그룹 포함)을 포함할 수 있습니다. 따라서 GroupA는 User1과 Group1~Group3을 포함할 수 있지만 Microsoft 365 그룹인 Group4는 포함할 수 없습니다. Microsoft 365 그룹은 사용자만 포함할 수 있으므로 GroupB는 User1만 포함할 수 있습니다."
+},
+"397": {
+ "stem": "HOTSPOT -\n\nMicrosoft 365 테넌트에 사용자 5,000명이 있으며, 그중 전담 지원 팀이 있는 임원 100명이 포함되어 있습니다.\n\n지원 팀이 임원에 대해서만 암호를 재설정하고 다단계 인증(MFA) 설정을 관리할 수 있도록 해야 합니다. 최소 권한 원칙을 따라야 합니다.\n\n어떤 개체 유형과 Azure Active Directory(Azure AD) 역할을 사용해야 합니까?",
+ "blanks": {
+  "object_type": {"label": "개체 유형:", "options": ["관리 단위", "사용자 지정 관리자 역할", "동적 그룹", "Microsoft 365 그룹"]},
+  "role": {"label": "역할:", "options": ["Authentication administrator", "Groups administrator", "Helpdesk administrator", "Password administrator"]}
+ },
+ "explanation": "관리 단위는 위임된 Azure AD(Microsoft Entra ID) 역할 권한의 범위를 임원 구성원으로 제한하여 최소 권한을 충족합니다. 그 범위에서 Authentication administrator를 할당하면 지원 팀이 MFA 관련 설정을 포함한 인증 방법을 관리하고 대상 사용자의 암호를 재설정할 수 있습니다."
+},
+"399": {
+ "stem": "HOTSPOT –\n\nSite1이라는 Microsoft SharePoint Online 사이트와 다음 표의 사용자가 포함된 Microsoft 365 E5 구독이 있습니다.\n\n[[IMG1]]\n\n사용자에게는 다음 표의 디바이스가 있습니다.\n\n[[IMG2]]\n\n다음 두 조건부 액세스 정책을 만듭니다.\n\n- **이름:** CAPolicy1\n  - **할당**\n    - **사용자 또는 워크로드 ID:** Group1\n    - **클라우드 앱 또는 작업:** Office 365 SharePoint Online\n  - **조건**\n    - **디바이스 필터:** 필터링된 디바이스를 정책에서 제외\n    - **규칙 구문:** `device.displayName -startsWith \"Device\"`\n  - **액세스 제어**\n    - **허용:** 액세스 차단\n    - **세션:** 선택한 제어 0개\n  - **정책 사용:** 켬\n\n- **이름:** CAPolicy2\n  - **할당**\n    - **사용자 또는 워크로드 ID:** Group2\n    - **클라우드 앱 또는 작업:** Office 365 SharePoint Online\n  - **조건:** 선택한 조건 0개\n  - **액세스 제어**\n    - **허용:** 액세스 허용\n    - **다단계 인증 필요**\n    - **세션:** 선택한 제어 0개\n  - **정책 사용:** 켬\n\n모든 사용자가 MFA로 성공적으로 인증할 수 있음을 확인합니다.\n\n다음 각 문장이 참이면 예, 그렇지 않으면 아니요를 선택하세요.",
+ "statements": ["User1은 Device1에서 Site1에 액세스할 수 있다.", "User2는 Device2에서 Site1에 액세스할 수 있다.", "User3은 Device3에서 Site1에 액세스할 수 있다."],
+ "explanation": "조건부 액세스 디바이스 필터는 등록된 Microsoft Entra 디바이스에 대해서만 디바이스 특성을 평가합니다. Device1은 등록되지 않아 속성이 null이므로 `-startsWith` 제외 조건을 충족하지 않으며, Group1 차단 정책이 User1의 액세스를 거부합니다. Device3은 이름이 제외 조건과 일치하는 등록된 디바이스이므로 차단 정책이 적용되지 않습니다. CAPolicy2는 Group2에 MFA를 요구하며 User2와 User3은 그 요구 사항을 충족합니다."
+},
+"400": {
+ "stem": "다음 표의 사용자가 포함된 Microsoft Entra 테넌트가 있습니다.\n\n[[IMG1]]\n\n테넌트에는 다음 표의 ID가 포함되어 있습니다.\n\n[[IMG2]]\n\n사용자 지정 보안 특성을 만들 수 있는 사용자는 누구이며, 특성을 받을 수 있는 ID는 무엇입니까?",
+ "blanks": {
+  "create": {"label": "사용자 지정 보안 특성을 만들 수 있음:", "options": ["User1만", "User2만", "User1과 User2만", "User1과 User3만", "User1, User2, User3"]},
+  "assign": {"label": "사용자 지정 보안 특성을 할당할 수 있는 대상:", "options": ["Group1만", "Group1과 MI1만", "Group1과 Service1만", "Group1, MI1, Service1만", "MI1과 Service1만", "Service1만"]}
+ },
+ "explanation": "Attribute Definition Administrator 역할은 사용자 지정 보안 특성 정의를 관리할 수 있습니다. Global Administrator와 Security Administrator는 사용자 지정 보안 특성을 정의·읽기·할당할 권한을 자동으로 갖지 않습니다. 사용자 지정 보안 특성은 사용자와 서비스 주체에 대해 지원됩니다. 관리 ID는 서비스 주체로 표현되지만 보안 그룹은 지원되는 할당 대상이 아닙니다."
+},
+"401": {
+ "stem": "다음 표의 사용자가 포함된 Azure Active Directory(Azure AD) 테넌트가 있습니다.\n\n[[IMG1]]\n\n동적 사용자 그룹을 만들고 다음 규칙 구문을 구성합니다.\n\n```text\nuser.usageLocation -in [\"US\",\"AU\"] -and (user.department -eq \"Sales\") -and -not (user.jobTitle -eq \"Manager\") –or (user. jobTitle -eq \"SalesRep\")\n```\n\n그룹에 추가되는 사용자는 누구입니까?",
+ "choices": {"A": "User1만", "B": "User2만", "C": "User3만", "D": "User1과 User2만", "E": "User1과 User3만", "F": "User1, User2, User3"},
+ "explanation": "동적 멤버 자격 규칙은 `-not`, `-and`, `-or`보다 비교 연산자를 먼저 평가합니다. 따라서 이 규칙은 US 또는 AU에 있고 Sales 부서이며 Manager가 아닌 사용자, 또는 직함이 SalesRep인 모든 사용자를 포함합니다. User1은 첫 번째 조건을 충족하고 User2는 SalesRep 조건을 충족하며, User3은 어느 조건도 충족하지 않습니다."
+},
+"402": {
+ "stem": "Azure Active Directory(Azure AD) 테넌트가 있습니다.\n\n다음 설정으로 셀프 서비스 암호 재설정(SSPR)을 구성합니다.\n\n- 로그인 시 사용자 등록 필요: 예\n- 재설정에 필요한 방법 수: 1\n\n사용자에게 유효한 인증 방법은 무엇입니까?",
+ "choices": {"A": "스마트 카드", "B": "모바일 앱 코드", "C": "모바일 앱 알림", "D": "조직 외부 주소로의 이메일"},
+ "explanation": "인증 방법 하나를 요구하는 SSPR 구성에서는 모바일 인증 앱을 확인 코드를 통해 사용할 수 있습니다. 모바일 앱 방법의 푸시 알림 승인은 재설정 방법 두 개가 필요할 때만 사용할 수 있습니다."
+},
+"403": {
+ "stem": "User1, User2, User3의 세 사용자와 Site1이라는 Microsoft SharePoint Online 사이트가 포함된 Microsoft 365 E5 구독이 있습니다.\n\n구독에는 다음 표의 디바이스가 포함되어 있습니다.\n\n[[IMG1]]\n\n사용자는 다음 표와 같이 디바이스에 로그인합니다.\n\n[[IMG2]]\n\n다음 설정의 조건부 액세스 정책이 있습니다.\n\n- 이름: CA1\n- 할당\n  - 사용자 및 그룹: User1, User2, User3\n  - 클라우드 앱 또는 작업: SharePoint - Site1\n- 액세스 제어\n  - 세션: 앱 적용 제한 사용\n\nSharePoint 관리 센터에서 관리되지 않는 디바이스에 대한 액세스 제어를 제한된 웹 전용 액세스 허용으로 구성합니다.\n\nSite1에 전체 액세스 권한을 갖는 사용자는 누구입니까?",
+ "choices": {"A": "User1만", "B": "User2만", "C": "User3만", "D": "User1과 User2만", "E": "User1, User2, User3"},
+ "explanation": "SharePoint 앱 적용 제한은 관리되지 않는 디바이스를 브라우저 전용 액세스로 제한합니다. 관리되는 디바이스는 전체 액세스를 유지합니다. Azure AD 조인 디바이스와 규격 등록 디바이스는 이 제어에서 관리되는 것으로 취급되므로 User1과 User2는 전체 액세스 권한이 있습니다. Device3은 조인되지도 규격도 아니므로 User3은 제한된 웹 전용 액세스로 제한됩니다."
+},
+"404": {
+ "stem": "Microsoft Entra 테넌트가 있습니다.\n\n다음 설정으로 셀프 서비스 암호 재설정(SSPR)을 구성합니다.\n\n- 로그인 시 사용자 등록 필요: 예\n- 재설정에 필요한 방법 수: 1\n\n사용자가 사용할 수 있는 유효한 인증 방법은 무엇입니까?",
+ "choices": {"A": "조직 외부 주소로의 이메일", "B": "모바일 앱 알림", "C": "스마트 카드", "D": "조직 내부 주소로의 이메일"},
+ "explanation": "Microsoft Entra SSPR의 이메일 확인은 복구 중인 조직 계정과 무관하게 재설정 확인 메시지를 받을 수 있도록 조직 외부의 대체 이메일 주소를 사용합니다. 확인 방법 하나가 필요할 때 그 외부 이메일 주소로 재설정 요구 사항을 충족할 수 있습니다."
+},
+"405": {
+ "stem": "Microsoft Office 365 Enterprise E3 라이선스가 할당된 사용자 2,500명이 있습니다. 라이선스는 개별 사용자에게 직접 할당되어 있습니다.\n\nMicrosoft Entra 관리 센터의 **그룹** 블레이드에서 모든 사용자가 포함된 그룹에 Microsoft Office 365 Enterprise E5 라이선스를 할당합니다.\n\n최소한의 관리 작업으로 사용자에게서 Office 365 Enterprise E3 라이선스를 제거해야 합니다.\n\n무엇을 사용해야 합니까?",
+ "choices": {"A": "Set-WindowsProductKey cmdlet", "B": "Update-MgGroup cmdlet", "C": "Set-MgUserLicense cmdlet", "D": "Update-MgUser cmdlet"},
+ "explanation": "`Set-MgUserLicense`는 사용자 계정의 Microsoft 365 라이선스 할당을 관리하며 `-RemoveLicenses`로 지정한 SKU 제거를 지원합니다. 사용자가 그룹 기반 라이선스로 E5를 받은 후 직접 할당된 E3 라이선스를 제거하는 대량 PowerShell 작업에 사용할 수 있습니다."
+},
+"406": {
+ "stem": "RG1이라는 리소스 그룹과 User1, User2, User3, User4의 네 사용자가 포함된 Azure 구독이 있습니다.\n\nRG1에 대해 사용자에게 다음 역할을 할당할 계획입니다.\n\n- User1: Reader\n- User2: Contributor\n- User3: Storage Blob Data Reader\n- User4: Virtual Machine Contributor\n\n특성 기반 액세스 제어(ABAC)의 사용을 평가하고 있습니다.\n\n어떤 사용자의 역할이 ABAC 사용을 지원합니까?",
+ "choices": {"A": "User1", "B": "User2", "C": "User3", "D": "User4"},
+ "explanation": "Azure ABAC 역할 할당 조건은 지원되는 Blob Storage 또는 Queue Storage 데이터 작업이 있는 기본 제공 또는 사용자 지정 역할에 추가할 수 있습니다. Storage Blob Data Reader는 명시적으로 지원되는 기본 제공 역할이므로 User3에게 할당된 역할이 ABAC를 지원합니다."
+},
+"407": {
+ "stem": "다음 표의 그룹이 포함된 Azure Active Directory(Azure AD) 테넌트가 있습니다.\n\n[[IMG1]]\n\n액세스 검토를 만들 수 있는 그룹은 무엇입니까?",
+ "choices": {"A": "Group1만", "B": "Group1과 Group4만", "C": "Group1과 Group2만", "D": "Group1, Group2, Group4, Group5만", "E": "Group1, Group2, Group3, Group4, Group5"},
+ "explanation": "Microsoft Entra 액세스 검토는 할당된 멤버 자격의 보안 그룹과 Microsoft 365 그룹을 지원합니다. 동적 그룹은 멤버 자격 규칙에 따라 멤버 자격이 자동으로 결정되므로 그룹 액세스 검토에서 제외됩니다. 따라서 Group1과 Group4가 대상입니다."
+},
+"408": {
+ "stem": "Microsoft 365 테넌트가 있습니다.\n\n현재 기본 인증(Basic authentication)을 사용하는 이메일 클라이언트가 Microsoft Exchange Online에 연결하는 것을 허용하고 있습니다.\n\n사용자가 최신 인증 프로토콜을 사용하는 이메일 클라이언트에서만 Exchange Online에 연결할 수 있도록 해야 합니다.\n\n무엇을 구현해야 합니까?",
+ "choices": {"A": "Azure AD의 조건부 액세스 정책", "B": "Microsoft Intune의 규정 준수 정책", "C": "Microsoft Defender for Cloud Apps의 OAuth 정책", "D": "Microsoft Intune의 애플리케이션 제어 프로필"},
+ "explanation": "Microsoft Entra ID(Azure AD) 조건부 액세스 정책은 기본 인증을 포함한 레거시 인증 요청이 Exchange Online에 연결하는 것을 차단할 수 있습니다. 이런 요청을 차단하면 최신 인증을 지원하는 클라이언트만 액세스할 수 있습니다."
+},
+"409": {
+ "stem": "Team1이라는 Microsoft Teams 팀과 Group1, Group2라는 두 Microsoft 365 그룹이 포함된 Microsoft 365 E5 구독이 있습니다. 구독에는 다음 표의 사용자가 있습니다.\n\n[[IMG1]]\n\n다음 설정으로 액세스 패키지를 만듭니다.\n\n- **이름:** Package1\n- **리소스 역할:**\n  - Team1: 소유자\n- **액세스를 요청할 수 있는 사용자:** 디렉터리의 사용자\n  - **특정 사용자 및 그룹:** Group1\n- **승인 필요:** 예\n  - **요청자 근거 필요:** 아니요\n  - **단계 수:** 1\n  - **1차 승인자:** Team1, User3\n  - **승인자 근거 필요:** 예\n- **새 요청 사용:** 예\n- **만료:**\n  - 액세스 패키지 할당 만료: 7일\n  - 사용자가 특정 기간 요청 가능: 예\n\n다음 각 문장이 참이면 예, 그렇지 않으면 아니요를 선택하세요.",
+ "statements": ["User1은 Package1을 요청하여 Team1에 대한 액세스를 얻을 수 있다.", "User2는 Package1을 요청하여 Team1에 대한 액세스를 얻을 수 있다.", "User3은 Package1에 대한 자신의 요청을 승인할 수 있다."],
+ "explanation": "구성된 요청자 범위인 Group1의 구성원만 Package1을 요청할 수 있으므로 User1은 요청할 수 있지만 Group2에만 속한 User2는 요청할 수 없습니다. Package1은 할당 시 Team1 소유자 리소스 역할을 부여합니다. 승인자는 자신의 액세스 패키지 요청을 승인할 수 없으므로 User3의 요청은 다른 대상 승인자가 처리해야 합니다."
+},
+"410": {
+ "stem": "Admin1이라는 사용자가 포함된 Azure AD 테넌트가 있습니다.\n\nAdmin1이 **높은 위험 사용자에게 암호 변경 필요** 정책 템플릿을 사용하여 새 조건부 액세스 정책을 만듭니다.\n\n정책 할당에 기본적으로 포함되고 제외되는 대상은 무엇입니까? 각 옵션은 한 번, 여러 번 사용하거나 전혀 사용하지 않을 수 있습니다.",
+ "items": {"Admin1": "Admin1", "All guest and external users": "모든 게스트 및 외부 사용자", "All users": "모든 사용자", "Directory roles": "디렉터리 역할", "None": "없음"},
+ "slots": {"include": "포함:", "exclude": "제외:"},
+ "explanation": "사용자를 대상으로 하는 조건부 액세스 정책 템플릿은 기본적으로 모든 사용자를 포함하고 정책을 만든 계정만 제외합니다. 따라서 Admin1은 제외되고 모든 사용자가 포함됩니다."
+},
+"411": {
+ "stem": "Microsoft 365 E5 구독이 있습니다.\n\n구독에 앱 동의를 설정해야 합니다. 다음 요구 사항을 충족해야 합니다.\n\n- 앱에 대한 사용자 동의를 사용하지 않도록 설정합니다.\n- 앱에 대한 관리자 동의 워크플로를 구성합니다.\n\n각 요구 사항에 어떤 포털을 사용해야 합니까?",
+ "blanks": {
+  "disable_user_consent": {"label": "앱에 대한 사용자 동의 사용 안 함:", "options": ["Microsoft 365 관리 센터", "Microsoft 365 Apps 관리 센터", "Microsoft 365 Defender 포털", "Microsoft Purview 규정 준수 포털"]},
+  "admin_consent_workflow": {"label": "앱에 대한 관리자 동의 워크플로 구성:", "options": ["Microsoft Entra 관리 센터", "Microsoft 365 관리 센터", "Microsoft 365 Defender 포털", "Microsoft Purview 규정 준수 포털"]}
+ },
+ "explanation": "앱에 대한 사용자 동의는 Microsoft 365 관리 센터의 조직 설정에서 관리합니다. 관리자 동의 워크플로는 Microsoft Entra ID에서 구성하며, 엔터프라이즈 앱 동의 설정에서 관리자가 요청을 사용하도록 설정하고 검토자를 지정할 수 있습니다."
+},
+"412": {
+ "stem": "Microsoft 365 E5 테넌트가 있습니다.\n\nApp1이라는 클라우드 애플리케이션을 구매합니다.\n\nMicrosoft Cloud App Security를 사용하여 App1의 실시간 세션 수준 모니터링을 사용하도록 설정해야 합니다.\n\n어떤 순서로 작업을 수행해야 합니까?",
+ "items": {"From Microsoft Cloud App Security, create a session policy.": "Microsoft Cloud App Security에서 세션 정책을 만듭니다.", "Publish App1 in Azure Active Directory (Azure AD).": "Azure Active Directory(Azure AD)에 App1을 게시합니다.", "Create a conditional access policy that has session controls configured.": "세션 제어가 구성된 조건부 액세스 정책을 만듭니다.", "From Microsoft Cloud App Security, modify the Connected apps settings for App1.": "Microsoft Cloud App Security에서 App1의 연결된 앱 설정을 수정합니다."},
+ "slots": {"step1": "1단계", "step2": "2단계", "step3": "3단계"},
+ "explanation": "조건부 액세스 앱 제어는 조건부 액세스 세션 제어를 통해 Azure AD 인증 애플리케이션 세션을 Microsoft Cloud App Security로 라우팅합니다. 앱을 게시하고 라우팅 정책을 구성한 후, Cloud App Security 세션 정책으로 세션을 실시간 모니터링하고 제어할 수 있습니다. 연결된 앱 설정은 역방향 프록시 세션 모니터링이 아니라 API 연결 앱 거버넌스용입니다."
+},
+"413": {
+ "stem": "Group1, Group2, Group3의 세 그룹과 다음 표의 사용자가 포함된 Microsoft 365 E5 구독이 있습니다.\n\n[[IMG1]]\n\n다음 설정으로 CA1이라는 조건부 액세스 정책을 만듭니다.\n\n- **사용자**\n  - **포함**\n    - 사용자 및 그룹: Group1\n  - **제외**\n    - 사용자 및 그룹: Group2\n    - 디렉터리 역할: Global Administrator\n  - **대상 리소스**\n    - 포함: 모든 클라우드 앱\n  - **액세스 제어**\n    - 허용: 다단계 인증 필요\n\n다음 설정으로 CA2라는 조건부 액세스 정책을 만듭니다.\n\n- **사용자**\n  - **포함**\n    - 사용자 및 그룹: Group2\n  - **제외**\n    - 사용자 및 그룹: Group3\n  - **대상 리소스**\n    - 포함: 모든 클라우드 앱\n  - **액세스 제어**\n    - 허용: 액세스 차단\n\n다음 각 문장이 참이면 예, 그렇지 않으면 아니요를 선택하세요.",
+ "statements": ["User1이 Microsoft SharePoint Online에 로그인하면 다단계 인증(MFA)을 요구받는다.", "User2는 Microsoft SharePoint Online에 로그인할 수 없다.", "User3은 Microsoft SharePoint Online에 로그인할 수 없다."],
+ "explanation": "조건부 액세스에서 제외는 포함보다 우선합니다. User1은 Global Administrator 역할을 통해 CA1에서 제외되므로 CA1이 MFA를 요구하지 않습니다. User2는 Group2를 통해 CA2에 포함되고 제외 조건이 없으므로 액세스 차단 제어가 로그인을 막습니다. User3은 Group3 멤버 자격을 통해 CA2에서 제외되므로 CA2가 로그인을 차단하지 않습니다."
+},
+"414": {
+ "stem": "다음 표의 사용자가 포함된 Azure Active Directory(Azure AD) 테넌트가 있습니다.\n\n[[IMG1]]\n\nUser2가 Microsoft Authenticator 앱으로만 다단계 인증(MFA)을 구성할 수 있다고 보고합니다.\n\nUser2가 대체 MFA 방법을 구성할 수 있도록 해야 합니다. 어떤 구성이 필요하며, 어떤 사용자가 수행해야 합니까?",
+ "blanks": {
+  "configuration": {"label": "구성:", "options": ["액세스 검토를 사용하도록 설정합니다.", "Azure AD Privileged Identity Management(PIM)를 사용하도록 설정합니다.", "보안 기본값을 수정합니다."]},
+  "user": {"label": "사용자:", "options": ["User1만", "User2만", "User3만", "User1과 User2만", "User1과 User3만", "User2와 User3만"]}
+ },
+ "explanation": "보안 기본값은 MFA 방법의 사용자 지정을 허용하지 않는 고정된 기준 MFA 구성을 제공합니다. 따라서 대체 방법을 허용하려면 보안 기본값을 수정해야 합니다. Security Administrator는 이 테넌트 전체 보안 구성을 관리할 수 있으며 User1이 그 역할을 갖고 있습니다. Privileged Authentication Administrator는 사용자의 인증 방법 정보를 관리할 수 있지만 보안 기본값은 관리하지 않습니다."
+},
+"415": {
+ "stem": "*(참고: 원본 사이트에 사례 연구 본문이 빠진 문항입니다. 해설로 보면 ADatum 신규 사용자에게 특성 기반으로 자동 라이선스를 할당해야 하는 기술 요구 사항입니다.)*\n\nADatum의 새 사용자에게 라이선스를 할당해야 합니다. 기술 요구 사항을 충족해야 합니다.\n\n어떤 유형의 개체를 만들어야 합니까?",
+ "choices": {"A": "동적 사용자 보안 그룹", "B": "메일 그룹", "C": "OU", "D": "관리 단위"},
+ "explanation": "Microsoft Entra 그룹 기반 라이선스는 보안 그룹의 구성원에게 제품 라이선스를 할당할 수 있습니다. 동적 사용자 보안 그룹은 멤버 자격 규칙에 대해 사용자 특성을 평가하고 일치하는 사용자를 자동으로 추가하므로, 그 사용자들이 그룹에 할당된 라이선스를 받을 수 있습니다."
+},
+"416": {
+ "stem": "User1이라는 사용자가 포함된 Azure AD 테넌트가 있습니다. User1에게는 User Administrator 역할이 할당되어 있습니다.\n\n다음 요구 사항을 충족하도록 테넌트의 외부 협업 설정을 구성합니다.\n\n- 게스트 사용자가 직원 이메일 주소를 쿼리할 수 없어야 합니다.\n- 게스트 사용자는 User1이 초대한 경우에만 테넌트에 액세스해야 합니다.\n\n어떤 세 설정을 구성해야 합니까?",
+ "blanks": {
+  "guest_access": {"label": "게스트 사용자 액세스 제한:", "options": ["게스트 사용자는 구성원과 동일한 액세스 권한을 가짐(가장 포괄적)", "게스트 사용자는 디렉터리 개체의 속성 및 멤버 자격에 제한된 액세스 권한을 가짐", "게스트 사용자 액세스는 자신의 디렉터리 개체의 속성 및 멤버 자격으로 제한됨(가장 제한적)"]},
+  "guest_invites": {"label": "게스트 초대 제한:", "options": ["게스트와 비관리자를 포함해 조직의 누구나 게스트 사용자를 초대할 수 있음(가장 포괄적)", "구성원 사용자와 특정 관리자 역할이 할당된 사용자가 구성원 권한의 게스트를 포함해 게스트 사용자를 초대할 수 있음", "특정 관리자 역할이 할당된 사용자만 게스트 사용자를 초대할 수 있음", "관리자를 포함해 조직의 누구도 게스트 사용자를 초대할 수 없음(가장 제한적)"]},
+  "self_service": {"label": "사용자 흐름을 통한 게스트 셀프 서비스 등록 사용:", "options": ["아니요", "예"]}
+ },
+ "explanation": "게스트 액세스를 게스트 자신의 디렉터리 개체로 제한하면 직원 이메일 주소를 포함한 다른 사용자의 프로필을 보거나 검색할 수 없습니다. 초대를 특정 관리자 역할로 제한하면 User1 같은 User Administrator는 게스트를 초대할 수 있고 일반 구성원과 게스트는 제외됩니다. 셀프 서비스 등록을 사용하지 않도록 설정하면 초대 없이 사용자 흐름을 통해 게스트 계정이 생성되는 것을 막습니다."
+},
+"417": {
+ "stem": "회사에서 Microsoft 365 테넌트를 사용합니다.\n\n회사에 사용자 300명이 있는 콜센터가 있습니다. 콜센터 사용자는 데스크톱 컴퓨터를 공유하며 매일 다른 컴퓨터를 사용할 수 있습니다. 콜센터 컴퓨터는 생체 인식용으로 구성되어 있지 **않습니다**.\n\n사용자는 콜센터에서 휴대폰을 소지할 수 없습니다.\n\n콜센터 사용자가 Microsoft 365 서비스에 액세스할 때 다단계 인증(MFA)을 요구해야 합니다.\n\n솔루션에 무엇을 포함해야 합니까?",
+ "choices": {"A": "명명된 네트워크 위치", "B": "Microsoft Authenticator 앱", "C": "Windows Hello 비즈니스용 인증", "D": "FIDO2 토큰"},
+ "explanation": "FIDO2 보안 키는 사용자가 공유 컴퓨터 사이를 오가며 휴대할 수 있는 이동 가능한 디바이스 바인딩 하드웨어 인증 장치입니다. 키 소유와 PIN 같은 로컬 사용자 확인 제스처를 통해 강력한 인증을 제공하므로 휴대폰이나 공유 데스크톱의 생체 인식 기능이 필요하지 않습니다. Microsoft는 공유 디바이스 시나리오의 대체 인증 옵션으로 FIDO2 보안 키를 명시적으로 제시합니다."
+},
+"418": {
+ "stem": "*(참고: 원본 사이트에 사례 연구 본문이 빠진 문항입니다. 해설로 보면 온-프레미스 AD 특성을 기준으로 Litware 사용자에게 자동으로 라이선스를 할당해야 하는 라이선스 요구 사항입니다.)*\n\nLitware 사용자에 대한 Azure AD 라이선스 할당을 구성해야 합니다. 라이선스 요구 사항을 충족해야 합니다.\n\n무엇을 해야 합니까?",
+ "blanks": {
+  "azure_ad_connect_settings": {"label": "수정할 Azure AD Connect 설정:", "options": ["디렉터리 확장", "도메인 필터링", "선택적 기능"]},
+  "assign_azure_ad_licenses": {"label": "Azure AD 라이선스를 할당할 대상:", "options": ["중첩 그룹만 있는 Azure Active Directory 그룹", "멤버 자격 유형이 할당됨인 Azure Active Directory 그룹", "멤버 자격 유형이 동적 사용자인 Azure Active Directory 그룹"]}
+ },
+ "explanation": "디렉터리 확장은 선택한 온-프레미스 Active Directory 특성을 동기화하여 Microsoft Entra 동적 멤버 자격 규칙에서 사용할 수 있게 합니다. 그러면 동적 사용자 그룹이 그 규칙으로 직접 사용자 멤버 자격을 자동으로 유지하고 그룹 기반 라이선스를 지원합니다. 라이선스 할당은 중첩 그룹을 통해 전달되지 않습니다."
+},
+"419": {
+ "stem": "User1과 User2라는 두 사용자가 포함된 Azure AD 테넌트가 있습니다.\n\n다음 작업을 수행할 계획입니다.\n\n- Group1이라는 그룹을 만듭니다.\n- User1과 User2를 Group1에 추가합니다.\n- Group1에 Azure AD 역할을 할당합니다.\n\nGroup1을 만들어야 합니다.\n\n사용할 수 있는 두 설정은 무엇입니까? 각 정답은 완전한 해결책입니다.\n\n> 참고: 각 정답 선택은 1점입니다.",
+ "choices": {"A": "그룹 유형: Microsoft 365 - 멤버 자격 유형: 할당됨", "B": "그룹 유형: 보안 - 멤버 자격 유형: 할당됨", "C": "그룹 유형: 보안 - 멤버 자격 유형: 동적 사용자", "D": "그룹 유형: Microsoft 365 - 멤버 자격 유형: 동적 사용자", "E": "그룹 유형: 보안 - 멤버 자격 유형: 동적 디바이스"},
+ "explanation": "Azure AD 역할 할당에 사용하는 그룹은 멤버 자격이 할당됨(동적이 아님)이어야 하며 보안 그룹 또는 Microsoft 365 그룹일 수 있습니다. 역할 할당 가능 플래그는 그룹을 만들 때 설정해야 합니다."
+},
+"420": {
+ "stem": "Azure Active Directory(Azure AD) P1 테넌트가 있습니다.\n\n과거에 발생한 로그인을 조사하기 위해 Azure AD 로그인 로그를 검토해야 합니다.\n\nAzure AD는 로그인 로그의 이벤트를 얼마 동안 보존합니까?",
+ "choices": {"A": "14일", "B": "30일", "C": "90일", "D": "365일"},
+ "explanation": "Microsoft Entra ID P1은 기본적으로 로그인 활동 로그를 30일 동안 보존합니다. 그 기간을 넘겨 로그인 데이터를 보존하려면 로그를 다른 스토리지나 분석 솔루션으로 라우팅하거나 보관해야 합니다."
+}
+}
