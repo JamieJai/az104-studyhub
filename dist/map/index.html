@@ -733,17 +733,21 @@ function buildStrip(k){
 
 /* ===================== 학습 자료 링크 =====================
    과목 코드에 자료를 추가하면 상세 패널 맨 위에 버튼이 생깁니다.
-   kind: "cbt" | "lab"  —  아이콘만 달라집니다.                       */
+   kind: "cbt" | "lab" | "book"  —  아이콘만 달라집니다. http 로 시작하면 새 탭. */
 const STUDY={
  "AZ-104":[
    {kind:"cbt",label:"CBT 문제풀이",sub:"603문항 자동채점 · 모의고사 · 오답노트",
     url:"/AZ-104_CBT/"},
    {kind:"lab",label:"실습 랩",sub:"핸즈온 실습 포털",
-    url:"/AZ-104_Lab_Portal/"}
+    url:"/AZ-104_Lab_Portal/"},
+   {kind:"book",label:"이론서",sub:"Notion · AZ-104 Q606 정리 (새 탭)",
+    url:"https://app.notion.com/p/AZ-104-Q606-606-2026-3ce0de1b9f1781999d5ee40a5578176a?source=copy_link"}
  ],
  "AZ-802":[
-   {kind:"cbt",label:"CBT 문제풀이",sub:"63문항 · 한국어 번역 + 영어 원문 · 모의고사",
-    url:"/AZ-802_CBT/"}
+   {kind:"cbt",label:"CBT 문제풀이",sub:"현행 63 + 구형 AZ-800/801 377문항 · 한/영 · 모의고사",
+    url:"/AZ-802_CBT/"},
+   {kind:"book",label:"이론서",sub:"Notion · AZ-802 Administering Windows Server 정리 (새 탭)",
+    url:"https://app.notion.com/p/AZ-802-Administering-Windows-Server-2026-3d00de1b9f178113a4e7ff610ee9fe65?source=copy_link"}
  ]
 };
 const ICON={
@@ -753,7 +757,11 @@ const ICON={
  lab:`<svg width="17" height="17" viewBox="0 0 20 20" fill="none" stroke="currentColor"
    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
    <path d="M8 2.5v5.2L3.6 15a1.6 1.6 0 0 0 1.4 2.4h10a1.6 1.6 0 0 0 1.4-2.4L12 7.7V2.5"/>
-   <path d="M6.6 2.5h6.8M6.4 12h7.2"/></svg>`
+   <path d="M6.6 2.5h6.8M6.4 12h7.2"/></svg>`,
+ book:`<svg width="17" height="17" viewBox="0 0 20 20" fill="none" stroke="currentColor"
+   stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+   <path d="M3 4.2c2.2-1 4.6-1 7 .6 2.4-1.6 4.8-1.6 7-.6v11.3c-2.2-1-4.6-1-7 .6-2.4-1.6-4.8-1.6-7-.6z"/>
+   <path d="M10 4.8v11.3"/></svg>`
 };
 const GO=`<svg width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="currentColor"
   stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
@@ -763,7 +771,7 @@ function studyBlock(id){
   if(!rows||!rows.length)
     return `<div class="study"><div class="none">아직 준비된 학습 자료가 없습니다</div></div>`;
   return `<div class="study">${rows.map(r=>r.url?
-    `<a href="${r.url}">
+    `<a href="${r.url}"${/^https?:/.test(r.url)?' target="_blank" rel="noopener"':''}>
        <span class="ic">${ICON[r.kind]}</span>
        <span class="tx"><span class="t1">${r.label}</span><br><span class="t2">${r.sub}</span></span>
        <span class="go">${GO}</span></a>`:
