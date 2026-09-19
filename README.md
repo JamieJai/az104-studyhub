@@ -1,5 +1,7 @@
 # AZ-104 Study Hub
 
+[![Deploy to Cloudflare Pages](https://github.com/JamieJai/az104-studyhub/actions/workflows/deploy.yml/badge.svg)](https://github.com/JamieJai/az104-studyhub/actions/workflows/deploy.yml)
+
 Cloudflare Pages 프로젝트 `az104-studyhub-p8` — https://az104-studyhub-p8.pages.dev
 
 | 경로 | 내용 |
