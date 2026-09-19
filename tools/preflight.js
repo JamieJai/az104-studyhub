@@ -34,7 +34,10 @@ const req = async (p, opt = {}) => {
   r = await req('/api/auth/login', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name: 'nobody_zz', password: 'xxxx' }) });
   check('login bad_credentials 401', r.status === 401 && r.json && r.json.error === 'bad_credentials', r.text.slice(0, 60));
   r = await req('/service-worker.js');
-  check('sw has -p119 version', r.status === 200 && r.text.includes("v127-q344-p119"), (r.text.match(/VERSION = '([^']+)'/) || [])[1]);
+  // 배포된 SW 버전이 저장소의 dist/service-worker.js 와 같은지 (캐시 갱신 누락·구버전 배포 감지)
+  const localSw = (() => { try { return (require('fs').readFileSync(require('path').join(__dirname, '..', 'dist', 'service-worker.js'), 'utf8').match(/VERSION = '([^']+)'/) || [])[1]; } catch { return null; } })();
+  const liveSw = (r.text.match(/VERSION = '([^']+)'/) || [])[1];
+  check('sw version matches repo', r.status === 200 && !!liveSw && (!localSw || liveSw === localSw), `live=${liveSw} repo=${localSw || '(n/a)'}`);
   check('sw cache-control no-store (_headers)', (r.h.get('cache-control') || '').includes('no-store'), r.h.get('cache-control') || '');
   r = await req('/AZ-104_CBT/choices.js');
   const ch = JSON.parse(r.text.slice(r.text.indexOf('{'), r.text.lastIndexOf('}') + 1));
