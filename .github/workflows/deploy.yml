@@ -61,13 +61,13 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+          cache: npm
+      - run: npm ci --no-audit --no-fund
       - name: Pages 배포 (dist + functions + wrangler.toml 바인딩)
-        id: deploy
-        uses: cloudflare/wrangler-action@v3
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy dist --project-name=az104-studyhub-p8 --branch=main --commit-hash=${{ github.sha }} --commit-message="${{ github.event.head_commit.message || 'manual' }}"
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: npx wrangler pages deploy dist --project-name=az104-studyhub-p8 --branch=main --commit-hash=${{ github.sha }} --commit-dirty=true
       - name: 배포 후 프로덕션 검증 (읽기 전용 17개 체크)
         run: |
           sleep 15

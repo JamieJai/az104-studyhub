@@ -1,0 +1,14 @@
+﻿{
+  "name": "az104-studyhub",
+  "private": true,
+  "description": "AZ-104 Study Hub - Cloudflare Pages (CBT + Lab Portal)",
+  "scripts": {
+    "dev": "wrangler pages dev dist --port 8788",
+    "deploy": "wrangler pages deploy dist --project-name az104-studyhub-p8 --branch main",
+    "preflight": "node tools/preflight.js https://az104-studyhub-p8.pages.dev x nosignup",
+    "preflight:local": "node tools/preflight.js http://127.0.0.1:8788 localadmin"
+  },
+  "devDependencies": {
+    "wrangler": "^4.135.0"
+  }
+}
