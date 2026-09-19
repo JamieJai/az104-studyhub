@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0078d4">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="AZ-104">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
+  <meta name="theme-color" content="#0078d4">
+  <title>Microsoft Azure - AZ-104 Lab</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app" class="app-shell">
+    <header class="global-header">
+      <button class="icon-button header-menu" data-action="toggle-nav" aria-label="메뉴">☰</button>
+      <div class="brand"><span class="brand-mark" aria-hidden="true">◆</span><span id="brandLabel">Microsoft Azure</span><span class="header-sim">LAB</span></div>
+      <div class="global-search-wrap">
+        <span class="search-icon">⌕</span>
+        <input id="globalSearch" class="global-search" placeholder="리소스, 서비스 및 실습 검색" autocomplete="off">
+        <div id="searchResults" class="search-results hidden"></div>
+      </div>
+      <button class="copilot-button" data-action="copilot"><span>◈</span> Copilot</button>
+      <div class="header-actions">
+        <button class="icon-button" data-action="toggle-shell" title="Cloud Shell">⌨</button>
+        <button class="icon-button badge-wrap" data-action="notifications" title="알림">♢<span id="notificationBadge" class="badge hidden">0</span></button>
+        <button class="icon-button" data-action="settings" title="설정">⚙</button>
+        <button class="icon-button" data-action="support" title="도움말 및 지원">?</button>
+        <button class="account-button" data-action="account"><span class="avatar">AL</span><span class="account-label">labadmin@contoso.com</span></button>
+      </div>
+    </header>
+
+    <aside id="globalNav" class="global-nav" aria-label="Azure 서비스 메뉴">
+      <button class="nav-item create-resource" data-action="open-create-menu"><span>＋</span><span>리소스 만들기</span></button>
+      <button class="nav-item active" data-route="home"><span>⌂</span><span>홈</span></button>
+      <button class="nav-item" data-route="dashboard"><span>▦</span><span>대시보드</span></button>
+      <button class="nav-item" data-route="all-services"><span>▤</span><span>모든 서비스</span></button>
+      <div class="nav-divider"></div>
+      <div class="nav-caption">즐겨찾기</div>
+      <button class="nav-item" data-route="resource-groups"><span>▣</span><span>리소스 그룹</span></button>
+      <button class="nav-item" data-route="all-resources"><span>◇</span><span>모든 리소스</span></button>
+      <button class="nav-item" data-route="vms"><span>▧</span><span>가상 머신</span></button>
+      <button class="nav-item" data-route="vmss"><span>▨</span><span>VM Scale Sets</span></button>
+      <button class="nav-item" data-route="app-services"><span>▰</span><span>App Services</span></button>
+      <button class="nav-item" data-route="container-apps"><span>⬡</span><span>Container Apps</span></button>
+      <button class="nav-item" data-route="storage"><span>▱</span><span>스토리지 계정</span></button>
+      <button class="nav-item" data-route="vnets"><span>⌘</span><span>가상 네트워크</span></button>
+      <button class="nav-item" data-route="entra"><span>◎</span><span>Microsoft Entra ID</span></button>
+      <button class="nav-item" data-route="route-tables"><span>⇢</span><span>Route tables</span></button>
+      <button class="nav-item" data-route="bastion"><span>▤</span><span>Bastion</span></button>
+      <button class="nav-item" data-route="load-balancers"><span>⇄</span><span>Load balancers</span></button>
+      <button class="nav-item" data-route="monitor"><span>⌁</span><span>Monitor</span></button>
+      <button class="nav-item" data-route="network-watcher"><span>⌕</span><span>Network Watcher</span></button>
+      <div class="nav-spacer"></div>
+      <button class="nav-item lab-launch" data-action="toggle-labs"><span>✓</span><span>AZ-104 실습</span><b id="labNavProgress">0%</b></button>
+    </aside>
+
+    <main id="workspace" class="workspace" tabindex="-1"></main>
+
+    <aside id="labPanel" class="lab-panel closed" aria-label="AZ-104 실습 문제">
+      <div class="panel-header">
+        <div><span class="eyebrow">GUIDED PRACTICE</span><h2>AZ-104 실습</h2></div>
+        <button class="icon-button dark" data-action="toggle-labs" aria-label="닫기">×</button>
+      </div>
+      <div id="labPanelBody" class="lab-panel-body"></div>
+    </aside>
+
+    <button id="labDock" class="lab-dock" data-action="toggle-labs" title="문제 사이드바 열기 (Ctrl+Shift+Q)">
+      <span class="lab-dock-icon">?</span><span id="labDockText">문제 보기</span><small id="labDockCount">0/16</small>
+    </button>
+
+    <section id="cloudShell" class="cloud-shell closed" aria-label="Cloud Shell">
+      <div class="shell-header">
+        <div class="shell-title"><span>⌨</span> Cloud Shell <span class="simulation-pill">SIMULATION</span></div>
+        <div class="shell-tabs"><button class="shell-tab active" data-shell="bash">Bash</button><button class="shell-tab" data-shell="powershell">PowerShell</button></div>
+        <button class="icon-button dark" data-action="toggle-shell" aria-label="닫기">×</button>
+      </div>
+      <div id="shellOutput" class="shell-output" aria-live="polite"></div>
+      <form id="shellForm" class="shell-input-row">
+        <span id="shellPrompt" class="shell-prompt">labadmin@Azure:~$</span>
+        <input id="shellInput" class="shell-input" autocomplete="off" spellcheck="false" placeholder="az group list 또는 help 입력">
+      </form>
+    </section>
+  </div>
+
+  <div id="modalRoot"></div>
+  <div id="toastRegion" class="toast-region" aria-live="polite"></div>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+  <script src="../pwa-manager.js"></script>
+</body>
+</html>

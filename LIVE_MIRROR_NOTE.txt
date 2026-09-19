@@ -1,0 +1,10 @@
+AZ-104 Study Hub - 라이브 서버(https://az104-studyhub-p8.pages.dev/) 전체 미러 백업
+생성: 2026. 9. 19. 오후 1:17:41  (Claude Code)
+방법: offline-assets.json(version 2026-09-17-p118-q484, 1362개) + icons/AZ104_Study_Hub.html 을 전부 GET, 전체 HTTP 200 확인, PNG/JPG 매직바이트 전수 검증(불량 0)
+라이브 버전 식별자: data.js version=2026-09-17.p117 / service-worker=az104-pwa-20260918-v127-q344 / offline-assets=2026-09-17-p118-q484
+
+[포함되지 않은 것 - 라이브에서 HTTP로 받을 수 없는 파일]
+- _headers, _redirects : Cloudflare Pages가 빌드 시 소비하므로 요청하면 index.html 폴백이 내려옴 -> 제외 (p103 dist에 255B/163B 원본 있음)
+- functions/api/progress.js, report.js : Pages Functions 서버 코드, 다운로드 불가 (p103 dist/functions 에 사본 있음)
+- PWA_IMAGEFIX_v3.md : 라이브에 없음(폴백) -> 제외
+- KV(PROGRESS) 데이터 : 학습 기록은 별도 (wrangler kv 로 덤프 필요)

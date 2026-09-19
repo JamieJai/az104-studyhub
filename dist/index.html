@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0078d4">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
+  <title>AZ-104 통합 학습 허브 · 로그인</title>
+  <style>
+    :root{font-family:"Segoe UI","Malgun Gothic",Arial,sans-serif;color:#172033;background:#f4f7fb}
+    *{box-sizing:border-box}
+    body{margin:0;min-height:100vh;display:grid;place-items:center;padding:24px 16px;background:linear-gradient(135deg,#eef6ff,#f8fbff 55%,#eefaf5)}
+    .card{width:100%;max-width:420px;padding:34px 30px;background:#fff;border:1px solid #dce3ec;border-radius:18px;box-shadow:0 14px 40px #20305016}
+    .eyebrow{color:#0067b8;font-size:12px;font-weight:700;letter-spacing:.1em}
+    h1{margin:8px 0 6px;font-size:24px}
+    .lead{margin:0 0 22px;color:#526075;line-height:1.6;font-size:14px}
+    label{display:block;font-size:13px;font-weight:700;margin:12px 0 6px;color:#34425a}
+    input{width:100%;padding:12px 14px;border:1px solid #cdd9e8;border-radius:10px;font:inherit;font-size:15px;outline:none}
+    input:focus{border-color:#0078d4;box-shadow:0 0 0 3px rgba(0,120,212,.15)}
+    .actions{display:flex;gap:10px;margin-top:20px}
+    button{flex:1;padding:12px 10px;border-radius:10px;border:1px solid #0078d4;font:inherit;font-size:15px;font-weight:700;cursor:pointer;white-space:nowrap}
+    .primary{background:#0078d4;color:#fff}
+    .primary:hover{background:#005a9e}
+    .secondary{background:#fff;color:#0078d4}
+    .secondary:hover{background:#eef6ff}
+    button:disabled{opacity:.55;cursor:wait}
+    .msg{min-height:20px;margin:12px 0 0;font-size:13px;color:#c0392b}
+    .msg.ok{color:#2c8a4a}
+    .note{margin-top:18px;font-size:12px;color:#7a879a;line-height:1.6}
+    .note a{color:#0067b8}
+    .mode-signup .signup-only{display:block}
+    .signup-only{display:none}
+    .lab{margin-top:16px;padding:16px 18px;background:#eefaf5;border:1px solid #bfe8d3;border-radius:14px;display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}
+    .lab h2{margin:0 0 4px;font-size:15px;color:#1f5a3a}
+    .lab p{margin:0;font-size:12.5px;color:#3d6b52;line-height:1.5}
+    .lab a{flex:none;padding:11px 16px;border-radius:10px;background:#107c10;color:#fff;font-weight:700;text-decoration:none;white-space:nowrap}
+    .lab a:hover{background:#0b5e0b}
+    @media (max-width:420px){.actions{flex-direction:column}.lab a{width:100%;text-align:center}}
+  </style>
+</head>
+<body>
+  <main class="card" id="card">
+    <div class="eyebrow">AZ-104 STUDY HUB</div>
+    <h1>AZ-104 통합 학습 허브에 오신 것을 환영합니다</h1>
+    <p class="lead" id="lead">로그인하면 서버에 저장된 학습 기록을 이어서 풉니다. 기록은 서버에만 저장되며 어느 기기에서든 같은 상태로 이어집니다.</p>
+
+    <form id="form" autocomplete="on">
+      <label for="name">이름</label>
+      <input id="name" name="username" type="text" placeholder="영문·숫자·밑줄·하이픈 3자 이상" autocomplete="username" spellcheck="false" maxlength="64" required>
+      <label for="pw">비밀번호</label>
+      <input id="pw" name="password" type="password" placeholder="4자 이상" autocomplete="current-password" maxlength="128" required>
+      <label for="pw2" class="signup-only">비밀번호 확인</label>
+      <input id="pw2" class="signup-only" type="password" placeholder="한 번 더 입력" autocomplete="new-password" maxlength="128">
+      <p class="msg" id="msg"></p>
+      <div class="actions">
+        <button type="submit" class="primary" id="submit">로그인하기</button>
+        <button type="button" class="secondary" id="toggle">회원가입</button>
+      </div>
+    </form>
+
+    <section class="lab">
+      <div>
+        <h2>혹시 Lab 실습을 원하시나요?</h2>
+        <p>Azure Portal 화면형 실습은 계정 없이 바로 이용할 수 있습니다.</p>
+      </div>
+      <a href="./AZ-104_Lab_Portal/">Lab Portal로 이동 →</a>
+    </section>
+
+    <p class="note">3시간 동안 활동이 없으면 자동으로 로그아웃됩니다. · <a href="./admin/" style="color:#9aa6b8">관리</a></p>
+  </main>
+
+  <script>
+    (() => {
+      const $ = id => document.getElementById(id);
+      const card = $("card"), form = $("form"), name = $("name"), pw = $("pw"), pw2 = $("pw2"), msg = $("msg"), submit = $("submit"), toggle = $("toggle");
+      let signup = false;
+      const next = new URLSearchParams(location.search).get("next");
+      const dest = next && next.startsWith("/") && !next.startsWith("//") ? next : "/AZ-104_CBT/";
+      const ERR = {
+        invalid_name: "이름은 영문·숫자·밑줄·하이픈으로 3~64자여야 합니다.",
+        invalid_password: "비밀번호는 4자 이상이어야 합니다.",
+        name_taken: "이미 사용 중인 이름입니다. 로그인하거나 다른 이름을 쓰세요.",
+        bad_credentials: "이름 또는 비밀번호가 맞지 않습니다.",
+        user_limit: "가입 인원이 가득 찼습니다. 관리자에게 문의하세요.",
+        auth_secret_missing: "서버 설정이 아직 끝나지 않았습니다 (AUTH_SECRET).",
+      };
+
+      function setMode(s) {
+        signup = s;
+        card.classList.toggle("mode-signup", s);
+        submit.textContent = s ? "가입하고 시작하기" : "로그인하기";
+        toggle.textContent = s ? "로그인으로 돌아가기" : "회원가입";
+        pw.autocomplete = s ? "new-password" : "current-password";
+        msg.textContent = ""; msg.className = "msg";
+        $("lead").textContent = s
+          ? "새 이름과 비밀번호를 정하면 계정이 만들어집니다. 같은 이름의 예전 기록이 있으면 자동으로 가져옵니다."
+          : "로그인하면 서버에 저장된 학습 기록을 이어서 풉니다. 기록은 서버에만 저장되며 어느 기기에서든 같은 상태로 이어집니다.";
+      }
+      toggle.addEventListener("click", () => setMode(!signup));
+
+      // 이미 세션이 있으면 바로 CBT로 (서버 미들웨어도 같은 일을 하지만, 캐시된 페이지가 뜬 경우 대비)
+      fetch("/api/auth/me", { cache: "no-store" }).then(r => { if (r.ok) location.replace(dest); }).catch(() => {});
+
+      form.addEventListener("submit", async e => {
+        e.preventDefault();
+        const n = name.value.trim(), p = pw.value;
+        if (!/^[A-Za-z0-9_-]{3,64}$/.test(n)) { msg.textContent = ERR.invalid_name; return; }
+        if (p.length < 4) { msg.textContent = ERR.invalid_password; return; }
+        if (signup && p !== pw2.value) { msg.textContent = "비밀번호 확인이 일치하지 않습니다."; return; }
+        submit.disabled = true; toggle.disabled = true;
+        msg.className = "msg"; msg.textContent = signup ? "계정을 만드는 중…" : "로그인 중…";
+        try {
+          const r = await fetch(signup ? "/api/auth/signup" : "/api/auth/login", {
+            method: "POST", headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ name: n, password: p })
+          });
+          const data = await r.json().catch(() => ({}));
+          if (!r.ok) throw new Error(data?.error || r.status);
+          const m = data.migrated;
+          msg.className = "msg ok";
+          msg.textContent = m && m.progress ? `예전 기록 ${m.progress}건을 가져왔습니다. 이동합니다…` : "확인되었습니다. 이동합니다…";
+          location.replace(dest);
+        } catch (err) {
+          msg.className = "msg";
+          msg.textContent = ERR[err.message] || `실패했습니다 (${err.message}). 잠시 후 다시 시도하세요.`;
+          submit.disabled = false; toggle.disabled = false;
+        }
+      });
+      name.focus();
+    })();
+  </script>
+</body>
+</html>

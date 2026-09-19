@@ -1,0 +1,7 @@
+name = "az104-studyhub-p8"
+pages_build_output_dir = "./dist"
+
+[[kv_namespaces]]
+binding = "PROGRESS"
+id = "3e533eed1c07458f896f46f2f5422c1d"
+preview_id = "c97c075a3bd048feb1eda2cd5ddcb82c"
