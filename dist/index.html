@@ -52,6 +52,15 @@
     @keyframes fadeIn{to{opacity:1}}
     #intro .wm{font-family:"Barlow Condensed",sans-serif;font-weight:500;font-size:clamp(20px,5.6vw,32px);color:#EAF1F7;letter-spacing:.7em;text-indent:.7em;opacity:0;animation:wmIn 1.1s cubic-bezier(.2,.7,.3,1) 1.25s forwards;white-space:nowrap}
     @keyframes wmIn{0%{opacity:0;letter-spacing:1.3em}100%{opacity:1;letter-spacing:.7em}}
+    @keyframes wmInM{0%{opacity:0;letter-spacing:.9em}100%{opacity:1;letter-spacing:.42em}}
+    @media (max-width:520px){
+      #intro{gap:22px;padding:0 14px}
+      #intro .emb{width:104px;height:118px}
+      #intro .wm{font-size:clamp(15px,5vw,22px);letter-spacing:.42em;text-indent:.42em;animation-name:wmInM}
+      #intro .wsub{font-size:11px;letter-spacing:.22em;text-indent:.22em;text-align:center}
+      .brand .t{font-size:17px;letter-spacing:.2em}
+      .brand .s{font-size:10.5px;letter-spacing:.18em}
+    }
     #intro .wsub{font-size:12.5px;font-weight:200;color:#6F8090;letter-spacing:.36em;text-indent:.36em;opacity:0;animation:fadeIn .9s ease 1.75s forwards}
     #intro .skip{position:absolute;bottom:34px;font-size:11.5px;color:#4E5E6C;letter-spacing:.14em;font-weight:200;opacity:0;animation:fadeIn .6s ease 2.1s forwards}
 
