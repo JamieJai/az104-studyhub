@@ -466,3 +466,86 @@ body.guest-mode .guest-note{display:block}
 .gate-card.busy .primary{opacity:.6;pointer-events:none}
 .explain-figure img{width:100%;height:auto;border-radius:10px;border:1px solid rgba(128,128,150,.25);margin-top:8px}
 .explain-figure-open{margin:8px 0 0}
+
+/* ===== AZ-802 CBT 전용 ===== */
+.brand-mark { background: #7c3aed; }
+.topic-pill { display:inline-flex; margin-left:8px; padding:5px 9px; border-radius:999px; background:#f1ecff; color:#5b2fb8; font-size:11px; font-weight:800; }
+body.dark .topic-pill { background:#2e2350; color:#d7c7ff; }
+.pill.type-dropdown { background:#fff3d6; color:#855b00; }
+.pill.type-drag_drop { background:#e6f7ee; color:#146c43; }
+.pill.type-statements { background:#ffe9f0; color:#a3164a; }
+
+/* 문제 카드: 이미지 → 번역 텍스트 → 원문 */
+.question-images { display:grid; gap:14px; padding:20px 22px 6px; }
+.question-images:empty { display:none; }
+.q-figure { margin:0; text-align:center; }
+.q-figure img { width:auto; max-width:100%; max-height:380px; object-fit:contain; cursor: zoom-in; border:1px solid var(--line); border-radius:6px; background:#fff; }
+.q-figure figcaption { margin-top:6px; font-size:11px; color:var(--muted); font-weight:700; }
+.question-body { white-space: normal; }
+.question-body p { margin:0 0 12px; }
+.question-body p:last-child { margin-bottom:0; }
+.question-body h2 { margin:18px 0 8px; font-size:16px; }
+.question-body h3 { margin:14px 0 6px; font-size:14px; color:var(--primary-dark); }
+.question-body ul { margin:6px 0 12px 22px; padding:0; }
+.question-body li { margin:4px 0; }
+.question-body code { padding:1px 5px; border-radius:5px; background:rgba(127,127,127,.15); font-size:.92em; }
+.question-body pre { margin:8px 0 12px; padding:12px 14px; border-radius:9px; background:#0f1726; color:#e8f0ff; font-size:13px; line-height:1.6; overflow:auto; white-space:pre; }
+.question-body .scenario-note { display:block; margin:0 0 12px; padding:9px 12px; border-left:3px solid #d97904; background:#fff8e8; color:#6b4a00; border-radius:0 8px 8px 0; font-size:12.5px; line-height:1.6; }
+body.dark .question-body .scenario-note { background:rgba(217,121,4,.15); color:#ffd89a; }
+.img-chip { display:inline-flex; align-items:center; gap:4px; margin:2px 0; padding:3px 9px; border:1px dashed #9fb8dc; border-radius:999px; background:var(--panel); color:var(--primary-dark); font-size:12px; font-weight:700; cursor:pointer; }
+.img-chip:hover { background:#eaf3ff; }
+.question-text-wrap { padding:16px 22px 18px; }
+.original-text { margin-top:10px; border-top:1px dashed var(--line); padding-top:8px; }
+.original-text > summary { cursor:pointer; font-size:12.5px; color:var(--muted); padding:4px 0; }
+.original-text > summary:hover { color:var(--text); }
+.original-text .question-body { margin-top:8px; font-size:14px; color:var(--muted); background:transparent; padding:6px 4px; }
+
+/* 답 입력 */
+.answer-title small { font-weight:400; color:var(--muted); margin-left:6px; }
+.choice-row.with-text .choice-en { display:block; margin-top:3px; font-size:12px; color:var(--muted); font-weight:400; }
+.choice.correct-mark { border-color:#8fd0aa; background:#eefaf3; }
+.choice.wrong-mark { border-color:#f0a6aa; background:#fff3f3; }
+body.dark .choice.correct-mark { background:#153a2a; }
+body.dark .choice.wrong-mark { background:#43222a; }
+.choice-box .choice-en-hint { font-size:11.5px; color:var(--muted); margin-top:2px; }
+.choice-box.ok select { border-color:#8fd0aa; background:#eefaf3; }
+.choice-box.bad select { border-color:#f0a6aa; background:#fff3f3; }
+body.dark .choice-box.ok select { background:#153a2a; } body.dark .choice-box.bad select { background:#43222a; }
+.code-template { margin:6px 0 14px; padding:14px 16px; border-radius:10px; background:#0f1726; color:#e8f0ff; font-family:Consolas,"Cascadia Mono",monospace; font-size:13.5px; line-height:2; overflow:auto; white-space:pre-wrap; }
+.code-template select { display:inline-block; width:auto; min-width:150px; margin:0 3px; padding:3px 8px; border-radius:6px; background:#1d2d47; color:#fff; border:1px solid #4a5f85; font-family:inherit; font-size:13px; }
+.code-template .tpl-ok select { border-color:#2ecc71; } .code-template .tpl-bad select { border-color:#e74c3c; }
+.stmt-row { display:flex; align-items:center; justify-content:space-between; gap:16px; padding:11px 12px; border:1px solid var(--line); border-radius:10px; background:var(--bg); margin-bottom:8px; }
+.stmt-row > div:first-child { flex:1; line-height:1.55; }
+.stmt-row .stmt-en { display:block; font-size:11.5px; color:var(--muted); margin-top:3px; }
+.stmt-row > div:last-child { display:flex; gap:7px; flex:0 0 auto; }
+.stmt-row button.selected { border-color:var(--primary); background:#eaf3ff; color:var(--primary-dark); }
+.stmt-row.ok { border-color:#8fd0aa; } .stmt-row.bad { border-color:#f0a6aa; }
+.dd-items { display:flex; flex-wrap:wrap; gap:7px; margin:0 0 14px; }
+.dd-items span { padding:6px 10px; border:1px solid var(--line); border-radius:8px; background:var(--panel); font-size:12.5px; }
+.part-result { margin:10px 0 0; padding-left:18px; font-size:13px; line-height:1.7; }
+.part-result li.ok { color:#2c8a4a; } .part-result li.bad { color:#c0392b; }
+@media (max-width:720px){ .stmt-row { flex-direction:column; align-items:flex-start; } }
+
+/* 해설 */
+.explanation .answer-summary strong { display:block; margin-bottom:4px; }
+.explanation .answer-summary ul { margin:6px 0 0 18px; padding:0; }
+.explain-body { line-height:1.8; }
+.explain-body p { margin:0 0 10px; }
+.explain-body ul { margin:6px 0 10px 20px; }
+.explain-en { margin-top:14px; border-top:1px dashed var(--line); padding-top:8px; }
+.explain-en > summary { cursor:pointer; font-size:12.5px; color:var(--muted); }
+.explain-en .explain-body { margin-top:8px; font-size:13.5px; color:var(--muted); }
+.reference-links a { color:var(--primary-dark); }
+.exam-locked { margin-top:16px; padding:14px 16px; border-radius:12px; background:#eef4ff; color:#24558f; font-size:13px; }
+body.dark .exam-locked { background:#1d2d47; color:#bcd3f5; }
+
+/* 라이트박스 */
+.lightbox { position:fixed; inset:0; z-index:200; display:flex; align-items:center; justify-content:center; background:rgba(0,0,0,.82); padding:20px; cursor:zoom-out; }
+.lightbox.hidden { display:none; }
+.lightbox img { max-width:100%; max-height:100%; border-radius:6px; background:#fff; }
+.lightbox .lb-cap { position:absolute; bottom:18px; left:50%; transform:translateX(-50%); color:#fff; font-size:13px; background:rgba(0,0,0,.5); padding:6px 12px; border-radius:999px; }
+
+/* 결과·오답노트 재사용 */
+.wn-body em { white-space:normal; }
+.welcome-cards { grid-template-columns: repeat(4, 1fr); }
+@media (max-width:820px){ .welcome-cards { grid-template-columns:1fr 1fr; } }

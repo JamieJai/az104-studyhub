@@ -1,0 +1,76 @@
+{
+"1": {
+ "stem": "네트워크에 DC1과 DC2라는 두 대의 도메인 컨트롤러가 있는 Active Directory Domain Services(AD DS) 도메인이 있습니다.\n\nActive Directory 휴지통(Recycle Bin)은 **비활성화**되어 있습니다.\n\nFinance라는 조직 구성 단위(OU)와 그 하위 개체가 DC1에서 삭제되었고, 이 삭제가 DC2로 복제되었습니다. DC1에는 삭제 이전에 만든 시스템 상태 백업이 있으며, 백업 이후에 다른 AD DS 개체에 대한 변경이 있었습니다.\n\nFinance OU와 그 하위 개체**만** 복구해야 합니다. 복구된 개체가 DC2로 복제되어야 하고, 관련 없는 AD DS 변경 사항은 보존되어야 합니다.\n\n무엇을 구성해야 합니까?",
+ "blanks": {
+  "startup_mode": {"label": "DC1의 시작 모드:", "options": ["AD DS 중지 상태", "디렉터리 서비스 복원 모드(DSRM)", "네트워킹 사용 안전 모드", "Windows 복구 환경(WinRE)"]},
+  "recovery_method": {"label": "복구 방법:", "options": ["AD DS 스냅샷 내보내기", "권한 있는(Authoritative) 하위 트리 복원", "권한 없는(Non-authoritative) 시스템 상태 복원", "휴지통 복원"]}
+ },
+ "explanation": "Active Directory 휴지통이 비활성화되어 있으므로 삭제된 개체를 툼스톤(tombstone)에서 되살릴 수 없습니다. 따라서 삭제 이전에 만든 시스템 상태 백업으로 복구해야 하며, 복구된 개체가 아직 삭제 상태를 갖고 있는 다른 도메인 컨트롤러의 인바운드 복제에 의해 곧바로 덮어써지지 않도록 **권한 있는 복원(authoritative restore)**을 함께 수행해야 합니다.\n\n시스템 상태 복원은 해당 도메인 컨트롤러에서 일반적인 Active Directory 복제가 실행되지 않는 상태에서만 가능하므로, **디렉터리 서비스 복원 모드(DSRM)**로 시작해야 합니다.\n\n전체 시스템 상태만 복원하면 다른 모든 AD DS 개체도 백업 시점으로 되돌아가 백업 이후의 정상적인 변경이 사라집니다. 반면 Finance OU의 고유 이름(DN)만을 대상으로 권한 있는 복원(전체 DB가 아닌 **하위 트리 복원**)을 실행하면 해당 OU와 하위 개체의 버전 번호만 올라갑니다. 도메인 컨트롤러를 일반 모드로 재부팅해 복제가 재개되면 Finance 하위 트리만 권한 있는 상태로 다른 DC에 밀려 나가고, 나머지 개체는 권한 없는 것으로 취급되어 복제 파트너의 최신 데이터로 갱신됩니다. 즉, 삭제된 OU를 복구하고 그 복구를 복제하면서도 관련 없는 백업 이후 변경은 그대로 유지됩니다."
+},
+"2": {
+ "stem": "네트워크에 다음 표와 같은 Active Directory Domain Services(AD DS) 포리스트가 있습니다.\n\n[[IMG1]]\n\n다음 표와 같이 트러스트 관계를 구성해야 합니다.\n\n[[IMG2]]\n\n다음 각 문장에 대해, 문장이 참이면 예를, 그렇지 않으면 아니요를 선택하십시오.",
+ "statements": [
+  "두 트러스트를 모두 구성한 후, contoso.com 사용자는 adatum.com의 리소스에 액세스할 수 있다.",
+  "contoso.com과 fabrikam.com 사이의 단일 양방향 포리스트 트러스트로 Contoso–Fabrikam 액세스 요구 사항을 충족할 수 있다.",
+  "research.fabrikam.com이 adatum.com을 신뢰하는 단방향 외부 트러스트로 Adatum–Fabrikam 액세스 요구 사항을 충족할 수 있다."
+ ],
+ "explanation": "**포리스트 트러스트**는 두 포리스트의 루트 도메인 간에 맺는 전이적(transitive) 트러스트로, 한 번 설정되면 양쪽 포리스트의 모든 도메인으로 자동 확장됩니다. 따라서 contoso.com과 fabrikam.com 사이의 단일 양방향 포리스트 트러스트만으로 contoso.com, europe.contoso.com, asia.contoso.com의 사용자가 fabrikam.com이나 research.fabrikam.com의 리소스에 인증·권한 부여를 받을 수 있고 그 반대도 가능합니다. 즉 \"한 포리스트의 어떤 도메인 사용자든 다른 포리스트의 어떤 도메인 리소스에든 접근한다\"는 요구 사항을 완전히 충족합니다.\n\n트러스트 관계는 별도로 구성된 독립적인 트러스트 경계를 넘어 연결(chain)되지 않습니다. contoso.com–fabrikam.com 포리스트 트러스트와 research.fabrikam.com–adatum.com 외부 트러스트는 서로 무관한 비전이적 관계이므로, contoso.com 포리스트와 adatum.com 포리스트 사이에는 트러스트 경로가 없습니다. 따라서 첫 번째 문장은 **아니요**입니다.\n\nadatum.com 사용자만 research.fabrikam.com에 접근하면 되는 좁은 요구 사항에는 **단방향 외부 트러스트**가 최소 범위의 올바른 도구입니다. 외부 트러스트는 비전이적이며 리소스 도메인이 계정 도메인을 신뢰하도록 만들어야 하므로, research.fabrikam.com이 adatum.com을 신뢰하도록 구성하면 adatum.com 사용자가 research.fabrikam.com 리소스에만 권한을 받고 양쪽 포리스트의 나머지에는 접근할 수 없습니다."
+},
+"3": {
+ "stem": "네트워크에 Active Directory Domain Services(AD DS) 도메인이 있습니다.\n\n**Security Baseline**이라는 그룹 정책 개체(GPO)가 도메인에 연결되어 있으며, 그 링크는 **적용됨(Enforced)**으로 구성되어 있습니다.\n\n**Kiosk Baseline**이라는 GPO가 **Kiosks**라는 조직 구성 단위(OU)에 연결되어 있습니다.\n\n**Kiosks** OU의 클라이언트 컴퓨터는 **Security Baseline** GPO의 그룹 정책 설정을 받습니다.\n\n**Kiosks**의 컴퓨터가 **Kiosk Baseline** GPO의 설정을 받도록 해야 합니다. **Security Baseline**은 도메인의 다른 클라이언트 컴퓨터에 계속 적용되어야 합니다.\n\n어떻게 해야 합니까?",
+ "choices": {
+  "A": "Kiosk Baseline에 적용됨(Enforced)을 선택한다.",
+  "B": "Security Baseline 링크의 적용됨(Enforced)을 해제한다.",
+  "C": "Kiosks에 대해 상속 차단(Block inheritance)을 설정한다.",
+  "D": "Kiosk Baseline을 도메인에 연결한다."
+ },
+ "explanation": "**적용됨(Enforced)**으로 설정된 도메인 수준 GPO는 하위 OU에 연결된 GPO로 재정의할 수 없습니다. Security Baseline 링크에서 Enforced를 해제하면 일반적인 그룹 정책 우선순위가 복원되어, Kiosks OU에 직접 연결된 GPO가 나중에 처리되므로 해당 컴퓨터에서 충돌하는 도메인 설정을 재정의할 수 있습니다. Security Baseline GPO는 여전히 도메인에 연결되어 있으므로 다른 도메인 클라이언트 컴퓨터에는 계속 적용됩니다.\n\n- A: Kiosk Baseline을 Enforced로 해도 상위(도메인)의 Enforced GPO가 여전히 우선합니다.\n- C: 상속 차단은 Enforced GPO를 막지 못합니다(Enforced는 상속 차단을 무시함).\n- D: Kiosk Baseline을 도메인에 연결하면 다른 컴퓨터에도 적용되어 요구 사항을 위반합니다."
+},
+"4": {
+ "stem": "네트워크에 contoso.com이라는 Active Directory Domain Services(AD DS) 도메인이 있습니다.\n\n도메인에는 User1이라는 사용자와 Group1, Group2라는 두 개의 글로벌 보안 그룹이 있습니다. User1은 두 그룹 모두에 속합니다.\n\nGPO1이라는 그룹 정책 개체(GPO)가 도메인에 연결되어 있습니다. GPO1에는 다음과 같은 사용자 구성 기본 설정(Preference) 항목이 있습니다.\n\n[[IMG1]]\n\n다음 각 문장에 대해, 문장이 참이면 예를, 그렇지 않으면 아니요를 선택하십시오.",
+ "statements": [
+  "User1이 10.20.5.20에서 로그인하면 드라이브 S가 매핑된다.",
+  "User1을 Group1에서 제거하면, 로그인 후 파일 탐색기에 드라이브 S가 표시되지 **않는다**.",
+  "User1이 C:\\Program Files\\SalesApp\\SalesApp.exe가 **없는** 클라이언트 컴퓨터에 로그인하면, SalesApp 바로 가기는 한 번만 만들어지고 다시는 재생성되지 않는다."
+ ],
+ "explanation": "그룹 정책 기본 설정(GPP)의 **항목 수준 대상 지정(item-level targeting)**은 구성된 모든 조건을 지정된 AND/OR 논리로 평가하고, 전체 식이 참일 때만 기본 설정을 적용합니다.\n\n드라이브 매핑 항목은 Group1 **AND** IP 주소 범위 10.10.0.0~10.10.255.255를 대상으로 하므로 두 조건이 동시에 만족되어야 합니다. 10.20.5.20에서 로그인하는 클라이언트는 이 범위 밖이므로 AND 식이 거짓이 되어 그룹 멤버십과 관계없이 드라이브가 매핑되지 않습니다(문장 1: **아니요**).\n\n이 항목에는 '더 이상 적용되지 않으면 이 항목 제거(Remove this item when it is no longer applied)'가 켜져 있어 동작이 작업 기반입니다. 이전에 조건을 만족했던 사용자가 더 이상 대상 조건을 만족하지 않게 되면(예: Group1에서 제거됨) 다음 정책 처리 때 클라이언트 쪽 확장이 이전에 만든 매핑을 제거하므로 사용자에게 드라이브 S가 없어집니다(문장 2: **예**).\n\n바로 가기 항목은 Group2 **OR** 로컬 파일 C:\\Program Files\\SalesApp\\SalesApp.exe 존재 여부를 대상으로 하므로, 로컬 실행 파일이 없어도 Group2 멤버십만으로 조건이 충족되어 항목이 적용됩니다. 이 항목에는 '한 번만 적용하고 다시 적용 안 함(Apply once and do not reapply)'이 켜져 있어, 처음 조건이 맞을 때 바로 가기를 만든 뒤 이후 어떤 그룹 정책 새로 고침에서도 그 항목을 다시 처리하지 않습니다. 따라서 바로 가기는 정확히 한 번 만들어지고 이후 재생성·수정·제거되지 않습니다(문장 3: **예**)."
+},
+"5": {
+ "stem": "**개요**\n\nContoso, Ltd.는 시애틀에 본사가 있고 로스앤젤레스와 몬트리올에 두 개의 지사가 있습니다.\n\n**기존 환경**\n\n**AD DS 환경**\n\n네트워크에는 `contoso.com`이라는 온-프레미스 Active Directory Domain Services(AD DS) 포리스트가 있습니다. 포리스트에는 `contoso.com`과 `canada.contoso.com` 두 개의 도메인이 있습니다.\n\n포리스트에는 다음 표의 도메인 컨트롤러가 있습니다.\n\n[[IMG1]]\n\n모든 도메인 컨트롤러는 글로벌 카탈로그 서버입니다.\n\n**서버 인프라**\n\n네트워크에는 다음 표의 서버가 있습니다.\n\n[[IMG2]]\n\nServer4는 Windows Server를 실행하며 워크그룹에 속합니다. Server4의 Windows Defender 방화벽은 개인(private) 프로필을 사용합니다.\n\nServer2는 VM1, VM2, VM3이라는 세 대의 가상 머신을 호스팅합니다.\n\nVM3은 다음 표의 볼륨에 데이터를 저장하는 파일 서버입니다.\n\n[[IMG3]]\n\n**그룹 정책**\n\n`contoso.com` 도메인에는 다음 표의 그룹 정책 개체(GPO)가 있습니다.\n\n[[IMG4]]\n\n**기존 ID**\n\n포리스트에는 다음 표의 사용자가 있습니다.\n\n[[IMG5]]\n\n포리스트에는 다음 표의 그룹이 있습니다.\n\n[[IMG6]]\n\n**현재 문제**\n\n관리자가 가상 머신 연결(Virtual Machine Connection)로 VM2 콘솔에 로그인한 뒤 로그아웃하지 않고 연결을 끊으면, 다른 관리자가 현재 로그인된 사용자로 그 콘솔 세션에 연결할 수 있습니다.\n\n**요구 사항**\n\n**기술 요구 사항**\n\nContoso는 다음 기술 요구 사항을 정의했습니다.\n\n- 모든 사이트 링크의 복제 일정을 30분으로 변경한다.\n- Server1을 `canada.contoso.com`의 도메인 컨트롤러로 승격한다.\n- Server3을 DHCP 서버로 설치하고 권한을 부여(authorize)한다.\n- User1이 `Contoso\\OU3`의 모든 그룹 멤버십을 관리할 수 있게 한다.\n- Server1에서 PowerShell 원격 관리로 Server4를 관리할 수 있게 한다.\n- VM1에서 가상 머신을 실행할 수 있게 한다.\n- 사용자가 VM2에 연결할 때 자격 증명을 제공하도록 요구한다.\n- VM3에서 이 기능을 지원하는 모든 볼륨에 데이터 중복 제거(Data Deduplication)를 사용하도록 설정한다.\n\nServer1에 대한 기술 요구 사항을 충족해야 합니다.\n\n현재 어떤 사용자가 필요한 작업을 수행할 수 있습니까?",
+ "choices": {
+  "A": "Admin1만",
+  "B": "Admin3만",
+  "C": "Admin1과 Admin3만",
+  "D": "Admin1, Admin2, Admin3"
+ },
+ "explanation": "Server1을 `canada.contoso.com`의 추가 도메인 컨트롤러로 승격하려면 해당 도메인의 관리 권한 또는 그에 상응하는 포리스트 수준 권한이 필요합니다. 워크그룹 서버인 Server4를 PowerShell 원격 관리로 관리하려면 필요한 원격 설정을 구성하고 사용할 관리 권한이 필요합니다. Admin1과 Admin3은 이 Server1 요구 사항에 필요한 권한을 갖고 있지만 Admin2는 그렇지 않습니다. Microsoft 문서에 따르면 기존 도메인에 추가 도메인 컨트롤러를 설치하려면 Domain Admin 자격 증명이 필요하고, TrustedHosts/원격 관리 구성을 변경하려면 로컬 관리자 권한이 필요합니다."
+},
+"6": {
+ "stem": "**개요**\n\nContoso, Ltd.는 시애틀에 본사가 있고 로스앤젤레스와 몬트리올에 두 개의 지사가 있는 회사입니다.\n\n**기존 환경**\n\n**AD DS 환경**\n\n네트워크에는 contoso.com이라는 온-프레미스 Active Directory Domain Services(AD DS) 포리스트가 있습니다. 포리스트에는 contoso.com과 canada.contoso.com 두 개의 도메인이 있습니다.\n\n포리스트에는 다음 표의 도메인 컨트롤러가 있습니다.\n\n[[IMG1]]\n\n모든 도메인 컨트롤러는 글로벌 카탈로그 서버입니다.\n\n**서버 인프라**\n\n네트워크에는 다음 표의 서버가 있습니다.\n\n[[IMG2]]\n\nServer4라는 서버는 Windows Server를 실행하며 워크그룹에 속합니다. Server4의 Windows Defender 방화벽은 개인(private) 프로필을 사용합니다.\n\nServer2는 VM1, VM2, VM3이라는 세 대의 가상 머신을 호스팅합니다.\n\nVM3은 다음 표의 볼륨에 데이터를 저장하는 파일 서버입니다.\n\n[[IMG3]]\n\n**그룹 정책**\n\ncontoso.com 도메인에는 다음 표의 그룹 정책 개체(GPO)가 있습니다.\n\n[[IMG4]]\n\n**기존 ID**\n\n포리스트에는 다음 표의 사용자가 있습니다.\n\n[[IMG5]]\n\n포리스트에는 다음 표의 그룹이 있습니다.\n\n[[IMG6]]\n\n**현재 문제**\n\n관리자가 가상 머신 연결(Virtual Machine Connection)로 VM2 콘솔에 로그인한 뒤 로그아웃하지 않고 세션 연결을 끊으면, 다른 관리자가 현재 로그인된 사용자로 그 콘솔 세션에 연결할 수 있습니다.\n\n**요구 사항**\n\n**기술 요구 사항**\n\nContoso는 다음 기술 요구 사항을 정의했습니다.\n\n- 모든 사이트 링크의 복제 일정을 30분으로 변경한다.\n- Server1을 canada.contoso.com의 도메인 컨트롤러로 승격한다.\n- Server3을 DHCP 서버로 설치하고 권한을 부여(authorize)한다.\n- User1이 Contoso\\OU3의 모든 그룹 멤버십을 관리할 수 있게 한다.\n- Server1에서 PowerShell 원격 관리로 Server4를 관리할 수 있게 한다.\n- VM1에서 가상 머신을 실행할 수 있게 한다.\n- 사용자가 VM2에 연결할 때 자격 증명을 제공하도록 강제한다.\n- VM3에서 이 기능을 지원하는 모든 볼륨에 데이터 중복 제거(Data Deduplication)를 사용하도록 설정한다.\n\nUser1에 대한 기술 요구 사항을 충족해야 합니다. 솔루션은 최소 권한 원칙을 따라야 합니다.\n\n어떻게 해야 합니까?",
+ "choices": {
+  "A": "contoso.com의 Account Operators 그룹에 User1을 추가한다.",
+  "B": "contoso.com에 위임(delegation)을 만든다.",
+  "C": "contoso.com의 Server Operators 그룹에 User1을 추가한다.",
+  "D": "OU3에 위임(delegation)을 만든다."
+ },
+ "explanation": "OU3에 제어 위임을 하면 User1에게 해당 조직 구성 단위 안의 그룹 개체 멤버십을 수정하는 특정 권한만 부여할 수 있습니다. 이렇게 하면 필요한 개체와 작업으로 액세스 범위가 한정되어 최소 권한 원칙을 만족합니다. 기본 제공 Account Operators·Server Operators 역할은 범위가 훨씬 넓고, 도메인 루트에서의 위임은 필요한 OU 범위를 초과합니다."
+},
+"7": {
+ "stem": "HOTSPOT -\n\n## 개요\n\nContoso, Ltd.는 시애틀에 본사가 있고 로스앤젤레스와 몬트리올에 지사가 있습니다.\n\n## 기존 환경\n\n### AD DS 환경\n\n네트워크에는 contoso.com이라는 온-프레미스 Active Directory Domain Services(AD DS) 포리스트가 있습니다. 포리스트에는 contoso.com과 canada.contoso.com 두 개의 도메인이 있습니다. 도메인 컨트롤러는 다음 표와 같습니다.\n\n[[IMG1]]\n\n모든 도메인 컨트롤러는 글로벌 카탈로그 서버입니다.\n\n### 서버 인프라\n\n네트워크에는 다음 표의 서버가 있습니다.\n\n[[IMG2]]\n\nServer4는 워크그룹에서 Windows Server를 실행합니다. Server4의 Windows Defender 방화벽은 개인(private) 프로필을 사용합니다.\n\nServer2는 VM1, VM2, VM3이라는 세 대의 가상 머신을 호스팅합니다. VM3은 다음 표의 볼륨에 데이터를 저장하는 파일 서버입니다.\n\n[[IMG3]]\n\n### 그룹 정책\n\ncontoso.com 도메인에는 다음 표의 그룹 정책 개체(GPO)가 있습니다.\n\n[[IMG4]]\n\n### 기존 ID\n\n포리스트에는 다음 표의 사용자가 있습니다.\n\n[[IMG5]]\n\n포리스트에는 다음 표의 그룹이 있습니다.\n\n[[IMG6]]\n\n## 현재 문제\n\n관리자가 가상 머신 연결(Virtual Machine Connection)로 VM2 콘솔에 로그인한 뒤 로그아웃하지 않고 연결을 끊으면, 다른 관리자가 현재 로그인된 사용자로 그 콘솔 세션에 연결할 수 있습니다.\n\n## 요구 사항\n\n### 기술 요구 사항\n\nContoso는 다음 기술 요구 사항을 정의했습니다.\n\n- 모든 사이트 링크의 복제 일정을 30분으로 변경한다.\n- Server1을 canada.contoso.com의 도메인 컨트롤러로 승격한다.\n- Server3을 DHCP 서버로 설치하고 권한을 부여(authorize)한다.\n- User1이 Contoso\\OU3의 모든 그룹 멤버십을 관리할 수 있게 한다.\n- Server1에서 PowerShell 원격 관리로 Server4를 관리할 수 있게 한다.\n- VM1에서 가상 머신을 실행할 수 있게 한다.\n- 사용자가 VM2에 연결할 때 자격 증명을 제공하도록 요구한다.\n- VM3에서 이 기능을 지원하는 모든 볼륨에 데이터 중복 제거(Data Deduplication)를 사용하도록 설정한다.\n\nGroup3과 Group5에 추가할 수 있는 그룹은 무엇입니까? 답 영역에서 적절한 옵션을 선택하십시오.",
+ "blanks": {
+  "group3": {"label": "Group3:", "options": ["Group6만", "Group1과 Group2만", "Group1과 Group4만", "Group1, Group2, Group4, Group5만", "Group1, Group2, Group4, Group5, Group6"]},
+  "group5": {"label": "Group5:", "options": ["Group1만", "Group4만", "Group6만", "Group2와 Group4만", "Group4와 Group6만"]}
+ },
+ "explanation": "Active Directory에서 그룹 중첩(nesting) 가능 여부는 **그룹 범위(scope)**만으로 결정됩니다. 보안 그룹인지 배포 그룹인지는 무엇을 중첩할 수 있는지와 무관합니다.\n\n- **도메인 로컬 그룹**: 포리스트 내 모든 도메인의 사용자·컴퓨터 계정, 모든 도메인의 글로벌 그룹, 모든 도메인의 유니버설 그룹을 포함할 수 있지만, 다른 도메인 로컬 그룹은 **자기 도메인에서 만든 것만** 포함할 수 있습니다.\n- **글로벌 그룹**: 훨씬 제한적입니다. 자기가 만들어진 **같은 도메인**의 계정과 글로벌 그룹만 포함할 수 있고, 어떤 도메인의 것이든 유니버설·도메인 로컬 그룹은 절대 포함할 수 없습니다.\n\n**Group3**은 contoso.com에서 만든 도메인 로컬 그룹이므로 Group1(유니버설, 어느 도메인이든 가능), Group2(contoso.com의 글로벌), Group4·Group5(canada.contoso.com의 글로벌 — 도메인 로컬은 포리스트 내 어느 도메인의 글로벌 그룹도 받으므로 가능)를 넣을 수 있습니다. 하지만 Group6은 canada.contoso.com(Group3과 다른 도메인)에서 만든 도메인 로컬 그룹이라 넣을 수 없습니다(도메인 로컬은 같은 도메인의 도메인 로컬만 중첩 가능).\n\n**Group5**는 canada.contoso.com에서 만든 글로벌 그룹이므로 더 엄격한 글로벌 그룹 규칙에 따라 같은 도메인의 계정·글로벌 그룹만 포함할 수 있습니다. 후보 중에서는 같은 canada.contoso.com의 글로벌 그룹인 Group4만 해당됩니다. Group1·Group2는 contoso.com에서 만들어져 불가하고, Group6은 도메인 로컬 그룹이라 글로벌 그룹 안에 중첩될 수 없습니다."
+},
+"8": {
+ "stem": "네트워크에 Active Directory Domain Services(AD DS) 도메인이 있습니다.\n\n도메인에는 DNS 서버 역할이 설치되고 PowerShell 원격 관리가 활성화된 DNS1이라는 멤버 서버가 있습니다. 도메인에는 DNSOperators라는 그룹도 있습니다.\n\nDNSOperators 멤버는 PowerShell을 사용해 DNS1에서 일상적인 DNS 작업을 수행합니다. DNSOperators 멤버는 DNS1의 로컬 관리자가 **아닙니다**.\n\nDNSOperators를 위한 원격 관리를 구성해야 합니다. 솔루션은 다음 요구 사항을 충족해야 합니다.\n\n- 관리자가 아닌 도메인 계정으로 DNS1에 액세스할 수 있게 한다.\n- DNS1에서 필요한 DNS 명령만 실행하도록 허용한다.\n- DNSOperators를 권한 있는 그룹에 추가하지 않는다.\n\n무엇을 구현해야 합니까?",
+ "choices": {
+  "A": "DNS1 컴퓨터 계정에 대한 리소스 기반 Kerberos 제한 위임",
+  "B": "클라이언트 컴퓨터와 DNS1의 PowerShell 원격 관리에 CredSSP",
+  "C": "역할 기능(role capability)과 가상 계정을 사용하는 JEA(Just Enough Administration) 엔드포인트",
+  "D": "도메인 RunAsCredential을 사용하는 표준 PowerShell 세션 구성"
+ },
+ "explanation": "**JEA(Just Enough Administration)**는 위임 관리를 위한 제한된 PowerShell 원격 엔드포인트를 만듭니다. 역할 기능(role capability)은 사용할 수 있는 cmdlet·함수·명령을 정확히 지정하고, 임시 가상 계정은 일반 도메인 계정으로 접속한 사용자를 대신해 필요한 로컬 권한 작업을 수행합니다. 이렇게 하면 DNSOperators를 권한 있는 로컬·도메인 그룹에 넣지 않아도 됩니다.\n\n- A: 제한 위임은 서비스 간 인증 위임 문제이지 명령 제한과 무관합니다.\n- B: CredSSP는 자격 증명을 전달하는 방식일 뿐 명령을 제한하지 못하며 보안상 권장되지 않습니다.\n- D: RunAsCredential만으로는 어떤 명령이든 실행할 수 있어 '필요한 명령만 허용'을 만족하지 못합니다."
+}
+}

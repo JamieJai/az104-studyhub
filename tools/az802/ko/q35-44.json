@@ -1,0 +1,98 @@
+{
+"35": {
+ "stem": "HOTSPOT -\n\n네트워크에 Active Directory Domain Services(AD DS) 도메인이 있습니다. 도메인에는 Windows Server를 실행하는 Server1과 Server2 두 대의 서버가 있습니다.\n\n연결 보안 규칙을 사용해 Server1과 Server2 사이의 연결을 제어해야 합니다. 솔루션은 다음 요구 사항을 충족해야 합니다.\n\n- Server1과 Server2에 대한 IPsec 보호는 제한적이어야 한다.\n- Server1과 Server2 사이의 트래픽은 인증되고 암호화되어야 한다.\n- Server2는 IPsec으로 인증된 경우에만 Server1의 트래픽을 받아들여야 한다.\n\n연결 보안 규칙을 어떻게 구성해야 합니까? 답 영역에서 적절한 옵션을 선택하십시오.\n\n참고: 각 올바른 선택은 1점입니다.",
+ "blanks": {
+  "rule_type": {"label": "IPsec 규칙 유형:", "options": ["인증 예외 규칙", "격리(isolation) 규칙", "서버 간(server-to-server) 규칙", "터널 규칙"]},
+  "server2_rule": {"label": "Server2의 방화벽 규칙:", "options": ["인바운드 포트 규칙: 보안 연결인 경우에만 연결 허용", "인바운드 포트 규칙: 연결 허용", "아웃바운드 포트 규칙: 보안 연결인 경우에만 연결 허용", "미리 정의된 규칙: 연결 허용"]}
+ },
+ "explanation": "고급 보안이 포함된 Windows Defender 방화벽에서 연결 보안 규칙의 유형은 협상되는 IPsec 보호의 범위를 결정합니다. **서버 간 규칙**은 명시적으로 지정한 엔드포인트 사이의 연결을 인증·보호합니다. 마법사가 엔드포인트 1과 엔드포인트 2를 컴퓨터·IP 주소·서브넷으로 묻기 때문에 IPsec은 지정된 호스트 사이의 트래픽에만 적용되고 다른 트래픽에는 적용되지 않습니다. 이것이 IPsec 보호를 관련된 두 서버로만 제한하는 방법이며, 이 규칙은 인바운드·아웃바운드 연결에 인증을 요구하고 IPsec 설정을 통해 데이터를 암호화하도록 구성할 수 있어 두 서버 간 트래픽이 인증·암호화되어야 한다는 요구를 만족합니다.\n\n격리 규칙은 특정 피어를 전혀 대상으로 하지 않습니다. 도메인 멤버십이나 상태(health) 같은 자격 증명을 기준으로 선택한 방화벽 프로필에 맞는 모든 연결을 제한하는, 도메인·기업 전체 격리 태세이지 두 서버로 제한된 보호가 아닙니다. 인증 예외 규칙은 지정된 호스트에서 IPsec 보호를 제거하고, 터널 규칙은 게이트웨이 간(사이트 간) 터널 모드 트래픽용이므로 둘 다 맞지 않습니다.\n\n연결 보안 규칙 자체는 IPsec을 협상만 할 뿐 액세스를 허용하거나 차단하지 않으므로, IPsec 협상 성공을 조건으로 액세스를 제어하려면 별도의 방화벽 규칙이 필요합니다. 문제의 트래픽은 두 번째 서버에 **도착**하므로 그 서버의 **인바운드 규칙**이어야 하고, 작업은 **보안 연결인 경우에만 연결 허용**이어야 합니다. 이 작업은 연결이 IPsec으로 보호·인증된 경우에만 트래픽을 허용하고 그렇지 않은 것은 버리며, 연결 암호화 요구를 위한 사용자 지정 옵션과 허용 계정을 제한하는 사용자·컴퓨터 페이지도 제공합니다. 단순히 연결을 허용하는 작업이나 기본 제공 Windows 기능을 허용하는 미리 정의된 규칙은 인증되지 않은 트래픽을 받아들이고, 아웃바운드 규칙은 서버가 받아들이는 트래픽이 아니라 보내는 트래픽을 제어합니다."
+},
+"36": {
+ "stem": "파일 공유를 호스팅하는 Windows Server를 실행하는 Server1이라는 파일 서버가 있습니다.\n\nVPN을 배포하지 않고 인터넷 기반 SMB 공유 액세스를 활성화해야 합니다. 솔루션은 인터넷에서 들어오는 인바운드 TCP 포트 445가 차단되도록 해야 합니다.\n\n무엇을 구성해야 합니까?",
+ "choices": {
+  "A": "SMB over QUIC",
+  "B": "SMB 다중 채널(Multichannel)",
+  "C": "SMB 암호화(Encryption)",
+  "D": "SMB Direct"
+ },
+ "explanation": "**SMB over QUIC**은 TLS 1.3으로 암호화된 QUIC 터널을 통해 신뢰할 수 없는 네트워크에서 안전한 SMB 액세스를 제공하며, 레거시 SMB의 TCP 445 대신 기본적으로 인바운드 **UDP 443** 포트를 사용합니다. Microsoft는 이 배포에서 파일 서버로의 인바운드 TCP 445를 허용하지 말라고 명시적으로 안내합니다.\n\n- B: 다중 채널은 여러 NIC로 대역폭·복원력을 높이는 기능입니다.\n- C: SMB 암호화는 데이터를 암호화하지만 여전히 TCP 445를 사용합니다.\n- D: SMB Direct는 RDMA 기반 고성능 전송이며 인터넷 액세스와 무관합니다."
+},
+"37": {
+ "stem": "네트워크에 온-프레미스 Active Directory Domain Services(AD DS) 도메인이 있습니다. 도메인에는 Windows Server를 실행하는 서버들과 Group1이라는 그룹이 있습니다.\n\nshare1이라는 Azure Files 공유가 있는 Azure Storage 계정이 있습니다. 이 도메인을 사용해 Azure Files의 ID 기반 인증이 활성화되어 있습니다. Group1은 Microsoft Entra 테넌트와 동기화됩니다.\n\nGroup1 멤버는 서버에서 인증할 수는 있지만 share1의 파일에 액세스할 수 없습니다. Group1은 share1의 필요한 폴더에 대해 수정(Modify) NTFS 권한을 갖고 있습니다.\n\n다음 요구 사항을 충족하는 공유 수준 액세스를 Group1에 부여해야 합니다.\n\n- 멤버가 SMB를 통해 파일을 읽고, 쓰고, 삭제할 수 있게 한다.\n- 멤버가 NTFS 권한을 변경하지 못하게 한다.\n- 최소 권한 원칙을 따른다.\n\nshare1 범위에서 Group1에 어떤 역할을 할당해야 합니까?",
+ "choices": {
+  "A": "Storage File Data SMB Share Contributor",
+  "B": "Storage File Data SMB Share Elevated Contributor",
+  "C": "Storage File Data Privileged Contributor",
+  "D": "Storage File Data SMB Share Reader"
+ },
+ "explanation": "**Storage File Data SMB Share Contributor** 역할은 SMB를 통한 Azure Files 읽기·쓰기·삭제 액세스를 부여합니다. 기존 수정(Modify) NTFS 권한과 결합하면 필요한 파일 작업이 가능합니다. Storage File Data SMB Share Elevated Contributor나 Storage File Data Privileged Contributor와 달리 NTFS ACL을 수정하는 권한은 부여하지 않으므로 최소 권한 역할입니다.\n\n- D: Reader는 읽기만 가능해 쓰기·삭제 요구를 만족하지 못합니다."
+},
+"38": {
+ "stem": "WSUS1이라는 Windows Server Update Services(WSUS) 서버에서 업데이트를 받는, Windows Server를 실행하는 SRV1이라는 가상 머신이 있습니다.\n\nSRV1은 그룹 정책을 통해 WSUS1에서 업데이트를 검색하도록 구성되어 있습니다. SRV1은 다른 서버들도 포함된 Group1이라는 컴퓨터 그룹에 속합니다.\n\nSRV1은 모든 업데이트 검색에 실패하며 `WindowsUpdate.log`에 다음 항목을 기록합니다.\n\n```text\nWS error: <detail><ErrorCode>InvalidParameters</ErrorCode><Message>parameters.InstalledNonleafUpdateIDs</Message><Method>http://www.microsoft.com/SoftwareDistribution/S *FAILED* [80244007] SyncUpdates_withRecovery failed\n```\n\nGroup1의 다른 서버들은 정상적으로 검색됩니다.\n\nSRV1의 업데이트 검색을 복구해야 합니다. 현재 업데이트 승인과 컴퓨터 그룹 멤버십은 변경되지 않아야 합니다.\n\n어떻게 해야 합니까?",
+ "choices": {
+  "A": "WSUS1에서 ClientWebService의 web.config 파일을 편집한 뒤 IISReset을 실행한다.",
+  "B": "WSUS1에서 대체된(superseded) 업데이트를 거부한다.",
+  "C": "SRV1에서 wuauclt /resetauthorization을 실행한다.",
+  "D": "SRV1의 WSUS 클라이언트 구성 레지스트리 값을 초기화한다."
+ },
+ "explanation": "이 WSUS 오류는 `SyncUpdates` 중에 제출된 설치된 필수 구성 요소 업데이트 ID의 수가 WSUS ClientWebService 제한을 초과했음을 의미합니다. ClientWebService의 `web.config` 파일에서 `maxInstalledPrerequisites`(필요하면 `maxCachedUpdates`도)를 늘리고 IIS를 다시 시작하면 업데이트 승인이나 컴퓨터 그룹 멤버십을 바꾸지 않고 검색 실패를 해결할 수 있습니다.\n\n- B: 대체된 업데이트 거부는 WSUS 정리 방법일 뿐 이 오류(80244007)의 직접 해결책이 아닙니다.\n- C/D: 클라이언트 쪽 초기화는 서버 측 제한값 문제를 해결하지 못합니다."
+},
+"39": {
+ "stem": "*(참고: 이 문제는 동일한 시나리오를 공유하는 시리즈 문항입니다. 원본 사이트에 시나리오 본문이 누락되어 있으며, 해설로 볼 때 목표는 \"Server1과 도메인 간 보안 채널(트러스트 관계)이 깨진 상태를 도메인 재가입 없이 복구하는 것\"입니다.)*\n\n솔루션: Server1에서 `Test-ComputerSecureChannel -Repair`를 실행합니다.\n\n이 방법으로 목표를 달성할 수 있습니까?",
+ "choices": {"A": "예", "B": "아니요"},
+ "explanation": "`Test-ComputerSecureChannel -Repair`는 도메인 멤버 컴퓨터와 도메인 사이의 NetLogon 보안 채널을 다시 구축합니다. 이 채널을 복구하면 컴퓨터를 도메인에서 제거하지 않고도 실패한 워크스테이션-도메인 트러스트 관계가 복원됩니다."
+},
+"40": {
+ "stem": "*(참고: 이 문제는 동일한 시나리오를 공유하는 시리즈 문항입니다. 원본 사이트에 시나리오 본문이 누락되어 있으며, 해설로 볼 때 목표는 \"Server1과 도메인 간 보안 채널(트러스트 관계)이 깨진 상태를 도메인 재가입 없이 복구하는 것\"입니다.)*\n\n솔루션: Server1에서 `Set-ADAccountPassword -Identity \"Server1$\" -Reset`을 실행합니다.\n\n이 방법으로 목표를 달성할 수 있습니까?",
+ "choices": {"A": "예", "B": "아니요"},
+ "explanation": "컴퓨터 트러스트 실패를 해결하려면 로컬 머신 계정 비밀과 Active Directory 컴퓨터 계정 암호가 **동기화**되어야 합니다. `Set-ADAccountPassword -Reset`은 Active Directory의 컴퓨터 계정 암호만 갱신할 뿐 Server1의 로컬 머신 암호를 갱신하거나 보안 채널을 복구하지 않습니다. `Reset-ComputerMachinePassword`나 `Test-ComputerSecureChannel -Repair` 같은 머신 암호 또는 보안 채널 복구 작업이 필요합니다."
+},
+"41": {
+ "stem": "*(참고: 이 문제는 동일한 시나리오를 공유하는 시리즈 문항입니다. 원본 사이트에 시나리오 본문이 누락되어 있으며, 해설로 볼 때 목표는 \"Server1과 도메인 간 보안 채널(트러스트 관계)이 깨진 상태를 도메인 재가입 없이 복구하는 것\"입니다.)*\n\n솔루션: Server1에서 `Add-Computer -DomainName contoso.com -Server DC1`을 실행합니다.\n\n이 방법으로 목표를 달성할 수 있습니까?",
+ "choices": {"A": "예", "B": "아니요"},
+ "explanation": "실패한 워크스테이션-도메인 트러스트 관계는 `Test-ComputerSecureChannel -Repair`나 `Reset-ComputerMachinePassword`처럼 컴퓨터의 보안 채널을 복원하거나 머신 계정 암호를 재설정해 복구합니다. `Add-Computer`는 컴퓨터를 도메인이나 워크그룹에 추가하는 용도이며 기존 도메인 트러스트 관계를 복구하지 않습니다."
+},
+"42": {
+ "stem": "Windows Server를 실행하는 VM1이라는 Azure 가상 머신이 있습니다.\n\nVM1에서 다음 작업을 수행해야 합니다.\n\n- 원격 데스크톱 연결을 허용하도록 Windows Defender 방화벽을 구성한다.\n- 가상 머신 콘솔의 로그를 저장할 위치를 구성한다.\n\n어떤 두 설정을 사용해야 합니까? *(두 개를 선택하십시오.)*",
+ "choices": {
+  "A": "메트릭(Metrics)",
+  "B": "진단 설정(Diagnostic settings)",
+  "C": "로그(Logs)",
+  "D": "연결 모니터(클래식)",
+  "E": "통합 문서(Workbooks)",
+  "F": "작업(Tasks, 미리 보기)",
+  "G": "템플릿 내보내기",
+  "H": "리소스 상태(Resource health)",
+  "I": "부팅 진단(Boot diagnostics)",
+  "J": "성능 진단(Performance diagnostics)",
+  "K": "VM Inspector(미리 보기)",
+  "L": "암호 재설정",
+  "M": "재배포 + 다시 적용",
+  "N": "직렬 콘솔(Serial console)",
+  "O": "연결 문제 해결",
+  "P": "새 지원 요청"
+ },
+ "explanation": "**직렬 콘솔**(VM 블레이드의 지원 + 문제 해결 아래)은 네트워크와 게스트 OS 상태에 관계없이 동작하는, VM의 COM1 직렬 포트에 대한 텍스트 기반 연결을 엽니다. 연결하면 SAC> 프롬프트가 나오고, `cmd`로 채널을 만들어 관리자 자격 증명으로 로그인한 뒤 `netsh advfirewall firewall set rule dir=in name=\"Remote Desktop - User Mode (TCP-In)\" new enable=yes`(또는 PowerShell의 `Enable-NetFirewallRule`)를 실행해 원격 데스크톱용 Windows Defender 방화벽 규칙을 열 수 있습니다. Microsoft는 직렬 콘솔의 일반 시나리오 표에 '잘못된 방화벽 규칙 → 직렬 콘솔에 접속해 Windows 방화벽 규칙 수정'을 정확히 나열하고 있습니다. RDP 자체가 고장 난 상황이라 RDP로 고칠 수 없기 때문에 이 도구가 적합합니다.\n\n**부팅 진단**은 가상 머신의 콘솔 출력을 캡처하는 기능입니다. VM이 부팅될 때의 직렬 로그 정보와 스크린샷을 수집하며, 그 설정 페이지에서 데이터를 Microsoft 관리 스토리지 계정에 둘지 직접 지정한 사용자 지정 스토리지 계정에 둘지 선택합니다. 이 스토리지 계정 선택이 바로 '가상 머신 콘솔의 로그를 저장할 위치'이며, 직렬 콘솔 세션 출력도 여기에 보관됩니다.\n\n진단 설정은 이 작업에 맞지 않습니다. Azure Monitor 진단 설정은 플랫폼 메트릭·활동 로그·리소스 로그를 Log Analytics 작업 영역, 스토리지 계정, 이벤트 허브, 파트너 솔루션으로 라우팅할 뿐 VM 직렬/콘솔 로그 범주를 전혀 제공하지 않습니다. 메트릭·로그·통합 문서는 Azure Monitor 보기이지 콘솔 로그 저장 구성이 아니고, 성능 진단·리소스 상태·연결 문제 해결·연결 모니터(클래식)·암호 재설정·재배포 + 다시 적용은 다른 문제 해결 용도로 게스트 방화벽 규칙을 열지도 로그 대상을 설정하지도 않습니다."
+},
+"43": {
+ "stem": "Windows Server를 실행하며 LOB(기간 업무) 애플리케이션을 호스팅하는 VM1이라는 Azure 가상 머신이 있습니다.\n\nAzure Monitor 메트릭에 VM1의 CPU 급증이 반복적으로 나타납니다. 현재 메트릭으로는 급증 중 어떤 프로세스가 CPU를 소비하는지 알 수 **없습니다**.\n\nDataCollector1이라는 예약된 데이터 수집기 집합(Data Collector Set)을 사용해 급증 시간대의 데이터를 수집할 계획입니다.\n\nCPU 급증의 원인 프로세스를 식별해야 합니다.\n\nDataCollector1에 어떤 카운터를 추가해야 합니까?",
+ "choices": {
+  "A": "Processor Information(_Total)\\% Processor Time 및 Process(*)\\Thread Count",
+  "B": "Processor Information(_Total)\\% Processor Time 및 Process(*)\\% Processor Time",
+  "C": "Processor Information(*)\\% Processor Time 및 Process(_Total)\\% Processor Time"
+ },
+ "explanation": "`Process(*)\\% Processor Time`은 **각 프로세스 인스턴스별** CPU 사용량을 기록하므로 급증 중 CPU 사용이 높은 프로세스를 식별할 수 있습니다. `Processor Information(_Total)\\% Processor Time`은 전체 프로세서 사용률을 기록해 그 구간과 상관관계를 볼 수 있게 합니다. 반면 `Process(_Total)\\% Processor Time`은 집계값이라 원인 프로세스를 구분할 수 없습니다. Microsoft 문서에 따르면 `Process(X)\\% Processor Time`은 프로세스 X의 모든 스레드가 사용한 CPU를 나타냅니다.\n\n- A: Thread Count는 스레드 수일 뿐 CPU 사용량이 아닙니다."
+},
+"44": {
+ "stem": "네트워크에 Active Directory Domain Services(AD DS) 포리스트가 있습니다. 포리스트에는 contoso.com이라는 루트 도메인과 branch.contoso.com이라는 자식 도메인이 있습니다. 도메인에는 모든 도메인 전체 FSMO 역할을 보유한 DC1이라는 도메인 컨트롤러가 있습니다.\n\nDC1이 실패해 복구할 수 없게 되었고, 다음 문제가 발생합니다.\n\n- contoso.com에 로그인할 때 최근 암호 변경이 즉시 인식되지 **않는다**.\n- 포리스트에 도메인을 추가하거나 제거할 수 없다.\n\n이 문제를 해결하기 위해 DC2라는 도메인 컨트롤러에서 최소한으로 필요한 FSMO 역할을 강제 이전(seize)해야 합니다. 각 문제에 대해 강제 이전할 역할을 선택하십시오. 항목은 한 번, 여러 번 또는 전혀 사용되지 않을 수 있습니다.",
+ "items": {
+  "Domain naming master": "도메인 명명 마스터(Domain naming master)",
+  "Infrastructure master": "인프라 마스터(Infrastructure master)",
+  "PDC emulator": "PDC 에뮬레이터(PDC emulator)",
+  "RID master": "RID 마스터(RID master)",
+  "Schema master": "스키마 마스터(Schema master)"
+ },
+ "slots": {"password_changes": "암호 변경:", "adding_removing_domains": "도메인 추가·제거:"},
+ "explanation": "**PDC 에뮬레이터** FSMO 역할은 도메인의 권한 있는 시간 동기화를 담당하며 암호 변경 복제의 우선 대상입니다. 변경된 암호는 일반 복제 일정을 기다리지 않고 즉시 PDC 에뮬레이터로 전송되고, 다른 도메인 컨트롤러가 로그인 시 잘못된 암호처럼 보이는 것을 받으면 거부하기 전에 PDC 에뮬레이터에 더 최근의 암호 변경이 있는지 확인합니다. PDC 에뮬레이터 역할 보유자를 사용할 수 없으면 최근에 변경된 암호가 도메인의 다른 곳에서 신속히 인식되지 않으며, 정상 동작하는 DC로 PDC 에뮬레이터 역할을 강제 이전하면 해결됩니다.\n\n**도메인 명명 마스터**는 포리스트에 도메인(및 애플리케이션 디렉터리 파티션)을 추가·제거하는 일을 담당하는 포리스트 전체 단일 역할 보유자입니다. 이 역할 보유자가 오프라인이면 포리스트에 어떤 도메인도 추가·제거할 수 없으므로, 도메인 명명 마스터 역할을 강제 이전하면 그 기능이 복원됩니다.\n\n(참고: 문제에서는 '도메인 전체' 역할이라고 했지만 도메인 명명 마스터는 포리스트 전체 역할입니다.)"
+}
+}

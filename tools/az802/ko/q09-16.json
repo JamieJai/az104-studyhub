@@ -1,0 +1,65 @@
+{
+"9": {
+ "stem": "HOTSPOT -\n\nvmssWeb이라는 Azure 가상 머신 확장 집합(VMSS)이 있습니다.\n\nvmssWeb은 Windows Server를 실행하고 웹 서버(IIS) 역할이 설치된 동일한 가상 머신들을 호스팅합니다. vmssWeb의 용량은 가상 머신 인스턴스 10개로 고정되어 있습니다.\n\n모니터링 결과 다음과 같은 패턴이 나타납니다.\n\n- 토요일과 일요일에는 오전 7시까지 vmssWeb에 가상 머신 인스턴스 2개만 필요합니다.\n- 평일에는 회사 마케팅 부서의 출시 이벤트로 인해 예측할 수 없는 프로세서 수요가 발생할 수 있습니다.\n\nvmssWeb의 용량 관리를 구성해야 합니다. 솔루션은 다음 요구 사항을 충족해야 합니다.\n\n- 주말 용량을 자동으로 가상 머신 인스턴스 2개로 설정한다.\n- 평일 수요 급증 시 용량을 늘린다.\n- 수동 개입을 최소화한다.\n\n각 요구 사항에 대해 무엇을 구성해야 합니까? 답 영역에서 적절한 옵션을 선택하십시오.\n\n참고: 각 올바른 선택은 1점입니다.",
+ "blanks": {
+  "weekend_capacity": {"label": "주말 용량:", "options": ["수동 크기 조정을 구성한다.", "가상 머신 인스턴스 크기를 변경한다.", "반복(recurring) 자동 크기 조정 프로필을 구성한다.", "고정 날짜(fixed-date) 자동 크기 조정 프로필을 구성한다."]},
+  "business_day_spikes": {"label": "평일 수요 급증:", "options": ["수동 스케일 증가를 구성한다.", "메트릭 기반 스케일 아웃 규칙을 구성한다.", "가상 머신 인스턴스 크기를 변경한다.", "예약된 스케일 아웃 프로필을 구성한다."]}
+ },
+ "explanation": "**반복(recurring) 자동 크기 조정 프로필**을 사용하면 확장 집합이 선택한 요일·시간(예: 매주 토·일)에 반복되는 특정 인스턴스 수 일정을 적용합니다. 따라서 운영자가 아무것도 바꾸지 않아도 용량이 자동으로 필요한 2개 인스턴스로 줄어들어, 알려진 주간 패턴에 대해 수동 개입을 최소화한다는 요구를 충족합니다.\n\n마케팅 부서의 출시 이벤트가 만드는 프로세서 수요 급증은 예측 불가능해 일정에 고정할 수 없으므로, 올바른 대응 방식은 측정된 메트릭 자체에 반응하는 규칙입니다. **메트릭 기반 스케일 아웃 규칙**은 CPU(또는 선택한 다른 성능 메트릭)가 구성된 임계값을 넘을 때마다 자동으로 인스턴스 수를 늘리므로, 고정된 시각이 아니라 실제 수요가 나타나는 바로 그때 용량이 추가되며 역시 수동 작업이 필요 없습니다."
+},
+"10": {
+ "stem": "*(참고: 이 문제는 동일한 시나리오를 공유하는 시리즈 문항입니다. 원본 사이트에 시나리오 본문이 누락되어 있으며, 해설로 볼 때 목표는 \"AD DS에 저장된 Server1의 BitLocker 복구 암호를 확인하는 것\"입니다.)*\n\n솔루션: ADSI 편집기를 사용해 Server1 컴퓨터 개체의 속성을 봅니다.\n\n이 방법으로 목표를 달성할 수 있습니까?",
+ "choices": {"A": "예", "B": "아니요"},
+ "explanation": "AD DS에서 각 BitLocker 복구 암호는 컴퓨터 개체 자체의 속성이 아니라 컴퓨터 개체 아래의 `ms-FVE-RecoveryInformation` 자식 개체에 저장됩니다. 따라서 ADSI 편집기에서 컴퓨터 개체의 속성만 봐서는 복구 키를 확인할 수 없습니다. Microsoft는 컴퓨터에 연결된 복구 암호를 보려면 Active Directory 사용자 및 컴퓨터의 **BitLocker 복구(BitLocker Recovery) 탭**을 사용하도록 안내합니다."
+},
+"11": {
+ "stem": "HOTSPOT –\n\n## 개요\n\nContoso, Ltd.는 시애틀에 본사가 있고 로스앤젤레스와 몬트리올에 지사가 있습니다.\n\n## 기존 환경\n\n### AD DS 환경\n\n네트워크에는 `contoso.com`이라는 온-프레미스 Active Directory Domain Services(AD DS) 포리스트가 있습니다. 포리스트에는 `contoso.com`과 `canada.contoso.com` 두 개의 도메인이 있습니다. 도메인 컨트롤러는 다음 표와 같습니다.\n\n[[IMG1]]\n\n모든 도메인 컨트롤러는 글로벌 카탈로그 서버입니다.\n\n### 서버 인프라\n\n서버는 다음 표와 같습니다.\n\n[[IMG2]]\n\nServer4는 워크그룹에서 Windows Server를 실행합니다. Windows Defender 방화벽은 개인(private) 프로필을 사용합니다.\n\nServer2는 VM1, VM2, VM3 세 대의 가상 머신을 호스팅합니다. VM3은 파일 서버이며 볼륨은 다음 표와 같습니다.\n\n[[IMG3]]\n\n### 그룹 정책\n\n`contoso.com` 도메인에는 다음 표의 GPO가 있습니다.\n\n[[IMG4]]\n\n### 기존 ID\n\n포리스트에는 다음 표의 사용자가 있습니다.\n\n[[IMG5]]\n\n포리스트에는 다음 표의 그룹이 있습니다.\n\n[[IMG6]]\n\n## 현재 문제\n\n관리자가 가상 머신 연결(Virtual Machine Connection)로 VM2 콘솔에 로그인한 뒤 로그아웃하지 않고 연결을 끊으면, 다른 관리자가 이미 로그인된 사용자로 그 콘솔 세션에 연결할 수 있습니다.\n\n## 요구 사항\n\n### 기술 요구 사항\n\nContoso는 다음 기술 요구 사항을 정의했습니다.\n\n- 모든 사이트 링크의 복제 일정을 30분으로 변경한다.\n- Server1을 `canada.contoso.com`의 도메인 컨트롤러로 승격한다.\n- Server3을 DHCP 서버로 설치하고 권한을 부여(authorize)한다.\n- User1이 `Contoso\\OU3`의 모든 그룹 멤버십을 관리할 수 있게 한다.\n- Server1에서 PowerShell 원격 관리로 Server4를 관리할 수 있게 한다.\n- VM1에서 가상 머신을 실행할 수 있게 한다.\n- 사용자가 VM2에 연결할 때 자격 증명을 입력하도록 요구한다.\n- VM3에서 이 기능을 지원하는 모든 볼륨에 데이터 중복 제거(Data Deduplication)를 사용하도록 설정한다.\n\n다음 각 문장에 대해, 문장이 참이면 예를, 그렇지 않으면 아니요를 선택하십시오.",
+ "statements": [
+  "Admin1은 14자 이상의 암호를 사용해야 한다.",
+  "User1은 10자 이상의 암호를 사용해야 한다.",
+  "Admin1이 Server1에 새 로컬 사용자를 만들면, 새 사용자의 암호는 8자 이상이어야 한다."
+ ],
+ "explanation": "Active Directory Domain Services에서 **암호 정책, 계정 잠금 정책, Kerberos 정책**은 도메인 전체 계정 정책입니다. 도메인 컨트롤러는 항상 **도메인 루트에 연결된 GPO**에서 이 값을 읽으므로, 하나의 암호 정책이 해당 도메인의 모든 도메인 사용자 계정을 지배합니다. 같은 설정을 OU에 연결된 GPO에 넣어도 그 OU 안의 도메인 계정에 대한 두 번째 암호 정책이 만들어지지 않습니다. 도메인 사용자마다 다른 암호 요구 사항을 주는 유일하게 지원되는 방법은 **세분화된 암호 정책(PSO)**이며, 이는 사용자 개체와 글로벌 보안 그룹에만 적용되고 OU를 대상으로 할 수 없습니다.\n\n따라서 관리자 계정이 들어 있는 OU에 연결된 GPO에 정의된 14자 최소 길이는 그 관리자의 도메인 암호에 아무 영향이 없으며, 도메인 루트에 설정된 10자 최소 길이가 계속 적용됩니다(문장 1: **아니요**). 같은 도메인의 일반 도메인 사용자 역시 도메인 루트의 10자 최소 길이에 묶입니다(문장 2: **예**).\n\n다만 도메인 수준 아래에 구성된 계정 정책이 아무 효과가 없는 것은 아닙니다. Microsoft 문서에 따르면 이 설정을 AD DS에서 도메인 아래 어떤 수준에 두면 해당 멤버 서버의 **로컬 계정**에 영향을 줍니다. OU의 계정 정책 설정은 그 OU에 포함된 모든 컴퓨터 개체의 로컬 보안 정책에 적용되며, 그 컴퓨터의 로컬 계정 데이터베이스에 있는 계정으로 로그인할 때 강제됩니다. 따라서 멤버 서버가 들어 있는 OU에 연결된, 최소 암호 길이 8을 설정한 GPO는 해당 서버들의 로컬 SAM을 제어하므로, 그 OU의 서버에 만든 로컬 사용자 계정은 8자 이상의 암호를 가져야 합니다(문장 3: **예**). 같은 GPO가 어떤 도메인 계정의 암호 요구 사항도 바꾸지 못하는데도 그렇습니다. 참고로 멤버 서버의 기본 최소 암호 길이는 7자에 불과하므로, 8자 요구 사항은 Windows 기본값이 아니라 OU에 연결된 정책의 결과입니다.\n\n참고 문서: Windows 보안 정책 설정 문서의 \"계정 정책\"과 \"최소 암호 길이\", Microsoft Learn의 \"Windows Server의 AD DS에 세분화된 암호 정책 구성\"."
+},
+"12": {
+ "stem": "*(참고: 이 문제는 동일한 시나리오를 공유하는 시리즈 문항입니다. 원본 사이트에 시나리오 본문이 누락되어 있으며, 해설로 볼 때 목표는 \"AD DS에 저장된 Server1의 BitLocker 복구 암호를 확인하는 것\"입니다.)*\n\n솔루션: AD DS에서 내보낸 BitLocker 키 패키지를 사용해 `repair-bde.exe`를 실행합니다.\n\n이 방법으로 목표를 달성할 수 있습니까?",
+ "choices": {"A": "예", "B": "아니요"},
+ "explanation": "`repair-bde.exe`는 키 패키지를 사용해 BitLocker로 보호된 드라이브에서 데이터 복구를 시도하는 도구입니다. Active Directory Domain Services에 저장된 서버의 BitLocker 복구 암호를 확인해 주지는 않습니다."
+},
+"13": {
+ "stem": "*(참고: 이 문제는 동일한 시나리오를 공유하는 시리즈 문항입니다. 원본 사이트에 시나리오 본문이 누락되어 있으며, 해설로 볼 때 목표는 \"AD DS에 저장된 Server1의 BitLocker 복구 암호를 확인하는 것\"입니다.)*\n\n솔루션: 도메인 컨트롤러에서 `ntdsutil.exe`를 사용합니다.\n\n이 방법으로 목표를 달성할 수 있습니까?",
+ "choices": {"A": "예", "B": "아니요"},
+ "explanation": "AD DS에 저장된 BitLocker 복구 암호는 Active Directory 사용자 및 컴퓨터의 **BitLocker 복구 암호 뷰어(BitLocker Recovery Password Viewer)**로 조회합니다. 컴퓨터 개체의 BitLocker 복구 탭에서 연결된 암호를 볼 수 있습니다. `ntdsutil.exe`는 AD DS를 관리·유지 관리하는 도구이지만 Server1의 키를 확인하는 데 필요한 BitLocker 복구 암호 조회 기능은 제공하지 않습니다."
+},
+"14": {
+ "stem": "DRAG DROP -\n\n네트워크에 Active Directory Domain Services(AD DS) 도메인이 있습니다.\n\n도메인에는 Windows Server를 실행하고 DHCP 서버 역할이 설치된 DHCP1, DHCP2, DHCP3 세 대의 서버가 있습니다. 서버는 IPv4 범위(scope)만 호스팅합니다. 공유 스토리지는 사용할 수 없습니다.\n\n회사에는 DHCP1과 DHCP2가 있는 주 데이터센터가 있습니다. 또한 DHCP3이 있는 재해 복구 데이터센터가 있으며, WAN 링크로 주 데이터센터와 연결됩니다.\n\nScope1과 Scope2라는 두 개의 범위가 있습니다.\n\n이 범위들에 DHCP 서비스 연속성을 제공해야 합니다. 솔루션은 다음 요구 사항을 충족해야 합니다.\n\n- **Scope1**: 주 데이터센터의 DHCP 서버를 사용할 수 없을 때만 DHCP3이 임대(lease)를 제공해야 한다.\n- **Scope2**: DHCP1과 DHCP2가 각각 IP 주소 범위의 서로 다른 부분에서 임대해야 한다. DHCP2는 클라이언트 컴퓨터 요청에 응답하기 전에 대기해야 한다.\n\n각 범위의 고가용성을 어떻게 구성해야 합니까? 답하려면 적절한 구성을 올바른 범위로 끌어다 놓으십시오. 각 구성은 한 번, 여러 번 또는 전혀 사용되지 않을 수 있습니다.\n\n참고: 각 올바른 선택은 1점입니다.",
+ "items": {
+  "DHCP failover in hot standby mode": "핫 스탠바이 모드의 DHCP 장애 조치(failover)",
+  "DHCP failover in load balance mode": "부하 분산 모드의 DHCP 장애 조치(failover)",
+  "A split scope that uses delayed responses": "지연 응답을 사용하는 분할 범위(split scope)",
+  "The DHCP Server role in a failover cluster": "장애 조치 클러스터의 DHCP 서버 역할",
+  "A single DHCP server that uses exclusion ranges": "제외 범위를 사용하는 단일 DHCP 서버"
+ },
+ "slots": {"scope1": "Scope1:", "scope2": "Scope2:"},
+ "explanation": "**핫 스탠바이 모드의 DHCP 장애 조치**는 한 범위에 대해 활성 서버와 대기 파트너를 구성합니다. 대기 서버는 활성 서버가 응답을 멈춘 경우에만 임대를 발급하므로, 주 데이터센터의 DHCP 서버에 접근 가능한 동안에는 조용히 있어야 하는 재해 복구 서버에 정확히 맞는 동작입니다.\n\n**분할 범위(split scope)**는 하나의 주소 범위를 두 대의 서로 다른 DHCP 서버가 호스팅하는, 독립적으로 관리되는 부분들로 나누며 공유 스토리지나 상태 복제가 필요 없습니다. 여기에 **지연 응답**을 구성하면 보조 서버가 클라이언트 브로드캐스트 요청에 답하기 전에 짧은 간격을 기다리므로, 주 서버가 살아 있는 동안에는 주 서버의 응답이 사용되고 지연 서버는 주 서버가 응답하지 않을 때만 응답합니다. 이는 주 데이터센터의 두 서버가 각각 범위의 다른 부분에서 임대하면서 한 서버(DHCP2)는 응답 전에 대기해야 한다는 요구 사항과 일치합니다."
+},
+"15": {
+ "stem": "HOTSPOT -\n\nVM1이라는 가상 머신이 있는 HV1이라는 Hyper-V 호스트가 있습니다.\n\nVM1은 동적 메모리(Dynamic Memory)가 활성화되어 있습니다. HV1에는 DDA(Discrete Device Assignment)를 지원하는 Device1이라는 PCIe NVMe 스토리지 장치가 있으며, HV1에서 이 장치는 사용 안 함(disabled) 상태입니다.\n\nDDA를 사용해 Device1을 VM1에 직접 할당할 수 있도록 해야 합니다. 솔루션은 할당에 필요한 구성만 수행해야 합니다.\n\n어떻게 해야 합니까? 답 영역에서 적절한 옵션을 선택하십시오.\n\n참고: 각 올바른 선택은 1점입니다.",
+ "blanks": {
+  "preparation": {"label": "준비:", "options": ["VM1을 저장(Save)한다.", "VM1을 일시 중지(Pause)한다.", "HV1을 종료한다.", "VM1을 종료한다."]},
+  "memory_vm1": {"label": "VM1의 메모리 구성:", "options": ["동적 메모리를 사용 안 함으로 설정한다.", "메모리 가중치(weight)를 높음으로 설정한다.", "메모리 버퍼를 늘린다."]},
+  "pcie_nvme_hv1": {"label": "HV1의 PCIe NVMe 구성:", "options": ["Device1을 사용(Enable)으로 설정한다.", "Device1을 제거(Remove)한다.", "Device1을 분리(Dismount)한다."]}
+ },
+ "explanation": "DDA(Discrete Device Assignment)는 소유 가상 머신이 **정적 메모리 할당**으로 실행되어야 합니다. PCIe 장치가 직접 할당된 VM에서는 동적 메모리가 지원되지 않으므로, 장치를 연결하기 전에 VM1의 동적 메모리를 사용 안 함으로 설정해야 합니다.\n\nDDA 장치의 분리·할당 작업(`Dismount-VMHostAssignableDevice`, `Add-VMAssignableDevice`)은 대상 가상 머신이 **종료(shut down)** 상태여야 하며, 저장이나 일시 중지만으로는 부족합니다. 따라서 준비 단계로 VM1을 종료해야 합니다.\n\n호스트 쪽에서는 DDA로 쓸 장치를 먼저 호스트 OS에서 사용 안 함으로 설정한 뒤, `Dismount-VMHostAssignableDevice`로 호스트 파티션에서 분리해 Windows Server가 장치 제어를 놓게 해야 합니다. Device1은 이미 사용 안 함 상태이므로 남은 호스트 작업은 **분리(dismount)**뿐이며, 그 다음 VM1에 직접 마운트할 수 있습니다."
+},
+"16": {
+ "stem": "네트워크에 Active Directory Domain Services(AD DS) 포리스트가 있습니다.\n\n포리스트에는 contoso.com이라는 부모 도메인과 corp.contoso.com이라는 자식 도메인이 있습니다. 두 도메인 모두 DNS 서버 역할이 설치된 도메인 컨트롤러가 있습니다. contoso.com의 일부 도메인 컨트롤러에는 DNS 서버 역할이 설치되어 있지 **않습니다**.\n\ncontoso.com의 DNS 영역(zone)은 Active Directory 통합 영역이며, 보안 동적 업데이트를 사용하고, 포리스트의 모든 DNS 서버로 복제됩니다.\n\n다음 요구 사항을 충족하도록 영역을 변경해야 합니다.\n\n- corp.contoso.com의 DNS 서버가 contoso.com 영역 데이터를 받지 못하게 한다.\n- Active Directory 복제 트래픽을 최소화한다.\n\n어떻게 해야 합니까?",
+ "choices": {
+  "A": "영역 복제 범위를 contoso.com 도메인의 모든 도메인 컨트롤러로 변경한다.",
+  "B": "영역 복제 범위를 포리스트 내 도메인 컨트롤러의 모든 DNS 서버로 변경한다.",
+  "C": "영역 복제 범위를 contoso.com 도메인 내 도메인 컨트롤러의 모든 DNS 서버로 변경한다.",
+  "D": "각 도메인 컨트롤러에서 영역을 보조 영역(secondary zone)으로 변경한다."
+ },
+ "explanation": "Active Directory 통합 DNS 영역은 단일 AD DS 도메인 내 도메인 컨트롤러의 DNS 서버로만 복제하도록 설정할 수 있습니다. **contoso.com 도메인의 DNS 서버** 범위를 선택하면 corp.contoso.com의 DNS 서버가 영역을 받지 않게 되고, DNS를 호스팅하지 않는 contoso.com 도메인 컨트롤러로 영역 데이터를 복제하는 것도 피할 수 있어 Active Directory 복제 트래픽이 최소화됩니다.\n\n- A: 도메인의 **모든 DC**로 복제하면 DNS가 없는 DC에도 데이터가 가서 복제 트래픽이 불필요하게 늘어납니다.\n- B: 포리스트 범위는 현재 상태와 같아 corp.contoso.com이 계속 데이터를 받습니다.\n- D: 보조 영역은 AD 통합·보안 동적 업데이트를 잃게 되며 요구 사항과 무관합니다."
+}
+}

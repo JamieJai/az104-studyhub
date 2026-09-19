@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#7c3aed">
+  <meta name="color-scheme" content="light dark">
+  <title>AZ-802 CBT</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="manifest" href="../manifest.webmanifest">
+</head>
+<body>
+  <div class="app-shell">
+    <div class="sidebar-overlay" id="sidebarOverlay" hidden></div>
+    <aside class="sidebar" id="sidebar">
+      <button class="sidebar-close mobile-only" id="sidebarClose" aria-label="메뉴 닫기">✕</button>
+      <div class="brand">
+        <span class="brand-mark">802</span>
+        <div><strong>AZ-802 CBT</strong><small>Windows Server Hybrid 연습</small></div>
+      </div>
+
+      <nav class="side-nav">
+        <a href="/map/" class="nav-btn">🗺 자격증 노선도</a>
+        <button id="navHome" class="nav-btn">🏠 홈</button>
+        <button id="navWrongNote" class="nav-btn">📕 오답노트</button>
+        <button id="navExamRuns" class="nav-btn">📊 모의고사 기록</button>
+      </nav>
+
+      <section class="side-section">
+        <h2>학습 현황</h2>
+        <div class="progress-ring" id="progressRing"><span id="progressPercent">0%</span></div>
+        <div class="stats-grid">
+          <div><strong id="statAnswered">0</strong><span>풀이</span></div>
+          <div><strong id="statCorrect">0</strong><span>정답</span></div>
+          <div><strong id="statWrong">0</strong><span>오답</span></div>
+          <div><strong id="statBookmarked">0</strong><span>북마크</span></div>
+        </div>
+      </section>
+
+      <section class="side-section session-options">
+        <h2>문제 구성</h2>
+        <label>대상 문제
+          <select id="questionFilter">
+            <option value="all">전체 문제</option>
+            <option value="unanswered">미응답 문제</option>
+            <option value="wrong">오답 문제</option>
+            <option value="bookmarked">북마크 문제</option>
+            <optgroup label="유형별">
+              <option value="type:multiple_choice">객관식만</option>
+              <option value="type:dropdown">HOTSPOT(드롭다운)만</option>
+              <option value="type:drag_drop">DRAG DROP만</option>
+              <option value="type:statements">예/아니요만</option>
+            </optgroup>
+            <optgroup label="출제 영역별" id="topicGroup"></optgroup>
+          </select>
+        </label>
+        <label>출제 순서
+          <select id="questionOrder">
+            <option value="sequential">원본 순서대로</option>
+            <option value="random">무작위</option>
+          </select>
+        </label>
+        <button class="primary wide" id="startSession">새 세션 시작</button>
+      </section>
+
+      <section class="side-section sync-section">
+        <p class="whoami"><strong id="whoamiName">…</strong> <button id="logoutBtn" class="linklike">로그아웃</button></p>
+        <p id="syncStatus" class="sync-status">불러오는 중…</p>
+        <p class="report-count"><button id="syncNow" class="linklike">지금 동기화</button></p>
+      </section>
+
+      <section class="side-section session-options">
+        <h2>모의고사 설정</h2>
+        <label>총 문항수
+          <select id="examSize">
+            <option value="10">10문항 · 짧게</option>
+            <option value="20" selected>20문항 · 가볍게</option>
+            <option value="30">30문항</option>
+            <option value="40">40문항</option>
+            <option value="63">63문항 · 전체</option>
+          </select>
+        </label>
+        <label class="check-row"><input type="checkbox" id="examTimer"> 시간 제한 사용 (문항당 2분)</label>
+        <button class="primary wide" id="examStartSide">모의고사 시작</button>
+        <p class="hint-note">공식 출제 비중대로 영역별 배분하며, 안 푼 문항과 틀린 문항을 먼저 출제합니다.</p>
+      </section>
+
+      <section class="side-section compact-actions">
+        <button id="exportProgress">기록 내보내기</button>
+        <label class="file-button">기록 가져오기<input id="importProgress" type="file" accept="application/json"></label>
+        <button class="danger-text" id="resetProgress">전체 기록 초기화</button>
+      </section>
+
+      <p class="dataset-note"><span id="datasetCount">63</span>문항 · 객관식 <span id="mcCount">0</span> · HOTSPOT <span id="hsCount">0</span> · 드래그 <span id="ddCount">0</span> · 예/아니요 <span id="ynCount">0</span><br>출처: examcademy.com AZ-802 · 번역: 한국어(원문 병기)</p>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <button class="icon-button mobile-only" id="menuToggle" aria-label="메뉴 열기">☰</button>
+        <div class="search-wrap">
+          <input id="questionJump" inputmode="numeric" placeholder="문항 번호로 이동 (1~63)">
+          <button id="jumpButton">이동</button>
+        </div>
+        <span id="examTimerDisplay" class="exam-timer hidden"></span>
+        <button class="icon-button" id="themeToggle" aria-label="화면 테마 변경">◐</button>
+      </header>
+
+      <section class="welcome hidden" id="welcome">
+        <p class="eyebrow">AZ-802 CBT · 진행상황 서버 저장 · 어느 기기에서든 이어서</p>
+        <h1>AZ-802 문제를<br>실전처럼 풀어보세요.</h1>
+        <p>문항은 <strong>이미지 → 한국어 번역 → 답 입력 → 정답·해설</strong> 순서로 표시됩니다. 실제 시험은 영어이므로 각 문항 아래에서 영어 원문도 바로 펼쳐볼 수 있습니다. 틀린 문제는 오답노트에서 다시 풉니다.</p>
+        <div class="welcome-cards">
+          <div><strong id="wcTotal">63</strong><span>전체 문항</span></div>
+          <div><strong id="wcMc">0</strong><span>객관식</span></div>
+          <div><strong id="wcHs">0</strong><span>HOTSPOT · 드래그</span></div>
+          <div><strong id="wcYn">0</strong><span>예/아니요</span></div>
+        </div>
+        <div class="hero-actions"><button class="primary hero-button" id="quickStart">순서대로 시작</button><button class="hero-button secondary" id="examStart">모의고사 시작</button><button class="hero-button secondary" id="openWrongNote">오답노트</button><button class="hero-button secondary" id="openExamRuns">모의고사 기록</button></div>
+        <p class="exam-note">모의고사는 공식 출제 영역 비중대로 문항을 뽑아 출제하며, 정답과 해설은 세션 종료 전까지 공개하지 않습니다. 문항수·시간 제한은 왼쪽 모의고사 설정에서 바꿀 수 있습니다.</p>
+      </section>
+
+      <section class="exam-result hidden" id="examResult">
+        <p class="eyebrow" id="resultEyebrow">SESSION COMPLETE</p>
+        <h1 id="resultTitle">세션 결과</h1>
+        <div class="exam-score"><strong id="examScore">0 / 20</strong><span id="examPercent">0%</span></div>
+        <p id="examSummary"></p>
+        <div class="result-grid" id="resultChapters"></div>
+        <div class="result-wrong" id="resultWrong"></div>
+        <div class="hero-actions"><button class="primary hero-button" id="reviewExamWrong">이번 세션 오답 복습</button><button class="hero-button secondary" id="openExamRuns2">모의고사 기록</button><button class="hero-button secondary" id="openWrongNote2">오답노트</button><button class="hero-button secondary" id="backHome">홈으로</button></div>
+      </section>
+
+      <section class="wrongnote hidden" id="wrongNote">
+        <div class="wn-head">
+          <h1 id="wnTitle">오답노트</h1>
+          <button id="wnClose">닫기</button>
+        </div>
+        <div class="wn-stats" id="wnStats"></div>
+        <div class="wn-actions" id="wnActions">
+          <button class="primary" id="wnStartAll">틀린 문제 전부 풀기</button>
+          <button id="wnStartRepeat">2회 이상 틀린 것만</button>
+        </div>
+        <div class="wn-list" id="wnList"></div>
+      </section>
+
+      <section class="quiz hidden" id="quiz" aria-live="polite">
+        <div class="quiz-meta">
+          <div>
+            <span class="pill" id="kindBadge">객관식</span>
+            <span class="source-number" id="sourceNumber">Q1</span>
+            <span class="topic-pill" id="topicBadge"></span>
+          </div>
+          <button class="bookmark" id="bookmarkButton" aria-label="북마크">☆ 북마크</button>
+        </div>
+
+        <div class="session-progress">
+          <div><span id="sessionPosition">1 / 63</span><span id="sessionMode">연습</span></div>
+          <div class="bar"><i id="sessionBar"></i></div>
+        </div>
+
+        <article class="question-card">
+          <div id="questionImages" class="question-images"></div>
+          <div class="question-text-wrap">
+            <div id="questionText" class="question-body"></div>
+            <details class="original-text" id="originalWrap"><summary>EN · 영어 원문 보기 (실제 시험 표현)</summary><div id="questionTextEn" class="question-body"></div></details>
+          </div>
+        </article>
+
+        <section id="answerControls" class="answer-controls"></section>
+        <section id="feedback" class="feedback hidden"></section>
+        <section id="explanation" class="explanation hidden"></section>
+
+        <nav class="quiz-nav">
+          <button id="prevButton">← 이전</button>
+          <span id="shortcutHint">숫자/알파벳: 선택 · Enter: 제출/다음 · Ctrl+B: 북마크 · ←→: 이동</span>
+          <button class="primary" id="nextButton">다음 →</button>
+        </nav>
+      </section>
+    </main>
+  </div>
+
+  <div class="lightbox hidden" id="lightbox"><img id="lightboxImg" alt=""><span class="lb-cap" id="lightboxCap"></span></div>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

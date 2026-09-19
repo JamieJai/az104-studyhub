@@ -48,20 +48,20 @@ async function migrateFromKv(env, user) {
         const source = Number(src);
         if (!Number.isInteger(source)) continue;
         stmts.push(env.DB.prepare(
-          "INSERT OR REPLACE INTO progress (user_id, source, data, updated_at) VALUES (?, ?, ?, ?)"
+          "INSERT OR REPLACE INTO progress (user_id, exam, source, data, updated_at) VALUES (?, 'az104', ?, ?, ?)"
         ).bind(user.id, source, JSON.stringify(rec), rec?.updatedAt || old.savedAt || now));
         out.progress++;
       }
       for (const run of old.examRuns || []) {
         const id = String(run?.id || run?.at || run?.finishedAt || randomHex(6));
         stmts.push(env.DB.prepare(
-          "INSERT OR IGNORE INTO exam_runs (user_id, run_id, data, at) VALUES (?, ?, ?, ?)"
+          "INSERT OR IGNORE INTO exam_runs (user_id, exam, run_id, data, at) VALUES (?, 'az104', ?, ?, ?)"
         ).bind(user.id, id, JSON.stringify(run), run?.at || run?.finishedAt || now));
         out.examRuns++;
       }
       if (old.session) {
         stmts.push(env.DB.prepare(
-          "INSERT OR REPLACE INTO study_session (user_id, data, updated_at) VALUES (?, ?, ?)"
+          "INSERT OR REPLACE INTO study_session (user_id, exam, data, updated_at) VALUES (?, 'az104', ?, ?)"
         ).bind(user.id, JSON.stringify(old.session), old.savedAt || now));
       }
       for (let i = 0; i < stmts.length; i += 100) await env.DB.batch(stmts.slice(i, i + 100));
@@ -73,7 +73,7 @@ async function migrateFromKv(env, user) {
       for (const r of Array.isArray(reports) ? reports : []) {
         if (!Number.isInteger(r?.source)) continue;
         stmts.push(env.DB.prepare(
-          "INSERT OR REPLACE INTO reports (user_id, source, kind, data, at) VALUES (?, ?, ?, ?, ?)"
+          "INSERT OR REPLACE INTO reports (user_id, exam, source, kind, data, at) VALUES (?, 'az104', ?, ?, ?, ?)"
         ).bind(user.id, r.source, String(r.kind || "other"), JSON.stringify(r), r.at || now));
         out.reports++;
       }

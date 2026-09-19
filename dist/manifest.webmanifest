@@ -1,7 +1,7 @@
 {
-  "name": "AZ-104 Study Hub",
-  "short_name": "AZ-104",
-  "description": "AZ-104 CBT + Azure Lab Portal 오프라인 학습 앱",
+  "name": "Azure Study Home",
+  "short_name": "Azure Study",
+  "description": "Azure 자격증 노선도 · AZ-104 / AZ-802 CBT · 실습 랩",
   "lang": "ko-KR",
   "start_url": "./",
   "scope": "./",
@@ -10,8 +10,8 @@
     "standalone",
     "minimal-ui"
   ],
-  "background_color": "#f4f7fb",
-  "theme_color": "#0078d4",
+  "background_color": "#070D14",
+  "theme_color": "#070D14",
   "orientation": "any",
   "icons": [
     {
@@ -35,8 +35,19 @@
   ],
   "shortcuts": [
     {
-      "name": "CBT 열기",
-      "short_name": "CBT",
+      "name": "자격증 노선도",
+      "short_name": "Map",
+      "url": "./map/",
+      "icons": [
+        {
+          "src": "./icons/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "AZ-104 CBT",
+      "short_name": "AZ-104",
       "url": "./AZ-104_CBT/",
       "icons": [
         {
@@ -46,7 +57,18 @@
       ]
     },
     {
-      "name": "Lab Portal 열기",
+      "name": "AZ-802 CBT",
+      "short_name": "AZ-802",
+      "url": "./AZ-802_CBT/",
+      "icons": [
+        {
+          "src": "./icons/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Lab Portal",
       "short_name": "Lab",
       "url": "./AZ-104_Lab_Portal/",
       "icons": [

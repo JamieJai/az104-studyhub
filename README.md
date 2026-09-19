@@ -1,11 +1,14 @@
-# AZ-104 Study Hub
+# Azure Study Home (구 AZ-104 Study Hub)
 
 Cloudflare Pages 프로젝트 `az104-studyhub-p8` — https://az104-studyhub-p8.pages.dev
 
 | 경로 | 내용 |
 |---|---|
-| `dist/` | 정적 사이트 (로그인 화면, CBT, Lab Portal, 관리자 `/admin/`, 문항 이미지 1,300여 장) |
-| `functions/` | Pages Functions — 인증(`/api/auth/*`), 진도(`/api/progress`), 신고(`/api/report`), 관리자(`/api/admin/*`) |
+| `dist/` | 정적 사이트 — 로그인(`/`), 자격증 노선도 홈(`/map/`), AZ-104 CBT, AZ-802 CBT, Lab Portal, 관리자 `/admin/` |
+| `dist/AZ-802_CBT/` | AZ-802 CBT (63문항, 한/영). 진도는 `/api/progress?exam=az802` 로 서버 저장 |
+| `migrations/` | D1 스키마 변경 SQL (`0001_exam_column.sql`: 기록 테이블에 exam 컬럼 추가) |
+| `tools/az802/` | AZ-802 문항 빌드 스크립트(`build.py`)와 한국어 번역 원본 |
+| `functions/` | Pages Functions — 인증(`/api/auth/*`), 진도(`/api/progress?exam=`), 신고(`/api/report?exam=`), 관리자(`/api/admin/*`). 시험 목록은 `_lib/exam.js` |
 | `wrangler.toml` | 바인딩: D1 `DB`(사용자·진도·신고), KV `PROGRESS`(옛 진도 이관용), vars `ADMIN_USER`, `MAX_USERS` |
 | `schema.sql` | D1 스키마 |
 | `tools/apply_p119.js` | 문항 부분 패치 스크립트 예시 (`node tools/apply_p119.js dist --dry`) |
@@ -42,9 +45,17 @@ npx wrangler pages dev dist --port 8788
 node tools/preflight.js http://127.0.0.1:8788 localadmin           # 가입~삭제 29단계 E2E
 ```
 
+## 흐름
+
+`/` 로그인(인트로 → 폼) → `/map/` 자격증 노선도(과목 클릭 → CBT/Lab 버튼) → `/AZ-104_CBT/` · `/AZ-802_CBT/` · `/AZ-104_Lab_Portal/`(로그인 불필요).
+보호 경로는 `functions/_middleware.js` 의 PROTECTED 와 `dist/_routes.json` 에 같이 적는다.
+
+새 시험을 추가하려면: `functions/_lib/exam.js` EXAMS 에 id 추가 → `dist/<폴더>/` 에 앱 배치(app.js 는 AZ-802 의 서버 동기화 부분을 복사) → 미들웨어·_routes.json·`dist/map/index.html` STUDY 에 링크.
+
 ## 주의
 
 - Pages 는 배포마다 정적 파일 **과 Functions 를 통째로** 교체한다. `functions/` 없이 `dist/` 만 올리면 로그인이 죽는다 (2026-09-19 사고). 항상 이 저장소 루트에서 배포한다.
 - `dist/` 를 바꾸면 `dist/service-worker.js` 의 `VERSION` 도 올려야 PWA 캐시가 갱신된다.
 - `_headers`, `_redirects`, `_routes.json`, `functions/` 는 라이브 서버에서 다시 받아올 수 없다. 이 저장소가 유일한 원본이다.
+- D1 스키마를 바꿀 때는 `npx wrangler d1 export az104-studyhub --remote --output backups/<날짜>.sql` 로 백업하고, `migrations/` 에 SQL 을 남긴 뒤 `--local` 로 리허설 → `--remote` 적용 → 배포 순서로 한다.
 - 롤백: Cloudflare 대시보드 → Pages → az104-studyhub-p8 → Deployments → 이전 배포 "Rollback".

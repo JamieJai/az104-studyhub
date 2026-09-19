@@ -1,0 +1,92 @@
+{
+"17": {
+ "stem": "DHCP 서버 역할이 설치된 Windows Server를 실행하는 DHCP1이라는 서버가 있습니다.\n\nDHCP1은 `192.168.15.0/24` 서브넷에 대한 활성 IPv4 범위를 호스팅합니다.\n\n다음 열이 포함된 `PrinterReservations.csv`라는 CSV 파일이 있습니다.\n\n- `ClientId`\n- `ScopeId`\n- `IPAddress`\n- `MacAddress`\n\n`PrinterReservations.csv`의 모든 IP 주소는 범위 안에 있으며 현재 사용 가능합니다.\n\n`PrinterReservations.csv`를 사용해 프린터 20대에 대한 DHCP 예약을 만들어야 합니다. 솔루션은 관리 작업을 최소화해야 합니다.\n\n어떤 PowerShell 명령을 실행해야 합니까?",
+ "choices": {
+  "A": "Import-Csv .\\PrinterReservations.csv | Set-DhcpServerv4Reservation -ComputerName DHCP1",
+  "B": "Import-Csv .\\PrinterReservations.csv | Add-DhcpServerv4Reservation -ComputerName DHCP1",
+  "C": "Import-Csv .\\PrinterReservations.csv | Add-DhcpServerv4ExclusionRange -ComputerName DHCP1",
+  "D": "Import-Csv \\PrinterReservations.csv | ForEach-Object { Add-DhcpServerv4Filter -ComputerName DHCP1 -List Allow -MacAddress $_.ClientId }"
+ },
+ "explanation": "`Add-DhcpServerv4Reservation`은 IPv4 예약을 만들며, `ScopeId`, `IPAddress`, `ClientId` 같은 필수 예약 필드에 대해 **속성 이름 기준 파이프라인 입력**을 지원합니다. CSV 행을 이 cmdlet에 파이프하면 명령 한 번으로 모든 예약이 만들어집니다. `Set-DhcpServerv4Reservation`은 기존 예약을 변경하는 것이고, 제외 범위와 MAC 필터는 예약을 만들지 않습니다."
+},
+"18": {
+ "stem": "HOTSPOT -\n\n워크그룹에 속한 AdminPC라는 관리용 워크스테이션이 있습니다.\n\nAdminPC의 WSMan TrustedHosts 목록에는 기존 항목이 있습니다.\n\nPowerShell 원격 관리가 활성화되어 있고 IP 주소 172.16.10.20으로 접근할 수 있는 Server1이라는 서버가 있습니다.\n\nAdminPC에서 Server1로 원격 PowerShell 세션을 만들어야 합니다. 솔루션은 다음 요구 사항을 충족해야 합니다.\n\n- AdminPC의 기존 TrustedHosts 항목을 보존한다.\n- 원격 세션에 Server1의 IP 주소를 사용한다.\n\n스크립트를 어떻게 완성해야 합니까? 답 영역에서 적절한 옵션을 선택하십시오.\n\n참고: 각 올바른 선택은 1점입니다.",
+ "blanks": {
+  "var2": {"label": "$var2 =", "options": ["Get-ADUser", "Get-AzUserAssignedIdentity", "Get-Credential", "Get-LocalUser"]},
+  "cmdlet": {"label": "TrustedHosts 변경 cmdlet", "options": ["Export-Csv", "Out-File", "Set-Item", "Set-ItemProperty"]}
+ },
+ "explanation": "WSMan 클라이언트의 TrustedHosts 목록은 WSMan 공급자 드라이브를 통해 **`Set-Item`**으로 수정합니다. `-Concatenate` 스위치를 주면 새 값이 목록을 대체하는 대신 **추가**되므로, 관리용 워크스테이션에서 이미 신뢰하던 호스트를 보존하면서 Server1의 IP 주소를 추가한다는 요구에 정확히 맞습니다. `-Force`는 대화형 확인을 생략해 무인으로 변경이 적용되게 합니다.\n\n`New-PSSession`은 `-Credential` 매개변수에 전달된 PSCredential 개체로 인증하므로, 그 변수를 채울 cmdlet은 **`Get-Credential`**입니다. 이 cmdlet은 자격 증명을 입력받아 지정한 IP 주소의 서버로 원격 세션을 맺기에 적합한 자격 증명 개체를 반환합니다."
+},
+"19": {
+ "stem": "네트워크에 contoso.com이라는 온-프레미스 Active Directory Domain Services(AD DS) 포리스트가 있습니다.\n\n포리스트에는 DNS 서버 역할이 설치된 도메인 컨트롤러 세 대가 있으며, contoso.com에 대한 Active Directory 통합 영역을 호스팅합니다. DNS 서버는 인터넷 이름 확인을 위해 기존 전달자(forwarder)를 사용합니다.\n\n파트너 회사가 fabrikam.com DNS 네임스페이스를 소유하고 있으며, 사이트 간(S2S) VPN을 통해 IP 주소 172.16.10.10과 172.16.10.11에서 DNS 서버를 제공합니다.\n\ncontoso.com 포리스트의 DNS 서버를 구성해야 합니다. 솔루션은 다음 요구 사항을 충족해야 합니다.\n\n- fabrikam.com 쿼리를 파트너 회사의 DNS 서버로 보낸다.\n- 다른 외부 네임스페이스에는 기존 전달자를 계속 사용한다.\n- contoso.com의 도메인 컨트롤러에 있는 현재 및 미래의 모든 DNS 서버에 구성을 적용한다.\n\n어떻게 해야 합니까?",
+ "choices": {
+  "A": "172.16.10.10과 172.16.10.11을 사용하는 전달자를 구성한다.",
+  "B": "172.16.10.10과 172.16.10.11을 사용하는 fabrikam.com용 Active Directory 통합 조건부 전달자를 만든다.",
+  "C": "172.16.10.10과 172.16.10.11을 사용하는 fabrikam.com용 로컬 저장 조건부 전달자를 만든다.",
+  "D": "172.16.10.10과 172.16.10.11을 사용하는 루트 힌트를 구성한다."
+ },
+ "explanation": "**조건부 전달자**는 fabrikam.com처럼 지정된 DNS 접미사와 일치하는 쿼리만 지정된 파트너 DNS 서버로 보내므로, 일반 외부 쿼리는 기존 전달자를 통해 계속 처리됩니다. **Active Directory 통합** 조건부 전달자는 Active Directory에 저장되어 선택한 복제 범위 내 도메인 컨트롤러의 DNS 서버(미래에 추가될 서버 포함)로 복제될 수 있습니다.\n\n- A: 일반 전달자를 바꾸면 모든 외부 쿼리가 파트너 서버로 가서 기존 전달자 요구를 위반합니다.\n- C: 로컬 저장 조건부 전달자는 서버마다 수동으로 만들어야 하고 미래 서버에 자동 적용되지 않습니다.\n- D: 루트 힌트는 인터넷 루트 서버 목록이지 특정 도메인 전달 용도가 아닙니다."
+},
+"20": {
+ "stem": "네트워크에 Active Directory Domain Services(AD DS) 도메인이 있습니다. 도메인에는 DHCP 서버 역할이 설치된 Windows Server를 실행하는 DHCP1이라는 서버가 있습니다. DHCP1은 고정 IPv4 주소 10.10.10.5/24를 사용합니다.\n\nDHCP1은 AD DS에서 권한이 부여(authorized)되어 있으며 10.10.20.0/24 서브넷에 대한 활성 범위가 있습니다.\n\n10.10.20.0/24 서브넷의 클라이언트 컴퓨터가 APIPA 주소를 받습니다. DHCP 서버 서비스가 실행 중이고 범위에 사용 가능한 IP 주소가 있음을 확인했습니다.\n\n10.10.20.0/24의 컴퓨터가 DHCP1에서 IPv4 주소 임대를 받을 수 있게 해야 합니다.\n\n어떻게 해야 합니까?",
+ "choices": {
+  "A": "Add-DhcpServerInDC를 실행한다.",
+  "B": "제외(exclusion)를 만든다.",
+  "C": "DHCP 릴레이를 구성한다.",
+  "D": "Add-DhcpServerSecurityGroup을 실행한다."
+ },
+ "explanation": "DHCP 클라이언트는 처음에 DHCPDISCOVER 메시지를 로컬 브로드캐스트로 보내는데, 라우터는 일반적으로 서브넷 간에 브로드캐스트를 전달하지 않습니다. **DHCP 릴레이 에이전트**는 10.10.20.0/24 클라이언트 네트워크와 10.10.10.0/24에 있는 DHCP1 사이에서 이 메시지를 전달해 DHCP1이 활성 범위에서 임대를 발급할 수 있게 합니다. Microsoft 문서에 따르면 릴레이 에이전트를 통해 DHCP 클라이언트가 다른 서브넷의 DHCP 서버로부터 주소를 얻을 수 있습니다.\n\n- A: `Add-DhcpServerInDC`는 AD 권한 부여인데 이미 권한이 부여되어 있습니다.\n- B: 제외는 오히려 할당 가능한 주소를 줄입니다.\n- D: 보안 그룹 생성은 관리 위임용이며 임대 문제와 무관합니다."
+},
+"21": {
+ "stem": "RDS 팜 배포가 있습니다.\n\n관리자는 내부 네트워크의 도메인 가입 워크스테이션에서 원격 데스크톱으로 팜에 연결합니다.\n\n관리자가 인터넷에서 원격 데스크톱으로 RDS 팜에 연결할 수 있게 해야 합니다. 솔루션은 내부 RDP 포트를 인터넷에 개방하지 않아야 합니다.\n\n배포에 어떤 역할을 추가해야 합니까?",
+ "choices": {
+  "A": "원격 데스크톱 연결 브로커(RD Connection Broker)",
+  "B": "원격 데스크톱 가상화 호스트(RD Virtualization Host)",
+  "C": "원격 데스크톱 세션 호스트(RD Session Host)",
+  "D": "원격 데스크톱 웹 액세스(RD Web Access)",
+  "E": "원격 데스크톱 게이트웨이(RD Gateway)"
+ },
+ "explanation": "**RD Gateway**는 HTTPS(TCP 443)를 통해 외부 네트워크에서 안전하고 암호화된 원격 데스크톱 프로토콜 액세스를 제공하므로, 클라이언트가 TCP 3389 같은 내부 RDP 포트를 인터넷에 노출하지 않고도 내부 RDS 리소스에 접근할 수 있습니다.\n\n- RD Web Access는 웹 포털로 앱·데스크톱 목록을 보여줄 뿐, 실제 RDP 연결을 인터넷에서 안전하게 터널링하지는 않습니다."
+},
+"22": {
+ "stem": "Storage Spaces Direct(S2D)를 사용하는 Cluster1이라는 2노드 Windows Server 장애 조치 클러스터(WSFC)가 있습니다. 노드에는 Pool1이라는 비원시(non-primordial) 스토리지 풀이 있습니다. Pool1은 읽기 전용이며 가상 디스크가 없습니다.\n\nCluster1을 삭제하고 같은 노드로 클러스터를 다시 배포합니다. 재배포 중 Windows Admin Center가 스토리지 오류를 보고합니다.\n\n재배포에 디스크를 재사용할 수 있도록 오래된(stale) 스토리지 구성을 제거해야 합니다.\n\n어떤 두 가지 작업을 수행해야 합니까? 각 정답은 솔루션의 일부입니다.\n\n참고: 각 올바른 선택은 1점입니다.",
+ "choices": {
+  "A": "Pool1을 쓰기 가능하게 만든다.",
+  "B": "Pool1을 제거한다.",
+  "C": "Pool1의 디스크로 새 스토리지 풀을 만든다.",
+  "D": "각 노드에서 클러스터 구성을 지운다.",
+  "E": "Pool1의 물리 디스크를 초기화(reset)한다."
+ },
+ "explanation": "읽기 전용인 비원시 스토리지 풀은 읽기/쓰기 모드로 되돌리기 전에는 수정하거나 제거할 수 없습니다. Pool1에는 가상 디스크가 없으므로 쓰기 가능하게 만든 뒤 제거할 수 있고, 그러면 물리 디스크가 해제되어 재배포되는 Storage Spaces Direct 클러스터에서 재사용할 수 있습니다."
+},
+"23": {
+ "stem": "네트워크에 Active Directory Domain Services(AD DS) 도메인이 있습니다. 도메인에는 다음 서버가 있습니다.\n\n- Server1: DFS 네임스페이스 역할 서비스가 설치됨\n- Server2: DFS 네임스페이스 역할 서비스가 설치됨\n- Server3: `\\\\Server3\\Share1`이라는 파일 공유를 호스팅\n- Server4: `\\\\Server4\\Share2`라는 파일 공유를 호스팅\n\n두 파일 공유를 Corp라는 하나의 DFS 네임스페이스에 게시해야 합니다. Server1이나 Server2 중 하나를 사용할 수 없게 되어도 Corp는 계속 사용 가능해야 합니다.\n\n어떻게 해야 합니까?",
+ "choices": {
+  "A": "Server1과 Server2를 포함하는 DFS 복제 그룹을 구성한다.",
+  "B": "도메인 기반 네임스페이스를 구성하고 Server1과 Server2를 네임스페이스 서버로 추가한다.",
+  "C": "Server3과 Server4를 포함하는 DFS 복제 그룹을 구성한다.",
+  "D": "도메인 기반 네임스페이스를 구성하고 Server1만 유일한 네임스페이스 서버로 추가한다."
+ },
+ "explanation": "**도메인 기반 DFS 네임스페이스**는 여러 네임스페이스 서버가 같은 네임스페이스를 호스팅할 수 있어, 한 네임스페이스 서버가 실패해도 네임스페이스 가용성이 유지됩니다. Server3과 Server4의 공유는 그 네임스페이스 안에 폴더 대상(folder target)으로 추가하면 됩니다. DFS 복제는 폴더 내용을 복제하는 기능이지 네임스페이스 서버 가용성을 제공하지 않습니다."
+},
+"24": {
+ "stem": "네트워크에 Active Directory Domain Services(AD DS) 도메인이 있습니다.\n\n도메인에는 다음 표의 사이트가 있습니다.\n\n[[IMG1]]\n\nDC2라는 도메인 컨트롤러를 Site2로 옮길 계획입니다.\n\nSite2의 클라이언트 컴퓨터가 AD DS 사이트 인식(site awareness)을 사용해 DC2를 찾도록 해야 합니다. 솔루션은 10.40.0.0/16의 다른 클라이언트 컴퓨터에 영향을 주지 **않아야** 합니다.\n\n어떻게 해야 합니까?",
+ "choices": {
+  "A": "10.41.0.0/16 서브넷을 Site2에 할당한다.",
+  "B": "10.40.0.0/16 서브넷을 Site2에 할당한다.",
+  "C": "Site2에 DC2의 복제 연결 개체를 만들고 10.40.0.0/16 서브넷을 Site2에 할당한다.",
+  "D": "Site1에 DC1의 복제 연결 개체를 만들고 10.41.0.0/16 서브넷을 Site1에 할당한다."
+ },
+ "explanation": "Active Directory 사이트 인식은 클라이언트(또는 자신의 서비스 레코드를 등록하는 도메인 컨트롤러)의 IP 주소를 AD 사이트 및 서비스에서 특정 사이트에 연결된 **서브넷 개체**와 비교해 사이트를 매칭하는 방식으로 동작합니다. 도메인 컨트롤러의 사이트 소속은 물리적 네트워크 위치나 IP가 바뀌었다고 자동으로 다시 계산되지 않으므로, 관리자가 DC의 새 IP 범위를 대상 사이트에 매핑해야 Netlogon이 그 사이트 아래에 DC의 SRV 레코드를 등록하고 해당 사이트의 클라이언트가 DC를 찾을 수 있습니다.\n\n10.41.0.0/16 서브넷을 Site2에 연결하면 이동 후 DC2가 사용할 네트워크에 대한 매핑이 만들어져 Site2 클라이언트가 일반적인 사이트 인식 DC 검색으로 DC2를 찾을 수 있고, 기존 10.40.0.0/16→Site1 매핑은 그대로 두므로 Site1의 클라이언트 컴퓨터와 DC1은 이전과 똑같이 자기 사이트로 확인됩니다."
+},
+"25": {
+ "stem": "네트워크에 도메인 기능 수준이 Windows Server 2012 R2인 Active Directory Domain Services(AD DS) 도메인이 있습니다. 도메인에는 도메인 관리 전용으로 사용하는 Admin1이라는 계정이 있습니다.\n\nAdmin1을 자격 증명 도용으로부터 보호해야 합니다. 솔루션은 이 도메인 계정이 NTLM 인증, 자격 증명 위임, 캐시된 오프라인 로그인을 사용하지 못하게 해야 합니다.\n\n어떻게 해야 합니까?",
+ "choices": {
+  "A": "계정을 Protected Users 그룹에 추가한다.",
+  "B": "계정에 대해 사용자 Kerberos TGT(Ticket Granting Ticket) 수명을 240분으로 설정하는 인증 정책을 구성한다.",
+  "C": "계정에 대해 '계정은 중요하므로 위임할 수 없음(Account is sensitive and cannot be delegated)'을 선택한다.",
+  "D": "권한 있는 워크스테이션에서 '기본 자격 증명 위임 허용(Allow Delegating Default Credentials)' 정책 설정을 사용 안 함으로 설정한다."
+ },
+ "explanation": "**Protected Users** 그룹 멤버십은 Windows Server 2012 R2 도메인에서 필요한 보호를 한꺼번에 적용합니다. 계정은 NTLM으로 인증할 수 없고, 자격 증명 위임을 사용할 수 없으며, 로그인·잠금 해제 시 캐시된 검증자(cached verifier)가 만들어지지 않아 오프라인 로그인이 차단됩니다.\n\n- B: 인증 정책의 TGT 수명은 티켓 수명만 제한할 뿐 NTLM·캐시 로그인을 막지 못합니다.\n- C: '위임할 수 없음' 옵션은 위임만 막습니다.\n- D: 워크스테이션 쪽 정책은 CredSSP 위임만 제한하며 NTLM·캐시 로그인과 무관합니다."
+}
+}

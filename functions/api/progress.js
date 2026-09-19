@@ -1,21 +1,24 @@
 /**
  * AZ-104 Study Hub — 진도 API (D1). 세션 쿠키의 사용자 기준. 서버가 유일한 기준이다.
  *
+ * 모든 요청은 ?exam=az104|az802 로 시험을 고른다 (없으면 az104).
  * GET    /api/progress → { progress:{source:{...}}, examRuns:[...], session:{...}, savedAt }
  * POST   /api/progress → 변경분 저장. 본문 { records:{source:{...}}, session:{...}, examRuns:[...] }
  *                        문항 행은 updated_at 이 큰 쪽이 이긴다 → 기기 간 자동 병합.
  * DELETE /api/progress → 내 진도·세션·모의고사 기록 전부 삭제 (초기화)
  */
 import { json, readJson } from "../_lib/auth.js";
+import { examOf, badExam } from "../_lib/exam.js";
 
 const MAX_RECORDS = 1000;
 
-export async function onRequestGet({ data, env }) {
+export async function onRequestGet({ request, data, env }) {
   const uid = data.user.uid;
+  const exam = examOf(request); if (!exam) return badExam();
   const [rows, ses, runs] = await Promise.all([
-    env.DB.prepare("SELECT source, data, updated_at FROM progress WHERE user_id = ?").bind(uid).all(),
-    env.DB.prepare("SELECT data, updated_at FROM study_session WHERE user_id = ?").bind(uid).first(),
-    env.DB.prepare("SELECT run_id, data FROM exam_runs WHERE user_id = ? ORDER BY at").bind(uid).all(),
+    env.DB.prepare("SELECT source, data, updated_at FROM progress WHERE user_id = ? AND exam = ?").bind(uid, exam).all(),
+    env.DB.prepare("SELECT data, updated_at FROM study_session WHERE user_id = ? AND exam = ?").bind(uid, exam).first(),
+    env.DB.prepare("SELECT run_id, data FROM exam_runs WHERE user_id = ? AND exam = ? ORDER BY at").bind(uid, exam).all(),
   ]);
   const progress = {};
   let savedAt = ses?.updated_at || null;
@@ -29,13 +32,14 @@ export async function onRequestGet({ data, env }) {
   }
   let session = null;
   try { session = ses ? JSON.parse(ses.data) : null; } catch { session = null; }
-  return json({ found: Object.keys(progress).length > 0 || !!session, progress, examRuns, session, savedAt });
+  return json({ exam, found: Object.keys(progress).length > 0 || !!session, progress, examRuns, session, savedAt });
 }
 
 export async function onRequestPost({ request, data, env }) {
   const uid = data.user.uid;
   const body = await readJson(request);
   if (!body || typeof body !== "object") return json({ error: "bad_json" }, 400);
+  const exam = examOf(request, body); if (!exam) return badExam();
   const now = new Date().toISOString();
   const stmts = [];
 
@@ -50,18 +54,18 @@ export async function onRequestPost({ request, data, env }) {
     if (text.length > 8000) continue;
     const at = typeof rec.updatedAt === "string" ? rec.updatedAt : now;
     stmts.push(env.DB.prepare(
-      "INSERT INTO progress (user_id, source, data, updated_at) VALUES (?, ?, ?, ?) " +
-      "ON CONFLICT(user_id, source) DO UPDATE SET data = excluded.data, updated_at = excluded.updated_at " +
+      "INSERT INTO progress (user_id, exam, source, data, updated_at) VALUES (?, ?, ?, ?, ?) " +
+      "ON CONFLICT(user_id, exam, source) DO UPDATE SET data = excluded.data, updated_at = excluded.updated_at " +
       "WHERE excluded.updated_at >= progress.updated_at"
-    ).bind(uid, source, text, at));
+    ).bind(uid, exam, source, text, at));
   }
 
   if (body.session && typeof body.session === "object") {
     const text = JSON.stringify(body.session);
     if (text.length <= 64000) {
       stmts.push(env.DB.prepare(
-        "INSERT OR REPLACE INTO study_session (user_id, data, updated_at) VALUES (?, ?, ?)"
-      ).bind(uid, text, now));
+        "INSERT OR REPLACE INTO study_session (user_id, exam, data, updated_at) VALUES (?, ?, ?, ?)"
+      ).bind(uid, exam, text, now));
     }
   }
 
@@ -70,22 +74,23 @@ export async function onRequestPost({ request, data, env }) {
     const id = String(run.id || run.at || run.finishedAt || "");
     if (!id) continue;
     stmts.push(env.DB.prepare(
-      "INSERT OR IGNORE INTO exam_runs (user_id, run_id, data, at) VALUES (?, ?, ?, ?)"
-    ).bind(uid, id, JSON.stringify(run), run.at || run.finishedAt || now));
+      "INSERT OR IGNORE INTO exam_runs (user_id, exam, run_id, data, at) VALUES (?, ?, ?, ?, ?)"
+    ).bind(uid, exam, id, JSON.stringify(run), run.at || run.finishedAt || now));
   }
 
   if (!stmts.length) return json({ ok: true, written: 0, savedAt: now });
   for (let i = 0; i < stmts.length; i += 100) await env.DB.batch(stmts.slice(i, i + 100));
-  const { c } = await env.DB.prepare("SELECT COUNT(*) AS c FROM progress WHERE user_id = ?").bind(uid).first();
-  return json({ ok: true, written: stmts.length, count: c, savedAt: now });
+  const { c } = await env.DB.prepare("SELECT COUNT(*) AS c FROM progress WHERE user_id = ? AND exam = ?").bind(uid, exam).first();
+  return json({ ok: true, exam, written: stmts.length, count: c, savedAt: now });
 }
 
-export async function onRequestDelete({ data, env }) {
+export async function onRequestDelete({ request, data, env }) {
   const uid = data.user.uid;
+  const exam = examOf(request); if (!exam) return badExam();
   await env.DB.batch([
-    env.DB.prepare("DELETE FROM progress WHERE user_id = ?").bind(uid),
-    env.DB.prepare("DELETE FROM study_session WHERE user_id = ?").bind(uid),
-    env.DB.prepare("DELETE FROM exam_runs WHERE user_id = ?").bind(uid),
+    env.DB.prepare("DELETE FROM progress WHERE user_id = ? AND exam = ?").bind(uid, exam),
+    env.DB.prepare("DELETE FROM study_session WHERE user_id = ? AND exam = ?").bind(uid, exam),
+    env.DB.prepare("DELETE FROM exam_runs WHERE user_id = ? AND exam = ?").bind(uid, exam),
   ]);
-  return json({ ok: true });
+  return json({ ok: true, exam });
 }

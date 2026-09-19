@@ -1,5 +1,18 @@
 {
   "version": 1,
-  "include": ["/", "/index.html", "/AZ-104_CBT", "/AZ-104_CBT/", "/AZ-104_CBT/index.html", "/api/*"],
+  "include": [
+    "/",
+    "/index.html",
+    "/map",
+    "/map/",
+    "/map/index.html",
+    "/AZ-104_CBT",
+    "/AZ-104_CBT/",
+    "/AZ-104_CBT/index.html",
+    "/AZ-802_CBT",
+    "/AZ-802_CBT/",
+    "/AZ-802_CBT/index.html",
+    "/api/*"
+  ],
   "exclude": []
 }

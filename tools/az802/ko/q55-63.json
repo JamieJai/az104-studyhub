@@ -1,0 +1,96 @@
+{
+"55": {
+ "stem": "DRAG DROP -\n\nWindows Server를 실행하고 파일 서버 리소스 관리자(FSRM) 역할 서비스가 설치된 파일 서버가 있습니다. 서버는 D:\\Shares\\Contracts라는 파일 공유를 호스팅합니다.\n\n파일 서버 리소스 관리자(FSRM)를 구성해야 합니다. 솔루션은 다음 요구 사항을 충족해야 합니다.\n\n- 사용자가 .mp3 및 .mp4 파일을 저장하지 못하게 한다.\n- 계약(contract) 파일의 DataUse 값을 자동으로 설정한다.\n- DataUse가 Archive이고 365일 동안 액세스되지 **않은** 파일을 D:\\Expired 폴더로 이동한다.\n\n각 요구 사항에 어떤 FSRM 기능을 사용해야 합니까? 답하려면 적절한 기능을 올바른 요구 사항으로 끌어다 놓으십시오. 각 기능은 한 번, 여러 번 또는 전혀 사용되지 않을 수 있습니다.\n\n참고: 각 올바른 선택은 1점입니다.",
+ "items": {
+  "Access-denied assistance": "액세스 거부 지원(Access-denied assistance)",
+  "A file classification rule": "파일 분류 규칙",
+  "A file management task": "파일 관리 작업",
+  "A file screen": "파일 차단(file screen)",
+  "A quota": "할당량(quota)",
+  "A storage report": "저장소 보고서"
+ },
+ "slots": {"block_restricted_extensions": "제한된 확장자 차단:", "set_datause_value": "DataUse 값 설정:", "move_stale_archived_files": "오래된 보관 파일 이동:"},
+ "explanation": "**파일 차단(file screen)**은 확장자로 정의된 파일 그룹과 파일을 비교해 제한된 파일 형식(.mp3, .mp4 등)을 공유에 저장하지 못하도록 능동적으로 차단하므로, 해당 파일 형식 저장을 막는 올바른 제어입니다.\n\n**파일 분류 규칙**은 정의된 조건에 따라 파일을 자동으로 평가하고 일치하는 계약 파일에 분류 속성(여기서는 사용자 지정 DataUse 속성)을 할당하므로, 그 값을 자동으로 설정한다는 요구를 만족합니다.\n\n**파일 관리 작업**은 지정된 분류 속성·파일 속성 조건(예: DataUse=Archive로 분류되고 365일 동안 액세스되지 않은 파일)을 만족하는 파일에 조건부 작업(이 경우 파일 이동)을 적용하며, 반복 일정으로 D:\\Expired 같은 대상 폴더로 이동할 수 있습니다."
+},
+"56": {
+ "stem": "네트워크에 Server1이라는 관리 서버와 Admin1이라는 권한 있는 사용자가 포함된 Active Directory Domain Services(AD DS) 도메인이 있습니다.\n\nAdmin1은 Server1에서 Active Directory 사용자 및 컴퓨터와 그룹 정책 관리 콘솔(GPMC)을 실행합니다.\n\n자격 증명 캐싱과 위임을 막기 위해 모든 권한 있는 사용자에게 보안 기준(baseline)을 적용합니다. 기준 적용 후 Admin1은 두 콘솔 중 어느 것도 열 수 없습니다. 콘솔에 로그온 및 액세스 거부 오류가 표시됩니다.\n\nAdmin1으로 `klist tgt`를 실행하면 다음 오류 메시지가 나타납니다.\n\n`0x80009030e: No credentials are available in the security package`\n\n도메인 전체 또는 서버 전체 인증 설정을 변경하지 않고 Admin1의 AD DS 관리 액세스를 복구해야 합니다.\n\n어떻게 해야 합니까?",
+ "choices": {
+  "A": "Admin1의 암호를 재설정하고 계정 잠금을 해제한다.",
+  "B": "Admin1을 Protected Users 그룹에서 제거한다.",
+  "C": "Windows Digest 인증 캐싱을 사용하도록 설정한다.",
+  "D": "'기본 자격 증명 위임 허용(Allow delegating default credentials)' 정책 설정을 사용하도록 설정한다."
+ },
+ "explanation": "**Protected Users** 그룹 멤버십은 구성 불가능한 인증 보호를 적용해 자격 증명 캐싱, 기본 자격 증명 위임(CredSSP), Digest, NTLM을 비활성화하고 Kerberos 제한을 부과합니다. 사용자를 그 그룹에서 제거하는 것이 이 제한을 없애는 계정 범위의 방법입니다. Digest 캐싱이나 기본 자격 증명 위임을 켜도 Protected Users 보호를 재정의하지 못합니다.\n\n- A: 계정 잠금·암호 문제가 아니라 인증 보호로 인한 증상입니다."
+},
+"57": {
+ "stem": "DRAG DROP -\n\n네트워크에 contoso.com이라는 온-프레미스 Active Directory Domain Services(AD DS) 도메인이 있습니다. 도메인에는 Server1, Server2, Server3이라는 세 대의 파일 서버가 있습니다.\n\n\\\\contoso.com\\shares\\Projects라는 도메인 기반 분산 파일 시스템(DFS) 공유가 있습니다. Projects는 각 파일 서버에 폴더 대상이 있습니다. DFS 복제가 서버 간에 Projects를 복제합니다.\n\n기존 Azure Files 공유를 사용해 Projects의 복제를 DFS 복제에서 Azure File Sync로 마이그레이션해야 합니다. 솔루션은 다음 요구 사항을 충족해야 합니다.\n\n- 현재 도메인 UNC 경로를 보존한다.\n- 마이그레이션 후 Azure File Sync를 사용해 모든 서버의 변경 사항을 동기화한다.\n- DFS 복제를 사용 중지하기 전에 Azure Files 공유에 Projects 데이터가 있도록 한다.\n\n어떻게 해야 합니까? 답하려면 적절한 작업을 올바른 요구 사항으로 끌어다 놓으십시오. 각 작업은 한 번, 여러 번 또는 전혀 사용되지 않을 수 있습니다.\n\n참고: 각 올바른 선택은 1점입니다.",
+ "items": {
+  "Add each server to a separate sync group.": "각 서버를 별도의 동기화 그룹에 추가한다.",
+  "Before retiring DFS Replication, enable cloud tiering.": "DFS 복제를 사용 중지하기 전에 클라우드 계층화를 사용하도록 설정한다.",
+  "Add Server1 as a server endpoint without cloud tiering.": "클라우드 계층화 없이 Server1을 서버 엔드포인트로 추가한다.",
+  "Add DFS Replication read-only folders as server endpoints.": "DFS 복제 읽기 전용 폴더를 서버 엔드포인트로 추가한다.",
+  "Change the DFS namespace target to the UNC path of the Azure Files share.": "DFS 네임스페이스 대상을 Azure Files 공유의 UNC 경로로 변경한다.",
+  "After retiring DFS Replication, add Server2 and Server3 as server endpoints.": "DFS 복제를 사용 중지한 후 Server2와 Server3을 서버 엔드포인트로 추가한다."
+ },
+ "slots": {"populate_azure_files_share": "Azure Files 공유 채우기:", "sync_file_servers": "파일 서버 동기화:"},
+ "explanation": "Microsoft가 지원하는 DFS 복제→Azure File Sync 마이그레이션 경로에서는 DFS 복제를 해제하기 **전에** Azure Files 공유를 채워야 합니다. 전체 데이터 집합을 가진 DFSR 서버 한 대에 Azure File Sync 에이전트를 설치하고, 클라우드 계층화를 끈 상태로 동기화 그룹의 첫 번째 서버 엔드포인트로 등록한 뒤, 그 서버의 데이터가 Azure 파일 공유(클라우드 엔드포인트)에 완전히 업로드될 때까지 기다려 DFS 복제 사용 중지 전에 공유가 채워지도록 합니다.\n\nDFS 복제와 Azure File Sync를 모든 복제 서버에 동시에 겹쳐 쓰면 안 되므로, 나머지 서버는 DFS 복제가 비활성화·사용 중지된 **후에만** 서버 엔드포인트로 추가합니다. 그 시점부터 Azure File Sync가 Server2와 Server3을 Azure Files 공유와 동기화하는 유일한 메커니즘이 됩니다(그리고 기존 \\\\contoso.com\\shares\\Projects 경로를 보존하기 위해 DFS 네임스페이스 대상을 Azure Files 공유 UNC 경로로 가리킬 수 있습니다)."
+},
+"58": {
+ "stem": "RG1이라는 리소스 그룹에 Windows Server를 실행하는 가상 머신 40대가 있는 Azure 구독이 있습니다.\n\n가상 머신은 유지 관리를 위해 매주 일요일 오전 2시부터 4시까지 다시 시작됩니다. 이 다시 시작이 이메일과 SMS 알림을 보내는 메트릭 경고 규칙을 트리거합니다.\n\n경고 규칙 조건을 수정하지 않고 유지 관리 기간 동안 알림을 중지해야 합니다. 솔루션은 RG1의 모든 경고에 적용되고, 유지 관리 기간 외에는 알림을 허용해야 합니다.\n\n무엇을 구성해야 합니까?",
+ "choices": {
+  "A": "새 메트릭 경고 규칙",
+  "B": "경고 처리 규칙(alert processing rule)",
+  "C": "메트릭 경고 규칙의 동적 임계값",
+  "D": "서비스 상태 경고 규칙"
+ },
+ "explanation": "Azure Monitor **경고 처리 규칙**은 RG1 범위로 지정하고 매주 반복되는 일정을 구성해 유지 관리 기간 동안 알림을 억제할 수 있습니다. 기존 메트릭 경고 조건은 그대로 두고 이메일·SMS를 보내는 작업 그룹만 억제하며, 예약된 기간 밖의 경고는 계속 알림을 보냅니다."
+},
+"59": {
+ "stem": "DRAG DROP -\n\nWindows Server를 실행하며 Volume01이라는 중복 제거된 NTFS 볼륨이 있는 파일 서버가 있습니다.\n\nVolume01에는 회사 팀의 파일 공유가 있습니다.\n\n최근 사용량이 최대였던 기간에 데이터 중복 제거 기본 일정이 일시 중지되었습니다. 일시 중지 중에 관리자가 최적화된 파일을 다수 삭제했고, 스토리지 진단에서 기반 디스크의 불량 섹터가 보고되었습니다.\n\n다음 요구 사항을 충족하도록 Volume01에서 데이터 중복 제거를 실행해야 합니다.\n\n- 여유 공간을 회수한다.\n- 데이터 무결성 문제를 검증하고 복구한다.\n\n각 요구 사항에 어떤 작업(job)을 실행해야 합니까? 답하려면 적절한 작업을 올바른 요구 사항으로 끌어다 놓으십시오. 각 작업은 한 번, 여러 번 또는 전혀 사용되지 않을 수 있습니다.\n\n참고: 각 올바른 선택은 1점입니다.",
+ "items": {
+  "Garbage Collection": "가비지 수집(Garbage Collection)",
+  "Optimization": "최적화(Optimization)",
+  "Scrubbing": "스크러빙(Scrubbing)",
+  "Unoptimization": "최적화 해제(Unoptimization)"
+ },
+ "slots": {"reclaim_free_space": "여유 공간 회수:", "validate_repair": "데이터 무결성 문제 검증 및 복구:"},
+ "explanation": "**가비지 수집** 작업은 더 이상 참조되지 않는, 이전에 삭제되었거나 논리적으로 덮어써진 최적화 파일 청크를 처리해 그것들이 차지하던 디스크 공간을 회수합니다. 따라서 중복 제거 일정이 일시 중지된 동안 최적화 파일이 삭제된 후 여유 공간을 회수하는 작업입니다.\n\n**스크러빙**(무결성 스크러빙) 작업은 중복 제거 청크 저장소의 무결성을 검증하고, 보고된 불량 섹터로 인한 손상 같은 손상을 발견하면 영향받은 청크의 대체 복사본을 사용해 복구를 시도하며 스크러빙 보고서를 생성합니다. 따라서 데이터 무결성 문제를 검증하고 복구하는 작업입니다."
+},
+"60": {
+ "stem": "네트워크에 허브 사이트 하나와 지사 사이트 20개가 있는 Active Directory Domain Services(AD DS) 포리스트가 있습니다. 허브 사이트에는 DC1과 DC2라는 쓰기 가능한 도메인 컨트롤러 두 대가 있습니다. 각 지사 사이트에는 쓰기 가능한 도메인 컨트롤러가 한 대씩 있습니다.\n\nAD DS 복제는 메시(mesh) 토폴로지로 수동 생성한 연결 개체에 의존합니다.\n\nDC2가 NTDS Replication 2094 경고와 DCDIAG Active Directory 복제 오류 8461을 반복적으로 보고합니다. DC1에는 복제 백로그가 없습니다.\n\n사이트 간 이름 확인, 네트워크 연결, 인증은 정상입니다.\n\n복제 지연을 줄이고 복제 경고·오류를 해결해야 합니다. 솔루션은 관리 작업을 최소화해야 합니다.\n\n어떻게 해야 합니까?",
+ "choices": {
+  "A": "DC2를 Enterprise Domain Controllers 그룹에 추가한다.",
+  "B": "허브 사이트와 지사 사이트의 도메인 컨트롤러 간에 연결 개체를 추가로 만든다.",
+  "C": "허브 사이트와 지사 사이트 간의 사이트 링크를 다시 만든다.",
+  "D": "수동 연결 개체를 삭제한다."
+ },
+ "explanation": "오류 8461은 복제 작업이 더 높은 우선순위의 복제 작업에 의해 선점되었음을 의미합니다. 복제 파트너가 지나치게 많으면 지속적인 복제 부하와 지연의 원인이 될 수 있습니다. 수동으로 만들거나 수정한 연결 개체는 KCC(Knowledge Consistency Checker)가 조정하지 않습니다. 불필요한 수동 메시 연결을 삭제하면 KCC가 기존 사이트 링크로부터 적절한 사이트 내·사이트 간 복제 토폴로지를 생성·유지하므로 연결 오버헤드와 관리 부담이 줄어듭니다."
+},
+"61": {
+ "stem": "HOTSPOT -\n\n온-프레미스 네트워크에 Active Directory Domain Services(AD DS) 도메인이 있습니다.\n\n도메인에 BitLocker 드라이브 암호화(BitLocker)를 구현할 계획입니다.\n\n그룹 정책 개체(GPO)를 만들고 'BitLocker로 보호되는 운영 체제 드라이브를 복구하는 방법 선택(Choose how BitLocker-protected operating system drives can be recovered)' 그룹 정책 설정을 사용하도록 설정합니다.\n\n드라이브 복구를 위한 데이터 복구 에이전트(DRA)를 구성해야 합니다.\n\nDRA를 구성하는 데 무엇을 사용해야 하며, 추가로 어떤 그룹 정책 설정을 사용하도록 설정해야 합니까? 답 영역에서 적절한 옵션을 선택하십시오.\n\n참고: 각 올바른 선택은 1점입니다.",
+ "blanks": {
+  "dra_configuration": {"label": "DRA 구성에 사용:", "options": ["BitLocker 복구 암호", "디지털 인증서", "사용자 계정 이름(UPN)", "보안 식별자(SID)"]},
+  "policy_setting": {"label": "사용하도록 설정할 설정:", "options": ["복구 암호의 기본 폴더 선택", "운영 체제 드라이브에 대한 암호 사용 구성", "조직의 고유 식별자 제공", "BitLocker 복구 후 플랫폼 유효성 검사 데이터 다시 설정"]}
+ },
+ "explanation": "BitLocker 데이터 복구 에이전트는 **디지털(공개 키) 인증서**로 추가·식별됩니다. 인증서를 GPO의 BitLocker 드라이브 암호화 공개 키 정책 노드에 가져오면 BitLocker가 볼륨의 복구 키를 그 인증서의 공개 키로 암호화하므로, 대응하는 개인 키 보유자가 드라이브를 복구할 수 있습니다.\n\nMicrosoft의 BitLocker 그룹 정책 문서에 따르면 **'조직의 고유 식별자 제공'** 정책 설정으로 구성하는 식별 필드는 BitLocker로 보호된 드라이브에서 인증서 기반 데이터 복구 에이전트를 관리하는 데 필수입니다. BitLocker는 드라이브의 식별 필드가 있고 조직에 구성된 값과 일치할 때만 그 드라이브의 인증서 기반 DRA를 관리·갱신하기 때문입니다. 따라서 DRA 인증서 추가와 함께 이 정책을 사용하도록 설정·구성해야 보호된 운영 체제 드라이브 복구에 DRA를 사용할 수 있습니다."
+},
+"62": {
+ "stem": "**개요**\n\nContoso, Ltd.는 시애틀에 본사가 있고 로스앤젤레스와 몬트리올에 두 개의 지사가 있습니다.\n\n**기존 환경**\n\n**AD DS 환경**\n\n네트워크에는 contoso.com이라는 온-프레미스 Active Directory Domain Services(AD DS) 포리스트가 있습니다. 포리스트에는 contoso.com과 canada.contoso.com 두 개의 도메인이 있습니다.\n\n포리스트에는 다음 표의 도메인 컨트롤러가 있습니다.\n\n[[IMG1]]\n\n모든 도메인 컨트롤러는 글로벌 카탈로그 서버입니다.\n\n**서버 인프라**\n\n네트워크에는 다음 표의 서버가 있습니다.\n\n[[IMG2]]\n\nServer4라는 서버는 Windows Server를 실행하며 워크그룹에 속합니다. Server4의 Windows Defender 방화벽은 개인(private) 프로필을 사용합니다.\n\nServer2는 VM1, VM2, VM3이라는 세 대의 가상 머신을 호스팅합니다.\n\nVM3은 다음 표의 볼륨에 데이터를 저장하는 파일 서버입니다.\n\n[[IMG3]]\n\n**그룹 정책**\n\ncontoso.com 도메인에는 다음 표의 그룹 정책 개체(GPO)가 있습니다.\n\n[[IMG4]]\n\n**기존 ID**\n\n포리스트에는 다음 표의 사용자가 있습니다.\n\n[[IMG5]]\n\n포리스트에는 다음 표의 그룹이 있습니다.\n\n[[IMG6]]\n\n**현재 문제**\n\n관리자가 가상 머신 연결(Virtual Machine Connection)로 VM2 콘솔에 로그인한 뒤 로그아웃하지 않고 연결을 끊으면, 다른 관리자가 현재 로그인된 사용자로 그 콘솔 세션에 연결할 수 있습니다.\n\n**요구 사항**\n\n**기술 요구 사항**\n\nContoso는 다음 기술 요구 사항을 정의했습니다.\n\n- 모든 사이트 링크의 복제 일정을 30분으로 변경한다.\n- Server1을 canada.contoso.com의 도메인 컨트롤러로 승격한다.\n- Server3을 DHCP 서버로 설치하고 권한을 부여(authorize)한다.\n- User1이 Contoso\\OU3의 모든 그룹 멤버십을 관리할 수 있게 한다.\n- Server1에서 PowerShell 원격 관리로 Server4를 관리할 수 있게 한다.\n- VM1에서 가상 머신을 실행할 수 있게 한다.\n- 사용자가 VM2에 연결할 때 자격 증명을 제공하도록 요구한다.\n- VM3에서 이 기능을 지원하는 모든 볼륨에 데이터 중복 제거(Data Deduplication)를 사용하도록 설정한다.\n\nServer3에 대한 기술 요구 사항을 충족해야 합니다.\n\n어떤 사용자가 필요한 작업을 수행할 수 있습니까?",
+ "choices": {
+  "A": "Admin1만",
+  "B": "Admin3만",
+  "C": "Admin1과 Admin2만",
+  "D": "Admin1과 Admin3만",
+  "E": "Admin1, Admin2, Admin3"
+ },
+ "explanation": "DHCP 서버 역할 설치에는 canada.contoso.com에 있는 Server3의 관리 권한이 필요하며, Admin3은 그 도메인의 Domain Admin입니다. Active Directory에서 DHCP 서버에 권한을 부여(authorize)하려면 **Enterprise Admins** 권한이 필요하며, Admin1이 Enterprise Admin입니다. Admin2는 contoso.com에서만 Domain Admin이라 이 Server3 작업에 필요한 권한이 없습니다. Microsoft 문서에 따르면 DHCP 권한 부여는 Enterprise Admin 계정을 사용하고, Enterprise Admins는 포리스트 전체 관리 권한을 가집니다."
+},
+"63": {
+ "stem": "**개요**\n\nContoso, Ltd.는 시애틀에 본사가 있고 로스앤젤레스와 몬트리올에 두 개의 지사가 있는 회사입니다.\n\n**기존 환경**\n\n**AD DS 환경**\n\n네트워크에는 contoso.com이라는 온-프레미스 Active Directory Domain Services(AD DS) 포리스트가 있습니다. 포리스트에는 contoso.com과 canada.contoso.com 두 개의 도메인이 있습니다.\n\n포리스트에는 다음 표의 도메인 컨트롤러가 있습니다.\n\n[[IMG1]]\n\n모든 도메인 컨트롤러는 글로벌 카탈로그 서버입니다.\n\n**서버 인프라**\n\n네트워크에는 다음 표의 서버가 있습니다.\n\n[[IMG2]]\n\nServer4라는 서버는 Windows Server를 실행하며 워크그룹에 속합니다. Server4의 Windows Defender 방화벽은 개인(private) 프로필을 사용합니다.\n\nServer2는 VM1, VM2, VM3이라는 세 대의 가상 머신을 호스팅합니다.\n\nVM3은 다음 표의 볼륨에 데이터를 저장하는 파일 서버입니다.\n\n[[IMG3]]\n\n**그룹 정책**\n\ncontoso.com 도메인에는 다음 표의 그룹 정책 개체(GPO)가 있습니다.\n\n[[IMG4]]\n\n**기존 ID**\n\n포리스트에는 다음 표의 사용자가 있습니다.\n\n[[IMG5]]\n\n포리스트에는 다음 표의 그룹이 있습니다.\n\n[[IMG6]]\n\n**현재 문제**\n\n관리자가 가상 머신 연결(Virtual Machine Connection)로 VM2 콘솔에 로그인한 뒤 로그아웃하지 않고 세션 연결을 끊으면, 다른 관리자가 현재 로그인된 사용자로 그 콘솔 세션에 연결할 수 있습니다.\n\n**요구 사항**\n\n**기술 요구 사항**\n\nContoso는 다음 기술 요구 사항을 정의했습니다.\n\n- 모든 사이트 링크의 복제 일정을 30분으로 변경한다.\n- Server1을 canada.contoso.com의 도메인 컨트롤러로 승격한다.\n- Server3을 DHCP 서버로 설치하고 권한을 부여(authorize)한다.\n- User1이 Contoso\\OU3의 모든 그룹 멤버십을 관리할 수 있게 한다.\n- Server1에서 PowerShell 원격 관리로 Server4를 관리할 수 있게 한다.\n- VM1에서 가상 머신을 실행할 수 있게 한다.\n- 사용자가 VM2에 연결할 때 자격 증명을 제공하도록 강제한다.\n- VM3에서 이 기능을 지원하는 모든 볼륨에 데이터 중복 제거(Data Deduplication)를 사용하도록 설정한다.\n\nServer4에 대한 기술 요구 사항을 충족해야 합니다.\n\nServer1과 Server4에서 어떤 cmdlet을 실행해야 합니까? 답 영역에서 적절한 옵션을 선택하십시오.\n\n참고: 각 올바른 선택은 1점입니다.",
+ "blanks": {
+  "server1": {"label": "Server1:", "options": ["Enable-PSRemoting", "Enable-ServerManagerStandardUserRemoting", "Set-Item", "Start-Service"]},
+  "server4": {"label": "Server4:", "options": ["Enable-PSRemoting", "Enable-ServerManagerStandardUserRemoting", "Set-Item", "Start-Service"]}
+ },
+ "explanation": "같은 Active Directory 도메인(또는 신뢰 도메인)에 속하지 않은 두 컴퓨터 간의 PowerShell 원격 관리는 Kerberos 상호 인증에 의존할 수 없으므로, 클라이언트가 NTLM을 사용해 대상을 명시적으로 신뢰하도록 WS-Management **TrustedHosts** 목록에 추가해야 합니다. 이는 클라이언트 컴퓨터인 Server1에서 `WSMan:\\localhost\\Client\\TrustedHosts` 경로에 대해 **`Set-Item`**을 실행해 Server4를 신뢰 호스트로 지정하는 방식으로 수행합니다.\n\n대상 컴퓨터인 Server4에서는 들어오는 관리를 위한 PowerShell 원격 관리가 기본적으로 활성화되어 있지 않으므로 **`Enable-PSRemoting`**을 실행해 켜야 합니다. 이 cmdlet은 WinRM 서비스를 시작하고, 기본 PowerShell 세션 구성을 등록하며, WinRM 수신기를 만들고, 사용 중인 네트워크 프로필(이 경우 개인)에서 WS-Management 트래픽을 허용하는 방화벽 규칙을 활성화해 Server1이 워크그룹 서버로 원격 PowerShell 세션을 맺을 수 있게 합니다."
+}
+}

@@ -1,5 +1,7 @@
--- AZ-104 Study Hub — D1 스키마
+-- Azure Study Home — D1 스키마
 -- 사용자·진도·북마크·모의고사 기록·학습 세션·오답 신고. 모두 서버가 유일한 기준이다.
+-- 기록 테이블은 exam 컬럼으로 시험을 구분한다 ('az104' | 'az802', functions/_lib/exam.js EXAMS).
+-- 기존 DB 는 migrations/0001_exam_column.sql 로 이 구조가 되었다.
 
 CREATE TABLE IF NOT EXISTS users (
   id         INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -11,39 +13,44 @@ CREATE TABLE IF NOT EXISTS users (
   last_login TEXT
 );
 
--- 문항별 진도: 사용자×문항당 1행. 기기 간 병합은 updated_at 이 큰 쪽이 이긴다.
+-- 문항별 진도: 사용자·시험·문항당 1행. 기기 간 병합은 updated_at 이 큰 쪽이 이긴다.
 CREATE TABLE IF NOT EXISTS progress (
   user_id    INTEGER NOT NULL,
-  source     INTEGER NOT NULL,              -- 원본 문항 번호
+  exam       TEXT    NOT NULL DEFAULT 'az104',
+  source     INTEGER NOT NULL,              -- 원본 문항 번호 (시험별로 1부터)
   data       TEXT NOT NULL,                 -- {result, selected, attempts, bookmarked, ...} JSON
   updated_at TEXT NOT NULL,
-  PRIMARY KEY (user_id, source)
+  PRIMARY KEY (user_id, exam, source)
 );
 
--- 학습 세션(현재 큐·위치·필터) — 사용자당 1행
+-- 학습 세션(현재 큐·위치·필터): 사용자·시험당 1행
 CREATE TABLE IF NOT EXISTS study_session (
-  user_id    INTEGER PRIMARY KEY,
-  data       TEXT NOT NULL,                 -- {queue, cursor, filter, order, bookmarks} JSON
-  updated_at TEXT NOT NULL
+  user_id    INTEGER NOT NULL,
+  exam       TEXT    NOT NULL DEFAULT 'az104',
+  data       TEXT NOT NULL,                 -- {queue, cursor, filter, order, ...} JSON
+  updated_at TEXT NOT NULL,
+  PRIMARY KEY (user_id, exam)
 );
 
 -- 모의고사 회차 기록
 CREATE TABLE IF NOT EXISTS exam_runs (
   user_id    INTEGER NOT NULL,
+  exam       TEXT    NOT NULL DEFAULT 'az104',
   run_id     TEXT NOT NULL,                 -- 클라이언트가 만든 id (없으면 at)
   data       TEXT NOT NULL,
   at         TEXT NOT NULL,
-  PRIMARY KEY (user_id, run_id)
+  PRIMARY KEY (user_id, exam, run_id)
 );
 
--- 오답 신고: 같은 문항·같은 유형은 최신 것으로 대체
+-- 오답 신고: 같은 시험·문항·유형은 최신 것으로 대체
 CREATE TABLE IF NOT EXISTS reports (
   user_id    INTEGER NOT NULL,
+  exam       TEXT    NOT NULL DEFAULT 'az104',
   source     INTEGER NOT NULL,
   kind       TEXT NOT NULL,
   data       TEXT NOT NULL,
   at         TEXT NOT NULL,
-  PRIMARY KEY (user_id, source, kind)
+  PRIMARY KEY (user_id, exam, source, kind)
 );
 
 CREATE INDEX IF NOT EXISTS idx_progress_user ON progress(user_id, updated_at);

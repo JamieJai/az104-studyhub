@@ -1,4 +1,4 @@
-const VERSION = 'az104-pwa-20260918-v127-q344-p120';
+const VERSION = 'az104-pwa-20260919-v128-home';
 const CACHE_NAME = VERSION;
 const BASE = new URL('./', self.location.href);
 const rel = p => new URL(p, BASE).href;
@@ -7,7 +7,8 @@ const CORE = [
   'manifest.webmanifest','pwa-manager.js',
   'icons/icon-192.png','icons/icon-512.png','icons/apple-touch-icon.png',
   'AZ-104_CBT/styles.css','AZ-104_CBT/data.js','AZ-104_CBT/annotations.js','AZ-104_CBT/hotspot_keys.js','AZ-104_CBT/yn_answers.js','AZ-104_CBT/choices.js','AZ-104_CBT/positions.js','AZ-104_CBT/hints.js','AZ-104_CBT/explanations_v2.js','AZ-104_CBT/current_azure_verified.js','AZ-104_CBT/app.js',
-  'AZ-104_Lab_Portal/styles.css','AZ-104_Lab_Portal/data.js','AZ-104_Lab_Portal/app.js'
+  'AZ-104_Lab_Portal/styles.css','AZ-104_Lab_Portal/data.js','AZ-104_Lab_Portal/app.js',
+  'AZ-802_CBT/styles.css','AZ-802_CBT/data.js','AZ-802_CBT/app.js'
 ].map(rel);
 // 리다이렉트를 거친 응답은 그대로 캐시하지 않는다
 const clean = res => res && res.redirected

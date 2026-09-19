@@ -74,10 +74,10 @@ export async function onRequest({ request, env, params }) {
 
   if (route === "reports" && method === "GET") {
     const rows = await env.DB.prepare(
-      "SELECT u.id AS user_id, u.name AS owner, r.data FROM reports r JOIN users u ON u.id = r.user_id ORDER BY r.at DESC"
+      "SELECT u.id AS user_id, u.name AS owner, r.exam, r.data FROM reports r JOIN users u ON u.id = r.user_id ORDER BY r.at DESC"
     ).all();
     const list = [];
-    for (const r of rows.results || []) { try { list.push({ owner: r.owner, user_id: r.user_id, ...JSON.parse(r.data) }); } catch { /* skip */ } }
+    for (const r of rows.results || []) { try { list.push({ owner: r.owner, user_id: r.user_id, exam: r.exam, ...JSON.parse(r.data) }); } catch { /* skip */ } }
     return json({ count: list.length, reports: list });
   }
 
