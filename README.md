@@ -7,6 +7,7 @@ Cloudflare Pages 프로젝트 `az104-studyhub-p8` — https://az104-studyhub-p8.
 | `dist/` | 정적 사이트 — 로그인(`/`), 자격증 노선도 홈(`/map/`), AZ-104 CBT, AZ-802 CBT, Lab Portal, 관리자 `/admin/` |
 | `dist/AZ-802_CBT/` | AZ-802 CBT (현행 63 + 구형 377문항, 한/영). 진도는 `/api/progress?exam=az802` 로 서버 저장 |
 | `dist/SC-300_CBT/` | SC-300 CBT (434문항, 한/영). `exam=sc300` |
+| `dist/cbt-theme.css` | 세 CBT 공통 테마 — 노선도(`/map/`)와 같은 팔레트·서체. 각 `styles.css` 뒤에 로드되어 색·서체·모서리만 덮어쓴다. 기본 다크, `body.light` 로 라이트, 과목 색은 `body.exam-*` |
 | `migrations/` | D1 스키마 변경 SQL (`0001_exam_column.sql`: 기록 테이블에 exam 컬럼 추가) |
 | `tools/az802/`, `tools/sc300/` | 문항 빌드 스크립트(`build.py`)와 한국어 번역 원본 |
 | `functions/` | Pages Functions — 인증(`/api/auth/*`), 진도(`/api/progress?exam=`), 신고(`/api/report?exam=`), 관리자(`/api/admin/*`). 시험 목록은 `_lib/exam.js` |

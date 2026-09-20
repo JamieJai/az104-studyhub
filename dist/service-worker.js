@@ -1,10 +1,10 @@
-const VERSION = 'az104-pwa-20260920-v131-q250-q260';
+const VERSION = 'az104-pwa-20260920-v132-map-theme';
 const CACHE_NAME = VERSION;
 const BASE = new URL('./', self.location.href);
 const rel = p => new URL(p, BASE).href;
 // 정적 자산만 미리 받아둔다. HTML 페이지는 캐시하지 않는다 — 로그인 리다이렉트를 캐시가 가로채면 안 된다.
 const CORE = [
-  'manifest.webmanifest','pwa-manager.js',
+  'manifest.webmanifest','pwa-manager.js','cbt-theme.css',
   'icons/icon-192.png','icons/icon-512.png','icons/apple-touch-icon.png',
   'AZ-104_CBT/styles.css','AZ-104_CBT/data.js','AZ-104_CBT/annotations.js','AZ-104_CBT/hotspot_keys.js','AZ-104_CBT/yn_answers.js','AZ-104_CBT/choices.js','AZ-104_CBT/positions.js','AZ-104_CBT/hints.js','AZ-104_CBT/explanations_v2.js','AZ-104_CBT/current_azure_verified.js','AZ-104_CBT/app.js',
   'AZ-104_Lab_Portal/styles.css','AZ-104_Lab_Portal/data.js','AZ-104_Lab_Portal/app.js',

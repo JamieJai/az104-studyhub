@@ -595,7 +595,7 @@
     else { startSession({ queue: QUESTIONS.map(q => q.n), order: "sequential", filter: "all", title: "연습" }); state.session.cursor = state.session.queue.indexOf(n); saveState(); renderQuestion(); }
     $("questionJump").value = "";
   }
-  function applyTheme() { document.body.classList.toggle("dark", state.theme === "dark"); }
+  function applyTheme() { document.body.classList.toggle("light", state.theme === "light"); }  // 기본은 다크(노선도와 동일)
   function openLightbox(src, cap) { $("lightboxImg").src = src; $("lightboxCap").textContent = cap || ""; $("lightbox").classList.remove("hidden"); }
   function closeSidebar() { $("sidebar").classList.remove("open"); $("sidebarOverlay").hidden = true; document.body.classList.remove("sidebar-open"); }
 
@@ -625,7 +625,7 @@
     $("nextButton").addEventListener("click", () => { const s = state.session; if (s && s.cursor === s.queue.length - 1) { if (s.mode === "exam" && !confirm("모의고사를 제출하고 채점할까요?")) return; finishSession(); } else move(1); });
     $("bookmarkButton").addEventListener("click", toggleBookmark);
     $("jumpButton").addEventListener("click", jumpTo); $("questionJump").addEventListener("keydown", e => { if (e.key === "Enter") jumpTo(); });
-    $("themeToggle").addEventListener("click", () => { state.theme = state.theme === "dark" ? "" : "dark"; saveTheme(); applyTheme(); });
+    $("themeToggle").addEventListener("click", () => { state.theme = state.theme === "light" ? "" : "light"; saveTheme(); applyTheme(); });
     $("exportProgress").addEventListener("click", exportProgress);
     $("importProgress").addEventListener("change", e => { if (e.target.files[0]) importProgress(e.target.files[0]); e.target.value = ""; });
     $("resetProgress").addEventListener("click", async () => {

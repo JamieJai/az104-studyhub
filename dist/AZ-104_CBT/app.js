@@ -57,7 +57,7 @@
   const CH_WEIGHT = {1:[20,25],2:[15,20],3:[20,25],4:[15,20],5:[10,15]};
   let examTimerId = null, examDeadline = 0;
 
-  const defaults = { progress: {}, queue: [], cursor: 0, order: "sequential", filter: "all", dark: false, sessionMode: "study", examSessionResults: {}, examHistory: [], examRuns: [] };
+  const defaults = { progress: {}, queue: [], cursor: 0, order: "sequential", filter: "all", light: false, sessionMode: "study", examSessionResults: {}, examHistory: [], examRuns: [] };
   let state = { ...defaults, owner: null };   // 메모리에만 둔다. 저장소는 서버(D1)뿐이다.
   let view = { selected: new Set(), revealed: false, graded: false, hotspots: {}, hotspotOrder: [], binaryAnswers: {}, selfBinaryRows: 3 };
 
@@ -104,7 +104,7 @@
   }
 
   function sessionOf() {
-    return { queue: state.queue || [], cursor: state.cursor || 0, filter: state.filter, order: state.order, dark: !!state.dark };
+    return { queue: state.queue || [], cursor: state.cursor || 0, filter: state.filter, order: state.order, light: !!state.light };
   }
   function runIdOf(run) { return String(run?.id || run?.at || run?.finishedAt || ""); }
 
@@ -118,7 +118,7 @@
       if (ses.filter) state.filter = ses.filter;
       if (ses.order) state.order = ses.order;
     } else { state.queue = []; state.cursor = 0; }
-    if (ses && typeof ses.dark === "boolean") { state.dark = ses.dark; document.body.classList.toggle("dark", ses.dark); }
+    if (ses && typeof ses.light === "boolean") { state.light = ses.light; document.body.classList.toggle("light", ses.light); }
     lastSent = {};
     for (const [k, v] of Object.entries(state.progress)) lastSent[k] = JSON.stringify(v);
     lastSession = JSON.stringify(sessionOf());
@@ -2237,7 +2237,7 @@
       const r = await api(PROGRESS_API, { method: "DELETE" });
       if (!r.ok) throw new Error(r.status);
     } catch (e) { toast("초기화 실패. 잠시 후 다시 시도하세요."); return; }
-    state = { ...defaults, dark: state.dark };
+    state = { ...defaults, light: state.light };
     lastSent = {}; lastSession = ""; sentRuns = new Set();
     saveState();
     els.quiz.classList.add("hidden");
@@ -2245,16 +2245,17 @@
     toast("학습 기록을 초기화했습니다.");
   }
 
-  function setTheme(dark) {
-    state.dark = dark;
-    document.body.classList.toggle("dark", dark);
+  // 기본은 다크(노선도와 동일). light 만 세션에 저장한다.
+  function setTheme(light) {
+    state.light = light;
+    document.body.classList.toggle("light", light);
     saveState();
   }
 
   els.datasetCount.textContent = dataset.questionCount;
   els.autoCount.textContent = dataset.autoGradeCount;
   els.selfCount.textContent = dataset.selfGradeCount;
-  document.body.classList.toggle("dark", state.dark);
+  document.body.classList.toggle("light", state.light);
   updateStats();
 
   els.startSession.addEventListener("click", () => startSession());
@@ -2326,7 +2327,7 @@
       if (!e.target.closest("#sidebarClose")) setTimeout(closeSidebar, 120);
     }
   });
-  els.themeToggle.addEventListener("click", () => setTheme(!state.dark));
+  els.themeToggle.addEventListener("click", () => setTheme(!state.light));
   els.exportProgress.addEventListener("click", exportProgress);
   els.importProgress.addEventListener("change", importProgress);
   els.resetProgress.addEventListener("click", resetProgress);
