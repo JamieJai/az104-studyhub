@@ -1,4 +1,4 @@
-const VERSION = 'az104-pwa-20260920-v132-map-theme';
+const VERSION = 'az104-pwa-20260921-v131-p124';
 const CACHE_NAME = VERSION;
 const BASE = new URL('./', self.location.href);
 const rel = p => new URL(p, BASE).href;
