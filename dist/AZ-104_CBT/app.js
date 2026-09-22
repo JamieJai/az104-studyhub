@@ -1656,6 +1656,7 @@
     const verified = currentVerified[String(q.source)] || currentVerified[q.source] || [];
     const answerImageSources = effectiveAnswerImages(q);
     const answerText = v2?.answerText || "";
+    const answerNote = v2?.answerNote || "";   // 원본 PDF 답안을 버리고 현행 자료로 재확인한 문항의 안내문
     const explainImg = v2?.explainImage
       ? `<section class="explanation-section explain-figure">
            <h4>${escapeHtml(v2.explainTitle || "판단 흐름")}</h4>
@@ -1666,7 +1667,7 @@
       ? `<div class="answer-images"><strong>원본 PDF 정답 이미지</strong><p class="answer-image-help">HOTSPOT·배치형은 원본 답안 이미지를 함께 두어 드롭다운/영역 값을 직접 확인할 수 있게 했습니다.</p>${answerImageSources.map(src => `<div class="answer-image-item"><img src="${escapeHtml(src)}" alt="Q${q.source} 정답 영역" loading="lazy"><a class="image-open-link" href="${escapeHtml(src)}" target="_blank" rel="noopener">원본 크기로 보기</a></div>`).join("")}</div>`
       : (q.kind !== "auto"
         ? `<div class="answer-images answer-missing"><strong>정답 확인</strong>
-             <p class="answer-image-help">이 문항은 원본 PDF의 Answer Area가 비어 있어 정답 이미지가 없습니다.${answerText ? " 아래 정답과 해설로 판정하세요." : " 아래 해설과 원문 토론으로 판정하세요."}</p>
+             <p class="answer-image-help">${answerNote ? escapeHtml(answerNote) : `이 문항은 원본 PDF의 Answer Area가 비어 있어 정답 이미지가 없습니다.${answerText ? " 아래 정답과 해설로 판정하세요." : " 아래 해설과 원문 토론으로 판정하세요."}`}</p>
              ${answerText ? `<p class="answer-text">${formatStudyText(answerText)}</p>` : ""}
              ${(q.discussionUrl || v2?.discussionUrl) ? `<p class="dist-link"><a href="${escapeHtml(q.discussionUrl || v2.discussionUrl)}" target="_blank" rel="noopener">원문 토론에서 정답 확인</a></p>` : ""}
            </div>`
@@ -1717,7 +1718,7 @@
       <h3>문항 해설</h3>
       <div class="answer-summary"><strong>정답</strong><br>${answers.map((a, i) => `<span>${answers.length > 1 ? `${i + 1}. ` : ""}${formatStudyText(a)}</span>`).join("<br>")}${answerSource}</div>
       <section class="explanation-section explanation-focus"><h4>① 문제에서 묻는 것</h4><p>${formatStudyText(goal)}</p></section>
-      <section class="explanation-section answer-ground"><h4>② 정답 기준</h4><p>원본 PDF 정답을 채점 기준으로 유지합니다. 이미지형 문항은 판독·복원된 실제 선택값을 우선 표시하고 원본 정답 이미지를 함께 제공합니다.</p></section>
+      <section class="explanation-section answer-ground${answerNote ? " answer-rechecked" : ""}"><h4>② 정답 기준</h4><p>${answerNote ? `<strong>현행 자료 기준으로 재확인한 문항</strong> — ${escapeHtml(answerNote)}` : "원본 PDF 정답을 채점 기준으로 유지합니다. 이미지형 문항은 판독·복원된 실제 선택값을 우선 표시하고 원본 정답 이미지를 함께 제공합니다."}</p></section>
       <section class="explanation-section core-rule"><h4>③ 왜 이 답인가 <span class="source-label">${escapeHtml(communityLabel)}</span></h4><p>${formatStudyText(rule)}</p></section>
       ${applicationBlock}
       ${optionBlock}
