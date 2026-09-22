@@ -10,6 +10,7 @@ Cloudflare Pages 프로젝트 `az104-studyhub-p8` — https://az104-studyhub-p8.
 | `dist/cbt-theme.css` | 세 CBT 공통 테마 — 노선도(`/map/`)와 같은 팔레트·서체. 각 `styles.css` 뒤에 로드되어 색·서체·모서리만 덮어쓴다. 기본 다크, `body.light` 로 라이트, 과목 색은 `body.exam-*` |
 | `migrations/` | D1 스키마 변경 SQL (`0001_exam_column.sql`: 기록 테이블에 exam 컬럼 추가) |
 | `tools/az802/`, `tools/sc300/` | 문항 빌드 스크립트(`build.py`)와 한국어 번역 원본 |
+| `tools/sets/apply_sets.py` | AZ-802·SC-300 세트(공통 지문) 정보 부여 — 같은 Case Study 를 쓰는 문항을 `세트 1-1, 1-2…` 로 묶고 지문/질문을 분리(`caseEn/askEn`). data.js 를 다시 빌드하면 이 스크립트를 다시 돌린다 |
 | `functions/` | Pages Functions — 인증(`/api/auth/*`), 진도(`/api/progress?exam=`), 신고(`/api/report?exam=`), 관리자(`/api/admin/*`). 시험 목록은 `_lib/exam.js` |
 | `wrangler.toml` | 바인딩: D1 `DB`(사용자·진도·신고), KV `PROGRESS`(옛 진도 이관용), vars `ADMIN_USER`, `MAX_USERS` |
 | `schema.sql` | D1 스키마 |

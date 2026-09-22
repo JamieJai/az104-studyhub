@@ -4,6 +4,9 @@
   const DATA = window.AZ802_DATA;
   const QUESTIONS = DATA.questions;
   const BY_N = new Map(QUESTIONS.map(q => [q.n, q]));
+  const SETS = DATA.sets || [];                          // 공통 지문 세트 (tools/sets/apply_sets.py)
+  const SET_BY_ID = new Map(SETS.map(s => [s.id, s]));
+  const setLabel = q => q.set ? `세트 ${q.set.no}-${q.set.idx}` : "";
   const THEME_KEY = "az802cbt.theme";     // 테마만 기기별 저장. 기록은 전부 서버(D1, exam=az802).
   const EXAM = "az802";
   const PROGRESS_API = `/api/progress?exam=${EXAM}`;
@@ -18,8 +21,10 @@
   let examTimerHandle = null;
   let pending = {};          // 현재 문항의 입력 중 상태
 
-  function loadTheme() { try { state.theme = localStorage.getItem(THEME_KEY) || ""; } catch { state.theme = ""; } }
+  const KO_KEY = THEME_KEY.replace(/theme$/, "ko");     // 한국어 번역 패널을 펼쳐 둘지 (기기별)
+  function loadTheme() { try { state.theme = localStorage.getItem(THEME_KEY) || ""; state.koOpen = localStorage.getItem(KO_KEY) === "1"; } catch { state.theme = ""; } }
   function saveTheme() { try { localStorage.setItem(THEME_KEY, state.theme || ""); } catch { /* ignore */ } }
+  function saveKo() { try { localStorage.setItem(KO_KEY, state.koOpen ? "1" : "0"); } catch { /* ignore */ } }
 
   // ===== 서버 동기화 (D1) — AZ-104 CBT 와 같은 방식 =====
   // 서버가 유일한 기준. 세션 쿠키(HttpOnly)는 fetch 가 자동으로 들고 간다.
@@ -149,8 +154,14 @@
     s = s.replace(/\[\[IMG(\d+)\]\]/g, (m, i) => `<button type="button" class="img-chip" data-img="${i}">🖼 이미지 ${i}</button>`);
     return s;
   }
-  function mdToHtml(text) {
-    const lines = text.replace(/\r/g, "").split("\n");
+  function figureHtml(i, opts) {
+    const src = opts.images[i - 1]; const n = opts.images.length;
+    if (!src || (opts.missing || []).includes(i)) return `<div class="img-missing">🖼 이미지 ${i} — 원본 사이트에서 이미지가 유실된 문항입니다</div>`;
+    return `<figure class="q-figure inline"><img src="${escapeHtml(src)}" alt="이미지 ${i}" data-img="${i}" loading="lazy"><figcaption>이미지 ${i}${n > 1 ? ` / ${n}` : ""} · 클릭하면 크게 봅니다</figcaption></figure>`;
+  }
+  // opts.images 를 주면 [[IMGn]] 줄이 그 자리의 <figure> 가 되고, 없으면 클릭용 칩으로 남긴다 (한국어 번역 패널)
+  function mdToHtml(text, opts = {}) {
+    const lines = text.replace(/\r/g, "").replace(/([^\n])[ \t]*(\[\[IMG\d+\]\])/g, "$1\n$2").replace(/(\[\[IMG\d+\]\])[ \t]*([^\n])/g, "$1\n$2").split("\n");
     const out = []; let para = []; let list = null; let code = null;
     const flushPara = () => { if (para.length) { const t = para.join(" ").trim(); if (t) out.push(/^\*\(참고:.*\)\*$/.test(t) ? `<span class="scenario-note">${inline(t.slice(1, -1))}</span>` : `<p>${inline(t)}</p>`); para = []; } };
     const flushList = () => { if (list) { out.push(`<ul>${list.map(l => `<li>${inline(l)}</li>`).join("")}</ul>`); list = null; } };
@@ -163,7 +174,7 @@
       if ((m = /^(#{1,3})\s+(.*)$/.exec(line))) { flushPara(); flushList(); const lv = Math.min(3, m[1].length + 1); out.push(`<h${lv}>${inline(m[2])}</h${lv}>`); continue; }
       if ((m = /^[-*]\s+(.*)$/.exec(line))) { flushPara(); if (!list) list = []; list.push(m[1]); continue; }
       if (list) flushList();
-      if (/^\[\[IMG\d+\]\]$/.test(line.trim())) { flushPara(); out.push(`<p>${inline(line.trim())}</p>`); continue; }
+      if ((m = /^\[\[IMG(\d+)\]\]$/.exec(line.trim()))) { flushPara(); flushList(); out.push(opts.images ? figureHtml(Number(m[1]), opts) : `<p>${inline(line.trim())}</p>`); continue; }
       para.push(line.trim());
     }
     flushPara(); flushList();
@@ -199,11 +210,22 @@
       return true;
     }).map(q => q.n);
   }
+  // 후보 n 목록 → [n] 또는 [세트 멤버들...] 단위 목록. 세트는 첫 멤버가 나오는 자리에 통째로 놓인다.
+  function unitsOf(ns) {
+    const inList = new Set(ns); const done = new Set(); const units = [];
+    for (const n of ns) {
+      if (done.has(n)) continue;
+      const q = BY_N.get(n); const set = q && q.set ? SET_BY_ID.get(q.set.id) : null;
+      const unit = set ? set.members.filter(m => inList.has(m)) : [n];
+      unit.forEach(m => done.add(m)); units.push(unit);
+    }
+    return units;
+  }
   function startSession({ filter, order, mode = "practice", queue = null, title = "" } = {}) {
     filter = filter || $("questionFilter").value; order = order || $("questionOrder").value;
     let q = queue || candidatesFor(filter);
     if (!q.length) { toast("조건에 맞는 문항이 없습니다"); return; }
-    if (order === "random") q = shuffle(q);
+    q = (order === "random" ? shuffle(unitsOf(q)) : unitsOf(q)).flat();   // 세트(공통 지문) 문항은 랜덤이어도 붙어서 나온다
     state.session = { mode, queue: q, cursor: 0, filter, order, answers: {}, startedAt: nowIso(), title };
     saveState(); showQuiz(); renderQuestion();
     closeSidebar();
@@ -237,7 +259,7 @@
       const ordered = groups.flat();
       picked.push(...ordered.slice(0, alloc[i]));
     });
-    return shuffle(picked);
+    return unitsOf(shuffle(picked)).flat();   // 모의고사에서도 세트 문항은 붙여서 출제
   }
   function startExamSession() {
     const includeLegacy = $("examIncludeLegacy").checked;
@@ -287,6 +309,7 @@
     pending = {};
     const badge = $("kindBadge"); badge.textContent = TYPE_LABEL[q.type]; badge.className = "pill type-" + q.type;
     $("sourceNumber").textContent = q.legacy ? `#${q.n} · ${qLabel(q)}` : `Q${q.n}`;
+    if (q.set) $("sourceNumber").textContent += ` · ${setLabel(q)}`;
     $("topicBadge").textContent = s.mode === "exam" ? "" : q.topicKo;
     const lb = $("legacyBanner");
     if (q.legacy) {
@@ -300,13 +323,16 @@
     $("bookmarkButton").textContent = rec.bookmarked ? "★ 북마크됨" : "☆ 북마크";
     $("bookmarkButton").classList.toggle("active", rec.bookmarked);
 
-    // 1) 이미지
-    $("questionImages").innerHTML = q.images.map((src, i) => `<figure class="q-figure"><img src="${src}" alt="이미지 ${i + 1}" data-img="${i + 1}" loading="lazy"><figcaption>이미지 ${i + 1}${q.images.length > 1 ? ` / ${q.images.length}` : ""} · 클릭하면 크게 봅니다</figcaption></figure>`).join("");
-    // 2) 번역 텍스트 + 원문
-    $("questionText").innerHTML = mdToHtml(q.stemKo);
-    $("questionTextEn").innerHTML = mdToHtml(q.stemEn);
-    $("originalWrap").open = false;
-    $("originalWrap").classList.toggle("hidden", !!q.koMissing);
+    // 1) 세트(공통 지문) 배너
+    renderSetBanner(q, s);
+    // 2) 본문은 영어 원문(실제 시험 표현). 이미지는 [[IMGn]] 자리에 그대로 삽입. 세트 문항은 공통 지문을 접이식 패널로 위에 두고 질문만 본문에.
+    const imgOpts = { images: q.images, missing: q.missingImages };
+    const inSet = !!q.caseEn;
+    $("casePanel").innerHTML = inSet ? casePanelHtml(q, s, imgOpts) : "";
+    $("questionText").innerHTML = mdToHtml(inSet ? q.askEn : q.stemEn, imgOpts);
+    // 3) 한국어 번역은 참고용 패널 — 한 번 펼치면 다음 문항에서도 펼쳐진 채로 유지
+    $("questionTextKo").innerHTML = mdToHtml(inSet ? q.askKo : q.stemKo);
+    const kw = $("koWrap"); kw.classList.toggle("hidden", !!q.koMissing); kw.open = !!state.koOpen;
     // 3) 답 입력
     const prior = s.mode === "exam" ? (s.answers[q.n] || null) : (rec.result ? { selected: rec.selected, graded: true } : null);
     renderControls(q, prior);
@@ -315,6 +341,23 @@
     if (s.mode !== "exam" && rec.result) { const g = grade(q, rec.selected); showFeedback(g, q); showExplanation(q, g); }
     $("prevButton").disabled = s.cursor === 0;
     $("nextButton").textContent = s.cursor === s.queue.length - 1 ? (s.mode === "exam" ? "제출하고 채점 →" : "세션 종료 →") : "다음 →";
+  }
+
+  function renderSetBanner(q, s) {
+    const el = $("setBanner");
+    if (!q.set) { el.classList.add("hidden"); el.innerHTML = ""; return; }
+    const set = SET_BY_ID.get(q.set.id) || { members: [] };
+    const mark = n => { if (s.mode === "exam") return s.answers[n] ? " done" : ""; const r = state.records[n]; return r?.result === "correct" ? " done ok" : r?.result === "wrong" ? " done bad" : ""; };
+    const chips = set.members.map(n => { const pos = s.queue.indexOf(n); const m = BY_N.get(n); return `<button type="button" class="set-chip${n === q.n ? " current" : ""}${pos < 0 ? " absent" : ""}${mark(n)}" data-pos="${pos}" title="${pos < 0 ? "이 세션에 없는 문항" : `Q${n} · ${setLabel(m)}`}" ${pos < 0 ? "disabled" : ""}>${m.set.idx}</button>`; }).join("");
+    el.innerHTML = `<strong>${setLabel(q)}</strong><span>${escapeHtml(set.titleKo || "공통 지문")} · ${q.set.size}문항이 같은 지문을 공유합니다</span><span class="set-chips">${chips}</span>`;
+    el.classList.remove("hidden");
+    el.querySelectorAll(".set-chip[data-pos]").forEach(b => b.addEventListener("click", () => { const pos = Number(b.dataset.pos); if (pos >= 0 && pos !== s.cursor) { s.cursor = pos; saveState(); renderQuestion(); window.scrollTo({ top: 0 }); } }));
+  }
+  function casePanelHtml(q, s, imgOpts) {
+    const set = SET_BY_ID.get(q.set.id) || {};
+    const prev = s.cursor > 0 ? BY_N.get(s.queue[s.cursor - 1]) : null;
+    const open = !(prev && prev.set && prev.set.id === q.set.id);   // 세트의 첫 문항에서만 펼치고, 이어지는 문항에서는 접어 둔다
+    return `<details class="case-panel" ${open ? "open" : ""}><summary><span class="case-tag">CASE STUDY</span>${escapeHtml(set.titleEn || "Shared scenario")}<small>세트 ${q.set.no} · ${q.set.size}문항 공통 지문${open ? "" : " · 이미 읽었다면 접어 두고 아래 질문만 보세요"}</small></summary><div class="question-body case-body">${mdToHtml(q.caseEn, imgOpts)}</div><details class="original-text ko-text" ${state.koOpen ? "open" : ""}><summary>KO · 지문 한국어 번역 (참고용)</summary><div class="question-body">${mdToHtml(q.caseKo)}</div></details></details>`;
   }
 
   function renderControls(q, prior) {
@@ -331,7 +374,7 @@
         const chosen = pending.selected.includes(c.label);
         let cls = "choice" + (chosen ? " selected" : "");
         if (g) { if (q.answers.includes(c.label)) cls += " correct-mark"; else if (chosen) cls += " wrong-mark"; }
-        html += `<button type="button" class="${cls}" data-letter="${c.label}" ${locked ? "disabled" : ""}><span class="choice-letter">${c.label}.</span><span class="choice-text">${escapeHtml(c.ko)}${c.ko !== c.en ? `<span class="choice-en">${escapeHtml(c.en)}</span>` : ""}</span></button>`;
+        html += `<button type="button" class="${cls}" data-letter="${c.label}" ${locked ? "disabled" : ""}><span class="choice-letter">${c.label}.</span><span class="choice-text">${escapeHtml(c.en)}${c.ko !== c.en ? `<span class="choice-sub">${escapeHtml(c.ko)}</span>` : ""}</span></button>`;
       }
       html += `</div>`;
     } else if (q.type === "dropdown") {
@@ -339,7 +382,7 @@
       html += `<h3 class="answer-title">답 선택<small>각 항목에서 하나씩 고르세요</small></h3>`;
       const selectHtml = b => {
         const chosen = pending.selected[b.id] || "";
-        return `<select data-blank="${b.id}" ${locked ? "disabled" : ""}><option value="">— 선택 —</option>${b.options.map(o => `<option value="${escapeHtml(o.en)}" ${chosen === o.en ? "selected" : ""}>${escapeHtml(o.ko)}${o.ko !== o.en ? ` (${escapeHtml(o.en)})` : ""}</option>`).join("")}</select>`;
+        return `<select data-blank="${b.id}" ${locked ? "disabled" : ""}><option value="">— 선택 —</option>${b.options.map(o => `<option value="${escapeHtml(o.en)}" ${chosen === o.en ? "selected" : ""}>${escapeHtml(o.en)}${o.ko !== o.en ? ` (${escapeHtml(o.ko)})` : ""}</option>`).join("")}</select>`;
       };
       if (q.template) {
         let tpl = escapeHtml(q.template);
@@ -352,7 +395,7 @@
         html += `<div class="choice-boxes">`;
         for (const b of q.blanks) {
           const st = g ? (g.parts.find(p => p.id === b.id).ok ? " ok" : " bad") : "";
-          html += `<div class="choice-box${st}"><strong>${escapeHtml(b.labelKo)}</strong>${b.labelKo !== b.labelEn ? `<span class="choice-en-hint">${escapeHtml(b.labelEn)}</span>` : ""}${selectHtml(b)}</div>`;
+          html += `<div class="choice-box${st}"><strong>${escapeHtml(b.labelEn)}</strong>${b.labelKo !== b.labelEn ? `<span class="choice-en-hint">${escapeHtml(b.labelKo)}</span>` : ""}${selectHtml(b)}</div>`;
         }
         html += `</div>`;
       }
@@ -362,16 +405,16 @@
       q.statements.forEach((st, i) => {
         const chosen = pending.selected[i] || "";
         const cls = g ? (g.parts[i].ok ? " ok" : " bad") : "";
-        html += `<div class="stmt-row${cls}"><div>${escapeHtml(st.ko)}<span class="stmt-en">${escapeHtml(st.en)}</span></div><div>${q.columns.map(c => `<button type="button" class="${chosen === c ? "selected" : ""}" data-stmt="${i}" data-val="${c}" ${locked ? "disabled" : ""}>${c === "Yes" ? "예" : c === "No" ? "아니요" : escapeHtml(c)}</button>`).join("")}</div></div>`;
+        html += `<div class="stmt-row${cls}"><div>${escapeHtml(st.en)}<span class="stmt-sub">${escapeHtml(st.ko)}</span></div><div>${q.columns.map(c => `<button type="button" class="${chosen === c ? "selected" : ""}" data-stmt="${i}" data-val="${c}" ${locked ? "disabled" : ""}>${escapeHtml(c)}</button>`).join("")}</div></div>`;
       });
     } else if (q.type === "drag_drop") {
       pending.selected = sel ? { ...sel } : {};
       html += `<h3 class="answer-title">각 항목에 맞는 구성을 배치<small>드래그 대신 목록에서 고릅니다 · 같은 항목을 여러 번 쓸 수 있습니다</small></h3>`;
-      html += `<div class="dd-items">${q.items.map(it => `<span title="${escapeHtml(it.en)}">${escapeHtml(it.ko)}</span>`).join("")}</div><div class="choice-boxes">`;
+      html += `<div class="dd-items">${q.items.map(it => `<span title="${escapeHtml(it.ko)}">${escapeHtml(it.en)}</span>`).join("")}</div><div class="choice-boxes">`;
       for (const sl of q.slots) {
         const chosen = pending.selected[sl.id] || "";
         const st = g ? (g.parts.find(p => p.id === sl.id).ok ? " ok" : " bad") : "";
-        html += `<div class="choice-box${st}"><strong>${escapeHtml(sl.labelKo)}</strong>${sl.labelKo !== sl.labelEn ? `<span class="choice-en-hint">${escapeHtml(sl.labelEn)}</span>` : ""}<select data-slot="${sl.id}" ${locked ? "disabled" : ""}><option value="">— 선택 —</option>${q.items.map(it => `<option value="${escapeHtml(it.en)}" ${chosen === it.en ? "selected" : ""}>${escapeHtml(it.ko)}${it.ko !== it.en ? ` (${escapeHtml(it.en)})` : ""}</option>`).join("")}</select></div>`;
+        html += `<div class="choice-box${st}"><strong>${escapeHtml(sl.labelEn)}</strong>${sl.labelKo !== sl.labelEn ? `<span class="choice-en-hint">${escapeHtml(sl.labelKo)}</span>` : ""}<select data-slot="${sl.id}" ${locked ? "disabled" : ""}><option value="">— 선택 —</option>${q.items.map(it => `<option value="${escapeHtml(it.en)}" ${chosen === it.en ? "selected" : ""}>${escapeHtml(it.en)}${it.ko !== it.en ? ` (${escapeHtml(it.ko)})` : ""}</option>`).join("")}</select></div>`;
       }
       html += `</div>`;
     }
@@ -381,7 +424,7 @@
       html += `<h3 class="answer-title">자기 채점 문항<small>정답이 이미지·서술형이라 자동 채점이 안 됩니다. 먼저 답을 생각한 뒤 정답을 열고 스스로 채점하세요.</small></h3>`;
       if (!revealed) html += `<div class="submit-row"><small>답을 정했으면 정답을 확인합니다</small><button type="button" class="primary" id="revealAnswer">정답 보기</button></div>`;
       else {
-        html += `<div class="reveal-box"><strong>정답</strong>${q.answerImages.map((src, i) => `<figure class="q-figure"><img src="${src}" alt="정답 이미지 ${i + 1}" data-answer-img="${i}"><figcaption>정답 이미지 ${i + 1} · 클릭하면 크게 봅니다</figcaption></figure>`).join("")}${q.answerTextKo ? `<div class="explain-body">${mdToHtml(q.answerTextKo)}</div>` : ""}${q.answerTextEn && q.answerTextEn !== q.answerTextKo ? `<details class="explain-en"><summary>EN · 영어 원문</summary><div class="explain-body">${mdToHtml(q.answerTextEn)}</div></details>` : ""}</div>`;
+        html += `<div class="reveal-box"><strong>정답</strong>${q.answerImages.map((src, i) => `<figure class="q-figure"><img src="${src}" alt="정답 이미지 ${i + 1}" data-answer-img="${i}"><figcaption>정답 이미지 ${i + 1} · 클릭하면 크게 봅니다</figcaption></figure>`).join("")}${q.answerTextEn ? `<div class="explain-body">${mdToHtml(q.answerTextEn)}</div>` : ""}${q.answerTextKo && q.answerTextKo !== q.answerTextEn ? `<details class="explain-en"><summary>KO · 한국어 번역 (참고용)</summary><div class="explain-body">${mdToHtml(q.answerTextKo)}</div></details>` : ""}</div>`;
         if (!locked) html += `<div class="self-grade"><button type="button" class="correct-button" data-self="correct">✅ 맞았어요</button><button type="button" class="wrong-button" data-self="wrong">❌ 틀렸어요</button></div>`;
         else html += `<div class="self-instruction">자기 채점 결과: ${sel?.self === "correct" ? "정답 처리" : "오답 처리"}</div>`;
       }
@@ -419,11 +462,11 @@
       return { correct: sameSet(chosen, q.answers), parts: q.answers.map(a => ({ label: a, ok: chosen.includes(a) })), chosen };
     }
     if (q.type === "dropdown") {
-      const parts = q.blanks.map(b => ({ id: b.id, label: b.labelKo, chosen: sel?.[b.id] || "", answer: b.answer, answerKo: (b.options.find(o => o.en === b.answer) || {}).ko, ok: (sel?.[b.id] || "") === b.answer }));
+      const parts = q.blanks.map(b => ({ id: b.id, label: b.labelEn, labelKo: b.labelKo, chosen: sel?.[b.id] || "", answer: b.answer, answerKo: (b.options.find(o => o.en === b.answer) || {}).ko, ok: (sel?.[b.id] || "") === b.answer }));
       return { correct: parts.every(p => p.ok), parts };
     }
     if (q.type === "statements") {
-      const parts = q.statements.map((st, i) => ({ id: i, label: st.ko, chosen: sel?.[i] || "", answer: st.answer, answerKo: st.answer === "Yes" ? "예" : st.answer === "No" ? "아니요" : st.answer, ok: (sel?.[i] || "") === st.answer }));
+      const parts = q.statements.map((st, i) => ({ id: i, label: st.en, labelKo: st.ko, chosen: sel?.[i] || "", answer: st.answer, answerKo: st.answer === "Yes" ? "예" : st.answer === "No" ? "아니요" : st.answer, ok: (sel?.[i] || "") === st.answer }));
       return { correct: parts.every(p => p.ok), parts };
     }
     if (q.type === "answer_reveal") {
@@ -431,7 +474,7 @@
       return { correct: ok, parts: [{ id: "self", label: "자기 채점", chosen: sel?.self || "", answer: "correct", answerKo: "직접 채점", ok }] };
     }
     if (q.type === "drag_drop") {
-      const parts = q.slots.map(sl => ({ id: sl.id, label: sl.labelKo, chosen: sel?.[sl.id] || "", answer: sl.answer, answerKo: (q.items.find(i => i.en === sl.answer) || {}).ko, ok: (sel?.[sl.id] || "") === sl.answer }));
+      const parts = q.slots.map(sl => ({ id: sl.id, label: sl.labelEn, labelKo: sl.labelKo, chosen: sel?.[sl.id] || "", answer: sl.answer, answerKo: (q.items.find(i => i.en === sl.answer) || {}).ko, ok: (sel?.[sl.id] || "") === sl.answer }));
       return { correct: parts.every(p => p.ok), parts };
     }
     return { correct: false, parts: [] };
@@ -479,17 +522,18 @@
   }
 
   function answerSummaryHtml(q, g) {
-    if (q.type === "answer_reveal") return `<strong>정답</strong><div class="explain-body">${mdToHtml(q.answerTextKo || q.answerTextEn || "(위 정답 이미지 참조)")}</div>`;
+    if (q.type === "answer_reveal") return `<strong>정답</strong><div class="explain-body">${mdToHtml(q.answerTextEn || q.answerTextKo || "(위 정답 이미지 참조)")}</div>`;
     if (q.type === "multiple_choice") {
-      return `<strong>정답: ${q.answers.join(", ")}</strong><ul>${q.answers.map(a => { const c = q.choices.find(x => x.label === a); return `<li><b>${a}.</b> ${escapeHtml(c.ko)}${c.ko !== c.en ? ` <span style="opacity:.7">(${escapeHtml(c.en)})</span>` : ""}</li>`; }).join("")}</ul>`;
+      return `<strong>정답: ${q.answers.join(", ")}</strong><ul>${q.answers.map(a => { const c = q.choices.find(x => x.label === a); return `<li><b>${a}.</b> ${escapeHtml(c.en)}${c.ko !== c.en ? ` <span style="opacity:.7">(${escapeHtml(c.ko)})</span>` : ""}</li>`; }).join("")}</ul>`;
     }
-    return `<strong>정답</strong><ul>${g.parts.map(p => `<li>${p.ok ? "✅" : "❌"} <b>${escapeHtml(p.label)}</b> ${escapeHtml(p.answerKo || p.answer)}${p.answerKo && p.answerKo !== p.answer ? ` <span style="opacity:.7">(${escapeHtml(p.answer)})</span>` : ""}${!p.ok && p.chosen ? ` <span style="color:#c0392b">· 내 답: ${escapeHtml(labelOf(q, p))}</span>` : ""}</li>`).join("")}</ul>`;
+    return `<strong>정답</strong><ul>${g.parts.map(p => `<li>${p.ok ? "✅" : "❌"} <b>${escapeHtml(p.label)}</b> ${escapeHtml(p.answer)}${p.answerKo && p.answerKo !== p.answer ? ` <span style="opacity:.7">(${escapeHtml(p.answerKo)})</span>` : ""}${!p.ok && p.chosen ? ` <span style="color:#c0392b">· 내 답: ${escapeHtml(labelOf(q, p))}</span>` : ""}</li>`).join("")}</ul>`;
   }
-  function labelOf(q, p) {
-    if (q.type === "dropdown") { const b = q.blanks.find(x => x.id === p.id); const o = b.options.find(x => x.en === p.chosen); return o ? o.ko : p.chosen; }
-    if (q.type === "drag_drop") { const o = q.items.find(x => x.en === p.chosen); return o ? o.ko : p.chosen; }
-    if (q.type === "statements") return p.chosen === "Yes" ? "예" : p.chosen === "No" ? "아니요" : p.chosen;
-    return p.chosen;
+  function labelOf(q, p) {   // 내가 고른 답 — 영어 + (한국어)
+    let ko = "";
+    if (q.type === "dropdown") { const b = q.blanks.find(x => x.id === p.id); const o = b.options.find(x => x.en === p.chosen); ko = o ? o.ko : ""; }
+    else if (q.type === "drag_drop") { const o = q.items.find(x => x.en === p.chosen); ko = o ? o.ko : ""; }
+    else if (q.type === "statements") ko = p.chosen === "Yes" ? "예" : p.chosen === "No" ? "아니요" : "";
+    return ko && ko !== p.chosen ? `${p.chosen} (${ko})` : p.chosen;
   }
   function showExplanation(q, g) {
     const ex = $("explanation");
@@ -550,16 +594,17 @@
       grid.insertAdjacentHTML("beforeend", `<div class="result-ch${p < 70 ? " low" : ""}"><b>${escapeHtml(t.ko)}</b><div class="rc-bar"><i style="width:${p}%"></i></div><div class="rc-num">${c} / ${rs.length} · ${p}%</div></div>`);
     }
     const wrong = results.filter(r => (mode === "exam" || r.answered) && !r.correct);
-    $("resultWrong").innerHTML = wrong.length ? `<h3>틀린 문항 ${wrong.length}개</h3><div class="rw-list">${wrong.map(r => `<button type="button" class="rw-item" data-n="${r.n}"><span class="rw-no">${r.q.legacy ? "구형" : "Q" + r.n}</span><span class="rw-txt">${r.q.legacy ? `[${escapeHtml(qLabel(r.q))}] ` : ""}${escapeHtml(firstLine(r.q.stemKo))}</span><span class="rw-topic">${escapeHtml(r.q.topicKo)}</span></button>`).join("")}</div>` : `<p class="rw-empty">틀린 문항이 없습니다. 🎉</p>`;
+    $("resultWrong").innerHTML = wrong.length ? `<h3>틀린 문항 ${wrong.length}개</h3><div class="rw-list">${wrong.map(r => `<button type="button" class="rw-item" data-n="${r.n}"><span class="rw-no">${r.q.legacy ? "구형" : "Q" + r.n}</span><span class="rw-txt">${r.q.legacy ? `[${escapeHtml(qLabel(r.q))}] ` : ""}${escapeHtml(firstLine(r.q))}</span><span class="rw-topic">${escapeHtml(r.q.topicKo)}</span></button>`).join("")}</div>` : `<p class="rw-empty">틀린 문항이 없습니다. 🎉</p>`;
     $("resultWrong").querySelectorAll(".rw-item").forEach(b => b.addEventListener("click", () => startSession({ queue: [Number(b.dataset.n)], order: "sequential", filter: "review", title: "복습" })));
     $("reviewExamWrong").onclick = () => wrong.length ? startSession({ queue: wrong.map(r => r.n), order: "sequential", filter: "review", title: "세션 오답 복습" }) : toast("틀린 문항이 없습니다");
     showOnly("examResult");
   }
-  function firstLine(md) {
-    const lines = md.replace(/\*\(참고:[^)]*\)\*/g, "").replace(/\[\[IMG\d+\]\]/g, "").replace(/[#*`]/g, "").split("\n").map(s => s.trim()).filter(s => s && !/^(HOTSPOT|DRAG DROP)\s*[-–]?$/.test(s));
-    const need = lines.slice().reverse().find(s => /야 합니다\.?$/.test(s));
+  function firstLine(q) {   // 목록용 한 줄 요약 — 영어 질문 문장 우선, 세트 문항은 세트 표시
+    const md = q.askEn || q.stemEn || "";
+    const lines = md.replace(/\[\[IMG\d+\]\]/g, "").replace(/[#*`]/g, "").split("\n").map(s => s.trim()).filter(s => s && !/^(HOTSPOT|DRAG DROP)\s*[-–]?$/.test(s) && !/^NOTE:/i.test(s));
     const ask = lines.slice().reverse().find(s => /[?？]$/.test(s));
-    return need || ask || lines.find(s => s.length > 12) || lines[0] || "";
+    const need = lines.slice().reverse().find(s => /^You need/i.test(s));
+    return (q.set ? `[${setLabel(q)}] ` : "") + (ask || need || lines.find(s => s.length > 12) || lines[0] || "");
   }
 
   // ---------- 오답노트 / 모의고사 기록 ----------
@@ -568,7 +613,7 @@
     const list = wrongList(1); const rep = wrongList(2);
     $("wnTitle").textContent = "오답노트"; $("wnActions").classList.remove("hidden");
     $("wnStats").innerHTML = `<div class="wn-kpi"><strong>${list.length}</strong><span>현재 오답</span></div><div class="wn-kpi"><strong>${rep.length}</strong><span>2회 이상 오답</span></div><div class="wn-kpi"><strong>${Object.values(state.records).filter(r => r.bookmarked).length}</strong><span>북마크</span></div>`;
-    $("wnList").innerHTML = list.length ? list.map(q => `<button type="button" class="wn-item" data-n="${q.n}"><span class="wn-no">${q.legacy ? "구형" : "Q" + q.n}</span><span class="wn-body"><strong>${q.legacy ? escapeHtml(qLabel(q)) + " · " : ""}${escapeHtml(q.topicKo)} · ${TYPE_LABEL[q.type]}</strong><em>${escapeHtml(firstLine(q.stemKo))}</em></span><span class="wn-cnt">오답 ${state.records[q.n].wrongCount}회</span></button>`).join("") : `<p class="wn-empty">틀린 문제가 없습니다.</p>`;
+    $("wnList").innerHTML = list.length ? list.map(q => `<button type="button" class="wn-item" data-n="${q.n}"><span class="wn-no">${q.legacy ? "구형" : "Q" + q.n}</span><span class="wn-body"><strong>${q.legacy ? escapeHtml(qLabel(q)) + " · " : ""}${escapeHtml(q.topicKo)} · ${TYPE_LABEL[q.type]}</strong><em>${escapeHtml(firstLine(q))}</em></span><span class="wn-cnt">오답 ${state.records[q.n].wrongCount}회</span></button>`).join("") : `<p class="wn-empty">틀린 문제가 없습니다.</p>`;
     $("wnList").querySelectorAll(".wn-item").forEach(b => b.addEventListener("click", () => startSession({ queue: [Number(b.dataset.n)], order: "sequential", filter: "review", title: "오답 복습" })));
     showOnly("wrongNote");
   }
@@ -637,6 +682,7 @@
     $("menuToggle").addEventListener("click", () => { $("sidebar").classList.add("open"); $("sidebarOverlay").hidden = false; document.body.classList.add("sidebar-open"); });
     $("sidebarClose").addEventListener("click", closeSidebar); $("sidebarOverlay").addEventListener("click", closeSidebar);
     $("lightbox").addEventListener("click", () => $("lightbox").classList.add("hidden"));
+    $("koWrap").addEventListener("toggle", () => { if (state.koOpen !== $("koWrap").open) { state.koOpen = $("koWrap").open; saveKo(); } });
     document.addEventListener("click", e => {
       const chip = e.target.closest(".img-chip"); const img = e.target.closest(".q-figure img");
       const q = currentQuestion(); if (!q) return;

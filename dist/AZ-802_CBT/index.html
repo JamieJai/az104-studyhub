@@ -100,7 +100,7 @@
         <button class="danger-text" id="resetProgress">전체 기록 초기화</button>
       </section>
 
-      <p class="dataset-note">현행 AZ-802 <span id="datasetCount">63</span>문항 + 구형 AZ-800/801 <span id="legacyCount">0</span>문항 (번역 <span id="legacyKoCount">0</span>)<br>객관식 <span id="mcCount">0</span> · HOTSPOT <span id="hsCount">0</span> · 드래그 <span id="ddCount">0</span> · 예/아니요 <span id="ynCount">0</span> · 자기채점 <span id="arCount">0</span><br>출처: examcademy.com · 번역: 한국어(원문 병기)</p>
+      <p class="dataset-note">현행 AZ-802 <span id="datasetCount">63</span>문항 + 구형 AZ-800/801 <span id="legacyCount">0</span>문항 (번역 <span id="legacyKoCount">0</span>)<br>객관식 <span id="mcCount">0</span> · HOTSPOT <span id="hsCount">0</span> · 드래그 <span id="ddCount">0</span> · 예/아니요 <span id="ynCount">0</span> · 자기채점 <span id="arCount">0</span><br>출처: examcademy.com · 영어 원문 우선 · 한국어 번역 참고</p>
     </aside>
 
     <main class="main">
@@ -117,7 +117,7 @@
       <section class="welcome hidden" id="welcome">
         <p class="eyebrow">AZ-802 CBT · 진행상황 서버 저장 · 어느 기기에서든 이어서</p>
         <h1>AZ-802 문제를<br>실전처럼 풀어보세요.</h1>
-        <p>문항은 <strong>이미지 → 한국어 번역 → 답 입력 → 정답·해설</strong> 순서로 표시됩니다. 실제 시험은 영어이므로 각 문항 아래에서 영어 원문도 바로 펼쳐볼 수 있습니다. 구형 AZ-800/801 문항 중 AZ-802 범위에 남은 것도 같은 영역으로 분류해 두었고, 해당 문항은 상단에 출처를 표시합니다.</p>
+        <p>문항은 <strong>영어 원문(이미지는 본문 속 제자리에) → 답 입력 → 정답·해설</strong> 순서로 표시됩니다. 실제 시험과 같은 영어 표현에 익숙해지도록 영어가 본문이고, 한국어 번역은 문항 아래 <strong>KO</strong> 패널을 펼쳐 참고합니다(한 번 펼치면 다음 문항에도 유지). 같은 지문(Case Study)을 공유하는 문항은 <strong>세트 1-1, 1-2 …</strong>로 묶여 랜덤·모의고사에서도 연속으로 나옵니다. 구형 AZ-800/801 문항 중 AZ-802 범위에 남은 것도 같은 영역으로 분류해 두었고, 해당 문항은 상단에 출처를 표시합니다.</p>
         <div class="welcome-cards">
           <div><strong id="wcTotal">63</strong><span>현행 AZ-802 문항</span></div>
           <div><strong id="wcLegacy">0</strong><span>구형 AZ-800/801 (범위 내)</span></div>
@@ -167,11 +167,12 @@
         </div>
 
         <div id="legacyBanner" class="legacy-banner hidden"></div>
+        <div id="setBanner" class="set-banner hidden"></div>
         <article class="question-card">
-          <div id="questionImages" class="question-images"></div>
+          <div id="casePanel"></div>
           <div class="question-text-wrap">
             <div id="questionText" class="question-body"></div>
-            <details class="original-text" id="originalWrap"><summary>EN · 영어 원문 보기 (실제 시험 표현)</summary><div id="questionTextEn" class="question-body"></div></details>
+            <details class="original-text ko-text" id="koWrap"><summary>KO · 한국어 번역 보기 (참고용 · 한 번 펼치면 다음 문항에도 유지)</summary><div id="questionTextKo" class="question-body"></div></details>
           </div>
         </article>
 
