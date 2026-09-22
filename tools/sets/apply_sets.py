@@ -27,6 +27,17 @@ SETS = {
          'members': [49, 129], 'caseFrom': 129},   # 49 는 스크랩 원본에 지문이 빠져 있어 129 의 지문을 붙인다
     ],
 }
+# 스크랩 원본에서 깨진(116바이트짜리 빈 PNG) 이미지. 확인 결과 전부 본문에 이미 적힌 내용(설정 목록·답 영역)의 스크린샷이라
+# 정보 손실 없이 뗀다. 이미지 번호는 다시 매기고, 이미지 앞에서 끊긴 "항목: 값 -" 줄은 목록으로 되돌린다.
+DROP_IMAGES = {
+    'AZ-802': {107: [1], 279: [1]},          # 107 드래그 답 영역 캡처, 279 DHCP 범위 설정 캡처
+    'SC-300': {116: [2], 222: [1], 261: [1]},  # 116 사용자 설정 캡처, 222 속성 캡처, 261 개체 목록 캡처
+}
+DANGLING = [  # (문항, 필드, 잘못된 줄, 고친 줄)
+    ('AZ-802', 279, 'stemEn', '- Lease duration: 3 days\n\nDNS server: 172.16.0.254 -\n', '- Lease duration: 3 days\n- DNS server: 172.16.0.254\n'),
+    ('SC-300', 222, 'stemEn', '- User assignment required: Yes\n\nVisible to users: Yes -\n', '- User assignment required: Yes\n- Visible to users: Yes\n'),
+    ('SC-300', 222, 'stemKo', '- 사용자 할당 필요: 예\n\n사용자에게 표시: 예 -\n', '- 사용자 할당 필요: 예\n- 사용자에게 표시: 예\n'),
+]
 VAR = {'AZ-802': 'AZ802', 'SC-300': 'SC300'}
 VERSION = {'AZ-802': '2026-09-22.v3', 'SC-300': '2026-09-22.v2'}
 
@@ -73,6 +84,19 @@ def main():
         # 이전 실행 결과 제거 (재실행 가능)
         for q in qs:
             for k in ('set', 'caseEn', 'caseKo', 'askEn', 'askKo', 'missingImages'): q.pop(k, None)
+        # 깨진(중복) 이미지 제거 + 번호 재부여
+        for n, drops in DROP_IMAGES.get(exam, {}).items():
+            q = byn[n]
+            keep = [i for i in range(1, len(q['images']) + 1) if i not in drops]
+            if len(keep) == len(q['images']): continue   # 이미 처리됨
+            renum = {old: new for new, old in enumerate(keep, 1)}
+            def fix(text):
+                for i in drops: text = re.sub(r'\n*\[\[IMG%d\]\]\n*' % i, '\n\n', text)
+                return re.sub(r'\[\[IMG(\d+)\]\]', lambda m: '[[IMG%d]]' % renum[int(m.group(1))], text).strip()
+            q['stemEn'], q['stemKo'] = fix(q['stemEn']), fix(q['stemKo'])
+            q['images'] = [q['images'][i - 1] for i in keep]
+        for ex, n, field, bad, good in DANGLING:
+            if ex == exam and bad in byn[n][field]: byn[n][field] = byn[n][field].replace(bad, good)
         out_sets = []
         for no, s in enumerate(sets, 1):
             members = sorted(s['members'])

@@ -395,7 +395,7 @@
         html += `<div class="choice-boxes">`;
         for (const b of q.blanks) {
           const st = g ? (g.parts.find(p => p.id === b.id).ok ? " ok" : " bad") : "";
-          html += `<div class="choice-box${st}"><strong>${escapeHtml(b.labelEn)}</strong>${b.labelKo !== b.labelEn ? `<span class="choice-en-hint">${escapeHtml(b.labelKo)}</span>` : ""}${selectHtml(b)}</div>`;
+          html += `<div class="choice-box${st}"><strong>${escapeHtml(b.labelEn || b.labelKo)}</strong>${b.labelEn && b.labelKo !== b.labelEn ? `<span class="choice-en-hint">${escapeHtml(b.labelKo)}</span>` : ""}${selectHtml(b)}</div>`;
         }
         html += `</div>`;
       }
@@ -414,7 +414,7 @@
       for (const sl of q.slots) {
         const chosen = pending.selected[sl.id] || "";
         const st = g ? (g.parts.find(p => p.id === sl.id).ok ? " ok" : " bad") : "";
-        html += `<div class="choice-box${st}"><strong>${escapeHtml(sl.labelEn)}</strong>${sl.labelKo !== sl.labelEn ? `<span class="choice-en-hint">${escapeHtml(sl.labelKo)}</span>` : ""}<select data-slot="${sl.id}" ${locked ? "disabled" : ""}><option value="">— 선택 —</option>${q.items.map(it => `<option value="${escapeHtml(it.en)}" ${chosen === it.en ? "selected" : ""}>${escapeHtml(it.en)}${it.ko !== it.en ? ` (${escapeHtml(it.ko)})` : ""}</option>`).join("")}</select></div>`;
+        html += `<div class="choice-box${st}"><strong>${escapeHtml(sl.labelEn || sl.labelKo)}</strong>${sl.labelEn && sl.labelKo !== sl.labelEn ? `<span class="choice-en-hint">${escapeHtml(sl.labelKo)}</span>` : ""}<select data-slot="${sl.id}" ${locked ? "disabled" : ""}><option value="">— 선택 —</option>${q.items.map(it => `<option value="${escapeHtml(it.en)}" ${chosen === it.en ? "selected" : ""}>${escapeHtml(it.en)}${it.ko !== it.en ? ` (${escapeHtml(it.ko)})` : ""}</option>`).join("")}</select></div>`;
       }
       html += `</div>`;
     }
@@ -462,7 +462,7 @@
       return { correct: sameSet(chosen, q.answers), parts: q.answers.map(a => ({ label: a, ok: chosen.includes(a) })), chosen };
     }
     if (q.type === "dropdown") {
-      const parts = q.blanks.map(b => ({ id: b.id, label: b.labelEn, labelKo: b.labelKo, chosen: sel?.[b.id] || "", answer: b.answer, answerKo: (b.options.find(o => o.en === b.answer) || {}).ko, ok: (sel?.[b.id] || "") === b.answer }));
+      const parts = q.blanks.map(b => ({ id: b.id, label: b.labelEn || b.labelKo, labelKo: b.labelKo, chosen: sel?.[b.id] || "", answer: b.answer, answerKo: (b.options.find(o => o.en === b.answer) || {}).ko, ok: (sel?.[b.id] || "") === b.answer }));
       return { correct: parts.every(p => p.ok), parts };
     }
     if (q.type === "statements") {
@@ -474,7 +474,7 @@
       return { correct: ok, parts: [{ id: "self", label: "자기 채점", chosen: sel?.self || "", answer: "correct", answerKo: "직접 채점", ok }] };
     }
     if (q.type === "drag_drop") {
-      const parts = q.slots.map(sl => ({ id: sl.id, label: sl.labelEn, labelKo: sl.labelKo, chosen: sel?.[sl.id] || "", answer: sl.answer, answerKo: (q.items.find(i => i.en === sl.answer) || {}).ko, ok: (sel?.[sl.id] || "") === sl.answer }));
+      const parts = q.slots.map(sl => ({ id: sl.id, label: sl.labelEn || sl.labelKo, labelKo: sl.labelKo, chosen: sel?.[sl.id] || "", answer: sl.answer, answerKo: (q.items.find(i => i.en === sl.answer) || {}).ko, ok: (sel?.[sl.id] || "") === sl.answer }));
       return { correct: parts.every(p => p.ok), parts };
     }
     return { correct: false, parts: [] };

@@ -1,4 +1,4 @@
-const VERSION = 'az104-pwa-20260922-v132-p128';
+const VERSION = 'az104-pwa-20260922-v132-p129';
 const CACHE_NAME = VERSION;
 const BASE = new URL('./', self.location.href);
 const rel = p => new URL(p, BASE).href;
