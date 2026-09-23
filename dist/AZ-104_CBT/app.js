@@ -428,6 +428,7 @@
     state.examTotal = queue.length;
     state.examPoints = pointsOfSources(queue);
     state.examReal = !!real;
+    state.examPlan = real ? lastRealPlan : null;
     saveState();
     startExamTimer(state.examPoints);
     toast(real
@@ -486,7 +487,17 @@
     for (const u of orderUnits(single.filter(u => !usedA.has(u[0])))) { if (partA.length >= target) break; partA.push(u); usedA.add(u[0]); }
     const partB = orderUnits(ox).slice(0, REAL_PLAN.oxSets);
     const partC = shuffle(sets).slice(0, REAL_PLAN.caseSets);
+    lastRealPlan = { single: partA.length, ox: partB.length, cases: partC.flat().length };
     return [...shuffle(partA), ...partB, ...partC].flat();
+  }
+  let lastRealPlan = null;
+  function realPartLabel() {
+    const p = state.examPlan;
+    if (!state.examReal || !p) return "";
+    const a = p.single, b = a + p.ox;
+    if (state.cursor < a) return ` · 1부 단답 ${state.cursor + 1}/${a}`;
+    if (state.cursor < b) return ` · 2부 예/아니요 ${state.cursor - a + 1}/${p.ox}세트`;
+    return ` · 3부 사례 연구 ${state.cursor - b + 1}/${p.cases}`;
   }
 
   function startExamTimer(count) {
@@ -550,7 +561,7 @@
     els.kindBadge.classList.toggle("self", q.kind !== "auto");
     els.sourceNumber.textContent = `연습 ${String(q.practice).padStart(3,"0")} · 원본 Q${q.source}`;
     els.topicName.textContent = `${CH_NAME[q.chapter] || ""} · ${q.topic}`;
-    els.sessionPosition.textContent = `${state.cursor + 1} / ${state.queue.length}`;
+    els.sessionPosition.textContent = `${state.cursor + 1} / ${state.queue.length}${state.sessionMode === "exam" ? realPartLabel() : ""}`;
     els.sessionBar.style.width = `${(state.cursor + 1) / state.queue.length * 100}%`;
     els.bookmarkButton.classList.toggle("active", Boolean(prior.bookmarked));
     els.bookmarkButton.textContent = prior.bookmarked ? "★ 북마크됨" : "☆ 북마크";

@@ -422,6 +422,7 @@
     s.timed = timed; s.includeLegacy = includeLegacy; s.real = !!real; s.plan = plan; s.points = points;
     if (timed) { s.endsAt = Date.now() + points * 120 * 1000; startExamTimer(); }
     saveState();
+    renderQuestion();   // real/plan/points 를 세션에 채운 뒤 다시 그려야 1번 문항부터 파트가 표시된다
     toast(real
       ? `실전 모의고사 · ${queue.length}문항 ${points}점 (단답 ${plan.single} · OX ${plan.ox}세트 ${plan.oxPoints}점 · 사례 연구 ${plan.cases}세트 ${plan.casePoints}점)`
       : `모의고사 · ${queue.length}문항 ${points}점`);
@@ -441,6 +442,14 @@
   }
   function stopExamTimer() { clearInterval(examTimerHandle); examTimerHandle = null; $("examTimerDisplay").classList.add("hidden"); }
 
+  // 실전 모의고사에서 지금 몇 부인지 (1부 단답 → 2부 예/아니요 → 3부 사례 연구)
+  function realPartLabel(s) {
+    if (!s || !s.real || !s.plan) return "";
+    const a = s.plan.single, b = a + s.plan.ox;
+    if (s.cursor < a) return ` · 1부 단답 ${s.cursor + 1}/${a}`;
+    if (s.cursor < b) return ` · 2부 예/아니요 ${s.cursor - a + 1}/${s.plan.ox}세트`;
+    return ` · 3부 사례 연구 ${s.cursor - b + 1}/${s.queue.length - b}`;
+  }
   function currentQuestion() { const s = state.session; return s ? BY_N.get(s.queue[s.cursor]) : null; }
 
   // ---------- 화면 전환 ----------
@@ -472,7 +481,9 @@
       lb.classList.remove("hidden");
     } else lb.classList.add("hidden");
     $("sessionPosition").textContent = `${s.cursor + 1} / ${s.queue.length}`;
-    $("sessionMode").textContent = s.mode === "exam" ? `${s.real ? "실전 모의고사" : "모의고사"}${s.points ? " · " + s.points + "점" : ""}${s.timed ? " · 시간제한" : ""}` : (s.title || "연습");
+    $("sessionMode").textContent = s.mode === "exam"
+      ? `${s.real ? "실전 모의고사" : "모의고사"}${realPartLabel(s)}${s.points ? " · " + s.points + "점" : ""}${s.timed ? " · 시간제한" : ""}`
+      : (s.title || "연습");
     $("sessionBar").style.width = ((s.cursor + 1) / s.queue.length * 100) + "%";
     const rec = peekRecord(q.n);
     $("bookmarkButton").textContent = rec.bookmarked ? "★ 북마크됨" : "☆ 북마크";
