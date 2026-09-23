@@ -38,8 +38,10 @@
   --top-bg: rgba(10,17,25,.86);
   --img-bg: #fff;
 }
-body.exam-az104, body.exam-az802 { --accent: var(--infra); }
+body.exam-az104, body.exam-az802, body.exam-az305 { --accent: var(--infra); }
 body.exam-sc300 { --accent: var(--sec); }
+body.exam-az900 { --accent: var(--core); }
+body.exam-ai103 { --accent: var(--ai); }
 
 body.light {
   color-scheme: light;
@@ -63,8 +65,10 @@ body.light {
   --side-bg: #0F1B25;          /* 사이드바는 라이트에서도 노선도처럼 어둡게 */
   --top-bg: rgba(255,255,255,.86);
 }
-body.light.exam-az104, body.light.exam-az802 { --accent: #1F7BC9; }
+body.light.exam-az104, body.light.exam-az802, body.light.exam-az305 { --accent: #1F7BC9; }
 body.light.exam-sc300 { --accent: #7457C4; }
+body.light.exam-az900 { --accent: #C0463C; }
+body.light.exam-ai103 { --accent: #9A7A20; }
 
 /* ---------- 바탕·서체 ---------- */
 body {
@@ -115,9 +119,10 @@ body.light .hero-button.secondary, body.light .gate-actions .secondary { color: 
   background: linear-gradient(90deg, var(--gold), transparent 75%) left bottom / 100% 1px no-repeat;
 }
 .brand-mark {
-  width: 44px; height: 44px; border-radius: 2px; background: transparent;
+  width: 44px; height: 44px; flex: 0 0 44px; aspect-ratio: 1; box-sizing: border-box;
+  border-radius: 2px; background: transparent;
   border: 1.5px solid var(--gold); color: var(--gold-2);
-  font-weight: 600; font-size: 17px; letter-spacing: .04em;
+  font-weight: 600; font-size: 17px; letter-spacing: .04em; text-indent: .04em;
   box-shadow: inset 0 0 0 3px var(--side-bg), inset 0 0 0 4px var(--gold-hair);
 }
 .brand strong { font-size: 19px; letter-spacing: .1em; font-weight: 500; color: #EAF1F7; }

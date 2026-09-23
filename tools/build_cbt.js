@@ -149,7 +149,17 @@ const data = {
 fs.writeFileSync(path.join(DIST, 'data.js'), `window.${GV} = ${JSON.stringify(data)};\n`, 'utf8');
 
 // ---------- 앱 본체 ----------
-const brand = examId.replace(/[^0-9]/g, '').slice(-3);
+const brand = examId.replace(/[^0-9]/g, '').slice(-3);   // 사이드바 정사각 아이콘: 시험 번호 3자리로 통일
+// 사이드바 제목 아래 한 줄 — 시험 내용과 연결되는 문구 (없으면 6번째 인자 → 출처 URL 순)
+const SUBTITLES = {
+  az104: 'Azure Administrator 연습',
+  az305: 'Azure Solutions Architect 연습',
+  az802: 'Windows Server Hybrid 연습',
+  az900: 'Azure Fundamentals 연습',
+  ai103: 'Azure AI Engineer 연습',
+  sc300: 'Identity and Access Administrator 연습',
+};
+const subtitle = SUBTITLES[examId] || process.argv[8] || String(src.source || '').split('://').pop();
 let app = fs.readFileSync(path.join(TPL, 'app.js'), 'utf8').split('\r\n').join('\n');
 app = app.replace('window.SC300_DATA', `window.${GV}`)
   .replace(/const THEME_KEY = "sc300cbt\.theme"/, `const THEME_KEY = "${examId}cbt.theme"`)
@@ -163,7 +173,8 @@ fs.writeFileSync(path.join(DIST, 'app.js'), app, 'utf8');
 let html = fs.readFileSync(path.join(TPL, 'index.html'), 'utf8').split('\r\n').join('\n');
 html = html.replace(/<title>SC-300 CBT<\/title>/, `<title>${title} CBT</title>`)
   .replace(/<span class="brand-mark">300<\/span>/, `<span class="brand-mark">${brand}</span>`)
-  .replace(/<strong>SC-300 CBT<\/strong><small>[^<]*<\/small>/, `<strong>${title} CBT</strong><small>${src.source ? src.source.replace(/^https?:\/\//, '') : ''}</small>`)
+  .replace(/<strong>SC-300 CBT<\/strong><small>[^<]*<\/small>/, `<strong>${title} CBT</strong><small>${subtitle}</small>`)
+  .replace(/<body class="exam-sc300">/, `<body class="exam-${examId}">`)   // 과목 색: dist/cbt-theme.css 의 body.exam-* 와 짝
   .replace(/SC-300 CBT · 진행상황/, `${title} CBT · 진행상황`)
   .replace(/SC-300 문제를<br>/, `${title} 문제를<br>`)
   .replace(/문항 번호로 이동 \(1~\d+\)/, `문항 번호로 이동 (1~${Math.max(...questions.map(q => q.n))})`)
