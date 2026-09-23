@@ -235,41 +235,102 @@
   function examPool(includeLegacy) {
     return QUESTIONS.filter(q => q.type !== "answer_reveal" && (includeLegacy || !isLegacy(q)));
   }
-  function allocateExam(total, includeLegacy) {
-    const topics = DATA.topics;
-    const pool = examPool(includeLegacy);
-    const counts = topics.map(t => pool.filter(q => q.topic === t.en).length);
-    const weights = topics.map(t => (t.weight[0] + t.weight[1]) / 2);
-    const wsum = weights.reduce((a, b) => a + b, 0);
-    let alloc = topics.map((t, i) => Math.min(counts[i], Math.round(total * weights[i] / wsum)));
-    let diff = total - alloc.reduce((a, b) => a + b, 0);
-    // 남거나 모자란 만큼 여유 있는 영역에 분배
-    let guard = 0;
-    while (diff !== 0 && guard++ < 200) {
-      for (let i = 0; i < topics.length && diff !== 0; i++) {
-        if (diff > 0 && alloc[i] < counts[i]) { alloc[i]++; diff--; }
-        else if (diff < 0 && alloc[i] > 0) { alloc[i]--; diff++; }
-      }
-    }
-    const picked = [];
-    topics.forEach((t, i) => {
-      const tpool = pool.filter(q => q.topic === t.en).map(q => q.n);
-      const pri = n => { const r = state.records[n]; if (!r || !r.result) return 0; if (r.result === "wrong") return 1; return 2; };
-      const groups = [0, 1, 2].map(p => shuffle(tpool.filter(n => pri(n) === p)));
-      const ordered = groups.flat();
-      picked.push(...ordered.slice(0, alloc[i]));
-    });
-    return unitsOf(shuffle(picked)).flat();   // 모의고사에서도 세트 문항은 붙여서 출제
+  function includeLegacyNow() { const el = document.getElementById("examIncludeLegacy"); return el ? el.checked : false; }
+
+  // ---------- 배점 ----------
+  // 실제 시험처럼 "같은 지문 예/아니요(OX)" 한 세트는 문장 수만큼 배점된다. 그 밖에는 1문항 = 1점.
+  function pointsOf(q) { return q && q.type === "statements" ? (q.statements || []).length : 1; }
+  function pointsOfNs(ns) { return ns.reduce((a, n) => a + pointsOf(BY_N.get(n)), 0); }
+  function earnedOf(q, g) { return q.type === "statements" ? g.parts.filter(p => p.ok).length : (g.correct ? 1 : 0); }
+
+  // 출제 우선순위: 안 푼 문항 → 틀린 문항 → 맞힌 문항
+  function unitPriority(unit) {
+    return Math.min(...unit.map(n => { const r = state.records[n]; if (!r || !r.result) return 0; return r.result === "wrong" ? 1 : 2; }));
   }
-  function startExamSession() {
-    const includeLegacy = $("examIncludeLegacy").checked;
-    const size = Math.min(examPool(includeLegacy).length, Number($("examSize").value));
-    const queue = allocateExam(size, includeLegacy);
+  function orderUnits(units) { return [0, 1, 2].map(p => shuffle(units.filter(u => unitPriority(u) === p))).flat(); }
+  const topicOfUnit = u => (BY_N.get(u[0]) || {}).topic;
+  function topicTargets(total) {
+    const w = DATA.topics.map(t => (t.weight[0] + t.weight[1]) / 2);
+    const sum = w.reduce((a, b) => a + b, 0) || 1;
+    return w.map(x => total * x / sum);
+  }
+
+  // 모의고사: 총 배점 기준으로 영역 비중대로 뽑는다. 세트(사례 연구·OX)는 쪼개지 않는다.
+  function allocateExam(totalPoints, includeLegacy) {
+    const pool = examPool(includeLegacy);
+    const units = unitsOf(pool.map(q => q.n));
+    const targets = topicTargets(totalPoints);
+    const picked = []; const used = new Set(); let got = 0;
+    const take = (u) => { picked.push(u); u.forEach(n => used.add(n)); got += pointsOfNs(u); };
+    DATA.topics.forEach((t, i) => {
+      let tp = 0;
+      for (const u of orderUnits(units.filter(u => topicOfUnit(u) === t.en))) {
+        if (tp >= targets[i] || got >= totalPoints) break;
+        const p = pointsOfNs(u);
+        if (got + p > totalPoints + 2) continue;      // 세트가 커서 총점을 크게 넘기면 건너뛴다
+        take(u); tp += p;
+      }
+    });
+    for (const u of orderUnits(units.filter(u => !u.some(n => used.has(n))))) {   // 모자란 만큼 채우기
+      if (got >= totalPoints) break;
+      const p = pointsOfNs(u);
+      if (got + p > totalPoints + 2) continue;
+      take(u);
+    }
+    return shuffle(picked).flat();
+  }
+
+  // ---------- 실전 모의고사 ----------
+  // 실제 시험 구성 그대로: 다지선다·짧은 HOTSPOT 40~45문항 → 같은 지문 OX 2세트 → 사례 연구 1세트
+  const REAL_PLAN = { singleMin: 40, singleMax: 45, oxSets: 2, caseSets: 1 };
+  function buildRealExam(includeLegacy) {
+    const pool = examPool(includeLegacy);
+    const inPool = new Set(pool.map(q => q.n));
+    const single = pool.filter(q => !q.set && q.type !== "statements").map(q => [q.n]);
+    const ox = pool.filter(q => !q.set && q.type === "statements").map(q => [q.n]);
+    const sets = (DATA.sets || []).map(s => s.members.filter(n => inPool.has(n))).filter(m => m.length);
+    const target = Math.min(single.length, REAL_PLAN.singleMin + Math.floor(Math.random() * (REAL_PLAN.singleMax - REAL_PLAN.singleMin + 1)));
+    const targets = topicTargets(target);
+    const partA = []; const usedA = new Set();
+    DATA.topics.forEach((t, i) => {
+      let c = 0;
+      for (const u of orderUnits(single.filter(u => topicOfUnit(u) === t.en))) {
+        if (c >= Math.round(targets[i]) || partA.length >= target) break;
+        partA.push(u); usedA.add(u[0]); c++;
+      }
+    });
+    for (const u of orderUnits(single.filter(u => !usedA.has(u[0])))) { if (partA.length >= target) break; partA.push(u); usedA.add(u[0]); }
+    const partB = orderUnits(ox).slice(0, REAL_PLAN.oxSets);
+    const partC = shuffle(sets).slice(0, REAL_PLAN.caseSets);
+    const queue = [...shuffle(partA), ...partB, ...partC].flat();
+    const plan = {
+      single: partA.length,
+      ox: partB.length, oxPoints: pointsOfNs(partB.flat()),
+      cases: partC.length, casePoints: pointsOfNs(partC.flat()),
+    };
+    return { queue, plan };
+  }
+
+  function startExamSession(real) {
+    const includeLegacy = includeLegacyNow();
+    let queue, plan = null;
+    if (real) {
+      const r = buildRealExam(includeLegacy); queue = r.queue; plan = r.plan;
+    } else {
+      const pool = examPool(includeLegacy);
+      queue = allocateExam(Math.min(Number($("examSize").value), pointsOfNs(pool.map(q => q.n))), includeLegacy);
+    }
+    if (!queue.length) { toast("출제할 문항이 없습니다"); return; }
     const timed = $("examTimer").checked;
-    startSession({ mode: "exam", queue, order: "sequential", filter: "exam", title: "모의고사" });
-    state.session.timed = timed; state.session.includeLegacy = includeLegacy;
-    if (timed) { state.session.endsAt = Date.now() + size * 120 * 1000; startExamTimer(); }
+    const points = pointsOfNs(queue);
+    startSession({ mode: "exam", queue, order: "sequential", filter: "exam", title: real ? "실전 모의고사" : "모의고사" });
+    const s = state.session;
+    s.timed = timed; s.includeLegacy = includeLegacy; s.real = !!real; s.plan = plan; s.points = points;
+    if (timed) { s.endsAt = Date.now() + points * 120 * 1000; startExamTimer(); }
     saveState();
+    toast(real
+      ? `실전 모의고사 · ${queue.length}문항 ${points}점 (단답 ${plan.single} · OX ${plan.ox}세트 ${plan.oxPoints}점 · 사례 연구 ${plan.cases}세트 ${plan.casePoints}점)`
+      : `모의고사 · ${queue.length}문항 ${points}점`);
   }
   function startExamTimer() {
     stopExamTimer();
@@ -317,7 +378,7 @@
       lb.classList.remove("hidden");
     } else lb.classList.add("hidden");
     $("sessionPosition").textContent = `${s.cursor + 1} / ${s.queue.length}`;
-    $("sessionMode").textContent = s.mode === "exam" ? `모의고사${s.timed ? " · 시간제한" : ""}` : (s.title || "연습");
+    $("sessionMode").textContent = s.mode === "exam" ? `${s.real ? "실전 모의고사" : "모의고사"}${s.points ? " · " + s.points + "점" : ""}${s.timed ? " · 시간제한" : ""}` : (s.title || "연습");
     $("sessionBar").style.width = ((s.cursor + 1) / s.queue.length * 100) + "%";
     const rec = recordFor(q.n);
     $("bookmarkButton").textContent = rec.bookmarked ? "★ 북마크됨" : "☆ 북마크";
@@ -560,13 +621,13 @@
     stopExamTimer();
     const results = s.queue.map(n => {
       const q = BY_N.get(n);
-      if (s.mode === "exam") { const a = s.answers[n]; const g = a ? grade(q, a.selected) : { correct: false, parts: [] }; return { n, q, correct: g.correct, answered: !!a, sel: a ? a.selected : null }; }
-      const r = state.records[n]; return { n, q, correct: r?.result === "correct", answered: !!r?.result, sel: r?.selected };
+      if (s.mode === "exam") { const a = s.answers[n]; const g = a ? grade(q, a.selected) : { correct: false, parts: [] }; return { n, q, correct: g.correct, answered: !!a, sel: a ? a.selected : null, max: pointsOf(q), got: a ? earnedOf(q, g) : 0 }; }
+      const r = state.records[n]; const ok = r?.result === "correct"; return { n, q, correct: ok, answered: !!r?.result, sel: r?.selected, max: pointsOf(q), got: ok ? pointsOf(q) : 0 };
     });
     if (s.mode === "exam") {
       // 기록 반영
       for (const r of results) if (r.answered) updateRecord(r.q, { correct: r.correct }, r.sel); else { const rec = recordFor(r.n); rec.attempts += 1; rec.result = "wrong"; rec.wrongCount += 1; rec.updatedAt = nowIso(); }
-      const run = { id: nowIso(), at: nowIso(), total: results.length, correct: results.filter(r => r.correct).length, timed: !!s.timed, includeLegacy: !!s.includeLegacy, legacyCount: results.filter(r => isLegacy(r.q)).length, wrong: results.filter(r => !r.correct).map(r => r.n), topics: {} };
+      const run = { id: nowIso(), at: nowIso(), total: results.length, correct: results.filter(r => r.correct).length, points: results.reduce((a, r) => a + r.got, 0), maxPoints: results.reduce((a, r) => a + r.max, 0), real: !!s.real, plan: s.plan || null, timed: !!s.timed, includeLegacy: !!s.includeLegacy, legacyCount: results.filter(r => isLegacy(r.q)).length, wrong: results.filter(r => !r.correct).map(r => r.n), topics: {} };
       for (const t of DATA.topics) { const rs = results.filter(r => r.q.topic === t.en); if (rs.length) run.topics[t.en] = { total: rs.length, correct: rs.filter(r => r.correct).length }; }
       state.examRuns.push(run); state.examRuns = state.examRuns.slice(-30);
       saveState(); updateStats();
@@ -580,13 +641,16 @@
     const answered = results.filter(r => r.answered);
     const correct = results.filter(r => r.correct).length;
     const total = mode === "exam" ? results.length : answered.length;
+    const scored = mode === "exam" ? results : answered;
+    const gotPts = scored.reduce((a, r) => a + (r.got || 0), 0);
+    const maxPts = scored.reduce((a, r) => a + (r.max || 0), 0);
     $("resultEyebrow").textContent = mode === "exam" ? "EXAM COMPLETE" : "SESSION COMPLETE";
     $("resultTitle").textContent = mode === "exam" ? "모의고사 결과" : "세션 결과";
-    $("examScore").textContent = `${correct} / ${total}`;
-    const pct = total ? Math.round(correct / total * 100) : 0;
+    $("examScore").textContent = `${gotPts} / ${maxPts}`;
+    const pct = maxPts ? Math.round(gotPts / maxPts * 100) : 0;
     $("examPercent").textContent = pct + "%";
     const legacyN = results.filter(r => isLegacy(r.q)).length;
-    $("examSummary").textContent = mode === "exam" ? `${results.length}문항 중 ${correct}문항 정답 (${pct}%)${legacyN ? ` · 구형 AZ-800/801 문항 ${legacyN}개 포함` : " · 현행 AZ-802 문항만"}. 실제 시험 합격선은 1000점 만점에 700점(약 70%)입니다.` : `이번 세션에서 ${answered.length}문항을 풀어 ${correct}문항을 맞혔습니다.`;
+    $("examSummary").textContent = mode === "exam" ? `${maxPts}점 만점에 ${gotPts}점 (${pct}%) · ${results.length}문항 중 ${correct}문항 완전 정답${run && run.plan ? ` · 실전 구성(단답 ${run.plan.single} · OX ${run.plan.ox}세트 · 사례 연구 ${run.plan.cases}세트)` : ""}${legacyN ? ` · 구형 AZ-800/801 문항 ${legacyN}개 포함` : " · 현행 AZ-802 문항만"}. 실제 시험 합격선은 1000점 만점에 700점(약 70%)입니다.` : `이번 세션에서 ${answered.length}문항을 풀어 ${correct}문항을 맞혔습니다.`;
     const grid = $("resultChapters"); grid.innerHTML = "";
     for (const t of DATA.topics) {
       const rs = results.filter(r => r.q.topic === t.en && (mode === "exam" || r.answered)); if (!rs.length) continue;
@@ -620,9 +684,11 @@
   function showExamRuns() {
     $("wnTitle").textContent = "모의고사 기록"; $("wnActions").classList.add("hidden");
     const runs = state.examRuns.slice().reverse();
-    const best = runs.length ? Math.max(...runs.map(r => Math.round(r.correct / r.total * 100))) : 0;
-    $("wnStats").innerHTML = `<div class="wn-kpi"><strong>${runs.length}</strong><span>응시 횟수</span></div><div class="wn-kpi"><strong>${best}%</strong><span>최고 점수</span></div><div class="wn-kpi"><strong>${runs.length ? Math.round(runs.reduce((a, r) => a + r.correct / r.total * 100, 0) / runs.length) : 0}%</strong><span>평균</span></div>`;
-    $("wnList").innerHTML = runs.length ? runs.map((r, i) => `<button type="button" class="wn-item" data-i="${runs.length - 1 - i}"><span class="wn-no">#${runs.length - i}</span><span class="wn-body"><strong>${r.correct} / ${r.total} · ${Math.round(r.correct / r.total * 100)}%${r.timed ? " · 시간제한" : ""}${r.includeLegacy ? ` · 구형 포함(${r.legacyCount || 0})` : " · 현행만"}</strong><em>${fmtDate(r.at)} · 오답 ${r.wrong.length}개 → 클릭하면 오답 복습</em></span></button>`).join("") : `<p class="wn-empty">아직 모의고사 기록이 없습니다.</p>`;
+    const runPct = r => Math.round((r.maxPoints ? r.points / r.maxPoints : r.correct / r.total) * 100);
+    const runScore = r => r.maxPoints ? `${r.points} / ${r.maxPoints}점` : `${r.correct} / ${r.total}`;
+    const best = runs.length ? Math.max(...runs.map(runPct)) : 0;
+    $("wnStats").innerHTML = `<div class="wn-kpi"><strong>${runs.length}</strong><span>응시 횟수</span></div><div class="wn-kpi"><strong>${best}%</strong><span>최고 점수</span></div><div class="wn-kpi"><strong>${runs.length ? Math.round(runs.reduce((a, r) => a + runPct(r), 0) / runs.length) : 0}%</strong><span>평균</span></div>`;
+    $("wnList").innerHTML = runs.length ? runs.map((r, i) => `<button type="button" class="wn-item" data-i="${runs.length - 1 - i}"><span class="wn-no">#${runs.length - i}</span><span class="wn-body"><strong>${runScore(r)} · ${runPct(r)}%${r.real ? " · 실전" : ""}${r.timed ? " · 시간제한" : ""}${r.includeLegacy ? ` · 구형 포함(${r.legacyCount || 0})` : " · 현행만"}</strong><em>${fmtDate(r.at)} · 오답 ${r.wrong.length}개 → 클릭하면 오답 복습</em></span></button>`).join("") : `<p class="wn-empty">아직 모의고사 기록이 없습니다.</p>`;
     $("wnList").querySelectorAll(".wn-item").forEach(b => b.addEventListener("click", () => { const run = state.examRuns[Number(b.dataset.i)]; if (run.wrong.length) startSession({ queue: run.wrong, order: "sequential", filter: "review", title: "모의고사 오답 복습" }); else toast("이 회차는 오답이 없습니다"); }));
     showOnly("wrongNote");
   }
@@ -659,7 +725,8 @@
   function bind() {
     $("startSession").addEventListener("click", () => startSession({ title: "연습" }));
     $("quickStart").addEventListener("click", () => startSession({ filter: "all", order: "sequential", title: "연습" }));
-    $("examStart").addEventListener("click", startExamSession); $("examStartSide").addEventListener("click", startExamSession);
+    $("examStart").addEventListener("click", () => startExamSession(false)); $("examStartSide").addEventListener("click", () => startExamSession(false));
+    $("realExamStart").addEventListener("click", () => startExamSession(true)); $("realExamStartSide").addEventListener("click", () => startExamSession(true));
     $("openWrongNote").addEventListener("click", openWrongNote); $("openWrongNote2").addEventListener("click", openWrongNote); $("navWrongNote").addEventListener("click", () => { openWrongNote(); closeSidebar(); });
     $("openExamRuns").addEventListener("click", showExamRuns); $("openExamRuns2").addEventListener("click", showExamRuns); $("navExamRuns").addEventListener("click", () => { showExamRuns(); closeSidebar(); });
     $("navHome").addEventListener("click", () => { showWelcome(); closeSidebar(); }); $("backHome").addEventListener("click", showWelcome);
