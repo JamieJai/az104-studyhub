@@ -15,6 +15,15 @@
     "/SC-300_CBT",
     "/SC-300_CBT/",
     "/SC-300_CBT/index.html",
+    "/AZ-305_CBT",
+    "/AZ-305_CBT/",
+    "/AZ-305_CBT/index.html",
+    "/AZ-900_CBT",
+    "/AZ-900_CBT/",
+    "/AZ-900_CBT/index.html",
+    "/AI-103_CBT",
+    "/AI-103_CBT/",
+    "/AI-103_CBT/index.html",
     "/api/*"
   ],
   "exclude": []

@@ -7,6 +7,8 @@ Cloudflare Pages 프로젝트 `az104-studyhub-p8` — https://az104-studyhub-p8.
 | `dist/` | 정적 사이트 — 로그인(`/`), 자격증 노선도 홈(`/map/`), AZ-104 CBT, AZ-802 CBT, Lab Portal, 관리자 `/admin/` |
 | `dist/AZ-802_CBT/` | AZ-802 CBT (현행 63 + 구형 377문항, 한/영). 진도는 `/api/progress?exam=az802` 로 서버 저장 |
 | `dist/SC-300_CBT/` | SC-300 CBT (434문항, 한/영). `exam=sc300` |
+| `dist/AZ-305_CBT/`, `dist/AZ-900_CBT/`, `dist/AI-103_CBT/` | AZ-305 285문항 · AZ-900 470문항 · AI-103 155문항 (영어 원문, 번역 준비 중). `exam=az305|az900|ai103` |
+| `tools/build_cbt.js` | 스크랩 JSON → CBT 한 벌 생성 (`node tools/build_cbt.js <examId> <표시명> <json> <images> <dist폴더>`). 앱 본체는 SC-300 판을 틀로 복사하고 시험 id·브랜딩만 바꾼다 |
 
 **모의고사 배점·구성 (AZ-104 · AZ-802 · SC-300 공통)** — 실제 시험과 같게 센다. 같은 지문 예/아니요(OX) 한 세트는 문장 수(3점)만큼, 그 밖에는 1문항 1점이고 OX 는 부분 점수도 준다. 사례 연구·OX 세트는 어떤 모드에서도 쪼개지지 않는다. 사이드바는 `0~10 / 10~20 / 20~30문제` 세 가지이고(값은 목표 점수 10·20·30), **실전 모의고사**는 실제 시험 구성 그대로 출제한다: 다지선다·짧은 HOTSPOT 40~45문항 → 같은 지문 OX 2세트 → 사례 연구 1세트. 구성은 각 app.js 의 `REAL_PLAN` 에서 조정한다. AZ-104 는 사례 연구 묶음 정보가 원본에 없어 지문 해시로 만들어 `data.js` 의 `caseSets` 에 저장했다(4세트, 2026 범위 내 2세트).
 

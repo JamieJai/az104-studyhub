@@ -1,4 +1,4 @@
-const VERSION = 'az104-pwa-20260923-v138-series';
+const VERSION = 'az104-pwa-20260923-v139-three-exams';
 const CACHE_NAME = VERSION;
 const BASE = new URL('./', self.location.href);
 const rel = p => new URL(p, BASE).href;
@@ -9,7 +9,10 @@ const CORE = [
   'AZ-104_CBT/styles.css','AZ-104_CBT/data.js','AZ-104_CBT/annotations.js','AZ-104_CBT/hotspot_keys.js','AZ-104_CBT/yn_answers.js','AZ-104_CBT/choices.js','AZ-104_CBT/positions.js','AZ-104_CBT/hints.js','AZ-104_CBT/explanations_v2.js','AZ-104_CBT/current_azure_verified.js','AZ-104_CBT/app.js',
   'AZ-104_Lab_Portal/styles.css','AZ-104_Lab_Portal/data.js','AZ-104_Lab_Portal/app.js',
   'AZ-802_CBT/styles.css','AZ-802_CBT/data.js','AZ-802_CBT/app.js',
-  'SC-300_CBT/styles.css','SC-300_CBT/data.js','SC-300_CBT/app.js'
+  'SC-300_CBT/styles.css','SC-300_CBT/data.js','SC-300_CBT/app.js',
+  'AZ-305_CBT/styles.css','AZ-305_CBT/data.js','AZ-305_CBT/app.js',
+  'AZ-900_CBT/styles.css','AZ-900_CBT/data.js','AZ-900_CBT/app.js',
+  'AI-103_CBT/styles.css','AI-103_CBT/data.js','AI-103_CBT/app.js'
 ].map(rel);
 // 리다이렉트를 거친 응답은 그대로 캐시하지 않는다
 const clean = res => res && res.redirected

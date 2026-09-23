@@ -88,6 +88,39 @@
           "sizes": "192x192"
         }
       ]
+    },
+    {
+      "name": "AZ-305 CBT",
+      "short_name": "AZ-305",
+      "url": "./AZ-305_CBT/",
+      "icons": [
+        {
+          "src": "./icons/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "AZ-900 CBT",
+      "short_name": "AZ-900",
+      "url": "./AZ-900_CBT/",
+      "icons": [
+        {
+          "src": "./icons/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "AI-103 CBT",
+      "short_name": "AI-103",
+      "url": "./AI-103_CBT/",
+      "icons": [
+        {
+          "src": "./icons/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
     }
   ]
 }
