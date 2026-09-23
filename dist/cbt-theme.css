@@ -395,3 +395,8 @@ body.light .toast { background: #111D28; color: #E9EFF5; }
 @media print {
   body { background: #fff; color: #000; }
 }
+
+/* 문항 신고 버튼 줄 (북마크와 나란히) */
+.quiz-meta-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.quiz-meta-actions .report-state{font-size:12px;letter-spacing:.06em;color:var(--gold,#C6A05C)}
+@media (max-width:640px){.quiz-meta-actions{width:100%;justify-content:flex-end}}

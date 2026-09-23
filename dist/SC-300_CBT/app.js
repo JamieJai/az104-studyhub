@@ -10,6 +10,8 @@
   const THEME_KEY = "sc300cbt.theme";     // 테마만 기기별 저장. 기록은 전부 서버(D1, exam=sc300).
   const EXAM = "sc300";
   const PROGRESS_API = `/api/progress?exam=${EXAM}`;
+  const REPORT_API = `/api/report?exam=${EXAM}`;
+  let myReports = [];
   const TYPE_LABEL = { multiple_choice: "객관식", dropdown: "HOTSPOT", drag_drop: "DRAG DROP", statements: "예/아니요", answer_reveal: "자기 채점" };
   const qLabel = q => `Q${q.n}`;
 
@@ -126,6 +128,91 @@
       const el = $("whoamiName"); if (el) el.textContent = me?.name || "…";
     } catch { /* 401 이면 goLogin 이 처리 */ }
   }
+  // ---------- 문항 신고 ----------
+  async function loadReports() {
+    try {
+      const r = await api(REPORT_API);
+      const d = await r.json();
+      myReports = Array.isArray(d?.reports) ? d.reports : [];
+    } catch { myReports = []; }
+    const el = $("reportCount"); if (el) el.textContent = String(myReports.length);
+    const q = currentQuestion(); if (q) renderReportBar(q);
+  }
+  function reportFor(n) { return myReports.find(r => Number(r.source) === Number(n)); }
+  function renderReportBar(q) {
+    const btn = $("reportOpen"), st = $("reportState");
+    if (!btn || !q) return;
+    const done = !!reportFor(q.n);
+    btn.textContent = done ? "🚩 신고 내용 수정" : "🚩 이 문항 신고";
+    if (st) st.textContent = done ? "신고함" : "";
+  }
+  function myAnswerText(q) {
+    const sel = pending.selected;
+    if (!sel) return "";
+    if (Array.isArray(sel)) return sel.join("");
+    if (typeof sel === "object") return Object.values(sel).filter(v => typeof v === "string").join(" / ");
+    return String(sel);
+  }
+  function appAnswerText(q) {
+    if (q.type === "multiple_choice") return (q.answers || []).join(", ");
+    if (q.type === "dropdown") return (q.blanks || []).map(b => b.answer).join(" / ");
+    if (q.type === "statements") return (q.statements || []).map(s => s.answer).join(" / ");
+    if (q.type === "drag_drop") return (q.slots || []).map(s => s.answer).join(" / ");
+    return "(자기 채점)";
+  }
+  function openReport() {
+    const q = currentQuestion();
+    if (!q) { toast("문항을 연 뒤에 신고할 수 있습니다"); return; }
+    const prior = reportFor(q.n);
+    $("reportQ").textContent = `Q${q.n} · ${q.topicKo || q.topic} · ${TYPE_LABEL[q.type] || q.type}`;
+    $("reportKind").value = prior?.kind || "translation";
+    $("reportNote").value = prior?.note || "";
+    const rec = state.records[q.n];
+    $("reportCtx").textContent = `함께 전송: 내가 고른 답 ${myAnswerText(q) || "(미선택)"} · 앱 정답 ${appAnswerText(q)} · 채점 ${rec?.result || "미채점"}`;
+    const msg = $("reportMsg"); msg.textContent = ""; msg.className = "report-msg";
+    $("reportModal").classList.remove("hidden");
+    setTimeout(() => $("reportNote").focus(), 60);
+  }
+  async function sendReport() {
+    const q = currentQuestion(); if (!q) return;
+    const rec = state.records[q.n];
+    const payload = {
+      source: q.n, kind: $("reportKind").value,
+      myAnswer: myAnswerText(q), graded: rec?.result || "none",
+      appAnswer: appAnswerText(q), note: $("reportNote").value.trim(),
+    };
+    const btn = $("reportSend"), msg = $("reportMsg");
+    btn.disabled = true; msg.textContent = "전송 중…"; msg.className = "report-msg";
+    try {
+      const r = await api(REPORT_API, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
+      const d = await r.json();
+      if (!r.ok) throw new Error(d?.error || r.status);
+      msg.textContent = `신고했습니다. 누적 ${d.count}건.`;
+      msg.className = "report-msg ok";
+      await loadReports();
+      setTimeout(() => $("reportModal").classList.add("hidden"), 900);
+    } catch (e) {
+      msg.textContent = `전송에 실패했습니다 (${String(e?.message || e)}). 잠시 후 다시 시도하세요.`;
+      msg.className = "report-msg bad";
+    } finally { btn.disabled = false; }
+  }
+  function showMyReports() {
+    $("wnTitle").textContent = "내 문항 신고"; $("wnActions").classList.add("hidden");
+    const KIND = { "wrong-answer": "정답 오류", "bad-explanation": "해설 문제", translation: "번역·오탈자", image: "이미지", other: "기타" };
+    $("wnStats").innerHTML = `<div class="wn-kpi"><strong>${myReports.length}</strong><span>신고</span></div>`;
+    $("wnList").innerHTML = myReports.length
+      ? myReports.slice().reverse().map(r => `<button type="button" class="wn-item" data-n="${r.source}"><span class="wn-no">Q${r.source}</span><span class="wn-body"><strong>${escapeHtml(KIND[r.kind] || r.kind)} · ${fmtDate(r.at)}</strong><em>${escapeHtml(r.note || "(메모 없음)")}</em></span></button>`).join("")
+      : `<p class="wn-empty">아직 신고한 문항이 없습니다.</p>`;
+    $("wnList").querySelectorAll(".wn-item").forEach(b => b.addEventListener("click", () => startSession({ queue: [Number(b.dataset.n)], order: "sequential", filter: "review", title: "신고 문항" })));
+    showOnly("wrongNote");
+  }
+  async function clearReports() {
+    if (!myReports.length) { toast("지울 신고가 없습니다"); return; }
+    if (!confirm(`신고 ${myReports.length}건을 모두 지웁니다. 되돌릴 수 없습니다.`)) return;
+    try { await api(REPORT_API, { method: "DELETE" }); await loadReports(); toast("신고를 모두 지웠습니다"); showMyReports(); }
+    catch { toast("삭제에 실패했습니다"); }
+  }
+
   async function logout() {
     await syncFlush();
     try { await fetch("/api/auth/logout", { method: "POST" }); } catch { /* ignore */ }
@@ -397,6 +484,7 @@
     // 4) 피드백/해설
     $("feedback").classList.add("hidden"); $("explanation").classList.add("hidden");
     if (s.mode !== "exam" && rec.result) { const g = grade(q, rec.selected); showFeedback(g, q); showExplanation(q, g); }
+    renderReportBar(q);
     $("prevButton").disabled = s.cursor === 0;
     $("nextButton").textContent = s.cursor === s.queue.length - 1 ? (s.mode === "exam" ? "제출하고 채점 →" : "세션 종료 →") : "다음 →";
   }
@@ -489,6 +577,7 @@
     }
     if (!locked && q.type !== "answer_reveal") html += `<div class="submit-row"><small>${state.session.mode === "exam" ? "제출하면 다음 문항으로 넘어갑니다 (나중에 다시 돌아와 바꿀 수 있음)" : "제출하면 바로 채점하고 해설을 보여줍니다"}</small><button type="button" class="primary" id="submitAnswer">제출</button></div>`;
     else if (state.session.mode === "exam") html += `<div class="submit-row"><small>제출된 답입니다. 바꾸려면 아래에서 다시 선택하세요.</small><button type="button" id="changeAnswer">답 바꾸기</button></div>`;
+    else html += `<div class="submit-row"><small>이미 푼 문항입니다. 다시 풀면 이 문항의 기록이 새 결과로 바뀝니다.</small><button type="button" id="retryAnswer">다시 풀기</button></div>`;
     box.innerHTML = html;
 
     box.querySelectorAll(".choice[data-letter]").forEach(b => b.addEventListener("click", () => toggleChoice(q, b.dataset.letter)));
@@ -502,6 +591,7 @@
     const rv = $("revealAnswer"); if (rv) rv.addEventListener("click", () => { pending.selected.revealed = true; renderControls(q, { selected: pending.selected }); });
     box.querySelectorAll("button[data-self]").forEach(b => b.addEventListener("click", () => { pending.selected = { revealed: true, self: b.dataset.self }; submitAnswer(); }));
     const cb = $("changeAnswer"); if (cb) cb.addEventListener("click", () => { delete state.session.answers[q.n]; saveState(); renderControls(q, null); });
+    const rt = $("retryAnswer"); if (rt) rt.addEventListener("click", () => { $("feedback").classList.add("hidden"); $("explanation").classList.add("hidden"); renderControls(q, null); });
   }
 
   function toggleChoice(q, letter) {
@@ -739,6 +829,12 @@
       try { await resetRemote(); updateStats(); showWelcome(); toast("기록을 초기화했습니다"); } catch { toast("초기화 실패 · 잠시 후 다시 시도"); }
     });
     const lo = $("logoutBtn"); if (lo) lo.addEventListener("click", logout);
+    $("reportOpen").addEventListener("click", openReport);
+    $("reportCancel").addEventListener("click", () => $("reportModal").classList.add("hidden"));
+    $("reportSend").addEventListener("click", sendReport);
+    $("reportModal").addEventListener("click", e => { if (e.target === $("reportModal")) $("reportModal").classList.add("hidden"); });
+    $("openReports").addEventListener("click", showMyReports);
+    $("clearReports").addEventListener("click", clearReports);
     const sn = $("syncNow"); if (sn) sn.addEventListener("click", async () => { await syncFlush(); await syncPull(); toast("서버와 동기화했습니다"); });
     $("menuToggle").addEventListener("click", () => { $("sidebar").classList.add("open"); $("sidebarOverlay").hidden = false; document.body.classList.add("sidebar-open"); });
     $("sidebarClose").addEventListener("click", closeSidebar); $("sidebarOverlay").addEventListener("click", closeSidebar);
@@ -784,6 +880,7 @@
   (async () => {
     await loadMe();
     await syncPull();
+    await loadReports();
     updateStats();
     if (state.session && state.session.queue && state.session.queue.length) {
       showQuiz(); renderQuestion();

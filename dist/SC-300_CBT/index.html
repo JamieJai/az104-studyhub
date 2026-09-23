@@ -72,24 +72,23 @@
         <p class="whoami"><strong id="whoamiName">…</strong> <button id="logoutBtn" class="linklike">로그아웃</button></p>
         <p id="syncStatus" class="sync-status">불러오는 중…</p>
         <p class="report-count"><button id="syncNow" class="linklike">지금 동기화</button></p>
+        <p class="report-count"><button id="openReports" class="linklike">내 신고 <strong id="reportCount">0</strong>건 보기</button>
+          <button id="clearReports" class="linklike danger">초기화</button></p>
       </section>
 
       <section class="side-section session-options">
         <h2>모의고사 설정</h2>
-        <label>총 배점
+        <label>문항 수
           <select id="examSize">
-            <option value="10">10점 · 짧게</option>
-            <option value="20">20점 · 가볍게</option>
-            <option value="30">30점</option>
-            <option value="40" selected>40점</option>
-            <option value="50">50점</option>
-            <option value="60">60점</option>
+            <option value="10">0~10문제 · 짧게</option>
+            <option value="20" selected>10~20문제 · 가볍게</option>
+            <option value="30">20~30문제</option>
           </select>
         </label>
         <label class="check-row"><input type="checkbox" id="examTimer"> 시간 제한 사용 (문항당 2분)</label>
         <button class="primary wide" id="examStartSide">모의고사 시작</button>
         <button class="primary wide" id="realExamStartSide">실전 모의고사 시작</button>
-        <p class="hint-note">공식 출제 비중(4개 영역)대로 배분하며, 안 푼 문항과 틀린 문항을 먼저 출제합니다. 자기 채점 문항은 모의고사에서 제외됩니다. 배점은 실제 시험과 같게 셉니다 — 같은 지문 예/아니요(OX) 한 세트는 문장 수만큼, 나머지는 1문항 1점입니다. 사례 연구·OX 세트는 쪼개지지 않습니다.<br><b>실전 모의고사</b>는 실제 시험 구성 그대로 출제합니다: 다지선다·짧은 HOTSPOT 40~45문항 → 같은 지문 OX 2세트 → 사례 연구 1세트.</p>
+        <p class="hint-note">공식 출제 비중(4개 영역)대로 배분하며, 안 푼 문항과 틀린 문항을 먼저 출제합니다. 자기 채점 문항은 모의고사에서 제외됩니다. 점수는 실제 시험과 같게 셉니다 — 같은 지문 예/아니요(OX) 한 세트는 문장 수만큼, 나머지는 1문항 1점입니다. 사례 연구·OX 세트는 쪼개지지 않습니다.<br><b>실전 모의고사</b>는 실제 시험 구성 그대로 출제합니다: 다지선다·짧은 HOTSPOT 40~45문항 → 같은 지문 OX 2세트 → 사례 연구 1세트.</p>
       </section>
 
       <section class="side-section compact-actions">
@@ -156,7 +155,11 @@
             <span class="source-number" id="sourceNumber">Q1</span>
             <span class="topic-pill" id="topicBadge"></span>
           </div>
-          <button class="bookmark" id="bookmarkButton" aria-label="북마크">☆ 북마크</button>
+          <div class="quiz-meta-actions">
+            <span class="report-state" id="reportState"></span>
+            <button class="bookmark" id="reportOpen" type="button">🚩 이 문항 신고</button>
+            <button class="bookmark" id="bookmarkButton" aria-label="북마크">☆ 북마크</button>
+          </div>
         </div>
 
         <div class="session-progress">
@@ -189,6 +192,31 @@
 
   <div class="lightbox hidden" id="lightbox"><img id="lightboxImg" alt=""><span class="lb-cap" id="lightboxCap"></span></div>
   <div class="toast" id="toast" role="status"></div>
+  <div class="report-modal hidden" id="reportModal" role="dialog" aria-modal="true">
+    <div class="report-card">
+      <h2>문항 신고</h2>
+      <p class="report-q" id="reportQ"></p>
+      <label>무엇이 문제인가요?
+        <select id="reportKind">
+          <option value="wrong-answer">정답이 틀림</option>
+          <option value="bad-explanation">해설이 엉뚱하거나 부실함</option>
+          <option value="translation">번역·오탈자</option>
+          <option value="image">이미지 문제(잘림·누락·엉뚱함)</option>
+          <option value="other">기타</option>
+        </select>
+      </label>
+      <label>메모 (선택)
+        <textarea id="reportNote" rows="4" maxlength="600" placeholder="예: 한국어 번역이 원문과 다릅니다 — 'must not' 을 '해야 한다' 로 옮겼습니다."></textarea>
+      </label>
+      <p class="report-hint" id="reportCtx"></p>
+      <div class="report-actions">
+        <button class="primary" id="reportSend">신고 보내기</button>
+        <button id="reportCancel">취소</button>
+      </div>
+      <p id="reportMsg" class="report-msg"></p>
+    </div>
+  </div>
+
   <script src="data.js"></script>
   <script src="app.js"></script>
 </body>

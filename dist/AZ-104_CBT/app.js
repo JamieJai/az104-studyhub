@@ -35,7 +35,7 @@
     exportProgress: $("exportProgress"), importProgress: $("importProgress"), resetProgress: $("resetProgress"),
     toast: $("toast"),
     examSize: $("examSize"), examTimer: $("examTimer"), examIncludeOut: $("examIncludeOut"), examIncludeHotspot: $("examIncludeHotspot"),
-    examStartSide: $("examStartSide"), examTimerDisplay: $("examTimerDisplay"),
+    examStartSide: $("examStartSide"), realExamStart: $("realExamStart"), realExamStartSide: $("realExamStartSide"), examTimerDisplay: $("examTimerDisplay"),
     hintBox: $("hintBox"), hintToggle: $("hintToggle"), hintBody: $("hintBody"),
     imageWrap: $("imageWrap"), imageSummary: $("imageSummary"),
     syncNow: $("syncNow"), syncStatus: $("syncStatus"), logoutBtn: $("logoutBtn"), whoamiName: $("whoamiName"), gateExpired: $("gateExpired"),
@@ -260,6 +260,40 @@
     });
   }
 
+  // ---------- 배점 · 세트 ----------
+  // 실제 시험처럼 "같은 지문 예/아니요(OX)" 한 문항은 문장 수만큼 배점된다. 그 밖에는 1문항 1점.
+  function pointsOfQ(q) {
+    if (!q) return 0;
+    const seq = binaryAnswerSequence(q);
+    return seq.length >= 2 ? seq.length : 1;
+  }
+  function pointsOfSources(list) { return list.reduce((a, src) => a + pointsOfQ(questionBySource(src)), 0); }
+  // OX 채점 결과에서 맞힌 문장 수 (부분 점수)
+  function earnedOfQ(q, result, selected) {
+    const seq = binaryAnswerSequence(q);
+    if (seq.length >= 2) {
+      if (Array.isArray(selected) && selected.length === seq.length) return selected.filter((v, i) => v === seq[i]).length;
+      return result === "correct" ? seq.length : 0;
+    }
+    return result === "correct" ? 1 : 0;
+  }
+  const CASE_SETS = Array.isArray(dataset.caseSets) ? dataset.caseSets : [];
+  const CASE_OF = new Map();
+  CASE_SETS.forEach(set => set.members.forEach(n => CASE_OF.set(Number(n), set)));
+  function caseSetOf(src) { return CASE_OF.get(Number(src)) || null; }
+  // 후보 목록 → [문항] 또는 [사례 연구 멤버들...] 단위. 세트는 첫 멤버 자리에 통째로 놓인다.
+  function unitsOf(list) {
+    const inList = new Set(list.map(Number)); const done = new Set(); const units = [];
+    for (const src of list.map(Number)) {
+      if (done.has(src)) continue;
+      const set = caseSetOf(src);
+      const unit = set ? set.members.map(Number).filter(m => inList.has(m)) : [src];
+      unit.forEach(m => done.add(m)); units.push(unit);
+    }
+    return units;
+  }
+  function questionBySource(src) { return dataset.questions.find(q => String(q.source) === String(src)); }
+
   function startSession({ filter, order } = {}) {
     state.sessionMode = "study";
     state.examSessionResults = {};
@@ -270,7 +304,7 @@
       toast(state.filter === "wrong" ? "기록된 오답이 없습니다." : "조건에 맞는 문제가 없습니다.");
       return;
     }
-    if (state.order === "random") questions = shuffle(questions);
+    questions = (state.order === "random" ? shuffle(unitsOf(questions)) : unitsOf(questions)).flat();   // 사례 연구는 묶음 유지
     state.queue = questions;
     state.cursor = 0;
     saveState();
@@ -362,46 +396,103 @@
     return out;
   }
 
-  function startExamSession() {
-    const total = Number(els.examSize?.value || 50);
+  // 실전 모의고사 구성 — 실제 시험과 같은 순서: 다지선다·짧은 HOTSPOT → 같은 지문 OX → 사례 연구
+  const REAL_PLAN = { singleMin: 40, singleMax: 45, oxSets: 2, caseSets: 1 };
+
+  function examBasePool() {
     const includeOut = Boolean(els.examIncludeOut?.checked);
     const includeHotspot = Boolean(els.examIncludeHotspot?.checked);
     const gradable = q => q.kind === "auto" || (includeHotspot && (hasBinaryGrading(q) || hasChoiceGrading(q) || hasPosGrading(q)));
-    const base = dataset.questions.filter(q => gradable(q) && q.legacy !== true && (includeOut || q.inScope !== false));
-    const alloc = allocateExam(total);
-    let queue = [];
-    const shortfall = [];
-    Object.keys(alloc).forEach(c => {
-      const pool = base.filter(q => String(q.chapter) === String(c));
-      const picked = pickWeighted(pool, alloc[c]);
-      if (picked.length < alloc[c]) shortfall.push(CH_NAME[c]);
-      queue = queue.concat(picked);
-    });
-    if (queue.length < total) {
-      const rest = base.filter(q => !queue.includes(q.source)).map(q => q.source);
-      queue = queue.concat(shuffle(rest).slice(0, total - queue.length));
-    }
+    return dataset.questions.filter(q => gradable(q) && q.legacy !== true && (includeOut || q.inScope !== false));
+  }
+  // 실전 모의고사는 OX·사례 연구가 반드시 필요해서 HOTSPOT 체크와 무관하게 자동채점 가능한 문항을 모두 쓴다
+  function realBasePool() {
+    const includeOut = Boolean(els.examIncludeOut?.checked);
+    const gradable = q => q.kind === "auto" || hasBinaryGrading(q) || hasChoiceGrading(q) || hasPosGrading(q);
+    return dataset.questions.filter(q => gradable(q) && q.legacy !== true && (includeOut || q.inScope !== false));
+  }
+
+  function startExamSession(real) {
+    const base = real ? realBasePool() : examBasePool();
+    const queue = real ? buildRealExam(base) : buildPointExam(base, Number(els.examSize?.value || 20));
     if (!queue.length) { toast("모의고사용 문항이 부족합니다."); return; }
     state.examHistory = Array.isArray(state.examHistory) ? state.examHistory : [];
     state.examHistory.push(queue.slice());
     if (state.examHistory.length > 4) state.examHistory = state.examHistory.slice(-4);
     state.sessionMode = "exam";
     state.examSessionResults = {};
-    state.filter = includeOut ? "all" : "current-scope";
+    state.filter = els.examIncludeOut?.checked ? "all" : "current-scope";
     state.order = "random";
-    state.queue = shuffle(queue);
+    state.queue = queue;
     state.cursor = 0;
-    state.examTotal = state.queue.length;
+    state.examTotal = queue.length;
+    state.examPoints = pointsOfSources(queue);
+    state.examReal = !!real;
     saveState();
-    startExamTimer(state.queue.length);
-    if (shortfall.length) toast(`${shortfall.join(", ")} 문항이 부족해 다른 장에서 보충했습니다.`);
+    startExamTimer(state.examPoints);
+    toast(real
+      ? `실전 모의고사 · ${queue.length}문항 ${state.examPoints}점`
+      : `모의고사 · ${queue.length}문항 ${state.examPoints}점`);
     showQuiz();
+  }
+
+  // 10/20/30… = 총 배점. 장별 비중대로 뽑되 사례 연구·OX 세트는 쪼개지 않는다.
+  function buildPointExam(base, totalPoints) {
+    const alloc = allocateExam(totalPoints);
+    const units = unitsOf(base.map(q => q.source));
+    const picked = []; const used = new Set(); let got = 0;
+    const take = u => { picked.push(u); u.forEach(n => used.add(n)); got += pointsOfSources(u); };
+    const chapterOf = u => String((questionBySource(u[0]) || {}).chapter);
+    Object.keys(alloc).forEach(c => {
+      let cp = 0;
+      for (const u of orderUnits(units.filter(u => chapterOf(u) === String(c) && !u.some(n => used.has(n))))) {
+        if (cp >= alloc[c] || got >= totalPoints) break;
+        const p = pointsOfSources(u);
+        if (got + p > totalPoints + 2) continue;      // 세트가 커서 총점을 크게 넘기면 건너뛴다
+        take(u); cp += p;
+      }
+    });
+    for (const u of orderUnits(units.filter(u => !u.some(n => used.has(n))))) {
+      if (got >= totalPoints) break;
+      const p = pointsOfSources(u);
+      if (got + p > totalPoints + 2) continue;
+      take(u);
+    }
+    return shuffle(picked).flat();
+  }
+
+  // 출제 우선순위: 안 푼 문항 → 틀린 문항 → 맞힌 문항
+  function unitPriority(unit) {
+    return Math.min(...unit.map(src => { const r = state.progress[String(src)]; if (!r || !r.result) return 0; return r.result === "wrong" ? 1 : 2; }));
+  }
+  function orderUnits(units) { return [0, 1, 2].map(p => shuffle(units.filter(u => unitPriority(u) === p))).flat(); }
+
+  function buildRealExam(base) {
+    const inPool = new Set(base.map(q => q.source));
+    const isOx = q => binaryAnswerSequence(q).length >= 2;
+    const single = base.filter(q => !caseSetOf(q.source) && !isOx(q)).map(q => [q.source]);
+    const ox = base.filter(q => !caseSetOf(q.source) && isOx(q)).map(q => [q.source]);
+    const sets = CASE_SETS.map(s => s.members.map(Number).filter(n => inPool.has(n))).filter(m => m.length);
+    const target = Math.min(single.length, REAL_PLAN.singleMin + Math.floor(Math.random() * (REAL_PLAN.singleMax - REAL_PLAN.singleMin + 1)));
+    const alloc = allocateExam(target);
+    const partA = []; const usedA = new Set();
+    Object.keys(alloc).forEach(c => {
+      let n = 0;
+      for (const u of orderUnits(single.filter(u => String((questionBySource(u[0]) || {}).chapter) === String(c) && !usedA.has(u[0])))) {
+        if (n >= alloc[c] || partA.length >= target) break;
+        partA.push(u); usedA.add(u[0]); n++;
+      }
+    });
+    for (const u of orderUnits(single.filter(u => !usedA.has(u[0])))) { if (partA.length >= target) break; partA.push(u); usedA.add(u[0]); }
+    const partB = orderUnits(ox).slice(0, REAL_PLAN.oxSets);
+    const partC = shuffle(sets).slice(0, REAL_PLAN.caseSets);
+    return [...shuffle(partA), ...partB, ...partC].flat();
   }
 
   function startExamTimer(count) {
     stopExamTimer();
     if (!els.examTimer?.checked) { els.examTimerDisplay?.classList.add("hidden"); return; }
-    examDeadline = Date.now() + count * 2 * 60 * 1000;
+    examDeadline = Date.now() + count * 2 * 60 * 1000;   // count = 총 배점
     els.examTimerDisplay?.classList.remove("hidden");
     tickExamTimer();
     examTimerId = setInterval(tickExamTimer, 1000);
@@ -2038,22 +2129,24 @@
 
   const CH_SHORT = { 1: "1장 ID·거버넌스", 2: "2장 Storage", 3: "3장 Compute", 4: "4장 Networking", 5: "5장 모니터링" };
 
-  function renderResult({ mode, results, total }) {
+  function renderResult({ mode, results, total, gotPoints, maxPoints, real }) {
     const correct = results.filter(r => r.result === "correct").length;
     const wrong = results.filter(r => r.result === "wrong");
     const answered = results.length;
-    const pct = total ? Math.round(correct / total * 100) : 0;
+    const hasPts = Number.isFinite(maxPoints) && maxPoints > 0;
+    const pct = hasPts ? Math.round(gotPoints / maxPoints * 100) : (total ? Math.round(correct / total * 100) : 0);
 
     els.resultEyebrow.textContent = mode === "exam" ? "EXAM COMPLETE" : "SESSION COMPLETE";
-    els.resultTitle.textContent = mode === "exam" ? "모의고사 결과" : "학습 세션 결과";
-    els.examScore.textContent = `${correct} / ${total}`;
+    els.resultTitle.textContent = mode === "exam" ? (real ? "실전 모의고사 결과" : "모의고사 결과") : "학습 세션 결과";
+    els.examScore.textContent = hasPts ? `${gotPoints} / ${maxPoints}` : `${correct} / ${total}`;
     els.examPercent.textContent = `${pct}%`;
 
     const missed = total - answered;
     const grade = pct >= 80 ? "합격권입니다." : pct >= 70 ? "합격선에 근접했습니다." : "더 다져야 합니다.";
+    const ptsTxt = hasPts ? `${maxPoints}점 만점에 ${gotPoints}점 · ` : "";
     els.examSummary.textContent = missed > 0
-      ? `${answered}문항 응답 · ${missed}문항 미응답 · 정답 ${correct} · 오답 ${wrong.length}. ${grade}`
-      : `${total}문항 완료 · 정답 ${correct} · 오답 ${wrong.length}. ${grade}`;
+      ? `${ptsTxt}${answered}문항 응답 · ${missed}문항 미응답 · 정답 ${correct} · 오답 ${wrong.length}. ${grade}`
+      : `${ptsTxt}${total}문항 완료 · 정답 ${correct} · 오답 ${wrong.length}. ${grade}`;
     els.examSummary.style.whiteSpace = "pre-line";
 
     // 장별 정답률
@@ -2114,7 +2207,9 @@
     const correct = results.filter(([, r]) => r.result === "correct").length;
     const answered = results.length;
     const total = state.queue.length || 50;
-    const pct = Math.round(correct / total * 100);
+    const maxPoints = pointsOfSources(state.queue || []);
+    const gotPoints = results.reduce((a, [src, r]) => a + earnedOfQ(questionBySource(src), r.result, r.selected), 0);
+    const pct = maxPoints ? Math.round(gotPoints / maxPoints * 100) : 0;
     results.forEach(([source, r]) => {
       const q = dataset.questions.find(item => String(item.source) === String(source));
       if (!q) return;
@@ -2131,6 +2226,9 @@
       id: Date.now(),
       at: new Date().toISOString(),
       total,
+      points: gotPoints,
+      maxPoints,
+      real: !!state.examReal,
       answered: rows.length,
       correct: okCount,
       wrong: rows.filter(r => r.result === "wrong").map(r => Number(r.source)),
@@ -2145,7 +2243,7 @@
     state.examRuns = Array.isArray(state.examRuns) ? state.examRuns : [];
     state.examRuns.push(rec);
     if (state.examRuns.length > 30) state.examRuns = state.examRuns.slice(-30);
-    renderResult({ mode: "exam", results: rows, total });
+    renderResult({ mode: "exam", results: rows, total, gotPoints, maxPoints, real: !!state.examReal });
     saveState();
     clearTimeout(syncTimer);
     syncFlush();   // 회차 기록은 바로 서버에 올린다
@@ -2261,8 +2359,10 @@
 
   els.startSession.addEventListener("click", () => startSession());
   els.quickStart.addEventListener("click", () => startSession({ filter: "all", order: "sequential" }));
-  els.examStart.addEventListener("click", startExamSession);
-  els.examStartSide?.addEventListener("click", startExamSession);
+  els.examStart.addEventListener("click", () => startExamSession(false));
+  els.examStartSide?.addEventListener("click", () => startExamSession(false));
+    els.realExamStart?.addEventListener("click", () => startExamSession(true));
+    els.realExamStartSide?.addEventListener("click", () => startExamSession(true));
   els.logoutBtn?.addEventListener("click", async () => {
     if (!confirm("로그아웃할까요?")) return;
     closeSidebar?.();
