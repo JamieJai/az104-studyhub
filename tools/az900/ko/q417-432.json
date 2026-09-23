@@ -1,0 +1,122 @@
+{
+  "417": {
+    "stem": "HOTSPOT –\n\n문장을 올바르게 완성하는 답을 선택하세요.\n\nHot Area:",
+    "expl": "Azure 스팟(Spot) 가상 머신 인스턴스는 사용되지 않는 Azure 용량을 큰 할인가로 사용합니다. Azure가 그 용량을 다시 필요로 하면 제거(eviction)될 수 있습니다.\n\n**Learn more:** [Azure Spot Virtual Machines](https://learn.microsoft.com/en-us/azure/virtual-machines/spot-vms)",
+    "blanks": [
+      { "label": "사용되지 않는 Azure 컴퓨팅 용량을 큰 할인가로 제공하는 것은", "options": ["Azure Container Instances", "Azure 예약 가상 머신 인스턴스", "Azure 스팟 가상 머신 인스턴스", "Azure 가상 머신 확장 집합"] }
+    ]
+  },
+  "418": {
+    "stem": "다음 각 설명이 참이면 **예**, 아니면 **아니요**를 선택하세요.",
+    "expl": "Azure Advisor의 보안 권장 사항은 Microsoft Defender for Cloud를 기반으로 하며 네트워크 보안 그룹, 저장소 계정, 가상 머신 같은 Azure 리소스 보호에 초점을 둡니다. Azure Active Directory(Microsoft Entra ID) 환경을 검토하거나 강화하지는 않습니다. Advisor의 비용 권장 사항은 사용률이 낮거나 유휴 상태인 가상 머신을 찾아 크기 조정이나 종료를 제안해 지출을 줄입니다. Advisor는 VM의 네트워크 노출을 보안 문제로 표시할 수는 있지만 특정 네트워크 설정을 어떻게 구성할지 안내하지는 않습니다.\n\n**Learn more:** [Introduction to Azure Advisor](https://learn.microsoft.com/en-us/azure/advisor/advisor-overview) · [Security recommendations](https://learn.microsoft.com/en-us/azure/advisor/advisor-security-recommendations)",
+    "statements": [
+      "Azure Advisor는 Azure Active Directory(Azure AD) 환경의 보안을 개선하는 권장 사항을 제공한다.",
+      "Azure Advisor는 Azure 가상 머신 운영 비용을 줄이는 권장 사항을 제공한다.",
+      "Azure Advisor는 Azure 가상 머신의 네트워크 설정을 구성하는 방법에 대한 권장 사항을 제공한다."
+    ]
+  },
+  "419": {
+    "stem": "다음 각 설명이 참이면 **예**, 아니면 **아니요**를 선택하세요.",
+    "expl": "Azure App Service는 PaaS이므로 Azure가 호스트 운영 체제를 관리하며 고객에게 운영 체제 전체 제어 권한을 주지 않습니다. App Service 계획의 가격 책정 계층·SKU를 변경해 스케일 업하면 메모리를 더 확보할 수 있습니다. App Service는 수요나 구성된 메트릭에 따라 실행 인스턴스 수를 바꾸는 자동 크기 조정과 자동 스케일 아웃도 지원합니다.\n\n**Learn more:** [Azure App Service plans overview](https://learn.microsoft.com/en-us/azure/app-service/overview-hosting-plans) · [How to enable automatic scaling in Azure App Service](https://learn.microsoft.com/en-us/azure/app-service/manage-automatic-scaling)",
+    "statements": [
+      "Azure에서 웹앱을 호스트하는 PaaS 솔루션은 애플리케이션을 호스트하는 운영 체제에 대한 전체 제어 권한을 제공한다.",
+      "Azure에서 웹앱을 호스트하는 PaaS 솔루션은 가격 책정 계층을 변경해 메모리를 더 확보할 수 있다.",
+      "Azure에서 웹앱을 호스트하는 PaaS 솔루션은 수요에 따라 인스턴스 수를 자동으로 조정하도록 구성할 수 있다."
+    ]
+  },
+  "420": {
+    "stem": "솔루션: Azure Cosmos DB를 사용합니다.\n\n이 솔루션이 목표를 충족합니까?",
+    "expl": "Azure Cosmos DB는 데이터 서비스일 뿐 예측 모델을 만들고 테스트하고 배포하는 플랫폼이 아닙니다. 예측 분석에 필요한 모델 학습, 배포, 엔드포인트 테스트 기능은 Azure Machine Learning이 제공합니다.\n\n**Learn more:** [Quickstart: Get started with Azure Machine Learning](https://learn.microsoft.com/en-us/azure/machine-learning/tutorial-azure-ml-in-a-day?view=azureml-api-2)",
+    "choices": ["예", "아니요"]
+  },
+  "421": {
+    "stem": "솔루션: Azure Machine Learning Studio를 사용합니다.\n\n이 솔루션이 목표를 충족합니까?",
+    "expl": "Azure Machine Learning Studio는 예측 모델을 만들고 학습시키며, 실험 중 모델 결과를 평가하고, 학습된 모델을 추론용 엔드포인트에 배포할 수 있습니다. 따라서 예측 분석에 필요한 구축·테스트·배포 워크플로를 제공합니다.\n\n**Learn more:** [Tutorial: AutoML—train no-code classification models - Azure Machine Learning](https://learn.microsoft.com/en-us/azure/machine-learning/tutorial-first-experiment-automated-ml?view=azureml-api-2) · [Use Azure Machine Learning studio to deploy models trained in the designer](https://learn.microsoft.com/en-us/azure/machine-learning/how-to-deploy-model-designer?view=azureml-api-1)",
+    "choices": ["예", "아니요"]
+  },
+  "422": {
+    "stem": "솔루션: Azure Information Protection을 사용하도록 추천합니다.\n\n이 솔루션이 목표를 충족합니까?",
+    "expl": "Azure Information Protection은 배포 자격 증명을 위한 비밀 관리 서비스가 아닙니다. 관리자 암호는 암호를 안전하게 저장하고 비밀을 저장 상태에서 암호화하는 Azure Key Vault에 비밀로 저장해야 합니다.\n\n**Learn more:** [About Azure Key Vault secrets](https://learn.microsoft.com/en-in/azure/key-vault/secrets/about-secrets) · [Azure Key Vault overview](https://learn.microsoft.com/en-us/azure/key-vault/general/overview)",
+    "choices": ["예", "아니요"]
+  },
+  "423": {
+    "stem": "솔루션: Azure 다단계 인증(MFA)을 사용하도록 추천합니다.\n\n이 솔루션이 목표를 충족합니까?",
+    "expl": "Azure 다단계 인증(MFA)은 추가 인증 요소를 요구해 로그인을 보호할 뿐, 배포 중에 관리 자격 증명을 암호화하는 수단이 아닙니다. 자격 증명 암호화에는 적절한 비밀 관리나 암호화 솔루션이 필요합니다.\n\n**Learn more:** [Secure Microsoft Entra users with multifactor authentication](https://learn.microsoft.com/en-us/training/modules/secure-aad-users-with-mfa/) · [Security services and technologies available on Azure](https://learn.microsoft.com/en-us/azure/security/fundamentals/services-technologies)",
+    "choices": ["예", "아니요"]
+  },
+  "424": {
+    "stem": "다음 각 설명이 참이면 예, 아니면 아니요를 선택하세요.",
+    "expl": "Azure Storage는 중복 아키텍처를 통해 최소 세 개의 복제본을 유지하며, LRS는 세 복제본에 모두 기록된 뒤에야 쓰기가 성공합니다. 보조 지역으로의 복제는 지역 중복 구성에서만 제공되며 모든 저장소 계정에 자동으로 적용되지 않습니다. 저장소 계정의 용량과 개체·파일 한도는 훨씬 크고 저장소 서비스와 계정 유형에 따라 다르므로 2TB와 파일 100만 개는 일반적인 Azure Storage 계정 한도가 아닙니다.\n\n**Learn more:** [Data redundancy - Azure Storage](https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy) · [Scalability and performance targets for standard storage accounts](https://learn.microsoft.com/en-us/azure/storage/common/scalability-targets-standard-account)",
+    "statements": [
+      "Azure Storage 계정에 저장된 데이터는 자동으로 최소 세 개의 복사본을 갖는다.",
+      "Azure Storage 계정에 복사된 모든 데이터는 다른 Azure 데이터센터에 자동으로 백업된다.",
+      "Azure Storage 계정에는 데이터 2TB와 파일 100만 개까지 담을 수 있다."
+    ]
+  },
+  "425": {
+    "stem": "다음 각 설명이 참이면 **예**, 아니면 **아니요**를 선택하세요.",
+    "expl": "Azure 종량제(Pay-As-You-Go) 가격은 소비 기반 운영 지출(OpEx)이고, 전기 요금은 지속적인 운영 비용이며, 자체 데이터센터를 구축하는 것은 자본 지출(CapEx)입니다.",
+    "statements": [
+      "Azure 종량제 가격은 CapEx의 예다.",
+      "데이터센터 전기 요금을 내는 것은 OpEx의 예다.",
+      "자체 데이터센터를 구축하는 것은 CapEx의 예다."
+    ]
+  },
+  "426": {
+    "stem": "Azure 구독에 배포할 타사 가상 보안 어플라이언스를 구매해야 합니다.\n\n무엇을 사용해야 합니까?",
+    "expl": "Azure Marketplace는 파트너 방화벽을 비롯한 네트워크 보안 제품 등 Azure에 배포할 타사 가상 네트워크 보안 어플라이언스를 제공합니다.\n\n**Learn more:** [Best practices for network security - Microsoft Azure](https://learn.microsoft.com/en-us/azure/security/fundamentals/network-best-practices)",
+    "choices": ["Azure 구독", "Microsoft Defender for Cloud", "Azure Marketplace", "Microsoft Store"]
+  },
+  "427": {
+    "stem": "문장을 올바르게 완성하는 답을 선택하세요.",
+    "expl": "Azure Policy 이니셔티브(정책 집합)는 관련된 Azure Policy 정의를 묶어 함께 할당하고 관리할 수 있게 합니다.\n\n**Learn more:** [Azure Policy initiative definition structure](https://learn.microsoft.com/en-us/azure/governance/policy/concepts/initiative-definition-structure)",
+    "blanks": [
+      { "label": "Azure Policy 이니셔티브 정의는", "options": ["정책 정의의 모음", "Azure Policy 정의 할당의 모음", "Azure Blueprints 정의의 그룹", "역할 기반 액세스 제어(RBAC) 역할 할당의 그룹"] }
+    ]
+  },
+  "428": {
+    "stem": "다음 각 설명이 참이면 예, 아니면 아니요를 선택하세요.",
+    "expl": "ExpressRoute는 인바운드 데이터 전송을 포함합니다. 종량(Metered) 데이터 플랜은 아웃바운드 전송에 과금하고 무제한(Unlimited) 플랜은 이를 포함합니다. 같은 Azure 지역 내 Azure 서비스 간 데이터 전송에는 추가 데이터 전송 요금이 부과되지 않습니다.\n\n**Learn more:** [Plan and manage costs for Azure ExpressRoute](https://learn.microsoft.com/en-us/azure/expressroute/plan-manage-cost) · [Azure Bandwidth pricing](https://azure.microsoft.com/en-us/pricing/details/bandwidth/)",
+    "statements": [
+      "Azure ExpressRoute 연결을 사용할 때 온프레미스 네트워크에서 Azure로 들어오는 인바운드 데이터 트래픽은 항상 무료다.",
+      "Azure에서 온프레미스 네트워크로 나가는 아웃바운드 데이터 트래픽은 항상 무료다.",
+      "같은 Azure 지역 내 Azure 서비스 간 데이터 트래픽은 항상 무료다."
+    ]
+  },
+  "429": {
+    "stem": "다음 각 설명이 참이면 **예**, 아니면 **아니요**를 선택하세요.",
+    "expl": "Microsoft Entra ID 활동 로그는 진단 설정을 통해 Azure Monitor 로그로 보내 분석할 수 있습니다. Azure Monitor는 액세스와 데이터 수집을 구성하면 여러 구독의 리소스 텔레메트리를 한곳에 모읍니다. 또한 모니터링 데이터를 평가해 알림이나 자동 작업을 트리거하는 경고 규칙도 지원합니다.\n\n**Learn more:** [Configure Microsoft Entra diagnostic settings for activity logs](https://learn.microsoft.com/en-us/entra/identity/monitoring-health/howto-configure-diagnostic-settings) · [Overview of Azure Monitor alerts](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-overview)",
+    "statements": [
+      "Azure Active Directory(Azure AD) 활동 로그가 Azure Monitor에 표시되도록 구성할 수 있다.",
+      "Azure Monitor에서 여러 Azure 구독의 리소스를 모니터링할 수 있다.",
+      "Azure Monitor에서 경고를 만들 수 있다."
+    ]
+  },
+  "430": {
+    "stem": "IaaS(서비스형 인프라) 클라우드 서비스 모델에서 클라우드 서비스 공급자가 책임지는 구성 요소 두 가지는 무엇입니까? 각 정답은 완전한 솔루션입니다.\n\n> **참고:** 각 정답은 1점입니다.",
+    "expl": "IaaS에서 클라우드 공급자는 물리 호스트(하드웨어)와 물리 데이터센터 및 그 보안을 포함한 기반 물리 인프라를 관리합니다. 고객은 게스트 운영 체제, 구성과 설정, 네트워크 제어를 계속 책임집니다.\n\n**Learn more:** [Shared responsibility in the cloud](https://learn.microsoft.com/en-us/azure/security/fundamentals/shared-responsibility)",
+    "choices": [
+      "저장소 구성과 유지 관리",
+      "운영 체제 설치와 구성",
+      "하드웨어 유지 관리",
+      "네트워크 구성",
+      "데이터센터 인프라의 물리 보안"
+    ]
+  },
+  "431": {
+    "stem": "어떤 클라우드 서비스 유형에서 운영 체제를 설치할 수 있습니까?",
+    "expl": "IaaS(서비스형 인프라)는 가상화된 인프라를 제공하므로 고객이 운영 체제를 설치·관리합니다. PaaS와 SaaS에서는 클라우드 공급자가 운영 체제를 관리합니다.",
+    "choices": [
+      "서비스형 인프라(IaaS)만",
+      "서비스형 플랫폼(PaaS)만",
+      "서비스형 소프트웨어(SaaS)만",
+      "서비스형 인프라(IaaS)와 서비스형 플랫폼(PaaS)만",
+      "서비스형 플랫폼(PaaS)과 서비스형 소프트웨어(SaaS)만"
+    ]
+  },
+  "432": {
+    "stem": "SaaS(서비스형 소프트웨어) 모델에서 고객이 제공하는 것은 무엇입니까?",
+    "expl": "SaaS에서는 서비스 공급자가 애플리케이션 소프트웨어, 컴퓨팅 리소스, 데이터 저장소를 제공하고 관리합니다. 고객은 서비스가 처리할 애플리케이션 데이터를 제공합니다.",
+    "choices": ["애플리케이션 데이터", "데이터 저장소", "컴퓨팅 리소스", "애플리케이션 소프트웨어"]
+  }
+}

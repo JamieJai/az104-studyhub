@@ -1,0 +1,108 @@
+{
+  "273": {
+    "stem": "다음 각 설명이 참이면 예, 아니면 아니요를 선택하세요.",
+    "expl": "클라우드 서비스는 인터넷에 연결된 브라우저 세션으로 관리합니다. Azure Portal은 웹 기반 관리 콘솔이므로 별도의 관리 애플리케이션이 필요 없으며, 최신 브라우저의 현재 버전을 지원합니다.\n\n**Learn more:** [Supported browsers and devices for Azure portal](https://learn.microsoft.com/en-us/azure/azure-portal/azure-portal-supported-browsers-devices)",
+    "statements": [
+      "클라우드 서비스를 관리하려면 인터넷 연결이 있어야 한다.",
+      "클라우드 서비스를 관리하려면 관리 앱을 설치해야 한다.",
+      "최신 웹 브라우저라면 어디서든 클라우드 서비스를 관리할 수 있다."
+    ]
+  },
+  "274": {
+    "stem": "RG1이라는 Azure Resource Manager 리소스 그룹을 만듭니다.\n\nRG1의 리소스가 실수로 삭제되는 것을 막아야 합니다. 어떤 설정을 사용해야 합니까?\n\n[[IMG1]]",
+    "expl": "Azure 리소스 잠금은 실수로 인한 삭제를 막습니다. RG1 리소스 그룹 범위에 삭제 잠금을 적용하면 리소스 그룹과 그 안의 리소스가 삭제로부터 보호되며, 잠금은 **잠금(Locks)** 설정에서 관리합니다.\n\n**Learn more:** [Lock your Azure resources to protect your infrastructure](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/lock-resources)",
+    "answerText": "![Answer image](images/1785598106218-a9em4ilb.jpg)"
+  },
+  "275": {
+    "stem": "문장을 올바르게 완성하는 옵션을 선택하세요.",
+    "expl": "Azure 하이브리드 혜택을 쓰면 Software Assurance가 유효한 적격 Windows Server·SQL Server 라이선스를 Azure 가상 머신에 적용해 Azure 라이선스 비용을 줄일 수 있습니다.\n\n**Learn more:** [Azure Hybrid Benefit](https://azure.microsoft.com/pricing/hybrid-benefit/)",
+    "blanks": [
+      { "label": "Windows Server 또는 Microsoft SQL Server 라이선스가 다음에 포함되어 있다면", "options": ["최종 사용자 사용권 계약(EULA)", "Microsoft 수명 주기 정책", "Software Assurance"] }
+    ]
+  },
+  "276": {
+    "stem": "클라우드 컴퓨팅의 이점을 해당 설명과 연결하세요.\n\n각 이점은 한 번, 여러 번 사용하거나 전혀 사용하지 않을 수 있습니다.",
+    "expl": "확장성은 부하 변화에 맞춰 리소스를 늘리거나 줄여 컴퓨팅 용량을 키웁니다. 고가용성은 일시적 장애에도 필요한 가동 시간을 유지해 체감 가동 중단을 최소화합니다. 지리적 분산은 지리적으로 흩어진 사용자 가까이에 서비스를 배포해 대기 시간을 줄이고 사용자 경험을 개선합니다. 재해 복구는 이런 설명이 아니라 대규모 재해 이후의 복구에 해당합니다.\n\n**Learn more:** [What are business continuity, high availability, and disaster recovery?](https://learn.microsoft.com/en-us/azure/reliability/concept-business-continuity-high-availability-disaster-recovery) · [Geode pattern](https://learn.microsoft.com/en-us/azure/architecture/patterns/geodes)",
+    "items": ["재해 복구", "지리적 분산", "고가용성", "확장성"],
+    "slots": [
+      "클라우드 앱의 컴퓨팅 용량을 늘린다.",
+      "눈에 띄는 가동 중단 없이 끊김 없는 사용자 경험을 제공한다.",
+      "사용자가 있는 모든 지역에 앱을 배포해 사용자가 항상 최상의 경험을 하도록 한다."
+    ]
+  },
+  "277": {
+    "stem": "Azure 가상 네트워크의 기능은 무엇입니까?",
+    "expl": "Azure 가상 네트워크는 Azure 안에 격리된 사설 네트워크 경계를 만들고 서브넷으로 분할해 리소스 간 통신을 제어할 수 있게 합니다.",
+    "choices": ["리소스 비용 분석", "패킷 검사", "지역 중복성", "격리와 분할"]
+  },
+  "278": {
+    "stem": "이 문항은 밑줄 친 텍스트가 올바른지 평가하는 문제입니다.\n\nAzure Germany는 독일 법적 거주자만 사용할 수 있습니다.\n\n지침: 밑줄 친 텍스트를 검토하세요. 문장이 올바르면 `변경 필요 없음`을 선택하고, 틀렸다면 문장을 올바르게 만드는 답을 선택하세요.",
+    "expl": "Azure Germany는 독일 데이터센터에 고객 데이터를 두고 독일 법에 따른 통제를 제공하던 주권 클라우드 제품이었습니다. 목적은 데이터를 독일 안에 두어야 하는 요구를 충족하는 것이지 독일 법적 거주자로 사용을 제한하는 것이 아니었습니다. 이 레거시 Azure Germany 서비스는 이후 종료되었습니다.\n\n**Learn more:** [Microsoft Cloud Germany C5 compliance offering](https://learn.microsoft.com/en-us/compliance/regulatory/offering-c5-germany) · [Microsoft Entra authentication and national clouds](https://learn.microsoft.com/en-in/entra/identity-platform/authentication-national-cloud)",
+    "choices": [
+      "변경 필요 없음",
+      "독일에 등록된 기업만",
+      "독일에 본사를 둔 파트너에게서 Azure 라이선스를 구매한 기업만",
+      "데이터를 독일 안에 두어야 하는 모든 사용자나 기업"
+    ]
+  },
+  "279": {
+    "stem": "문장을 올바르게 완성하는 옵션을 선택하세요.",
+    "expl": "프리미엄 블록 Blob 저장소 계정은 로컬 중복 저장소(LRS)와 영역 중복 저장소(ZRS)만 지원하며, 지역 중복 옵션(GRS, GZRS)은 이 계정 유형에서 사용할 수 없습니다. ZRS는 일부 Azure 지역에만 제공되지만 LRS는 프리미엄 블록 Blob을 만들 수 있는 모든 곳에서 사용할 수 있으므로, 이 계정 유형이 반드시 지원하는 옵션은 LRS입니다.\n\n**Learn more:** [Storage account overview - redundancy](https://learn.microsoft.com/en-us/azure/storage/common/storage-account-overview) · [Data redundancy - Azure Storage](https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy)",
+    "blanks": [
+      { "label": "프리미엄 블록 Blob 저장소 계정이 지원하는 것은", "options": ["지역 중복 저장소(GRS)", "지역 영역 중복 저장소(GZRS)", "로컬 중복 저장소(LRS)", "영역 중복 저장소(ZRS)"] }
+    ]
+  },
+  "280": {
+    "stem": "솔루션: Azure Cloud Shell을 사용하는 Chrome OS 컴퓨터에서 스크립트를 실행합니다.\n\n이 솔루션이 목표를 충족합니까?",
+    "expl": "Azure Cloud Shell은 브라우저에서 접근하는 터미널로 Azure PowerShell이 설치된 PowerShell 환경을 제공합니다. Google Chrome으로 Cloud Shell에 접근할 수 있으므로 Chrome OS 컴퓨터에서도 Azure 리소스를 만드는 PowerShell 스크립트를 실행할 수 있습니다.\n\n**Learn more:** [What is Azure Cloud Shell?](https://learn.microsoft.com/en-us/azure/cloud-shell/overview) · [Azure Cloud Shell FAQ — Browser support](https://learn.microsoft.com/en-us/azure/cloud-shell/faq-troubleshooting)",
+    "choices": ["예", "아니요"]
+  },
+  "281": {
+    "stem": "솔루션: Azure CLI 도구가 설치된 Linux 컴퓨터에서 스크립트를 실행합니다.\n\n이 솔루션이 목표를 충족합니까?",
+    "expl": "Azure CLI는 Azure PowerShell과 별개입니다. Linux에서 Azure 리소스를 만드는 PowerShell 스크립트를 실행하려면 지원되는 PowerShell 설치와 Azure cmdlet을 제공하는 Az PowerShell 모듈이 필요하며, Azure CLI 도구만으로는 이를 제공하지 못합니다.\n\n**Learn more:** [Install Azure PowerShell on Linux](https://learn.microsoft.com/en-us/powershell/azure/install-azps-linux?view=azps-14.5.0) · [Choose the right Azure command-line tool](https://learn.microsoft.com/en-us/cli/azure/choose-the-right-azure-command-line-tool?view=azure-cli-latest)",
+    "choices": ["예", "아니요"]
+  },
+  "282": {
+    "stem": "솔루션: PowerShell Core 6.0이 설치된 macOS 컴퓨터에서 스크립트를 실행합니다.\n\n이 솔루션이 목표를 충족합니까?",
+    "expl": "PowerShell Core 6.0 자체에는 New-AzVM 같은 리소스 관리 cmdlet을 실행하는 데 필요한 Az PowerShell 모듈이 포함되어 있지 않으며, 이 모듈은 운영 체제와 무관하게 따로 설치해야 합니다. 따라서 PowerShell Core 6.0만 설치되고 Az 모듈 언급이 없는 macOS 컴퓨터는 Azure 리소스를 만드는 스크립트 실행 요구 사항을 충족하지 못합니다.",
+    "choices": ["예", "아니요"]
+  },
+  "283": {
+    "stem": "솔루션: Azure PowerShell 모듈이 설치된 Windows 10 컴퓨터에서 스크립트를 실행합니다.\n\n이 솔루션이 목표를 충족합니까?",
+    "expl": "Azure PowerShell Az 모듈은 Windows에서 지원되며 Azure 리소스를 만들고 관리하는 데 필요한 cmdlet을 제공합니다. 모듈이 설치된 Windows 10 컴퓨터에서는 그런 PowerShell 스크립트를 실행할 수 있습니다.\n\n**Learn more:** [Install Azure PowerShell on Windows](https://learn.microsoft.com/en-us/powershell/azure/install-azps-windows?view=azps-15.5.0)",
+    "choices": ["예", "아니요"]
+  },
+  "284": {
+    "stem": "Azure 구독과 Windows 10 디바이스 100대가 있습니다.\n\n최신 보안 패치가 설치된 디바이스의 사용자만 Azure Active Directory(Azure AD) 통합 애플리케이션에 접근할 수 있게 해야 합니다.\n\n무엇을 구현해야 합니까?",
+    "expl": "Microsoft Entra 조건부 액세스 정책은 선택한 통합 애플리케이션에 대한 액세스를 허용하기 전에 디바이스가 규정을 준수하는 것으로 표시되도록 요구할 수 있습니다. Intune 디바이스 규정 준수 요구 사항으로 허용되는 Windows 업데이트 수준을 적용하고 그 결과를 Microsoft Entra ID에 보고하면, 조건부 액세스가 이를 근거로 액세스를 허용하거나 차단합니다.\n\n**Learn more:** [Conditional Access: Grant](https://learn.microsoft.com/en-us/entra/identity/conditional-access/concept-conditional-access-grant) · [Require healthy and compliant devices with Intune](https://learn.microsoft.com/en-us/microsoft-365/solutions/manage-devices-with-intune-require-compliance?view=o365-worldwide)",
+    "choices": ["조건부 액세스 정책", "Azure Bastion", "Azure Firewall", "Azure Policy"]
+  },
+  "285": {
+    "stem": "다음 각 설명이 참이면 **예**, 아니면 **아니요**를 선택하세요.",
+    "expl": "Azure 가격은 지역에 따라 다를 수 있습니다. Azure 예약은 약정 기간에 대해 할인된 청구를 제공하고 조건에 맞는 사용량에 적용될 뿐, 특정 데이터센터의 물리적 용량을 예약하지는 않습니다. Azure SQL Database 서버리스는 유휴 시 자동 일시 중지되어 컴퓨팅 비용이 0이 되고 저장소만 과금되지만, Azure SQL Database에는 인스턴스를 수동으로 중지하는 기능이 없습니다.\n\n**Learn more:** [Azure Pricing Overview](https://azure.microsoft.com/en-us/pricing/) · [Save with Azure reservations](https://learn.microsoft.com/en-us/azure/cost-management-billing/reservations/)",
+    "statements": [
+      "Azure 리소스 비용은 지역에 따라 다를 수 있다.",
+      "Azure 예약은 특정 데이터센터의 서버 용량을 예약하는 데 사용된다.",
+      "비용을 줄이기 위해 Azure SQL Database 인스턴스를 중지할 수 있다."
+    ]
+  },
+  "286": {
+    "stem": "HOTSPOT –\n\n답변 영역에서 알맞은 옵션을 선택해 문장을 완성하세요.",
+    "expl": "Microsoft 온라인 서비스 개인정보처리방침은 Microsoft가 처리하는 데이터, 처리 방식, 처리 목적을 설명합니다. 제품 사용 조건은 라이선스·서비스 조건을 정의하고, SLA는 서비스 수준 약정을 명시합니다.\n\n**Learn more:** [Microsoft Privacy Statement](https://privacy.microsoft.com/en-us/privacystatement) · [Privacy & data management overview](https://learn.microsoft.com/en-us/learn/modules/intro-to-data-protection-privacy/)",
+    "blanks": [
+      { "label": "해당 문서는", "options": ["Microsoft 온라인 서비스 개인정보처리방침", "Microsoft 제품 사용 조건", "Microsoft 온라인 서비스 수준 계약", "Microsoft Azure 온라인 구독 계약"] }
+    ]
+  },
+  "287": {
+    "stem": "답변 영역에서 알맞은 옵션을 선택해 문장을 완성하세요.",
+    "expl": "Azure 총소유비용(TCO) 계산기는 온프레미스 인프라 비용과 Azure 비용을 비교하며 전기 요금 절감액도 포함합니다. Azure Migrate는 서버를 평가하고, Database Migration Assistant는 마이그레이션 호환성을 평가하며, Azure 가격 계산기는 Azure 서비스 비용을 추정합니다.\n\n**Learn more:** [Azure ROI Calculator - Microsoft Q&A](https://learn.microsoft.com/en-us/answers/questions/1166229/azure-roi-calculator)",
+    "blanks": [
+      { "label": "정답:", "options": ["Azure Migrate: 서버 평가 도구", "Azure 총소유비용(TCO) 계산기", "Database Migration Assistant", "Azure 가격 계산기"] }
+    ]
+  },
+  "288": {
+    "stem": "규칙에 따라 자동으로 메일 알림을 보내는 온프레미스 애플리케이션이 있습니다.\n\n이 애플리케이션을 Azure로 마이그레이션할 계획입니다.\n\n애플리케이션에 사용할 서버리스 컴퓨팅 솔루션을 추천해야 합니다.\n\n추천에 무엇을 포함해야 합니까?",
+    "expl": "Azure Logic Apps는 규칙 기반 프로세스를 자동화하는 서버리스 이벤트 기반 워크플로 서비스이며 SMTP를 포함한 기본 제공 커넥터로 메일을 보낼 수 있습니다. 따라서 애플리케이션 규칙으로 트리거되는 자동 메일 알림에 적합합니다.\n\n**Learn more:** [Azure serverless overview: Create cloud-based apps and solutions with Azure Logic Apps and Azure Functions](https://learn.microsoft.com/en-us/azure/logic-apps/logic-apps-serverless-overview) · [Connect to your SMTP account from workflows in Azure Logic Apps](https://learn.microsoft.com/en-us/azure/connectors/connectors-create-api-smtp)",
+    "choices": ["웹앱", "Azure Marketplace의 서버 이미지", "논리 앱(logic app)", "API 앱"]
+  }
+}

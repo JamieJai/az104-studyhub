@@ -1,0 +1,129 @@
+{
+  "177": {
+    "stem": "문장을 올바르게 완성하는 답을 선택하세요.",
+    "expl": "Azure Resource Manager 템플릿은 Azure 인프라와 구성을 정의하는 데 사용하는 JSON(JavaScript Object Notation) 파일입니다.\n\n**Learn more:** [Templates overview - Azure Resource Manager](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/overview)",
+    "blanks": [
+      { "label": "Azure Resource Manager(ARM) 템플릿이 사용하는 형식은", "options": ["CSV 형식", "HTML 형식", "JSON 형식", "XML 형식"] }
+    ]
+  },
+  "178": {
+    "stem": "다음 각 설명이 참이면 **예**, 아니면 **아니요**를 선택하세요.",
+    "expl": "Azure RBAC 역할은 사용자, 그룹, 서비스 주체, 관리 ID에 할당할 수 있으므로 액세스 권한 부여가 Azure AD 사용자로만 제한되지 않습니다. Microsoft Entra ID는 클라우드·하이브리드·외부 ID를 지원합니다. Microsoft Entra ID가 인증과 ID 액세스 관리를 제공하고, Azure RBAC가 Azure 리소스에 대한 액세스를 승인합니다.\n\n**Learn more:** [What is Azure role-based access control (Azure RBAC)?](https://learn.microsoft.com/en-us/azure/role-based-access-control/overview) · [What is Microsoft Entra?](https://learn.microsoft.com/en-us/entra/fundamentals/what-is-entra)",
+    "statements": [
+      "Azure 리소스에 대한 액세스 권한은 Azure Active Directory(Azure AD) 사용자에게만 부여할 수 있다.",
+      "Azure Active Directory(Azure AD), 타사 클라우드 서비스, 온프레미스 Active Directory에 저장된 ID로 Azure 리소스에 접근할 수 있다.",
+      "Azure에는 Azure 리소스에 안전하게 접근할 수 있게 하는 인증·권한 부여 서비스가 기본 제공된다."
+    ]
+  },
+  "179": {
+    "stem": "한 회사가 Azure에 인공지능(AI) 솔루션을 배포할 계획입니다.\n\n예측 분석 솔루션을 만들고 테스트하고 배포하려면 무엇을 사용해야 합니까?",
+    "expl": "Azure Machine Learning 디자이너는 끌어서 놓기 방식으로 종단 간 머신러닝 파이프라인을 만들 수 있게 해 주며 예측 모델의 학습·테스트·배포를 지원합니다.\n\n**Learn more:** [What is Designer (v1)? - Azure Machine Learning](https://learn.microsoft.com/en-in/azure/machine-learning/concept-designer?preserve-view=true&view=azureml-api-1)",
+    "choices": ["Azure Logic Apps", "Azure Machine Learning 디자이너", "Azure Batch", "Azure Cosmos DB"]
+  },
+  "180": {
+    "stem": "각 Azure 서비스를 올바른 설명과 연결하세요.\n\n각 서비스는 한 번, 여러 번 사용하거나 전혀 사용하지 않을 수 있습니다.",
+    "expl": "Azure IoT Hub는 클라우드 IoT 애플리케이션과 연결된 디바이스 사이의 양방향 통신을 제공합니다. Azure IoT Central은 IoT 자산을 대규모로 연결·모니터링·관리하는 완전 관리형 SaaS 솔루션입니다. Azure Sphere는 하드웨어, 소프트웨어, 클라우드 보안 서비스로 구성되어 통신·보안 기능을 기본 제공하는 통합 보안 IoT 플랫폼입니다.\n\n**Learn more:** [What is Azure IoT Hub?](https://learn.microsoft.com/en-us/azure/iot-hub/iot-concepts-and-iot-hub) · [What is Azure IoT Central?](https://learn.microsoft.com/en-us/azure/iot-central/core/overview-iot-central)",
+    "items": ["Azure Sphere", "IoT Central", "IoT Hub"],
+    "slots": [
+      "IoT 디바이스와 Azure 사이에 양방향 통신을 제공하는 관리형 서비스",
+      "IoT 디바이스를 대규모로 연결·모니터링·관리하는 완전 관리형 SaaS 솔루션",
+      "IoT 디바이스에 통신·보안 기능을 제공하는 소프트웨어·하드웨어 솔루션"
+    ]
+  },
+  "181": {
+    "stem": "RG1이라는 리소스 그룹이 있는 Azure 구독이 있습니다.\n\n사용자가 다음 작업을 **할 수 없어야** 합니다.\n\n- RG1 삭제\n- RG1의 리소스 수정\n- RG1에서 리소스 삭제\n\n무엇을 해야 합니까?",
+    "expl": "리소스 그룹 범위의 읽기 전용 관리 잠금은 그룹 안의 리소스로 상속되며 읽기 작업만 허용합니다. 리소스 그룹과 그 리소스의 업데이트·삭제를 모두 막으며, 삭제 잠금만으로는 수정이 여전히 허용됩니다.\n\n**Learn more:** [Lock your Azure resources to protect your infrastructure](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/lock-resources)",
+    "choices": [
+      "RG1에 삭제 잠금을 적용합니다.",
+      "RG1에 읽기 전용 잠금을 적용합니다.",
+      "RG1에 역할 기반 액세스 제어(RBAC) 권한을 부여합니다.",
+      "RG1에 태그를 추가합니다."
+    ]
+  },
+  "182": {
+    "stem": "SLA가 99.95퍼센트인 Azure 웹앱과 SLA가 99.99퍼센트인 Azure SQL 데이터베이스로 구성된 애플리케이션이 있습니다.\n\n이 애플리케이션의 복합 SLA는",
+    "expl": "두 서비스에 모두 의존하는 복합 애플리케이션은 두 서비스가 모두 정상일 때만 사용할 수 있으므로, SLA는 두 가용성 확률의 곱인 99.95% × 99.99% ≈ 99.94%입니다.",
+    "blanks": [
+      { "label": "복합 SLA는:", "options": ["두 SLA의 곱인 99.94퍼센트", "애플리케이션과 연관된 가장 낮은 SLA인 99.95퍼센트", "애플리케이션과 연관된 가장 높은 SLA인 99.99퍼센트", "두 SLA의 차이인 0.05퍼센트"] }
+    ]
+  },
+  "183": {
+    "stem": "답변 영역에서 알맞은 옵션을 선택해 문장을 완성하세요.",
+    "expl": "Microsoft 서비스 신뢰 포털(Service Trust Portal)은 Microsoft 클라우드 규정 준수 자료를 제공하며, 이 문제의 기준에서는 Compliance Manager도 여기에 포함됩니다.\n\n**Learn more:** [Get started with the Microsoft Service Trust Portal](https://learn.microsoft.com/en-us/compliance/assurance/stp-get-started)",
+    "blanks": [
+      { "label": "Compliance Manager에 접근할 수 있는 곳은", "options": ["Azure Active Directory 관리 센터", "Azure Portal", "Microsoft 365 관리 센터", "Microsoft 서비스 신뢰 포털"] }
+    ]
+  },
+  "184": {
+    "stem": "회사가 Azure로의 서버 배포를 자동화할 계획입니다.\n\n관리자는 배포 중에 관리 자격 증명이 노출될까 우려합니다.\n\n배포 중에 관리 자격 증명을 암호화하는 Azure 솔루션을 추천해야 합니다. 추천에 무엇을 포함해야 합니까?",
+    "expl": "Azure Key Vault는 관리자 암호 같은 비밀을 안전하게 저장·관리하므로, 배포 프로세스가 배포 파일이나 스크립트에 자격 증명을 노출하지 않고 가져올 수 있습니다.\n\n**Learn more:** [Azure Key Vault Keys, Secrets, and Certificates Overview](https://learn.microsoft.com/en-us/azure/key-vault/general/about-keys-secrets-certificates)",
+    "choices": ["Azure Key Vault", "Azure Information Protection", "Azure Security Center", "Azure 다단계 인증(MFA)"]
+  },
+  "185": {
+    "stem": "문장을 올바르게 완성하는 답을 선택하세요.",
+    "expl": "Azure Container Instances는 필요할 때 서버리스로 컨테이너를 실행하는 Azure 컴퓨팅 기능입니다.\n\n**Learn more:** [What is Azure Container Instances?](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-overview)",
+    "blanks": [
+      { "label": "Azure 컨테이너 인스턴스는 Azure의 어떤 서비스 예입니까?", "options": ["컴퓨팅 서비스", "ID 서비스", "네트워킹 서비스", "저장소 서비스"] }
+    ]
+  },
+  "186": {
+    "stem": "온프레미스에 가상 머신 50대, Azure에 가상 머신 50대를 호스트하고 있습니다. 온프레미스 가상 머신은 Azure 가상 머신과 연결됩니다.\n\n이것은 어떤 클라우드 모델 유형입니까?",
+    "expl": "하이브리드 클라우드는 온프레미스 인프라와 Azure 같은 퍼블릭 클라우드 서비스를 결합해 두 환경이 연결을 통해 함께 동작하는 모델입니다.\n\n**Learn more:** [Hosting applications on Azure — Hybrid cloud](https://learn.microsoft.com/en-us/azure/developer/intro/hosting-apps-on-azure)",
+    "choices": ["하이브리드", "프라이빗", "퍼블릭"]
+  },
+  "187": {
+    "stem": "다음 각 설명이 참이면 **예**, 아니면 **아니요**를 선택하세요.",
+    "expl": "Azure NSG는 서브넷이나 네트워크 인터페이스(NIC)에 연결할 수 있고 필요하면 둘 다에 연결할 수 있습니다. 가상 네트워크 자체는 NSG 연결 대상이 아니며, 연결은 그 가상 네트워크 안의 개별 서브넷에 합니다.\n\n**Learn more:** [How network security groups filter network traffic](https://learn.microsoft.com/en-us/azure/virtual-network/network-security-group-how-it-works) · [Create, change, or delete Azure Network Security Groups](https://learn.microsoft.com/en-us/azure/virtual-network/manage-network-security-group)",
+    "statements": [
+      "네트워크 보안 그룹(NSG)을 가상 네트워크 서브넷에 연결할 수 있다.",
+      "네트워크 보안 그룹(NSG)을 가상 네트워크에 연결할 수 있다.",
+      "네트워크 보안 그룹(NSG)을 네트워크 인터페이스에 연결할 수 있다."
+    ]
+  },
+  "188": {
+    "stem": "회사에 Microsoft SQL Server 라이선스를 포함한 Software Assurance 계약이 있습니다.\n\nAzure 가상 머신에 SQL Server를 배포할 계획입니다.\n\n이 배포의 라이선스 비용을 최소화하려면 무엇을 해야 합니까?",
+    "expl": "Azure 하이브리드 혜택을 쓰면 Software Assurance가 유효한 적격 SQL Server 코어 라이선스를 Azure 가상 머신의 SQL Server에 적용할 수 있어, 라이선스 포함 종량제 모델보다 SQL Server 라이선스 비용이 줄어듭니다.\n\n**Learn more:** [Change the License Model for a SQL VM in Azure](https://learn.microsoft.com/en-us/azure/azure-sql/virtual-machines/windows/licensing-model-azure-hybrid-benefit-ahb-change?view=azuresql-vm) · [What is centrally managed Azure Hybrid Benefit for SQL Server?](https://learn.microsoft.com/en-us/azure/cost-management-billing/scope-level/overview-azure-hybrid-benefit-scope)",
+    "choices": [
+      "업무 외 시간에 가상 머신을 할당 취소합니다.",
+      "Azure 하이브리드 혜택을 사용합니다.",
+      "Azure Cost Management 예산을 구성합니다.",
+      "Azure 예약을 사용합니다."
+    ]
+  },
+  "189": {
+    "stem": "HOTSPOT -\n\nAzure 환경에 웹앱이 10개 있습니다. 모든 Azure 리소스를 관리하려면 어떤 URL을 사용해야 합니까?",
+    "expl": "Azure Portal은 Azure 리소스를 관리하는 웹 기반 인터페이스이며 URL은 `https://portal.azure.com`입니다.\n\n**Learn more:** [Microsoft Azure portal documentation](https://learn.microsoft.com/en-us/azure/azure-portal/azure-portal-overview)",
+    "blanks": [
+      { "label": "https://", "options": ["admin.", "portal.", "www."] },
+      { "label": "com", "options": ["azure.", "azurewebsites.", "microsoft."] }
+    ]
+  },
+  "190": {
+    "stem": "다음 각 설명이 참이면 **예**, 아니면 **아니요**를 선택하세요.",
+    "expl": "비공개 미리 보기는 선택된 고객으로 제공 범위를 제한할 뿐 별도의 포털을 쓰라는 일률적인 요구는 없습니다. 공개 미리 보기는 평가용이며 프로덕션 워크로드에는 권장되지 않고 일반적인 SLA 적용도 받지 않습니다.\n\n**Learn more:** [Microsoft Entra ID preview program information](https://learn.microsoft.com/en-gb/entra/fundamentals/licensing-preview-info) · [Azure AI Search pricing tiers](https://learn.microsoft.com/en-us/azure/search/search-sku-tier)",
+    "statements": [
+      "비공개 미리 보기 상태의 모든 Azure 서비스는 별도의 Azure 포털로 접근해야 한다.",
+      "공개 미리 보기 상태의 Azure 서비스는 프로덕션 환경에서 사용할 수 있다.",
+      "공개 미리 보기 상태의 Azure 서비스에는 서비스 수준 계약(SLA)이 적용된다."
+    ]
+  },
+  "191": {
+    "stem": "클라우드 컴퓨팅의 이점을 해당 요구 사항과 연결하세요.\n\n각 이점은 한 번, 여러 번 사용하거나 전혀 사용하지 않을 수 있습니다.",
+    "expl": "탄력성은 애플리케이션 수요에 따라 리소스를 동적으로 조정하게 합니다. 재해 복구는 백업·복구 기능으로 장애 후 리소스를 복원합니다. 민첩성은 애플리케이션 요구가 바뀔 때 리소스를 빠르게 배포·구성할 수 있게 합니다.",
+    "items": ["민첩성", "탄력성", "재해 복구"],
+    "slots": [
+      "클라우드 앱이 사용할 수 있는 리소스를 동적으로 조정하는 능력",
+      "장애가 발생했을 때 클라우드 기반 백업 서비스로 리소스를 복원하는 능력",
+      "앱 요구 사항이 바뀔 때 클라우드 기반 리소스를 빠르게 배포·구성하는 능력"
+    ]
+  },
+  "192": {
+    "stem": "다음 각 설명이 참이면 **예**, 아니면 **아니요**를 선택하세요.",
+    "expl": "Azure 예약은 적격 VM 컴퓨팅 비용을 종량제 요금보다 낮춥니다. VM 크기만으로 월 비용이 정해지지는 않는데, 지역이나 연결된 리소스 같은 요소도 가격에 영향을 주기 때문입니다. 중지·할당 취소된 VM은 컴퓨팅 요금이 부과되지 않지만 관리 디스크 등 남아 있는 저장소에는 요금이 계속 부과됩니다.",
+    "statements": [
+      "Azure 예약을 사용하면 종량제 가격보다 가상 머신 비용이 적게 든다.",
+      "B2S 크기를 사용하는 Azure 가상 머신 두 대는 월 비용이 동일하다.",
+      "Azure 가상 머신을 중지해도 해당 가상 머신의 저장소 비용은 계속 부과된다."
+    ]
+  }
+}

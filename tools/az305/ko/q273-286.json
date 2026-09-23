@@ -1,0 +1,93 @@
+{
+  "273": {
+    "stem": "온프레미스 MySQL 데이터베이스를 Azure Database for MySQL 유연한 서버로 마이그레이션할 계획입니다.\n\nAzure Database for MySQL 유연한 서버의 구성 솔루션을 추천해야 합니다. 솔루션은 다음 요구 사항을 충족해야 합니다.\n\n- 데이터센터에 장애가 나도 데이터베이스에 계속 접근할 수 있어야 합니다.\n- 비용을 최소화해야 합니다.\n\n어떤 컴퓨팅 계층을 추천해야 합니까?",
+    "expl": "영역 중복 고가용성은 다른 영역의 대기 서버를 사용해 가용성 영역·데이터센터 장애에 대응합니다. Burstable 계층은 고가용성을 지원하지 않습니다. General Purpose는 프로덕션 워크로드와 고가용성을 지원하면서 Memory Optimized 계층의 추가 메모리 용량과 비용이 들지 않습니다.\n\n**Learn more:** [High availability concepts in Azure Database for MySQL - Flexible Server](https://learn.microsoft.com/en-us/azure/mysql/flexible-server/concepts-high-availability) · [Azure Database for MySQL - Flexible Server service tiers](https://learn.microsoft.com/en-us/azure/mysql/flexible-server/concepts-service-tiers-storage)",
+    "choices": ["Burstable", "General Purpose", "Memory Optimized"]
+  },
+  "274": {
+    "stem": "Azure 구독에서 새로 배포되는 모든 Azure Resource Manager(ARM) 리소스에 대한 월간 보고서를 만드는 솔루션을 추천해야 합니다.\n\n추천에 무엇을 포함해야 합니까?",
+    "expl": "Azure 활동 로그는 Azure Resource Manager 제어 평면의 배포 작업을 기록합니다. 활동 로그를 Log Analytics 작업 영역으로 보내면 이벤트가 `AzureActivity` 테이블에 저장되어 조회할 수 있고, 이를 바탕으로 월간 배포 보고서를 만들 수 있습니다.\n\n**Learn more:** [Azure Monitor activity log](https://learn.microsoft.com/en-us/azure/azure-monitor/platform/activity-log)",
+    "choices": ["Application Insights", "Azure Analysis Services", "Azure Advisor", "Azure Log Analytics"]
+  },
+  "275": {
+    "stem": "데이터베이스 보존 요구 사항을 충족하는 솔루션을 추천해야 합니다.\n\n무엇을 추천해야 합니까?",
+    "expl": "Azure SQL Database 장기 보존(LTR) 정책은 데이터베이스 백업을 별도의 Azure Blob 저장소에 설정한 주별·월별·연도별 기간 동안 최대 10년까지 자동으로 보존합니다. 장기 데이터베이스 보존 요구 사항을 그대로 충족합니다.\n\n**Learn more:** [Manage Azure SQL Database long-term backup retention](https://learn.microsoft.com/en-us/azure/azure-sql/database/long-term-backup-retention-configure?view=azuresql)",
+    "choices": [
+      "데이터베이스에 장기 보존 정책을 구성합니다.",
+      "Azure Site Recovery를 구성합니다.",
+      "Azure SQL Database 자동 백업을 사용합니다.",
+      "데이터베이스의 지역 복제를 구성합니다."
+    ]
+  },
+  "276": {
+    "stem": "여러 Azure 클라우드 서비스를 포함하고 트랜잭션의 각 부분을 관리하는 영업 애플리케이션을 만들고 있습니다. 별도의 클라우드 서비스가 고객 주문, 청구, 결제, 재고, 배송을 처리합니다.\n\n클라우드 서비스들이 XML 메시지로 트랜잭션 정보를 비동기적으로 주고받을 수 있는 솔루션을 추천해야 합니다.\n\n추천에 무엇을 포함해야 합니까?",
+    "expl": "Azure Service Bus는 큐와 게시/구독 토픽으로 서비스를 분리하는 관리형 엔터프라이즈 메시지 브로커입니다. 비동기 저장·전달 통신을 지원하며 메시지 페이로드에 XML로 인코딩한 구조화 데이터를 담을 수 있습니다.\n\n**Learn more:** [What is Azure Service Bus?](https://learn.microsoft.com/en-gb/azure/service-bus-messaging/service-bus-messaging-overview) · [Asynchronous messaging patterns and high availability](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-async-messaging)",
+    "choices": ["Azure Service Bus", "Azure Data Lake", "Azure Traffic Manager", "Azure Blob Storage"]
+  },
+  "277": {
+    "stem": "Azure 구독이 있습니다.\n\nLinux 노드를 사용하는 Azure Kubernetes Service(AKS) 솔루션을 추천해야 합니다. 솔루션은 다음 요구 사항을 충족해야 합니다.\n\n- 스케일 아웃 시 컴퓨팅 리소스를 프로비저닝하는 데 걸리는 시간을 최소화해야 합니다.\n- Linux 컨테이너의 자동 크기 조정을 지원해야 합니다.\n- 관리 작업을 최소화해야 합니다.\n\n어떤 크기 조정 옵션을 추천해야 합니까?",
+    "expl": "AKS 가상 노드는 Azure Container Instances로 파드를 빠르게 프로비저닝하므로 클러스터 자동 크기 조정기가 VM 컴퓨팅 노드를 배포할 때까지 기다리지 않아도 됩니다. Linux 파드와 노드에서 지원되며, 서버리스 컨테이너 인프라라 노드 관리 부담도 줄어듭니다.\n\n**Learn more:** [Use virtual nodes with Azure Kubernetes Service (AKS)](https://learn.microsoft.com/en-us/azure/aks/virtual-nodes)",
+    "choices": ["수평 파드 자동 크기 조정기", "클러스터 자동 크기 조정기", "가상 노드(virtual nodes)", "Virtual Kubelet"]
+  },
+  "278": {
+    "stem": "한 회사가 고객이 주문 상태를 확인할 수 있는 웹앱용 HTTP 기반 API를 구현할 계획입니다.\n\nAPI는 다음을 만족해야 합니다.\n\n- Azure Functions를 사용해야 합니다.\n- 공개된 읽기 전용 작업을 제공해야 합니다.\n- 쓰기 작업을 차단해야 합니다.\n\n구성할 HTTP 메서드와 권한 부여 수준을 추천하세요.",
+    "expl": "Azure Functions HTTP 트리거는 메서드를 GET으로 제한해 쓰기 작업을 제외하고 읽기 요청만 허용할 수 있습니다. 익명(Anonymous) 권한 부여 수준은 액세스 키가 필요 없으므로 엔드포인트를 공개할 수 있습니다.\n\n**Learn more:** [Azure Functions HTTP trigger](https://learn.microsoft.com/en-us/azure/azure-functions/functions-bindings-http-webhook-trigger)",
+    "blanks": [
+      { "label": "HTTP 메서드:", "options": ["API 메서드", "GET만", "GET과 POST만", "GET, POST, OPTIONS만"] },
+      { "label": "권한 부여 수준:", "options": ["Function", "Anonymous", "Admin"] }
+    ]
+  },
+  "279": {
+    "stem": "Blob이 여러 개 있는 Blob 컨테이너가 포함된 Azure 구독이 있습니다.\n\n회사 재무 부서의 사용자 10명이 4월 한 달 동안 이 Blob에 접근할 계획입니다.\n\n4월에만 Blob에 접근할 수 있게 하는 솔루션을 추천해야 합니다.\n\n추천에 어떤 보안 솔루션을 포함해야 합니까?",
+    "expl": "공유 액세스 서명(SAS)은 Blob 컨테이너와 Blob을 포함한 Azure Storage 리소스에 대해 위임된 세분화 액세스를 제공합니다. 권한과 유효 기간을 설정할 수 있으므로 4월에만 액세스가 시작되고 만료되도록 할 수 있습니다.\n\n**Learn more:** [Grant limited access to Azure Storage resources using shared access signatures (SAS)](https://learn.microsoft.com/en-us/azure/storage/common/storage-sas-overview)",
+    "choices": ["공유 액세스 서명(SAS)", "조건부 액세스 정책", "인증서", "액세스 키"]
+  },
+  "280": {
+    "stem": "Azure 구독이 있습니다.\n\n다음 요구 사항을 충족하는 관계형 데이터베이스를 배포해야 합니다.\n\n- 읽기 전용 복제본을 여러 개 지원해야 합니다.\n- 읽기 전용 요청을 모든 읽기 전용 복제본에 자동으로 부하 분산해야 합니다.\n- 관리 작업을 최소화해야 합니다.\n\n무엇을 사용해야 합니까?",
+    "expl": "Azure SQL Database Hyperscale은 읽기 확장을 위한 명명된 복제본을 여러 개 지원하고 읽기 전용 워크로드를 그 복제본들에 분산할 수 있습니다. 따라서 Hyperscale 서비스 계층의 단일 Azure SQL 데이터베이스가 복제본·읽기 전용 부하 분산 요구 사항을 충족하는 관리형·저관리 옵션입니다.\n\n**Learn more:** [Azure SQL Database Hyperscale service tier overview](https://learn.microsoft.com/en-us/azure/azure-sql/database/service-tier-hyperscale?view=azuresql) · [Scale out with read-only replicas - Azure SQL Database](https://learn.microsoft.com/en-us/azure/azure-sql/database/read-scale-out?view=azuresql)",
+    "blanks": [
+      { "label": "서비스", "options": ["단일 Azure SQL 데이터베이스", "Azure SQL Database 탄력적 풀", "Azure SQL Managed Instance"] },
+      { "label": "서비스 계층", "options": ["Business Critical", "Hyperscale", "Premium"] }
+    ]
+  },
+  "281": {
+    "stem": "Azure에서 호스트될 애플리케이션을 설계하고 있습니다.\n\n이 애플리케이션은 50MB에서 12GB 사이의 비디오 파일을 저장합니다. 인증서 기반 인증을 사용하며 인터넷의 사용자에게 제공됩니다.\n\n비디오 파일을 위한 저장소 옵션을 추천해야 합니다. 솔루션은 저장 비용을 최소화하면서 가장 빠른 읽기 성능을 제공해야 합니다.\n\n무엇을 추천해야 합니까?",
+    "expl": "Azure Blob Storage는 대량의 비구조화 데이터에 최적화되어 있고 HTTP/HTTPS로 파일을 분산 제공하거나 비디오·오디오를 스트리밍하도록 설계되었습니다. 블록 Blob은 액세스 계층을 지원하므로 파일의 접근 패턴에 맞춰 저장 비용을 최적화하면서 온라인 계층에서는 즉시 가져올 수 있습니다.\n\n**Learn more:** [Introduction to Azure Blob Storage](https://learn.microsoft.com/en-us/azure/storage/blobs/storage-blobs-introduction) · [Access tiers for blob data](https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-overview)",
+    "choices": ["Azure Files", "Azure Data Lake Storage Gen2", "Azure Blob Storage", "Azure SQL Database"]
+  },
+  "282": {
+    "stem": "Fabrikam, Inc.는 런던에 본사를 두고 암스테르담, 베를린, 로마에 지사를 둔 엔지니어링 회사입니다.\n\n네트워크에는 Active Directory 포리스트가 두 개 있습니다. `corp.fabrikam.com`은 내부 사용자·컴퓨터 인증을 위한 프로덕션 포리스트이고, `rd.fabrikam.com`은 R&D 전용이며 온프레미스 리소스로만 제한됩니다. 두 포리스트 사이에 트러스트 관계는 없습니다.\n\nFabrikam은 대부분의 프로덕션 워크로드를 Azure로 옮기고 곧 있을 Microsoft 365 배포를 위해 하이브리드 ID 모델을 구축할 계획입니다. R&D 운영은 온프레미스에 남습니다.\n\n기술 요구 사항: 사용자는 항상 `corp.fabrikam.com` UPN ID로 인증해야 합니다. Azure와 온프레미스 네트워크 간 링크에 장애가 나도 Azure AD와 `corp.fabrikam.com` 간 디렉터리 동기화가 계속되어야 합니다.\n\n보안 요구 사항: 정책, 템플릿, 데이터를 포함한 회사 정보는 사외 인원이 접근할 수 없어야 합니다. 관리자는 `corp.fabrikam.com` 자격 증명으로 Azure Portal에 인증할 수 있어야 하며, 모든 관리 목적 Azure Portal 액세스에는 다단계 인증(MFA)을 사용해야 합니다.\n\nFabrikam의 인증 요구 사항을 충족하려면 솔루션에 다음을 포함해야 합니다.",
+    "expl": "Microsoft Entra ID 테넌트 하나로 `corp.fabrikam.com` 프로덕션 포리스트와 Microsoft 365를 위한 하이브리드 ID를 제공할 수 있습니다. R&D 포리스트는 온프레미스에 남으므로 테넌트가 필요 없습니다. 조건부 액세스 정책 하나는 Azure 관리에 접근하는 관리 역할에 MFA를 요구하고, 다른 정책은 사외에서의 회사 클라우드 정보 접근을 제한합니다.\n\n**Learn more:** [Hybrid identity documentation](https://learn.microsoft.com/en-us/entra/identity/hybrid/) · [Require MFA for administrators with Conditional Access](https://learn.microsoft.com/en-us/entra/identity/conditional-access/policy-old-require-mfa-admin)",
+    "blanks": [
+      { "label": "Azure AD 테넌트의 최소 개수:", "options": ["0", "1", "2", "3", "4"] },
+      { "label": "만들 조건부 액세스 정책의 최소 개수:", "options": ["0", "1", "2", "3", "4"] }
+    ]
+  },
+  "283": {
+    "stem": "MG1이라는 관리 그룹이 있는 Azure AD 테넌트가 있습니다.\n\n다음 표의 Azure 구독이 있습니다.\n\n[[IMG1]]\n\n구독에는 다음 표의 리소스 그룹이 있습니다.\n\n[[IMG2]]\n\n구독에는 다음 표의 Azure AD 보안 그룹이 있습니다.\n\n[[IMG3]]\n\n구독에는 다음 표의 사용자 계정이 있습니다.\n\n[[IMG4]]\n\n다음 작업을 수행합니다.\n\n- User3에게 Sub1의 참여자(Contributor) 역할을 할당합니다.\n- Group1에게 MG1의 가상 머신 참여자(Virtual Machine Contributor) 역할을 할당합니다.\n- Group3에게 테넌트 루트 그룹의 참여자(Contributor) 역할을 할당합니다.\n\n다음 각 설명이 참이면 예, 아니면 아니요를 선택하세요.",
+    "expl": "관리 그룹이나 테넌트 루트 그룹에서 할당한 Azure RBAC 권한은 하위 범위로 상속되고, 중첩 그룹을 통한 역할 할당도 전이적으로 적용됩니다. User1은 MG1의 Group1을 통해 가상 머신 참여자 권한을 상속하므로 RG1에 가상 머신을 만들 수 있습니다. User2는 Group2가 Group3에 속해 참여자를 상속하지만, 참여자는 Azure RBAC 역할 할당을 만들 수 없습니다. User3도 테넌트 루트 그룹의 Group3을 통해 참여자를 상속하므로 RG2에 저장소 계정을 만들 수 있습니다.\n\n**Learn more:** [What is Azure role-based access control (Azure RBAC)?](https://learn.microsoft.com/en-us/azure/role-based-access-control/overview) · [Understand scope for Azure RBAC](https://learn.microsoft.com/en-us/azure/role-based-access-control/scope-overview)",
+    "statements": [
+      "User1은 RG1에 새 가상 머신을 만들 수 있다.",
+      "User2는 Group2에 권한을 부여할 수 있다.",
+      "User3은 RG2에 저장소 계정을 만들 수 있다."
+    ]
+  },
+  "284": {
+    "stem": "Azure 구독에서 새로 배포되는 모든 Azure Resource Manager(ARM) 리소스를 다루는 월간 보고서를 생성하는 솔루션을 추천해야 합니다.\n\n추천에 무엇을 포함해야 합니까?",
+    "expl": "Azure 활동 로그는 리소스 만들기와 배포 관련 이벤트를 포함한 Azure Resource Manager 제어 평면 작업을 기록합니다. 이 데이터를 Azure Log Analytics 작업 영역으로 보내면 월 단위로 조회해 새 배포 보고서를 만들 수 있습니다.\n\n**Learn more:** [Activity log in Azure Monitor](https://learn.microsoft.com/en-us/azure/azure-monitor/platform/activity-log) · [Monitor Azure Resource Manager](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/monitor-resource-manager)",
+    "choices": ["Azure Log Analytics", "Azure Arc", "Azure Monitor 메트릭", "Azure Monitor 작업 그룹(action group)"]
+  },
+  "285": {
+    "stem": "Oracle 데이터베이스를 사용하는 App1이라는 온프레미스 애플리케이션이 있습니다.\n\nAzure Databricks로 App1의 데이터를 변환해 Azure Synapse Analytics 인스턴스로 로드할 계획입니다.\n\nApp1 데이터를 Databricks에서 사용할 수 있게 해야 합니다.\n\n솔루션에 포함해야 하는 Azure 서비스 두 가지는 무엇입니까? 각 정답은 솔루션의 일부입니다.\n\n**참고:** 각 정답은 1점입니다.",
+    "expl": "Azure Data Factory는 Oracle 데이터베이스에서 데이터를 복사할 수 있으며, 온프레미스 데이터 저장소에는 자체 호스팅 통합 런타임으로 연결합니다. Azure Data Lake Storage는 복사한 데이터를 Azure Databricks가 접근·변환한 뒤 Azure Synapse Analytics로 로드할 수 있는 확장 가능한 저장소 계층을 제공합니다.\n\n**Learn more:** [Copy data from and to Oracle by using Azure Data Factory or Azure Synapse Analytics](https://learn.microsoft.com/en-us/azure/data-factory/connector-oracle) · [Connect to Azure Data Lake Storage and Blob Storage](https://learn.microsoft.com/en-us/azure/databricks/connect/storage/azure-storage)",
+    "choices": ["Azure Data Box Gateway", "Azure Import/Export 서비스", "Azure Data Lake Storage", "Azure Data Box Edge", "Azure Data Factory"]
+  },
+  "286": {
+    "stem": "SQL1이라는 온프레미스 Microsoft SQL Server 데이터베이스가 있습니다.\n\nSQL1을 Azure로 마이그레이션할 계획입니다.\n\n다음 요구 사항을 충족하는 SQL1의 호스팅 솔루션을 추천하세요.\n\n- 읽기 전용 보조 복제본을 여러 개 배포할 수 있어야 합니다.\n- 주 복제본과 보조 복제본 간 자동 복제를 지원해야 합니다.\n- 복구 시간 목표(RTO) 15분 안에 주 복제본과 보조 복제본 간 장애 조치를 지원해야 합니다.\n\n솔루션에 무엇을 포함해야 합니까?",
+    "expl": "Hyperscale은 읽기 전용 보조 복제본을 제공합니다. 활성 지역 복제(active geo-replication)는 주 데이터베이스를 읽기 가능한 지역 보조 복제본으로 지속적·비동기적으로 복제하며 최대 4개의 지역 보조 복제본을 지원하고 보조 복제본으로의 장애 조치를 허용합니다.\n\n**Learn more:** [Active geo-replication - Azure SQL Database](https://learn.microsoft.com/en-us/azure/azure-sql/database/active-geo-replication-overview?view=azuresql) · [Hyperscale secondary replicas - Azure SQL Database](https://learn.microsoft.com/en-us/azure/azure-sql/database/service-tier-hyperscale-replicas?view=azuresql)",
+    "blanks": [
+      { "label": "Azure 서비스 또는 서비스 계층:", "options": ["Azure SQL Database", "Azure SQL Managed Instance", "Hyperscale 서비스 계층"] },
+      { "label": "복제 메커니즘:", "options": ["활성 지역 복제(active geo-replication)", "자동 장애 조치 그룹", "표준 지역 복제"] }
+    ]
+  }
+}

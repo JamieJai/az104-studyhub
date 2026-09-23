@@ -1,0 +1,108 @@
+{
+  "401": {
+    "stem": "다음 각 설명이 참이면 **예**, 아니면 **아니요**를 선택하세요.",
+    "expl": "프리미엄 파일 공유는 프리미엄 FileStorage 계정 유형을, 프리미엄 블록 Blob은 프리미엄 BlockBlobStorage 계정 유형을 사용합니다. StorageV2는 프리미엄 계정 유형이 아니라 표준 범용 v2 계정 유형을 가리킵니다.\n\n**Learn more:** [Overview of Azure Storage accounts](https://learn.microsoft.com/en-us/azure/storage/common/storage-account-overview) · [Create an Azure storage account](https://learn.microsoft.com/en-us/azure/storage/common/storage-account-create)",
+    "statements": [
+      "프리미엄 저장소 계정은 Azure 파일 공유로 구성할 수 있다.",
+      "프리미엄 저장소 계정은 블록 Blob 저장소로 구성할 수 있다.",
+      "프리미엄 저장소 계정은 StorageV2 저장소로 구성할 수 있다."
+    ]
+  },
+  "402": {
+    "stem": "HOTSPOT —\n\nHot Area:",
+    "expl": "Azure Resource Manager는 표준 전제 조건(필요한 종속 리소스도 함께 이동, 같은 Microsoft Entra 테넌트의 구독 사용 등)을 충족하면 가상 머신을 다른 구독으로 옮기는 것을 지원합니다. 같은 리소스 그룹에 있어야 한다거나 Windows Server 2019를 실행해야 한다는 일반적인 요건은 없습니다.\n\n**Learn more:** [Move Azure resources to a new resource group or subscription](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/move-resource-group-and-subscription) · [Azure virtual machine move and migration FAQ](https://learn.microsoft.com/en-us/troubleshoot/azure/virtual-machines/windows/move-vm-resources-faq)",
+    "blanks": [
+      { "label": "정답:", "options": ["가상 머신을 새 구독으로 옮길 수 없다.", "가상 머신을 새 구독으로 옮길 수 있다.", "모두 같은 리소스 그룹에 있을 때만 가상 머신을 새 구독으로 옮길 수 있다.", "Windows Server 2019를 실행할 때만 가상 머신을 새 구독으로 옮길 수 있다."] }
+    ]
+  },
+  "403": {
+    "stem": "Azure 환경에서 관리형 Microsoft SQL Server 인스턴스를 여러 개 만들려다가 Azure 구독 한도를 늘려야 한다는 알림을 받았습니다.\n\n한도를 늘리려면 무엇을 해야 합니까?",
+    "expl": "지역별 서브넷·vCore 용량 한도 같은 Azure SQL Managed Instance 구독 한도는 서비스·구독 할당량에 대한 Azure 지원 요청을 제출해 늘립니다.\n\n**Learn more:** [Request quota increases for Azure SQL Database and SQL Managed Instance](https://learn.microsoft.com/en-us/azure/azure-sql/database/quota-increase-request?view=azuresql) · [Resource limits for Azure SQL Managed Instance](https://learn.microsoft.com/en-us/azure/azure-sql/managed-instance/resource-limits?view=azuresql)",
+    "choices": ["서비스 상태 경고를 만든다", "지원 플랜을 업그레이드한다", "Azure 정책을 수정한다", "새 지원 요청을 만든다"]
+  },
+  "404": {
+    "stem": "다음 각 설명이 참이면 **예**, 아니면 **아니요**를 선택하세요.",
+    "expl": "SSO는 한 번 로그인해 여러 애플리케이션에 접근하게 하며 다양한 인증 방법을 쓸 수 있어 Microsoft Authenticator가 반드시 필요하지는 않습니다. 인증은 ID를 확인하는 것이고, 인증된 사용자나 서비스의 액세스 수준을 정하는 것은 권한 부여입니다. 조건부 액세스는 로그인 과정의 상황 신호를 평가해 액세스 결정을 내리고 적용합니다.\n\n**Learn more:** [What is single sign-on in Microsoft Entra ID?](https://learn.microsoft.com/en-us/entra/identity/enterprise-apps/what-is-single-sign-on) · [Authentication vs. authorization](https://learn.microsoft.com/en-us/entra/identity-platform/authentication-vs-authorization)",
+    "statements": [
+      "Single Sign-On(SSO)을 쓰려면 모든 사용자가 Microsoft Authenticator 앱으로 로그인해야 한다.",
+      "인증은 인증된 사용자나 서비스가 어느 수준의 액세스를 갖는지 정하는 과정이다.",
+      "조건부 액세스는 로그인 과정에서 사용자로부터 수집한 신호로 액세스 요청을 허용할지 거부할지 결정한다."
+    ]
+  },
+  "405": {
+    "stem": "Azure 가상 머신 5대의 이벤트 정보를 수집·분석할 계획입니다.\n\n모든 가상 머신에서 수집한 이벤트 정보를 비교하는 쿼리를 실행해야 합니다.\n\n어떤 두 가지 도구를 사용해야 합니까? 각 정답은 솔루션의 일부입니다.\n\n**참고:** 각 정답은 1점입니다.",
+    "expl": "Azure Monitor는 Azure 가상 머신의 모니터링 데이터를 Azure Monitor 로그로 수집합니다. Log Analytics에서는 그 데이터를 대상으로 KQL 로그 쿼리를 작성·실행할 수 있고, Log Analytics 작업 영역을 범위로 지정하면 그 작업 영역으로 데이터를 보내는 모든 머신의 데이터를 쿼리에 포함할 수 있습니다.\n\n**Learn more:** [Overview of Log Analytics in Azure Monitor](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/log-analytics-overview) · [Monitor virtual machines with Azure Monitor: Analyze monitoring data](https://learn.microsoft.com/en-us/azure/azure-monitor/vm/monitor-virtual-machine-analyze)",
+    "choices": ["Azure Service Health", "Azure Service Bus", "Azure Monitor", "Azure Advisor", "Log Analytics"]
+  },
+  "407": {
+    "stem": "다음 각 설명이 참이면 **예**, 아니면 **아니요**를 선택하세요.",
+    "expl": "가용성 영역은 Azure 지역 안에서 데이터센터 장애를 격리하므로 영역에 분산 배포한 워크로드는 계속 사용할 수 있습니다. 다만 지역 전체 장애로부터는 보호하지 못하며, 그러려면 지역 간 재해 복구 설계가 필요합니다. Azure 관리 디스크는 영역 중복 저장소(ZRS)를 지원해 디스크를 가용성 영역에 동기 복제하므로 영역·데이터센터 장애를 견딜 수 있습니다.\n\n**Learn more:** [What are Azure availability zones?](https://learn.microsoft.com/en-ie/azure/reliability/availability-zones-overview) · [Redundancy options for Azure managed disks](https://learn.microsoft.com/en-us/azure/virtual-machines/disks-redundancy)",
+    "statements": [
+      "Azure 가용성 영역으로 Azure 가상 머신을 데이터센터 장애로부터 보호할 수 있다.",
+      "Azure 가용성 영역으로 Azure 가상 머신을 지역 장애로부터 보호할 수 있다.",
+      "Azure 가용성 영역으로 Azure 관리 디스크를 데이터센터 장애로부터 보호할 수 있다."
+    ]
+  },
+  "408": {
+    "stem": "보안 정보 이벤트 관리(SIEM) 솔루션으로 사용할 수 있는 Azure 서비스는 무엇입니까?",
+    "expl": "Microsoft Sentinel(이전 Azure Sentinel)은 Microsoft의 클라우드 네이티브 SIEM 솔루션으로 보안 이벤트 수집, 위협 탐지, 조사, 대응, 선제적 헌팅을 제공합니다.\n\n**Learn more:** [What is Microsoft Sentinel SIEM?](https://learn.microsoft.com/en-us/azure/sentinel/overview)",
+    "choices": ["Azure Analysis Services", "Azure Sentinel", "Azure Information Protection", "Azure Cognitive Services"]
+  },
+  "409": {
+    "stem": "네트워크에 사용자 계정 5,000개를 포함한 Active Directory 포리스트가 있습니다.\n\n회사는 모든 네트워크 리소스를 Azure로 마이그레이션하고 온프레미스 데이터센터를 폐기할 계획입니다.\n\n마이그레이션 후 사용자에게 미치는 영향을 최소화하는 솔루션을 추천해야 합니다.\n\n무엇을 추천해야 합니까?",
+    "expl": "온프레미스 Active Directory 계정을 Azure AD로 동기화하면 사용자의 클라우드 ID가 만들어지고 유지됩니다. 암호 해시 동기화를 쓰면 사용자가 기존 암호로 Azure 리소스에 접근할 수 있어 마이그레이션 중 로그인 혼란이 최소화됩니다. Microsoft Entra Connect는 온프레미스 Active Directory의 사용자, 그룹, ID 정보를 Microsoft Entra ID로 동기화하도록 설계되었습니다.\n\n**Learn more:** [Directory synchronization with Microsoft Entra ID](https://learn.microsoft.com/en-us/entra/architecture/sync-directory) · [Microsoft Entra Connect Sync: Understand and customize synchronization](https://learn.microsoft.com/en-us/entra/identity/hybrid/connect/how-to-connect-sync-whatis)",
+    "choices": [
+      "Azure 다단계 인증(MFA)을 구현한다",
+      "모든 Active Directory 사용자 계정을 Azure Active Directory(Azure AD)로 동기화한다",
+      "모든 사용자에게 암호를 변경하라고 안내한다",
+      "각 사용자에 대해 Azure Active Directory(Azure AD)에 게스트 사용자 계정을 만든다"
+    ]
+  },
+  "410": {
+    "stem": "Azure Cost Management를 사용하려면 무엇이 필요합니까?",
+    "expl": "Azure Cost Management는 종량제 구독에서 기본으로 제공되며 기업 계약이 필요하지 않습니다. 적격 구독 유형에서는 자동으로 사용할 수 있고 청구 모델과 무관하게 비용 관리 기능을 제공합니다.",
+    "choices": ["개발/테스트 구독", "Software Assurance", "기업 계약(EA)", "종량제 구독"]
+  },
+  "411": {
+    "stem": "다음 각 설명이 참이면 **예**, 아니면 **아니요**를 선택하세요.",
+    "expl": "Azure PowerShell은 macOS에서도 사용할 수 있습니다. Azure Cloud Shell은 브라우저에서 실행되므로 Linux에서도 접근할 수 있습니다. Azure Portal은 브라우저 기반이라 Windows 외의 장치와 운영 체제도 지원합니다.\n\n**Learn more:** [Install the Azure Az PowerShell module](https://learn.microsoft.com/en-us/powershell/azure/install-azps-macos?view=azps-14.6.0) · [Azure Cloud Shell overview](https://learn.microsoft.com/en-us/azure/cloud-shell/overview)",
+    "statements": [
+      "Azure PowerShell 모듈은 macOS에 설치할 수 있다.",
+      "Azure Cloud Shell은 Linux 컴퓨터의 웹 브라우저에서 접근할 수 있다.",
+      "Azure Portal은 Windows 장치에서만 접근할 수 있다."
+    ]
+  },
+  "412": {
+    "stem": "Azure 가상 머신에 서비스를 배포할 계획입니다.\n\n데이터센터에 장애가 발생해도 서비스를 계속 사용할 수 있어야 합니다.\n\n가상 머신 배포에 무엇을 포함해야 합니까?",
+    "expl": "가용성 영역은 Azure 지역 안에서 전원·냉각·네트워크가 독립된 물리적으로 분리된 데이터센터 그룹입니다. 가상 머신을 여러 영역에 배포하면 데이터센터 전체 장애에도 복원력을 갖습니다. 가용성 집합은 데이터센터 수준의 공유 인프라 장애에 대해 같은 수준의 보호를 제공하지 않습니다.\n\n**Learn more:** [What are availability zones?](https://learn.microsoft.com/en-ie/azure/reliability/availability-zones-overview) · [Availability sets overview - Azure Virtual Machines](https://learn.microsoft.com/en-us/azure/virtual-machines/availability-set-overview)",
+    "choices": ["가용성 집합", "근접 배치 그룹", "호스트 그룹", "가용성 영역"]
+  },
+  "413": {
+    "stem": "다음 각 설명이 참이면 예, 아니면 아니요를 선택하세요.",
+    "expl": "비공개 미리 보기는 초대된 고객으로 제한됩니다. 공개 미리 보기는 Azure 고객이 평가용으로 사용할 수 있고, 일반 공급은 일부 고객으로 제한되는 것이 아니라 널리 제공되며 지원됩니다.\n\n**Learn more:** [Microsoft Entra ID preview program information](https://learn.microsoft.com/en-gb/entra/fundamentals/licensing-preview-info) · [Azure Firewall preview features](https://learn.microsoft.com/en-us/azure/firewall/firewall-preview)",
+    "statements": [
+      "비공개 미리 보기 상태의 Azure 서비스는 모든 Azure 고객에게 출시된다.",
+      "공개 미리 보기 상태의 Azure 서비스는 모든 Azure 고객에게 출시된다.",
+      "일반 공급 상태의 Azure 서비스는 일부 Azure 고객에게만 출시된다."
+    ]
+  },
+  "414": {
+    "stem": "Azure 구독에 가상 머신이 여러 대 있습니다. 새 구독을 만듭니다.\n\n답변 영역에서 알맞은 옵션을 선택해 문장을 완성하세요.",
+    "expl": "Azure Resource Manager는 가상 머신을 다른 구독으로 옮기는 것을 지원합니다. 이동할 때 연관 리소스가 필요할 수 있고 두 구독이 같은 Microsoft Entra 테넌트에 있어야 하지만, 같은 리소스 그룹이거나 Windows Server 2016을 실행해야 한다는 제한은 없습니다.\n\n**Learn more:** [Move resources to a new resource group or subscription](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/move-resource-group-and-subscription)",
+    "blanks": [
+      { "label": "정답:", "options": ["가상 머신을 새 구독으로 옮길 수 없다.", "가상 머신을 새 구독으로 옮길 수 있다.", "모두 같은 리소스 그룹에 있을 때만 가상 머신을 새 구독으로 옮길 수 있다.", "Windows Server 2016을 실행할 때만 가상 머신을 새 구독으로 옮길 수 있다."] }
+    ]
+  },
+  "415": {
+    "stem": "문장을 올바르게 완성하는 옵션을 선택하세요.",
+    "expl": "Azure 리소스는 보통 정해진 지리적 영역 안에 배치된 데이터센터 집합인 Azure 지역에 배포합니다. 지리(geography)는 더 넓은 경계이고 데이터센터는 개별 시설입니다.\n\n**Learn more:** [Azure regions and geographies](https://learn.microsoft.com/en-us/azure/reliability/regions-overview)",
+    "blanks": [
+      { "label": "많은 Azure 리소스에서 지정해야 하는 것은", "options": ["지리(geography)", "지역(region)", "데이터센터", "도시"] }
+    ]
+  },
+  "416": {
+    "stem": "Azure 가상 머신이 여러 대 있는 Azure 환경이 있습니다.\n\n온프레미스 네트워크의 클라이언트 컴퓨터가 Azure 가상 머신과 통신할 수 있는 솔루션을 구현할 계획입니다.\n\n계획된 솔루션에 필요한 Azure 리소스를 추천해야 합니다.\n\n추천에 포함해야 하는 Azure 리소스 두 가지는 무엇입니까? 각 정답은 솔루션의 일부입니다.\n\n**참고:** 각 정답은 1점입니다.",
+    "expl": "사이트 간 VPN 솔루션은 가상 네트워크 게이트웨이로 온프레미스 네트워크와 Azure를 연결합니다. 이 게이트웨이는 `GatewaySubnet`이라는 전용 서브넷에 배포해야 하며, Azure는 가상 네트워크 게이트웨이를 구성하려면 이 서브넷을 요구합니다.\n\n**Learn more:** [Tutorial: Create a site-to-site VPN connection in the Azure portal](https://learn.microsoft.com/en-us/azure/vpn-gateway/tutorial-site-to-site-portal) · [Azure VPN Gateway FAQ](https://learn.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-vpn-faq)",
+    "choices": ["가상 네트워크 게이트웨이", "부하 분산 장치", "애플리케이션 게이트웨이", "가상 네트워크", "게이트웨이 서브넷"]
+  }
+}

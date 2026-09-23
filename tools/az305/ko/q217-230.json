@@ -1,0 +1,110 @@
+{
+  "217": {
+    "stem": "여러 Azure 클라우드 서비스를 포함하고 트랜잭션의 각 구성 요소를 관리하는 영업 애플리케이션을 개발하고 있습니다. 각 클라우드 서비스가 고객 주문, 청구, 결제, 재고, 배송을 처리합니다.\n\n클라우드 서비스들이 XML 메시지로 트랜잭션 정보를 비동기적으로 주고받을 수 있는 솔루션을 추천해야 합니다.\n\n추천에 무엇을 포함해야 합니까?",
+    "expl": "Azure Queue Storage는 분산 애플리케이션 구성 요소 간에 주고받는 메시지를 위한 내구성 있는 큐를 제공하므로, 각 서비스가 트랜잭션 정보를 비동기적으로 독립 처리할 수 있습니다. 큐 메시지에는 XML 페이로드를 담을 수 있습니다.\n\n**Learn more:** [Introduction to Azure Queue Storage](https://learn.microsoft.com/en-us/azure/storage/queues/storage-queues-introduction) · [Reliability in Azure Queue Storage](https://learn.microsoft.com/en-us/azure/reliability/reliability-storage-queue)",
+    "choices": ["Azure Application Gateway", "Azure Data Lake", "Azure Queue Storage", "Azure Blob Storage"]
+  },
+  "218": {
+    "stem": "다음 표의 Azure 리소스가 있습니다.\n\n[[IMG1]]\n\n모든 Azure Firewall 배포에 적용할 필수 규칙을 담은 새 Azure Firewall 정책을 배포해야 합니다. 새 정책은 기존 정책들의 부모 정책으로 구성됩니다.\n\n추가로 만들어야 하는 Azure Firewall 정책의 최소 개수는 몇 개입니까?",
+    "expl": "Azure Firewall 정책 계층에서는 부모 정책과 자식 정책이 같은 지역에 있어야 합니다. 기존 자식 정책이 미국 중부, 미국 동부, 서유럽에 있으므로 그 세 지역마다 별도의 부모 정책이 필요합니다.\n\n**Learn more:** [What is Azure Firewall Manager? | Microsoft Learn](https://learn.microsoft.com/en-us/azure/firewall/central-management) · [Use Azure Firewall policy to define a rule hierarchy | Microsoft Learn](https://learn.microsoft.com/en-us/azure/firewall-manager/rule-hierarchy)",
+    "choices": ["0", "1", "2", "3"]
+  },
+  "219": {
+    "stem": "App1을 Azure로 옮길 계획입니다.\n\n보안·규정 준수 요구 사항을 충족하는 App1의 저장소 솔루션을 추천해야 합니다.\n\n어떤 저장소 유형을 추천하고 저장소를 어떻게 구성해야 합니까?",
+    "expl": "표준 범용 v2는 Azure Blob Storage 변경 불가능 저장소 정책을 지원하므로 데이터를 WORM 상태로 유지해 설정한 보존 기간 동안 수정·삭제할 수 없게 합니다. 계층적 네임스페이스를 사용하도록 설정하면 파일·디렉터리 계층과 ACL 기반 액세스 제어를 포함한 Azure Data Lake Storage 기능을 얻습니다. NFSv3는 사용하도록 설정한 계정에서 변경 불가능 저장소 정책이 지원되지 않으므로 적합하지 않습니다.\n\n**Learn more:** [Create a storage account for Azure Data Lake Storage](https://learn.microsoft.com/en-us/azure/storage/blobs/create-data-lake-storage-account) · [Azure Data Lake Storage hierarchical namespace](https://learn.microsoft.com/en-us/azure/storage/blobs/data-lake-storage-namespace)",
+    "blanks": [
+      { "label": "저장소 계정 유형:", "options": ["프리미엄 페이지 Blob", "프리미엄 파일 공유", "표준 범용 v2"] },
+      { "label": "구성:", "options": ["NFSv3", "대용량 파일 공유", "계층적 네임스페이스"] }
+    ]
+  },
+  "220": {
+    "stem": "SQL 데이터베이스 솔루션을 설계하고 있습니다. 솔루션에는 각각 20GB이고 사용 패턴이 서로 다른 데이터베이스 20개가 포함됩니다.\n\n데이터베이스를 호스트할 데이터베이스 플랫폼을 추천해야 합니다. 솔루션은 다음 요구 사항을 충족해야 합니다.\n\n- 가동 시간 99.99% 서비스 수준 계약(SLA)을 충족해야 합니다.\n- 데이터베이스에 할당된 컴퓨팅 리소스를 동적으로 확장해야 합니다.\n- 예약 용량(reserved capacity)을 포함해야 합니다.\n\n컴퓨팅 요금을 최소화해야 합니다.\n\n[[IMG1]]\n\n추천에 무엇을 포함해야 합니까?",
+    "expl": "Azure SQL Database 탄력적 풀은 사용 패턴이 다양하고 예측하기 어려운 데이터베이스들이 프로비저닝된 컴퓨팅 리소스 풀을 공유하게 해 주므로, 20개 데이터베이스를 각각 최대 수요에 맞춰 크기를 잡는 비용을 피할 수 있습니다. 워크로드 변화에 따라 풀 컴퓨팅을 조정할 수 있고, 프로비저닝된 Azure SQL Database 컴퓨팅에는 예약 용량 할인을 적용할 수 있습니다. Azure SQL Database 서버리스는 컴퓨팅을 자동으로 확장하지만 예약 할인 대상이 아닙니다.\n\n**Learn more:** [Resource Management in Dense Elastic Pools - Azure SQL Database](https://learn.microsoft.com/en-us/azure/azure-sql/database/elastic-pool-resource-management?view=azuresql) · [How a reservation discount is applied to Azure SQL Database](https://learn.microsoft.com/en-us/azure/cost-management-billing/reservations/understand-reservation-charges)",
+    "choices": [
+      "Azure SQL 데이터베이스 20개를 포함하는 탄력적 풀",
+      "가용성 집합의 Azure 가상 머신에서 실행되는 Microsoft SQL Server의 데이터베이스 20개",
+      "Azure 가상 머신에서 실행되는 Microsoft SQL Server의 데이터베이스 20개",
+      "Azure SQL Database 서버리스 인스턴스 20개"
+    ]
+  },
+  "221": {
+    "stem": "Windows Server 2019를 실행하는 가상 머신 300대가 있는 Azure 구독이 있습니다.\n\n가상 머신 시스템 로그의 모든 경고 이벤트를 중앙에서 모니터링해야 합니다.\n\n솔루션에 무엇을 포함해야 합니까?",
+    "expl": "Log Analytics 작업 영역은 중앙에서 쿼리하고 모니터링하는 데 사용하는 Azure Monitor 로그 데이터 저장소입니다. Azure Monitor 에이전트는 데이터 수집 규칙으로 구성하면 각 가상 머신에서 Windows 시스템 이벤트 로그 데이터를 수집하므로 경고 이벤트를 중앙에서 모니터링할 수 있습니다.\n\n**Learn more:** [Azure Monitor Agent overview](https://learn.microsoft.com/en-us/azure/azure-monitor/agents/azure-monitor-agent-overview) · [Collect Windows event log data sources with Azure Monitor Agent](https://learn.microsoft.com/en-us/azure/azure-monitor/vm/data-collection-windows-events)",
+    "blanks": [
+      { "label": "Azure에 만들 리소스:", "options": ["이벤트 허브", "Log Analytics 작업 영역", "검색 서비스", "저장소 계정"] },
+      { "label": "가상 머신에서 수행할 구성:", "options": ["이벤트 구독 만들기", "지속적 배달 구성", "Azure Monitor 에이전트 설치", "Event Log Readers 그룹 멤버 자격 수정"] }
+    ]
+  },
+  "222": {
+    "stem": "App1이라는 웹앱을 온프레미스 데이터센터에서 Azure로 마이그레이션할 계획입니다.\n\nApp1은 호스트 서버에 설치된 사용자 지정 COM 구성 요소에 의존합니다.\n\nAzure에서 App1을 호스트하는 솔루션을 추천해야 합니다. 솔루션은 다음 요구 사항을 충족해야 합니다.\n\n- Azure 데이터센터를 사용할 수 없게 되어도 사용자가 App1을 계속 사용할 수 있어야 합니다.\n- 비용을 최소화해야 합니다.\n\n추천에 무엇을 포함해야 합니까?",
+    "expl": "가상 머신 확장 집합은 사용자 지정 COM 구성 요소를 설치할 수 있는 서버를 제공하고, Azure Load Balancer가 인스턴스 간 트래픽을 분산합니다. 가용성 영역은 한 Azure 지역 안에서 전원·냉각·네트워크가 독립된 물리적으로 분리된 데이터센터 그룹이므로, 확장 집합을 두 영역에 분산하면 데이터센터·영역 장애로부터 애플리케이션을 보호할 수 있습니다. 두 번째 지역에 솔루션을 복제하는 추가 비용 없이 요구된 가용성 범위를 충족합니다.\n\n**Learn more:** [What are Azure availability zones?](https://learn.microsoft.com/en-ie/azure/reliability/availability-zones-overview) · [Azure Virtual Machine Scale Sets overview](https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/overview)",
+    "choices": [
+      "Azure 지역 두 곳에 부하 분산 장치와 웹앱을 배포합니다.",
+      "Azure 지역 두 곳에 부하 분산 장치와 가상 머신 확장 집합을 배포합니다.",
+      "가용성 영역 두 곳에 걸쳐 부하 분산 장치와 가상 머신 확장 집합을 배포합니다.",
+      "Azure 지역 두 곳에 Azure Traffic Manager 프로필과 웹앱을 배포합니다."
+    ]
+  },
+  "223": {
+    "stem": "회사에 다음 표와 같은 사업부가 있습니다.\n\n[[IMG1]]\n\nSub1에는 App1이라는 Azure App Service 웹앱이 있습니다. App1은 단일 테넌트 사용자 인증에 Azure AD를 사용합니다. contoso.com 사용자는 App1에 인증할 수 있습니다.\n\nfabrikam.com 테넌트의 사용자도 App1에 인증할 수 있게 하는 솔루션을 추천해야 합니다.\n\n무엇을 추천해야 합니까?",
+    "expl": "Azure AD 자격 관리는 Microsoft Entra B2B를 사용해 외부 조직 사용자의 액세스를 관리합니다. fabrikam.com 사용자는 자기 홈 테넌트로 인증하면서 contoso.com 리소스 테넌트에서는 외부 사용자로 표현되고 액세스 패키지를 통해 애플리케이션 액세스를 할당받습니다. 통과 인증, Privileged Identity Management, Identity Protection은 외부 사용자 온보딩과 애플리케이션 액세스 거버넌스를 제공하지 않습니다.\n\n**Learn more:** [Govern access for external users in entitlement management](https://learn.microsoft.com/en-us/entra/id-governance/entitlement-management-external-users) · [Onboard external users to line of business applications using Microsoft Entra B2B](https://learn.microsoft.com/en-us/entra/architecture/11-onboard-external-user)",
+    "choices": [
+      "Azure AD 통과 인증(pass-through authentication)을 사용하도록 설정하고 로그인 엔드포인트를 업데이트합니다.",
+      "Azure AD 자격 관리로 외부 사용자를 관리합니다.",
+      "Azure AD Privileged Identity Management(PIM)로 fabrikam.com 사용자에 대한 할당을 구성합니다.",
+      "Azure AD Identity Protection을 구성합니다."
+    ]
+  },
+  "224": {
+    "stem": "Azure 구독이 있습니다.\n\n온프레미스 네트워크에는 Server1이라는 파일 서버가 있습니다. Server1에는 거의 접근하지 않는 회사 파일 5TB가 있습니다.\n\n이 파일을 Azure Storage에 복사할 계획입니다.\n\n다음 요구 사항을 충족하는 저장소 솔루션을 구현해야 합니다.\n\n- 파일을 요청한 뒤 24시간 안에 사용할 수 있어야 합니다.\n- 저장 비용을 최소화해야 합니다.\n\n이 목표를 충족하는 저장소 솔루션 두 가지는 무엇입니까? 각 정답은 완전한 솔루션입니다.\n\n**참고:** 각 정답은 1점입니다.",
+    "expl": "아카이브(Archive) 액세스 계층은 거의 접근하지 않는 Blob 데이터에 가장 저렴한 계층입니다. 아카이브된 Blob은 최대 15시간 안에 온라인 계층으로 재수화(rehydrate)되므로 24시간 가용성 요구 사항을 충족합니다. Blob Storage 계정과 범용 v2 계정 모두 해당 Blob을 명시적으로 아카이브 계층으로 설정할 수 있으며, 계정의 핫·쿨 기본 계층은 Blob에 계층이 명시되지 않았을 때만 적용됩니다.\n\n**Learn more:** [Access tiers for blob data - Azure Storage](https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-overview) · [Archive a blob - Azure Storage](https://learn.microsoft.com/en-us/azure/storage/blobs/archive-blob)",
+    "choices": [
+      "기본 액세스 계층을 쿨로 구성한 Azure Blob Storage 계정을 만듭니다. Blob 컨테이너를 만들어 파일을 복사한 뒤 각 파일을 아카이브 액세스 계층으로 설정합니다.",
+      "범용 v1 저장소 계정을 만듭니다. Blob 컨테이너를 만들어 파일을 복사합니다.",
+      "기본 액세스 계층을 쿨로 구성한 범용 v2 저장소 계정을 만듭니다. 저장소 계정에 파일 공유를 만들어 파일을 복사합니다.",
+      "기본 액세스 계층을 핫으로 구성한 범용 v2 저장소 계정을 만듭니다. Blob 컨테이너를 만들어 파일을 복사한 뒤 각 파일을 아카이브 액세스 계층으로 설정합니다.",
+      "범용 v1 저장소 계정을 만듭니다. 저장소 계정에 파일 공유를 만들어 파일을 복사합니다."
+    ]
+  },
+  "225": {
+    "stem": "다음 요구 사항을 충족하는 고가용성 Azure SQL 데이터베이스를 설계해야 합니다.\n\n- 데이터베이스 복제본 간 장애 조치 시 데이터 손실이 없어야 합니다.\n- 영역 장애가 발생해도 데이터베이스를 계속 사용할 수 있어야 합니다.\n- 비용을 최소화해야 합니다.\n\n어떤 배포 옵션을 사용해야 합니까?",
+    "expl": "Azure SQL Database Business Critical은 영역 중복을 지원해 기존 동기 복제본을 가용성 영역에 분산합니다. 덕분에 영역 장애 시 커밋된 데이터 손실이 없고 자동 장애 조치로 데이터베이스를 계속 사용할 수 있습니다. General Purpose의 영역 중복과 달리 Business Critical 계층에서는 영역 중복을 켜도 추가 요금이 없고, Basic과 Standard 계층은 영역 중복을 지원하지 않습니다.\n\n**Learn more:** [Reliability in Azure SQL Database](https://learn.microsoft.com/en-us/azure/reliability/reliability-sql-database)",
+    "choices": ["Azure SQL Database Basic", "Azure SQL Database Business Critical", "Azure SQL Database Standard", "Azure SQL Managed Instance General Purpose"]
+  },
+  "226": {
+    "stem": "다음 요구 사항을 충족하는 고가용성 Azure SQL 데이터베이스를 설계해야 합니다.\n\n- 데이터베이스 복제본 간 장애 조치 시 데이터 손실이 없어야 합니다.\n- 영역 장애가 발생해도 데이터베이스를 계속 사용할 수 있어야 합니다.\n- 비용을 최소화해야 합니다.\n\n어떤 배포 옵션을 사용해야 합니까?",
+    "expl": "Azure SQL Database Business Critical은 가용성 영역에 걸친 영역 중복 복제본을 지원합니다. 영역 장애가 나면 완전히 동기화된 복제본으로 장애 조치할 수 있어 커밋된 데이터가 손실되지 않습니다. Business Critical 계층에서는 영역 중복이 기존 복제본을 사용하고 추가 요금도 없어, 이 요구 사항에서는 Business Critical 관리 인스턴스보다 비용 효율적입니다.\n\n**Learn more:** [Reliability in Azure SQL Database](https://learn.microsoft.com/en-us/azure/reliability/reliability-sql-database) · [Availability through local and zone redundancy - Azure SQL Database](https://learn.microsoft.com/en-us/azure/azure-sql/database/high-availability-sla-local-zone-redundancy?view=azuresql-db)",
+    "choices": ["Azure SQL Managed Instance Business Critical", "Azure SQL Database Business Critical", "Azure SQL Database Basic", "Azure SQL Database Standard"]
+  },
+  "227": {
+    "stem": "Contoso, Ltd.는 HTTP 트리거를 사용하는 Azure 논리 앱을 여러 개 구현했습니다. 이 논리 앱들은 온프레미스 웹 서비스에 대한 액세스를 제공합니다.\n\nContoso는 Fabrikam, Inc.와 협력 관계를 맺었습니다. Fabrikam에는 Azure Active Directory(Azure AD) 테넌트가 없고 타사 OAuth 2.0 ID 관리로 사용자를 인증합니다.\n\nFabrikam 개발자들은 일부 논리 앱을 사용해 Contoso의 온프레미스 웹 서비스와 통합되는 애플리케이션을 만들 계획입니다.\n\nFabrikam 개발자에게 논리 앱 액세스를 제공하는 솔루션을 설계해야 합니다. 솔루션은 다음 요구 사항을 충족해야 합니다.\n\n- 개발자가 논리 앱에 보내는 요청은 Contoso 사용자의 요청보다 낮은 비율로 제한해야 합니다.\n- 개발자는 기존 OAuth 2.0 공급자로 논리 앱에 접근할 수 있어야 합니다.\n- 솔루션은 논리 앱을 변경해서는 **안 됩니다**.\n- 솔루션은 Azure AD 게스트 계정을 사용해서는 **안 됩니다**.\n\n솔루션에 무엇을 포함해야 합니까?",
+    "expl": "Azure API Management는 HTTP 트리거 논리 앱 앞단에 두어 논리 앱 구현을 바꾸지 않고도 사용할 수 있습니다. 속도 제한 정책으로 Fabrikam 호출자에게 더 낮은 요청 비율을 적용할 수 있고, `validate-jwt` 정책으로 지원되는 타사 OAuth 2.0/OpenID Connect ID 공급자의 JWT를 검증할 수 있습니다. Microsoft Entra ID 게스트 계정도 필요 없습니다.\n\n**Learn more:** [Azure API Management rate-limit policy](https://learn.microsoft.com/en-us/azure/api-management/rate-limit-policy) · [Azure API Management validate-jwt policy](https://learn.microsoft.com/en-us/azure/api-management/validate-jwt-policy)",
+    "choices": ["Azure Front Door", "Azure AD 애플리케이션 프록시", "Azure AD 기업 간(B2B)", "Azure API Management"]
+  },
+  "228": {
+    "stem": "account1이라는 Azure Cosmos DB for NoSQL 계정과 Workspace1이라는 Azure Synapse Analytics 작업 영역이 있는 Azure 구독이 있습니다. account1에는 분석 저장소가 사용 설정된 Contained라는 컨테이너가 있습니다.\n\nContained에 저장된 데이터를 거의 실시간(NRT)으로 처리하고 작업 영역의 런타임 엔진으로 결과를 Workspace1의 데이터 웨어하우스에 기록하는 솔루션을 추천해야 합니다. 솔루션은 데이터 이동을 최소화해야 합니다.\n\nWorkspace1의 어떤 풀을 사용해야 합니까?",
+    "expl": "Apache Spark는 Azure Cosmos DB 분석 저장소를 직접 읽어 거의 실시간으로 분석하고, Spark에서 변환·집계한 결과를 전용 SQL 풀 데이터 웨어하우스에 로드합니다. 원본 데이터를 중간 저장소로 먼저 복사하지 않고 분석 저장소 통합을 활용합니다.\n\n**Learn more:** [Copy data from Azure Cosmos DB into a dedicated SQL pool using Apache Spark](https://learn.microsoft.com/en-us/azure/synapse-analytics/synapse-link/how-to-copy-to-sql-pool) · [Interact with Azure Cosmos DB using Apache Spark 3 in Azure Synapse Link](https://learn.microsoft.com/en-us/azure/synapse-analytics/synapse-link/how-to-query-analytical-store-spark-3)",
+    "choices": ["Apache Spark", "서버리스 SQL", "전용 SQL", "Data Explorer"]
+  },
+  "229": {
+    "stem": "회사에 Azure 가상 머신에서 실행되는 기존 웹앱이 있습니다.\n\n이 앱을 SQL 삽입 시도로부터 보호하고 7계층 부하 분산 장치를 사용해야 합니다. 솔루션은 앱 코드 변경을 최소화해야 합니다.\n\n무엇을 추천해야 합니까? 각 서비스는 한 번, 여러 번 사용하거나 전혀 사용하지 않을 수 있습니다.",
+    "expl": "Azure Application Gateway는 7계층 부하 분산 장치입니다. 웹 애플리케이션 방화벽(WAF) 기능이 SQL 삽입을 포함한 일반적인 웹 공격을 애플리케이션 코드 변경 없이 중앙에서 방어합니다.\n\n**Learn more:** [Azure Application Gateway overview](https://learn.microsoft.com/en-us/azure/application-gateway/overview) · [What is Azure Web Application Firewall on Azure Application Gateway?](https://learn.microsoft.com/en-us/azure/web-application-firewall/ag/ag-overview)",
+    "items": [
+      "웹 애플리케이션 방화벽(WAF)",
+      "Azure Application Gateway",
+      "Azure Load Balancer",
+      "Azure Traffic Manager",
+      "SSL 오프로딩",
+      "URL 기반 콘텐츠 라우팅"
+    ],
+    "slots": ["Azure 서비스:", "기능:"]
+  },
+  "230": {
+    "stem": "Azure 구독이 있습니다.\n\n컨테이너화된 앱을 위한 솔루션을 설계하고 있습니다. 솔루션은 다음 요구 사항을 충족해야 합니다.\n\n- 인스턴스를 추가로 만들어 앱을 자동으로 확장해야 합니다.\n- 노드와 클러스터를 유지 관리하는 데 드는 관리 작업을 최소화해야 합니다.\n- 컨테이너화된 앱이 여러 가용성 영역에 걸쳐 고가용성을 갖도록 해야 합니다.\n- 컨테이너 이미지의 수명 주기 관리와 저장을 위한 중앙 위치를 제공해야 합니다.\n\n솔루션에 무엇을 포함해야 합니까?",
+    "expl": "Azure Container Apps는 컨테이너화된 애플리케이션을 위한 완전 관리형 플랫폼으로, 노드와 클러스터를 직접 관리하지 않고도 자동 크기 조정을 지원하며 영역 중복으로 배포해 고가용성을 확보할 수 있습니다. Azure Container Registry는 컨테이너 이미지를 중앙에 저장하고 이미지 수명 주기 기능을 제공합니다.\n\n**Learn more:** [Azure Container Apps overview](https://learn.microsoft.com/en-us/azure/container-apps/overview) · [Azure Container Registry documentation](https://learn.microsoft.com/en-us/azure/container-registry/)",
+    "blanks": [
+      { "label": "컨테이너화된 앱 실행:", "options": ["Azure Container Apps", "Azure Container Instances", "Azure Container Registry", "Azure Kubernetes Service(AKS)"] },
+      { "label": "컨테이너 이미지의 수명 주기 관리·저장:", "options": ["Azure Container Apps", "Azure Container Instances", "Azure Container Registry", "Azure Service Fabric"] }
+    ]
+  }
+}

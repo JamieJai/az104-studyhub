@@ -1,0 +1,105 @@
+{
+  "97": {
+    "stem": "HOTSPOT —\n\n문장을 올바르게 완성하는 옵션을 선택하세요.",
+    "expl": "Azure Monitor Application Insights는 Azure Monitor의 애플리케이션 성능 모니터링 기능입니다.\n\n**Learn more:** [Introduction to Application Insights - OpenTelemetry observability](https://learn.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview)",
+    "blanks": [
+      { "label": "Application Insights는 다음의 기능입니다:", "options": ["Azure Advisor", "Azure Application Gateway", "Azure Arc", "Azure Monitor"] }
+    ]
+  },
+  "98": {
+    "stem": "Azure Monitor와 통합할 수 있는 기능 또는 서비스 두 가지는 무엇입니까? 각 정답은 솔루션의 일부입니다.\n\n> 참고: 각 정답은 1점입니다.",
+    "expl": "Application Insights는 Azure Monitor의 애플리케이션 모니터링 기능이고, Log Analytics는 Azure Monitor 로그 데이터를 위한 작업 영역과 쿼리 환경을 제공합니다. 작업 영역 기반 Application Insights는 Log Analytics 작업 영역과 통합되어 텔레메트리를 저장·분석합니다.\n\n**Learn more:** [Create and configure Application Insights resources — Azure Monitor](https://learn.microsoft.com/en-us/azure/azure-monitor/app/create-workspace-resource) · [Azure Monitor data sources and data collection methods](https://learn.microsoft.com/en-ca/azure/azure-monitor/fundamentals/data-sources)",
+    "choices": ["Azure 상태(Azure status)", "Application Insights", "Azure Advisor", "Log Analytics", "Azure Service Health"]
+  },
+  "99": {
+    "stem": "Azure 리소스를 최상위 부모 개체(위)부터 최하위 자식 개체까지 순서대로 배열하세요.",
+    "expl": "Azure 관리 그룹은 구독을 정리합니다. 구독은 리소스 그룹을 포함하고, 리소스 그룹은 가상 머신을 포함한 Azure 리소스를 담습니다. 계층은 관리 그룹 → Azure 구독 → 리소스 그룹 → Azure 가상 머신입니다.\n\n**Learn more:** [Manage your Azure subscriptions at scale with management groups](https://learn.microsoft.com/en-us/azure/governance/management-groups/manage) · [Resource organization design area overview](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/resource-org)",
+    "items": ["리소스 그룹", "Azure 가상 머신", "Azure 구독", "관리 그룹"],
+    "slots": ["1 (최상위):", "2:", "3:", "4 (최하위):"]
+  },
+  "100": {
+    "stem": "온프레미스 네트워크에 서버가 100대 있습니다.\n\n사용자에게 추가 리소스를 제공하는 솔루션을 추천해야 합니다. 솔루션은 자본 지출과 운영 지출 비용을 최소화해야 합니다.\n\n추천에 무엇을 포함해야 합니까?",
+    "expl": "하이브리드 클라우드는 기존 온프레미스 인프라를 확장 가능한 클라우드 리소스로 확장합니다. 새 데이터센터를 짓는 자본 지출과 운영 부담 없이 필요한 만큼 추가 리소스를 쓸 수 있습니다.",
+    "choices": ["퍼블릭 클라우드로 완전 마이그레이션", "데이터센터 추가 구축", "프라이빗 클라우드", "하이브리드 클라우드"]
+  },
+  "101": {
+    "stem": "문장을 올바르게 완성하는 옵션을 선택하세요.",
+    "expl": "Azure 리소스 잠금을 Azure 리소스에 할당해 삭제나 수정을 막을 수 있습니다. 청사진, 정책, 서비스 엔드포인트는 적용 범위와 목적이 다릅니다.\n\n**Learn more:** [Understand resource locking in Azure Blueprints](https://learn.microsoft.com/en-us/azure/governance/blueprints/concepts/resource-locking)",
+    "blanks": [
+      { "label": "할당할 수 있는 것은", "options": ["청사진(blueprint)", "잠금(lock)", "정책(policy)", "서비스 엔드포인트"] }
+    ]
+  },
+  "102": {
+    "stem": "애플리케이션이 보안 토큰을 받으려면 무엇에 연결해야 합니까?",
+    "expl": "Azure Active Directory(현 Microsoft Entra ID)는 ID를 인증하고 액세스 토큰, 새로 고침 토큰, ID 토큰을 포함한 보안 토큰을 애플리케이션에 발급하는 ID 플랫폼입니다.\n\n**Learn more:** [Tokens and claims overview - Microsoft identity platform](https://learn.microsoft.com/en-us/entra/identity-platform/security-tokens)",
+    "choices": ["Azure 저장소 계정", "Azure Active Directory(Azure AD)", "인증서 저장소", "Azure 키 자격 증명 모음"]
+  },
+  "103": {
+    "stem": "각 Azure 서비스를 올바른 설명과 연결하세요.\n\n각 Azure 서비스는 한 번, 여러 번 사용하거나 전혀 사용하지 않을 수 있습니다.",
+    "expl": "Azure Bot Services는 텍스트와 음성으로 상호작용할 수 있는 대화형 봇을 호스트합니다. Azure Machine Learning은 예측(추론)을 위한 모델을 학습시키고 배포합니다. Azure Functions는 확장 가능한 서버리스 컴퓨팅을 제공하고, Azure IoT Hub는 수백만 대 센서 디바이스의 텔레메트리를 위한 대규모 디바이스-클라우드 메시징을 제공합니다.\n\n**Learn more:** [Azure AI Bot Service documentation](https://learn.microsoft.com/en-us/azure/bot-service/?view=azure-bot-service-4.0) · [Azure Machine Learning documentation](https://learn.microsoft.com/en-us/azure/machine-learning/?view=azureml-api-2)",
+    "items": ["Azure Machine Learning", "Azure IoT Hub", "Azure Bot Services", "Azure Functions"],
+    "slots": [
+      "음성 지원을 제공하는 디지털 온라인 어시스턴트를 제공한다",
+      "과거 학습을 활용해 확률이 높은 예측을 제공한다",
+      "서버리스 컴퓨팅 기능을 제공한다",
+      "수백만 개 센서의 데이터를 처리한다"
+    ]
+  },
+  "104": {
+    "stem": "퍼블릭 클라우드를 설명하는 특징 두 가지는 무엇입니까? 각 정답은 완전한 솔루션입니다.\n\n**참고:** 각 정답은 1점입니다.",
+    "expl": "퍼블릭 클라우드 리소스는 고객이 필요할 때 직접 프로비저닝하고 관리할 수 있으며, 사용량이 측정되어 종량제로 청구됩니다. 퍼블릭 클라우드가 본질적으로 전용 하드웨어나 보안되지 않은 연결, 제한된 저장소를 뜻하지는 않습니다.\n\n**Learn more:** [AWS Cloud Essentials](https://aws.amazon.com/getting-started/cloud-essentials/)",
+    "choices": ["전용 하드웨어", "보안되지 않은 연결", "제한된 저장소", "사용량 기반 과금", "셀프 서비스 관리"]
+  },
+  "105": {
+    "stem": "문장을 올바르게 완성하는 답을 선택하세요.",
+    "expl": "지리적 분산(geo-distribution)은 Azure 리소스를 지리적으로 분산된 지역에 배치해 사용자와 가까운 곳에 배포함으로써 네트워크 대기 시간을 줄여 줍니다.",
+    "blanks": [
+      { "label": "Azure 리소스를 사용자 가까이에 배포할 수 있게 하는 것은", "options": ["탄력성", "지리적 분산", "고가용성", "확장성"] }
+    ]
+  },
+  "106": {
+    "stem": "다음 각 설명이 참이면 **예**, 아니면 **아니요**를 선택하세요.",
+    "expl": "가상 네트워크는 PaaS 서비스 모델이 아니라 IaaS 리소스입니다. PaaS에서는 Microsoft가 기반 플랫폼을 운영하고, 고객은 애플리케이션 구성·코드와 사용자 계정·액세스 제어 관리를 계속 책임집니다.\n\n**Learn more:** [Shared responsibility in the cloud - Microsoft Azure](https://learn.microsoft.com/en-us/azure/security/fundamentals/shared-responsibility)",
+    "statements": [
+      "가상 네트워크를 만들고 구성하는 것은 PaaS(서비스형 플랫폼) 클라우드 서비스 모델에 속한다.",
+      "PaaS 클라우드 서비스 모델에서 Azure 웹앱의 코드를 업데이트하는 것은 고객의 책임이다.",
+      "PaaS 클라우드 서비스 모델에서 사용자 액세스를 구성하는 것은 고객의 책임이다."
+    ]
+  },
+  "107": {
+    "stem": "온프레미스 서버를 리프트 앤드 시프트(lift-and-shift) 방식으로 마이그레이션해야 합니다.\n\n어떤 종류의 클라우드 서비스로 마이그레이션해야 합니까?",
+    "expl": "IaaS(서비스형 인프라)는 클라우드 가상 머신과 관련 인프라를 제공하므로 기존 서버 워크로드를 최소한의 변경으로 옮길 수 있습니다. 이것이 표준적인 리프트 앤드 시프트 마이그레이션 모델입니다.",
+    "choices": ["서비스형 인프라(IaaS)", "서비스형 소프트웨어(SaaS)", "서비스형 플랫폼(PaaS)"]
+  },
+  "108": {
+    "stem": "Windows Server를 실행하는 온프레미스 서버가 있습니다.\n\nAzure Portal에서 이 서버들을 관리하려면 무엇을 구현해야 합니까?",
+    "expl": "Azure Arc 지원 서버는 온프레미스 Windows Server 머신을 Azure에 연결해 Azure Portal에서 Azure 리소스처럼 관리할 수 있게 합니다.\n\n**Learn more:** [Cloud-native server management with Azure Arc-enabled servers](https://learn.microsoft.com/en-us/azure/azure-arc/servers/cloud-native/overview)",
+    "choices": ["Azure Kubernetes Service(AKS)", "Azure Arc", "Docker", "역할 기반 액세스 제어(RBAC)"]
+  },
+  "109": {
+    "stem": "다음 각 설명이 참이면 **예**, 아니면 **아니요**를 선택하세요.",
+    "expl": "Azure App Service는 완전 관리형 PaaS 환경이므로 공급자가 기반 호스팅 인프라와 운영 체제를 관리하며 고객에게 운영 체제 전체 제어 권한을 주지 않습니다. App Service는 지원되는 계획에서 구성하면 자동 스케일 아웃을 지원합니다. PaaS는 애플리케이션 플랫폼을 제공할 뿐, 사용자 지정 애플리케이션에 기능을 추가하는 일은 고객이나 별도로 계약한 개발자의 책임입니다.\n\n**Learn more:** [Azure App Service architecture best practices](https://learn.microsoft.com/en-us/azure/well-architected/service-guides/app-service-web-apps) · [Automatic scaling in Azure App Service](https://learn.microsoft.com/en-us/azure/app-service/manage-automatic-scaling)",
+    "statements": [
+      "Azure에서 웹앱을 호스트하는 PaaS 솔루션은 애플리케이션을 호스트하는 운영 체제에 대한 전체 제어 권한을 제공한다.",
+      "Azure에서 웹앱을 호스트하는 PaaS 솔루션은 플랫폼을 자동으로 확장하는 기능을 제공한다.",
+      "Azure에서 웹앱을 호스트하는 PaaS 솔루션은 사용자 지정 애플리케이션에 기능을 계속 추가해 주는 전문 개발 서비스를 제공한다."
+    ]
+  },
+  "110": {
+    "stem": "HOTSPOT –\n\n문장을 올바르게 완성하는 답을 선택하세요.\n\nHot Area:",
+    "expl": "Microsoft Defender for Cloud에는 규정 준수 대시보드가 있어 리소스를 규정 준수 표준에 비추어 평가하고 준수 보고서를 제공합니다.\n\n**Learn more:** [Microsoft Defender for Cloud regulatory compliance dashboard](https://learn.microsoft.com/en-us/azure/defender-for-cloud/regulatory-compliance-dashboard)",
+    "blanks": [
+      { "label": "회사의 규정 준수 보고서를 볼 수 있는 곳은", "options": ["Azure Advisor", "Azure Analysis Services", "Azure Monitor", "Microsoft Defender for Cloud"] }
+    ]
+  },
+  "111": {
+    "stem": "메모리나 CPU를 추가해 가상 머신의 컴퓨팅 용량을 늘리는 것을 무엇이라고 합니까?",
+    "expl": "수직 확장(vertical scaling)은 CPU 코어나 메모리처럼 단일 가상 머신의 리소스를 늘리는 것입니다.",
+    "choices": ["민첩성", "수직 확장", "수평 확장", "탄력성"]
+  },
+  "112": {
+    "stem": "회사가 Azure로의 서버 배포를 자동화할 계획입니다.\n\n관리자는 배포 중에 관리 자격 증명이 노출될까 우려합니다. 배포 중에 그 관리 자격 증명을 암호화하는 Azure 솔루션을 추천해야 합니다.\n\n추천에 무엇을 포함해야 합니까?",
+    "expl": "Azure Key Vault는 암호를 비롯한 관리 자격 증명 같은 비밀을 안전하게 저장하고 액세스를 통제합니다. Azure Resource Manager 배포는 자격 증명 값을 배포 아티팩트에 노출하지 않고 키 자격 증명 모음에서 비밀을 가져올 수 있습니다.\n\n**Learn more:** [About Azure Key Vault](https://learn.microsoft.com/en-us/azure/key-vault/general/overview) · [Quickstart: Set and retrieve a secret from Azure Key Vault using an ARM template](https://learn.microsoft.com/en-us/azure/key-vault/secrets/quick-create-template)",
+    "choices": ["Azure Key Vault", "Azure Information Protection", "Microsoft Defender for Cloud", "Azure 다단계 인증(MFA)"]
+  }
+}

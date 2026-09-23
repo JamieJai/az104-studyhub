@@ -1,0 +1,90 @@
+{
+  "203": {
+    "stem": "여러 데이터베이스의 데이터를 사용하는 온프레미스 애플리케이션이 있습니다. 애플리케이션 코드는 서버·데이터베이스·테이블 이름을 조합해 데이터베이스 테이블을 참조합니다.\n\n애플리케이션 데이터를 Azure로 마이그레이션해야 합니다.\n\n목표를 충족하기 위해 애플리케이션 데이터를 마이그레이션할 수 있는 서비스 두 가지는 무엇입니까? 각 정답은 완전한 솔루션입니다.\n\n**참고:** 각 정답은 1점입니다.",
+    "expl": "Azure 가상 머신의 SQL Server는 다중 데이터베이스와 서버 한정 개체 참조를 포함한 SQL Server 인스턴스 모델을 그대로 유지합니다. Azure SQL Managed Instance는 애플리케이션·데이터베이스 변경을 최소화하며 온프레미스 SQL Server 애플리케이션을 마이그레이션하도록 설계되었고 인스턴스 수준 SQL Server 기능을 지원합니다. Azure SQL Database는 애플리케이션 변경 없이 이런 다중 데이터베이스·서버 한정 참조 모델을 유지하지 못하며, Stretch Database는 완전한 마이그레이션 대상이 아닙니다.\n\n**Learn more:** [Migration overview: SQL Server to SQL Server on Azure VMs](https://learn.microsoft.com/en-us/data-migration/sql-server/virtual-machines/overview) · [Migration overview: SQL Server to Azure SQL Managed Instance](https://learn.microsoft.com/en-us/data-migration/sql-server/managed-instance/overview)",
+    "choices": ["SQL Server Stretch Database", "Azure 가상 머신의 SQL Server", "Azure SQL Database", "Azure SQL Managed Instance"]
+  },
+  "204": {
+    "stem": "KV1이라는 Azure 키 자격 증명 모음과 VM1이라는 가상 머신이 있는 Azure 구독이 있습니다. VM1은 Windows Server 2022: Azure Edition을 실행합니다.\n\nApp1이라는 ASP.NET Core 기반 애플리케이션을 VM1에 배포할 계획입니다.\n\n개발 작업을 최소화하면서 App1이 시스템 할당 관리 ID로 KV1의 비밀을 가져오도록 구성해야 합니다.\n\n무엇을 해야 합니까?",
+    "expl": "Azure VM에서 실행되는 시스템 할당 관리 ID는 VM의 Azure Instance Metadata Service 엔드포인트를 통해 Microsoft Entra 액세스 토큰을 받습니다. 이는 비대화형 클라이언트 자격 증명 흐름에 해당하며, 권한 부여 코드 흐름이나 암시적 흐름은 대화형 사용자 로그인이 필요해 이런 워크로드 ID에는 적합하지 않습니다.\n\n**Learn more:** [Use managed identities on a virtual machine to acquire access tokens](https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/how-to-use-vm-token) · [OAuth 2.0 client credentials grant flow](https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-client-creds-grant-flow)",
+    "blanks": [
+      { "label": "App1이 사용할 OAuth 2.0 방식:", "options": ["권한 부여 코드(authorization code) 흐름", "클라이언트 자격 증명(client credentials) 흐름", "암시적(implicit) 흐름"] },
+      { "label": "App1이 REST API 호출로 인증 토큰을 가져올 위치:", "options": ["Azure Instance Metadata Service(IMDS) 엔드포인트", "Azure AD의 OAuth 2.0 액세스 토큰 엔드포인트", "Microsoft ID 플랫폼의 OAuth 2.0 액세스 토큰 엔드포인트"] }
+    ]
+  },
+  "205": {
+    "stem": "다음 요구 사항을 충족하는 고가용성 Azure SQL 데이터베이스를 설계해야 합니다.\n\n- 데이터베이스 복제본 간 장애 조치 시 데이터 손실이 없어야 합니다.\n- 가용성 영역에 장애가 발생해도 데이터베이스를 계속 사용할 수 있어야 합니다.\n- 비용을 최소한으로 유지해야 합니다.\n\n어떤 배포 옵션을 선택해야 합니까?",
+    "expl": "Azure SQL Database Premium은 영역 중복을 지원해 데이터베이스 복제본을 가용성 영역에 분산하고 영역 장애에 대해 복구 지점 목표 0을 제공합니다. Basic과 Standard는 영역 중복을 지원하지 않습니다. Premium은 영역 중복 Hyperscale 배포처럼 고가용성 복제본을 추가로 요구하지 않으면서 요구된 가용성·데이터 무손실 목표를 충족하므로 비용을 최소화하는 선택입니다.\n\n**Learn more:** [Reliability in Azure SQL Database](https://learn.microsoft.com/en-us/azure/reliability/reliability-sql-database) · [Availability Through Local and Zone Redundancy - Azure SQL Database](https://learn.microsoft.com/en-us/azure/azure-sql/database/high-availability-sla-local-zone-redundancy?view=azuresql-db)",
+    "choices": ["Azure SQL Database Hyperscale", "Azure SQL Database Premium", "Azure SQL Database Basic", "Azure SQL Database Standard"]
+  },
+  "206": {
+    "stem": "HOTSPOT -\n\n다음 표의 Azure SQL 서버가 포함된 Azure 구독이 있습니다.\n\n[[IMG1]]\n\n구독에는 다음 표의 저장소 계정이 있습니다.\n\n[[IMG2]]\n\n다음 표의 Azure SQL 데이터베이스를 만듭니다.\n\n[[IMG3]]\n\n다음 각 설명이 참이면 예, 아니면 아니요를 선택하세요.",
+    "expl": "Azure SQL Database 감사는 감사 로그를 Azure Storage 계정에 기록할 수 있습니다. Azure Portal에서 감사를 구성할 때 저장소 계정은 데이터베이스 및 논리 서버와 같은 지역에 있어야 합니다. SQLdb1과 storage1은 모두 미국 동부에 있으므로 이 조합은 유효합니다. SQLdb2는 미국 동부 서버에, SQLdb3은 미국 서부 서버에 있는 반면 storage2는 미국 중부에 있으므로 포털에서는 둘 다 storage2를 사용할 수 없습니다.\n\n**Learn more:** [Set up Auditing - Azure SQL Database & Azure Synapse Analytics](https://learn.microsoft.com/en-us/azure/azure-sql/database/auditing-setup?view=azuresql)",
+    "statements": [
+      "SQLdb1에 감사를 사용하도록 설정하면 감사 정보를 storage1에 저장할 수 있다.",
+      "SQLdb2에 감사를 사용하도록 설정하면 감사 정보를 storage2에 저장할 수 있다.",
+      "SQLdb3에 감사를 사용하도록 설정하면 감사 정보를 storage2에 저장할 수 있다."
+    ]
+  },
+  "207": {
+    "stem": "Azure 구독에서 새로 배포되는 모든 Azure Resource Manager(ARM) 리소스에 대한 월간 보고서를 생성하는 솔루션을 추천해야 합니다.\n\n추천에 무엇을 포함해야 합니까?",
+    "expl": "Azure 활동 로그는 구독 수준의 제어 평면 이벤트를 기록합니다. 그중 관리(Administrative) 범주가 Azure Resource Manager의 만들기·업데이트·삭제·작업 수행을 기록하므로, 매달 새 리소스 배포를 파악하는 데 필요한 감사 데이터를 제공합니다.\n\n**Learn more:** [Azure Activity Log event schema](https://learn.microsoft.com/en-us/azure/azure-monitor/platform/activity-log-schema) · [Activity log in Azure Monitor](https://learn.microsoft.com/en-us/azure/azure-monitor/platform/activity-log)",
+    "choices": ["Azure Monitor 작업 그룹(action group)", "Azure Arc", "Azure Monitor 메트릭", "Azure 활동 로그(Activity Log)"]
+  },
+  "208": {
+    "stem": "시스템 할당 관리 ID를 사용하는 Azure App Service 웹앱이 있습니다.\n\n웹앱의 설정을 Azure 키 자격 증명 모음에 비밀로 저장하는 솔루션을 추천해야 합니다. 솔루션은 다음 요구 사항을 충족해야 합니다.\n\n- 앱 코드 변경을 최소화해야 합니다.\n- 최소 권한 원칙을 적용해야 합니다.\n\n추천에 무엇을 포함해야 합니까?",
+    "expl": "Azure App Service의 Key Vault 참조는 애플리케이션 설정에서 구성하며 앱의 관리 ID로 비밀 값을 확인하므로 애플리케이션 코드에서 Key Vault를 호출할 필요가 없습니다. 이 ID에는 비밀 읽기 권한(`secrets/get`), 즉 `비밀: Get` 권한만 있으면 되고, 참조에 비밀 이름을 지정하므로 목록(list) 권한은 필요 없습니다.\n\n**Learn more:** [Use Key Vault references as app settings in Azure App Service](https://learn.microsoft.com/en-us/azure/app-service/app-service-key-vault-references) · [Azure Key Vault built-in RBAC roles](https://learn.microsoft.com/en-us/azure/key-vault/general/rbac-guide?tabs=azure-cli)",
+    "blanks": [
+      { "label": "Key Vault 통합 방법:", "options": ["애플리케이션 설정의 Key Vault 참조", "Appsettings.json의 Key Vault 참조", "Web.config의 Key Vault 참조", "Key Vault SDK"] },
+      { "label": "관리 ID에 부여할 Key Vault 권한:", "options": ["키: Get", "키: List과 Get", "비밀: Get", "비밀: List과 Get"] }
+    ]
+  },
+  "209": {
+    "stem": "하이브리드 Azure Active Directory(Azure AD) 테넌트에 연결된 Subscription1이라는 Azure 구독이 있습니다.\n\n온프레미스 데이터센터에는 Subscription1에 대한 VPN 연결이 없습니다. 데이터센터에는 Microsoft SQL Server 2016이 설치된 Server1이라는 컴퓨터가 있습니다. Server1은 인터넷 접근이 차단되어 있습니다.\n\nLogicApp1이라는 Azure 논리 앱 리소스가 Server1의 데이터베이스에 쓰기 액세스를 해야 합니다.\n\nLogicApp1이 Server1에 접근할 수 있는 솔루션을 추천해야 합니다.\n\n온프레미스와 Azure에 각각 무엇을 배포하도록 추천해야 합니까?",
+    "expl": "온프레미스 데이터 게이트웨이는 게이트웨이 호스트에서 나가는 아웃바운드 연결을 통해 Logic Apps가 온프레미스 SQL Server에 접근하게 해 주므로, Server1에 VPN이나 인바운드 인터넷 접근이 필요 없습니다. 게이트웨이는 Azure에 연결 게이트웨이(connection gateway) 리소스로 등록되어 Logic Apps의 SQL 연결에서 사용됩니다.",
+    "blanks": [
+      { "label": "온프레미스:", "options": ["Windows Server용 웹 애플리케이션 프록시", "Azure AD 애플리케이션 프록시 커넥터", "온프레미스 데이터 게이트웨이", "하이브리드 연결 관리자(Hybrid Connection Manager)"] },
+      { "label": "Azure:", "options": ["연결 게이트웨이 리소스", "Azure Application Gateway", "Azure Event Grid 도메인", "엔터프라이즈 애플리케이션"] }
+    ]
+  },
+  "210": {
+    "stem": "다음 요구 사항을 충족하는 고가용성 Azure SQL 데이터베이스를 설계해야 합니다.\n\n- 데이터베이스 복제본 간 장애 조치 시 데이터 손실이 없어야 합니다.\n- 영역 장애 중에도 데이터베이스를 계속 사용할 수 있어야 합니다.\n- 비용을 최소한으로 유지해야 합니다.\n\n어떤 배포 옵션을 사용해야 합니까?",
+    "expl": "영역 중복 Azure SQL Database는 복제본을 가용성 영역에 두고 영역 장애 시 커밋된 데이터에 대해 복구 지점 목표 0을 제공합니다. Premium 계층은 영역 중복을 지원하지만 Basic은 지원하지 않습니다. Premium은 Business Critical이나 Hyperscale 옵션보다 낮은 비용으로 필요한 영역 고가용성을 제공합니다.\n\n**Learn more:** [Reliability in Azure SQL Database](https://learn.microsoft.com/en-us/azure/reliability/reliability-sql-database)",
+    "choices": ["Azure SQL Database Business Critical", "Azure SQL Database Premium", "Azure SQL Database Basic", "Azure SQL Database Hyperscale"]
+  },
+  "211": {
+    "stem": "여러 Azure 클라우드 서비스를 포함하고 트랜잭션의 각 부분을 관리하는 영업 애플리케이션을 만들고 있습니다. 각 클라우드 서비스가 고객 주문, 청구, 결제, 재고, 배송을 처리합니다.\n\n클라우드 서비스들이 XML 메시지로 트랜잭션 정보를 비동기적으로 주고받을 수 있는 솔루션을 추천해야 합니다.\n\n추천에 무엇을 포함해야 합니까?",
+    "expl": "Azure Queue Storage는 분산 애플리케이션의 느슨하게 결합된 구성 요소 간에 안정적인 비동기 메시지 전달을 제공합니다. 큐 메시지는 XML 요청과 호환되는 UTF-8 텍스트이므로 트랜잭션 처리 서비스들이 동기적 의존 없이 XML 메시지 내용을 주고받을 수 있습니다.\n\n**Learn more:** [Introduction to Azure Queue Storage](https://learn.microsoft.com/en-us/azure/storage/queues/storage-queues-introduction) · [Quickstart: Azure Queue Storage client library for .NET](https://learn.microsoft.com/en-us/azure/storage/queues/storage-quickstart-queues-dotnet)",
+    "choices": ["Azure Service Fabric", "Azure Queue Storage", "Azure Traffic Manager", "Azure Application Gateway"]
+  },
+  "212": {
+    "stem": "여러 Azure 클라우드 서비스를 포함하고 트랜잭션의 각 부분을 처리하는 영업 애플리케이션을 개발하고 있습니다. 각 클라우드 서비스가 고객 주문, 청구, 결제, 재고, 배송을 담당합니다.\n\n클라우드 서비스들이 XML 메시지로 트랜잭션 정보를 비동기적으로 주고받을 수 있는 솔루션을 추천해야 합니다.\n\n추천에 무엇을 포함해야 합니까?",
+    "expl": "Azure Queue Storage는 분산 애플리케이션의 느슨하게 결합된 구성 요소가 나중에 비동기로 처리할 메시지를 주고받게 해 줍니다. 큐 메시지는 UTF-8/XML 호환 콘텐츠를 지원하므로 주문·청구·결제·재고·배송 서비스 간 트랜잭션 정보 전달에 적합합니다.\n\n**Learn more:** [Introduction to Azure Queue Storage](https://learn.microsoft.com/en-sg/azure/storage/queues/storage-queues-introduction) · [Tutorial: Work with Azure Queue Storage queues in .NET](https://learn.microsoft.com/en-us/azure/storage/queues/storage-tutorial-queues)",
+    "choices": ["Azure Notification Hubs", "Azure Service Fabric", "Azure Queue Storage", "Azure Application Gateway"]
+  },
+  "213": {
+    "stem": "IoT 디바이스 50,000대를 포함하는 Azure IoT Hub 솔루션을 설계하고 있습니다.\n\n각 디바이스는 온도, 디바이스 ID, 시간 데이터를 포함한 데이터를 스트리밍합니다. 초당 약 50,000건의 레코드가 기록되며 데이터는 거의 실시간으로 시각화됩니다.\n\n데이터를 저장하고 쿼리할 서비스를 추천해야 합니다.\n\n추천할 수 있는 서비스 두 가지는 무엇입니까? 각 정답은 완전한 솔루션입니다.\n\n**참고:** 각 정답은 1점입니다.",
+    "expl": "같은 IoT 시나리오(디바이스 50,000대, 초당 50,000레코드, 거의 실시간 시각화·쿼리)에서 Azure Cosmos DB for NoSQL은 전역 분산·고처리량 저장소와 쿼리 기능을 제공하고, Azure Time Series Insights는 시계열 데이터의 수집·저장·쿼리·시각화를 위해 특별히 설계되었습니다. 두 서비스 모두 각각으로 텔레메트리 저장·쿼리에 대한 완전한 솔루션이 됩니다.",
+    "choices": ["Azure Table Storage", "Azure Event Grid", "Azure Cosmos DB for NoSQL", "Azure Time Series Insights"]
+  },
+  "214": {
+    "stem": "Azure 구독이 있습니다.\n\n개발자가 Azure 가상 머신을 프로비저닝할 수 있게 하는 솔루션을 추천해야 합니다. 솔루션은 다음 요구 사항을 충족해야 합니다.\n\n- 지정된 지역에서만 가상 머신을 만들 수 있어야 합니다.\n- 지정된 크기로만 가상 머신을 만들 수 있어야 합니다.\n\n추천에 무엇을 포함해야 합니까?",
+    "expl": "Azure Policy는 허용된 지역 목록을 벗어난 배포를 거부하고 승인되지 않은 크기 SKU의 가상 머신도 거부할 수 있습니다. 기본 제공 정책으로 **허용된 위치**와 **허용된 가상 머신 크기 SKU**가 있어, 정책 할당으로 해당 범위 전체에 두 제한을 모두 적용할 수 있습니다.\n\n**Learn more:** [Overview of Azure Policy](https://learn.microsoft.com/en-us/azure/governance/policy/overview) · [Built-in policy definitions for Azure Virtual Machines](https://learn.microsoft.com/en-us/azure/virtual-machines/policy-reference)",
+    "choices": ["Azure Resource Manager(ARM) 템플릿", "Azure Policy", "조건부 액세스 정책", "역할 기반 액세스 제어(RBAC)"]
+  },
+  "215": {
+    "stem": "Application1이라는 사용자 지정 애플리케이션이 있는 Azure 구독이 있습니다. Application1은 외부 업체인 Fabrikam, Ltd.가 개발했습니다. Fabrikam 개발자들에게는 Application1 구성 요소에 대한 역할 기반 액세스 제어(RBAC) 권한이 할당되어 있습니다. 모든 사용자는 Microsoft 365 E5 라이선스를 보유합니다.\n\nFabrikam 개발자들에게 여전히 Application1 권한이 필요한지 확인하는 솔루션을 추천해야 합니다. 솔루션은 다음 요구 사항을 충족해야 합니다.\n\n- 개발자들의 관리자에게 Application1에 대한 액세스 권한 목록을 매달 메일로 보내야 합니다.\n- 관리자가 확인하지 않은 액세스 권한은 자동으로 회수해야 합니다.\n- 개발 작업을 최소화해야 합니다.\n\n무엇을 추천해야 합니까?",
+    "expl": "Microsoft Entra 액세스 검토는 Azure 리소스 역할 할당에 대한 기본 제공 검토 절차를 제공합니다. 검토를 매월 반복하도록 설정하고 각 사용자의 관리자를 검토자로 지정해 알림을 보내며, 결과를 자동 적용해 검토되지 않았거나 거부된 역할 할당을 제거할 수 있습니다. 사용자 지정 자동화 없이 액세스 거버넌스 요구 사항을 충족합니다.\n\n**Learn more:** [Create an access review of Azure resource and Microsoft Entra roles in PIM](https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-create-roles-and-resource-roles-review) · [Plan a Microsoft Entra access reviews deployment](https://learn.microsoft.com/en-us/entra/id-governance/deploy-access-reviews)",
+    "choices": [
+      "Azure Active Directory(Azure AD)에서 Application1에 대한 액세스 검토를 만듭니다.",
+      "Get-AzRoleAssignment cmdlet을 실행하는 Azure Automation Runbook을 만듭니다.",
+      "Azure Active Directory(Azure AD) Privileged Identity Management에서 Application1 리소스에 대한 사용자 지정 역할 할당을 만듭니다.",
+      "Get-AzureADUserAppRoleAssignment cmdlet을 실행하는 Azure Automation Runbook을 만듭니다."
+    ]
+  },
+  "216": {
+    "stem": "App1 유지 관리 작업을 위한 솔루션을 추천해야 합니다. 솔루션은 비용을 최소화해야 합니다.\n\n추천에 무엇을 포함해야 합니까?",
+    "expl": "Azure App Service WebJob은 App Service 앱과 같은 환경에서 백그라운드 프로그램이나 스크립트를 실행합니다. 모든 App Service 계획에서 추가 요금 없이 지원되므로 비용을 최소화해야 하는 유지 관리 작업에 적합합니다.\n\n**Learn more:** [Run background tasks with WebJobs - Azure App Service](https://learn.microsoft.com/en-us/azure/app-service/webjobs-create)",
+    "choices": ["Azure 논리 앱", "Azure 함수", "Azure 가상 머신", "App Service WebJob"]
+  }
+}

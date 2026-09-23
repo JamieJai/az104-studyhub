@@ -1,0 +1,105 @@
+{
+  "91": {
+    "stem": "회사가 북미와 유럽에 사무실을 운영합니다.\n\nAzure로 마이그레이션할 계획입니다.\n\n새 Azure 인프라에 사용할 네트워킹 솔루션을 추천해야 합니다. 솔루션은 다음 요구 사항을 충족해야 합니다.\n\n- 모바일 사용자의 지점 대 사이트(P2S) VPN 연결이 가장 가까운 Azure 지역에 자동으로 연결되어야 합니다.\n- 각 지역의 사무실은 ExpressRoute 회로로 해당 지역의 Azure에 연결되어야 합니다.\n- 가상 네트워크와 온프레미스 네트워크 간 전이적 라우팅을 지원해야 합니다.\n- 가상 네트워크 간 네트워크 트래픽을 FQDN으로 필터링해야 합니다.\n\n추천에 무엇을 포함해야 합니까?",
+    "expl": "Azure Virtual WAN은 P2S와 ExpressRoute 게이트웨이 연결을 갖춘 지역별 가상 허브를 제공하고, 연결된 가상 네트워크와 온프레미스 네트워크 사이의 전이적 라우팅을 관리해 줍니다. 전역 사용자 VPN 프로필은 사용자를 가장 가까운 Virtual WAN 허브로 연결합니다. 보안 가상 허브는 Azure Firewall을 통합해 가상 네트워크 간 트래픽을 검사하며, Azure Firewall 애플리케이션 규칙은 FQDN 기반 필터링을 지원합니다.\n\n**Learn more:** [Download global and hub VPN profiles for User VPN clients](https://learn.microsoft.com/en-us/azure/virtual-wan/global-hub-profile) · [Azure Virtual WAN overview](https://learn.microsoft.com/en-us/azure/virtual-wan/virtual-wan-about)",
+    "choices": [
+      "보안 가상 허브를 사용하는 Azure Virtual WAN",
+      "가상 네트워크 피어링과 애플리케이션 보안 그룹",
+      "가상 네트워크 게이트웨이와 네트워크 보안 그룹(NSG)",
+      "Azure Route Server와 Azure Network Function Manager"
+    ]
+  },
+  "92": {
+    "stem": "Azure 마이그레이션에서 Azure Storage 계정 프로비저닝이 필요한 구성 요소를 평가하고 있습니다. 각 설명이 참이면 예, 아니면 아니요를 선택하세요.",
+    "expl": "백업 기반 SQL Server 마이그레이션은 데이터베이스 백업 파일의 중간 저장소로 Azure Blob Storage 계정을 사용합니다. Azure Storage는 정적 웹 사이트 콘텐츠 호스팅을 지원합니다. 데이터베이스 메트릭은 Azure Monitor가 수집·모니터링하므로 메트릭 모니터링만을 위해 저장소 계정이 필요하지는 않습니다.\n\n**Learn more:** [Prepare environment for a SQL VM migration](https://learn.microsoft.com/en-us/sql/sql-server/azure-arc/migration-sql-vm-prepare?view=sql-server-ver17) · [Static website hosting in Azure Storage](https://learn.microsoft.com/en-us/azure/storage/blobs/storage-blob-static-website)",
+    "statements": [
+      "SQL Server 데이터베이스 마이그레이션을 위해 Azure Storage 계정을 프로비저닝해야 한다.",
+      "웹 사이트 콘텐츠 저장을 위해 Azure Storage 계정을 프로비저닝해야 한다.",
+      "데이터베이스 메트릭 모니터링을 위해 Azure Storage 계정을 프로비저닝해야 한다."
+    ]
+  },
+  "93": {
+    "stem": "직원의 개인 식별 정보(PII)를 저장할 Azure 웹앱을 개발하고 있습니다.\n\n웹앱에 사용할 Azure SQL Database 솔루션을 추천해야 합니다. 솔루션은 다음 요구 사항을 충족해야 합니다.\n\n- 데이터센터 한 곳에 장애가 발생해도 가용성을 유지해야 합니다.\n- PII가 들어 있는 특정 열을 암호화해야 합니다.\n- 급여 처리 기간에 자동으로 확장되어야 합니다.\n- 비용을 최소한으로 유지해야 합니다.\n\n추천에 무엇을 포함해야 합니까?",
+    "expl": "영역 중복 General Purpose Azure SQL Database는 가용성 영역·데이터센터 장애에 견딥니다. 서버리스 컴퓨팅은 워크로드 수요에 따라 자동으로 확장되고 유휴 시 자동 일시 중지되어 비용을 줄입니다. Always Encrypted는 선택한 민감한 열을 보호하는 반면, TDE는 데이터베이스 전체를 저장 상태에서 암호화합니다.\n\n**Learn more:** [Serverless compute tier - Azure SQL Database](https://learn.microsoft.com/en-us/azure/azure-sql/database/serverless-tier-overview?view=azuresql) · [Reliability in Azure SQL Database](https://learn.microsoft.com/en-us/azure/reliability/reliability-sql-database)",
+    "blanks": [
+      { "label": "서비스 계층과 컴퓨팅 계층:", "options": ["Business Critical 서비스 계층 + 서버리스 컴퓨팅 계층", "General Purpose 서비스 계층 + 서버리스 컴퓨팅 계층", "Hyperscale 서비스 계층 + 프로비저닝된 컴퓨팅 계층"] },
+      { "label": "암호화 방법:", "options": ["Always Encrypted", "Microsoft SQL Server 및 데이터베이스 암호화 키", "투명한 데이터 암호화(TDE)"] }
+    ]
+  },
+  "94": {
+    "stem": "Windows Server 2019를 실행하고 데이터 파일 500GB를 저장한 VM1이라는 Azure 가상 머신이 있습니다.\n\nAzure Data Factory로 데이터 파일을 변환한 뒤 Azure Data Lake Storage에 로드하는 솔루션을 설계하고 있습니다.\n\n이 설계를 지원하려면 VM1에 무엇을 배포해야 합니까?",
+    "expl": "자체 호스팅 통합 런타임은 Azure IaaS 가상 머신을 포함한 사설 네트워크의 데이터 저장소에 대해 Azure Data Factory에 컴퓨팅과 연결을 제공합니다. VM1에 설치하면 Data Factory가 파일에 접근해 처리한 뒤 Azure Data Lake Storage에 로드할 수 있습니다.\n\n**Learn more:** [Integration runtime in Azure Data Factory](https://learn.microsoft.com/en-us/azure/data-factory/concepts-integration-runtime) · [Create and configure a self-hosted integration runtime](https://learn.microsoft.com/en-us/azure/data-factory/create-self-hosted-integration-runtime)",
+    "choices": ["온프레미스 데이터 게이트웨이", "Azure Pipelines 에이전트", "자체 호스팅 통합 런타임", "Azure File Sync 에이전트"]
+  },
+  "95": {
+    "stem": "contoso.com과 fabrikam.com이라는 Azure AD 테넌트 두 개가 있습니다. 각 테넌트에는 Azure 구독 50개가 연결되어 있습니다. contoso.com에는 User1과 User2라는 사용자가 있습니다.\n\n다음 요구 사항을 충족해야 합니다.\n\n- User1이 특정 Azure 구독에 연결된 Azure AD 테넌트를 변경할 수 있어야 합니다.\n- Azure 구독이 새 Azure AD 테넌트에 연결되어 구독 수준 전체 권한을 가진 Azure AD 계정이 없을 때 User2의 액세스를 해당 구독으로 승격할 수 있어야 합니다.\n\n솔루션은 최소 권한 원칙을 따라야 합니다.\n\n각 사용자에게 어떤 역할을 할당해야 합니까?",
+    "expl": "서비스 관리자(Service Administrator)는 구독의 디렉터리 연결을 변경할 수 있지만 공동 관리자(Co-administrator)는 할 수 없습니다. 소유자(Owner)는 구독 범위에서 전체 액세스를 가지므로 구독을 옮긴 뒤 구독 수준 전체 권한을 복구하기에 충분하며, User2에게 서비스 관리자 역할의 디렉터리 연결 변경 권한까지 주지 않아도 됩니다.\n\n**Learn more:** [Azure roles, Microsoft Entra roles, and classic subscription administrator roles](https://learn.microsoft.com/en-us/azure/role-based-access-control/rbac-and-directory-admin-roles) · [Associate or add an Azure subscription to your Microsoft Entra tenant](https://learn.microsoft.com/en-us/azure/active-directory/fundamentals/how-subscriptions-associated-directory)",
+    "blanks": [
+      { "label": "User1:", "options": ["공동 관리자(Co-administrator)", "소유자(Owner)", "서비스 관리자(Service administrator)"] },
+      { "label": "User2:", "options": ["공동 관리자(Co-administrator)", "소유자(Owner)", "서비스 관리자(Service administrator)"] }
+    ]
+  },
+  "96": {
+    "stem": "미션 크리티컬 애플리케이션의 레코드를 저장할 저장소 솔루션을 추천해야 합니다. 솔루션은 쓰기 작업 대기 시간과 처리량에 대한 서비스 수준 계약(SLA)을 제공해야 합니다.\n\n추천에 무엇을 포함해야 합니까?",
+    "expl": "Azure Cosmos DB는 SLA로 보장되는 쓰기 대기 시간과 프로비저닝된 처리량을 제공하므로 예측 가능한 성능이 필요한 미션 크리티컬 워크로드에 적합합니다. SLA는 대기 시간, 처리량, 일관성, 가용성을 포함합니다.\n\n**Learn more:** [Reliability in Azure Cosmos DB](https://learn.microsoft.com/en-us/azure/reliability/reliability-cosmos-db) · [Optimize provisioned throughput cost in Azure Cosmos DB](https://learn.microsoft.com/en-us/azure/cosmos-db/optimize-cost-throughput)",
+    "choices": ["Azure Data Lake Storage Gen2", "Azure Blob Storage", "Azure SQL", "Azure Cosmos DB"]
+  },
+  "97": {
+    "stem": "Microsoft SQL Server를 실행하고 데이터 디스크 두 개를 포함하는 가상 머신을 설계하고 있습니다. 첫 번째 데이터 디스크는 로그 파일을, 두 번째 디스크는 데이터를 저장합니다. 두 디스크 모두 P40 관리 디스크입니다.\n\n각 디스크에 사용할 호스트 캐싱 방식을 추천해야 합니다. SQL 데이터와 로그의 무결성을 유지하면서 전체 가상 머신 성능이 가장 좋아야 합니다.\n\n각 디스크에 어떤 호스트 캐싱 방식을 추천해야 합니까?\n\n각 방식은 한 번, 여러 번 사용하거나 전혀 사용하지 않을 수 있습니다.",
+    "expl": "SQL Server 트랜잭션 로그 디스크에는 None을 사용합니다. 로그 I/O는 순차적이고 쓰기 위주라 ReadOnly 캐싱의 이점이 없습니다. SQL Server 데이터 디스크에는 ReadOnly를 사용해 읽기 대기 시간, IOPS, 처리량을 개선합니다. SQL Server 데이터·로그 디스크에는 ReadWrite 캐싱을 쓰지 않습니다.\n\n**Learn more:** [Storage performance best practices for SQL Server on Azure VMs](https://learn.microsoft.com/en-us/azure/azure-sql/virtual-machines/windows/performance-guidelines-best-practices-storage?view=azuresql)",
+    "items": ["None", "ReadOnly", "ReadWrite"],
+    "slots": ["로그:", "데이터:"]
+  },
+  "98": {
+    "stem": "Site1이라는 온프레미스 데이터센터가 있습니다. Site1에는 가상 머신 100대를 호스트하는 Cluster1이라는 VMware vSphere 클러스터가 있습니다. Cluster1은 VMware vCenter로 관리합니다.\n\nSub1이라는 Azure 구독이 있습니다.\n\nCluster1의 가상 머신을 Sub1으로 마이그레이션할 계획입니다.\n\n관리 작업을 최소화하면서 Azure에서 가상 머신을 실행하는 데 필요한 리소스를 파악해야 합니다.\n\n무엇을 구성해야 합니까?\n\n각 리소스는 한 번, 여러 번 사용하거나 전혀 사용하지 않을 수 있습니다.",
+    "expl": "Azure VMware Solution은 Azure 구독에 VMware 프라이빗 클라우드를 배포하고, 그 vSphere 클러스터가 워크로드를 실행할 VMware 호스트 용량을 제공합니다. Azure Migrate 구성 요소는 검색·평가·마이그레이션을 지원할 뿐 마이그레이션 후의 VMware 컴퓨팅 환경을 제공하지는 않습니다.\n\n**Learn more:** [Azure VMware Solution private cloud and cluster concepts](https://learn.microsoft.com/en-us/azure/azure-vmware/architecture-private-clouds) · [What is Azure VMware Solution?](https://learn.microsoft.com/en-us/azure/azure-vmware/introduction)",
+    "items": ["Azure Migrate 어플라이언스", "Azure Migrate 프로젝트", "Azure VMware Solution 프라이빗 클라우드", "Azure VMware Solution 호스트"],
+    "slots": ["Sub1:", "Cluster1:"]
+  },
+  "99": {
+    "stem": "다음 표의 리소스가 있습니다.\n\n[[IMG1]]\n\nCDB1에는 지속적으로 업데이트되는 운영 데이터를 저장하는 컨테이너가 있습니다.\n\n매일 AS1으로 운영 데이터를 분석하는 솔루션을 설계하고 있습니다.\n\n운영 데이터 저장소의 성능에 영향을 주지 않고 데이터를 분석하는 솔루션을 추천해야 합니다.\n\n추천에 무엇을 포함해야 합니까?",
+    "expl": "Azure Cosmos DB용 Azure Synapse Link를 사용하면 Azure Synapse Analytics가 Cosmos DB 분석 저장소(별도로 유지되는 격리된 열 저장소)를 쿼리할 수 있습니다. 덕분에 지속적으로 갱신되는 운영 데이터를 분석하면서도 트랜잭션 워크로드의 프로비저닝된 처리량을 소비하거나 성능에 영향을 주지 않습니다.\n\n**Learn more:** [What is Azure Synapse Link for Azure Cosmos DB?](https://learn.microsoft.com/en-us/azure/cosmos-db/synapse-link) · [What is Azure Cosmos DB analytical store?](https://learn.microsoft.com/en-us/azure/cosmos-db/analytical-store-introduction)",
+    "choices": [
+      "Azure Cosmos DB·Azure Synapse Analytics 커넥터를 사용하는 Azure Data Factory",
+      "PolyBase 데이터 로딩을 사용하는 Azure Synapse Analytics",
+      "Azure Cosmos DB용 Azure Synapse Link",
+      "Azure Cosmos DB 변경 피드(change feed)"
+    ]
+  },
+  "100": {
+    "stem": "루트 관리 그룹 하나와 자식 관리 그룹 10개로 구성된 Azure 환경을 구축할 계획입니다. 각 자식 관리 그룹에는 Azure 구독 5개가 있고, 각 구독에는 리소스 그룹이 10~30개 있습니다.\n\n다음 요구 사항을 충족하는 Azure 거버넌스 솔루션을 설계해야 합니다.\n\n- Azure Blueprints로 모든 구독과 리소스 그룹의 거버넌스를 제어해야 합니다.\n- 청사진 기반 구성이 모든 구독과 리소스 그룹에서 일관되게 유지되어야 합니다.\n- 청사진 정의와 할당 수를 최소화해야 합니다.\n\n솔루션에 무엇을 포함해야 합니까?",
+    "expl": "루트 관리 그룹에 저장한 청사진 정의는 그 관리 그룹 계층 전체의 구독에서 사용할 수 있으므로 정의 하나로 공통 구성을 유지할 수 있습니다. 청사진 할당은 구독을 대상으로 하며, 관리 그룹에 할당한다고 해서 하위 구독 전체에 자동으로 배포되지는 않으므로 구독마다 할당을 만들어야 합니다.\n\n**Learn more:** [Overview of Azure Blueprints](https://learn.microsoft.com/en-us/azure/governance/blueprints/overview) · [Quickstart: Define and assign a blueprint in the portal](https://learn.microsoft.com/en-us/azure/governance/blueprints/create-blueprint-portal)",
+    "blanks": [
+      { "label": "청사진을 정의할 수준:", "options": ["자식 관리 그룹", "루트 관리 그룹", "구독"] },
+      { "label": "청사진 할당을 만들 수준:", "options": ["자식 관리 그룹", "루트 관리 그룹", "구독"] }
+    ]
+  },
+  "101": {
+    "stem": "Azure 구독이 있습니다.\n\n블록 Blob용 저장소 계정 5개와 파일 공유용 저장소 계정 5개를 배포할 계획입니다. 파일 공유는 SMB 프로토콜로 접근합니다.\n\n저장소 계정에 대한 액세스 권한 부여 솔루션을 추천해야 합니다. 솔루션은 다음 요구 사항을 충족해야 합니다.\n\n- 보안을 최대화해야 합니다.\n- 공유 키 사용을 막아야 합니다.\n- 가능한 경우 시간 제한이 있는 액세스를 지원해야 합니다.\n\n솔루션에 무엇을 포함해야 합니까?",
+    "expl": "Blob Storage용 사용자 위임 SAS는 Microsoft Entra ID로 얻은 사용자 위임 키로 서명하므로 공유 키 권한 부여를 피하면서 유효 기간을 정할 수 있습니다. 사용자 위임 SAS 토큰에는 저장된 액세스 정책을 사용할 수 없습니다. SMB로 접근하는 Azure Files는 공유 키 대신 Azure AD 자격 증명을 사용하는 ID 기반 인증·권한 부여를 씁니다.\n\n**Learn more:** [Create a user delegation SAS](https://learn.microsoft.com/fil-ph/rest/api/storageservices/create-user-delegation-sas) · [Overview of Azure Files authorization and access control](https://learn.microsoft.com/en-us/azure/storage/files/storage-files-authorization-overview)",
+    "blanks": [
+      { "label": "Blob의 경우:", "options": ["사용자 위임 공유 액세스 서명(SAS)만", "공유 액세스 서명(SAS)과 저장된 액세스 정책", "사용자 위임 공유 액세스 서명(SAS)과 저장된 액세스 정책"] },
+      { "label": "파일 공유의 경우:", "options": ["Azure AD 자격 증명", "사용자 위임 공유 액세스 서명(SAS)만", "사용자 위임 공유 액세스 서명(SAS)과 저장된 액세스 정책"] }
+    ]
+  },
+  "102": {
+    "stem": "Azure Active Directory(Azure AD) 테넌트가 있습니다.\n\nSQL API를 사용하는 Azure Cosmos DB 데이터베이스를 배포할 계획입니다.\n\n지정한 Azure AD 사용자 계정에 Cosmos DB 데이터베이스에 대한 읽기 액세스를 제공하는 솔루션을 추천해야 합니다.\n\n추천에 무엇을 포함해야 합니까?",
+    "expl": "Azure Cosmos DB SQL API 리소스 토큰은 권한(permission) 리소스에서 생성되며 특정 리소스와 기간에 대해 읽기 전용으로 제한할 수 있습니다. 액세스 제어(IAM) 역할 할당은 지정한 Microsoft Entra ID 주체에게 Azure 리소스 관리 권한을 부여하는 데 사용합니다. 이 둘을 함께 쓰면 선택한 디렉터리 사용자에게 범위를 제한한 Cosmos DB 액세스를 줄 수 있습니다.\n\n**Learn more:** [Access control in the Azure Cosmos DB SQL API](https://learn.microsoft.com/en-us/rest/api/cosmos-db/access-control-on-cosmosdb-resources) · [Add and assign user roles for Azure Cosmos DB for NoSQL](https://learn.microsoft.com/en-us/azure/cosmos-db/how-to-add-assign-user-roles)",
+    "choices": [
+      "공유 액세스 서명(SAS)과 조건부 액세스 정책",
+      "인증서와 Azure Key Vault",
+      "마스터 키와 Azure Information Protection 정책",
+      "리소스 토큰과 액세스 제어(IAM) 역할 할당"
+    ]
+  },
+  "103": {
+    "stem": "다음 요구 사항을 충족하는 고가용성 Azure SQL 데이터베이스를 설계해야 합니다.\n\n- 데이터베이스 복제본 간 장애 조치 시 데이터 손실이 없어야 합니다.\n- 가용성 영역 장애 중에도 데이터베이스를 계속 사용할 수 있어야 합니다.\n- 비용을 최소화해야 합니다.\n\n어떤 배포 옵션을 선택해야 합니까?",
+    "expl": "Azure SQL Database Business Critical은 동기 복제되는 고가용성 복제본을 사용합니다. 영역 중복으로 구성하면 복제본이 가용성 영역에 분산되어 장애 조치 시 커밋된 데이터 손실이 없고 단일 영역 장애에도 복원력이 있습니다. 관리 인스턴스 배포에 드는 추가 비용 없이 이 요구 사항을 충족합니다.\n\n**Learn more:** [Reliability in Azure SQL Database](https://learn.microsoft.com/en-us/azure/reliability/reliability-sql-database) · [vCore purchasing model - Azure SQL Database](https://learn.microsoft.com/en-us/azure/azure-sql/database/service-tiers-sql-database-vcore?view=azuresql)",
+    "choices": ["Azure SQL Managed Instance Business Critical", "Azure SQL Managed Instance General Purpose", "Azure SQL Database Business Critical", "Azure SQL Database Serverless"]
+  },
+  "104": {
+    "stem": "Azure 구독에서 새로 배포되는 모든 Azure Resource Manager(ARM) 리소스에 대한 월간 보고서를 생성하는 솔루션을 추천해야 합니다.\n\n추천에 무엇을 포함해야 합니까?",
+    "expl": "Azure 활동 로그(Activity Log)는 리소스 만들기를 비롯한 구독 수준 Azure Resource Manager 제어 평면 이벤트와 관리 작업을 기록합니다. 이 이벤트로 월간 보고 기간의 새 배포를 파악할 수 있습니다.\n\n**Learn more:** [Activity log in Azure Monitor](https://learn.microsoft.com/en-us/azure/azure-monitor/platform/activity-log) · [Azure Activity Log event schema](https://learn.microsoft.com/en-us/azure/azure-monitor/platform/activity-log-schema)",
+    "choices": ["Azure 활동 로그(Activity Log)", "Azure Arc", "Azure Analysis Services", "Azure Monitor 작업 그룹(action group)"]
+  }
+}

@@ -1,0 +1,111 @@
+{
+  "189": {
+    "stem": "HOTSPOT –\n\n온프레미스 Microsoft SQL Server 데이터베이스를 Azure로 마이그레이션할 계획입니다.\n\n다음 요구 사항을 충족하는 배포·복원력 솔루션을 추천해야 합니다.\n\n- 사용자가 직접 시작하는 백업을 지원해야 합니다.\n- Azure 지역을 넘어 자동 복제되는 인스턴스를 여러 개 지원해야 합니다.\n- 업무 연속성을 구현·유지하는 데 드는 관리 작업을 최소화해야 합니다.\n\n무엇을 추천해야 합니까?",
+    "expl": "Azure SQL Managed Instance는 사용자 데이터베이스에 대해 사용자가 시작하는 COPY_ONLY 백업을 지원합니다. 장애 조치 그룹은 모든 사용자 데이터베이스를 다른 Azure 지역의 보조 관리 인스턴스로 자동 복제하고 관리형 장애 조치를 지원하므로, SQL Server 가상 머신과 그 복제 인프라를 직접 유지하는 것보다 적은 관리로 지역 간 업무 연속성을 제공합니다. 영역 중복은 한 지역 안에서만 보호합니다.\n\n**Learn more:** [Reliability in Azure SQL Managed Instance](https://learn.microsoft.com/en-us/azure/reliability/reliability-sql-managed-instance) · [Failover groups overview and best practices - Azure SQL Managed Instance](https://learn.microsoft.com/en-us/azure/azure-sql/managed-instance/failover-group-sql-mi?view=azuresql)",
+    "blanks": [
+      { "label": "배포 솔루션:", "options": ["Azure SQL Managed Instance", "Azure Virtual Machines의 SQL Server", "Azure SQL Database 단일 데이터베이스"] },
+      { "label": "복원력 솔루션:", "options": ["자동 장애 조치 그룹", "활성 지역 복제", "영역 중복 배포"] }
+    ]
+  },
+  "190": {
+    "stem": "미국 동부(East US) Azure 지역에 Server1이라는 Azure Database for MySQL 유연한 서버를 배포할 계획입니다.\n\nServer1의 업무 연속성 솔루션을 구현해야 합니다. 솔루션은 쌍 지역으로 장애 조치할 때 가동 중단을 최소화해야 합니다.\n\n무엇을 해야 합니까?",
+    "expl": "지역 간 읽기 복제본은 미리 만들어 둔 서버 사본으로, 지역 장애 시 독립적인 읽기·쓰기 서버로 승격해 애플리케이션 트래픽을 넘겨받을 수 있습니다. 덕분에 지역 중복 백업으로 새 서버를 만들어 복원할 때 걸리는 가변적인 복구 시간을 피할 수 있습니다. Microsoft도 읽기 복제본을 재해 복구 옵션으로 안내하고, 지역 중복 백업 복구는 RTO가 가변적인 새 서버 배포로 설명합니다.\n\n**Learn more:** [Overview of business continuity with Azure Database for MySQL - Flexible Server](https://learn.microsoft.com/en-us/azure/mysql/flexible-server/concepts-business-continuity) · [Backup and restore in Azure Database for MySQL](https://learn.microsoft.com/en-us/azure/mysql/flexible-server/concepts-backup-restore)",
+    "choices": [
+      "읽기 복제본을 만듭니다.",
+      "데이터베이스 파일을 Azure 프리미엄 파일 공유에 저장합니다.",
+      "지역 중복 백업을 구현합니다.",
+      "네이티브 MySQL 복제를 구성합니다."
+    ]
+  },
+  "191": {
+    "stem": "회사가 뉴욕과 로스앤젤레스에 온프레미스 사이트 두 곳을 운영하며 미국 동부·미국 서부 Azure 지역에 가상 네트워크가 있습니다. 각 온프레미스 사이트는 두 지역 모두에 ExpressRoute Global Reach 회로를 갖고 있습니다.\n\n다음 요구 사항을 충족하는 솔루션을 추천하세요.\n\n- 가상 네트워크 워크로드의 아웃바운드 인터넷 트래픽은 가장 가까운 온프레미스 사이트를 거쳐 나가야 합니다.\n- 온프레미스 사이트 하나에 장애가 나면 가상 네트워크 워크로드의 인터넷 방향 트래픽이 자동으로 다른 사이트를 거치도록 다시 라우팅되어야 합니다.\n\n추천에 무엇을 포함해야 합니까?",
+    "expl": "VNet의 아웃바운드 인터넷 트래픽을 ExpressRoute를 통해 온프레미스로 강제하려면 온프레미스 사이트가 ExpressRoute BGP 피어링 세션으로 기본 경로(0.0.0.0/0)를 Azure에 광고해야 합니다. ExpressRoute 강제 터널링은 사용자 정의 경로로는 구성할 수 없으므로 온프레미스로의 라우팅 구성은 BGP로 합니다. BGP는 동적 라우팅 프로토콜이라 Azure가 광고된 경로 중 가장 가까운 경로를 자동으로 선택하고, 한 사이트가 장애로 경로 광고를 멈추면 BGP가 재수렴해 살아 있는 사이트로 수동 변경 없이 트래픽을 다시 라우팅합니다. HSRP와 VRRP는 온프레미스 LAN 내부의 첫 홉 게이트웨이 이중화 프로토콜이라 Azure/ExpressRoute 경로 선택과는 무관하므로 장애 조치 항목의 답이 될 수 없습니다. 따라서 두 항목 모두 BGP입니다.\n\n**Learn more:** [ExpressRoute with VPN failover reference architecture](https://learn.microsoft.com/en-us/azure/architecture/reference-architectures/hybrid-networking/expressroute-vpn-failover)",
+    "blanks": [
+      { "label": "가상 네트워크에서 온프레미스 위치로의 라우팅 구성 방법:", "options": ["Azure 기본 경로", "경계 게이트웨이 프로토콜(BGP)", "사용자 정의 경로"] },
+      { "label": "장애 조치 후 자동 라우팅 구성 처리 방법:", "options": ["경계 게이트웨이 프로토콜(BGP)", "Hot Standby Routing Protocol(HSRP)", "Virtual Router Redundancy Protocol(VRRP)"] }
+    ]
+  },
+  "192": {
+    "stem": "저장소 계정이 있는 Azure 구독이 있습니다.\n\n한 애플리케이션이 이따금 중복 파일을 저장소 계정에 씁니다. 저장소 계정의 중복 파일을 찾아 삭제하는 PowerShell 스크립트가 있습니다. 현재 이 스크립트는 운영 관리자의 승인을 받은 뒤 수동으로만 실행합니다.\n\n다음 작업을 수행하는 서버리스 솔루션을 추천해야 합니다.\n\n- 매시간 스크립트를 실행해 중복 파일이 있는지 확인합니다.\n- 운영 관리자에게 중복 파일 삭제 승인을 요청하는 메일 알림을 보냅니다.\n- 삭제 승인 여부를 알리는 운영 관리자의 메일 회신을 처리합니다.\n- 삭제가 승인되면 스크립트를 실행합니다.\n\n추천에 무엇을 포함해야 합니까?",
+    "expl": "Azure Logic Apps는 반복 워크플로를 실행하고 커넥터로 메일을 보내고 받으며 승인 응답을 조율할 수 있습니다. Azure Functions는 PowerShell 스크립트를 서버리스로 실행하므로, 워크플로가 승인을 받은 뒤에만 스크립트를 호출하게 할 수 있습니다.\n\n**Learn more:** [Schedule and run recurring workflows with the Recurrence trigger in Azure Logic Apps](https://learn.microsoft.com/en-us/azure/connectors/connectors-native-recurrence) · [Create a function in Azure that runs on a schedule](https://learn.microsoft.com/en-us/azure/azure-functions/functions-create-scheduled-function)",
+    "choices": [
+      "Azure Logic Apps와 Azure Event Grid",
+      "Azure Logic Apps와 Azure Functions",
+      "Azure Pipelines와 Azure Service Fabric",
+      "Azure Functions와 Azure Batch"
+    ]
+  },
+  "193": {
+    "stem": "웹 애플리케이션을 지원하는 마이크로서비스 아키텍처를 설계하고 있습니다.\n\n솔루션은 다음 요구 사항을 충족해야 합니다.\n\n- 솔루션을 온프레미스와 Azure 모두에 배포해야 합니다.\n- 낮은 대기 시간과 초대규모(hyper-scale) 운영을 지원해야 합니다.\n\n[[IMG1]]\n\n- 각 마이크로서비스를 독립적으로 업그레이드할 수 있어야 합니다.\n- 마이크로서비스를 자동으로 복구하는 정책을 정의할 수 있어야 합니다.\n\n기술을 추천해야 합니다. 무엇을 추천해야 합니까?",
+    "expl": "Azure Service Fabric은 확장 가능하고 안정적인 마이크로서비스를 위한 분산 시스템 플랫폼으로 Azure와 독립형 온프레미스 클러스터 모두에서 실행할 수 있습니다. 서비스별 독립 버전 관리·배포·업그레이드·크기 조정을 지원하고, 상태 모니터링과 실패한 서비스 감지·재시작 기능을 제공합니다. 상태 저장(stateful) 서비스는 대규모의 높은 처리량·낮은 대기 시간 워크로드를 위한 것입니다.\n\n**Learn more:** [Overview of Azure Service Fabric](https://learn.microsoft.com/en-us/azure/service-fabric/service-fabric-overview) · [Introduction to microservices on Azure](https://learn.microsoft.com/en-us/azure/service-fabric/service-fabric-overview-microservices)",
+    "choices": ["Azure Container Instances", "Azure Logic Apps", "Azure Service Fabric", "Azure 가상 머신 확장 집합"]
+  },
+  "194": {
+    "stem": "AKS1이라는 Azure Kubernetes Service(AKS) 인스턴스가 있는 Azure 구독이 있습니다. AKS1은 기본이 아닌 HTTP 포트에서 수신하도록 구성된 마이크로서비스 기반 API를 호스트합니다.\n\n외부 사용자에게 이 API를 제공하기 위해 APIM1이라는 Standard 계층 Azure API Management 인스턴스를 배포할 계획입니다.\n\nAPIM1이 AKS1의 API에 접근할 수 있게 해야 합니다. 솔루션은 다음 요구 사항을 충족해야 합니다.\n\n- APIM1과 AKS1 사이에 mTLS 인증을 구현해야 합니다.\n- 개발 작업을 최소화해야 합니다.\n- 비용을 최소화해야 합니다.\n\n무엇을 해야 합니까?",
+    "expl": "인그레스 컨트롤러는 HTTP API를 위한 중앙 집중식 7계층 진입점을 제공하고 구성된 포트로 Kubernetes 서비스에 요청을 라우팅하며 클러스터 경계에서 mTLS를 적용할 수 있습니다. Azure API Management는 mTLS를 기본 지원하며, Microsoft의 AKS/API Management 지침도 인그레스 컨트롤러를 설치해 이 패턴을 구성할 수 있다고 안내합니다. 마이크로서비스마다 인증·라우팅을 구현하거나 부하 분산 장치를 따로 노출할 필요 없이 중앙에서 처리할 수 있습니다.\n\n**Learn more:** [Use Azure API Management with microservices deployed in Azure Kubernetes Service](https://learn.microsoft.com/en-us/azure/api-management/api-management-kubernetes) · [Best practices for network resources in Azure Kubernetes Service](https://learn.microsoft.com/en-us/azure/aks/operator-best-practices-network)",
+    "choices": [
+      "AKS1에 외부 부하 분산 장치를 구현합니다.",
+      "APIM1을 AKS1이 있는 가상 네트워크에 다시 배포합니다.",
+      "AKS1에 ExternalName 서비스를 구현합니다.",
+      "AKS1에 인그레스 컨트롤러를 배포합니다."
+    ]
+  },
+  "195": {
+    "stem": "HOTSPOT -\n\n회사에는 사내에서 개발한 Web API가 20개 있고, 이 API를 사용할 웹앱 10개를 개발 중입니다. 웹앱과 API 모두 회사의 Azure Active Directory(Azure AD) 테넌트에 등록되어 있으며, Web API는 Azure API Management를 통해 게시됩니다.\n\n웹앱에서 오는 권한 없는 요청이 Web API에 도달하기 전에 차단하는 솔루션을 추천해야 합니다. 솔루션은 다음을 만족해야 합니다.\n\n- Azure AD가 생성한 클레임을 사용해야 합니다.\n- 구성·관리 작업을 최소화해야 합니다.\n\n추천에 무엇을 포함해야 합니까?",
+    "expl": "Azure AD 앱 등록은 API 권한을 노출하고 권한이 있는 클라이언트 애플리케이션에 클레임이 담긴 액세스 토큰을 발급합니다. Azure API Management의 validate-jwt 정책이 게이트웨이에서 이 Azure AD 토큰을 검증하므로 권한 없는 요청은 백엔드 Web API에 도달하기 전에 거부됩니다. 여러 API에 대한 적용을 한곳에 모아 API별 구성을 최소화할 수 있습니다.\n\n**Learn more:** [Azure API Management validate-jwt policy](https://learn.microsoft.com/en-us/azure/api-management/validate-jwt-policy) · [Configure an application to expose a web API](https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-configure-app-expose-web-apis)",
+    "blanks": [
+      { "label": "웹앱이 Web API에 접근하도록 권한을 부여할 때 사용할 것:", "options": ["Azure AD", "Azure API Management", "Web API"] },
+      { "label": "JSON 웹 토큰(JWT) 유효성 검사 정책을 구성할 때 사용할 것:", "options": ["Azure AD", "Azure API Management", "Web API"] }
+    ]
+  },
+  "196": {
+    "stem": "민감한 데이터를 위한 Azure Storage 솔루션을 설계하고 있습니다. 데이터는 매일 접근하며 데이터 집합은 10GB 미만입니다.\n\n다음 요구 사항을 충족하는 저장소 솔루션을 추천하세요.\n\n- 저장소에 기록된 모든 데이터를 5년간 보존해야 합니다.\n- 기록한 뒤에는 읽기 전용이어야 하며 수정과 삭제를 막아야 합니다.\n- 5년이 지나면 삭제할 수 있지만 수정은 절대 불가능해야 합니다.\n- 데이터 액세스 요금을 최소화해야 합니다.\n\n무엇을 추천해야 합니까?",
+    "expl": "핫(Hot) 계층은 자주 접근하는 데이터를 위한 것으로 액세스 비용이 가장 낮습니다. 컨테이너 수준의 시간 기반 보존 변경 불가능 정책은 WORM 보호를 제공해, 5년 보존 기간 동안 Blob을 수정하거나 삭제할 수 없고 기간이 끝나면 삭제는 가능하되 덮어쓸 수는 없습니다.\n\n**Learn more:** [Access tiers for blob data - Azure Storage](https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-overview) · [Overview of immutable storage for blob data - Azure Storage](https://learn.microsoft.com/en-us/azure/storage/blobs/immutable-storage-overview)",
+    "blanks": [
+      { "label": "저장소 계정 유형:", "options": ["Blob에 아카이브 액세스 계층을 사용하는 범용 v2", "Blob에 쿨 액세스 계층을 사용하는 범용 v2", "Blob에 핫 액세스 계층을 사용하는 범용 v2"] },
+      { "label": "수정·삭제를 막기 위한 구성:", "options": ["컨테이너 액세스 수준", "컨테이너 액세스 정책", "저장소 계정 리소스 잠금"] }
+    ]
+  },
+  "197": {
+    "stem": "다음 요구 사항을 충족하는 고가용성 Azure SQL 데이터베이스를 설계해야 합니다.\n\n- 데이터베이스 복제본 간 장애 조치 시 데이터 손실이 없어야 합니다.\n- 가용성 영역에 장애가 발생해도 데이터베이스를 계속 사용할 수 있어야 합니다.\n- 비용을 최소한으로 유지해야 합니다.\n\n어떤 배포 옵션을 사용해야 합니까?",
+    "expl": "영역 중복 Azure SQL Database Premium 배포는 완전히 동기화된 복제본을 가용성 영역에 분산합니다. 영역 장애 시 동기화된 복제본이 주 복제본이 되며 커밋된 데이터 손실이 없습니다. Premium은 영역 중복을 지원하지만 Standard 계층은 지원하지 않고, Premium은 이미 복제본을 여러 개 쓰므로 영역 중복 사용에 추가 요금도 없습니다.\n\n**Learn more:** [Reliability in Azure SQL Database](https://learn.microsoft.com/en-us/azure/reliability/reliability-sql-database) · [Availability through local and zone redundancy for Azure SQL Database](https://learn.microsoft.com/en-us/azure/azure-sql/database/high-availability-sla-local-zone-redundancy)",
+    "choices": ["Azure SQL Database Hyperscale", "Azure SQL Database Premium", "Azure SQL Database Standard", "Azure SQL Managed Instance General Purpose"]
+  },
+  "198": {
+    "stem": "WebApp1의 웹 계층 솔루션을 그림과 같이 설계했습니다.\n\n[[IMG1]]\n\n각 설명이 참이면 **예**, 아니면 **아니요**를 선택하세요.",
+    "expl": "Azure Traffic Manager는 공용 엔드포인트를 지속적으로 모니터링하고 DNS 응답을 정상 지역 엔드포인트로 자동 장애 조치합니다. 따라서 서로 다른 지역에 배치한 Azure App Service 웹앱 두 개면 수동 장애 조치 구성 없이 지역 중복이 확보됩니다. App Service는 지원되는 App Service 계획에서 구성하면 스케일 아웃·자동 크기 조정을 지원합니다.\n\n**Learn more:** [How Azure Traffic Manager Works](https://learn.microsoft.com/en-us/azure/traffic-manager/traffic-manager-how-it-works) · [Automatic scaling in Azure App Service](https://learn.microsoft.com/en-us/azure/app-service/manage-automatic-scaling)",
+    "statements": [
+      "이 설계는 중복성에 대한 기술 요구 사항을 충족한다.",
+      "이 설계는 자동 크기 조정을 지원한다.",
+      "이 설계는 Azure 지역에 장애가 발생하면 수동 구성이 필요하다."
+    ]
+  },
+  "199": {
+    "stem": "Azure 구독이 있습니다.\n\nWindows Server 2019 노드를 사용하는 Azure Kubernetes Service(AKS) 솔루션을 배포해야 합니다. 솔루션은 다음 요구 사항을 충족해야 합니다.\n\n- 스케일 아웃 시 컴퓨팅 리소스를 프로비저닝하는 데 걸리는 시간을 최소화해야 합니다.\n- Windows Server 컨테이너의 자동 크기 조정을 지원해야 합니다.\n\n어떤 크기 조정 옵션을 추천해야 합니까?",
+    "expl": "Virtual Kubelet과 Azure Container Instances(ACI)를 사용하는 가상 노드는 파드를 빠르게 프로비저닝하므로 클러스터 자동 크기 조정기가 VM 컴퓨팅 노드를 배포할 때까지 기다리지 않아도 됩니다. Windows Server 컨테이너는 오픈 소스 Virtual Kubelet ACI 공급자를 직접 설치해 ACI에 예약할 수 있습니다.\n\n**Learn more:** [Use virtual nodes with Azure Kubernetes Service (AKS)](https://learn.microsoft.com/en-us/azure/aks/virtual-nodes)",
+    "choices": [
+      "Kubernetes 1.20.2 이상",
+      "Virtual Kubelet ACI를 사용하는 가상 노드",
+      "클러스터 자동 크기 조정기",
+      "수평 파드 자동 크기 조정기"
+    ]
+  },
+  "200": {
+    "stem": "Azure Functions로 Azure Event Hubs의 이벤트를 처리하는 앱을 만들고 있습니다. 요청 처리에는 5분에서 20분이 걸릴 것으로 예상됩니다.\n\n다음 요구 사항을 충족하는 호스팅 솔루션을 추천해야 합니다.\n\n- 예상되는 요청 처리 실행 시간을 지원해야 합니다.\n- 앱에 이벤트 기반 자동 크기 조정을 지원해야 합니다.\n\n어떤 호스팅 플랜을 추천해야 합니까?",
+    "expl": "Azure Functions Premium은 이벤트 기반 크기 조정을 지원하고 함수 제한 시간을 상한 없이 구성할 수 있습니다. 소비(Consumption) 플랜은 실행당 10분으로 제한되고, 전용(Dedicated)·App Service 플랜은 Azure Functions의 이벤트 기반 크기 조정을 사용하지 않습니다.\n\n**Learn more:** [Azure Functions scale and hosting](https://learn.microsoft.com/en-us/azure/azure-functions/functions-scale) · [Event-driven scaling in Azure Functions](https://learn.microsoft.com/en-us/azure/azure-functions/event-driven-scaling)",
+    "choices": ["전용(Dedicated)", "소비(Consumption)", "App Service", "Premium"]
+  },
+  "201": {
+    "stem": "Azure App Service 웹앱을 설계하고 있습니다.\n\n이 웹앱을 북유럽(North Europe)과 서유럽(West Europe) Azure 지역에 배포할 계획입니다.\n\n웹앱에 사용할 솔루션을 추천해야 합니다. 솔루션은 다음 요구 사항을 충족해야 합니다.\n\n- 북유럽 지역에 장애가 없는 한 사용자는 항상 북유럽 지역에서 웹앱에 접근해야 합니다.\n- Azure 지역 하나를 사용할 수 없어도 사용자가 웹앱을 계속 사용할 수 있어야 합니다.\n- 배포 비용을 최소화해야 합니다.\n\n추천에 무엇을 포함해야 합니까?",
+    "expl": "Azure Traffic Manager는 DNS 기반 라우팅, 엔드포인트 상태 모니터링, Azure 지역 간 장애 조치를 제공합니다. 우선순위(Priority) 라우팅 방식을 쓰면 북유럽이 기본 엔드포인트가 되고 서유럽은 기본 엔드포인트가 비정상일 때만 트래픽을 받으므로, 추가 배포 인프라를 최소화하면서 기본 지역·가용성 요구 사항을 충족합니다.\n\n**Learn more:** [Traffic Manager routing methods](https://learn.microsoft.com/en-us/azure/traffic-manager/traffic-manager-routing-methods) · [Azure Traffic Manager overview](https://learn.microsoft.com/en-us/azure/traffic-manager/traffic-manager-overview)",
+    "blanks": [
+      { "label": "요청 라우팅 방법:", "options": ["Traffic Manager 프로필", "Azure Application Gateway", "Azure Load Balancer"] },
+      { "label": "요청 라우팅 구성:", "options": ["쿠키 기반 세션 선호도", "성능(Performance) 트래픽 라우팅", "우선순위(Priority) 트래픽 라우팅", "가중치(Weighted) 트래픽 라우팅"] }
+    ]
+  },
+  "202": {
+    "stem": "온프레미스 데이터센터에 Linux를 실행하며 App1이라는 Java 앱을 호스트하는 서버가 있습니다. App1의 특성은 다음과 같습니다.\n\n- App1은 사용자가 HTTPS 연결로 접근하는 대화형 애플리케이션입니다.\n- App1에 대한 연결 수는 하루 중에도 크게 달라집니다.\n- App1은 여러 인스턴스를 동시에 실행합니다.\n- App1을 컨테이너에서 실행하려면 대대적인 변경이 필요합니다.\n\nApp1을 Azure로 마이그레이션할 계획입니다.\n\nApp1에 사용할 컴퓨팅 솔루션을 추천해야 합니다. 솔루션은 다음 요구 사항을 충족해야 합니다.\n\n- App1 인스턴스를 여러 개 실행해야 합니다.\n- 부하에 따라 인스턴스 수를 자동으로 관리해야 합니다.\n- 관리 작업을 최소화해야 합니다.\n\n추천에 무엇을 포함해야 합니까?",
+    "expl": "Azure App Service는 Java 웹 애플리케이션을 위한 완전 관리형 HTTP 기반 호스팅 서비스입니다. 들어오는 HTTP 트래픽에 따라 여러 인스턴스로 자동 스케일 아웃하고 부하 분산을 기본 제공하며, Java 애플리케이션을 컨테이너화하지 않고 코드나 JAR/WAR 패키지로 배포할 수 있습니다. 덕분에 변동이 큰 HTTPS 수요를 최소한의 관리로 처리할 수 있습니다.\n\n**Learn more:** [Deploy and configure a Java SE, Tomcat, or JBoss EAP app in Azure App Service](https://learn.microsoft.com/en-us/azure/app-service/configure-language-java-deploy-run) · [Automatic scaling in Azure App Service](https://learn.microsoft.com/en-us/azure/app-service/manage-automatic-scaling)",
+    "choices": ["Azure Batch", "Azure App Service", "Azure Kubernetes Service(AKS)", "Azure 가상 머신 확장 집합"]
+  }
+}

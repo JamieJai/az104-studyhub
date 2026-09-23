@@ -1,0 +1,120 @@
+{
+  "17": {
+    "stem": "솔루션: Azure 다단계 인증(MFA)을 요구합니다.\n\n이 솔루션이 목표를 충족합니까?",
+    "expl": "Azure MFA는 로그인할 때 추가 확인 방법을 요구합니다. 계정 보안은 높아지지만, 온프레미스 Active Directory 환경을 폐기할 때 사용자 영향을 최소화하는 ID 마이그레이션 방안을 제공하지는 않습니다.\n\n**Learn more:** [Enable per-user Microsoft Entra multifactor authentication to secure sign-in events](https://learn.microsoft.com/en-us/entra/identity/authentication/howto-mfa-userstates)",
+    "choices": ["예", "아니요"]
+  },
+  "18": {
+    "stem": "솔루션: 모든 Active Directory 사용자 계정을 Azure Active Directory(Azure AD)와 동기화합니다.\n\n이 솔루션이 목표를 충족합니까?",
+    "expl": "디렉터리 동기화는 온프레미스 Active Directory ID를 Microsoft Entra ID로 프로비저닝해 클라우드 리소스에 공통 ID를 제공합니다. 암호 해시 동기화를 사용하면 사용자가 기존 온프레미스 암호를 클라우드에서도 그대로 쓸 수 있어 마이그레이션 중 혼란이 줄어듭니다.\n\n**Learn more:** [Directory synchronization with Microsoft Entra ID](https://learn.microsoft.com/en-us/entra/architecture/sync-directory) · [What is Microsoft Entra Connect and Connect Health?](https://learn.microsoft.com/en-us/entra/identity/hybrid/connect/whatis-azure-ad-connect)",
+    "choices": ["예", "아니요"]
+  },
+  "19": {
+    "stem": "다음 각 설명이 참이면 **예**, 아니면 **아니요**를 선택하세요.",
+    "expl": "Azure 총소유비용(TCO) 계산기는 온프레미스 데이터센터에서 워크로드를 운영하는 비용과 Azure에서 예상되는 비용을 비교해 마이그레이션 절감액을 추정합니다. 결과는 비용과 절감액을 그래프로 보여 주는 비교 보고서로 제공됩니다.\n\n**Learn more:** [Total Cost of Ownership (TCO) Calculator](https://azure.microsoft.com/en-us/pricing/tco/calculator/)",
+    "statements": [
+      "총소유비용(TCO) 계산기는 데이터센터에서 워크로드를 실행하는 비용을 보여 준다.",
+      "총소유비용(TCO) 계산기는 Azure에서 워크로드를 실행하는 비용을 보여 준다.",
+      "총소유비용(TCO) 계산기는 그래프 형태의 보고서를 생성한다."
+    ]
+  },
+  "20": {
+    "stem": "각 Azure 거버넌스 기능을 올바른 설명과 연결하세요.\n\n각 기능은 한 번, 여러 번 사용하거나 전혀 사용하지 않을 수 있습니다.",
+    "expl": "Azure Policy는 허용 목록에 없는 VM SKU의 배포를 거부할 수 있습니다. Azure 태그는 리소스를 분류하고 비용 센터별로 청구 사용량을 묶을 수 있게 합니다. Azure Blueprints는 리소스 그룹, ARM 템플릿, 정책 할당, 역할 할당을 묶어 반복 가능한 거버넌스 환경을 배포합니다. 리소스 잠금은 리소스를 실수로 삭제하거나 수정하는 것을 막는 기능입니다.\n\n**Learn more:** [Azure Policy overview](https://learn.microsoft.com/en-us/azure/governance/policy/overview) · [Use tags to organize Azure resources](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/tag-resources)",
+    "items": ["Azure Blueprints", "Azure Policy", "Azure 리소스 잠금", "Azure 태그"],
+    "slots": [
+      "구독에서 만들 수 있는 가상 머신 종류를 제한한다.",
+      "특정 비용 센터와 연관된 Azure 리소스를 식별한다.",
+      "리소스 구성과 역할 할당을 포함한 완전한 Azure 애플리케이션 환경을 배포한다."
+    ]
+  },
+  "21": {
+    "stem": "다음 각 설명이 참이면 **예**, 아니면 **아니요**를 선택하세요.",
+    "expl": "Azure MFA는 하이브리드 ID뿐 아니라 클라우드 전용 Microsoft Entra ID 계정에서도 동작하므로 온프레미스 디렉터리 동기화가 반드시 필요하지는 않습니다. 사진이 있는 신분증이나 여권 번호는 MFA 인증 방법이 아닙니다. MFA 정책은 관리자 계정과 일반 계정을 모두 포함해 폭넓게 적용할 수 있습니다.\n\n**Learn more:** [Microsoft Entra authentication overview](https://learn.microsoft.com/en-us/entra/identity/authentication/overview-authentication) · [Manage authentication methods for Microsoft Entra ID](https://learn.microsoft.com/en-us/entra/identity/authentication/concept-authentication-methods-manage)",
+    "statements": [
+      "Azure 다단계 인증(MFA) 솔루션을 구현하려면 온프레미스 ID를 클라우드로 동기화해야 한다.",
+      "Azure 다단계 인증(MFA)의 유효한 방법 두 가지는 사진 신분증과 여권 번호다.",
+      "Azure 다단계 인증(MFA)은 관리자 계정과 비관리자 계정 모두에 요구할 수 있다."
+    ]
+  },
+  "22": {
+    "stem": "Azure에서 IaaS(서비스형 인프라) 리소스를 프로비저닝할 계획입니다.\n\nIaaS의 예는 어떤 리소스입니까?",
+    "expl": "Azure Virtual Machines는 IaaS(서비스형 인프라) 제품입니다. Azure가 기반 물리 인프라를 제공하고 고객이 게스트 운영 체제와 애플리케이션을 관리합니다. Azure App Service와 Azure SQL Database는 PaaS(서비스형 플랫폼) 제품입니다.\n\n**Learn more:** [Fundamentals of Azure for On-Premises Experts](https://learn.microsoft.com/en-us/azure/migration/migrate-from-on-premises-fundamentals)",
+    "choices": ["Azure 웹앱", "Azure 가상 머신", "Azure 논리 앱", "Azure SQL 데이터베이스"]
+  },
+  "23": {
+    "stem": "문장을 올바르게 완성하는 답을 선택하세요.",
+    "expl": "Microsoft 온라인 서비스 개인정보처리방침(Privacy Statement)은 Microsoft가 처리하는 개인 데이터, 처리 방식, 처리 목적을 설명합니다. 제품 사용 조건(Product Terms)은 라이선스와 서비스 조건을 정의하고, SLA는 서비스 약정을 정의하며, Azure 구독 계약은 구독 관계를 규율합니다.\n\n**Learn more:** [Microsoft Privacy Statement](https://www.microsoft.com/en-us/privacy/privacystatement) · [Privacy and data management overview](https://learn.microsoft.com/en-us/compliance/assurance/assurance-privacy)",
+    "blanks": [
+      { "label": "해당 문서는", "options": ["Microsoft 온라인 서비스 개인정보처리방침", "Microsoft 제품 사용 조건", "Microsoft 온라인 서비스 수준 계약", "Microsoft Azure 온라인 구독 계약"] }
+    ]
+  },
+  "24": {
+    "stem": "다음 각 설명이 참이면 **예**, 아니면 **아니요**를 선택하세요.",
+    "expl": "Azure Virtual Desktop은 Windows 10, Windows 11과 지원되는 Windows Server 세션 호스트 운영 체제를 지원하므로 Windows 10 전용이 아닙니다. 다중 세션 구성을 쓰면 세션 호스트 하나가 여러 사용자를 처리할 수 있고, 수용 인원은 호스트 수가 아니라 VM 크기와 워크로드로 결정됩니다. Azure Virtual Desktop은 전체 데스크톱과 개별 RemoteApp을 모두 게시할 수 있습니다.\n\n**Learn more:** [Prerequisites for Azure Virtual Desktop](https://learn.microsoft.com/en-us/azure/virtual-desktop/prerequisites) · [Create an Azure Virtual Desktop golden image](https://learn.microsoft.com/en-us/azure/virtual-desktop/set-up-golden-image)",
+    "statements": [
+      "Windows Virtual Desktop 세션 호스트는 Windows 10만 실행할 수 있다.",
+      "세션 호스트 20대를 포함하는 Windows Virtual Desktop 호스트 풀은 최대 20개의 동시 사용자 연결을 지원한다.",
+      "Windows Virtual Desktop은 데스크톱 가상화와 앱 가상화를 지원한다."
+    ]
+  },
+  "25": {
+    "stem": "문장을 올바르게 완성하는 답을 선택하세요.",
+    "expl": "할당 취소(deallocated) 상태의 Azure 가상 머신은 컴퓨팅 요금이 부과되지 않지만, 관리 디스크는 삭제하기 전까지 저장소 요금이 계속 부과됩니다.\n\n**Learn more:** [Azure Virtual Machines pricing](https://azure.microsoft.com/pricing/details/virtual-machines/)",
+    "blanks": [
+      { "label": "Azure 가상 머신의 상태가 중지됨(할당 취소)이면 계속 요금이 부과되는 항목은", "options": ["컴퓨팅 용량", "I/O 작업", "네트워킹", "저장소"] }
+    ]
+  },
+  "26": {
+    "stem": "Azure 구독이 있습니다.\n\nMicrosoft가 수집하는 개인 데이터, 그 데이터의 사용 방식, 사용 목적에 대한 정보는 어디에서 확인할 수 있습니까?",
+    "expl": "Microsoft 개인정보처리방침(Privacy Statement)은 Microsoft의 개인정보 고지로, 수집하는 개인 데이터와 그 데이터를 사용·처리하는 방식 및 목적을 설명합니다.\n\n**Learn more:** [Microsoft Privacy Statement](https://www.microsoft.com/en-us/privacy/privacystatement)",
+    "choices": ["데이터 보호 부록(Data Protection Addendum)", "Microsoft 온라인 서비스 약관", "Microsoft 개인정보처리방침", "Azure Security Center"]
+  },
+  "27": {
+    "stem": "다음 각 설명이 참이면 **예**, 아니면 **아니요**를 선택하세요.",
+    "expl": "Azure DNS는 공용 영역뿐 아니라 프라이빗 DNS 영역도 제공하므로 공용 DNS 이름에만 국한되지 않습니다. 자동 등록이 켜진 프라이빗 DNS 영역에 연결된 가상 네트워크는 그 안의 VM에 대한 DNS 레코드를 자동으로 등록·유지합니다. Azure 프라이빗 DNS는 Azure 제공 이름 대신 사용자 지정 도메인 이름을 지원합니다.\n\n**Learn more:** [What is Azure Private DNS?](https://learn.microsoft.com/en-us/azure/dns/private-dns-overview) · [What is the autoregistration feature in Azure DNS private zones?](https://learn.microsoft.com/en-us/azure/dns/private-dns-autoregistration)",
+    "statements": [
+      "Azure DNS는 공용 DNS 도메인 이름만 지원한다.",
+      "Azure 가상 머신은 Azure DNS에 이름을 자동으로 등록할 수 있다.",
+      "Azure DNS는 사용자 지정 DNS 도메인을 호스트할 수 있다."
+    ]
+  },
+  "28": {
+    "stem": "모든 하드웨어 리소스를 타사가 소유하고 여러 테넌트가 공유하는 클라우드 모델은 무엇입니까?",
+    "expl": "퍼블릭 클라우드는 타사 공급자가 소유·운영하며 여러 고객·테넌트가 기반 인프라를 공유합니다. 프라이빗 클라우드는 인프라를 한 조직에 전용으로 제공하고, 하이브리드 클라우드는 여러 클라우드 환경을 결합합니다.\n\n**Learn more:** [Isolation in the Azure public cloud](https://learn.microsoft.com/en-us/azure/security/fundamentals/isolation-choices)",
+    "choices": ["프라이빗", "하이브리드", "퍼블릭"]
+  },
+  "29": {
+    "stem": "다음 각 설명이 참이면 **예**, 아니면 **아니요**를 선택하세요.",
+    "expl": "Azure의 아웃바운드 대역폭 요금은 모든 Azure 지역에서 같지 않고 가격 영역에 따라 다릅니다. EA는 Azure 사용량에 대해 선불로 지불하는 Azure 선불 결제(이전의 금액 약정)를 사용합니다. Microsoft Marketplace는 대리(agency) 모델을 따르므로 게시자가 자기 제품 가격을 정하고, Microsoft는 고객에게 청구한 뒤 수수료를 제외한 금액을 게시자에게 지급합니다.\n\n**Learn more:** [Azure Bandwidth Pricing](https://azure.microsoft.com/en-us/pricing/details/bandwidth/) · [Understand your Azure Enterprise Agreement bill](https://learn.microsoft.com/en-us/azure/cost-management-billing/understand/review-enterprise-agreement-bill)",
+    "statements": [
+      "Azure에서 나가는 아웃바운드 트래픽 비용은 모든 Azure 지역에서 동일하다.",
+      "기업 계약(EA)으로 Azure 서비스를 구매하려면 미리 정한 금액을 지출해야 한다.",
+      "Azure Marketplace에서 판매되는 모든 타사 서비스의 가격 구조는 Microsoft가 정한다."
+    ]
+  },
+  "30": {
+    "stem": "다음 각 설명이 참이면 **예**, 아니면 **아니요**를 선택하세요.",
+    "expl": "Microsoft Entra Connect는 온프레미스 Active Directory의 ID를 Microsoft Entra ID로 동기화합니다. 하이브리드 ID는 클라우드든 온프레미스든 위치와 관계없이 리소스 전반에서 인증·권한 부여에 쓰이는 공통 ID를 만듭니다. Microsoft Entra ID는 Azure 리소스에 안전하게 접근하기 위한 ID·인증·권한 부여 기능을 제공합니다.\n\n**Learn more:** [Directory synchronization with Microsoft Entra ID](https://learn.microsoft.com/en-us/entra/architecture/sync-directory) · [Hybrid identity documentation](https://learn.microsoft.com/en-us/entra/identity/hybrid/)",
+    "statements": [
+      "온프레미스 Active Directory에 저장된 ID를 Azure Active Directory(Azure AD)로 동기화할 수 있다.",
+      "Azure Active Directory(Azure AD), 타사 클라우드 서비스, 온프레미스 Active Directory에 저장된 ID로 Azure 리소스에 접근할 수 있다.",
+      "Azure에는 Azure 리소스에 안전하게 접근할 수 있게 하는 인증·권한 부여 서비스가 기본 제공된다."
+    ]
+  },
+  "31": {
+    "stem": "각 서버리스 솔루션을 올바른 특징과 연결하세요. 각 서버리스 솔루션은 한 번, 여러 번 사용하거나 전혀 사용하지 않을 수 있습니다.",
+    "expl": "Azure Functions는 이벤트 기반 코드를 작성·실행하는 서버리스 컴퓨팅 서비스입니다. Azure Logic Apps는 관리형 서버리스 워크플로 오케스트레이션 서비스로, 이 비교에서는 상태를 유지하는 클라우드 워크플로를 대표하며 Azure 클라우드 서비스로 실행됩니다.\n\n**Learn more:** [Azure serverless overview: Azure Logic Apps and Azure Functions](https://learn.microsoft.com/en-us/azure/logic-apps/logic-apps-serverless-overview) · [Azure Functions documentation](https://learn.microsoft.com/en-us/azure/azure-functions/)",
+    "items": ["Azure Functions", "Azure Logic Apps"],
+    "slots": ["코드를 실행한다:", "항상 상태를 유지한다:", "클라우드에서만 실행된다:"]
+  },
+  "32": {
+    "stem": "다음 각 설명이 참이면 **예**, 아니면 **아니요**를 선택하세요.",
+    "expl": "가용성 영역은 일부 Azure 지역에서만 지원됩니다. 가용성 영역은 한 지역 안에서 물리적으로 분리된 위치이며 지원되는 Windows나 Linux 운영 체제를 실행하는 가상 머신을 호스트할 수 있습니다. 영역 중복은 해당 지역 안에서의 복원력을 제공하며, 여러 지역에 걸친 복제는 별도의 다중 지역 배포 전략이 필요합니다.\n\n**Learn more:** [What are Azure availability zones?](https://learn.microsoft.com/en-us/azure/reliability/availability-zones-overview) · [Comparing AWS and Azure regions and zones](https://learn.microsoft.com/en-us/azure/architecture/aws-professional/regions-zones)",
+    "statements": [
+      "가용성 영역은 모든 Azure 지역에서 구현할 수 있다.",
+      "가용성 영역에는 Windows Server를 실행하는 가상 머신만 만들 수 있다.",
+      "가용성 영역은 여러 지역으로 데이터와 애플리케이션을 복제하는 데 사용된다."
+    ]
+  }
+}

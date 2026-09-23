@@ -1,0 +1,108 @@
+{
+  "145": {
+    "stem": "회사가 Azure에 사용자 지정 애플리케이션을 여러 개 배포할 계획입니다. 이 애플리케이션은 고객에게 청구 서비스를 제공합니다. 각 애플리케이션에는 사전에 설치해야 하는 애플리케이션과 서비스가 여러 개 필요합니다.\n\n모든 애플리케이션에 대한 클라우드 배포 솔루션을 추천해야 합니다.\n\n무엇을 추천해야 합니까?",
+    "expl": "IaaS(서비스형 인프라)는 조직이 운영 체제와 배포된 애플리케이션을 직접 관리하는 가상 머신을 제공합니다. 따라서 사용자 지정 청구 애플리케이션과 그 사전 요구 애플리케이션·서비스를 설치·관리할 수 있습니다. SaaS는 완성된 소프트웨어를 제공하고, PaaS는 가상 머신과 운영 체제를 추상화합니다.\n\n**Learn more:** [Shared responsibility in the cloud — Microsoft Learn](https://learn.microsoft.com/nb-no/azure/security/fundamentals/shared-responsibility)",
+    "choices": ["서비스형 소프트웨어(SaaS)", "서비스형 플랫폼(PaaS)", "서비스형 인프라(IaaS)"]
+  },
+  "146": {
+    "stem": "Azure에서 App1과 App2라는 앱 두 개를 호스트할 계획입니다. 앱은 다음 요구 사항을 충족해야 합니다.\n\n- App1의 코드를 수정할 수 있어야 합니다.\n- App1의 운영 체제를 관리하는 작업을 최소화해야 합니다.\n- App2는 서버 운영 체제와 대화형으로 실행되어야 합니다.\n\n각 앱에 어떤 종류의 클라우드 서비스를 사용해야 합니까?",
+    "expl": "PaaS(서비스형 플랫폼)는 클라우드 공급자가 기반 운영 체제를 관리하는 동안 조직이 애플리케이션 코드를 배포하고 수정할 수 있게 합니다. IaaS(서비스형 인프라)는 가상 머신과 운영 체제 제어 권한을 제공하므로 서버 OS와 대화형으로 작업할 수 있습니다.\n\n**Learn more:** [Use platform as a service (PaaS) options](https://learn.microsoft.com/en-us/azure/architecture/guide/design-principles/managed-services) · [Fundamentals of Azure for On-Premises Experts](https://learn.microsoft.com/en-us/azure/migration/migrate-from-on-premises-fundamentals)",
+    "blanks": [
+      { "label": "App1:", "options": ["서비스형 인프라(IaaS)", "서비스형 플랫폼(PaaS)", "서비스형 소프트웨어(SaaS)"] },
+      { "label": "App2:", "options": ["서비스형 인프라(IaaS)", "서비스형 플랫폼(PaaS)", "서비스형 소프트웨어(SaaS)"] }
+    ]
+  },
+  "147": {
+    "stem": "문장을 올바르게 완성하는 답을 선택하세요.",
+    "expl": "퍼블릭 클라우드 인프라는 클라우드 공급자가 호스트·관리하므로 조직이 자체 데이터센터를 운영할 필요가 없습니다.",
+    "blanks": [
+      { "label": "정답:", "options": ["프라이빗 클라우드에서", "하이브리드 클라우드에서", "퍼블릭 클라우드에서", "Hyper-V 호스트에서"] }
+    ]
+  },
+  "148": {
+    "stem": "보안 구성 요소를 알맞은 심층 방어 계층과 연결하세요.\n\n각 보안 구성 요소는 한 번, 여러 번 사용하거나 전혀 사용하지 않을 수 있습니다.",
+    "expl": "소프트웨어 업데이트와 패치는 컴퓨팅 워크로드의 취약점을 해결합니다. 다단계 인증은 인증을 강화하는 ID·액세스 제어입니다. 감시 카메라는 시설과 장비를 감시하는 물리 보안 제어입니다.",
+    "items": ["다단계 인증(MFA)", "소프트웨어 업데이트와 패치", "감시 카메라"],
+    "slots": ["컴퓨팅", "ID 및 액세스", "물리 보안"]
+  },
+  "149": {
+    "stem": "솔루션: 전략에 로컬 네트워크 게이트웨이를 포함합니다.\n\n이 솔루션이 목표를 충족합니까?",
+    "expl": "로컬 네트워크 게이트웨이는 사이트 간 VPN 연결에서 원격 VPN 장치와 그 네트워크 주소 공간을 나타냅니다. Azure 웹 서버와 데이터베이스 서버 간 트래픽 규칙을 적용하지는 않으며, 허용되는 트래픽 흐름 제어는 네트워크 보안 그룹이 담당합니다.\n\n**Learn more:** [Reliability in Azure Virtual Network Gateways](https://learn.microsoft.com/en-us/azure/reliability/reliability-virtual-network-gateway)",
+    "choices": ["예", "아니요"]
+  },
+  "150": {
+    "stem": "솔루션: 전략에 네트워크 보안 그룹(NSG)을 추가합니다.\n\n이 솔루션이 목표를 충족합니까?",
+    "expl": "Azure 네트워크 보안 그룹은 원본·대상·포트·프로토콜을 지정할 수 있는 허용·거부 규칙으로 인바운드·아웃바운드 트래픽을 제어합니다. 해당 웹 서버·데이터베이스 서버 서브넷이나 네트워크 인터페이스에 NSG를 적용하면 두 계층 간 연결 종류를 제어할 수 있습니다.\n\n**Learn more:** [How network security groups filter network traffic](https://learn.microsoft.com/en-us/azure/virtual-network/network-security-group-how-it-works)",
+    "choices": ["예", "아니요"]
+  },
+  "151": {
+    "stem": "다음 각 설명이 참이면 예, 아니면 아니요를 선택하세요.",
+    "expl": "Azure Functions는 관리형 서버리스 애플리케이션 호스팅을 제공하며 Azure 클라우드 서비스 모델 분류에서 PaaS에 해당합니다. Microsoft 365는 바로 사용할 수 있는 SaaS 애플리케이션 모음입니다. Azure Virtual Machines는 Azure가 기반 인프라를 관리하고 고객이 VM·운영 체제·애플리케이션을 관리하므로 IaaS입니다.\n\n**Learn more:** [Azure Functions documentation](https://learn.microsoft.com/en-us/azure/azure-functions/) · [Fundamentals of Azure for On-Premises Experts](https://learn.microsoft.com/en-us/azure/migration/migrate-from-on-premises-fundamentals)",
+    "statements": [
+      "Azure Functions는 PaaS(서비스형 플랫폼) 클라우드 서비스 모델의 예다.",
+      "Microsoft 365는 SaaS(서비스형 소프트웨어) 클라우드 서비스 모델의 예다.",
+      "Azure 가상 머신은 IaaS(서비스형 인프라) 클라우드 서비스 모델의 예다."
+    ]
+  },
+  "152": {
+    "stem": "Azure 구독에 배포한 리소스에 영향을 줄 수 있는 유지 관리를 Microsoft가 수행할 예정일 때 알림을 받아야 합니다.\n\n무엇을 사용해야 합니까?",
+    "expl": "Azure Service Health는 Azure 리소스에 영향을 줄 수 있는 계획된 유지 관리에 대해 구독별 알림과 경고를 제공합니다.\n\n**Learn more:** [Planned maintenance overview - Azure Service Health](https://learn.microsoft.com/en-us/azure/service-health/service-health-planned-maintenance) · [What is Azure Service Health?](https://learn.microsoft.com/en-us/azure/service-health/overview)",
+    "choices": ["Azure Monitor", "Azure Service Health", "Azure Advisor", "Microsoft 보안 센터(Trust Center)"]
+  },
+  "153": {
+    "stem": "솔루션: Azure AD Identity Protection을 사용하도록 구성합니다.\n\n이 솔루션이 목표를 충족합니까?",
+    "expl": "Microsoft Entra ID Protection(Azure AD Identity Protection)은 익숙하지 않거나 익명인 IP 주소에서의 로그인을 사용자·로그인 위험으로 평가하며, 위험 기반 정책으로 MFA나 액세스 차단뿐 아니라 안전한 암호 변경을 요구해 위험을 완화하도록 구성할 수 있습니다. 미확인 IP 같은 위험한 로그인 조건이 감지되면 강제 암호 변경을 트리거하는 기능을 기본 지원하므로 이 솔루션은 목표를 충족합니다.\n\n**Learn more:** [What is Identity Protection - Microsoft Entra ID Protection](https://learn.microsoft.com/en-us/entra/id-protection/overview-identity-protection)",
+    "choices": ["예", "아니요"]
+  },
+  "154": {
+    "stem": "솔루션: Azure AD Privileged Identity Management를 구성합니다.\n\n이 솔루션이 목표를 충족합니까?",
+    "expl": "Azure AD Privileged Identity Management는 적시 권한 상승 같은 권한 있는 역할 액세스를 관리·통제합니다. 미확인 IP 주소에서의 로그인을 감지하거나 사용자에게 암호 변경을 요구하지는 않습니다. 감지된 사용자 위험을 완화하기 위해 안전한 암호 변경을 요구할 수 있는 것은 Microsoft Entra ID Protection의 위험 기반 정책입니다.\n\n**Learn more:** [What is Microsoft Entra Privileged Identity Management?](https://learn.microsoft.com/en-ie/entra/id-governance/privileged-identity-management/pim-configure) · [Microsoft Entra ID Protection risk-based access policies](https://learn.microsoft.com/en-us/entra/id-protection/concept-identity-protection-policies)",
+    "choices": ["예", "아니요"]
+  },
+  "155": {
+    "stem": "다음 각 설명이 참이면 **예**, 아니면 **아니요**를 선택하세요.",
+    "expl": "Azure Storage 계정 이름은 Azure 전체에서 전역으로 고유해야 합니다. 같은 구독 안에서든, 다른 지역이든, 다른 구독이든 이름을 중복해 쓸 수 없습니다.\n\n**Learn more:** [Storage Account Overview - Azure Storage](https://learn.microsoft.com/en-us/azure/storage/common/storage-account-overview) · [Resolve errors for storage account names - Azure Resource Manager](https://learn.microsoft.com/en-us/azure/azure-resource-manager/troubleshooting/error-storage-account-name)",
+    "statements": [
+      "같은 Azure 구독 안에 이름이 같은 Azure Storage 계정을 두 개 둘 수 있다.",
+      "서로 다른 Azure 지역에 이름이 같은 Azure Storage 계정을 두 개 둘 수 있다.",
+      "서로 다른 Azure 구독 두 개에 이름이 같은 Azure Storage 계정을 둘 수 있다."
+    ]
+  },
+  "156": {
+    "stem": "HOTSPOT —\n\n답변 영역에서 알맞은 옵션을 선택해 문장을 완성하세요.",
+    "expl": "현재 Microsoft Defender for Cloud의 일부인 Azure Security Center는 평가된 표준과 제어를 기반으로 규정 준수 대시보드와 준수 보고서를 제공합니다.\n\n**Learn more:** [Microsoft Defender for Cloud regulatory compliance dashboard](https://learn.microsoft.com/en-us/azure/defender-for-cloud/regulatory-compliance-dashboard)",
+    "blanks": [
+      { "label": "회사의 규정 준수 보고서를 볼 수 있는 곳은", "options": ["Azure Advisor", "Azure Analysis Services", "Azure Monitor", "Azure Security Center"] }
+    ]
+  },
+  "157": {
+    "stem": "회사가 로스앤젤레스와 뉴욕에 데이터센터를 운영하며 Microsoft Azure 구독이 있습니다.\n\n사이트 복원력을 확보하기 위해 두 데이터센터를 지리적 클러스터 사이트로 구성하고 있습니다.\n\nAzure 저장소 중복 옵션을 추천해야 합니다. 데이터 저장 요구 사항은 다음과 같습니다.\n\n- 데이터를 여러 노드에 저장해야 합니다.\n- 데이터를 서로 다른 지리적 위치의 노드에 저장해야 합니다.\n- 주 위치뿐 아니라 보조 위치에서도 데이터를 읽을 수 있어야 합니다.\n\n어떤 Azure 저장소 중복 옵션을 추천해야 합니까?",
+    "expl": "읽기 액세스 지역 중복 저장소(RA-GRS)는 지리적으로 떨어진 보조 지역에 중복 사본을 유지하고 주 엔드포인트뿐 아니라 보조 엔드포인트에서도 읽기를 허용합니다. 일반 지역 중복 저장소는 지리적으로 복제하지만 보조 지역 읽기를 허용하지 않고, 영역 중복·로컬 중복 저장소는 지리적 복제를 제공하지 않습니다.\n\n**Learn more:** [Azure Storage redundancy](https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy)",
+    "choices": ["지역 중복 저장소", "읽기 전용 지역 중복 저장소(RA-GRS)", "영역 중복 저장소", "로컬 중복 저장소"]
+  },
+  "158": {
+    "stem": "다음 각 설명이 참이면 **예**, 아니면 **아니요**를 선택하세요.",
+    "expl": "클라우드 서비스는 Windows 장치에서만 쓸 수 있는 것이 아닙니다. Azure CLI는 명령줄 관리를 제공하며 Linux, macOS, Windows에서 지원됩니다. Azure Portal은 Azure 리소스를 만들고 관리하는 웹 기반 콘솔입니다.\n\n**Learn more:** [What is the Azure CLI?](https://learn.microsoft.com/en-us/cli/azure/what-is-azure-cli?view=azure-cli-latest) · [What is the Azure portal?](https://learn.microsoft.com/en-us/azure/azure-portal/azure-portal-overview)",
+    "statements": [
+      "클라우드 서비스는 Windows 장치에서만 관리할 수 있다.",
+      "명령줄에서 클라우드 서비스를 관리할 수 있다.",
+      "웹 브라우저로 클라우드 서비스를 관리할 수 있다."
+    ]
+  },
+  "159": {
+    "stem": "문장을 올바르게 완성하는 답을 선택하세요.",
+    "expl": "하이브리드 클라우드는 클라우드 리소스와 온프레미스 인프라를 결합합니다. 온프레미스 SQL Server에 접근하는 Azure 호스팅 웹앱은 두 환경을 모두 사용합니다.\n\n**Learn more:** [Microsoft Azure hybrid cloud solutions](https://azure.microsoft.com/en-us/solutions/hybrid-cloud-app/)",
+    "blanks": [
+      { "label": "온프레미스 Microsoft SQL Server를 쿼리하는 Azure 웹앱은 ____ 클라우드의 예입니다.", "options": ["하이브리드", "멀티 벤더", "프라이빗", "퍼블릭"] }
+    ]
+  },
+  "160": {
+    "stem": "다음 각 설명이 참이면 **예**, 아니면 **아니요**를 선택하세요.",
+    "expl": "Microsoft Purview는 데이터 자산 검사·카탈로그화와 민감한 데이터 식별을 포함한 데이터 검색·거버넌스 기능을 제공합니다. 기본 제공 및 사용자 지정 분류와 분류기를 통해 데이터 분류를 지원합니다. 데이터 백업은 Microsoft Purview의 기능이 아닙니다.\n\n**Learn more:** [Microsoft Purview: where to start](https://learn.microsoft.com/en-us/purview/purview-where-to-start) · [Automatically apply classifications on Data Map assets](https://learn.microsoft.com/en-us/purview/data-map-classification-apply-auto)",
+    "statements": [
+      "Microsoft Purview는 데이터 백업을 제공한다.",
+      "Microsoft Purview는 데이터 검색을 제공한다.",
+      "Microsoft Purview는 데이터 분류를 제공한다."
+    ]
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "119": {
+    "stem": "여러 지점에 배포될 POS(판매 시점) 솔루션을 설계하고 있으며 Standard 계층의 Azure Databricks 작업 영역을 사용합니다. 이 솔루션에는 각 지점의 온프레미스 네트워크에 배포된 여러 앱이 포함됩니다.\n\n앱이 작업 영역에 접근할 때 사용할 인증 방법을 구성해야 합니다. 솔루션은 인력 변동과 자격 증명 관리에 따르는 관리 작업을 최소화해야 합니다.\n\n무엇을 구성해야 합니까?",
+    "expl": "서비스 주체(service principal)는 자동화 도구와 애플리케이션을 위한 비사용자 ID로, 개별 직원의 자격 증명에 의존하지 않고 Azure Databricks에 프로그래밍 방식으로 접근하게 해 줍니다. 권한을 사용자와 별도로 관리하므로 직원이 퇴사해도 애플리케이션이 영향을 받지 않습니다. Azure 관리 ID 인증은 Azure VM처럼 적절히 구성된 Azure 리소스와 Azure Databricks 사이에서 지원되며 온프레미스에 배포된 애플리케이션에는 해당하지 않습니다. 개인용 액세스 토큰은 레거시 자격 증명이며 토큰 수명 주기 관리가 필요합니다.\n\n**Learn more:** [Service principals — Azure Databricks](https://learn.microsoft.com/en-us/azure/databricks/admin/users-groups/service-principals) · [Authenticate with Azure managed identities — Azure Databricks](https://learn.microsoft.com/en-us/azure/databricks/dev-tools/auth/azure-mi)",
+    "choices": ["관리 ID", "서비스 주체(service principal)", "개인용 액세스 토큰"]
+  },
+  "120": {
+    "stem": "다음 요구 사항을 충족하는 고가용성 Azure SQL 데이터베이스를 설계해야 합니다.\n\n- 데이터베이스 복제본 간 장애 조치 시 데이터 손실이 없어야 합니다.\n- 영역 장애 중에도 데이터베이스를 계속 사용할 수 있어야 합니다.\n- 비용을 최소화해야 합니다.\n\n어떤 배포 옵션을 사용해야 합니까?",
+    "expl": "Azure SQL Database Business Critical은 Azure 가용성 영역에 걸친 영역 중복 복제본을 지원합니다. 가용성 영역 장애 시 Azure SQL Database는 동기화된 복제본으로 장애 조치하며 커밋된 데이터 손실이 없습니다. 관리 인스턴스 전용 기능이 필요하지 않다면 Azure SQL Database가 Azure SQL Managed Instance보다 목적에 맞고 대개 비용도 낮습니다.\n\n**Learn more:** [Reliability in Azure SQL Database](https://learn.microsoft.com/en-us/azure/reliability/reliability-sql-database) · [Availability Through Local and Zone Redundancy - Azure SQL Database](https://learn.microsoft.com/en-us/azure/azure-sql/database/high-availability-sla-local-zone-redundancy?view=azuresql-db)",
+    "choices": ["Azure SQL Database Basic", "Azure SQL Managed Instance General Purpose", "Azure SQL Database Business Critical", "Azure SQL Managed Instance Business Critical"]
+  },
+  "121": {
+    "stem": "Azure SQL 데이터베이스 50개가 있는 Azure 구독이 있습니다.\n\n투명한 데이터 암호화(TDE)를 사용하도록 설정하는 Template1이라는 Azure Resource Manager(ARM) 템플릿을 만듭니다.\n\nTemplate1을 사용해 규정을 준수하지 않는 모든 Azure SQL 데이터베이스에 TDE를 사용하도록 설정하는 Policy1이라는 Azure Policy 정의를 만들어야 합니다.\n\nPolicy1을 어떻게 구성해야 합니까?",
+    "expl": "DeployIfNotExists는 준수 여부를 평가하고 필요한 구성이 없으면 ARM 템플릿을 배포합니다. DeployIfNotExists 정책 정의에는 필요한 RBAC 역할 ID를 roleDefinitionIds에 포함해야 합니다. 수정을 수행하는 관리 ID는 정책 할당에 속하며 할당 범위에서 그 역할을 받습니다.\n\n**Learn more:** [Azure Policy deployIfNotExists effect](https://learn.microsoft.com/en-us/azure/governance/policy/concepts/effect-deploy-if-not-exists)",
+    "blanks": [
+      { "label": "사용 가능한 효과 설정:", "options": ["DeployIfNotExists", "EnforceRegoPolicy", "Modify"] },
+      { "label": "정의에 포함할 항목:", "options": ["수정 작업을 수행하는 데 필요한 ID", "정책 할당의 범위", "수정 작업을 수행하는 데 필요한 역할 기반 액세스 제어(RBAC) 역할"] }
+    ]
+  },
+  "122": {
+    "stem": "Azure 구독에서 새로 배포되는 모든 Azure Resource Manager(ARM) 리소스에 대한 월간 보고서를 생성하는 솔루션을 추천해야 합니다.\n\n추천에 무엇을 포함해야 합니까?",
+    "expl": "Azure Log Analytics는 내보낸 Azure 활동 로그 레코드를 `AzureActivity` 테이블에 저장하고 KQL로 조회할 수 있습니다. Azure 활동 로그는 ARM 제어 평면 작업을 기록하므로 `Microsoft.Resources/deployments/write`를 필터링해 매달 새 배포를 보고할 수 있습니다.\n\n**Learn more:** [Activity log in Azure Monitor](https://learn.microsoft.com/en-us/azure/azure-monitor/platform/activity-log) · [Queries for the AzureActivity table](https://learn.microsoft.com/en-us/azure/azure-monitor/reference/queries/azureactivity)",
+    "choices": ["Azure Arc", "Azure Log Analytics", "Application Insights", "Azure Monitor 작업 그룹(action group)"]
+  },
+  "123": {
+    "stem": "마이그레이션한 데이터베이스 DB1과 DB2를 Azure에서 어떻게 구현해야 합니까?",
+    "expl": "Azure SQL Database 탄력적 풀은 여러 데이터베이스가 프로비저닝된 리소스를 공유하게 해 관리 부담과 비용을 줄입니다. 영역 중복 Business Critical 탄력적 풀은 복제본을 가용성 영역에 배치하고 자동 장애 조치를 지원하며 로컬 SSD 저장소로 낮은 I/O 대기 시간을 제공합니다.\n\n**Learn more:** [Reliability in Azure SQL Database](https://learn.microsoft.com/en-us/azure/reliability/reliability-sql-database) · [Design disaster recovery solutions - Azure SQL Database](https://learn.microsoft.com/en-us/azure/azure-sql/database/disaster-recovery-strategies-for-applications-with-elastic-pool)",
+    "blanks": [
+      { "label": "데이터베이스:", "options": ["단일 Azure SQL 데이터베이스", "Azure SQL Managed Instance", "Azure SQL Database 탄력적 풀"] },
+      { "label": "서비스 계층:", "options": ["Hyperscale", "Business Critical", "General Purpose"] }
+    ]
+  },
+  "124": {
+    "stem": "다음 표의 리소스가 포함된 Azure 구독이 있습니다.\n\n[[IMG1]]\n\nApp1의 로그 파일이 App1Logs에 기록됩니다. 하루 평균 120GB의 로그 데이터가 수집됩니다.\n\nApp1 로그에 오류 메시지가 포함되면 트리거되는 Azure Monitor 경고가 구성되어 있습니다.\n\nApp1과 관련된 Log Analytics 비용을 최소화해야 합니다. 솔루션은 다음 요구 사항을 충족해야 합니다.\n\n- App1의 모든 로그 파일이 App1Logs에 수집되어야 합니다.\n- Azure Monitor 경고에 미치는 영향을 최소화해야 합니다.\n\n어떤 리소스를 어떻게 수정해야 합니까?",
+    "expl": "Log Analytics 작업 영역의 약정(commitment) 계층은 합의한 일일 볼륨에 대해 할인된 수집 요금을 제공하면서, 경고 쿼리 지원을 포함한 Analytics Logs 기능을 그대로 유지합니다. App1Logs를 Basic Logs로 바꾸면 경고 기능이 제한될 수 있고, 일일 한도를 설정하면 한도 도달 후 데이터 수집이 중단되므로 둘 다 요구 사항과 충돌합니다.\n\n**Learn more:** [Azure Monitor Logs cost calculations and options](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/cost-logs) · [Configure table plans in Azure Monitor Logs](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/data-platform-logs#table-plans)",
+    "blanks": [
+      { "label": "리소스:", "options": ["App1", "App1Logs", "Workspace1"] },
+      { "label": "수정 내용:", "options": ["약정(commitment) 가격 책정 계층으로 변경", "Basic Logs 데이터 플랜으로 변경", "일일 한도(daily cap) 설정"] }
+    ]
+  },
+  "125": {
+    "stem": "Azure 구독에서 새로 배포되는 모든 Azure Resource Manager(ARM) 리소스에 대한 월간 보고서를 생성하는 솔루션을 추천해야 합니다.\n\n추천에 무엇을 포함해야 합니까?",
+    "expl": "Azure Log Analytics는 Azure 활동 로그 데이터를 `AzureActivity` 테이블에 저장하고 KQL로 조회할 수 있습니다. Azure 활동 로그는 배포를 포함한 Azure Resource Manager 제어 평면 작업을 기록하므로 필터링해 월 단위로 새 배포를 보고할 수 있습니다.\n\n**Learn more:** [Activity log in Azure Monitor](https://learn.microsoft.com/en-us/azure/azure-monitor/platform/activity-log) · [Example log table queries for AzureActivity](https://learn.microsoft.com/en-us/azure/azure-monitor/reference/queries/azureactivity)",
+    "choices": ["Azure Log Analytics", "Azure Arc", "Azure Analysis Services", "Application Insights"]
+  },
+  "126": {
+    "stem": "구성 요소 두 개로 이루어진 앱을 설계하고 있습니다. 두 구성 요소는 큐를 통해 메시지를 주고받습니다.\n\n메시지를 선입선출(FIFO) 방식으로 처리하는 솔루션을 추천해야 합니다.\n\n추천에 무엇을 포함해야 합니까?",
+    "expl": "Azure Service Bus 세션은 서로 관련된 메시지 시퀀스를 순서대로 처리하게 해 주며, FIFO 처리를 보장하는 데 필요한 메커니즘입니다. 같은 순서 시퀀스에 속한 메시지에는 동일한 세션 ID를 지정합니다. Azure Storage 큐는 간혹 순서가 어긋나게 전달할 수 있고, Service Bus 분할(partitioning) 자체는 FIFO 처리를 보장하지 않습니다.\n\n**Learn more:** [Azure Service Bus message sessions](https://learn.microsoft.com/en-us/azure/service-bus-messaging/message-sessions) · [Compare Azure Storage queues and Service Bus queues](https://learn.microsoft.com/en-in/azure/service-bus-messaging/service-bus-azure-and-service-bus-queues-compared-contrasted)",
+    "choices": [
+      "사용자 지정 메타데이터 설정을 사용하는 저장소 큐",
+      "분할(partitioning)을 사용하도록 설정한 Azure Service Bus 큐",
+      "세션을 사용하도록 설정한 Azure Service Bus 큐",
+      "저장된 액세스 정책을 사용하는 저장소 큐"
+    ]
+  },
+  "127": {
+    "stem": "HOTSPOT -\n\nAzure Traffic Manager와 Azure Application Gateway가 App1의 연결 요구 사항을 충족할 수 있는지 평가하고 있습니다.\n\n각 서비스에 필요한 최소 인스턴스 수는 몇 개입니까?",
+    "expl": "Azure Traffic Manager 프로필 하나가 구성된 엔드포인트에 DNS 기반 라우팅을 제공합니다. Azure Application Gateway 인스턴스 두 개가 요구되는 두 위치에 게이트웨이 엔드포인트를 제공합니다.",
+    "blanks": [
+      { "label": "Azure Traffic Manager:", "options": ["1", "2", "3", "6"] },
+      { "label": "Azure Application Gateway:", "options": ["1", "2", "3", "6"] }
+    ]
+  },
+  "129": {
+    "stem": "회사가 온프레미스 데이터센터에서 영업·재무·보고 애플리케이션을 호스트하는 가상 머신에 대해 다음과 같은 업무 연속성·재해 복구 목표를 정했습니다.\n\n- 영업 애플리케이션은 두 번째 온프레미스 데이터센터로 장애 조치할 수 있어야 합니다.\n- 보고 애플리케이션은 일 단위로 특정 시점 데이터를 복구할 수 있어야 하며 RTO는 8시간입니다.\n- 재무 애플리케이션은 데이터를 7년간 보존해야 합니다. 재해가 발생하면 애플리케이션이 Azure에서 실행될 수 있어야 하며 복구 시간 목표(RTO)는 10분입니다.\n\n비용을 최소화하면서 업무 연속성·재해 복구 목표를 충족하는 서비스를 추천해야 합니다.\n\n각 애플리케이션에 무엇을 추천해야 합니까?\n\n각 서비스는 한 번, 여러 번 사용하거나 전혀 사용하지 않을 수 있습니다.",
+    "expl": "Azure Site Recovery는 워크로드를 복제하고 장애 조치를 조율하므로 영업 애플리케이션에는 이것만으로 비용이 가장 적게 듭니다. Azure Backup은 복구 지점을 만들고 예약 보존을 지원해 보고 애플리케이션의 일 단위 특정 시점 복구 요구를 충족합니다. 재무 애플리케이션은 7년 백업 보존과 Azure로의 재해 복구 장애 조치가 모두 필요하므로 Azure Backup과 Azure Site Recovery를 함께 써야 합니다.\n\n**Learn more:** [Azure Site Recovery documentation](https://learn.microsoft.com/en-us/azure/site-recovery/) · [Azure Backup service documentation](https://learn.microsoft.com/en-us/azure/backup/)",
+    "items": ["Azure Backup만", "Azure Site Recovery와 Azure Backup", "Azure Site Recovery만"],
+    "slots": ["영업:", "재무:", "보고:"]
+  },
+  "130": {
+    "stem": "Azure 구독이 있습니다.\n\nBlob 버전 관리와 Blob 일시 삭제가 사용 설정된 저장소 계정의 Blob에 대해 특정 시점 복원을 제공하는 솔루션을 배포해야 합니다.\n\n어떤 Blob 유형을 만들고 계정에 무엇을 사용하도록 설정해야 합니까?",
+    "expl": "특정 시점 복원은 블록 Blob만 지원합니다. 일시 삭제, Blob 버전 관리, 변경 피드(change feed)가 필요한데 앞의 두 가지는 이미 사용 설정되어 있으므로 변경 피드를 사용하도록 설정하면 됩니다.\n\n**Learn more:** [Point-in-time restore for block blobs - Azure Storage](https://learn.microsoft.com/en-us/azure/storage/blobs/point-in-time-restore-overview) · [Change feed in Blob Storage - Azure Storage](https://learn.microsoft.com/en-us/azure/storage/blobs/storage-blob-change-feed)",
+    "blanks": [
+      { "label": "Blob 유형:", "options": ["추가(Append)", "블록(Block)", "페이지(Page)"] },
+      { "label": "사용하도록 설정할 항목:", "options": ["저장된 액세스 정책", "변경 불가능 Blob 저장소", "개체 복제", "변경 피드(change feed)"] }
+    ]
+  },
+  "131": {
+    "stem": "사회 보장 번호와 전화번호를 포함한 직원 정보를 저장하는 Azure SQL Managed Instance가 있는 Azure 구독이 있습니다.\n\n관리 인스턴스를 다음 요구 사항에 맞게 구성해야 합니다.\n\n- 헬프데스크 팀은 직원 전화번호의 마지막 네 자리만 볼 수 있어야 합니다.\n- 클라우드 관리자는 직원의 사회 보장 번호를 볼 수 없어야 합니다.\n\n관리 인스턴스의 각 열에 무엇을 사용하도록 설정해야 합니까?",
+    "expl": "동적 데이터 마스킹은 마스크 해제 권한이 없는 사용자에게 마지막 네 글자만 노출하는 부분 마스크를 지원합니다. Always Encrypted는 열 마스터 키에 접근할 수 없는 한 데이터베이스·클라우드 관리자로부터 민감한 열 값을 보호하며, 암호화·복호화는 클라이언트 드라이버에서 이루어집니다. TDE는 저장 상태의 데이터를 보호할 뿐, 복호화된 데이터를 조회하는 관리자로부터는 보호하지 못합니다.\n\n**Learn more:** [Dynamic Data Masking - Azure SQL Database](https://learn.microsoft.com/en-us/azure/azure-sql/database/dynamic-data-masking-overview?view=azuresql) · [Always Encrypted - Azure SQL Database](https://learn.microsoft.com/en-us/azure/azure-sql/database/always-encrypted-overview?view=azuresql)",
+    "blanks": [
+      { "label": "전화번호:", "options": ["Always Encrypted", "열 암호화", "동적 데이터 마스킹", "투명한 데이터 암호화(TDE)"] },
+      { "label": "사회 보장 번호:", "options": ["Always Encrypted", "열 암호화", "동적 데이터 마스킹", "투명한 데이터 암호화(TDE)"] }
+    ]
+  },
+  "132": {
+    "stem": "온프레미스 네트워크와 Azure 구독이 있습니다. 온프레미스 네트워크에는 지사가 여러 곳 있습니다.\n\n토론토 지사에는 파일 서버로 구성된 VM1이라는 가상 머신이 있습니다. 모든 사무실의 사용자가 VM1의 공유 파일에 접근합니다.\n\n토론토 지사에 접근할 수 없게 되더라도 사용자가 공유 파일에 최대한 빠르게 접근할 수 있는 솔루션을 추천해야 합니다.\n\n추천에 무엇을 포함해야 합니까?",
+    "expl": "Azure File Sync는 Windows Server 데이터를 동기화 그룹의 클라우드 엔드포인트인 Azure 파일 공유와 동기화합니다. 토론토 파일 서버에 접근할 수 없을 때 Azure 파일 공유가 공유 데이터의 사용 가능한 클라우드 사본을 제공하며, Azure File Sync는 지사 접근을 위한 동기화된 로컬 서버 엔드포인트도 제공할 수 있습니다.\n\n**Learn more:** [Extend Windows File Servers with Azure File Sync](https://learn.microsoft.com/en-us/azure/storage/file-sync/file-sync-extend-servers) · [Manage Registered Servers with Azure File Sync](https://learn.microsoft.com/en-us/azure/storage/file-sync/file-sync-server-registration)",
+    "choices": [
+      "Recovery Services 자격 증명 모음과 Windows Server Backup",
+      "Azure Blob 컨테이너와 Azure File Sync",
+      "Recovery Services 자격 증명 모음과 Azure Backup",
+      "Azure 파일 공유와 Azure File Sync"
+    ]
+  }
+}

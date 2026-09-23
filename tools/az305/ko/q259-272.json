@@ -1,0 +1,99 @@
+{
+  "259": {
+    "stem": "솔루션: 네트워크 트래픽 분석에 Azure Network Watcher의 Traffic Analytics를 사용합니다.\n\n이 솔루션이 목표를 충족합니까?",
+    "expl": "Azure Traffic Analytics는 Azure Network Watcher 흐름 로그를 분석해 허용·차단된 트래픽과 흐름을 차단한 규칙까지 보여 줍니다. 따라서 Azure 가상 머신으로 향하는 트래픽이 허용되는지 거부되는지 파악할 수 있습니다.\n\n**Learn more:** [Traffic Analytics Overview - Azure Network Watcher](https://learn.microsoft.com/en-us/azure/network-watcher/traffic-analytics)",
+    "choices": ["예", "아니요"]
+  },
+  "260": {
+    "stem": "솔루션: 네트워크 트래픽 분석을 위해 Azure Network Watcher에서 IP 흐름 확인(IP flow verify)을 실행합니다.\n\n이 솔루션이 목표를 충족합니까?",
+    "expl": "Azure Network Watcher의 IP 흐름 확인은 Azure 가상 머신을 오가는 지정한 TCP 또는 UDP 흐름을 해당 보안·관리 규칙에 비추어 검사합니다. 액세스가 허용되는지 거부되는지와 어떤 규칙 때문인지 알려 주므로 가상 머신 트래픽 필터링 문제를 진단할 수 있습니다.\n\n**Learn more:** [IP Flow Verify Overview - Azure Network Watcher](https://learn.microsoft.com/en-us/azure/network-watcher/ip-flow-verify-overview) · [Diagnose a virtual machine network traffic filter problem](https://learn.microsoft.com/en-us/azure/virtual-network/diagnose-network-traffic-filter-problem)",
+    "choices": ["예", "아니요"]
+  },
+  "261": {
+    "stem": "솔루션: 모든 가상 머신에 Azure Monitor 에이전트와 종속성 에이전트를 설치·구성합니다. Azure Monitor의 VM insights로 네트워크 트래픽을 분석합니다.\n\n이 솔루션이 목표를 충족합니까?",
+    "expl": "VM insights는 종속성 에이전트로 프로세스와 연결 종속성 데이터를 수집할 뿐, 패킷이 네트워크 보안 규칙에 의해 허용되는지 차단되는지는 판단하지 못합니다. Azure Network Watcher의 IP 흐름 확인이 가상 머신에 적용되는 보안·관리 규칙을 평가해 지정한 트래픽의 허용·거부 여부를 알려 줍니다.\n\n**Learn more:** [IP flow verify overview - Azure Network Watcher](https://learn.microsoft.com/en-us/azure/network-watcher/ip-flow-verify-overview) · [Dependency Agent in Azure Monitor VM insights](https://learn.microsoft.com/en-us/azure/azure-monitor/vm/vminsights-dependency-agent)",
+    "choices": ["예", "아니요"]
+  },
+  "262": {
+    "stem": "Azure Storage 계정이 100개 있습니다.\n\n계정에 대한 액세스는 Azure 역할 기반 액세스 제어(Azure RBAC) 할당으로 제한되어 있습니다.\n\n저장소 계정 내 개별 리소스에 할당된 태그를 기준으로 역할 할당 조건을 사용하는 솔루션을 추천해야 합니다.\n\n추천에 무엇을 포함해야 합니까?",
+    "expl": "Azure RBAC 조건은 Azure 특성 기반 액세스 제어(ABAC) 조건입니다. Azure Storage의 Blob 권한 부여 조건은 Blob 인덱스 태그를 포함한 Blob 리소스 특성을 평가할 수 있으므로, 특정 태그가 붙은 Blob으로 권한 범위를 좁힐 수 있습니다.\n\n**Learn more:** [Azure role assignment conditions for Azure Storage](https://learn.microsoft.com/en-us/azure/storage/blobs/storage-auth-abac) · [What is Azure attribute-based access control (Azure ABAC)?](https://learn.microsoft.com/en-us/azure/role-based-access-control/conditions-overview)",
+    "blanks": [
+      { "label": "역할 할당 조건 구현에 사용할 것:", "options": ["액세스 제어 목록(ACL)", "특성 기반 액세스 제어(ABAC)", "공유 액세스 서명(SAS)"] },
+      { "label": "권한을 할당할 대상:", "options": ["Blob", "파일", "테이블"] }
+    ]
+  },
+  "263": {
+    "stem": "회사에 다음 표와 같은 사업부가 있습니다.\n\n[[IMG1]]\n\nSub1에는 App1이라는 Azure App Service 웹앱이 있습니다. App1은 단일 테넌트 사용자 인증에 Azure AD를 사용합니다. contoso.com 사용자는 App1에 인증할 수 있습니다.\n\nfabrikam.com 테넌트의 사용자도 App1에 인증할 수 있게 하는 솔루션을 추천해야 합니다.\n\n무엇을 추천해야 합니까?",
+    "expl": "Microsoft Entra 자격 관리는 애플리케이션 액세스를 부여하고 관련 B2B 게스트 사용자 수명 주기를 관리하는 액세스 패키지로 외부 사용자를 통제할 수 있습니다. 덕분에 Fabrikam 사용자가 Contoso 테넌트에서 외부 사용자로 표현되어 단일 테넌트 애플리케이션에 접근할 수 있습니다. 조건부 액세스와 Identity Protection은 로그인 조건이나 위험을 제어하고 프로비저닝은 ID를 동기화할 뿐, 그 자체로 통제된 외부 사용자 액세스를 부여하지는 않습니다.\n\n**Learn more:** [Govern access for external users in entitlement management](https://learn.microsoft.com/en-us/entra/id-governance/entitlement-management-external-users) · [What is Microsoft Entra B2B collaboration?](https://learn.microsoft.com/en-us/entra/external-id/what-is-b2b?azure-portal=true)",
+    "choices": [
+      "조건부 액세스 정책을 구성합니다.",
+      "Azure AD 자격 관리로 외부 사용자를 관리합니다.",
+      "Azure AD 프로비저닝 서비스를 구성합니다.",
+      "Azure AD Identity Protection을 구성합니다."
+    ]
+  },
+  "264": {
+    "stem": "여러 Azure 클라우드 서비스를 포함하고 서로 다른 트랜잭션 구성 요소를 처리하는 영업 애플리케이션을 개발하고 있습니다. 각 클라우드 서비스가 고객 주문, 청구, 결제, 재고, 배송을 처리합니다.\n\n클라우드 서비스들이 XML 메시지로 트랜잭션 정보를 비동기적으로 주고받을 수 있는 솔루션을 추천해야 합니다.\n\n추천에 무엇을 포함해야 합니까?",
+    "expl": "Azure Queue Storage는 분산 애플리케이션 구성 요소 간 비동기 통신을 위한 내구성 있는 큐를 제공해 트랜잭션 처리 서비스를 분리할 수 있게 합니다. 큐 메시지는 UTF-8 XML 요청과 호환되어야 하므로 XML 메시지 요구 사항도 충족합니다.\n\n**Learn more:** [What is Azure Queue Storage?](https://learn.microsoft.com/en-us/azure/storage/queues/storage-queues-introduction) · [Quickstart: Azure Queue Storage client library for .NET](https://learn.microsoft.com/en-us/azure/storage/queues/storage-quickstart-queues-dotnet)",
+    "choices": ["Azure Notification Hubs", "Azure Service Fabric", "Azure Queue Storage", "Azure Data Lake"]
+  },
+  "265": {
+    "stem": "고객이 디지털 이미지를 관리하는 데 사용하는 App1이라는 온프레미스 애플리케이션이 있습니다. App1을 Azure로 마이그레이션할 계획입니다.\n\n다음 이미지 저장 요구 사항을 충족하는 데이터 저장 솔루션을 추천하세요.\n\n- 이미지를 저장 상태에서 암호화해야 합니다.\n- 최대 50MB 파일을 허용해야 합니다.\n- Azure Front Door의 Azure Web Application Firewall(WAF)로 이미지 액세스를 관리해야 합니다.\n\n솔루션은 다음 고객 계정 요구 사항도 충족해야 합니다.\n\n- 저장소 자동 스케일 아웃을 지원해야 합니다.\n- 데이터센터에 장애가 나도 App1을 계속 사용할 수 있어야 합니다.\n- 여러 Azure 지역에서의 데이터 읽기·쓰기를 지원해야 합니다.\n\n각 데이터 유형에 어떤 서비스를 포함해야 합니까? 각 서비스는 한 번, 여러 번 사용하거나 전혀 사용하지 않을 수 있습니다.",
+    "expl": "이미지 개체에는 Azure Blob Storage가 적합합니다. Azure Storage는 저장 데이터를 기본으로 암호화하고, Blob Storage는 WAF로 보호되는 Azure Front Door 원본이 될 수 있습니다. Azure Cosmos DB는 자동 크기 조정 처리량을 제공하고 지리적으로 분산된 다중 지역 읽기·쓰기 워크로드를 고가용성으로 지원합니다.\n\n**Learn more:** [Azure Storage encryption for data at rest](https://learn.microsoft.com/en-us/azure/storage/common/storage-service-encryption) · [Azure Front Door frequently asked questions](https://learn.microsoft.com/en-us/azure/frontdoor/front-door-faq)",
+    "items": ["Azure Blob Storage", "Azure Cosmos DB", "Azure SQL Database", "Azure Table Storage"],
+    "slots": ["이미지 저장:", "고객 계정:"]
+  },
+  "266": {
+    "stem": "비디오 파일을 분석하는 데 Azure Linux 가상 머신을 사용하는 애플리케이션을 설계하고 있습니다. 파일은 ExpressRoute로 Azure에 연결된 회사 사무실에서 업로드됩니다.\n\n파일을 저장할 Azure Storage 계정을 프로비저닝할 계획입니다. 저장소 계정은 다음 요구 사항을 충족해야 합니다.\n\n- 최대 7TB 비디오 파일을 지원해야 합니다.\n- 가능한 한 높은 가용성을 제공해야 합니다.\n- 대용량 비디오 파일에 맞게 저장소를 최적화해야 합니다.\n- 온프레미스 네트워크의 파일이 ExpressRoute를 통해 업로드되도록 해야 합니다.\n\n저장소 계정을 어떻게 구성해야 합니까?",
+    "expl": "표준 범용 v2 계정은 7TB를 넘길 수 있고 대용량 비디오 개체에 적합한 블록 Blob을 포함해 Blob Storage를 지원합니다. GRS는 지리적으로 떨어진 보조 지역으로 데이터를 복제하므로 보기 중 LRS나 ZRS보다 가용성과 재해 복원력이 높습니다. 프라이빗 엔드포인트를 쓰면 ExpressRoute 프라이빗 피어링으로 가상 네트워크에 연결된 온프레미스 네트워크에서 저장소 계정에 사설로 접근할 수 있습니다.\n\n**Learn more:** [Scalability and performance targets for Blob storage](https://learn.microsoft.com/en-us/azure/storage/blobs/scalability-targets) · [Data redundancy - Azure Storage](https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy)",
+    "blanks": [
+      { "label": "저장소 계정 유형:", "options": ["프리미엄 파일 공유", "프리미엄 페이지 Blob", "표준 범용 v2"] },
+      { "label": "데이터 중복성:", "options": ["영역 중복 저장소(ZRS)", "로컬 중복 저장소(LRS)", "지역 중복 저장소(GRS)"] },
+      { "label": "네트워킹:", "options": ["Azure Route Server", "프라이빗 엔드포인트", "서비스 엔드포인트"] }
+    ]
+  },
+  "267": {
+    "stem": "Azure 구독에서 새로 배포되는 모든 Azure Resource Manager(ARM) 리소스에 대한 월간 보고서를 만드는 솔루션을 추천해야 합니다.\n\n추천에 무엇을 포함해야 합니까?",
+    "expl": "Azure 활동 로그는 리소스 만들기와 배포 이벤트를 포함한 Azure Resource Manager 제어 평면 작업을 기록합니다. 활동 로그를 Azure Log Analytics 작업 영역으로 내보내면 이벤트가 `AzureActivity` 테이블에 저장되고, KQL로 월간 보고 기간의 새 배포 작업을 필터링할 수 있습니다.\n\n**Learn more:** [Activity log in Azure Monitor](https://learn.microsoft.com/en-us/azure/azure-monitor/platform/activity-log)",
+    "choices": ["Azure Log Analytics", "Azure Arc", "Azure Analysis Services", "Azure Monitor 작업 그룹(action group)"]
+  },
+  "268": {
+    "stem": "여러 Azure 클라우드 서비스를 포함하고 트랜잭션의 각 부분을 관리하는 영업 애플리케이션을 개발하고 있습니다. 별도의 클라우드 서비스가 고객 주문, 청구, 결제, 재고, 배송을 처리합니다.\n\n클라우드 서비스들이 XML 메시지로 트랜잭션 정보를 비동기적으로 주고받을 수 있는 솔루션을 추천해야 합니다.\n\n추천에 무엇을 포함해야 합니까?",
+    "expl": "Azure Queue Storage는 분산 애플리케이션 구성 요소를 분리하는 내구성 있는 큐를 제공하므로, 한 서비스가 트랜잭션 메시지를 큐에 넣으면 다른 서비스가 나중에 가져와 처리할 수 있습니다. 큐 메시지는 UTF-8 인코딩의 XML 요청과 호환되어야 하므로 XML 기반 트랜잭션 메시징을 지원합니다.\n\n**Learn more:** [Tutorial: Work with Azure Queue Storage queues in .NET](https://learn.microsoft.com/en-us/azure/storage/queues/storage-tutorial-queues)",
+    "choices": ["Azure Blob Storage", "Azure Data Lake", "Azure Queue Storage", "Azure Service Fabric"]
+  },
+  "269": {
+    "stem": "Windows Server 2016과 Linux를 실행하는 Azure 가상 머신이 있는 Azure 구독이 있습니다.\n\nAzure Monitor로 보안 관련 이벤트에 대한 경고 전략을 세워야 합니다. 각 로그 유형을 조회할 Azure Monitor 로그 테이블을 고르세요.\n\n각 테이블은 한 번, 여러 번 사용하거나 전혀 사용하지 않을 수 있습니다.",
+    "expl": "Event 테이블에는 Windows 컴퓨터의 Windows 이벤트 로그에서 수집한 레코드가 들어 있습니다. Linux 시스템 로그 레코드는 Syslog 테이블에 수집되며, 보안 관련 syslog 이벤트를 여기서 조회할 수 있습니다.\n\n**Learn more:** [Azure Monitor Logs reference - Event](https://learn.microsoft.com/en-us/azure/azure-monitor/reference/tables/event) · [Azure Monitor Logs reference - Syslog](https://learn.microsoft.com/en-us/azure/azure-monitor/reference/tables/syslog)",
+    "items": ["AzureActivity", "AzureDiagnostics", "Event", "Syslog"],
+    "slots": ["Windows 이벤트 로그의 이벤트:", "Linux 시스템 로깅의 이벤트:"]
+  },
+  "270": {
+    "stem": "회사에 다음 표와 같은 사업부가 있습니다.\n\n[[IMG1]]\n\nSub1에는 App1이라는 Azure App Service 웹앱이 있습니다. App1은 단일 테넌트 사용자 인증에 Azure AD를 사용합니다. contoso.com 사용자는 App1에 인증할 수 있습니다.\n\nfabrikam.com 테넌트의 사용자도 App1에 인증할 수 있게 하는 솔루션을 추천해야 합니다.\n\n무엇을 추천해야 합니까?",
+    "expl": "다중 테넌트 Microsoft Entra 애플리케이션은 다른 테넌트의 조직 사용자도 로그인할 수 있게 합니다. 앱 등록의 '지원되는 계정 유형'을 모든 조직 디렉터리의 계정으로 바꾸고 다중 테넌트 로그인 권한 엔드포인트를 사용하면 fabrikam.com 사용자가 앱에 인증할 수 있습니다.\n\n**Learn more:** [Convert single-tenant app to multitenant on Microsoft Entra ID](https://learn.microsoft.com/en-us/entra/identity-platform/howto-convert-app-to-be-multi-tenant) · [Identity and account types for single- and multitenant apps](https://learn.microsoft.com/en-us/security/zero-trust/develop/identity-supported-account-types)",
+    "choices": [
+      "Azure AD 조인을 구성합니다.",
+      "Azure AD Identity Protection을 구성합니다.",
+      "조건부 액세스 정책을 구성합니다.",
+      "애플리케이션 등록에서 지원되는 계정 유형을 구성하고 로그인 엔드포인트를 업데이트합니다."
+    ]
+  },
+  "271": {
+    "stem": "회사에 다음 표와 같은 사업부가 있습니다.\n\n[[IMG1]]\n\nSub1에는 App1이라는 Azure App Service 웹앱이 있습니다. App1은 단일 테넌트 사용자 인증에 Azure AD를 사용합니다. contoso.com 사용자는 App1에 인증할 수 있습니다.\n\nfabrikam.com 테넌트의 사용자도 App1에 인증할 수 있게 하는 솔루션을 추천해야 합니다.\n\n무엇을 추천해야 합니까?",
+    "expl": "Microsoft Entra 자격 관리는 B2B 협업을 사용해 외부 사용자를 리소스 디렉터리의 게스트로 표현하고 리소스 액세스를 할당합니다. 액세스 패키지로 Fabrikam 사용자의 수명 주기와 애플리케이션 액세스를 관리하면서 사용자는 자기 홈 테넌트로 인증할 수 있습니다.\n\n**Learn more:** [Govern access for external users in entitlement management](https://learn.microsoft.com/en-us/entra/id-governance/entitlement-management-external-users) · [Manage connected organizations in entitlement management](https://learn.microsoft.com/en-us/entra/id-governance/entitlement-management-organization)",
+    "choices": [
+      "Azure AD 조인을 구성합니다.",
+      "Azure AD 자격 관리로 외부 사용자를 관리합니다.",
+      "Azure AD 통과 인증(pass-through authentication)을 사용하도록 설정하고 로그인 엔드포인트를 업데이트합니다.",
+      "Azure AD Privileged Identity Management(PIM)로 fabrikam.com 사용자에 대한 할당을 구성합니다."
+    ]
+  },
+  "272": {
+    "stem": "저장소 계정이 여러 개 있고 그 계정에 Azure Policy 정의가 할당된 Azure 구독이 있습니다.\n\n다음 요구 사항을 충족하는 솔루션을 추천하세요.\n\n- 필요할 때 Azure Policy 준수 검사를 실행해야 합니다.\n- Log Analytics에 수집된 로그를 조회해 규정 미준수에 대한 Azure Monitor 경고를 생성해야 합니다.\n\n각 요구 사항에 무엇을 추천해야 합니까?",
+    "expl": "`az policy state trigger-scan`은 요청 시 Azure Policy 준수 평가를 시작합니다. Azure 활동 로그는 진단 설정을 통해 Log Analytics 작업 영역으로 내보낼 수 있고, 거기서 로그 쿼리로 정책 미준수 이벤트에 대한 Azure Monitor 로그 경고를 만들 수 있습니다.\n\n**Learn more:** [Get policy compliance data - Azure Policy](https://learn.microsoft.com/en-us/azure/governance/policy/how-to/get-compliance-data) · [Azure Monitor activity log](https://learn.microsoft.com/en-us/azure/azure-monitor/platform/activity-log)",
+    "blanks": [
+      { "label": "준수 검사를 실행하는 데 사용할 것:", "options": ["Azure 템플릿", "Azure 명령줄 인터페이스(CLI)", "Azure Portal"] },
+      { "label": "미준수 경고를 생성하려면 다음의 진단 설정을 구성:", "options": ["Azure 활동 로그", "Log Analytics 작업 영역", "저장소 계정"] }
+    ]
+  }
+}

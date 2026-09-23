@@ -1,0 +1,107 @@
+{
+  "193": {
+    "stem": "Azure 구독이 있습니다.\n\nAzure Cloud Shell로 배포 스크립트를 실행해야 합니다.\n\nCloud Shell에 접근하려면 무엇을 사용해야 합니까?",
+    "expl": "Azure Cloud Shell은 브라우저에서 접근하는 인증된 터미널로 Azure 리소스를 관리합니다. Azure Portal이나 shell.azure.com에서 열 수 있으므로 웹 브라우저로 접근합니다.\n\n**Learn more:** [What is Azure Cloud Shell?](https://learn.microsoft.com/en-us/azure/cloud-shell/overview)",
+    "choices": ["Azure Resource Manager(ARM)", "Microsoft Visual Studio", "Windows 명령 프롬프트", "웹 브라우저"]
+  },
+  "194": {
+    "stem": "문장을 올바르게 완성하는 답을 선택하세요.\n\nHot Area:",
+    "expl": "Compliance Manager는 규정 준수 관리 자료와 평가를 제공하는 Microsoft 서비스 신뢰 포털에서 접근했습니다. Azure Active Directory 관리 센터, Azure Portal, Microsoft 365 관리 센터는 이 문제 기준에서 Compliance Manager 접근 위치가 아닙니다.\n\n**Learn more:** [Microsoft Service Trust Portal](https://learn.microsoft.com/en-us/compliance/regulatory/offering-service-trust-portal)",
+    "blanks": [
+      { "label": "Compliance Manager에 접근할 수 있는 곳은", "options": ["Azure Active Directory 관리 센터", "Azure Portal", "Microsoft 365 관리 센터", "Microsoft 서비스 신뢰 포털"] }
+    ]
+  },
+  "195": {
+    "stem": "Azure 환경이 있습니다.\n\nAndroid 운영 체제를 실행하는 태블릿에서 새 Azure 가상 머신을 만들어야 합니다.\n\n가능한 솔루션 세 가지는 무엇입니까? 각 정답은 완전한 솔루션입니다.\n\n**참고:** 각 정답은 1점입니다.",
+    "expl": "Azure Cloud Shell은 Bash와 PowerShell을 모두 지원하는 브라우저 접근형 관리 터미널이라 Azure CLI나 Azure PowerShell 명령으로 가상 머신을 프로비저닝할 수 있습니다. Azure Portal도 브라우저 기반 인터페이스로 Azure 가상 머신을 만들 수 있습니다. 따라서 Android 태블릿의 브라우저에서 이 인터페이스들에 접근할 수 있습니다.\n\n**Learn more:** [What is Azure Cloud Shell?](https://learn.microsoft.com/en-us/azure/cloud-shell/overview) · [Quickstart: Create a Windows virtual machine in the Azure portal](https://learn.microsoft.com/en-us/azure/virtual-machines/windows/quick-create-portal)",
+    "choices": [
+      "Azure Cloud Shell에서 Bash를 사용한다.",
+      "Azure Cloud Shell에서 PowerShell을 사용한다.",
+      "PowerApps 포털을 사용한다.",
+      "보안 및 규정 준수 관리 센터를 사용한다.",
+      "Azure Portal을 사용한다."
+    ]
+  },
+  "196": {
+    "stem": "다음 각 설명이 참이면 예, 아니면 아니요를 선택하세요.",
+    "expl": "Azure VM에서 실행되는 SQL Server는 고객이 VM, 게스트 OS, SQL Server 인스턴스를 관리하므로 IaaS입니다. Azure SQL Database는 완전 관리형 PaaS 데이터베이스 서비스입니다. Azure Cosmos DB도 SaaS가 아니라 관리형 데이터베이스 플랫폼 서비스(PaaS)입니다.\n\n**Learn more:** [What is Azure SQL?](https://learn.microsoft.com/en-us/azure/azure-sql/azure-sql-iaas-vs-paas-what-is-overview?view=azuresql) · [Fundamentals of Azure for On-Premises Experts](https://learn.microsoft.com/en-us/azure/migration/migrate-from-on-premises-fundamentals)",
+    "statements": [
+      "Azure 가상 머신에 설치한 Microsoft SQL Server 2019는 PaaS(서비스형 플랫폼)의 예다.",
+      "Azure SQL Database는 PaaS(서비스형 플랫폼)의 예다.",
+      "Azure Cosmos DB는 SaaS(서비스형 소프트웨어)의 예다."
+    ]
+  },
+  "197": {
+    "stem": "다음 각 설명이 참이면 **예**, 아니면 **아니요**를 선택하세요.",
+    "expl": "Azure는 보통 새 기능을 단계적으로 공개합니다. 초기 피드백을 받는 초대 전용 비공개 미리 보기, 누구나 참여할 수 있는 공개 미리 보기, 그리고 완전한 프로덕션 지원과 SLA가 적용되는 일반 공급(GA) 순서로 진행되며 대부분의 서비스가 이 경로를 따릅니다. 미리 보기 서비스도 Azure Portal, Azure CLI, Azure PowerShell로 관리할 수 있으며 CLI로만 관리하는 것이 아닙니다. 미리 보기 제품은 보통 할인되거나 무료로 제공되며, 일반 공급되어 완전한 지원 약정이 적용되면 가격은 내려가기보다 올라가는 것이 일반적입니다.\n\n**Learn more:** [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/en-us/support/legal/preview-supplemental-terms/)",
+    "statements": [
+      "대부분의 Azure 서비스는 비공개 미리 보기를 거쳐 공개 미리 보기로, 그다음 일반 공급으로 출시된다.",
+      "공개 미리 보기 상태의 Azure 서비스는 Azure CLI로만 관리할 수 있다.",
+      "비공개 미리 보기 상태인 Azure 서비스의 비용은 일반 공급되면 낮아진다."
+    ]
+  },
+  "198": {
+    "stem": "지원 엔지니어가 Azure CLI로 여러 Azure 관리 작업을 수행하려 합니다.\n\n컴퓨터에 CLI를 설치했습니다.\n\n지원 엔지니어에게 CLI를 실행할 때 사용할 도구를 알려 줘야 합니다.\n\n어떤 두 가지 도구를 사용하라고 안내해야 합니까? 각 정답은 완전한 솔루션입니다.\n\n**참고:** 각 정답은 1점입니다.",
+    "expl": "Windows에서는 명령 프롬프트나 Windows PowerShell에서 Azure CLI의 `az` 명령을 실행할 수 있습니다. Azure 리소스 탐색기, Windows Defender 방화벽, 네트워크 및 공유 센터는 Azure CLI 명령을 실행하는 명령줄 환경이 아닙니다.\n\n**Learn more:** [Install the Azure CLI on Windows](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-windows?view=azure-cli-lts)",
+    "choices": ["명령 프롬프트", "Azure 리소스 탐색기", "Windows PowerShell", "Windows Defender 방화벽", "네트워크 및 공유 센터"]
+  },
+  "199": {
+    "stem": "가상 네트워크 10개와 가상 머신 100대가 있는 Azure 환경이 있습니다.\n\n모든 Azure 가상 네트워크로 들어오는 인바운드 트래픽 양을 제한해야 합니다.\n\n무엇을 만들어야 합니까?",
+    "expl": "Azure Firewall은 Azure 가상 네트워크 전반에 중앙 집중식 상태 저장 네트워크·애플리케이션 계층 트래픽 필터링을 제공합니다. 허브 가상 네트워크에 방화벽 하나를 배포하고 라우팅으로 스포크 네트워크 트래픽을 그리로 보내면 여러 가상 네트워크를 보호할 수 있습니다.\n\n**Learn more:** [Azure Firewall FAQ](https://learn.microsoft.com/en-us/azure/firewall/firewall-faq) · [Azure Firewall and traffic inspection](https://learn.microsoft.com/en-us/azure/networking/design-guide/azure-firewall)",
+    "choices": ["애플리케이션 보안 그룹(ASG) 1개", "가상 네트워크 게이트웨이 10개", "Azure ExpressRoute 회로 10개", "Azure 방화벽 1개"]
+  },
+  "200": {
+    "stem": "관리자가 Azure 가상 머신을 중지했을 때 자동으로 경고를 보내려면 무엇을 사용할 수 있습니까?",
+    "expl": "Azure Monitor는 VM 가용성과 활동 로그 이벤트를 포함해 Azure 가상 머신에 대한 경고 규칙을 지원합니다. 이를 통해 VM이 중지되면 관리자에게 알릴 수 있습니다.\n\n**Learn more:** [Monitor virtual machines with Azure Monitor: Alerts](https://learn.microsoft.com/en-us/azure/azure-monitor/vm/monitor-virtual-machine-alerts) · [Monitor Azure Virtual Machines](https://learn.microsoft.com/en-us/azure/virtual-machines/monitor-vm)",
+    "choices": ["Azure Advisor", "Azure Service Health", "Azure Monitor", "Azure Network Watcher"]
+  },
+  "201": {
+    "stem": "다음 각 설명이 참이면 예, 아니면 아니요를 선택하세요.",
+    "expl": "Azure는 소비 기반 모델을 지원해 CapEx와 OpEx 사이에서 유연성을 제공합니다. 크기가 같은 B2S VM이라도 지역, 운영 체제, 실행 시간, 연결된 리소스 등에 따라 가격이 달라져 월 비용이 다를 수 있습니다. VM을 중지·할당 취소하면 컴퓨팅 과금은 멈추지만 관리 디스크 등 남아 있는 리소스에는 저장소 요금이 계속 부과됩니다.\n\n**Learn more:** [Plan to manage costs for virtual machines - Azure Virtual Machines](https://learn.microsoft.com/en-us/azure/virtual-machines/cost-optimization-plan-to-manage-costs) · [States and billing status - Azure Virtual Machines](https://learn.microsoft.com/en-us/azure/virtual-machines/states-billing)",
+    "statements": [
+      "Azure는 자본 지출(CapEx)과 운영 지출(OpEx) 사이에서 유연성을 제공한다.",
+      "B2S 크기를 사용하는 Azure 가상 머신 두 대를 만들면 각 가상 머신의 월 비용은 항상 같다.",
+      "Azure 가상 머신을 중지해도 해당 가상 머신과 관련된 저장소 비용은 계속 부과된다."
+    ]
+  },
+  "202": {
+    "stem": "Azure 예약 VM 인스턴스를 구매할 때 선택할 수 있는 최대 기간은 얼마입니까?",
+    "expl": "Azure 예약 VM 인스턴스는 1년 또는 3년 고정 약정 기간으로 제공됩니다. 최대 기간은 3년으로, 비용 절감을 위한 가장 긴 약정 기간입니다.",
+    "choices": ["1년", "5년", "4년", "3년"]
+  },
+  "203": {
+    "stem": "문장을 올바르게 완성하는 답을 선택하세요.",
+    "expl": "Azure Cost Management 예산 경고는 설정한 비용 임계값에 비추어 지출을 평가하고 임계값을 넘으면 메일 알림을 보낼 수 있습니다.\n\n**Learn more:** [Tutorial - Create and manage budgets - Microsoft Cost Management](https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/tutorial-acm-create-budgets)",
+    "blanks": [
+      { "label": "사용할 수 있는 것은", "options": ["Advisor 권장 사항", "액세스 제어(IAM)", "예산 경고", "규정 준수"] }
+    ]
+  },
+  "204": {
+    "stem": "솔루션: 탄력적(elastic) 지출 모델을 사용하도록 추천합니다.\n\n이 솔루션이 목표를 충족합니까?",
+    "expl": "Azure 종량제 지출은 운영 지출(OpEx) 모델입니다. 탄력성은 수요에 따라 리소스를 조정하는 것을 뜻할 뿐 지출 모델이 아니므로, '탄력적 지출 모델'은 요구된 추천이 아닙니다.\n\n**Learn more:** [Cost efficiency considerations for your cloud adoption strategy](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/strategy/inform/cost-efficiency)",
+    "choices": ["예", "아니요"]
+  },
+  "205": {
+    "stem": "솔루션: 확장 가능한(scalable) 지출 모델을 사용하도록 추천합니다.\n\n이 솔루션이 목표를 충족합니까?",
+    "expl": "Azure 종량제는 실제 리소스 사용량에 따라 요금이 부과되고 수요에 따라 조정되는 소비 기반 청구 모델입니다. 이는 선투자 자본 지출 모델이 아니라 확장 가능한 운영 지출 방식입니다.\n\n**Learn more:** [Architecture strategies for getting the best rates from providers](https://learn.microsoft.com/en-us/azure/well-architected/cost-optimization/get-best-rates)",
+    "choices": ["예", "아니요"]
+  },
+  "206": {
+    "stem": "솔루션: 운영 지출(OpEx) 모델을 사용하도록 추천합니다.\n\n이 솔루션이 목표를 충족합니까?",
+    "expl": "Azure 클라우드 지출은 선투자 하드웨어 구매를 위한 자본 지출에서 지속적인 서비스 요금인 운영 지출로 전환됩니다. 종량제 Azure 구독은 소비 기반이므로 OpEx 모델을 추천하는 것이 요구 사항을 충족합니다.\n\n**Learn more:** [Cost efficiency considerations for your cloud adoption strategy](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/strategy/inform/cost-efficiency)",
+    "choices": ["예", "아니요"]
+  },
+  "207": {
+    "stem": "HOTSPOT — 문장을 올바르게 완성하는 답을 선택하세요.",
+    "expl": "Microsoft 서비스 신뢰 포털은 Microsoft 클라우드 서비스의 감사 보고서와 규정 준수 관련 정보를 게시합니다. Azure 감사 문서도 보고서 섹션에서 확인할 수 있습니다.\n\n**Learn more:** [Get started with the Microsoft Service Trust Portal](https://learn.microsoft.com/en-us/compliance/assurance/stp-get-started?view=o365-worldwide) · [Azure and other Microsoft cloud services compliance offerings](https://learn.microsoft.com/en-us/azure/compliance/offerings/)",
+    "blanks": [
+      { "label": "정답:", "options": ["Microsoft Defender for Cloud", "Microsoft Defender for Identity 관리 센터", "Microsoft 365 규정 준수 센터", "Microsoft 서비스 신뢰 포털"] }
+    ]
+  },
+  "208": {
+    "stem": "회사가 Azure 지원 플랜을 구독할 계획입니다.\n\n이 플랜은 새 지원 요청을 열 수 있어야 합니다.\n\n이 기능을 제공하는 지원 플랜은 무엇입니까?",
+    "expl": "기술 장애 복구(break-fix) 지원 요청은 Developer, Standard, Professional Direct, Premier 플랜에 포함됩니다. Basic 지원은 청구·할당량·구독 관리는 다루지만 기술 장애 복구 지원은 포함하지 않습니다.\n\n**Learn more:** [Request quota increases and get support - Azure Synapse Analytics](https://learn.microsoft.com/en-us/azure/synapse-analytics/sql-data-warehouse/sql-data-warehouse-get-started-create-support-ticket)",
+    "items": ["Basic", "Developer", "Standard", "PROFESSIONAL DIRECT", "PREMIER"],
+    "slots": ["정답 1:", "정답 2:", "정답 3:", "정답 4:"]
+  }
+}

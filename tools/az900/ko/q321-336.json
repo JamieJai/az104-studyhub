@@ -1,0 +1,121 @@
+{
+  "322": {
+    "stem": "Azure 저장소 서비스를 해당 설명과 연결하세요.\n\n각 서비스는 한 번, 여러 번 사용하거나 전혀 사용하지 않을 수 있습니다.",
+    "expl": "Azure Queue Storage는 애플리케이션 구성 요소 간 안정적인 비동기 메시징에 사용합니다. Azure Files는 SMB 파일 공유를 제공하므로 Windows 장치에서 네트워크 공유로 연결할 수 있습니다. Azure Blob 저장소는 핫·쿨·콜드·아카이브 액세스 계층을 지원하지만 Azure 디스크 저장소는 Blob 액세스 계층을 사용하지 않습니다.\n\n**Learn more:** [Reliability in Azure Queue Storage](https://learn.microsoft.com/en-us/azure/reliability/reliability-storage-queue) · [Introduction to Azure Files](https://learn.microsoft.com/en-us/azure/storage/files/storage-files-introduction)",
+    "items": ["Azure Blob 저장소", "Azure 디스크 저장소", "Azure Files", "Azure Queue Storage"],
+    "slots": [
+      "애플리케이션 간 안정적인 메시징에 사용한다",
+      "Windows 장치에서 네트워크 공유로 접근할 수 있다",
+      "아카이브 액세스 계층을 사용하도록 구성할 수 있다"
+    ]
+  },
+  "323": {
+    "stem": "고객의 관리 책임이 가장 적은 클라우드 서비스 모델은 무엇입니까?",
+    "expl": "SaaS(서비스형 소프트웨어)는 공급자가 애플리케이션, 플랫폼, 기반 인프라를 운영·유지하므로 고객의 관리 책임이 가장 적습니다.",
+    "choices": ["서비스형 인프라(IaaS)", "서비스형 플랫폼(PaaS)", "서비스형 소프트웨어(SaaS)"]
+  },
+  "324": {
+    "stem": "각 Azure 서비스를 알맞은 설명과 연결하세요.\n\n각 서비스는 한 번, 여러 번 사용하거나 전혀 사용하지 않을 수 있습니다.",
+    "expl": "Azure Synapse Analytics는 관리형 데이터 웨어하우징·분석 기능을 제공합니다. Azure Cosmos DB는 NoSQL API를 지원하는 전역 분산 데이터베이스 서비스입니다. Azure HDInsight는 Apache Hadoop과 관련 빅 데이터 프레임워크를 위한 관리형 클라우드 클러스터 서비스로 대규모 데이터 처리를 가능하게 합니다.\n\n**Learn more:** [Azure Cosmos DB global distribution](https://learn.microsoft.com/en-us/azure/cosmos-db/distribute-data-globally) · [What is Azure HDInsight?](https://learn.microsoft.com/en-us/azure/hdinsight/hdinsight-overview)",
+    "items": ["Azure Cosmos DB", "Azure HDInsight", "Azure Synapse Analytics"],
+    "slots": [
+      "모든 규모에서 추가 비용 없이 통합 보안을 제공하는 완전 관리형 데이터 웨어하우스.",
+      "NoSQL을 지원하는 전역 분산 데이터베이스.",
+      "대량의 데이터를 처리할 수 있는 클라우드의 관리형 Apache Hadoop 클러스터."
+    ]
+  },
+  "325": {
+    "stem": "HOTSPOT -\n\nAzure 가상 머신을 만들 계획입니다.\n\n가상 머신의 비관리 데이터 디스크를 저장하는 데 사용해야 하는 저장소 서비스를 파악해야 합니다.\n\n무엇을 골라야 합니까?\n\n[[IMG1]]",
+    "expl": "Azure 비관리 디스크는 Azure Storage 계정의 페이지 Blob으로 저장되는 VHD 파일입니다. 따라서 컨테이너로 대표되는 Blob 저장소가 필요한 서비스이며, 파일·테이블·큐에는 비관리 VM 디스크를 저장할 수 없습니다.\n\n**Learn more:** [Overview of Azure page blobs](https://learn.microsoft.com/en-us/azure/storage/blobs/storage-blob-pageblob-overview)",
+    "answerText": "![Answer image](images/1785597451299-9zuzucc8.jpg)"
+  },
+  "326": {
+    "stem": "Windows Server 2016을 실행하는 VM1이라는 가상 머신이 있습니다. VM1은 미국 동부(East US) Azure 지역에 있습니다.\n\nVM1에 영향을 줄 수 있는 서비스 장애 알림을 Azure Portal에서 보려면 어떤 Azure 서비스를 사용해야 합니까?",
+    "expl": "Azure Service Health는 리소스에 영향을 줄 수 있는 Azure 서비스 인시던트에 대해 구독·지역별 알림을 제공합니다. 보기 중에서는 Azure Monitor가 이런 서비스 상태 알림과 경고에 접근·관리하는 포털 서비스입니다.\n\n**Learn more:** [Azure Service Health notifications overview](https://learn.microsoft.com/en-us/Azure/service-health/service-health-notifications-properties) · [Azure Service Health documentation](https://learn.microsoft.com/en-us/azure/service-health/)",
+    "choices": ["Azure Service Fabric", "Azure Monitor", "Azure 가상 머신", "Azure Advisor"]
+  },
+  "327": {
+    "stem": "HOTSPOT —\n\n답변 영역에서 알맞은 옵션을 선택해 문장을 완성하세요.",
+    "expl": "적시(JIT) VM 액세스는 이전에 Azure Security Center라고 불리던 Microsoft Defender for Cloud의 기능입니다. 네트워크 보안 그룹 규칙을 제어해 승인된 인바운드 관리 액세스를 시간 제한으로 허용합니다.\n\n**Learn more:** [Microsoft Defender for Cloud: Just-in-time VM access](https://learn.microsoft.com/en-us/azure/defender-for-cloud/just-in-time-access-overview)",
+    "blanks": [
+      { "label": "적시(JIT) VM 액세스를 사용하도록 설정할 때 쓰는 것은", "options": ["Azure Bastion", "Azure Firewall", "Azure Front Door", "Azure Security Center"] }
+    ]
+  },
+  "328": {
+    "stem": "문장을 올바르게 완성하는 답을 선택하세요.",
+    "expl": "Azure Arc 지원 서버는 온프레미스 Windows Server 머신을 Azure Resource Manager에 연결해 Azure 리소스처럼 관리할 수 있게 합니다.\n\n**Learn more:** [Azure Arc-enabled servers overview](https://learn.microsoft.com/en-us/azure/azure-arc/servers/overview)",
+    "blanks": [
+      { "label": "온프레미스 Windows 서버를 Azure 리소스로 관리할 때 사용하는 것은", "options": ["Azure AD Connect", "Azure Arc", "Azure Pipelines 에이전트", "Azure VPN Gateway"] }
+    ]
+  },
+  "329": {
+    "stem": "Azure 서비스의 최신 수명 주기 정책(Modern Lifecycle Policy)을 올바르게 설명한 것은 무엇입니까?",
+    "expl": "최신 수명 주기 정책에 따르면 Microsoft는 후속 제품이나 서비스를 제공하지 않는 경우 지원 종료 전에 최소 12개월을 공지합니다. 무료 서비스와 미리 보기 릴리스는 예외입니다. 이 정책은 4년이나 5년 같은 고정 지원 기간이 아니라 지속적 서비스 제공 방식을 따릅니다.\n\n**Learn more:** [Modern Lifecycle Policy](https://learn.microsoft.com/en-us/lifecycle/policies/modern) · [Platform Lifecycle FAQ - Microsoft Azure](https://learn.microsoft.com/en-us/lifecycle/faq/azure)",
+    "choices": [
+      "Microsoft는 서비스에 대해 5년간 주요 지원을 제공한다.",
+      "Microsoft는 서비스 지원을 종료하기 전에 최소 12개월을 공지한다.",
+      "서비스가 일반 공급된 후 Microsoft는 최소 4년간 지원을 제공한다.",
+      "서비스가 사용 중지되면 최대 5년간 확장 지원을 구매할 수 있다."
+    ]
+  },
+  "330": {
+    "stem": "Azure 서비스를 해당 설명과 연결하세요.\n\n각 서비스는 한 번, 여러 번 사용하거나 전혀 사용하지 않을 수 있습니다.",
+    "expl": "ExpressRoute는 공용 인터넷을 거치지 않는 사설 연결로 온프레미스 네트워크를 Microsoft 클라우드 서비스까지 확장합니다. Azure VPN Gateway는 Azure 가상 네트워크와 온프레미스 사이의 트래픽을 암호화합니다. Azure Virtual Desktop은 Azure에서 실행되는 데스크톱·앱 가상화 서비스로 전체 데스크톱 가상화 환경을 제공합니다. Azure 컨테이너는 이 연결·데스크톱 가상화 설명 중 어디에도 해당하지 않습니다.\n\n**Learn more:** [Azure ExpressRoute overview](https://learn.microsoft.com/en-us/azure/expressroute/expressroute-introduction) · [What is Azure VPN Gateway?](https://learn.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-about-vpngateways)",
+    "items": ["Azure 컨테이너", "Azure Virtual Desktop", "ExpressRoute", "가상 사설망(VPN)"],
+    "slots": [
+      "인터넷을 거치지 않는 전용 사설 연결.",
+      "게이트웨이로 온프레미스와 Azure 사이의 트래픽을 암호화한다.",
+      "Azure에서 실행되는 전체 데스크톱·앱 가상화 환경을 제공한다."
+    ]
+  },
+  "331": {
+    "stem": "컨테이너를 관리해야 합니다.\n\n사용할 수 있는 서비스 두 가지는 무엇입니까? 각 정답은 완전한 솔루션입니다.\n\n**참고:** 각 정답은 1점입니다.",
+    "expl": "Azure Container Instances는 컨테이너를 실행하는 관리형 서버리스 환경을 제공하고, Azure Kubernetes Service는 컨테이너 애플리케이션을 배포·오케스트레이션·확장·관리하는 관리형 Kubernetes 서비스입니다.\n\n**Learn more:** [What is Azure Container Instances?](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-overview) · [What is Azure Kubernetes Service (AKS)?](https://learn.microsoft.com/en-us/azure/aks/what-is-aks)",
+    "choices": ["Azure Virtual Desktop", "Azure 가상 머신", "Azure Functions", "Azure Container Instances", "Azure Kubernetes Service(AKS)"]
+  },
+  "332": {
+    "stem": "다음 각 설명이 참이면 **예**, 아니면 **아니요**를 선택하세요.",
+    "expl": "Azure 무료 계정에는 프로모션 크레딧과 연동된 지출 한도가 있습니다. 무료 계정에 2TB 데이터 업로드 제한은 없으며, Azure App Service 무료 계층은 할당량이 있어 웹앱을 무제한으로 둘 수 없습니다.\n\n**Learn more:** [Azure spending limit](https://learn.microsoft.com/en-us/azure/cost-management-billing/manage/spending-limit) · [Azure subscription and service limits, quotas, and constraints](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/azure-subscription-service-limits)",
+    "statements": [
+      "Azure 무료 계정에는 지출 한도가 있다.",
+      "Azure 무료 계정은 Azure에 업로드할 수 있는 데이터가 2TB로 제한된다.",
+      "Azure 무료 계정에는 웹앱을 무제한으로 둘 수 있다."
+    ]
+  },
+  "333": {
+    "stem": "Azure 관리자가 Azure 리소스를 만드는 PowerShell 스크립트를 실행하려 합니다.\n\n스크립트를 실행할 수 있는 컴퓨터 구성을 추천해야 합니다.\n\n스크립트를 실행할 수 있는 컴퓨터 세 가지는 무엇입니까? 각 정답은 완전한 솔루션입니다.\n\n**참고:** 각 정답은 1점입니다.",
+    "expl": "Azure PowerShell에는 Windows와 Linux에서 지원되는 Az PowerShell 모듈이 필요합니다. Azure Cloud Shell에는 Az PowerShell 모듈이 미리 설치되어 있어 Chrome OS 장치에서도 Azure PowerShell 스크립트를 실행할 수 있습니다. Azure PowerShell 모듈이 없는 PowerShell Core나 Azure CLI만으로는 필요한 Azure PowerShell cmdlet을 쓸 수 없습니다.\n\n**Learn more:** [How to install Azure PowerShell](https://learn.microsoft.com/en-us/powershell/azure/install-azure-powershell?view=azps-16.0.0)",
+    "choices": [
+      "PowerShell Core 6.0이 설치된 macOS 컴퓨터",
+      "Azure PowerShell 모듈이 설치된 Windows 10 컴퓨터",
+      "Azure PowerShell 모듈이 설치된 Linux 컴퓨터",
+      "Azure CLI 도구가 설치된 Linux 컴퓨터",
+      "Azure Cloud Shell을 사용하는 Chrome OS 컴퓨터"
+    ]
+  },
+  "334": {
+    "stem": "문장을 올바르게 완성하는 옵션을 선택하세요.",
+    "expl": "Azure Sphere는 연결된 MCU, 맞춤형 Linux 기반 OS, 클라우드 기반 보안 서비스로 구성된 보안 IoT 플랫폼입니다.\n\n**Learn more:** [What is Azure Sphere? | Microsoft Learn](https://learn.microsoft.com/en-us/azure-sphere/product-overview/what-is-azure-sphere?view=azure-sphere-integrated)",
+    "blanks": [
+      { "label": "마이크로컨트롤러 장치(MCU)와 맞춤형 Linux 운영 체제를 포함하는 고도로 안전한 IoT 솔루션은", "options": ["Azure Arc", "Azure IoT Central", "Azure IoT Hub", "Azure Sphere"] }
+    ]
+  },
+  "335": {
+    "stem": "다음 각 설명이 참이면 예, 아니면 아니요를 선택하세요.",
+    "expl": "Azure 리소스 그룹은 중첩할 수 없고 각 Azure 리소스는 리소스 그룹 하나에만 속합니다. 리소스 그룹에는 서로 다른 Azure 지역의 리소스를 담을 수 있습니다.\n\n**Learn more:** [Azure Resource Manager overview](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/overview)",
+    "statements": [
+      "리소스 그룹 안에 다른 리소스 그룹을 만들 수 있다.",
+      "Azure 가상 머신은 여러 리소스 그룹에 속할 수 있다.",
+      "리소스 그룹에는 여러 Azure 지역의 리소스를 담을 수 있다."
+    ]
+  },
+  "336": {
+    "stem": "다음 각 설명이 참이면 예, 아니면 아니요를 선택하세요.",
+    "expl": "SaaS는 완성된 애플리케이션을 제공하므로 소프트웨어 업데이트는 클라우드 공급자가 관리합니다. IaaS 고객은 가상 머신, 운영 체제, 애플리케이션을 관리하므로 필요한 소프트웨어를 직접 설치해야 합니다. Azure Backup은 관리형 Azure 플랫폼 서비스이며 이 맥락에서는 PaaS로 분류됩니다.\n\n**Learn more:** [Shared responsibility in the cloud](https://learn.microsoft.com/en-us/azure/security/fundamentals/shared-responsibility) · [Reliability in Azure Backup](https://learn.microsoft.com/en-us/azure/reliability/reliability-backup)",
+    "statements": [
+      "SaaS(서비스형 소프트웨어)에서는 사용자가 소프트웨어 업데이트를 적용해야 한다.",
+      "IaaS(서비스형 인프라)에서는 사용자가 필요한 소프트웨어를 직접 설치해야 한다.",
+      "Azure Backup은 PaaS(서비스형 플랫폼)의 예다."
+    ]
+  }
+}

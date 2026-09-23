@@ -1,0 +1,106 @@
+{
+  "231": {
+    "stem": "50GB 데이터베이스를 호스트하는 온프레미스 Microsoft SQL Server 2008 인스턴스가 있습니다.\n\n이 데이터베이스를 Azure SQL Managed Instance로 마이그레이션해야 합니다. 솔루션은 가동 중단을 최소화해야 합니다.\n\n무엇을 사용해야 합니까?",
+    "expl": "Azure Data Studio는 SQL Server 데이터베이스를 Azure SQL Managed Instance로 옮기는 Azure SQL 마이그레이션 워크플로를 지원합니다. 온라인 마이그레이션 기능은 마이그레이션 중에 데이터를 계속 동기화하므로, 50GB 전체 전송이 아니라 마지막 전환 시점으로만 가동 중단이 제한됩니다.\n\n**Learn more:** [Migration overview: SQL Server to Azure SQL Managed Instance](https://learn.microsoft.com/en-us/data-migration/sql-server/managed-instance/overview)",
+    "choices": ["Azure Migrate", "Azure Data Studio", "WANdisco LiveData Platform for Azure", "SQL Server Management Studio(SSMS)"]
+  },
+  "232": {
+    "stem": "온프레미스 네트워크에 Active Directory Domain Services(AD DS) 도메인이 있습니다. 도메인에는 AD DS 인증을 사용하는 App1을 호스트하는 Server1이 있습니다. 원격 사용자는 온프레미스 네트워크에 대한 VPN 연결로 App1에 접근합니다.\n\nAzure AD Connect로 AD DS 도메인과 동기화되는 Azure AD 테넌트가 있습니다.\n\n원격 사용자가 VPN 없이 App1에 접근할 수 있게 해야 합니다. 솔루션은 다음 요구 사항을 충족해야 합니다.\n\n- 사용자가 Azure 다단계 인증(MFA)으로 인증해야 합니다.\n- 관리 작업을 최소화해야 합니다.\n\n솔루션에 무엇을 포함해야 합니까?",
+    "expl": "Microsoft Entra 애플리케이션 프록시는 온프레미스 웹 애플리케이션을 원격 접근용으로 안전하게 게시합니다. 게시된 애플리케이션은 엔터프라이즈 애플리케이션이며, 커넥터는 사설 네트워크의 Windows Server에 설치하는 경량 에이전트입니다. Azure AD 사전 인증은 요청이 온프레미스 애플리케이션에 도달하기 전에 조건부 액세스와 MFA를 적용하므로, VPN 없이도 되고 인프라 관리도 최소화됩니다.\n\n**Learn more:** [Microsoft Entra application proxy](https://learn.microsoft.com/en-us/entra/identity/app-proxy/overview-what-is-app-proxy) · [Microsoft Entra Private Network Connectors](https://learn.microsoft.com/en-us/entra/global-secure-access/concept-connectors)",
+    "blanks": [
+      { "label": "Azure AD에서:", "options": ["관리 ID", "액세스 패키지", "앱 등록", "엔터프라이즈 애플리케이션"] },
+      { "label": "온프레미스:", "options": ["Azure AD 애플리케이션 프록시 커넥터가 설치된 Windows Server 서버", "온프레미스 데이터 게이트웨이(표준 모드)가 설치된 Windows Server 서버", "웹 애플리케이션 프록시 역할 서비스가 설치된 Windows Server 서버"] }
+    ]
+  },
+  "233": {
+    "stem": "온프레미스 네트워크에 App1이라는 ASP.NET 애플리케이션을 호스트하는 Server1이라는 서버가 있습니다.\n\n하이브리드 Azure Active Directory(Azure AD) 배포를 사용합니다.\n\n사용자가 인터넷에서 App1에 연결할 때 Azure AD 계정과 Azure 다단계 인증(MFA)으로 인증하도록 하는 솔루션을 추천해야 합니다.\n\n어떤 기능 세 가지를 어떤 순서로 배포·구성해야 합니까?",
+    "expl": "Azure AD 애플리케이션 프록시는 온프레미스 웹 애플리케이션을 안전하게 게시하고 Azure AD 사전 인증을 지원합니다. 게시하면 해당 애플리케이션의 엔터프라이즈 애플리케이션(서비스 주체)이 만들어지고 구성되며, 이것이 조건부 액세스의 대상이 됩니다. 그런 다음 조건부 액세스 정책으로 그 엔터프라이즈 애플리케이션에 접근하는 사용자에게 Azure MFA를 요구할 수 있습니다.\n\n**Learn more:** [Microsoft Entra application proxy overview](https://learn.microsoft.com/en-us/entra/identity/app-proxy/overview-what-is-app-proxy) · [Microsoft Entra Conditional Access: Cloud apps, actions, and authentication context](https://learn.microsoft.com/en-us/entra/identity/conditional-access/concept-conditional-access-cloud-apps)",
+    "items": [
+      "공용 Azure Load Balancer",
+      "관리 ID",
+      "내부 Azure Load Balancer",
+      "조건부 액세스 정책",
+      "Azure App Service 계획",
+      "Azure AD 애플리케이션 프록시",
+      "Azure AD 엔터프라이즈 애플리케이션"
+    ],
+    "slots": ["1단계:", "2단계:", "3단계:"]
+  },
+  "234": {
+    "stem": "contoso.com이라는 Azure Active Directory(Azure AD) 테넌트에 Group1이라는 보안 그룹이 있습니다. Group1은 할당된 멤버 자격으로 구성되어 있으며 게스트 사용자 20명을 포함해 멤버가 50명입니다.\n\nGroup1 멤버 자격을 평가하는 솔루션을 추천해야 합니다. 솔루션은 다음 요구 사항을 충족해야 합니다.\n\n- 평가가 3개월마다 자동으로 반복되어야 합니다.\n- 모든 멤버가 자신이 Group1에 남아 있어야 하는지 밝힐 수 있어야 합니다.\n- Group1에 있을 필요가 없다고 밝힌 사용자는 자동으로 Group1에서 제거되어야 합니다.\n- Group1에 있어야 하는지 밝히지 않은 사용자도 자동으로 제거되어야 합니다.\n\n추천에 무엇을 포함해야 합니까?",
+    "expl": "Microsoft Entra 액세스 검토는 그룹 멤버 자격의 반복 검토, 멤버의 자기 검토, 거부 결정의 자동 적용, 그리고 응답하지 않은 검토자의 액세스 자동 제거(해당 결과로 구성한 경우)를 지원합니다.\n\n**Learn more:** [Create an access review of groups and applications](https://learn.microsoft.com/en-us/entra/id-governance/create-access-review) · [Plan a Microsoft Entra access reviews deployment](https://learn.microsoft.com/en-us/entra/id-governance/deploy-access-reviews)",
+    "choices": [
+      "Azure AD Identity Protection을 구현합니다.",
+      "Group1의 멤버 자격 유형을 동적 사용자로 변경합니다.",
+      "액세스 검토를 만듭니다.",
+      "Azure AD Privileged Identity Management(PIM)를 구현합니다."
+    ]
+  },
+  "235": {
+    "stem": "Fabrikam의 인증 요구 사항을 충족하려면 솔루션에 무엇을 포함해야 합니까?",
+    "expl": "Entra 테넌트 하나로 필요한 하이브리드 ID를 모두 수용할 수 있으며, 해당 UPN 접미사를 쓰려면 corp.fabrikam.com을 추가하고 확인해야 합니다. 조건부 액세스 정책 하나는 Azure Portal 관리 액세스에 MFA를 요구하고, 회사 외부에서의 접근을 차단하는 정책은 따로 두어야 합니다. 차단(block) 제어는 같은 정책에서 MFA 권한 부여 요구와 함께 쓸 수 없기 때문입니다.\n\n**Learn more:** [Manage custom domain names in Microsoft Entra ID](https://learn.microsoft.com/en-us/entra/identity/users/domains-manage) · [Conditional Access policy components](https://learn.microsoft.com/en-us/entra/identity/conditional-access/concept-conditional-access-policies)",
+    "blanks": [
+      { "label": "Azure AD 테넌트의 최소 개수:", "options": ["0", "1", "2", "3", "4"] },
+      { "label": "추가할 사용자 지정 도메인의 최소 개수:", "options": ["0", "1", "2", "3", "4"] },
+      { "label": "만들 조건부 액세스 정책의 최소 개수:", "options": ["0", "1", "2", "3", "4"] }
+    ]
+  },
+  "236": {
+    "stem": "contoso.com이라는 Azure AD 테넌트에 Group1이라는 보안 그룹이 있습니다. Group1은 할당된 멤버 자격으로 구성되어 있으며 게스트 사용자 20명을 포함해 멤버가 50명입니다.\n\nGroup1 멤버 자격을 평가하는 솔루션을 추천해야 합니다. 솔루션은 다음 요구 사항을 충족해야 합니다.\n\n- 평가가 3개월마다 자동으로 반복되어야 합니다.\n- 각 멤버가 여전히 Group1에 속해야 하는지 밝힐 수 있어야 합니다.\n- 더 이상 Group1에 있을 필요가 없다고 밝힌 멤버는 자동으로 제거되어야 합니다.\n- 여전히 Group1에 있어야 하는지 밝히지 않은 멤버도 자동으로 제거되어야 합니다.\n\n추천에 무엇을 포함해야 합니까?",
+    "expl": "Microsoft Entra 액세스 검토는 보안 그룹 멤버에 대한 분기별 반복 검토와 각 멤버의 자기 검토를 지원합니다. 결과 자동 적용을 켜면 거부된 멤버 자격이 자동으로 제거되고, 무응답 처리를 '액세스 제거'로 설정하면 응답하지 않은 멤버도 제거됩니다.\n\n**Learn more:** [What are access reviews? - Microsoft Entra](https://learn.microsoft.com/en-us/entra/id-governance/access-reviews-overview) · [Create an access review of groups and applications](https://learn.microsoft.com/en-us/entra/id-governance/create-access-review)",
+    "choices": [
+      "Azure AD Identity Protection을 구현합니다.",
+      "Group1의 멤버 자격 유형을 동적 사용자로 변경합니다.",
+      "액세스 검토를 만듭니다.",
+      "Azure AD Privileged Identity Management(PIM)를 구현합니다."
+    ]
+  },
+  "237": {
+    "stem": "DB1과 DB2라는 온프레미스 Microsoft SQL Server 데이터베이스 두 개를 사용하는 App1이라는 앱이 있습니다.\n\nDB1과 DB2를 Azure로 마이그레이션할 계획입니다.\n\nDB1과 DB2를 호스트할 Azure 솔루션을 추천해야 합니다. 솔루션은 다음 요구 사항을 충족해야 합니다.\n\n- DB1과 DB2에 걸친 서버 측 트랜잭션을 지원해야 합니다.\n- 솔루션을 업데이트하는 데 드는 관리 작업을 최소화해야 합니다.\n\n무엇을 추천해야 합니까?",
+    "expl": "Azure SQL Managed Instance는 Transact-SQL로 작성한 데이터베이스 간 서버 측 분산 트랜잭션을 지원합니다. 또한 관리형 PaaS 서비스이므로 Azure 가상 머신에서 SQL Server를 호스트하는 경우보다 운영 체제·SQL Server 업데이트 관리 부담이 적습니다.\n\n**Learn more:** [Distributed transactions across cloud databases](https://learn.microsoft.com/en-us/azure/azure-sql/database/elastic-transactions-overview?view=azuresql) · [Distributed Transaction Coordinator (DTC) for Azure SQL Managed Instance](https://learn.microsoft.com/en-us/azure/azure-sql/managed-instance/distributed-transaction-coordinator-dtc?view=azuresql)",
+    "choices": [
+      "탄력적 풀에 있는 Azure SQL 데이터베이스 두 개",
+      "같은 Azure SQL 관리 인스턴스의 데이터베이스 두 개",
+      "Azure 가상 머신의 같은 SQL Server 인스턴스에 있는 데이터베이스 두 개",
+      "서로 다른 Azure SQL Database 서버의 Azure SQL 데이터베이스 두 개"
+    ]
+  },
+  "238": {
+    "stem": "온프레미스 데이터센터에 Microsoft SQL Server 2022를 실행하는 Server1이 있습니다. Server1은 DB1이라는 30TB 고객 데이터 데이터베이스를 호스트합니다. 또한 DB1 레코드의 규정 준수를 검증하는 사용자 지정 애플리케이션 App1도 실행합니다. App1은 DB1과 같은 서버에서 실행되어야 합니다.\n\nAzure 구독이 있습니다.\n\n관리 작업을 최소화하면서 DB1을 Azure로 마이그레이션해야 합니다.\n\nDB1에 사용할 서비스와 마이그레이션 도구를 고르세요.",
+    "expl": "Azure Virtual Machines의 SQL Server는 사용자 지정 애플리케이션과 SQL Server 데이터베이스를 같은 서버에 함께 둘 수 있습니다. Azure Database Migration Service는 온프레미스 SQL Server 데이터베이스를 Azure 가상 머신의 SQL Server로 마이그레이션하는 관리형 워크플로를 제공합니다.\n\n**Learn more:** [Tutorial: Migrate SQL Server to SQL Server on an Azure Virtual Machine with Azure DMS (online)](https://learn.microsoft.com/en-us/data-migration/sql-server/virtual-machines/database-migration-service-online) · [Azure Database Migration Service documentation](https://learn.microsoft.com/en-us/azure/dms/)",
+    "blanks": [
+      { "label": "마이그레이션 대상:", "options": ["Azure SQL Database", "Azure SQL Managed Instance", "Azure Virtual Machines의 SQL Server"] },
+      { "label": "사용할 도구:", "options": ["Azure Database Migration Service", "Azure Migrate", "Azure Data Studio용 Azure SQL 마이그레이션 확장"] }
+    ]
+  },
+  "239": {
+    "stem": "솔루션: 자동 크기 조정을 사용하는 Azure 가상 머신 확장 집합을 배포합니다.\n\n이 솔루션이 목표를 충족합니까?",
+    "expl": "가상 머신 확장 집합의 자동 크기 조정은 배포된 지역 안에서 인스턴스 용량을 조정할 뿐, 두 번째 지역 배포를 만들거나 지역 간 장애 조치를 구성하지는 않습니다. 따라서 가상 머신이 운영 체제 관리와 전체 .NET Framework 실행을 지원하더라도 Azure 지역 장애 시의 중복성은 제공하지 못합니다.\n\n**Learn more:** [Reliability in Azure Virtual Machine Scale Sets](https://learn.microsoft.com/en-us/azure/reliability/reliability-virtual-machine-scale-sets) · [Azure Virtual Machine Scale Sets overview](https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/overview)",
+    "choices": ["예", "아니요"]
+  },
+  "240": {
+    "stem": "솔루션: Azure 지역 두 곳에 Azure 가상 머신 두 대를 배포하고 Azure Application Gateway를 배포합니다.\n\n이 솔루션이 목표를 충족합니까?",
+    "expl": "Azure Application Gateway v2는 단일 지역 서비스라 해당 지역에 장애가 발생하면 사용할 수 없게 됩니다. 다중 지역 복원력을 얻으려면 대상 지역마다 게이트웨이를 두고 Azure Traffic Manager나 Azure Front Door 같은 전역 부하 분산 서비스로 트래픽을 라우팅·장애 조치해야 합니다.\n\n**Learn more:** [Reliability in Azure Application Gateway v2](https://learn.microsoft.com/en-us/azure/reliability/reliability-application-gateway-v2)",
+    "choices": ["예", "아니요"]
+  },
+  "241": {
+    "stem": "솔루션: Azure 지역 두 곳에 Azure 가상 머신 두 대를 배포하고 Azure Traffic Manager 프로필을 만듭니다.\n\n이 솔루션이 목표를 충족합니까?",
+    "expl": "Azure 가상 머신은 게스트 운영 체제를 제어할 수 있고 전체 .NET Framework가 필요한 애플리케이션도 호스트할 수 있습니다. 두 지역에 VM을 한 대씩 두면 Azure Traffic Manager가 엔드포인트를 모니터링해 지역 장애 시 정상 지역 인스턴스로 트래픽을 라우팅하므로 요구된 지역 중복성이 확보됩니다.\n\n**Learn more:** [Azure Traffic Manager FAQ](https://learn.microsoft.com/en-us/azure/traffic-manager/traffic-manager-faqs) · [Quickstart: Create a Traffic Manager profile using the Azure portal](https://learn.microsoft.com/en-us/azure/traffic-manager/quickstart-create-traffic-manager-profile)",
+    "choices": ["예", "아니요"]
+  },
+  "242": {
+    "stem": "솔루션: Isolated App Service 계획으로 웹앱을 배포합니다.\n\n이 솔루션이 목표를 충족합니까?",
+    "expl": "Isolated App Service 계획도 관리자가 제어하는 운영 체제 인프라가 아니라 관리형 Azure App Service 플랫폼입니다. 따라서 관리자가 OS에 접근해 사용자 지정 애플리케이션 종속성을 설치할 수 없고, 단일 지역 배포로는 Azure 지역 장애에 대한 중복성도 없습니다. 필요한 운영 체제 제어가 가능한 인프라에서 다중 지역 설계를 해야 합니다.\n\n**Learn more:** [What are Azure App Service plans?](https://learn.microsoft.com/en-us/azure/app-service/overview-hosting-plans) · [Reliability in Azure App Service Environment](https://learn.microsoft.com/en-us/azure/reliability/reliability-app-service-environment)",
+    "choices": ["예", "아니요"]
+  },
+  "243": {
+    "stem": "다음 요구 사항을 충족하는 고가용성 Azure SQL 데이터베이스를 설계해야 합니다.\n\n- 데이터베이스 복제본 간 장애 조치 시 데이터 손실이 없어야 합니다.\n- 영역 장애가 발생해도 데이터베이스를 계속 사용할 수 있어야 합니다.\n- 비용을 최소한으로 유지해야 합니다.\n\n어떤 배포 옵션을 사용해야 합니까?",
+    "expl": "Azure SQL Database Premium은 영역 중복을 지원해 동기 데이터베이스 복제본을 가용성 영역에 분산합니다. 동기 복제 덕분에 장애 조치 시 커밋된 데이터가 보존되고, 영역 중복으로 가용성 영역 장애에도 견딥니다. Azure SQL Database Standard는 영역 중복을 지원하지 않고, Business Critical 관리 인스턴스는 필요 이상의 기능을 더 높은 비용으로 제공합니다.\n\n**Learn more:** [Reliability in Azure SQL Database](https://learn.microsoft.com/en-us/azure/reliability/reliability-sql-database)",
+    "choices": ["Azure SQL Managed Instance Business Critical", "Azure SQL Managed Instance General Purpose", "Azure SQL Database Standard", "Azure SQL Database Premium"]
+  },
+  "244": {
+    "stem": "솔루션: 위치 제한을 적용하기 위해 Azure Policy 이니셔티브를 사용하도록 추천합니다.\n\n이 솔루션이 목표를 충족합니까?",
+    "expl": "Azure Policy 이니셔티브에 기본 제공 **허용된 위치** 정책을 포함하고 허용 지역 값을 지정할 수 있습니다. 이 정책은 거부(deny) 효과로 승인되지 않은 위치의 리소스 배포를 막으므로 App Service 인스턴스에 대한 지리적 규정 준수 요구 사항을 적용할 수 있습니다.\n\n**Learn more:** [Azure Policy overview](https://learn.microsoft.com/en-us/azure/governance/policy/overview) · [Tutorial: Create and manage policies to enforce compliance](https://learn.microsoft.com/en-us/azure/governance/policy/tutorials/create-and-manage)",
+    "choices": ["예", "아니요"]
+  }
+}

@@ -1,0 +1,113 @@
+{
+  "385": {
+    "stem": "Azure 구독이 있습니다.\n\n가상 머신을 만들 계획입니다.\n\n이 가상 머신은 Azure의 어디에 위치하게 됩니까?",
+    "expl": "Azure 가상 머신은 Azure Resource Manager 리소스이므로 Azure 구독 안의 리소스 그룹에 배포해야 합니다.",
+    "choices": ["저장소 계정 안", "리소스 그룹 안", "관리 단위 안", "애플리케이션 그룹 안"]
+  },
+  "386": {
+    "stem": "다음 각 설명이 참이면 **예**, 아니면 **아니요**를 선택하세요.",
+    "expl": "Azure 가상 머신 확장 집합은 공통 구성으로 부하 분산된 VM 그룹을 만들고 관리하므로 인스턴스들이 동일하게 구성됩니다. 자동 크기 조정 규칙은 메트릭 기반 규칙이나 일정에 따라 인스턴스 수를 늘려 스케일 아웃하고 줄여 스케일 인할 수 있습니다.\n\n**Learn more:** [Azure Virtual Machine Scale Sets overview](https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/overview) · [Azure Monitor autoscale overview](https://learn.microsoft.com/en-us/azure/azure-monitor/autoscale/autoscale-overview)",
+    "statements": [
+      "Azure 가상 머신 확장 집합의 가상 머신들은 동일하게 구성된다.",
+      "가상 머신 확장 집합의 Azure 가상 머신 수는 자동으로 늘어날 수 있다.",
+      "가상 머신 확장 집합의 Azure 가상 머신 수는 자동으로 줄어들 수 있다."
+    ]
+  },
+  "387": {
+    "stem": "다음 각 설명이 참이면 예, 아니면 아니요를 선택하세요.",
+    "expl": "데이터센터 인프라를 구축하는 것은 오래 쓰는 자산을 만드는 것이므로 자본 지출입니다. 기술 인력 급여와 소프트웨어 임대는 반복되는 운영 비용이므로 둘 다 OpEx입니다.",
+    "statements": [
+      "데이터센터 인프라를 구축하는 것은 운영 지출(OpEx) 비용의 예다.",
+      "기술 인력의 월 급여는 운영 지출(OpEx) 비용의 예다.",
+      "소프트웨어 임대는 운영 지출(OpEx) 비용의 예다."
+    ]
+  },
+  "388": {
+    "stem": "문장을 올바르게 완성하는 답을 선택하세요.",
+    "expl": "Azure Policy 할당은 관리 그룹, 구독, 리소스 그룹, 개별 리소스를 범위로 지정할 수 있습니다. 따라서 리소스 그룹은 유효한 범위이며, 리소스 잠금과 보안 그룹은 Azure Policy 할당 범위가 아닙니다.\n\n**Learn more:** [Azure Policy definition structure](https://learn.microsoft.com/en-us/azure/governance/policy/concepts/definition-structure-basics)",
+    "blanks": [
+      { "label": "Azure Policy 정의를 할당할 수 있는 대상은", "options": ["컨테이너 앱", "리소스 그룹", "리소스 잠금", "보안 그룹"] }
+    ]
+  },
+  "389": {
+    "stem": "HOTSPOT –\n\n답변 영역에서 알맞은 옵션을 선택해 문장을 완성하세요.",
+    "expl": "Azure 평가판이 만료되면 구독이 비활성화됩니다. 가상 머신은 할당이 취소되고 리소스를 더 이상 관리할 수 없으므로 기존 가상 머신을 시작할 수 없습니다.\n\n**Learn more:** [Azure subscription states](https://learn.microsoft.com/en-us/azure/cost-management-billing/manage/subscription-states)",
+    "blanks": [
+      { "label": "이제 할 수 없는 일은", "options": ["Azure Active Directory(Azure AD) 사용자 계정 추가 생성", "기존 Azure 가상 머신 시작", "Azure에 저장된 데이터 접근", "Azure Portal 접근"] }
+    ]
+  },
+  "390": {
+    "stem": "다음 각 설명이 참이면 **예**, 아니면 **아니요**를 선택하세요.",
+    "expl": "Azure 무료 계정에는 Standard 지원이 아니라 Basic 지원이 포함됩니다. 이 문항이 기준으로 삼는 지원 플랜 모델에서는 Premier 지원을 기업 계약(EA)을 통해 이용합니다. MSDN 포럼은 커뮤니티 지원이며 종량제 구독에만 제공되는 것이 아닙니다.\n\n**Learn more:** [Azure Support Plans Comparison](https://azure.microsoft.com/en-us/support/plans/)",
+    "statements": [
+      "Azure 무료 계정에는 Standard 지원 플랜이 포함된다.",
+      "Premier 지원 플랜은 기업 계약(EA)이 있는 회사만 구매할 수 있다.",
+      "MSDN 포럼 지원은 종량제 구독이 있는 회사에만 제공된다."
+    ]
+  },
+  "391": {
+    "stem": "개발자들이 Azure에서 호스트해야 하는 웹 애플리케이션 10개를 만들었습니다.\n\n웹앱을 호스트할 Azure 웹 계층 플랜을 정해야 합니다. 웹 계층 플랜은 다음 요구 사항을 충족해야 합니다.\n\n- 웹앱은 사용자 지정 도메인을 사용합니다.\n- 각 웹앱에는 저장소 10GB가 필요합니다.\n- 각 웹앱은 전용 컴퓨팅 인스턴스에서 실행되어야 합니다.\n- 인스턴스 간 부하 분산이 포함되어야 합니다.\n- 비용을 최소화해야 합니다.\n\n어떤 웹 계층 플랜을 사용해야 합니까?",
+    "expl": "Standard 계층은 모든 요구 사항을 충족하는 최소 App Service 계층입니다. 사용자 지정 도메인을 지원하고 저장소 50GB(앱당 10GB 초과)를 제공하며 전용 컴퓨팅 인스턴스와 부하 분산을 포함하면서 조건을 만족하는 가장 저렴한 계층입니다. Basic 계층은 기본 제공 부하 분산이 없고 전용 인스턴스도 3개까지만 지원합니다.",
+    "choices": ["Standard", "Basic", "Free", "Shared"]
+  },
+  "392": {
+    "stem": "온프레미스 네트워크의 서버 여러 대를 Azure로 마이그레이션할 계획입니다.\n\n온프레미스 네트워크 대신 퍼블릭 클라우드 서비스를 사용할 때의 장점 하나는 무엇입니까?",
+    "expl": "퍼블릭 클라우드는 여러 조직이 함께 사용하는 공유 컴퓨팅 인프라를 제공하며, 각 조직은 공급자 리소스의 격리된 일부를 사용합니다. 이 공유 모델 덕분에 고객은 기반 데이터센터 리소스를 소유하지 않고도 공급자가 관리하는 확장 가능한 인프라의 이점을 누립니다.",
+    "choices": [
+      "퍼블릭 클라우드는 민간 기업이 아니라 대중이 소유한다",
+      "퍼블릭 클라우드는 기업이 클라우드를 개선할 수 있게 하는 크라우드소싱 솔루션이다",
+      "퍼블릭 클라우드 리소스는 누구나 자유롭게 접근할 수 있다",
+      "퍼블릭 클라우드는 여러 기업이 클라우드 리소스의 일부를 나누어 쓰는 공유 개체다"
+    ]
+  },
+  "393": {
+    "stem": "HOTSPOT –\n\n문장을 올바르게 완성하는 답을 선택하세요.\n\nHot Area:",
+    "expl": "Microsoft 보안 센터(Trust Center)는 Microsoft가 데이터를 보호·관리하는 방식에 대한 지침과 자료를 제공하며 보안, 프라이버시, 규정 준수 표준·제공 사항·정책·제품 정보를 포함합니다.\n\n**Learn more:** [Microsoft Trust Center](https://www.microsoft.com/en-us/trust-center)",
+    "blanks": [
+      { "label": "정답:", "options": ["Microsoft 365 규정 준수 관리 센터", "Microsoft 365 Defender 포털", "Azure Portal의 Microsoft Defender for Cloud", "Microsoft 보안 센터(Trust Center)"] }
+    ]
+  },
+  "394": {
+    "stem": "한 회사가 모든 고객이 사용하는 App1이라는 회계 애플리케이션을 호스트합니다.\n\nApp1은 매달 첫 3주 동안 사용량이 적고 마지막 주에 사용량이 매우 많습니다.\n\n이 사용 패턴에서 비용 관리를 지원하는 Azure 클라우드 서비스의 이점은 무엇입니까?",
+    "expl": "탄력성은 수요가 많을 때 Azure 리소스를 확장하고 적을 때 축소하게 해 주므로, 애플리케이션이 월별 워크로드에 맞는 용량만 사용하고 그만큼만 지불합니다. Microsoft도 탄력적 확장이 부하가 늘면 용량을 늘리고 추가 용량이 필요 없어지면 줄인다고 설명합니다.\n\n**Learn more:** [Design to scale out - Azure Architecture Center](https://learn.microsoft.com/en-us/azure/architecture/guide/design-principles/scale-out) · [How am I billed? - Microsoft Learn](https://learn.microsoft.com/en-us/azure/developer/intro/azure-developer-billing)",
+    "choices": ["고가용성", "높은 대기 시간", "탄력성", "부하 분산"]
+  },
+  "395": {
+    "stem": "네트워크 보안 그룹 인바운드 보안 규칙의 원본으로 사용할 수 있는 리소스는 무엇입니까?",
+    "expl": "Azure 네트워크 보안 그룹 규칙은 IP 주소나 CIDR 범위, 서비스 태그, 애플리케이션 보안 그룹을 원본으로 사용할 수 있습니다. Microsoft Learn도 NSG 규칙의 세 가지 원본 옵션을 모두 안내합니다.\n\n**Learn more:** [Create, change, or delete Azure network security groups](https://learn.microsoft.com/en-us/azure/virtual-network/manage-network-security-group)",
+    "choices": [
+      "서비스 태그만",
+      "IP 주소, 서비스 태그, 애플리케이션 보안 그룹",
+      "애플리케이션 보안 그룹만",
+      "IP 주소만"
+    ]
+  },
+  "396": {
+    "stem": "RG1이라는 리소스 그룹이 있습니다.\n\nRG1에 가상 머신이 만들어지지 않게 해야 합니다. 다른 개체는 RG1에 만들 수 있어야 합니다.\n\n무엇을 사용해야 합니까?",
+    "expl": "RG1을 범위로 하는 Azure Policy 할당에서 `Microsoft.Compute/virtualMachines` 리소스 종류에 `deny` 효과를 적용할 수 있습니다. 그러면 다른 리소스 종류의 생성은 막지 않으면서 그 리소스 그룹에 가상 머신을 만드는 것만 차단됩니다.\n\n**Learn more:** [Tutorial: Disallow resource types in your cloud environment](https://learn.microsoft.com/en-us/azure/governance/policy/tutorials/disallowed-resources)",
+    "choices": ["잠금", "Azure 역할", "태그", "Azure 정책"]
+  },
+  "398": {
+    "stem": "다음 각 설명이 참이면 **예**, 아니면 **아니요**를 선택하세요.",
+    "expl": "Microsoft 보안 센터(Trust Center)는 누구나 볼 수 있으며 Microsoft 클라우드의 보안, 프라이버시, 규정 준수와 관련 규정 준수 제공 사항 정보를 제공합니다. Azure Security Center/Defender for Cloud의 구성 요소가 아니며 열람에 Azure 구독이 필요하지도 않습니다.\n\n**Learn more:** [Microsoft Trust Center](https://www.microsoft.com/en-us/trust-center)",
+    "statements": [
+      "보안 센터(Trust Center)는 Azure Security Center의 일부다",
+      "보안 센터(Trust Center)는 Azure 구독이 있는 사용자만 접근할 수 있다",
+      "보안 센터(Trust Center)는 Azure 규정 준수 제공 사항에 대한 정보를 제공한다"
+    ]
+  },
+  "399": {
+    "stem": "다음 각 설명이 참이면 **예**, 아니면 **아니요**를 선택하세요.",
+    "expl": "Azure 무료 계정으로 모든 Azure 서비스에 접근할 수 있지만 무료인 것은 지정된 서비스와 사용량뿐입니다. 무료 계정 크레딧에는 30일이라는 기간이 정해져 있고, 종량제로 전환하지 않으면 계정과 서비스가 비활성화됩니다. 무료 계정 혜택은 적격 고객당 하나로 제한됩니다.\n\n**Learn more:** [Create Your Azure Free Account Or Pay As You Go](https://azure.microsoft.com/en-us/pricing/purchase-options/azure-account) · [Create services included with Azure free account](https://learn.microsoft.com/en-us/azure/cost-management-billing/manage/create-free-services)",
+    "statements": [
+      "회사가 Azure 무료 계정을 사용하면 일부 Azure 서비스만 사용할 수 있다.",
+      "모든 Azure 무료 계정은 일정 기간이 지나면 만료된다.",
+      "같은 Microsoft 계정으로 Azure 무료 계정을 최대 10개까지 만들 수 있다."
+    ]
+  },
+  "400": {
+    "stem": "회사의 클라우드 사용 현황을 업계 표준 모범 사례와 비교해야 합니다.\n\n무엇을 사용해야 합니까?",
+    "expl": "Azure Advisor는 리소스 구성과 사용 텔레메트리를 모범 사례에 비추어 분석하고 비용, 성능, 안정성, 보안, 운영 우수성 전반의 최적화 권장 사항을 제공합니다.\n\n**Learn more:** [Advisor score - Azure](https://learn.microsoft.com/en-us/azure/advisor/advisor-score)",
+    "choices": ["Azure Monitor", "Azure Service Health", "Azure Monitor의 Application Insights", "Azure Advisor"]
+  }
+}

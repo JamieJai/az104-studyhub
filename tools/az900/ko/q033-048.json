@@ -1,0 +1,108 @@
+{
+  "33": {
+    "stem": "문장을 올바르게 완성하는 답을 선택하세요.",
+    "expl": "가용성(availability)은 서비스가 정상 동작하는 시간의 비율을 나타냅니다. 가동 시간 99.999% 약정은 99.9% 약정보다 가용성이 높습니다.",
+    "blanks": [
+      { "label": "가동 시간이 99.999%인 서비스는 99.9%인 서비스보다 {{blank1}}이(가) 높다.", "options": ["가용성", "탄력성", "관리 용이성", "확장성"] }
+    ]
+  },
+  "34": {
+    "stem": "다음 각 설명이 참이면 예, 아니면 아니요를 선택하세요.",
+    "expl": "클라우드 리소스는 수요에 따라 탄력적으로 확장할 수 있습니다. 퍼블릭 클라우드 서비스는 선투자 하드웨어 투자를 줄여 주므로 자본 지출(CapEx)을 최소화할 수 있습니다. 가상화는 여러 고객이 기반 인프라를 공유하게 해 다중 테넌트를 지원합니다.",
+    "statements": [
+      "클라우드 컴퓨팅은 탄력적 확장성을 제공한다.",
+      "퍼블릭 클라우드를 사용하면 자본 지출(CapEx)을 최소화할 수 있다.",
+      "클라우드 컴퓨팅은 가상화를 활용해 여러 고객에게 동시에 서비스를 제공한다."
+    ]
+  },
+  "35": {
+    "stem": "HOTSPOT —\n\n답변 영역에서 알맞은 옵션을 선택해 문장을 완성하세요.",
+    "expl": "Azure Policy 이니셔티브 정의(정책 집합 정의라고도 함)는 하나의 포괄적 목표를 위해 묶은 정책 정의의 모음입니다.\n\n**Learn more:** [Azure Policy initiative definition structure](https://learn.microsoft.com/en-us/azure/governance/policy/concepts/initiative-definition-structure)",
+    "blanks": [
+      { "label": "Azure Policy 이니셔티브 정의는", "options": ["정책 정의의 모음", "Azure Policy 정의 할당의 모음", "Azure Blueprints 정의의 그룹", "역할 기반 액세스 제어(RBAC) 역할 할당의 그룹"] }
+    ]
+  },
+  "36": {
+    "stem": "Azure 서비스를 올바른 설명과 연결하세요.\n\n각 서비스는 한 번, 여러 번 사용하거나 전혀 사용하지 않을 수 있습니다.",
+    "expl": "Azure Synapse Analytics는 엔터프라이즈 데이터 웨어하우징을 지원합니다. Azure Machine Learning은 과거 데이터로 모델을 학습시켜 예측을 수행합니다. Azure Functions는 서버리스 컴퓨팅 서비스입니다. Azure IoT Hub는 수백만 대 규모의 연결된 디바이스에서 텔레메트리를 수집·라우팅합니다.\n\n**Learn more:** [What is dedicated SQL pool (formerly SQL DW) in Azure Synapse Analytics?](https://learn.microsoft.com/en-us/azure/synapse-analytics/sql-data-warehouse/sql-data-warehouse-overview-what-is) · [Machine Learning Algorithm Cheat Sheet for Azure Machine Learning designer](https://learn.microsoft.com/en-us/azure/machine-learning/algorithm-cheat-sheet)",
+    "items": ["Azure Machine Learning", "Azure Synapse Analytics", "Azure IoT Hub", "Azure Functions"],
+    "slots": [
+      "클라우드 기반 엔터프라이즈 데이터 웨어하우스(EDW)를 제공한다.",
+      "과거 학습을 활용해 확률이 높은 예측을 제공한다.",
+      "서버리스 컴퓨팅 기능을 제공한다.",
+      "수백만 개 센서의 데이터를 처리한다."
+    ]
+  },
+  "37": {
+    "stem": "문장을 올바르게 완성하는 답을 선택하세요.",
+    "expl": "Azure 서비스 수준 계약은 Microsoft가 제공하기로 약속한 서비스 수준을 명시하는 계약상 약정으로, 가용성과 해당되는 경우 성능 요구 사항, 그리고 약정을 지키지 못했을 때의 조치를 포함합니다. 향후 로드맵 기능을 약속하거나 확장성 한계를 정의하지는 않습니다.\n\n**Learn more:** [How to read a service-level agreement (SLA)](https://learn.microsoft.com/en-us/azure/reliability/concept-service-level-agreements)",
+    "blanks": [
+      { "label": "Azure SLA는 Microsoft와 고객 사이의 공식 계약으로 다음을 정의한다:", "options": ["기술 로드맵의 기능을 제공하겠다는 약정", "성능 기준에 대한 약정", "사용 가능한 인프라의 최대 확장성 한계", "사용 가능한 인프라의 최소 확장성 한계"] }
+    ]
+  },
+  "38": {
+    "stem": "월간 가동 시간 비율은 어떻게 계산해야 합니까?",
+    "expl": "가동 시간 비율은 가동 중단 시간을 뺀 사용 가능 시간(분)을 사용 가능했던 전체 시간(분)으로 나눈 뒤 100을 곱한 값입니다.",
+    "blanks": [
+      { "label": "분자:", "options": ["가동 중단 시간(분)", "최대 사용 가능 시간(분)", "(최대 사용 가능 시간(분) – 가동 중단 시간(분))"] },
+      { "label": "분모:", "options": ["60", "1,440", "최대 사용 가능 시간(분)"] },
+      { "label": "곱하는 값:", "options": ["100", "99.99", "1.440"] }
+    ]
+  },
+  "39": {
+    "stem": "Azure 서비스 수준 계약(SLA)은 가상 머신에 대해 무엇을 보장합니까?",
+    "expl": "Azure Virtual Machines SLA는 지정된 배포 조건에서의 가동 시간 비율로 표현되는 가용성 약정을 정의합니다. 대역폭, 성능, 개별 기능의 제공 여부를 보장하지는 않습니다.\n\n**Learn more:** [Reliability in Azure Virtual Machines](https://learn.microsoft.com/en-us/azure/reliability/reliability-virtual-machines)",
+    "choices": ["가동 시간(uptime)", "기능 제공 여부", "대역폭", "성능"]
+  },
+  "40": {
+    "stem": "다음 각 설명이 참이면 **예**, 아니면 **아니요**를 선택하세요.",
+    "expl": "Microsoft Defender for Cloud는 클라우드와 온프레미스 리소스 전반을 볼 수 있게 해 줍니다. 기본 제공 기능은 무료지만 향상된 Defender 플랜과 기능은 유료입니다. 규정 준수 대시보드에서는 규정 준수 상태 보고서를 다운로드할 수 있습니다.\n\n**Learn more:** [Microsoft Defender for Cloud overview](https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-cloud-introduction) · [Improve regulatory compliance](https://learn.microsoft.com/en-us/azure/defender-for-cloud/regulatory-compliance-dashboard)",
+    "statements": [
+      "Microsoft Defender for Cloud는 Azure 리소스와 온프레미스 리소스를 모니터링할 수 있다.",
+      "Microsoft Defender for Cloud의 모든 기능은 무료다.",
+      "Microsoft Defender for Cloud에서 규정 준수 보고서를 다운로드할 수 있다."
+    ]
+  },
+  "41": {
+    "stem": "솔루션: Microsoft Managed Desktop을 사용하도록 추천합니다.\n\n이 솔루션이 목표를 충족합니까?",
+    "expl": "Microsoft Managed Desktop은 지원되는 Windows 엔드포인트 디바이스와 그 구성·업데이트·보안을 관리할 뿐, 사용자 지정 Azure 가상 머신을 반복 배포하고 제거하는 작업을 자동화하지 않습니다. 또한 요구된 Windows Server 2016과 Ubuntu Linux 가상 머신 조합도 지원하지 않습니다. Microsoft Managed Desktop은 2024년 7월 31일에 서비스가 종료되었습니다.\n\n**Learn more:** [What is Microsoft Managed Desktop?](https://learn.microsoft.com/en-us/previous-versions/managed-desktop/overview/service-plan)",
+    "choices": ["예", "아니요"]
+  },
+  "42": {
+    "stem": "솔루션: Azure DevTest Labs를 사용하도록 추천합니다.\n\n이 솔루션이 목표를 충족합니까?",
+    "expl": "Azure DevTest Labs는 사용자 지정 이미지, 수식(formula), 템플릿으로 VM을 반복 배포할 수 있게 해 수명이 짧은 개발·테스트 환경의 관리 부담을 줄입니다. 또한 랩 VM을 자동으로 삭제하는 만료 날짜를 지원하므로 Windows Server 2016과 Ubuntu Linux 가상 머신을 반복적으로 배포·제거하는 데 적합합니다.\n\n**Learn more:** [Azure DevTest Labs concepts](https://learn.microsoft.com/en-us/azure/devtest-labs/devtest-lab-concepts) · [Create and manage ARM templates for VMs in DevTest Labs](https://learn.microsoft.com/en-us/azure/devtest-labs/devtest-lab-use-resource-manager-template)",
+    "choices": ["예", "아니요"]
+  },
+  "43": {
+    "stem": "솔루션: Azure 예약 가상 머신(VM) 인스턴스를 사용하도록 추천합니다.\n\n이 솔루션이 목표를 충족합니까?",
+    "expl": "Azure 예약 VM 인스턴스는 1년 또는 3년 약정을 대가로 청구 할인을 제공할 뿐 리소스 런타임 동작에는 영향을 주지 않습니다. 수명이 짧은 가상 머신의 배포나 제거를 자동화하지 않으므로, 그 관리 작업을 줄이려면 Azure Automation 같은 자동화 서비스가 필요합니다.\n\n**Learn more:** [What are Azure Reservations?](https://learn.microsoft.com/en-us/azure/cost-management-billing/reservations/save-compute-costs-reservations)",
+    "choices": ["예", "아니요"]
+  },
+  "44": {
+    "stem": "문장을 올바르게 완성하는 답을 선택하세요.",
+    "expl": "Microsoft Defender for Cloud는 적시(JIT) VM 액세스를 제공해, 필요할 때만 승인된 인바운드 액세스를 시간 제한으로 허용함으로써 관리 포트 노출을 줄입니다.\n\n**Learn more:** [Just-in-time machine access — Microsoft Defender for Cloud](https://learn.microsoft.com/en-us/azure/defender-for-cloud/just-in-time-access-overview)",
+    "blanks": [
+      { "label": "적시(JIT) VM 액세스를 사용하도록 설정할 때 쓰는 것은", "options": ["Azure Bastion", "Azure Firewall", "Azure Front Door", "Microsoft Defender for Cloud"] }
+    ]
+  },
+  "45": {
+    "stem": "솔루션: 가상 머신을 두 개 이상의 확장 집합에 배포합니다.\n\n이 솔루션이 목표를 충족합니까?",
+    "expl": "확장 집합 자체로는 데이터센터 장애를 막지 못합니다. 데이터센터 수준의 복원력을 얻으려면 가상 머신을 가용성 영역에 분산하거나, 영역별 리소스를 따로 두고 적절한 트래픽 라우팅·장애 조치를 구성해야 합니다.\n\n**Learn more:** [Azure Virtual Machine Scale Sets overview](https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/overview) · [Reliability in Azure Virtual Machine Scale Sets](https://learn.microsoft.com/en-us/azure/reliability/reliability-virtual-machine-scale-sets)",
+    "choices": ["예", "아니요"]
+  },
+  "46": {
+    "stem": "솔루션: 가상 머신을 두 개 이상의 지역에 배포합니다.\n\n이 솔루션이 목표를 충족합니까?",
+    "expl": "여러 Azure 지역에 워크로드를 배포하면 단일 데이터센터를 넘어서는 중복성이 확보되므로, 한 지역의 데이터센터 장애가 다른 지역에 배포된 가상 머신에 영향을 주지 않습니다.\n\n**Learn more:** [Regions and zones on Azure](https://learn.microsoft.com/en-us/azure/architecture/aws-professional/regions-zones)",
+    "choices": ["예", "아니요"]
+  },
+  "47": {
+    "stem": "솔루션: DDoS 보호 계획을 변경합니다.\n\n이 솔루션이 목표를 달성합니까?",
+    "expl": "Azure DDoS 보호 계획은 보호 대상 공용 IP 리소스에 대한 DDoS 공격을 완화할 뿐, 가상 머신이 인터넷에서 인바운드 HTTP 접근을 받도록 구성하지는 않습니다. HTTP 노출에는 적절한 공용 연결과 인바운드 네트워크 규칙이 필요합니다.\n\n**Learn more:** [Azure DDoS Protection overview](https://learn.microsoft.com/en-us/azure/ddos-protection/ddos-protection-overview)",
+    "choices": ["예", "아니요"]
+  },
+  "48": {
+    "stem": "솔루션: Azure 방화벽을 변경합니다.\n\n이 솔루션이 목표를 충족합니까?",
+    "expl": "Azure Firewall은 대상 네트워크 주소 변환(DNAT)으로 내부 워크로드를 인터넷에 게시합니다. 방화벽의 NAT 규칙이 방화벽 공용 IP 주소와 80 포트를 VM1의 사설 IP 주소·포트로 변환하고 Azure Firewall이 변환된 트래픽을 암묵적으로 허용하므로, 방화벽만 변경해도 VM1에 인터넷에서 HTTP로 접근할 수 있게 됩니다. Microsoft의 DNAT 자습서도 공용 IP가 없는 가상 머신이 DNAT 규칙 하나를 추가한 뒤 방화벽 공용 IP로 접속하면 접근 가능해지며 네트워크 보안 그룹은 관여하지 않는다고 보여 줍니다. 규칙의 변환 주소가 특정 사설 IP 하나이므로 VM1만 노출됩니다. 네트워크 보안 그룹 수정도 이 요구 사항의 또 다른 유효한 해법이며, Azure DDoS 보호 계획은 공격을 완화할 뿐이고 Azure Traffic Manager 프로필은 DNS 쿼리를 라우팅할 뿐이라 둘 다 VM1로 가는 인바운드 경로를 만들지 못합니다.\n\n**Learn more:** [Tutorial: Filter inbound Internet traffic with Azure Firewall DNAT](https://learn.microsoft.com/en-us/azure/firewall/tutorial-firewall-dnat) · [Azure Firewall rule processing logic](https://learn.microsoft.com/en-us/azure/firewall/rule-processing)",
+    "choices": ["예", "아니요"]
+  }
+}

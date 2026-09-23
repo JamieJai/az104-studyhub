@@ -1,0 +1,91 @@
+{
+  "21": {
+    "stem": "Ubuntu를 실행하는 Azure 가상 머신에서 호스트되는 앱을 설계하고 있습니다. 이 앱은 사용자에게 메일을 보내기 위해 타사 이메일 서비스를 사용합니다. 이메일 서비스는 앱이 API 키로 인증할 것을 요구합니다.\n\n관리 작업을 최소화하면서 API 키를 저장하고 접근하는 Azure Key Vault 솔루션을 추천해야 합니다.\n\n키를 저장하고 접근하는 데 무엇을 사용하도록 추천해야 합니까?",
+    "expl": "Azure Key Vault의 비밀(secret)은 API 키 같은 민감한 문자열 값을 저장하는 용도입니다. Azure VM에 할당한 관리 ID는 앱이 자격 증명을 직접 관리하지 않고도 Microsoft Entra 토큰을 받을 수 있으므로, 이 ID에 Key Vault 비밀 읽기 권한을 주면 됩니다.\n\n**Learn more:** [About Azure Key Vault secrets](https://learn.microsoft.com/en-us/azure/key-vault/secrets/about-secrets) · [What is managed identities for Azure resources?](https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/overview)",
+    "blanks": [
+      { "label": "저장:", "options": ["인증서(Certificate)", "키(Key)", "비밀(Secret)"] },
+      { "label": "접근:", "options": ["API 토큰", "관리 서비스 ID(MSI)", "서비스 주체(service principal)"] }
+    ]
+  },
+  "22": {
+    "stem": "VNET1이라는 가상 네트워크와 여기에 연결된 가상 머신 10대가 있는 Azure 구독이 있습니다.\n\n다음 요구 사항을 충족하면서 인터넷에서 가상 머신을 관리하는 솔루션을 설계해야 합니다.\n\n- 네트워크 연결을 허용하기 전에 Azure Multi-Factor Authentication(MFA)으로 들어오는 연결을 인증해야 합니다.\n- 들어오는 연결에 TLS와 TCP 443 포트를 사용해야 합니다.\n- RDP와 SSH를 모두 지원해야 합니다.\n\n솔루션에 무엇을 포함해야 합니까?",
+    "expl": "Azure Bastion은 RDP·SSH 포트를 공용 인터넷에 직접 노출하지 않고 TCP 443의 TLS를 통해 VM에 RDP와 SSH로 접근하게 해 줍니다. 클라우드 앱을 Microsoft Azure Management로 지정한 조건부 액세스 정책은 Bastion 세션 시작을 포함한 Azure 관리 액세스에 MFA를 요구할 수 있습니다. Azure Windows VM Sign-In 앱은 Windows VM에 대한 Microsoft Entra 인증 전용이라 SSH까지 지원해야 하는 요구 사항을 충족하지 못합니다.\n\n**Learn more:** [Azure Bastion RDP connections](https://learn.microsoft.com/en-us/azure/bastion/bastion-connect-vm-rdp-windows) · [Require MFA for Azure management with Conditional Access](https://learn.microsoft.com/en-us/entra/identity/conditional-access/policy-old-require-mfa-azure-mgmt)",
+    "blanks": [
+      { "label": "VNET1의 가상 머신에 대한 액세스 제공:", "options": ["Azure Bastion", "Just-in-time(JIT) VM 액세스", "Azure Front Door의 Azure Web Application Firewall(WAF)"] },
+      { "label": "Azure MFA 적용:", "options": ["Azure Identity Governance 액세스 패키지", "클라우드 앱 할당을 Azure Windows VM Sign-In으로 설정한 조건부 액세스 정책", "클라우드 앱 할당을 Microsoft Azure Management로 설정한 조건부 액세스 정책"] }
+    ]
+  },
+  "23": {
+    "stem": "다음 표에 표시된 Azure 리소스를 포함하는 Azure 주문 처리 시스템을 설계하고 있습니다.\n\n[[IMG1]]\n\n주문 처리 시스템은 다음 트랜잭션 흐름을 사용합니다.\n\n- 고객이 App1으로 주문합니다.\n- 주문이 접수되면 App1이 공급업체 1과 공급업체 2의 제품 재고를 확인하는 메시지를 생성합니다.\n- 통합 구성 요소가 메시지를 처리한 뒤 주문 유형에 따라 Function1 또는 Function2를 트리거합니다.\n- 공급업체가 재고를 확인하면 Function1 또는 Function2가 App1을 위한 상태 메시지를 생성합니다.\n- 모든 트랜잭션 단계는 storage1에 기록됩니다.\n\n통합 구성 요소로 어떤 리소스 종류를 추천해야 합니까?",
+    "expl": "Azure Data Factory 파이프라인은 활동을 논리적으로 묶은 것으로, 이 시나리오가 요구하는 분기 논리를 구현할 수 있습니다. 주문 유형을 확인해 If Condition/Switch 활동으로 Azure Function 활동을 통해 Function1 또는 Function2를 호출하고, 각 트랜잭션 단계의 결과도 같은 파이프라인 안에서 기록할 수 있습니다. Azure Service Bus, Event Grid, Event Hubs 캡처는 모두 메시징·수집 수단일 뿐, 이런 유형 기반 분기와 다단계 오케스트레이션을 자체적으로 수행하지 못합니다.\n\n**Learn more:** [Pipelines and activities in Azure Data Factory](https://learn.microsoft.com/en-us/azure/data-factory/concepts-pipelines-activities) · [Azure Function activity in Azure Data Factory](https://learn.microsoft.com/en-us/azure/data-factory/control-flow-azure-function-activity)",
+    "choices": ["Azure Service Bus 큐", "Azure Data Factory 파이프라인", "Azure Event Grid 도메인", "Azure Event Hubs 캡처"]
+  },
+  "24": {
+    "stem": "회사에서 VM1이라는 Azure 가상 머신에 배포한 웹 서비스를 개발합니다. 이 웹 서비스는 VM1의 실시간 데이터에 접근하는 API를 제공합니다. 현재 가상 머신 배포는 배포 그림과 같습니다.\n\n[[IMG1]]\n\n최고 기술 책임자(CTO)가 다음 메일을 보냈습니다. “개발자들이 VM1이라는 가상 머신에 웹 서비스를 배포했습니다. 테스트 결과 VM1과 VM2에서 API에 접근할 수 있음을 확인했습니다. 파트너가 인터넷을 통해 API에 연결할 수 있어야 합니다. 파트너는 이 데이터를 자신들이 개발하는 애플리케이션에서 사용할 것입니다.”\n\nAzure API Management(APIM) 서비스를 배포합니다. 관련 API Management 구성은 API 그림과 같습니다.\n\n[[IMG2]]\n\n다음 각 설명이 참이면 예, 아니면 아니요를 선택하세요.",
+    "expl": "외부(external) 가상 네트워크 모드에서는 API Management 엔드포인트가 공용 인터넷에서 접근 가능하며 게이트웨이는 가상 네트워크의 리소스에 접근할 수 있습니다. 또한 Azure는 같은 가상 네트워크의 서브넷 간 트래픽을 기본적으로 라우팅합니다. 따라서 APIM은 VM1에 도달할 수 있고 파트너는 VPN 게이트웨이 없이 APIM의 공용 엔드포인트를 사용할 수 있습니다.\n\n**Learn more:** [Use a virtual network to secure inbound or outbound traffic for Azure API Management](https://learn.microsoft.com/en-us/azure/api-management/virtual-network-concepts) · [Tutorial: Route network traffic with a route table](https://learn.microsoft.com/en-us/azure/virtual-network/tutorial-create-route-table)",
+    "statements": [
+      "파트너가 인터넷을 통해 API를 사용할 수 있다.",
+      "APIM 인스턴스가 VM1의 실시간 데이터에 접근할 수 있다.",
+      "파트너 접근에는 VPN 게이트웨이가 필요하다."
+    ]
+  },
+  "25": {
+    "stem": "여러 Azure 클라우드 서비스를 포함하고 서로 다른 트랜잭션 구성 요소를 관리하는 영업 애플리케이션을 개발하고 있습니다. 각 클라우드 서비스가 고객 주문, 청구, 결제, 재고, 배송을 처리합니다.\n\n클라우드 서비스들이 XML 메시지로 트랜잭션 정보를 비동기적으로 주고받을 수 있는 솔루션을 추천해야 합니다.\n\n추천에 무엇을 포함해야 합니까?",
+    "expl": "Azure Service Bus는 내구성 있는 큐와 게시/구독 토픽으로 클라우드 서비스를 느슨하게 결합해 비동기 트랜잭션 처리를 가능하게 하는 관리형 엔터프라이즈 메시지 브로커입니다. Service Bus 메시지에는 XML로 인코딩한 구조화 데이터를 담을 수 있습니다.\n\n**Learn more:** [What is Azure Service Bus?](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-messaging-overview) · [Service Bus queues, topics, and subscriptions](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-queues-topics-subscriptions)",
+    "choices": ["Azure Service Fabric", "Azure Data Lake", "Azure Service Bus", "Azure Application Gateway"]
+  },
+  "26": {
+    "stem": "Azure 구독이 있습니다.\n\nWindows Server 2019 노드를 사용하는 Azure Kubernetes Service(AKS) 솔루션을 배포해야 합니다. 솔루션은 다음 요구 사항을 충족해야 합니다.\n\n- 스케일 아웃 시 컴퓨팅 리소스를 프로비저닝하는 데 걸리는 시간을 최소화해야 합니다.\n- Windows Server 컨테이너의 자동 크기 조정을 지원해야 합니다.\n\n어떤 크기 조정 옵션을 추천해야 합니까?",
+    "expl": "가상 노드(virtual node)는 Azure Container Instances를 통해 파드를 빠르게 프로비저닝하므로 클러스터 자동 크기 조정기가 VM 컴퓨팅 노드를 배포할 때까지 기다릴 필요가 없습니다. Windows Server 컨테이너에서는 Kubernetes 1.20.2 이상이 이 기능의 전제 조건일 뿐, 그 자체가 크기 조정 옵션은 아닙니다.\n\n**Learn more:** [Use virtual nodes with Azure Kubernetes Service (AKS)](https://learn.microsoft.com/en-us/azure/aks/virtual-nodes) · [Create Windows Server node pools with containerd in Azure Kubernetes Service (AKS)](https://learn.microsoft.com/en-us/azure/aks/windows-containerd)",
+    "choices": ["수평 파드 자동 크기 조정기(horizontal pod autoscaler)", "가상 노드(virtual nodes)", "Kubernetes 1.20.2 이상", "클러스터 자동 크기 조정기(cluster autoscaler)"]
+  },
+  "27": {
+    "stem": "App1을 Azure로 마이그레이션할 계획입니다.\n\nApp1 데이터를 저장할 Azure Storage 계정에 사용할 네트워크 연결 솔루션을 추천해야 합니다. 솔루션은 보안·규정 준수 요구 사항을 충족해야 합니다.\n\n추천에 무엇을 포함해야 합니까?",
+    "expl": "Azure 프라이빗 엔드포인트는 Azure Storage 서비스를 가상 네트워크 내의 사설 IP 주소에 매핑하므로, 공용 엔드포인트가 아니라 Azure Private Link를 통해 특정 저장소 리소스로 트래픽이 흐릅니다. 네트워크 격리가 가장 강하고 데이터 유출 방지에도 효과적이어서 보안·규정 준수 요구 사항에 적합합니다.\n\n**Learn more:** [Private access to Azure PaaS services](https://learn.microsoft.com/en-us/azure/networking/design-guide/private-platform-as-a-service) · [What is a private endpoint? - Azure Private Link](https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-overview)",
+    "choices": ["ExpressRoute 회로의 Microsoft 피어링", "ExpressRoute 회로의 Azure 공용 피어링", "서비스 엔드포인트 정책이 적용된 서비스 엔드포인트", "프라이빗 엔드포인트"]
+  },
+  "28": {
+    "stem": "솔루션: Azure Front Door를 사용해 앱에 대한 액세스를 제공합니다.\n\n이 솔루션이 목표를 달성합니까?",
+    "expl": "Azure Front Door는 정상 원본들에 대한 전역 부하 분산을 제공하고 한 원본을 사용할 수 없게 되면 다른 원본으로 트래픽을 라우팅할 수 있어 지역 장애 복원력을 지원합니다. 또한 Azure Front Door WAF는 클라이언트 요청을 제한하는 속도 제한 규칙을 지원합니다.\n\n**Learn more:** [Accelerate and Secure Your Web Application with Azure Front Door](https://learn.microsoft.com/en-us/azure/frontdoor/scenarios) · [WAF Rate Limiting for Azure Front Door](https://learn.microsoft.com/en-us/azure/web-application-firewall/afds/waf-front-door-rate-limit)",
+    "choices": ["예", "아니요"]
+  },
+  "29": {
+    "stem": "솔루션: Azure Traffic Manager를 사용해 앱에 대한 액세스를 제공합니다.\n\n이 솔루션이 목표를 달성합니까?",
+    "expl": "Azure Traffic Manager는 여러 엔드포인트로 트래픽을 분산하고 지역 엔드포인트를 사용할 수 없을 때 정상 엔드포인트로 사용자를 라우팅할 수 있지만, 요청 속도 제한은 적용하지 못합니다. 따라서 속도 제한·부하 분산·지역 장애 요구 사항을 모두 충족하는 완전한 솔루션이 될 수 없습니다.\n\n**Learn more:** [Traffic Manager routing methods](https://learn.microsoft.com/en-us/azure/traffic-manager/traffic-manager-routing-methods) · [Control Azure App Service traffic with Azure Traffic Manager](https://learn.microsoft.com/en-us/azure/app-service/web-sites-traffic-manager)",
+    "choices": ["예", "아니요"]
+  },
+  "30": {
+    "stem": "솔루션: Azure Load Balancer를 사용해 앱에 대한 액세스를 제공합니다.\n\n이 솔루션이 목표를 충족합니까?",
+    "expl": "Azure Load Balancer는 TCP·UDP 트래픽을 4계층에서 처리하며 애플리케이션 계층의 속도 제한을 제공하지 않습니다. 전역 부하 분산 장치(Global Load Balancer)는 지역 간 트래픽 분산과 장애 조치를 지원하지만, 그것만으로는 요구된 속도 제한 기능을 충족할 수 없습니다.\n\n**Learn more:** [Troubleshoot Azure Load Balancer limitations](https://learn.microsoft.com/en-us/troubleshoot/azure/load-balancer/troubleshoot-load-balancer-platform-limitations) · [Global load balancer - Azure Load Balancer](https://learn.microsoft.com/en-us/azure/load-balancer/cross-region-overview)",
+    "choices": ["예", "아니요"]
+  },
+  "31": {
+    "stem": "솔루션: Azure Application Gateway를 사용해 앱에 대한 액세스를 제공합니다.\n\n이 솔루션이 목표를 달성합니까?",
+    "expl": "Azure Application Gateway v2는 단일 지역 서비스라 해당 지역에 장애가 발생하면 사용할 수 없게 됩니다. 다중 지역 복원력을 얻으려면 지역별 게이트웨이를 따로 두고 전역 부하 분산 서비스로 트래픽을 라우팅·장애 조치해야 합니다. Application Gateway WAF v2가 속도 제한을 지원하더라도 그것만으로 지역 장애 요구 사항이 충족되지는 않습니다.\n\n**Learn more:** [Reliability in Azure Application Gateway v2](https://learn.microsoft.com/en-us/azure/reliability/reliability-application-gateway-v2) · [Create rate limiting custom rules for Application Gateway WAF v2](https://learn.microsoft.com/en-us/azure/web-application-firewall/ag/rate-limiting-configure)",
+    "choices": ["예", "아니요"]
+  },
+  "32": {
+    "stem": "미국 서부(West US) Azure 지역의 KeyVault1이라는 Azure 키 자격 증명 모음을 사용하는 Azure 웹앱이 있습니다.\n\nKeyVault1의 재해 복구 계획을 설계 중이며 키를 백업할 계획입니다.\n\n백업을 어디에 복원할 수 있는지 판단해야 합니다.\n\n무엇을 확인해야 합니까?",
+    "expl": "백업한 Azure Key Vault 키는 대상 자격 증명 모음이 같은 Azure 구독에 있고 같은 지리(geography) 내의 Azure 지역에 있다면 다른 자격 증명 모음으로 복원할 수 있습니다. 미국 지리에서 만든 백업은 다른 지리의 자격 증명 모음으로 복원할 수 없습니다.\n\n**Learn more:** [Azure Key Vault security worlds and geographic boundaries](https://learn.microsoft.com/en-us/azure/key-vault/general/overview-security-worlds) · [Restore-AzKeyVaultKey](https://learn.microsoft.com/en-us/powershell/module/az.keyvault/restore-azkeyvaultkey?view=azps-15.5.0)",
+    "choices": ["전 세계 모든 지역", "같은 지역만", "KeyVault1만", "같은 지리(geography) 내만"]
+  },
+  "33": {
+    "stem": "각 역할은 한 번, 여러 번 사용하거나 전혀 사용하지 않을 수 있습니다.",
+    "expl": "MarketingAU 관리 단위로 범위가 지정된 사용자 관리자(User Administrator)는 해당 관리 단위 안에서 사용자 계정을 만드는 등 관리할 수 있습니다. MarketingAU로 범위가 지정된 헬프데스크 관리자(Helpdesk Administrator)는 해당 단위의 비관리자 사용자 암호를 재설정할 수 있습니다. 테넌트 수준 역할을 할당하면 필요 이상의 권한을 주게 됩니다.\n\n**Learn more:** [Assign Microsoft Entra roles](https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/manage-roles-portal) · [How to create or delete users in Microsoft Entra ID](https://learn.microsoft.com/en-us/entra/fundamentals/how-to-create-delete-users)",
+    "items": [
+      "MarketingAU의 헬프데스크 관리자(Helpdesk Administrator)",
+      "테넌트의 헬프데스크 관리자(Helpdesk Administrator)",
+      "MarketingAU의 사용자 관리자(User Administrator)",
+      "테넌트의 사용자 관리자(User Administrator)"
+    ],
+    "slots": ["User1:", "User2:"]
+  },
+  "34": {
+    "stem": "프로덕션 환경을 관리하는 사용자가 Azure MFA에 등록되어 있고 Azure Portal에 로그인할 때 Azure MFA를 사용하도록 해야 합니다. 솔루션은 인증·권한 부여 요구 사항을 충족해야 합니다.\n\n무엇을 해야 합니까?",
+    "expl": "Azure AD Identity Protection의 MFA 등록 정책은 선택한 사용자에게 Azure MFA 등록을 요구합니다. MFA 적용은 조건부 액세스 정책의 권한 부여(grant) 제어에서 다단계 인증 요구를 선택해 이루어지며, 세션 제어나 로그인 위험 정책은 이러한 일반적인 Azure Portal MFA 요구를 제공하지 않습니다.\n\n**Learn more:** [Configure the multifactor authentication registration policy](https://learn.microsoft.com/en-us/entra/id-protection/howto-identity-protection-configure-mfa-policy) · [How to Configure Grant Controls in Microsoft Entra](https://learn.microsoft.com/en-us/entra/identity/conditional-access/concept-conditional-access-grant)",
+    "blanks": [
+      { "label": "사용자를 Azure MFA에 등록하려면:", "options": ["Azure AD Identity Protection", "Azure AD의 보안 기본값(security defaults)", "Azure AD 인증 방법 정책"] },
+      { "label": "Azure MFA 인증을 적용하려면 구성할 것:", "options": ["capolicy1의 권한 부여(grant) 제어", "capolicy1의 세션 제어", "Litware.com 테넌트의 Azure AD Identity Protection 로그인 위험 정책"] }
+    ]
+  }
+}

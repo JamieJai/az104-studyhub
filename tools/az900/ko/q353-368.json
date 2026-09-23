@@ -1,0 +1,117 @@
+{
+  "353": {
+    "stem": "솔루션: 전략에 가상 머신 한 대와 가용성 영역 두 곳을 포함합니다.\n\n이 솔루션이 목표를 충족합니까?",
+    "expl": "가용성 영역을 활용한 99.99% Azure VM 가용성 약정은 같은 Azure 지역의 가용성 영역 두 곳 이상에 VM 인스턴스를 두 개 이상 분산해야 합니다. 가상 머신이 한 대뿐이면 다른 영역에 중복 인스턴스를 둘 수 없으므로 요구된 가용성 수준을 충족하지 못합니다.\n\n**Learn more:** [Overview of virtual machines in Azure](https://learn.microsoft.com/en-us/azure/virtual-machines/overview)",
+    "choices": ["예", "아니요"]
+  },
+  "354": {
+    "stem": "코드를 관리하는 버전 제어 도구 모음을 제공하는 Azure 서비스는 무엇입니까?",
+    "expl": "Azure Repos는 Git과 TFVC(Team Foundation 버전 제어)를 포함해 코드 관리를 위한 버전 제어 도구를 제공합니다.\n\n**Learn more:** [What is Azure Repos?](https://learn.microsoft.com/en-us/azure/devops/repos/get-started/what-is-repos?view=azure-devops)",
+    "choices": ["Azure Repos", "Azure DevTest Labs", "Azure Storage", "Azure Cosmos DB"]
+  },
+  "355": {
+    "stem": "HOTSPOT —\n\n문장을 올바르게 완성하는 답을 선택하세요.\n\n[[IMG1]]",
+    "expl": "Azure Blob Storage는 이미지나 비디오 같은 대량의 비구조화 데이터를 위한 Azure의 개체 저장소 서비스입니다. 큐 저장소는 애플리케이션 메시지를 처리하고, Azure Files는 네트워크로 연결 가능한 파일 공유를 제공하며, 테이블 저장소는 NoSQL 키/특성 저장소입니다.\n\n**Learn more:** [Introduction to Azure Blob Storage](https://learn.microsoft.com/en-us/azure/storage/blobs/storage-blobs-introduction)",
+    "answerText": "![Answer image](images/1785751616957-vxpeqtd1.jpg)"
+  },
+  "356": {
+    "stem": "문장을 올바르게 완성하는 답을 선택하세요.\n\nHot Area:",
+    "expl": "Azure Firewall의 네트워크 주소 변환(NAT) 규칙은 대상 NAT로 방화벽 공용 IP 주소·포트를 사설 IP 주소·포트로 변환해, 가상 네트워크에 호스트된 서버에 인터넷에서 인바운드로 접근할 수 있게 합니다.\n\n**Learn more:** [Azure Firewall rule processing logic](https://learn.microsoft.com/en-us/azure/firewall/rule-processing) · [Tutorial: Deploy and configure Azure Firewall using the Azure portal](https://learn.microsoft.com/en-us/azure/firewall/tutorial-firewall-deploy-portal)",
+    "blanks": [
+      { "label": "정답:", "options": ["애플리케이션 규칙", "네트워크 주소 변환(NAT) 규칙", "네트워크 규칙", "서비스 태그"] }
+    ]
+  },
+  "357": {
+    "stem": "다음 각 설명이 참이면 **예**, 아니면 **아니요**를 선택하세요.",
+    "expl": "Microsoft Entra ID(이전 Azure AD)는 클라우드 기반 ID·액세스 관리 서비스이며 Azure 가상 머신의 도메인 컨트롤러에 의존하지 않습니다. Azure와 Microsoft 365가 사용하는 인증·ID 서비스를 제공합니다. Microsoft 365 라이선스는 사용자에게 할당할 수 있고 해당되는 여러 제품 라이선스를 함께 할당할 수도 있으며, 라이선스를 하나만 두라는 규칙은 없습니다.\n\n**Learn more:** [What is Microsoft Entra?](https://learn.microsoft.com/en-us/entra/fundamentals/what-is-entra) · [Assign or remove licenses in the Microsoft 365 admin center](https://learn.microsoft.com/en-us/microsoft-365/admin/manage/assign-licenses-to-users)",
+    "statements": [
+      "Azure AD는 Azure 가상 머신의 도메인 컨트롤러를 필요로 한다.",
+      "Azure AD는 Azure와 Microsoft 365에 인증 서비스를 제공한다.",
+      "Azure AD의 각 사용자 계정에는 Microsoft 365 라이선스를 하나만 할당할 수 있다."
+    ]
+  },
+  "358": {
+    "stem": "문장을 올바르게 완성하는 답을 선택하세요.",
+    "expl": "탄력성은 수요가 늘면 리소스를 동적으로 할당하고 수요가 줄면 해제하는 능력입니다.",
+    "blanks": [
+      { "label": "클라우드 앱이 리소스를 할당하고 해제할 수 있다면 그 앱에는 다음이 있습니다:", "options": ["탄력성", "거버넌스", "고가용성", "예측 가능성", "안정성"] }
+    ]
+  },
+  "359": {
+    "stem": "각 클라우드 서비스 모델에서 고객이 지는 공동 책임 수준을 파악하세요.\n\n고객 책임이 가장 큰 것부터 가장 작은 것 순으로 배열하세요.",
+    "expl": "IaaS는 운영 체제, 애플리케이션, 데이터를 포함해 고객이 가장 많은 구성 요소를 책임집니다. PaaS는 운영 체제와 플랫폼 관리를 공급자에게 넘깁니다. SaaS는 애플리케이션과 플랫폼 관리를 거의 모두 공급자가 맡아 고객 책임이 가장 작습니다.",
+    "items": ["서비스형 플랫폼(PaaS)", "서비스형 소프트웨어(SaaS)", "서비스형 인프라(IaaS)"],
+    "slots": ["1 (책임 가장 큼):", "2:", "3 (책임 가장 작음):"]
+  },
+  "360": {
+    "stem": "지난 14일 동안 특정 가상 머신을 누가 껐는지 확인할 수 있습니다.",
+    "expl": "Azure 활동 로그는 VM 전원 작업을 포함한 제어 평면 작업을 기록하고 각 이벤트를 시작한 ID를 보여 줍니다. 활동 로그 이벤트는 기본적으로 90일간 보존되므로 지난 14일도 포함됩니다.\n\n**Learn more:** [Azure Monitor activity log](https://learn.microsoft.com/en-us/azure/azure-monitor/platform/activity-log)",
+    "blanks": [
+      { "label": "확인할 수 있는 곳:", "options": ["Azure 액세스 제어(IAM)", "Azure Event Hubs", "Azure 활동 로그", "Azure Service Health"] }
+    ]
+  },
+  "361": {
+    "stem": "다음 각 설명이 참이면 **예**, 아니면 **아니요**를 선택하세요.",
+    "expl": "Azure Advisor의 백업 권장 사항은 이미 Azure Backup으로 보호되는 VM이 아니라 백업 보호가 필요한 Azure VM을 찾아 줍니다. 해당되는 보안 권장 사항을 적용하면 Microsoft Defender for Cloud 보안 점수가 올라갑니다. Advisor 권장 사항은 모범 사례 지침이며 Microsoft 지원을 유지하기 위해 30일 안에 적용해야 한다는 요건은 없습니다.\n\n**Learn more:** [Introduction to Azure Advisor](https://learn.microsoft.com/en-us/azure/advisor/advisor-overview) · [Advisor Clinic: Protect your data with Azure Virtual Machine backup](https://learn.microsoft.com/en-us/shows/azure-essentials-show/advisor-clinic-protect-your-data-with-azure-virtual-machine-backup)",
+    "statements": [
+      "Azure Advisor는 Azure Backup으로 보호되는 Azure 가상 머신 목록을 만들 수 있다.",
+      "Azure Advisor가 제공하는 보안 권장 사항을 적용하면 회사의 보안 점수가 낮아진다.",
+      "Microsoft 지원을 유지하려면 Azure Advisor가 제공하는 보안 권장 사항을 30일 안에 적용해야 한다."
+    ]
+  },
+  "362": {
+    "stem": "Azure 가상 머신을 여러 대 배포할 계획입니다.\n\n데이터센터 한 곳에 장애가 나도 가상 머신에서 호스트되는 서비스를 계속 사용할 수 있어야 합니다.\n\n가능한 솔루션 두 가지는 무엇입니까? 각 정답은 완전한 솔루션입니다.",
+    "expl": "가용성 영역은 전원·냉각·네트워크가 독립된 물리적으로 분리된 데이터센터 그룹이므로, 복제된 가상 머신을 두 영역 이상에 배포하면 데이터센터 한 곳을 잃어도 워크로드를 보호할 수 있습니다. 가상 머신 확장 집합은 관리형 부하 분산 VM 인스턴스 그룹을 제공하며 인스턴스를 가용성 영역에 분산하는 등 고가용성 배포를 지원합니다. 리소스 그룹은 장애 격리를 제공하지 않고, 단순히 VM을 여러 지역에 두는 것만으로는 복제·라우팅·장애 조치가 구성되지 않습니다.\n\n**Learn more:** [What are Azure availability zones?](https://learn.microsoft.com/en-us/azure/reliability/availability-zones-overview) · [Availability options for Azure Virtual Machines](https://learn.microsoft.com/en-us/azure/virtual-machines/availability)",
+    "choices": [
+      "가상 머신을 두 개 이상의 가용성 영역에 배포한다.",
+      "가상 머신을 두 개 이상의 리소스 그룹에 배포한다.",
+      "가상 머신을 확장 집합에 배포한다.",
+      "가상 머신을 두 개 이상의 지역에 배포한다."
+    ]
+  },
+  "363": {
+    "stem": "다음 각 설명이 참이면 **예**, 아니면 **아니요**를 선택하세요.",
+    "expl": "Azure Security Center/Defender for Cloud는 온보딩하면 하이브리드·온프레미스 리소스도 지원합니다. 무료 계층은 기본 기능을, 표준 계층은 고급 기능을 제공합니다. 규정 준수 대시보드에서는 PDF나 CSV 형식의 규정 준수 보고서를 다운로드할 수 있습니다.\n\n**Learn more:** [Improve regulatory compliance in Microsoft Defender for Cloud](https://learn.microsoft.com/en-us/azure/defender-for-cloud/regulatory-compliance-dashboard) · [Defender for Cloud pricing tiers API reference](https://learn.microsoft.com/en-us/rest/api/defenderforcloud/pricings/list?view=rest-defenderforcloud-2024-01-01)",
+    "statements": [
+      "Azure Security Center는 Azure 리소스와 온프레미스 리소스를 모니터링할 수 있다.",
+      "Azure Security Center의 모든 기능은 무료다.",
+      "Azure Security Center에서 규정 준수 보고서를 다운로드할 수 있다."
+    ]
+  },
+  "364": {
+    "stem": "문장을 완성하세요.",
+    "expl": "인증(authentication)은 사용자 이름과 암호, 인증서, 생체 요소 같은 자격 증명을 검증해 사용자의 ID를 확인하는 과정입니다.",
+    "blanks": [
+      { "label": "정답:", "options": ["권한 부여(Authorization)", "인증(Authentication)", "페더레이션(Federation)", "티켓팅(Ticketing)"] }
+    ]
+  },
+  "365": {
+    "stem": "새 지원 요청을 만들 수 있는 Azure 지원 플랜은 무엇입니까?",
+    "expl": "Azure는 Basic을 포함한 모든 지원 수준에서 구독 관리, 청구, 할당량 조정에 대한 지원 요청을 제공합니다. 유료 Developer, Standard, Professional Direct, Premier 플랜은 여기에 더해 각 수준의 기술 지원 권한을 제공합니다.\n\n**Learn more:** [Create an Azure support request](https://learn.microsoft.com/en-us/azure/azure-portal/supportability/how-to-create-azure-support-request) · [Request quota increases and get support](https://learn.microsoft.com/en-us/azure/synapse-analytics/sql-data-warehouse/sql-data-warehouse-get-started-create-support-ticket)",
+    "choices": [
+      "Premier와 Professional Direct만",
+      "Premier, Professional Direct, Standard만",
+      "Premier, Professional Direct, Standard, Developer만",
+      "Premier, Professional Direct, Standard, Developer, Basic"
+    ]
+  },
+  "366": {
+    "stem": "문장을 올바르게 완성하는 답을 선택하세요.",
+    "expl": "Azure Functions는 애플리케이션 코드를 위한 서버리스 호스팅을 제공하므로 기반 서버와 인프라는 Azure가 관리합니다. Azure DevOps 파이프라인은 개발·배포를 자동화하고, Resource Manager 템플릿은 인프라를 정의하며, Application Gateway는 웹 트래픽을 분산합니다.\n\n**Learn more:** [Azure Functions documentation](https://learn.microsoft.com/en-us/azure/azure-functions/) · [What is Azure Functions?](https://learn.microsoft.com/en-my/azure/azure-functions/functions-overview)",
+    "blanks": [
+      { "label": "서버 없이 Azure에서 애플리케이션 코드를 실행하는 것은", "options": ["Azure DevOps 파이프라인", "Azure Resource Manager 템플릿", "Azure Application Gateway", "Azure Functions"] }
+    ]
+  },
+  "367": {
+    "stem": "문장을 올바르게 완성하는 옵션을 선택하세요.",
+    "expl": "가용성 집합은 가상 머신을 장애 도메인과 업데이트 도메인에 분산해 하드웨어 장애와 계획된 유지 관리의 영향을 줄입니다.\n\n**Learn more:** [Availability sets overview](https://learn.microsoft.com/en-us/azure/virtual-machines/availability-set-overview)",
+    "blanks": [
+      { "label": "사용하는 기능:", "options": ["가용성 집합", "가용성 영역", "Azure Load Balancer", "Azure 가상 머신 확장 집합"] }
+    ]
+  },
+  "368": {
+    "stem": "솔루션: Professional Direct 지원 플랜을 추천합니다.\n\n이 솔루션이 목표를 달성합니까?",
+    "expl": "Azure Professional Direct 지원은 지원 요청을 제출한 뒤 메일과 전화로 기술 지원을 받을 수 있으므로, 두 방법 중 하나로 지원 엔지니어에게 접근할 수 있어야 한다는 요구 사항을 충족합니다.\n\n**Learn more:** [Azure Support Plans Comparison](https://azure.microsoft.com/support/plans/)",
+    "choices": ["예", "아니요"]
+  }
+}

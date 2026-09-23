@@ -1,0 +1,102 @@
+{
+  "35": {
+    "stem": "Azure Storage 계정에 데이터 자산을 저장하려고 합니다.\n\n다음 요구 사항을 충족하는 솔루션을 추천해야 합니다.\n\n- 변경 불가능(immutable) 저장소를 지원해야 합니다.\n- 저장소 계정에 대한 익명 액세스를 차단해야 합니다.\n- 액세스 제어 목록(ACL) 기반 Azure AD 권한을 지원해야 합니다.\n\n추천에 무엇을 포함해야 합니까?",
+    "expl": "Azure Data Lake Storage는 계층적 네임스페이스를 기반으로 Microsoft Entra ID 사용자·그룹·서비스 주체·관리 ID에 대한 ACL을 제공합니다. 또한 컨테이너 수준의 변경 불가능 WORM 정책을 지원하며, 익명 Blob 액세스는 기반 저장소 계정 수준에서 비활성화할 수 있습니다.\n\n**Learn more:** [Access control model in Azure Data Lake Storage](https://learn.microsoft.com/en-us/azure/storage/blobs/data-lake-storage-access-control-model) · [Overview of immutable storage for blob data](https://learn.microsoft.com/en-us/azure/storage/blobs/immutable-storage-overview)",
+    "choices": ["Azure Files", "Azure Data Lake Storage", "Azure NetApp Files", "Azure Blob Storage"]
+  },
+  "36": {
+    "stem": "다음 구성으로 인프라 솔루션을 배포할 계획입니다.\n\n- 외부 사용자는 Azure Front Door를 통해 인프라에 접근합니다.\n- Azure API Management가 Azure Kubernetes Service(AKS)에서 호스트되는 백엔드 API에 대한 외부 사용자 액세스를 제어합니다.\n- 외부 사용자는 타사 ID 공급자와 OpenID Connect 기반 페더레이션을 사용하는 Azure AD B2C 테넌트를 통해 인증합니다.\n\n각 서비스는 어떤 기능을 제공합니까? 각 기능은 한 번, 여러 번 사용하거나 전혀 사용하지 않을 수 있습니다.",
+    "expl": "Azure Front Door WAF는 OWASP 규칙을 포함해 일반적인 웹·API 취약점에 대한 관리형 보호를 제공합니다. Azure API Management는 `validate-jwt` 정책으로 Azure AD B2C가 발급한 JWT의 존재와 유효성을 검사한 뒤에야 요청이 AKS 백엔드 API에 도달하도록 할 수 있습니다.\n\n**Learn more:** [Web Application Firewall (WAF) on Azure Front Door](https://learn.microsoft.com/en-us/azure/frontdoor/web-application-firewall) · [Azure API Management policy reference - validate-jwt](https://learn.microsoft.com/en-us/azure/api-management/validate-jwt-policy)",
+    "items": [
+      "OWASP(Open Web Application Security Project) 취약점 방어",
+      "API 단위의 IP 필터링",
+      "Azure B2C JSON 웹 토큰(JWT) 유효성 검사"
+    ],
+    "slots": ["Front Door:", "API Management:"]
+  },
+  "37": {
+    "stem": "높이 맵(height-map) 데이터로 3D 기하 구조를 계산하는 솔루션을 설계하고 있습니다.\n\n다음 요구 사항을 충족하는 솔루션을 추천해야 합니다.\n\n- 계산은 Azure에서 수행해야 합니다.\n- 각 노드가 다른 모든 노드와 데이터를 주고받을 수 있어야 합니다.\n- 여러 장면을 최대한 빨리 계산하는 노드 수를 최대화해야 합니다.\n- 구현 작업을 최소화해야 합니다.\n\n[[IMG1]]\n\n추천에 포함해야 하는 두 가지 작업은 무엇입니까? 각 정답은 솔루션의 일부입니다.\n\n**참고:** 각 정답은 1점입니다.",
+    "expl": "Azure Batch는 병렬 워크로드를 위한 관리형 컴퓨팅 노드 풀을 제공하며 풀 내 노드 간 통신을 지원합니다. 병렬 작업 실행을 사용하면 각 컴퓨팅 노드에서 여러 작업을 동시에 실행할 수 있는데, Microsoft는 이를 노드 간 통신이 필요할 때 적용되는 노드 수 제한을 완화하는 방법으로 제시합니다. 직접 렌더 팜을 구축·관리하는 수고 없이 동시에 실행할 수 있는 작업 수를 늘릴 수 있습니다.\n\n**Learn more:** [Run tasks concurrently to maximize usage of Batch compute nodes](https://learn.microsoft.com/en-us/azure/batch/batch-parallel-node-tasks) · [Nodes and pools in Azure Batch](https://learn.microsoft.com/en-us/azure/batch/nodes-and-pools)",
+    "choices": [
+      "Azure에서 병렬 파일 시스템을 사용하도록 설정합니다.",
+      "가상 머신을 사용하는 렌더 팜을 만듭니다.",
+      "가상 머신 확장 집합을 사용하는 렌더 팜을 만듭니다.",
+      "Azure Batch를 사용하는 렌더 팜을 만듭니다.",
+      "컴퓨팅 노드에서 병렬 작업 실행을 사용하도록 설정합니다."
+    ]
+  },
+  "38": {
+    "stem": "다음 그림과 같은 백업 정책을 배포할 계획입니다.\n\n[[IMG1]]\n\n그림의 정보를 바탕으로 각 문장을 완성하는 답을 드롭다운 메뉴에서 선택하세요.",
+    "expl": "Azure VM 백업 정책은 일별·주별·월별·연도별 보존 지점을 정의합니다. 사용하도록 설정된 월별 보존 기간이 36개월로, 구성된 복구 기간 중 가장 깁니다. 일반적인 일별 백업 일정은 하루에 예약 복구 지점을 하나 만들므로 최소 RPO는 1일입니다.\n\n**Learn more:** [Quickstart - Back up a VM with the Azure portal by using Azure Backup](https://learn.microsoft.com/en-us/azure/backup/quick-backup-vm-portal) · [FAQ - Backing up Azure VMs](https://learn.microsoft.com/en-us/azure/backup/backup-azure-vm-backup-faq)",
+    "blanks": [
+      { "label": "이 정책으로 백업한 가상 머신을 복구할 수 있는 최대 기간은 [정답]입니다:", "options": ["90일", "26주", "36개월", "45개월"] },
+      { "label": "이 정책으로 백업한 가상 머신의 최소 복구 지점 목표(RPO)는 [정답]입니다:", "options": ["1시간", "1일", "1주", "1개월", "1년"] }
+    ]
+  },
+  "39": {
+    "stem": "사용자를 위해 콘텐츠를 집계하는 애플리케이션을 설계하고 있습니다.\n\n애플리케이션에 사용할 데이터베이스 솔루션을 추천해야 합니다. 솔루션은 다음 요구 사항을 충족해야 합니다.\n\n- SQL 명령을 지원해야 합니다.\n- 다중 마스터 쓰기를 지원해야 합니다.\n- 낮은 대기 시간의 읽기 작업을 보장해야 합니다.\n\n추천에 무엇을 포함해야 합니까?",
+    "expl": "Azure Cosmos DB for NoSQL은 JSON 데이터에 대한 SQL 유사 쿼리 언어를 제공하고 여러 Azure 지역에서의 쓰기를 지원하며, 99번째 백분위수 기준 한 자릿수 밀리초 읽기 대기 시간을 SLA로 보장합니다.\n\n**Learn more:** [Azure Cosmos DB for NoSQL overview](https://learn.microsoft.com/en-us/azure/cosmos-db/overview) · [Multi-region writes in Azure Cosmos DB](https://learn.microsoft.com/en-us/azure/cosmos-db/multi-region-writes)",
+    "choices": ["Azure Cosmos DB for NoSQL", "활성 지역 복제를 사용하는 Azure SQL Database", "Azure SQL Database Hyperscale", "Azure Cosmos DB for PostgreSQL"]
+  },
+  "40": {
+    "stem": "Azure Kubernetes Service(AKS) 클러스터에서 호스트할 마이크로서비스 아키텍처를 설계하고 있습니다. 마이크로서비스를 사용하는 애플리케이션은 Azure 가상 머신에서 실행됩니다. 가상 머신과 AKS 클러스터는 같은 가상 네트워크에 있습니다.\n\n마이크로서비스를 소비자 애플리케이션에 노출하는 솔루션을 설계해야 합니다. 솔루션은 다음 요구 사항을 충족해야 합니다.\n\n- 마이크로서비스에 대한 인그레스 액세스는 사설 IP 주소 하나로 제한하고 상호 TLS 인증으로 보호해야 합니다.\n- 들어오는 마이크로서비스 호출 수를 속도 제한해야 합니다.\n- 비용을 최소화해야 합니다.\n\n솔루션에 무엇을 포함해야 합니까?",
+    "expl": "Azure API Management Premium 계층은 내부(internal) 모드로 가상 네트워크에 연결할 수 있어 게이트웨이에 사설 IP 주소로 접근하게 됩니다. API Management는 상호 TLS 클라이언트 인증서 검증과 속도 제한 정책을 지원하므로 인증과 호출 제한을 모두 게이트웨이에서 적용할 수 있습니다. Standard 계층의 서비스 엔드포인트 연결은 요구되는 사설 인바운드 게이트웨이 노출을 제공하지 못하므로, 모든 요구 사항을 충족하는 것은 Premium 가상 네트워크 배포입니다.\n\n**Learn more:** [Azure API Management with an Azure virtual network](https://learn.microsoft.com/en-us/azure/api-management/virtual-network-concepts?tabs=stv2) · [Secure APIs using client certificate authentication in API Management](https://learn.microsoft.com/en-us/azure/api-management/api-management-howto-mutual-certificates-for-clients)",
+    "choices": [
+      "Azure Web Application Firewall(WAF)을 사용하는 Azure Application Gateway",
+      "서비스 엔드포인트를 사용하는 Azure API Management Standard 계층",
+      "Azure Web Application Firewall(WAF)을 사용하는 Azure Front Door",
+      "가상 네트워크 연결을 사용하는 Azure API Management Premium 계층"
+    ]
+  },
+  "41": {
+    "stem": "HOTSPOT -\n\n다음 표의 저장소 계정이 포함된 Azure 구독이 있습니다.\n\n[[IMG1]]\n\n다음 표의 요구 사항을 가진 새 앱 두 개를 구현할 계획입니다.\n\n[[IMG2]]\n\n각 앱에 어떤 저장소 계정을 추천해야 합니까?",
+    "expl": "Blob 수명 주기 관리는 표준 범용 v2와 BlobStorage 계정의 블록 Blob 계층을 전환할 수 있으므로 App1에는 storage1과 storage3이 적합합니다. Azure Files는 범용 v2와 FileStorage 계정에서 제공되므로 App2의 Azure 파일 공유 요구 사항은 storage1, storage2, storage4가 충족합니다.\n\n**Learn more:** [Azure Blob Storage lifecycle management overview](https://learn.microsoft.com/en-us/azure/storage/blobs/lifecycle-management-overview) · [Azure Files deployment planning](https://learn.microsoft.com/en-us/azure/storage/files/storage-files-planning)",
+    "blanks": [
+      { "label": "App1:", "options": ["storage1과 storage2만", "storage1과 storage3만", "storage1, storage2, storage3만", "storage1, storage2, storage3, storage4"] },
+      { "label": "App2:", "options": ["storage4만", "storage1과 storage4만", "storage1, storage2, storage4만", "storage1, storage2, storage3, storage4"] }
+    ]
+  },
+  "42": {
+    "stem": "여러 Azure 클라우드 서비스를 포함하고 트랜잭션의 각 부분을 관리하는 영업 애플리케이션을 만들고 있습니다. 별도의 클라우드 서비스가 고객 주문, 청구, 결제, 재고, 배송을 처리합니다.\n\n클라우드 서비스들이 XML 메시지로 트랜잭션 정보를 비동기적으로 주고받을 수 있는 솔루션을 추천해야 합니다.\n\n추천에 무엇을 포함해야 합니까?",
+    "expl": "Azure Service Bus는 내구성 있는 큐와 게시/구독 토픽으로 애플리케이션과 서비스를 느슨하게 결합하는 관리형 엔터프라이즈 메시지 브로커입니다. 비동기 통신을 지원하고 XML로 인코딩한 구조화 데이터를 전달할 수 있어 독립적으로 동작하는 서비스 간 트랜잭션 데이터 교환에 적합합니다.\n\n**Learn more:** [What is Azure Service Bus?](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-messaging-overview) · [Asynchronous messaging patterns and high availability](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-async-messaging)",
+    "choices": ["Azure Notification Hubs", "Azure Data Lake", "Azure Service Bus", "Azure Blob Storage"]
+  },
+  "43": {
+    "stem": "app1data라는 Azure Blob Storage 컨테이너를 사용하는 App1이라는 앱이 있습니다.\n\nApp1은 File1.txt라는 누적 트랜잭션 로그 파일을 한 시간마다 app1data의 블록 Blob에 업로드합니다. File1.txt에는 당일 트랜잭션 데이터만 들어 있습니다.\n\n어느 날이든 마지막으로 업로드된 File1.txt 버전을 덮어쓴 뒤 최대 30일까지 복원할 수 있어야 합니다. 솔루션은 저장 공간을 최소한으로 사용해야 합니다.\n\n솔루션에 무엇을 포함해야 합니까?",
+    "expl": "하루에 한 번 Blob 스냅샷을 만들면 그날의 최종 상태를 보존하고 30일간 유지할 수 있습니다. 스냅샷은 고유한 블록에 대해서만 과금되므로 매시간 덮어쓴 내용을 모두 보관하지 않고도 필요한 일별 복구 지점을 제공합니다. Blob 일시 삭제와 Blob 버전 관리는 덮어쓸 때마다 자동으로 데이터를 보존하므로 불필요한 시간별 복구 상태가 쌓여 저장 공간을 더 많이 씁니다.\n\n**Learn more:** [Blob snapshots - Azure Storage](https://learn.microsoft.com/en-us/azure/storage/blobs/snapshots-overview) · [Choosing between blob soft delete and blob versioning](https://learn.microsoft.com/en-us/azure/storage/blobs/soft-delete-vs-versioning-options)",
+    "choices": ["컨테이너 일시 삭제(container soft delete)", "Blob 스냅샷", "Blob 일시 삭제(blob soft delete)", "Blob 버전 관리(blob versioning)"]
+  },
+  "44": {
+    "stem": "계획된 변경을 지원하려면 ID 관리 전략에 무엇이 포함되어야 합니까?",
+    "expl": "기존 Active Directory Domain Services 도메인은 Azure 가상 네트워크에 도메인 컨트롤러를 Azure 가상 머신으로 추가 배포해 Azure까지 확장할 수 있습니다. 이렇게 하면 기존 `corp.fabrikam.com` 도메인을 유지하면서 Azure 리소스에 디렉터리·인증 서비스를 제공할 수 있으며, 기존 도메인 컨트롤러를 모두 옮기거나 별도의 Microsoft Entra 테넌트를 만들 필요가 없습니다.\n\n**Learn more:** [Install Active Directory Domain Services on an Azure virtual machine](https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/deploy/virtual-dc/adds-on-azure-vm) · [Deploy and manage Azure IaaS Active Directory domain controllers in Azure](https://learn.microsoft.com/en-us/training/modules/deploy-manage-azure-iaas-active-directory-domain-controllers-azure/)",
+    "choices": [
+      "corp.fabrikam.com의 도메인 컨트롤러를 Azure의 가상 네트워크에 배포합니다.",
+      "corp.fabrikam.com의 모든 도메인 컨트롤러를 Azure의 가상 네트워크로 옮깁니다.",
+      "새 R&D 프로젝트 인증을 위해 새 Azure AD 테넌트를 배포합니다.",
+      "rd.fabrikam.com 포리스트의 도메인 컨트롤러를 Azure의 가상 네트워크에 배포합니다."
+    ]
+  },
+  "45": {
+    "stem": "Azure Cosmos DB와 Azure Synapse를 통합하는 솔루션을 추천해야 합니다. 솔루션은 다음 요구 사항을 충족해야 합니다.\n\n- Azure Synapse 작업 영역에서 Azure Cosmos DB 계정으로 가는 트래픽은 Microsoft 백본 네트워크를 사용해야 합니다.\n- Azure Synapse 작업 영역에서 Azure Cosmos DB 계정으로 가는 트래픽이 인터넷을 거치면 안 됩니다.\n- 구현 작업을 최소화해야 합니다.\n\n추천에 무엇을 포함해야 합니까?",
+    "expl": "Synapse 관리형 가상 네트워크는 Azure Synapse가 관리하므로 네트워크 인프라를 직접 배포·유지할 필요가 줄어듭니다. 관리형 프라이빗 엔드포인트는 Azure Private Link를 통해 Synapse 리소스를 Azure Cosmos DB에 사설로 연결하므로 데이터 경로가 공용 인터넷에 노출되지 않습니다. 방화벽 규칙이나 서비스 엔드포인트 정책으로는 이 관리형 프라이빗 엔드포인트 연결을 만들 수 없습니다.\n\n**Learn more:** [Analytics with Azure Synapse Link - Azure Cosmos DB](https://learn.microsoft.com/en-us/azure/cosmos-db/synapse-link) · [Create a Managed private endpoint to your data source - Azure Synapse Analytics](https://learn.microsoft.com/en-us/azure/synapse-analytics/security/how-to-create-managed-private-endpoints)",
+    "blanks": [
+      { "label": "Azure Synapse 작업 영역을 프로비저닝할 때:", "options": ["전용 관리형 가상 네트워크를 구성합니다.", "작업 영역 엔드포인트에 대한 공용 네트워크 액세스를 사용하지 않도록 설정합니다.", "Azure AD 인증 사용을 설정합니다."] },
+      { "label": "Azure Cosmos DB 계정을 구성할 때 사용하도록 설정할 항목:", "options": ["관리형 프라이빗 엔드포인트", "서버 수준 방화벽 규칙", "서비스 엔드포인트 정책"] }
+    ]
+  },
+  "46": {
+    "stem": "다음 요구 사항을 충족하는 고가용성 Azure SQL 데이터베이스를 설계해야 합니다.\n\n- 데이터베이스 복제본 간 장애 조치 시 데이터 손실이 없어야 합니다.\n- 가용성 영역에 장애가 발생해도 데이터베이스를 계속 사용할 수 있어야 합니다.\n- 비용을 최소한으로 유지해야 합니다.\n\n어떤 배포 옵션을 선택해야 합니까?",
+    "expl": "Azure SQL Database Business Critical 계층은 가용성 그룹 기반의 동기 고가용성 복제본 여러 개를 사용합니다. 영역 중복을 사용하도록 설정하면 복제본이 가용성 영역에 분산되어 단일 영역 장애 시 커밋된 데이터에 대해 복구 지점 목표(RPO) 0을 제공하고 데이터 손실 없는 동기 장애 조치가 이루어집니다. 이 계층은 추가 복제 인프라 없이 세 가지 요구 사항(데이터 무손실, 영역 가용성, 비용 효율)을 모두 충족합니다.",
+    "choices": ["Azure SQL Database Serverless", "Azure SQL Managed Instance General Purpose", "Azure SQL Database Basic", "Azure SQL Database Business Critical"]
+  },
+  "47": {
+    "stem": "다음 요구 사항을 충족하는 고가용성 Azure SQL 데이터베이스를 설계해야 합니다.\n\n- 데이터베이스 복제본 간 장애 조치 시 데이터 손실이 없어야 합니다.\n- 가용성 영역에 장애가 발생해도 데이터베이스를 계속 사용할 수 있어야 합니다.\n- 비용을 최소한으로 유지해야 합니다.\n\n어떤 배포 옵션을 선택해야 합니까?",
+    "expl": "영역 중복 Azure SQL Database Premium 배포는 동기화된 복제본을 가용성 영역에 분산합니다. 동기 복제 덕분에 영역 장애 조치 시 커밋된 데이터가 손실되지 않으며, Premium에서는 영역 중복을 사용해도 추가 요금이 없습니다. Basic은 영역 중복을 지원하지 않고, Hyperscale은 고가용성 복제본을 추가로 요구할 수 있어 이 요구 사항에서 최저 비용 옵션이 아닙니다.\n\n**Learn more:** [Reliability in Azure SQL Database](https://learn.microsoft.com/en-us/azure/reliability/reliability-sql-database)",
+    "choices": ["Azure SQL Database Hyperscale", "Azure SQL Database Premium", "Azure SQL Database Basic", "Azure SQL Managed Instance General Purpose"]
+  },
+  "48": {
+    "stem": "여러 Azure 클라우드 서비스를 포함하고 트랜잭션의 각 부분을 관리하는 영업 애플리케이션을 만들고 있습니다. 각 클라우드 서비스가 고객 주문, 청구, 결제, 재고, 배송을 처리합니다.\n\n클라우드 서비스들이 XML 메시지로 트랜잭션 정보를 비동기적으로 주고받을 수 있는 솔루션을 추천해야 합니다.\n\n추천에 무엇을 포함해야 합니까?",
+    "expl": "Azure Queue Storage는 분산 애플리케이션 구성 요소를 분리하는 메시지 큐를 제공하므로, 한 서비스가 트랜잭션 메시지를 큐에 넣으면 다른 서비스가 비동기로 처리할 수 있습니다. 큐 메시지는 UTF-8 XML 요청과 호환되어야 하며, 메시지 내용으로 XML 마크업을 담을 때는 Base64로 인코딩해야 합니다.\n\n**Learn more:** [Introduction to Azure Queue Storage](https://learn.microsoft.com/en-us/azure/storage/queues/storage-queues-introduction) · [Put Message (Azure Queue Storage REST API)](https://learn.microsoft.com/en-us/rest/api/storageservices/put-message)",
+    "choices": ["Azure Notification Hubs", "Azure Queue Storage", "Azure Blob Storage", "Azure Application Gateway"]
+  }
+}

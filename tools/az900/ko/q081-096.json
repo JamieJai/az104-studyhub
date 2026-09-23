@@ -1,0 +1,122 @@
+{
+  "81": {
+    "stem": "온프레미스 네트워크에 서버가 여러 대 있습니다.\n\n모든 서버를 Azure로 마이그레이션할 계획입니다. Azure 데이터센터 한 곳이 오랫동안 오프라인이 되어도 일부 서버는 계속 사용할 수 있게 하는 솔루션을 추천해야 합니다.\n\n추천에 무엇을 포함해야 합니까?",
+    "expl": "내결함성(fault tolerance)은 중복성을 활용해 구성 요소나 사이트에 장애가 생겨도(한 Azure 데이터센터의 장기 장애 포함) 서비스가 계속 동작하게 합니다.",
+    "choices": ["내결함성(fault tolerance)", "탄력성(elasticity)", "확장성(scalability)", "낮은 대기 시간"]
+  },
+  "82": {
+    "stem": "다음 각 설명이 참이면 **예**, 아니면 **아니요**를 선택하세요.",
+    "expl": "Azure VNet은 기본적으로 격리되어 있어 VNet 피어링이나 VPN 같은 명시적 연결이 있어야 통신할 수 있습니다. VNet 이름은 만들어지는 리소스 그룹 안에서 고유해야 합니다. 구독 안에서 VNet 주소 공간이 겹칠 수는 있지만, 겹치면 해당 VNet들을 VNet 피어링으로 연결할 수 없습니다.\n\n**Learn more:** [Azure virtual networks and subnets](https://learn.microsoft.com/en-us/azure/networking/design-guide/vnets-subnets) · [Create, change, or delete an Azure virtual network](https://learn.microsoft.com/en-us/azure/virtual-network/manage-virtual-network)",
+    "statements": [
+      "같은 Azure 지역에 배포한 Azure 가상 네트워크는 기본적으로 서로 연결되어 있다.",
+      "같은 리소스 그룹에 만든 가상 네트워크는 이름이 고유해야 한다.",
+      "Azure 가상 네트워크의 주소 공간은 구독 안에서 고유해야 한다."
+    ]
+  },
+  "83": {
+    "stem": "문장을 올바르게 완성하는 옵션을 선택하세요.",
+    "expl": "탄력성(elasticity)은 워크로드 수요가 변할 때 컴퓨팅 리소스를 자동으로 조정하는 능력입니다. 자동 크기 조정은 용량을 늘리거나 줄여 이 동작을 제공합니다.\n\n**Learn more:** [Design to scale out - Azure Architecture Center](https://learn.microsoft.com/en-us/azure/architecture/guide/design-principles/scale-out)",
+    "blanks": [
+      { "label": "자동 크기 조정은 다음의 예입니다:", "options": ["민첩성(agility)", "탄력성(elasticity)", "지리적 분산", "예측 가능성"] }
+    ]
+  },
+  "84": {
+    "stem": "각 Azure 서비스를 해당 정의와 연결하세요.\n\n각 서비스는 한 번, 여러 번 사용하거나 전혀 사용하지 않을 수 있습니다.",
+    "expl": "Azure DevOps는 버전 관리와 소프트웨어 배포용 CI/CD 파이프라인을 포함한 통합 DevOps 서비스를 제공합니다. Azure Advisor는 Azure 리소스를 분석해 비용·성능·안정성·보안 개선을 권장합니다. Azure Cognitive Services는 지능형 애플리케이션을 위한 사전 구축 AI 기능을 제공합니다. Azure Application Insights는 웹 애플리케이션의 가용성과 응답성을 모니터링합니다.\n\n**Learn more:** [Azure Advisor overview](https://learn.microsoft.com/en-us/azure/advisor/advisor-overview) · [Get started with DevOps architecture design](https://learn.microsoft.com/en-us/azure/architecture/guide/devops/devops-get-started)",
+    "items": ["Azure Advisor", "Azure Cognitive Services", "Azure Application Insights", "Azure DevOps"],
+    "slots": [
+      "코드 배포를 위한 통합 솔루션",
+      "Azure 환경 개선을 위한 지침과 권장 사항을 제공하는 도구",
+      "지능형 인공지능(AI) 애플리케이션을 손쉽게 만드는 도구",
+      "웹 애플리케이션을 모니터링한다"
+    ]
+  },
+  "85": {
+    "stem": "다음 각 설명이 참이면 **예**, 아니면 **아니요**를 선택하세요.",
+    "expl": "아카이브 계층은 저장소 계정의 기본 액세스 계층으로 설정할 수 없고 개별 Blob에 지정합니다. 아카이브는 저장 비용이 가장 낮고 쿨 계층은 그보다 비쌉니다. 계정 수준 기본 액세스 계층은 저장소 계정을 만든 뒤에도 변경할 수 있으며, 이는 계층이 기본값에서 유추되는 Blob에 영향을 줍니다.\n\n**Learn more:** [Access tiers for blob data - Azure Storage](https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-overview) · [Set a blob's access tier - Azure Storage](https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-online-manage)",
+    "statements": [
+      "Azure Storage의 아카이브 액세스 계층은 계정 수준에서 설정할 수 있다.",
+      "쿨(Cool) 액세스 계층은 Azure Storage에서 Blob 저장 비용이 가장 낮다.",
+      "Azure Storage 컨테이너에 Blob을 업로드한 뒤에도 저장소 계정의 액세스 계층을 변경할 수 있다."
+    ]
+  },
+  "86": {
+    "stem": "Azure 리소스를 배포했습니다. 서비스 중단으로 해당 리소스를 오랫동안 사용할 수 없었습니다.\n\nMicrosoft는",
+    "expl": "Azure 서비스 수준 계약은 SLA를 충족하지 못했을 때 서비스 크레딧을 제공합니다. 이 크레딧은 영향을 받은 Azure 계정에 적용됩니다.\n\n**Learn more:** [Microsoft Azure Service Level Agreements](https://azure.microsoft.com/support/legal/sla/)",
+    "blanks": [
+      { "label": "Microsoft는:", "options": ["은행 계좌로 환불한다.", "리소스를 다른 구독으로 마이그레이션한다.", "Azure 계정에 크레딧을 지급한다.", "Azure 크레딧으로 교환할 수 있는 쿠폰 코드를 보낸다."] }
+    ]
+  },
+  "87": {
+    "stem": "문장을 올바르게 완성하는 답을 선택하세요.",
+    "expl": "Azure Cosmos DB는 완전 관리형 데이터베이스 플랫폼이며 Microsoft는 이를 PaaS(서비스형 플랫폼) 제품으로 분류합니다.\n\n**Learn more:** [Databases, containers, and items in Azure Cosmos DB](https://learn.microsoft.com/en-us/azure/cosmos-db/resource-model)",
+    "blanks": [
+      { "label": "Azure Cosmos DB는 … 제품의 예입니다.", "options": ["서비스형 플랫폼(PaaS)", "서비스형 인프라(IaaS)", "서비스형 콘텐츠", "서비스형 소프트웨어(SaaS)"] }
+    ]
+  },
+  "88": {
+    "stem": "각 Azure 서비스를 올바른 설명과 연결하세요. 각 서비스는 한 번, 여러 번 사용하거나 전혀 사용하지 않을 수 있습니다.",
+    "expl": "Azure SQL Database는 완전 관리형 관계형 데이터베이스 서비스입니다. Azure Synapse Analytics는 대규모 분석 워크로드에 대규모 병렬 처리(MPP)를 사용합니다. Azure Data Lake Analytics는 대규모 병렬 U-SQL 데이터 처리 작업을 지원합니다. Azure HDInsight는 Apache Hadoop 같은 오픈 소스 빅 데이터 프레임워크를 위한 관리형 클러스터를 제공합니다.\n\n**Learn more:** [What is Azure SQL Database?](https://learn.microsoft.com/en-us/azure/azure-sql/database/sql-database-paas-overview?view=azuresql) · [Azure Synapse Analytics architecture](https://learn.microsoft.com/en-us/azure/synapse-analytics/sql-data-warehouse/massively-parallel-processing-mpp-architecture)",
+    "items": ["Azure HDInsight", "Azure Data Lake Analytics", "Azure SQL Synapse Analytics", "Azure SQL Database"],
+    "slots": [
+      "관리형 관계형 클라우드 데이터베이스 서비스.",
+      "대규모 병렬 처리(MPP)를 활용해 관계형 데이터베이스의 페타바이트급 데이터에서 복잡한 쿼리를 빠르게 실행하는 클라우드 기반 서비스.",
+      "페타바이트급 데이터에 대해 대규모 병렬 데이터 변환·처리 프로그램을 실행할 수 있다",
+      "클러스터에서 빅 데이터 집합을 분산 처리·분석하는 오픈 소스 프레임워크"
+    ]
+  },
+  "89": {
+    "stem": "회사의 Azure 구독에 다음과 같은 미사용 리소스가 있습니다.\n\n- Azure Active Directory(Azure AD) 사용자 계정 20개\n- Azure AD 그룹 5개\n- 공용 IP 주소 10개\n- 네트워크 인터페이스 10개\n\n회사의 Azure 비용을 줄여야 합니다.\n\n어떤 미사용 리소스를 제거해야 합니까?",
+    "expl": "Azure 공용 IP 주소는 SKU와 할당 방식에 따라 요금이 발생할 수 있으며, 정적·예약 주소는 사용하지 않아도 과금될 수 있습니다. Azure AD 사용자, Azure AD 그룹, 네트워크 인터페이스에는 이런 독립적인 리소스 요금이 없습니다.\n\n**Learn more:** [Azure IP Addresses pricing](https://azure.microsoft.com/en-us/pricing/details/ip-addresses/)",
+    "choices": ["네트워크 인터페이스", "공용 IP 주소", "그룹", "사용자 계정"]
+  },
+  "90": {
+    "stem": "다음 각 설명이 참이면 **예**, 아니면 **아니요**를 선택하세요.",
+    "expl": "Azure 구독에는 클래식 계정 관리자가 한 명이며, 공동 관리자나 Azure RBAC 역할 할당은 여러 개 둘 수 있습니다. 구독은 Microsoft Entra ID와 연결되어 있어 Microsoft 계정뿐 아니라 조직 ID로도 관리할 수 있습니다. 구독이 리소스 그룹을 포함하며, 리소스 그룹은 구독이 아니라 관련 리소스를 담는 컨테이너입니다.\n\n**Learn more:** [Azure roles, Microsoft Entra roles, and classic subscription administrator roles](https://learn.microsoft.com/en-us/azure/role-based-access-control/rbac-and-directory-admin-roles) · [Compare AWS and Azure Accounts](https://learn.microsoft.com/en-us/azure/architecture/aws-professional/accounts)",
+    "statements": [
+      "각 Azure 구독에는 계정 관리자를 여러 명 둘 수 있다.",
+      "각 Azure 구독은 Microsoft 계정으로만 관리할 수 있다.",
+      "Azure 리소스 그룹은 여러 Azure 구독을 포함한다."
+    ]
+  },
+  "91": {
+    "stem": "다음 각 설명이 참이면 **예**, 아니면 **아니요**를 선택하세요.",
+    "expl": "읽기 전용(ReadOnly) 잠금은 수정과 삭제를 모두 막습니다. 삭제(CanNotDelete) 잠금은 삭제만 막고 권한 있는 사용자의 리소스 수정은 허용합니다. Azure 관리 잠금은 리소스 그룹에서 그 안의 리소스로 상속됩니다.\n\n**Learn more:** [Lock your Azure resources to protect your infrastructure](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/lock-resources)",
+    "statements": [
+      "읽기 전용 잠금은 사용자가 Azure 리소스를 삭제하지 못하게 한다.",
+      "삭제 잠금이 걸린 Azure 리소스는 사용자가 수정할 수 있다.",
+      "모든 Azure 리소스는 상위 리소스 그룹에 할당된 잠금을 상속한다."
+    ]
+  },
+  "92": {
+    "stem": "SaaS(서비스형 소프트웨어) 솔루션을 구현할 때 사용자가 책임지는 것은",
+    "expl": "SaaS에서는 서비스 공급자가 애플리케이션 설치, 고가용성, 확장성을 관리합니다. 고객은 조직의 요구에 맞게 SaaS 애플리케이션을 구성합니다.",
+    "blanks": [
+      { "label": "책임 범위:", "options": ["고가용성 구성", "확장성 규칙 정의", "SaaS 솔루션 설치", "SaaS 솔루션 구성"] }
+    ]
+  },
+  "93": {
+    "stem": "Azure 가용성 영역으로 Azure 서비스 접근을 보호할 수 있는 장애 유형을 파악해야 합니다.\n\n무엇을 골라야 합니까?",
+    "expl": "Azure 가용성 영역은 한 Azure 지역 안에서 물리적으로 분리된 데이터센터에 리소스를 분산합니다. 인프라가 독립되어 있어 데이터센터 장애에 대한 복원력을 제공하며, Azure 지역 장애로부터 보호하려면 다중 지역 설계가 필요합니다.\n\n**Learn more:** [What are Azure availability zones?](https://learn.microsoft.com/en-us/azure/reliability/availability-zones-overview) · [Redundancy, replication, and backup](https://learn.microsoft.com/en-us/azure/reliability/concept-redundancy-replication-backup)",
+    "choices": ["물리 서버 장애", "Azure 지역 장애", "저장소 장애", "Azure 데이터센터 장애"]
+  },
+  "94": {
+    "stem": "HOTSPOT —\n\n답변 영역에서 알맞은 옵션을 선택해 문장을 완성하세요.",
+    "expl": "Microsoft Sentinel 플레이북은 보안 경고나 인시던트가 발생했을 때 대응·완화 작업을 실행하는 자동화된 워크플로입니다.\n\n**Learn more:** [Microsoft Sentinel playbooks automation](https://learn.microsoft.com/en-us/azure/sentinel/automation/automate-responses-with-playbooks)",
+    "blanks": [
+      { "label": "Azure Sentinel이 플레이북을 사용하는 목적은", "options": ["위협에 자동으로 대응하기 위해", "Azure 서비스에서 데이터를 수집하기 위해", "데이터 보존 기간을 지정하기 위해", "암호와 인증서를 저장하기 위해"] }
+    ]
+  },
+  "95": {
+    "stem": "회사의 Azure 구독에 리소스가 여러 개 있습니다.\n\n각 리소스의 비용을 어느 부서가 책임지는지 파악해야 합니다.\n\n무엇을 사용해야 합니까?",
+    "expl": "Azure 태그로 리소스에 Department나 CostCenter 같은 메타데이터를 붙이면 Azure Cost Management에서 비용을 부서별로 묶고 귀속할 수 있습니다. 예산은 지출 한도를 정하고 경고는 알림을 제공합니다.\n\n**Learn more:** [Group and allocate costs using tag inheritance](https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/enable-tag-inheritance) · [Use tags to organize your Azure resources and management hierarchy](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/tag-resources)",
+    "choices": ["예산", "경고", "태그"]
+  },
+  "96": {
+    "stem": "Windows 10을 실행하는 미사용 Azure 가상 머신의 비용을 줄이려면",
+    "expl": "Azure Portal에서 VM을 중지하면 컴퓨팅 리소스가 할당 취소되어 컴퓨팅 요금이 더 이상 부과되지 않습니다. RDP 세션에서 연결을 끊거나 절전 모드로 두거나 Windows를 종료하는 것만으로는 Azure VM이 할당 취소된다고 보장할 수 없습니다.\n\n**Learn more:** [Virtual Machines - Deallocate - REST API (Azure Compute)](https://learn.microsoft.com/en-us/rest/api/compute/virtual-machines/deallocate?view=rest-compute-2025-11-01)",
+    "blanks": [
+      { "label": "해야 할 일:", "options": ["원격 데스크톱 세션에서 가상 머신 연결을 끊는다", "원격 데스크톱 세션에서 가상 머신을 절전 모드로 전환한다", "Azure Portal에서 가상 머신의 중지를 선택한다", "원격 데스크톱 세션에서 가상 머신을 종료한다"] }
+    ]
+  }
+}

@@ -1,0 +1,107 @@
+{
+  "245": {
+    "stem": "솔루션: 위치별로 리소스 그룹을 만들고 그 리소스 그룹에 리소스 잠금을 적용하도록 추천합니다.\n\n이 솔루션이 목표를 충족합니까?",
+    "expl": "Azure 리소스 잠금은 리소스의 삭제나 수정을 막을 뿐, 리소스를 만들 수 있는 Azure 지역을 제한하지는 않습니다. 승인된 지역에만 배포하도록 강제하려면 허용 위치를 제한하는 Azure Policy 할당이 필요합니다.\n\n**Learn more:** [Lock your Azure resources to protect your infrastructure](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/lock-resources) · [Tutorial: Disallow resource types in your cloud environment](https://learn.microsoft.com/en-us/azure/governance/policy/tutorials/disallowed-resources)",
+    "choices": ["예", "아니요"]
+  },
+  "246": {
+    "stem": "솔루션: Microsoft Defender for Cloud의 규정 준수 대시보드를 사용하도록 추천합니다.\n\n이 솔루션이 목표를 충족합니까?",
+    "expl": "규정 준수 대시보드는 리소스를 규정 준수 제어에 맞춰 지속적으로 평가하고 준수 상태를 보고할 뿐, 지정된 지역 밖의 배포를 막지는 못합니다. Azure 리소스를 허용된 지역에만 배포하도록 강제하는 것은 Azure Policy입니다.\n\n**Learn more:** [Regulatory compliance standards in Microsoft Defender for Cloud](https://learn.microsoft.com/en-ie/azure/defender-for-cloud/concept-regulatory-compliance-standards) · [What is Azure Policy?](https://learn.microsoft.com/en-us/azure/governance/policy/overview)",
+    "choices": ["예", "아니요"]
+  },
+  "247": {
+    "stem": "솔루션: 리소스 그룹의 위치를 강제하는 Azure Policy 이니셔티브를 사용하도록 추천합니다.\n\n이 솔루션이 목표를 충족합니까?",
+    "expl": "리소스 그룹의 위치를 강제해도 그 안에 포함된 리소스의 배포 위치는 제어되지 않습니다. 승인된 지역과 지역 내 동일 배치를 강제하려면 Azure Policy가 App Service 리소스 자체의 위치를 평가·제한해야 합니다. Microsoft 문서에 따르면 리소스 그룹 위치를 강제하는 정책은 `Microsoft.Resources/subscriptions/resourceGroups` 리소스 종류를 대상으로 하며, 새 리소스의 위치를 제한하는 것은 기본 제공 **허용된 위치** 정책입니다.\n\n**Learn more:** [Azure Policy definition structure basics](https://learn.microsoft.com/en-us/azure/governance/policy/concepts/definition-structure-basics) · [Azure Policy overview](https://learn.microsoft.com/en-us/azure/governance/policy/overview)",
+    "choices": ["예", "아니요"]
+  },
+  "248": {
+    "stem": "다음 표의 리소스가 있습니다.\n\n[[IMG1]]\n\nCDB1은 지속적으로 업데이트되는 운영 데이터를 저장하는 컨테이너를 호스트합니다.\n\n매일 AS1으로 운영 데이터를 분석하는 솔루션을 설계하고 있습니다.\n\n운영 데이터 저장소의 성능에 영향을 주지 않고 데이터를 분석하는 솔루션을 추천해야 합니다.\n\n추천에 무엇을 포함해야 합니까?",
+    "expl": "Azure Cosmos DB용 Azure Synapse Link는 격리된 분석 저장소를 Azure Synapse Analytics에 노출합니다. 분석 쿼리는 Cosmos DB 트랜잭션 워크로드와 독립적으로 실행되며 운영 데이터 저장소에 프로비저닝된 처리량을 소비하지 않습니다.\n\n**Learn more:** [What is Azure Synapse Link for Azure Cosmos DB?](https://learn.microsoft.com/en-us/azure/cosmos-db/synapse-link) · [What is Azure Cosmos DB analytical store?](https://learn.microsoft.com/en-us/azure/cosmos-db/analytical-store-introduction)",
+    "choices": [
+      "Azure Cosmos DB 변경 피드(change feed)",
+      "Azure Cosmos DB·Azure Synapse Analytics 커넥터를 사용하는 Azure Data Factory",
+      "Azure Cosmos DB용 Azure Synapse Link",
+      "PolyBase 데이터 로딩을 사용하는 Azure Synapse Analytics"
+    ]
+  },
+  "249": {
+    "stem": "민감한 데이터를 위한 Azure Storage 솔루션을 계획하고 있습니다. 데이터는 매일 접근하며 데이터 집합은 10GB 미만입니다.\n\n다음 요구 사항을 충족하는 저장소 솔루션을 추천하세요.\n\n- 저장소에 기록된 모든 데이터를 5년간 보존해야 합니다.\n- 기록한 뒤에는 읽기만 가능해야 하며 수정과 삭제를 막아야 합니다.\n- 5년이 지나면 삭제할 수 있지만 수정은 절대 불가능해야 합니다.\n- 데이터 액세스 요금을 최소화해야 합니다.",
+    "expl": "핫(Hot) 계층은 자주 접근하는 데이터에 최적화되어 있고 쿨 계층보다 액세스·트랜잭션 요금이 낮습니다. 컨테이너 수준의 시간 기반 변경 불가능 정책은 WORM 보호를 제공해, 보존 기간에는 Blob을 수정·삭제할 수 없고 기간이 끝나면 삭제는 되지만 덮어쓸 수는 없습니다. Azure Resource Manager 잠금은 데이터 평면의 Blob 삭제·덮어쓰기 작업을 막지 못합니다.\n\n**Learn more:** [Access tiers for blob data - Azure Storage](https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-overview) · [Store business-critical blob data with immutable storage in a write once, read many (WORM) state](https://learn.microsoft.com/en-us/azure/storage/blobs/immutable-storage-overview)",
+    "blanks": [
+      { "label": "저장소 계정 유형:", "options": ["프리미엄 블록 Blob", "Blob에 쿨 액세스 계층을 사용하는 범용 v2", "Blob에 핫 액세스 계층을 사용하는 범용 v2"] },
+      { "label": "수정·삭제를 막기 위한 구성:", "options": ["컨테이너 액세스 수준", "컨테이너 액세스 정책", "저장소 계정 리소스 잠금"] }
+    ]
+  },
+  "250": {
+    "stem": "다음 요구 사항을 충족하는 고가용성 Azure SQL 데이터베이스를 설계해야 합니다.\n\n- 데이터베이스 복제본 간 장애 조치 시 데이터 손실이 없어야 합니다.\n- 영역 장애가 발생해도 데이터베이스를 계속 사용할 수 있어야 합니다.\n- 비용을 최소한으로 유지해야 합니다.\n\n어떤 배포 옵션을 사용해야 합니까?",
+    "expl": "Azure SQL Database Premium은 영역 중복으로 구성해 복제본을 서로 다른 가용성 영역에 둘 수 있습니다. 주 복제본이 트랜잭션을 커밋하기 전에 변경 사항을 동기화된 보조 복제본에 기록하므로 장애 조치에 쓸 수 있는 완전히 동기화된 복제본이 항상 존재하며, Azure는 영역 장애 조치 시 데이터 손실이 예상되지 않는다고 안내합니다. Premium은 이미 복제본을 여러 개 제공하므로 영역에 분산해도 영역 중복 추가 요금이 없습니다.\n\n**Learn more:** [Reliability in Azure SQL Database](https://learn.microsoft.com/en-us/azure/reliability/reliability-sql-database)",
+    "choices": ["Azure SQL Managed Instance General Purpose", "Azure SQL Database Hyperscale", "Azure SQL Database Premium", "Azure SQL Managed Instance Business Critical"]
+  },
+  "251": {
+    "stem": "Azure SQL 데이터베이스에 투명한 데이터 암호화(TDE)가 사용되도록 하고 보안·규정 준수 요구 사항을 충족하는 Azure Policy를 구성해야 합니다.\n\n어떤 작업을 어떤 순서로 세 가지 수행해야 합니까?",
+    "expl": "TDE는 Azure SQL Database의 transparentDataEncryption 구성이 없거나 규정을 준수하지 않을 때 이를 배포해 적용하며, 이것이 deployIfNotExists 정책의 역할입니다. 기존 리소스를 수정하려면 정책 할당의 관리 ID가 필요한데, 할당에 시스템 할당 ID를 쓸 수 있으므로 사용자 할당 ID를 따로 만들 필요는 없습니다. 그다음 수정(remediation) 작업이 규정을 준수하지 않는 기존 데이터베이스에 정책 구성을 배포합니다.\n\n**Learn more:** [Remediate non-compliant resources - Azure Policy](https://learn.microsoft.com/en-us/azure/governance/policy/how-to/remediate-resources) · [Azure Policy deployIfNotExists effect](https://learn.microsoft.com/en-us/azure/governance/policy/concepts/effect-deploy-if-not-exists)",
+    "items": [
+      "deployIfNotExists 효과를 사용하는 Azure 정책 정의를 만듭니다.",
+      "수정(remediation) 작업을 실행합니다.",
+      "Modify 효과를 사용하는 Azure 정책 정의를 만듭니다.",
+      "Azure 정책 할당을 만듭니다.",
+      "사용자 할당 관리 ID를 만듭니다."
+    ],
+    "slots": ["1단계:", "2단계:", "3단계:"]
+  },
+  "252": {
+    "stem": "contoso.com이라는 Azure AD 테넌트에 연결된 Sub1이라는 Azure 구독이 있습니다.\n\nSub1의 가상 머신 100대에 App1과 App2라는 ASP.NET Core 앱 두 개를 배포할 계획입니다. 사용자는 contoso.com 자격 증명으로 두 앱에 로그인합니다.\n\nApp1은 로그인한 사용자의 일정에 접근할 읽기 권한이 필요하고, App2는 쓰기 권한이 필요합니다.\n\n최소 권한을 지키면서 관리 작업을 최소화하는 인증·권한 부여 솔루션을 추천하세요.",
+    "expl": "Azure AD 앱 등록은 ASP.NET Core 앱이 Microsoft Entra 사용자를 로그인시키고 토큰을 받도록 구성합니다. 위임된 Microsoft Graph 권한을 쓰면 각 앱이 로그인한 사용자를 대신해 그 사용자의 일정에 접근할 수 있고, App1은 Calendars.Read, App2는 Calendars.ReadWrite처럼 최소 권한으로 범위를 좁힐 수 있습니다. 애플리케이션 권한은 앱 전용 액세스이고, Azure RBAC는 Microsoft Graph 일정 액세스를 부여하지 않습니다.\n\n**Learn more:** [Overview of Microsoft Graph permissions](https://learn.microsoft.com/en-us/graph/permissions-overview) · [How to register an app in Microsoft Entra ID](https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-register-app)",
+    "blanks": [
+      { "label": "인증:", "options": ["Azure AD의 애플리케이션 등록", "시스템 할당 관리 ID", "사용자 할당 관리 ID"] },
+      { "label": "권한 부여:", "options": ["애플리케이션 권한", "Azure 역할 기반 액세스 제어(Azure RBAC)", "위임된 권한"] }
+    ]
+  },
+  "253": {
+    "stem": "Azure Monitor 에이전트가 설치된 Windows Server 2022 가상 머신 100대가 있는 Azure 구독이 있습니다.\n\n다음 요구 사항을 충족하는 솔루션을 추천하세요.\n\n- 가상 머신의 JSON 형식 로그를 Log Analytics 작업 영역으로 전달해야 합니다.\n- 로그를 변환해 Log Analytics 작업 영역의 테이블에 데이터를 저장해야 합니다.\n\n추천에 무엇을 포함해야 합니까?",
+    "expl": "Azure Monitor 데이터 수집 엔드포인트는 로그 수집과 Azure Monitor 에이전트 구성을 위한 엔드포인트를 제공합니다. 변환(transformation)은 데이터 수집 규칙에 들어가는 KQL 문으로, Azure Monitor가 대상 Log Analytics 작업 영역과 테이블로 보내기 전에 들어오는 레코드를 수정합니다.\n\n**Learn more:** [Data collection endpoints in Azure Monitor](https://learn.microsoft.com/en-us/azure/azure-monitor/data-collection/data-collection-endpoint-overview) · [Transformations in Azure Monitor](https://learn.microsoft.com/en-us/azure/azure-monitor/data-collection/data-collection-transformations)",
+    "blanks": [
+      { "label": "로그 전달용:", "options": ["Log Analytics 작업 영역에 연결된 저장소 계정", "Azure Monitor 데이터 수집 엔드포인트", "서비스 엔드포인트"] },
+      { "label": "로그 변환·저장용:", "options": ["KQL 쿼리", "WQL 쿼리", "XPath 쿼리"] }
+    ]
+  },
+  "254": {
+    "stem": "개인 식별 정보(PII)를 저장할 Azure SQL 데이터베이스를 배포할 계획입니다.\n\n권한 있는 사용자만 PII를 볼 수 있도록 해야 합니다. 솔루션에 무엇을 포함해야 합니까?",
+    "expl": "동적 데이터 마스킹은 권한이 없는 사용자에게 마스킹된 값을 반환하고 권한 있는 사용자에게는 마스킹되지 않은 데이터를 볼 권한을 줄 수 있어 민감한 열의 노출을 제한합니다. 투명한 데이터 암호화는 저장 상태의 데이터를 보호하고, 데이터 검색 및 분류는 민감한 데이터를 식별·레이블링하며, Azure RBAC는 쿼리 결과의 열 수준 마스킹을 제공하지 않습니다.\n\n**Learn more:** [Microsoft Learn — Dynamic data masking](https://learn.microsoft.com/en-us/azure/azure-sql/database/dynamic-data-masking-overview?view=azuresql)",
+    "choices": ["동적 데이터 마스킹", "역할 기반 액세스 제어(RBAC)", "데이터 검색 및 분류(Data Discovery & Classification)", "투명한 데이터 암호화(TDE)"]
+  },
+  "255": {
+    "stem": "데이터 암호화 키를 Azure Key Vault에 보관하는 Azure App Service 웹앱이 여러 개 있습니다. 여러 부서가 이 웹앱을 지원하기 위해 다음과 같이 요청했습니다.\n\n[[IMG1]]\n\n각 부서의 요청에 어떤 서비스를 추천해야 합니까?",
+    "expl": "Azure AD Privileged Identity Management는 적시(JIT)·승인 기반 권한 있는 역할 활성화, 활성화 사유 입력, 역할 할당 경고, 액세스 검토, 감사 기록을 지원합니다. Azure 관리 ID는 App Service 앱이 Azure Key Vault용 Microsoft Entra 토큰을 받게 해 주며, 그 ID에 적절한 Key Vault 역할을 부여하면 키를 가져올 수 있습니다. Azure AD Connect는 ID를 동기화하고 Azure AD Identity Protection은 ID 위험을 탐지·완화하므로 요청된 액세스 관리 기능에는 맞지 않습니다.\n\n**Learn more:** [What is Microsoft Entra Privileged Identity Management?](https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-configure) · [Use managed identities for App Service and Azure Functions](https://learn.microsoft.com/en-us/azure/app-service/overview-managed-identity)",
+    "blanks": [
+      { "label": "보안팀:", "options": ["Azure AD Privileged Identity Management", "Azure 관리 ID", "Azure AD Connect", "Azure AD Identity Protection"] },
+      { "label": "개발팀:", "options": ["Azure AD Privileged Identity Management", "Azure 관리 ID", "Azure AD Connect", "Azure AD Identity Protection"] },
+      { "label": "품질 보증팀:", "options": ["Azure AD Privileged Identity Management", "Azure 관리 ID", "Azure AD Connect", "Azure AD Identity Protection"] }
+    ]
+  },
+  "256": {
+    "stem": "Azure용 거버넌스 솔루션을 설계하고 있습니다.\n\n모든 Azure 리소스를 환경, 소유자, 부서, 비용 센터라는 운영 정보로 쉽게 식별할 수 있어야 합니다.\n\nAzure 리소스에 대한 보고서를 만들 때 이 운영 정보를 사용할 수 있어야 합니다.\n\n솔루션에 무엇을 포함해야 합니까?",
+    "expl": "Azure 태그는 환경, 소유자, 부서, 비용 센터 같은 값을 포함해 운영 분류와 보고에 쓰이는 리소스 메타데이터를 제공합니다. Azure Policy로 태그 규칙을 일관되게 적용할 수 있으며, 대규모로 태그를 요구하거나 추가할 수도 있습니다.\n\n**Learn more:** [Overview of Azure Policy](https://learn.microsoft.com/en-us/azure/governance/policy/overview) · [Tutorial: Manage tag governance with Azure Policy](https://learn.microsoft.com/en-us/azure/governance/policy/tutorials/govern-tags)",
+    "choices": [
+      "Azure REST API를 데이터 원본으로 사용하는 Azure 데이터 카탈로그",
+      "부모 그룹으로 계층을 만드는 Azure 관리 그룹",
+      "태그 규칙을 적용하는 Azure 정책",
+      "Azure Active Directory(Azure AD) 관리 단위"
+    ]
+  },
+  "257": {
+    "stem": "백엔드로 Microsoft SQL Server 인스턴스를 사용하는 온프레미스 기간 업무(LOB) 애플리케이션이 있습니다.\n\n온프레미스 SQL Server 인스턴스를 Azure 가상 머신으로 마이그레이션할 계획입니다.\n\n다음 요구 사항을 충족하는 고가용성 SQL Server 배포를 추천해야 합니다.\n\n- 비용을 최소화해야 합니다.\n- 서버 한 대에 장애가 났을 때 장애 조치 시간을 최소화해야 합니다.\n\n[[IMG1]]\n\n추천에 무엇을 포함해야 합니까?",
+    "expl": "분산 네트워크 이름(DNN) 수신기를 사용하는 Always On 가용성 그룹은 단일 서브넷 배포에서 가상 네트워크 이름(VNN) 수신기에 필요한 Azure Load Balancer를 쓰지 않아도 됩니다. 이 종속성을 없애면 배포·관리 부담이 줄고 부하 분산 장치의 상태 프로브 지연도 피할 수 있어 장애 조치가 더 빠릅니다. 가용성 그룹은 장애 조치 클러스터 인스턴스에 필요한 공유 저장소 없이 데이터베이스 수준에서 보호합니다.\n\n**Learn more:** [Configure a DNN listener for an availability group](https://learn.microsoft.com/en-us/azure/azure-sql/virtual-machines/windows/availability-group-distributed-network-name-dnn-listener-configure?view=azuresql) · [Always On availability groups on SQL Server on Azure VMs](https://learn.microsoft.com/en-us/azure/azure-sql/virtual-machines/windows/availability-group-overview?view=azuresql-vm)",
+    "choices": [
+      "프리미엄 저장소 디스크와 가상 네트워크 이름(VNN)을 사용하는 Always On 가용성 그룹",
+      "가상 네트워크 이름(VNN)과 표준 파일 공유를 사용하는 Always On 장애 조치 클러스터 인스턴스",
+      "프리미엄 저장소 디스크와 분산 네트워크 이름(DNN)을 사용하는 Always On 가용성 그룹",
+      "가상 네트워크 이름(VNN)과 프리미엄 파일 공유를 사용하는 Always On 장애 조치 클러스터 인스턴스"
+    ]
+  },
+  "258": {
+    "stem": "솔루션: 네트워크 트래픽 분석에 Azure Advisor를 사용합니다.\n\n이 솔루션이 목표를 충족합니까?",
+    "expl": "Azure Advisor는 가상 머신을 오가는 특정 패킷이 허용되는지 거부되는지 판단하지 못합니다. 그 진단은 Azure Network Watcher의 IP 흐름 확인(IP flow verify)이 구성된 보안·관리 규칙을 평가해 허용/거부 결과를 반환하며 수행합니다.\n\n**Learn more:** [IP flow verify overview — Azure Network Watcher](https://learn.microsoft.com/en-us/azure/network-watcher/ip-flow-verify-overview)",
+    "choices": ["예", "아니요"]
+  }
+}

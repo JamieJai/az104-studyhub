@@ -1,0 +1,118 @@
+{
+  "1": {
+    "stem": "Azure 구독이 있습니다.\n\n다음을 포함하는 모니터링 솔루션을 배포할 계획입니다.\n\n- Azure Monitor Network Insights\n- Application Insights\n- Microsoft Sentinel\n- VM insights\n\n한 팀이 이 모니터링 솔루션을 관리합니다.\n\n필요한 Azure Monitor 작업 영역의 최소 개수는 몇 개입니까?",
+    "expl": "하나의 Log Analytics 작업 영역으로 Azure Monitor 데이터를 수집하면서 Microsoft Sentinel도 함께 사용할 수 있습니다. 작업 영역 기반 Application Insights는 텔레메트리를 Log Analytics 작업 영역에 저장하고 VM insights도 작업 영역이 필요한데, 격리나 다른 설계 제약이 없다면 이 서비스들은 같은 작업 영역을 공유할 수 있습니다.\n\n**Learn more:** [Design a Log Analytics workspace architecture](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/workspace-design) · [Create and configure Application Insights resources](https://learn.microsoft.com/en-us/azure/azure-monitor/app/create-workspace-resource)",
+    "choices": ["1", "2", "3", "4"]
+  },
+  "2": {
+    "stem": "온프레미스 네트워크에 500GB 데이터를 저장한 Server1이라는 파일 서버가 있습니다.\n\nAzure Data Factory를 사용해 Server1의 데이터를 Azure Storage로 복사해야 합니다. 새 데이터 팩터리를 만들었습니다.\n\n다음으로 무엇을 해야 합니까?",
+    "expl": "자체 호스팅 통합 런타임(self-hosted integration runtime)이 있어야 Azure Data Factory가 온프레미스 파일 시스템에 연결해 클라우드 저장소로 데이터를 전송할 수 있습니다. 그 다음 Copy 활동이 포함된 파이프라인이 전송을 수행합니다. Azure File Sync, File Server Resource Manager, Azure Import/Export, Azure-SSIS 통합 런타임은 요구된 Data Factory 복사 경로를 제공하지 않습니다.\n\n**Learn more:** [Create and configure a self-hosted integration runtime](https://learn.microsoft.com/en-us/azure/data-factory/create-self-hosted-integration-runtime) · [Copy activity in Azure Data Factory](https://learn.microsoft.com/en-us/azure/data-factory/copy-activity-overview)",
+    "blanks": [
+      { "label": "Server1에서:", "options": ["Azure File Sync 에이전트를 설치합니다.", "자체 호스팅 통합 런타임을 설치합니다.", "File Server Resource Manager 역할 서비스를 설치합니다."] },
+      { "label": "데이터 팩터리에서:", "options": ["파이프라인을 만듭니다.", "Azure Import/Export 작업을 만듭니다.", "Azure-SQL Server Integration Services(SSIS) 통합 런타임을 프로비저닝합니다."] }
+    ]
+  },
+  "3": {
+    "stem": "Azure 구독이 있습니다. 이 구독에는 Azure Container Instances에서 호스트되는 여러 컨테이너에 분산된 App1이라는 계층형 앱이 있습니다.\n\nApp1을 위한 Azure Monitor 모니터링 솔루션을 배포해야 합니다. 솔루션은 다음 요구 사항을 충족해야 합니다.\n\n- App1 구성 요소 간 트래픽에 대한 합성 트랜잭션 모니터링을 지원해야 합니다.\n- 개발 작업을 최소화해야 합니다.\n\n솔루션에 무엇을 포함해야 합니까?",
+    "expl": "Application Insights는 합성 모니터링용 가용성 테스트를 제공합니다. 이 테스트는 애플리케이션 엔드포인트에 주기적으로 웹 요청을 보내 가용성과 응답성을 확인하며, 대상 애플리케이션이나 웹사이트를 수정할 필요가 없습니다. 따라서 개발 작업을 최소화하면서 구성 요소 간 상호작용을 모니터링할 수 있습니다.\n\n**Learn more:** [Application Insights availability tests - Azure Monitor](https://learn.microsoft.com/en-us/azure/azure-monitor/app/availability)",
+    "choices": ["Network insights", "Application Insights", "Container insights", "Log Analytics Workspace insights"]
+  },
+  "4": {
+    "stem": "여러 Azure SQL Database 인스턴스를 배포했습니다. 다음 그림과 같이 데이터베이스의 진단 설정을 구성할 계획입니다.\n\n[[IMG1]]",
+    "expl": "활성화된 SQLInsights 로그 범주는 보존 정책이 90일이며 저장소 계정에 보관됩니다. Log Analytics 작업 영역의 분석 데이터 보존은 최대 730일까지 설정할 수 있습니다.\n\n**Learn more:** [Configure data retention for a Log Analytics workspace in Microsoft Azure](https://learn.microsoft.com/en-us/troubleshoot/azure/azure-monitor/log-analytics/billing/configure-data-retention) · [Set up diagnostic logs via the Azure Monitor REST API](https://learn.microsoft.com/en-us/azure/data-factory/monitor-logs-rest)",
+    "blanks": [
+      { "label": "저장소 계정에 보관되는 기간:", "options": ["30일", "90일", "730일", "무기한"] },
+      { "label": "Log Analytics에서 설정 가능한 최대 보존 기간:", "options": ["30일", "90일", "730일", "무기한"] }
+    ]
+  },
+  "5": {
+    "stem": "store1이라는 Azure Blob Storage 계정이 포함된 Azure 구독이 있습니다.\n\nWindows Server 2016을 실행하는 Server1이라는 온프레미스 파일 서버가 있습니다. Server1에는 회사 파일 500GB가 저장되어 있습니다.\n\nServer1의 회사 파일 사본을 store1에 저장해야 합니다.\n\n이 목표를 달성할 수 있는 Azure 서비스 두 가지는 무엇입니까? 각 정답은 완전한 솔루션입니다.\n\n**참고:** 각 정답은 1점입니다.",
+    "expl": "Azure Import/Export는 준비한 디스크 드라이브를 Azure 데이터센터로 보내 Azure Blob Storage로 데이터를 가져오는 방식을 지원합니다. Azure Data Factory의 Copy 활동은 자체 호스팅 통합 런타임으로 온프레미스 원본에 접근할 수 있을 때 온프레미스 파일 시스템의 파일을 Azure Blob Storage로 복사할 수 있습니다.\n\n**Learn more:** [Azure Import/Export service overview](https://learn.microsoft.com/en-us/azure/import-export/storage-import-export-service) · [Copy activity in Azure Data Factory and Azure Synapse Analytics](https://learn.microsoft.com/en-us/azure/data-factory/copy-activity-overview)",
+    "choices": ["Azure Logic Apps 통합 계정", "Azure Import/Export 작업", "Azure Data Factory", "Azure Analysis Services 온프레미스 데이터 게이트웨이", "Azure Batch 계정"]
+  },
+  "6": {
+    "stem": "사용자 생성과 역할 할당을 수집하는 아키텍처를 설계해야 합니다. 수집한 데이터는 Azure Cosmos DB에 저장해야 합니다.\n\n설계에 어떤 서비스를 포함해야 합니까?\n\n각 서비스는 한 번, 여러 번 사용하거나 전혀 사용하지 않을 수 있습니다.",
+    "expl": "Microsoft Entra ID 감사 로그는 진단 설정을 통해 Azure Event Hubs로 스트리밍할 수 있습니다. Event Hubs로 트리거되는 Azure Function이 각 감사 이벤트를 처리해 Cosmos DB 출력 바인딩이나 SDK로 Azure Cosmos DB에 씁니다.\n\n**Learn more:** [How to stream activity logs to an event hub](https://learn.microsoft.com/en-us/entra/identity/monitoring-health/howto-stream-logs-to-event-hub) · [Azure Event Hubs trigger for Azure Functions](https://learn.microsoft.com/en-us/azure/azure-functions/functions-bindings-event-hubs-trigger)",
+    "items": ["Azure Event Grid", "Azure Event Hubs", "Azure Functions", "Azure Monitor Logs", "Azure Notification Hubs"],
+    "slots": ["감사 로그를 받는 서비스:", "Cosmos DB에 기록하는 서비스:"]
+  },
+  "7": {
+    "stem": "휴가 신청을 확인하는 데 6,000명이 사용하는 애플리케이션이 있습니다. 이 애플리케이션은 자체 자격 증명 저장소를 유지합니다.\n\n사용자는 애플리케이션에 접근하려면 사용자 이름과 암호를 입력해야 합니다. 이 애플리케이션은 ID 공급자를 지원하지 **않습니다**.\n\nAzure Active Directory(Azure AD) 애플리케이션 등록을 사용해 Single Sign-On(SSO) 인증을 쓰도록 이 애플리케이션을 업그레이드할 계획입니다.\n\n어떤 SSO 방식을 사용해야 합니까?",
+    "expl": "암호 기반(password-based) SSO는 애플리케이션이 원래 쓰던 사용자 이름·암호 인증 절차를 그대로 사용합니다. Microsoft Entra ID가 애플리케이션 자격 증명을 안전하게 저장했다가 로그인 시 대신 입력해 주므로, SAML이나 OpenID Connect 페더레이션을 지원하지 않는 애플리케이션에 적합합니다.\n\n**Learn more:** [Add password-based single sign-on to an application](https://learn.microsoft.com/en-us/entra/identity/enterprise-apps/configure-password-single-sign-on-non-gallery-applications)",
+    "choices": ["헤더 기반(header-based)", "SAML", "암호 기반(password-based)", "OpenID Connect"]
+  },
+  "8": {
+    "stem": "Azure 구독에서 새로 배포된 모든 Azure Resource Manager(ARM) 리소스에 대한 월간 보고서를 만드는 솔루션을 추천해야 합니다.\n\n추천에 무엇을 포함해야 합니까?",
+    "expl": "Azure 활동 로그(Activity Log)는 Azure Resource Manager를 통해 수행된 구독 수준의 제어 평면 작업을 기록하며, 여기에는 리소스 만들기·업데이트·삭제와 배포 관련 작업이 포함됩니다. 따라서 매월 새 배포를 필터링해 보고서의 원본으로 쓸 수 있습니다.\n\n**Learn more:** [Activity log in Azure Monitor](https://learn.microsoft.com/en-us/azure/azure-monitor/platform/activity-log) · [Azure Activity Log event schema](https://learn.microsoft.com/en-us/azure/azure-monitor/platform/activity-log-schema)",
+    "choices": ["Azure 활동 로그(Activity Log)", "Azure Advisor", "Azure Analysis Services", "Azure Monitor 작업 그룹(action group)"]
+  },
+  "9": {
+    "stem": "데이터베이스 50개를 호스트하는 SQL1이라는 온프레미스 Microsoft SQL Server가 있습니다.\n\nSQL1을 Azure SQL Managed Instance로 마이그레이션할 계획입니다.\n\nSQL1의 오프라인 마이그레이션을 수행해야 합니다. 솔루션은 관리 작업을 최소화해야 합니다.\n\n솔루션에 무엇을 포함해야 합니까?",
+    "expl": "Azure Database Migration Service는 SQL Server에서 Azure SQL Managed Instance로의 오프라인 마이그레이션을 지원하고 마이그레이션 과정을 중앙에서 조율하므로, 많은 데이터베이스를 옮길 때 필요한 관리 작업을 줄여 줍니다.\n\n**Learn more:** [Migration overview: SQL Server to Azure SQL Managed Instance](https://learn.microsoft.com/en-us/data-migration/sql-server/managed-instance/overview) · [What is Azure Database Migration Service?](https://learn.microsoft.com/en-us/azure/dms/dms-overview)",
+    "choices": ["Azure Migrate", "Azure Database Migration Service", "SQL Server Migration Assistant(SSMA)", "Data Migration Assistant(DMA)"]
+  },
+  "10": {
+    "stem": "여러 온프레미스 Microsoft SQL Server 데이터베이스의 대용량 데이터를 Azure 분석 플랫폼으로 통합하는 데이터 파이프라인을 설계하고 있습니다. 파이프라인은 다음 작업을 포함합니다.\n\n- 데이터베이스 업데이트를 주기적으로 Azure Blob Storage의 준비 영역으로 내보냅니다.\n- Blob Storage의 데이터를 고도로 병렬화된 로드 프로세스로 정제·변환합니다.\n- 변환된 데이터를 데이터 웨어하우스에 로드합니다.\n- 각 업데이트 배치가 관리형 서비스 계층의 OLAP 모델을 새로 고칩니다.\n- 관리형 서비스 계층은 수천 명의 최종 사용자에게 서비스합니다.\n\n데이터 웨어하우스 계층과 서비스 계층을 구현해야 합니다. 무엇을 사용해야 합니까?",
+    "expl": "Azure Synapse Analytics 전용 SQL 풀은 SQL 테이블에 저장된 데이터에 예약된 분산 SQL 컴퓨팅을 제공하며 엔터프라이즈 데이터 웨어하우징 워크로드를 위한 것입니다. Azure Analysis Services는 테이블 형식 시맨틱 모델을 위한 완전 관리형 서비스로 사용자 동시성을 탄력적으로 확장할 수 있어, 수천 명이 사용하는 OLAP 서비스 계층에 적합합니다.\n\n**Learn more:** [What is Azure Synapse Analytics?](https://learn.microsoft.com/en-us/azure/synapse-analytics/overview-what-is) · [What is Azure Analysis Services?](https://learn.microsoft.com/en-us/analysis-services/azure-analysis-services/analysis-services-overview?view=sql-analysis-services-2025)",
+    "blanks": [
+      { "label": "데이터 웨어하우스 구현:", "options": ["Azure Synapse Analytics의 Apache Spark 풀", "Azure Synapse Analytics 전용 SQL 풀", "Azure Data Lake Analytics"] },
+      { "label": "서비스 계층 구현:", "options": ["Azure Analysis Services", "Azure Synapse Analytics의 Apache Spark 풀", "Azure Synapse Analytics 전용 SQL 풀"] }
+    ]
+  },
+  "11": {
+    "stem": "Microsoft SQL Server, MySQL, Oracle 데이터베이스로 구성된 고객 정보 데이터 원본 12개가 온프레미스에 있습니다.\n\nAzure 구독이 있습니다.\n\n분석·보고를 위해 고객 정보를 통합할 Azure Data Lake Storage 계정을 만들 계획입니다.\n\n추출·변환·로드(ETL)를 사용해 데이터 원본의 새 정보를 Data Lake Storage 계정으로 자동 복사하는 솔루션을 추천해야 합니다. 솔루션은 관리 작업을 최소화해야 합니다.\n\n추천에 무엇을 포함해야 합니까?",
+    "expl": "Azure Data Factory는 예약된 ETL 파이프라인을 조율하는 관리형 클라우드 데이터 통합 서비스입니다. Copy 활동이 자체 호스팅 통합 런타임을 통해 지원되는 온프레미스 데이터베이스 원본에서 Azure Data Lake Storage로 데이터를 옮길 수 있고, 파이프라인에서 변환과 증분 로드 로직을 적용하면서도 인프라 관리 부담이 적습니다.\n\n**Learn more:** [Copy activity in Azure Data Factory](https://learn.microsoft.com/en-us/azure/data-factory/copy-activity-overview) · [Copy and transform data to and from SQL Server using Azure Data Factory](https://learn.microsoft.com/en-us/azure/data-factory/connector-sql-server)",
+    "choices": ["Azure Data Factory", "Azure Data Explorer", "Azure Data Share", "Azure Data Studio"]
+  },
+  "12": {
+    "stem": "Azure 구독에서 새로 배포되는 모든 Azure Resource Manager(ARM) 리소스에 대한 월간 보고서를 만드는 솔루션을 추천해야 합니다.\n\n추천에 무엇을 포함해야 합니까?",
+    "expl": "Azure Log Analytics는 내보낸 Azure 활동 로그 데이터를 `AzureActivity` 테이블에 저장하고 KQL로 조회할 수 있습니다. 활동 로그에는 리소스 만들기와 배포 관련 작업 등 Azure Resource Manager 제어 평면 작업이 기록되므로 월간 배포 보고서를 만들 수 있습니다.\n\n**Learn more:** [Activity log in Azure Monitor](https://learn.microsoft.com/en-us/azure/azure-monitor/platform/activity-log) · [Monitor Azure Resource Manager](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/monitor-resource-manager)",
+    "choices": ["Azure Log Analytics", "Azure Analysis Services", "Azure Monitor 메트릭", "Azure Monitor 작업 그룹(action group)"]
+  },
+  "13": {
+    "stem": "온프레미스 SQL Server 데이터베이스 10개를 대상으로 하도록 구성된 Microsoft SQL Server Integration Services(SSIS) 패키지가 100개 있습니다.\n\n온프레미스 데이터베이스 10개를 Azure SQL Database로 마이그레이션할 계획입니다.\n\nAzure-SQL Server Integration Services(SSIS) 패키지를 만드는 솔루션을 추천해야 합니다. 솔루션은 패키지가 SQL Database 인스턴스를 대상으로 삼을 수 있게 해야 합니다.\n\n추천에 무엇을 포함해야 합니까?",
+    "expl": "Azure Data Factory는 Azure에서 SSIS 패키지를 배포·실행할 수 있는 Azure-SSIS 통합 런타임을 제공합니다. Azure SQL Database에 호스트되는 SSISDB와 Azure SQL Database 서버 엔드포인트 연결을 지원하므로 패키지가 Azure SQL Database 인스턴스를 대상으로 쓸 수 있습니다.\n\n**Learn more:** [Create an Azure-SSIS integration runtime in Azure Data Factory](https://learn.microsoft.com/en-us/azure/data-factory/create-azure-ssis-integration-runtime) · [Deploy SSIS packages in Azure Data Factory](https://learn.microsoft.com/en-us/azure/data-factory/create-azure-ssis-integration-runtime-deploy-packages)",
+    "choices": ["Data Migration Assistant(DMA)", "Azure Data Factory", "Azure Data Catalog", "SQL Server Migration Assistant(SSMA)"]
+  },
+  "14": {
+    "stem": "여러 국가의 판매 데이터를 집계하는 데 Azure Cosmos DB를 사용할 앱을 설계하고 있습니다.\n\n앱에 사용할 API를 추천해야 합니다. 솔루션은 다음 요구 사항을 충족해야 합니다.\n\n- SQL 쿼리를 지원해야 합니다.\n- 지역 복제(geo-replication)를 지원해야 합니다.\n- 데이터를 관계형으로 저장하고 접근해야 합니다.\n\n어떤 API를 추천해야 합니까?",
+    "expl": "Azure Cosmos DB for PostgreSQL은 PostgreSQL 기반의 관리형 분산 SQL 데이터베이스입니다. 데이터를 관계형 테이블에 저장하고 SQL 쿼리를 지원하며, 분산 아키텍처로 지리적으로 분산된 배포를 지원합니다. 나머지 API들은 비관계형 데이터 모델을 씁니다.\n\n**Learn more:** [Azure Cosmos DB for PostgreSQL documentation](https://learn.microsoft.com/en-us/azure/cosmos-db/postgresql/)",
+    "choices": ["Apache Cassandra", "PostgreSQL", "MongoDB", "NoSQL"]
+  },
+  "15": {
+    "stem": "Azure Kubernetes Service(AKS) 클러스터에서 컨테이너로 실행될 App1이라는 애플리케이션을 배포할 계획입니다. AKS 클러스터는 Azure 4개 지역에 배치됩니다.\n\n업데이트된 컨테이너 이미지가 AKS 클러스터를 호스트하는 모든 Azure 지역에 자동으로 복제되도록 하는 저장소 솔루션을 추천해야 합니다.\n\n어떤 저장소 솔루션을 추천해야 합니까?",
+    "expl": "Azure Container Registry 지역 복제(geo-replication)는 푸시된 컨테이너 이미지 콘텐츠를 선택한 Azure 지역의 복제본에 자동으로 동기화합니다. 지역 복제는 Premium SKU에서 제공되며, 각 지역의 AKS 배포가 가까운 레지스트리 복제본에서 이미지를 가져올 수 있습니다.\n\n**Learn more:** [Geo-replication in Azure Container Registry](https://learn.microsoft.com/en-us/azure/container-registry/container-registry-geo-replication)",
+    "choices": ["지역 중복 저장소(GRS) 계정", "Premium SKU Azure Container Registry", "Azure Content Delivery Network(CDN)", "Azure Cache for Redis"]
+  },
+  "16": {
+    "stem": "App1의 데이터 요구 사항을 충족하는 솔루션을 추천해야 합니다.\n\nApp1 인스턴스를 호스트하는 모든 가용성 영역에 무엇을 배포해야 합니까?",
+    "expl": "Azure Cosmos DB의 다중 지역 쓰기는 구성된 지역 전체에 능동-능동 쓰기·읽기를 제공하므로, 애플리케이션 인스턴스가 로컬의 쓰기 가능한 데이터베이스 엔드포인트를 사용하고 Cosmos DB가 전역으로 복제합니다. GZRS는 Azure Storage 계정 하나의 복제 설정일 뿐, 각 가용성 영역에 배포하는 별도의 데이터 서비스가 아닙니다.\n\n**Learn more:** [Distribute Data Globally - Azure Cosmos DB](https://learn.microsoft.com/en-us/azure/cosmos-db/distribute-data-globally) · [Data redundancy - Azure Storage](https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy)",
+    "choices": ["다중 지역 쓰기를 사용하는 Azure Cosmos DB", "지역 영역 중복 저장소(GZRS)를 사용하는 Azure Data Lake 저장소", "지역 영역 중복 저장소(GZRS)를 사용하는 Azure Storage 계정"]
+  },
+  "17": {
+    "stem": "Azure 가상 머신에서 실행할 App1이라는 다중 계층 애플리케이션을 만들고 있습니다. App1은 평일 오전 8시~9시, 오후 4시~5시에 사용량이 최고조에 이릅니다.\n\n다음 요구 사항을 충족하도록 App1 인프라를 배포합니다.\n\n- Azure 2개 지역의 가용성 영역 4곳에 배포된 가상 머신을 지원해야 합니다.\n- 사용량이 적은 시간에 CPU 크레딧을 쌓아 비용을 줄여야 합니다.\n\n배포할 가상 네트워크의 최소 개수와 사용할 가상 머신 크기는 무엇입니까?",
+    "expl": "가상 네트워크와 서브넷은 한 Azure 지역 안의 가용성 영역에 걸쳐 있으므로, 두 지역에 배포하려면 가상 네트워크가 최소 두 개 필요합니다. Azure B 시리즈 VM은 기준 CPU 성능 이하로 쓰는 동안 CPU 크레딧을 쌓아 두었다가 CPU 수요가 높을 때 사용하므로 간헐적인 피크에 적합합니다.\n\n**Learn more:** [Azure virtual network overview](https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-overview) · [B family VM size series](https://learn.microsoft.com/en-us/azure/virtual-machines/sizes/general-purpose/b-family)",
+    "blanks": [
+      { "label": "가상 네트워크 개수:", "options": ["1", "2", "3", "4"] },
+      { "label": "가상 머신 크기:", "options": ["A 시리즈", "B 시리즈", "D 시리즈", "M 시리즈"] }
+    ]
+  },
+  "18": {
+    "stem": "App1이라는 Azure 웹앱과 KV1이라는 Azure Key Vault가 있습니다. App1은 데이터베이스 연결 문자열을 KV1에 저장합니다.\n\nApp1은 KV1에 대해 다음 요청 유형을 수행합니다.\n\n- Get\n- List\n- Wrap\n- Delete\n- Unwrap\n\n[[IMG1]]\n\n- Backup\n- Decrypt\n- Encrypt\n\nApp1의 서비스 연속성을 평가하고 있습니다. KV1을 호스트하는 Azure 지역을 사용할 수 없게 되면 다음을 판단하세요.\n\n- KV1이 어디로 장애 조치되는지\n- 장애 조치 동안 어떤 요청 유형을 사용할 수 없는지",
+    "expl": "Azure Key Vault는 지원되는 자격 증명 모음을 Azure 쌍 지역(paired region)으로 복제하며 Microsoft가 지역 장애 조치를 시작할 수 있습니다. 장애 조치 후 자격 증명 모음은 읽기 전용이 됩니다. 사용 가능한 작업은 Get, List, Wrap, Unwrap, Backup, Decrypt, Encrypt이며 Delete는 사용할 수 없습니다.\n\n**Learn more:** [Reliability in Azure Key Vault](https://learn.microsoft.com/en-us/azure/reliability/reliability-key-vault)",
+    "blanks": [
+      { "label": "KV1은 어디로 장애 조치됩니까?", "options": ["같은 가용성 집합의 서버", "같은 장애 도메인의 서버", "쌍 지역(paired region)의 서버", "확장 집합의 가상 머신"] },
+      { "label": "장애 조치 동안 사용할 수 없는 요청 유형은?", "options": ["Get", "List", "Wrap", "Delete", "Unwrap", "Backup", "Decrypt", "Encrypt"] }
+    ]
+  },
+  "19": {
+    "stem": "사용자를 위해 콘텐츠를 집계하는 애플리케이션을 설계하고 있습니다.\n\n애플리케이션에 사용할 데이터베이스 솔루션을 추천해야 합니다. 솔루션은 다음 요구 사항을 충족해야 합니다.\n\n- SQL 명령을 지원해야 합니다.\n- 다중 마스터 쓰기를 지원해야 합니다.\n- 낮은 대기 시간의 읽기 작업을 보장해야 합니다.\n\n추천에 무엇을 포함해야 합니까?",
+    "expl": "Azure Cosmos DB SQL API는 JSON 데이터에 대한 SQL 유사 쿼리를 제공하고 다중 지역 능동-능동 쓰기를 지원하며, 데이터를 여러 지역에 복제하므로 사용자 가까이에서 낮은 대기 시간으로 읽기를 처리할 수 있습니다.\n\n**Learn more:** [Azure Cosmos DB overview](https://learn.microsoft.com/en-us/cosmos-db/overview) · [Configure multi-region writes in applications that use Azure Cosmos DB](https://learn.microsoft.com/en-us/azure/cosmos-db/how-to-multi-master)",
+    "choices": ["Azure Cosmos DB SQL API", "활성 지역 복제를 사용하는 Azure SQL Database", "Azure SQL Database Hyperscale", "Azure Database for PostgreSQL"]
+  },
+  "20": {
+    "stem": "온프레미스 Active Directory 도메인과 동기화된 Azure Active Directory(Azure AD) 테넌트가 있습니다.\n\n온프레미스에서 호스트되는 WebApp1이라는 내부 웹앱이 있습니다. WebApp1은 통합 Windows 인증을 사용합니다.\n\n일부 사용자는 원격으로 근무하며 온프레미스 네트워크에 대한 VPN 액세스가 **없습니다**.\n\n원격 사용자에게 WebApp1에 대한 Single Sign-On(SSO) 액세스를 제공해야 합니다.\n\n솔루션에 포함해야 하는 두 가지 기능은 무엇입니까? 각 정답은 솔루션의 일부입니다.\n\n**참고:** 각 정답은 1점입니다.",
+    "expl": "Azure AD 애플리케이션 프록시는 VPN 없이 온프레미스 웹 애플리케이션을 원격 접근용으로 안전하게 게시합니다. 통합 Windows 인증을 사용하는 애플리케이션의 경우 애플리케이션 프록시가 Kerberos 제한 위임(KCD)을 통해 SSO를 지원합니다. 게시된 애플리케이션은 Azure AD 엔터프라이즈 애플리케이션으로 만들고 구성해 사용자에게 할당합니다.\n\n**Learn more:** [Microsoft Entra application proxy](https://learn.microsoft.com/en-us/entra/identity/app-proxy/overview-what-is-app-proxy) · [Kerberos Constrained Delegation for SSO to apps with Application Proxy](https://learn.microsoft.com/en-us/entra/identity/app-proxy/how-to-configure-sso-with-kcd)",
+    "choices": ["Azure AD 애플리케이션 프록시", "Azure AD Privileged Identity Management(PIM)", "조건부 액세스 정책", "Azure Arc", "Azure AD 엔터프라이즈 애플리케이션", "Azure Application Gateway"]
+  }
+}
