@@ -49,10 +49,15 @@
     return r;
   }
   function runIdOf(run) { return String(run?.id || run?.at || run?.finishedAt || ""); }
-  function sessionJson() { return JSON.stringify(state.session || null); }
+  function sessionJson() {
+    if (!state.session) return "null";
+    const { answeredNow, ...rest } = state.session;   // 잠금 상태는 기기 로컬 정보라 서버에 올리지 않는다
+    return JSON.stringify(rest);
+  }
 
   function adoptRemote(remote) {
-    state.records = (remote && typeof remote.progress === "object" && remote.progress) ? remote.progress : {};
+    const incoming = (remote && typeof remote.progress === "object" && remote.progress) ? remote.progress : {};
+    state.records = Object.fromEntries(Object.entries(incoming).filter(([, v]) => !isEmptyRecord(v)));
     state.examRuns = Array.isArray(remote?.examRuns) ? remote.examRuns : [];
     state.session = (remote && remote.session && Array.isArray(remote.session.queue)) ? remote.session : null;
     lastSent = {};
@@ -86,12 +91,12 @@
   }
   function buildDelta() {
     const records = {};
-    for (const [k, v] of Object.entries(state.records || {})) { const j = JSON.stringify(v); if (lastSent[k] !== j) records[k] = v; }
+    for (const [k, v] of Object.entries(state.records || {})) { if (isEmptyRecord(v)) continue; const j = JSON.stringify(v); if (lastSent[k] !== j) records[k] = v; }
     const sesJson = sessionJson();
     const examRuns = (state.examRuns || []).filter(r => !sentRuns.has(runIdOf(r)));
     const body = {};
     if (Object.keys(records).length) body.records = records;
-    if (sesJson !== lastSession) body.session = state.session || { queue: [] };
+    if (sesJson !== lastSession) body.session = JSON.parse(sesJson) || { queue: [] };
     if (examRuns.length) body.examRuns = examRuns;
     return { body, sesJson, empty: !body.records && !body.session && !body.examRuns };
   }
@@ -219,10 +224,15 @@
     try { await fetch("/api/auth/logout", { method: "POST" }); } catch { /* ignore */ }
     location.replace("/");
   }
+  // 쓰기용: 없으면 만든다
   function recordFor(n) {
     if (!state.records[n]) state.records[n] = { result: null, attempts: 0, wrongCount: 0, bookmarked: false, selected: null, updatedAt: null };
     return state.records[n];
   }
+  // 읽기용: 없으면 빈 객체를 돌려줄 뿐 저장하지 않는다 (문항을 보기만 해도 기록이 생기면 안 된다)
+  function peekRecord(n) { return state.records[n] || {}; }
+  // 아무 내용도 없는 기록 (보기만 한 문항) 은 서버에 올리지 않는다
+  function isEmptyRecord(r) { return !r || (!r.result && !r.bookmarked && !r.attempts); }
 
   // ---------- 유틸 ----------
   function escapeHtml(v = "") { return String(v).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c])); }
@@ -467,7 +477,7 @@
     $("sessionPosition").textContent = `${s.cursor + 1} / ${s.queue.length}`;
     $("sessionMode").textContent = s.mode === "exam" ? `${s.real ? "실전 모의고사" : "모의고사"}${s.points ? " · " + s.points + "점" : ""}${s.timed ? " · 시간제한" : ""}` : (s.title || "연습");
     $("sessionBar").style.width = ((s.cursor + 1) / s.queue.length * 100) + "%";
-    const rec = recordFor(q.n);
+    const rec = peekRecord(q.n);
     $("bookmarkButton").textContent = rec.bookmarked ? "★ 북마크됨" : "☆ 북마크";
     $("bookmarkButton").classList.toggle("active", rec.bookmarked);
 
@@ -482,11 +492,12 @@
     $("questionTextKo").innerHTML = mdToHtml(inSet ? q.askKo : q.stemKo);
     const kw = $("koWrap"); kw.classList.toggle("hidden", !!q.koMissing); kw.open = !!state.koOpen;
     // 3) 답 입력
-    const prior = s.mode === "exam" ? (s.answers[q.n] || null) : (rec.result ? { selected: rec.selected, graded: true } : null);
+    const answeredNow = s.mode !== "exam" && s.answeredNow && s.answeredNow[q.n] && rec.result;
+    const prior = s.mode === "exam" ? (s.answers[q.n] || null) : (answeredNow ? { selected: rec.selected, graded: true } : null);
     renderControls(q, prior);
     // 4) 피드백/해설
     $("feedback").classList.add("hidden"); $("explanation").classList.add("hidden");
-    if (s.mode !== "exam" && rec.result) { const g = grade(q, rec.selected); showFeedback(g, q); showExplanation(q, g); }
+    if (answeredNow) { const g = grade(q, rec.selected); showFeedback(g, q); showExplanation(q, g); }
     renderReportBar(q);
     $("prevButton").disabled = s.cursor === 0;
     $("nextButton").textContent = s.cursor === s.queue.length - 1 ? (s.mode === "exam" ? "제출하고 채점 →" : "세션 종료 →") : "다음 →";
@@ -649,6 +660,7 @@
       return;
     }
     const g = grade(q, sel);
+    if (s) { s.answeredNow = s.answeredNow || {}; s.answeredNow[q.n] = true; }
     updateRecord(q, g, sel);
     renderControls(q, { selected: sel, graded: true });
     showFeedback(g, q); showExplanation(q, g);
