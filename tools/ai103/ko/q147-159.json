@@ -1,0 +1,66 @@
+{
+  "147": {
+    "stem": "솔루션: Content Safety Studio에서 **온라인 활동 모니터링** 기능으로 테스트를 실행합니다.\n\n이 솔루션이 요구 사항을 충족합니까?",
+    "expl": "콘텐츠 필터 구성은 샘플 텍스트를 받아 구성 가능한 범주 임계값을 적용하고 다시 실행해 필터 동작을 평가할 수 있는 Content Safety Studio의 조정 테스트 환경으로 테스트해야 합니다. 온라인 활동 모니터링은 샘플 콘텐츠로 구성을 테스트하는 기능이 아닙니다.\n\n**Learn more:** [Quickstart: Analyze text content - Azure AI services](https://learn.microsoft.com/en-us/azure/ai-services/content-safety/quickstart-text)",
+    "choices": ["예", "아니요"]
+  },
+  "148": {
+    "stem": "식품용 골판지 포장을 만드는 공장을 운영하고 있으며 공장의 인터넷 연결은 간헐적입니다.\n\n포장에는 모든 제품의 샘플이 네 개씩 들어 있어야 합니다.\n\n포장 결함을 식별해 위치를 작업자에게 알려 주고 모든 포장에 제품 네 개가 들어 있는지 확인하는 Azure Custom Vision 모델을 만들어야 합니다.\n\n어떤 프로젝트 유형과 도메인을 사용해야 합니까? 각 옵션은 한 번, 여러 번 사용하거나 전혀 사용하지 않을 수 있습니다.",
+    "expl": "결함의 경계 상자 위치를 반환하고 제품 인스턴스를 여러 개 탐지해 작업자가 샘플 네 개가 있는지 확인할 수 있어야 하므로 개체 탐지가 필요합니다. 인터넷 연결이 불안정한 상황에서 로컬 추론을 위해 내보낼 수 있는 소형 모델이 필요하므로 General (compact) 도메인이 적합합니다.",
+    "items": ["Food", "General", "General (compact)", "이미지 분류", "Logo", "개체 탐지"],
+    "slots": ["프로젝트 유형:", "도메인:"]
+  },
+  "149": {
+    "stem": "MCP(Model Context Protocol) 호출로 외부 데이터를 가져오는 Agent1이라는 에이전트가 있습니다.\n\nAgent1이 폭력(Violence)으로 태그된 콘텐츠를 MCP 서버로 보내지 못하도록 가드레일을 구현해야 합니다.\n\n어떤 개입 지점을 사용해야 합니까?",
+    "expl": "도구 호출(tool call) 개입 지점은 에이전트가 외부 도구로 보내려는 작업과 인수를 요청 데이터까지 포함해 평가합니다. 거기서 폭력 태그 콘텐츠를 차단하면 호출이 실행되기 전에 해당 콘텐츠가 MCP 서버로 전송되는 것을 막을 수 있습니다.\n\n**Learn more:** [Intervention points concepts - Microsoft Foundry](https://learn.microsoft.com/en-us/azure/foundry/guardrails/intervention-points) · [Guardrails and controls overview in Microsoft Foundry](https://learn.microsoft.com/en-in/azure/ai-foundry/guardrails/guardrails-overview?view=foundry-classic)",
+    "choices": ["도구 호출", "사용자 입력", "도구 응답", "출력"]
+  },
+  "150": {
+    "stem": "Microsoft Foundry 프로젝트에 구성 가능한 가드레일이 있습니다.\n\n한 Python 애플리케이션에는 사용자 메시지에서 탐지할 용어가 이미 들어 있는 `ConfidentialTerms`라는 텍스트 차단 목록이 있습니다. 들어오는 사용자 메시지는 `input_text`에 저장됩니다.\n\n텍스트를 언어 모델에 보내기 전에 `input_text`를 조정할 계획입니다.\n\n기존 차단 목록으로 `input_text`를 분석해야 합니다.\n\n코드를 어떻게 완성해야 합니까?",
+    "expl": "`AnalyzeTextOptions`는 텍스트 조정 요청을 만들며 기존 차단 목록을 제공하는 `blocklist_names`를 지원합니다. `client.analyze_text(request)`가 그 요청을 텍스트 분석으로 제출하며, 이미지 분석이나 차단 목록 관리 메서드는 필요한 텍스트 조정을 수행하지 않습니다.\n\n**Learn more:** [AnalyzeTextOptions Class — Azure AI Content Safety Python](https://learn.microsoft.com/en-us/python/api/azure-ai-contentsafety/azure.ai.contentsafety.models.analyzetextoptions?view=azure-python) · [ContentSafetyClient Class — Azure AI Content Safety Python](https://learn.microsoft.com/en-us/python/api/azure-ai-contentsafety/azure.ai.contentsafety.contentsafetyclient?view=azure-python)",
+    "blanks": [
+      { "label": "요청 옵션:", "options": ["AddOrUpdateTextBlocklistItemsOptions", "AnalyzeImageOptions", "AnalyzeTextOptions", "TextBlocklist"] },
+      { "label": "분석 호출:", "options": ["client.add_or_update_blocklist_items", "client.analyze_image", "client.analyze_text", "client.list_text_blocklists"] }
+    ]
+  },
+  "152": {
+    "stem": "Azure 구독에 Microsoft Foundry 리소스가 있습니다.\n\n제공된 제품 설명으로 제품 이름을 제안하는 앱을 만들어야 합니다.\n\n어떤 Foundry 모델을 사용해야 합니까?",
+    "expl": "GPT-4는 제품 설명을 이해하고 알맞은 제품 이름을 자연어 텍스트로 생성할 수 있습니다. 임베딩 모델은 유사도 작업을 위한 수치 벡터를 만들고, DALL-E는 이미지를 생성하며, Whisper는 음성 텍스트 변환을 처리합니다. Microsoft Foundry 문서도 GPT-4 모델이 자연어와 코드를 이해하고 생성할 수 있다고 설명합니다.\n\n**Learn more:** [Foundry Models sold by Azure — Microsoft Foundry](https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure?context=%2Fazure%2Fai-foundry%2Fcontext%2Fcontext&pivots=azure-direct-others&view=foundry-classic)",
+    "choices": ["Whisper", "DALL-E", "임베딩", "GPT-4"]
+  },
+  "154": {
+    "stem": "솔루션: Content Safety Studio에서 보호된 자료 검색(Protected material detection) 기능으로 테스트를 수행합니다.\n\n이 솔루션이 요구 사항을 충족합니까?",
+    "expl": "보호된 자료 검색은 AI가 생성한 출력에서 가사, 기사, 조리법, 일부 웹 콘텐츠, 공개 저장소의 코드처럼 알려진 보호 텍스트·코드를 검사합니다. 유해 콘텐츠 필터 구성을 최적화할 때 필요한 불쾌한 콘텐츠 범주와 심각도 임계값은 평가하지 않습니다.\n\n**Learn more:** [Azure AI Foundry content filtering](https://learn.microsoft.com/en-us/azure/ai-studio/concepts/content-filtering) · [Quickstart: Protected Material for Text](https://learn.microsoft.com/en-us/azure/ai-services/content-safety/quickstart-protected-material)",
+    "choices": ["예", "아니요"]
+  },
+  "156": {
+    "stem": "설문의 감정 분석 결과로 고객 서비스 직원의 상여금을 계산하는 AI 솔루션을 개발하고 있습니다.\n\n솔루션이 Microsoft의 책임 있는 AI 원칙을 준수하도록 해야 합니다.\n\n무엇을 해야 합니까?",
+    "expl": "상여금 결정은 직원에게 재정적·고용상 중대한 영향을 줍니다. 이런 AI 보조 결정에는 결과가 개인에게 적용되기 전에 검토·승인을 포함한 의미 있는 인간 감독이 필요합니다. Microsoft 지침도 영향이 큰 작업에 대한 휴먼 인 더 루프 검토 지점과 승인을 책임 있는 AI의 안전장치로 제시합니다.\n\n**Learn more:** [Responsible AI in Azure Workloads](https://learn.microsoft.com/en-us/azure/well-architected/ai/responsible-ai) · [Code of Conduct for Microsoft AI Services](https://learn.microsoft.com/sv-se/legal/ai-code-of-conduct?context=%2Fazure%2Fai-services%2Fspeech-service%2Fcontext%2Fcontext)",
+    "choices": [
+      "직원의 재정 상황에 영향을 주는 결정을 내리기 전에 사람이 검토·승인하는 단계를 추가합니다.",
+      "설문의 신뢰도 점수가 낮을 때도 감정 분석 결과를 포함합니다.",
+      "계정 삭제와 데이터 제거를 요청한 고객의 설문을 포함해 모든 설문을 사용합니다.",
+      "원시 설문 데이터를 중앙 위치에 게시하고 직원에게 그 위치에 대한 접근 권한을 줍니다."
+    ]
+  },
+  "157": {
+    "stem": "ta1이라는 Foundry Tools의 Azure Language 서비스 리소스와 vnet1이라는 가상 네트워크가 있는 Azure 구독이 있습니다.\n\nvnet1의 리소스만 ta1에 접근할 수 있게 해야 합니다.\n\n무엇을 구성해야 합니까?",
+    "expl": "Foundry Tools의 Azure Language는 리소스의 네트워킹 설정에서 선택한 가상 네트워크와 프라이빗 엔드포인트를 구성해 네트워크 접근을 제한합니다. 거기서 vnet1만 허용하면 지정한 가상 네트워크에서만 그 리소스에 접근할 수 있습니다.\n\n**Learn more:** [Network isolation and Private Link - custom question answering - Foundry Tools](https://learn.microsoft.com/en-us/azure/ai-services/language-service/question-answering/how-to/network-isolation)",
+    "choices": [
+      "vnet1의 네트워크 보안 그룹(NSG)",
+      "ta1용 Foundry Tools의 Azure Language 서비스 컨테이너",
+      "vnet1의 Azure Firewall",
+      "ta1의 가상 네트워크 설정"
+    ]
+  },
+  "158": {
+    "stem": "업무 요구 사항에 맞게 Agent1의 개인화된 상호작용을 구성해야 합니다.\n\n솔루션에 무엇을 포함해야 합니까?",
+    "expl": "메모리는 사용자 기본 설정과 관련 대화 컨텍스트를 세션을 넘어 유지해, 에이전트가 이후 상호작용에서 정보를 기억하고 개인화된 응답을 제공할 수 있게 합니다.\n\n**Learn more:** [What is Memory? - Microsoft Foundry](https://learn.microsoft.com/en-us/azure/foundry/agents/concepts/what-is-memory) · [Build with runtime components in Foundry Agent Service - Microsoft Foundry](https://learn.microsoft.com/en-us/azure/foundry/agents/concepts/runtime-components)",
+    "choices": ["지시(instructions)", "메모리", "도구", "가드레일"]
+  },
+  "159": {
+    "stem": "솔루션: Content Safety Studio에서 **텍스트 콘텐츠 조정(Moderate text content)** 기능으로 테스트를 수행합니다.\n\n이 솔루션이 요구 사항을 충족합니까?",
+    "expl": "Content Safety Studio의 텍스트 콘텐츠 조정 기능은 구성 가능한 콘텐츠 필터 심각도 임계값에 비추어 샘플 텍스트를 테스트하고 다시 실행해 필터링 결과를 평가할 수 있게 해 줍니다. 따라서 텍스트 콘텐츠 필터 구성을 최적화할 수 있습니다.\n\n**Learn more:** [Quickstart: Analyze text content - Azure AI services](https://learn.microsoft.com/en-us/azure/ai-services/content-safety/quickstart-text)",
+    "choices": ["예", "아니요"]
+  }
+}

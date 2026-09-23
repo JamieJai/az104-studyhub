@@ -1,0 +1,111 @@
+{
+  "97": {
+    "stem": "Microsoft Foundry 프로젝트가 있습니다. 다음 요구 사항을 충족하는 고객 지원 에이전트를 만들어야 합니다.\n\n- 큐레이션된 저장소에 보관된 회사 정책 문서만 근거로 응답해야 합니다.\n- 서로 다른 채팅 세션에 걸쳐 고객 기본 설정을 유지해야 합니다.\n\n에이전트를 어떻게 구성해야 합니까? 답변 영역에서 알맞은 옵션을 선택하세요.",
+    "expl": "근거 확보를 위해 Microsoft Foundry 에이전트는 파일을 에이전트에 직접 업로드하거나 콘텐츠를 지시에 포함하는 대신, 검증된 저장소로 만든 지식 기반·인덱스처럼 승인된 큐레이션 데이터 원본에서만 지식을 가져오도록 구성해야 합니다. 앞의 두 방식은 저장소 수준의 거버넌스·큐레이션 통제를 우회합니다. 메모리의 경우 Microsoft Foundry Agent Service는 영구 저장소(예: Cosmos DB 기반 메모리 저장소)를 사용하는 에이전트 메모리를 지원해 고객 기본 설정과 컨텍스트를 서로 다른 채팅 세션에 걸쳐 유지할 수 있습니다. 오케스트레이션이 관리하는 세션 컨텍스트는 한 세션·스레드 동안만 유지되고, 클라이언트 애플리케이션 상태에 기본 설정을 저장하면 보존이 에이전트가 아니라 그 클라이언트에 묶이므로 세션 간 유지 요구 사항을 충족하지 못합니다.\n\n**Learn more:** [Overview of Memory - Microsoft Foundry | Microsoft Learn](https://learn.microsoft.com/en-us/azure/ai-foundry/agents/concepts/what-is-memory) · [Create and Use Memory - Microsoft Foundry | Microsoft Learn](https://learn.microsoft.com/en-us/azure/foundry/agents/how-to/memory-usage)",
+    "blanks": [
+      { "label": "지식 근거:", "options": ["승인된 데이터 원본에서 가져오도록 구성합니다.", "정책 문서를 에이전트에 직접 업로드합니다.", "정책 문서를 에이전트 지시에 직접 포함합니다."] },
+      { "label": "메모리:", "options": ["오케스트레이션이 관리하는 세션 컨텍스트를 사용합니다.", "영구 저장소를 사용하는 에이전트 메모리를 사용하도록 설정합니다.", "클라이언트 애플리케이션 상태에 사용자 기본 설정을 보존합니다."] }
+    ]
+  },
+  "98": {
+    "stem": "검색된 정책 문서로 요약을 생성하는 에이전트가 포함된 Microsoft Foundry 프로젝트가 있습니다.\n\n에이전트 응답의 완전성을 높여야 합니다. 솔루션은 애플리케이션 코드 논리에서 구현되어야 하며 응답이 호출자에게 반환되기 전에 적용되어야 합니다.\n\n무엇을 해야 합니까?",
+    "expl": "Microsoft Foundry는 완전성(응답 완전성) 메트릭을 포함한 기본 제공 응답 품질 평가자를 제공하며, 애플리케이션 코드에서 호출해 응답을 사용자에게 반환하기 전에 평가할 수 있습니다. 앱 논리에 재시도 평가 단계를 추가해 초안 응답의 완전성을 평가하고 임계값을 넘지 못하면 재생성이나 추가 검색을 트리거하면, 최종 응답을 반환하기 전 런타임에 완전성을 강제할 수 있습니다. 이는 temperature나 presence_penalty 같은 샘플링 매개 변수 조정이나 더 작은 모델로 교체와 다르며, 그런 방법들은 반환 전 코드 수준 품질 게이트가 아니고 응답 완전성을 보장하지도 못합니다.\n\n**Learn more:** [Agent Evaluators for Generative AI - Microsoft Foundry | Microsoft Learn](https://learn.microsoft.com/en-us/azure/foundry/concepts/evaluation-evaluators/agent-evaluators) · [Evaluate your AI agents - Microsoft Foundry | Microsoft Learn](https://learn.microsoft.com/en-us/azure/foundry/observability/how-to/evaluate-agent)",
+    "choices": [
+      "응답을 반환하기 전에 재시도 평가를 추가합니다.",
+      "temperature 매개 변수 값을 낮춥니다.",
+      "presence_penalty 매개 변수 값을 높입니다.",
+      "모델을 더 작은 배포로 교체합니다."
+    ]
+  },
+  "99": {
+    "stem": "Azure 구독이 있습니다.\n\nAzure AI DALL-E 모델을 사용할 애플리케이션을 만들 계획입니다.\n\n모델을 배포해야 합니다.\n\n무엇을 사용해야 합니까?",
+    "expl": "DALL-E 같은 Azure OpenAI 모델을 배포하려면 Azure OpenAI·Azure AI 리소스 안에 모델 배포를 만들어야 합니다. Microsoft Foundry(Azure AI/Azure OpenAI 리소스의 현재 포털 환경)가 이런 모델을 만들고 배포하는 기본 인터페이스이며, Azure CLI는 cognitiveservices 확장(예: `az cognitiveservices account deployment create`)으로 이 배포를 만드는 지원되는 명령줄·자동화 수단을 제공합니다. Microsoft의 Foundry 모델 배포 공식 지침에도 이 조합이 문서화되어 있으며, 나머지 도구 조합(Azure ML Studio, Microsoft Graph API, Python SDK/PowerShell cmdlet 조합)은 Azure OpenAI DALL-E 모델 배포에 지원되는 방법이 아닙니다.\n\n**Learn more:** [Deploy models using Azure CLI and Bicep - Microsoft Foundry | Microsoft Learn](https://learn.microsoft.com/en-us/azure/foundry/foundry-models/how-to/create-model-deployments) · [How to Use Image Generation Models from OpenAI - Microsoft Foundry | Microsoft Learn](https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/dall-e)",
+    "choices": [
+      "Python용 Azure SDK와 PowerShell cmdlet",
+      "JavaScript용 Azure SDK와 Azure Machine Learning Studio",
+      "Microsoft Foundry와 Azure 명령줄 인터페이스(CLI)",
+      "Azure Portal과 Microsoft Graph API"
+    ]
+  },
+  "100": {
+    "stem": "Foundry Tools의 Azure Vision API 호출 결과를 검증하는 테스트 메서드를 개발하고 있습니다. 이 호출은 이미지에 회사 로고가 있는지 분석하며 brands라는 브랜드 컬렉션을 반환합니다. 다음 코드 조각이 있습니다.\n\n[[IMG1]]\n\n다음 각 설명이 참이면 예, 아니면 아니요를 선택하세요.",
+    "expl": "Azure Vision(이미지 분석)의 브랜드 탐지 응답에서 감지된 각 브랜드 개체에는 name, 신뢰도 점수, 그리고 x, y, w, h 속성을 가진 rectangle 개체가 포함됩니다. x와 y는 로고를 둘러싼 경계 상자의 왼쪽 위 모서리 좌표이고, w와 h는 그 상자의 너비와 높이이며 오른쪽 아래 모서리 좌표가 아닙니다. 오른쪽 아래 모서리를 구하려면 x + w와 y + h를 계산해야 하는데, 코드 조각은 그렇게 하지 않고 rectangle.w와 rectangle.h를 그대로 출력합니다. 따라서 이 코드는 신뢰도가 0.75 이상인 브랜드의 이름과 왼쪽 위 모서리 좌표(x, y)는 올바르게 표시하지만 오른쪽 아래 모서리 좌표는 표시하지 않습니다.\n\n**Learn more:** [Brand detection - Azure Vision in Foundry Tools](https://learn.microsoft.com/en-us/azure/ai-services/computer-vision/concept-brand-detection)",
+    "statements": [
+      "이 코드는 신뢰도가 75퍼센트 이상인 각 감지 브랜드의 이름을 표시한다.",
+      "이 코드는 표시된 브랜드 로고를 포함하는 사각형의 왼쪽 위 모서리 좌표를 표시한다.",
+      "이 코드는 표시된 브랜드 로고를 포함하는 사각형의 오른쪽 아래 모서리 좌표를 표시한다."
+    ]
+  },
+  "101": {
+    "stem": "에이전트를 포함하고 KV1이라는 Azure 키 자격 증명 모음을 사용할 Project1이라는 Microsoft Foundry 프로젝트를 만들고 있습니다. Project1에서 KV1으로의 연결을 구성해야 합니다. Bicep 코드를 어떻게 완성해야 합니까?\n\n[[IMG1]]",
+    "expl": "Bicep으로 Microsoft Foundry(Azure AI Foundry) 리소스·프로젝트를 고객 소유 Azure Key Vault에 연결하려면 Microsoft.CognitiveServices/accounts/connections 리소스에 category: 'AzureKeyVault'를 지정해, 이 연결이 AI 서비스나 Azure OpenAI 리소스가 아니라 Key Vault를 대상으로 함을 알려야 합니다. authType은 'AccountManagedIdentity'로 설정해 Foundry 리소스가 저장된 키나 API 키가 아니라 관리 ID로 Key Vault에 인증하게 해야 하며, 그 관리 ID에 자격 증명 모음의 RBAC 역할(예: Key Vault 비밀 책임자)을 부여해 Foundry가 비밀을 읽고 쓸 수 있게 합니다. 이것이 Foundry 리소스에 자체 Key Vault를 연결할 때 Microsoft가 문서화한 패턴이며, Key Vault 접근에 키 기반 인증 대신 Microsoft Entra ID(관리 ID) 인증을 쓰라는 모범 사례와도 일치합니다.\n\n**Learn more:** [Set up an Azure Key Vault Connection - Microsoft Foundry](https://learn.microsoft.com/en-us/azure/foundry/how-to/set-up-key-vault-connection) · [Microsoft.CognitiveServices/accounts/connections reference](https://learn.microsoft.com/en-us/azure/templates/microsoft.cognitiveservices/accounts/connections)",
+    "blanks": [
+      { "label": "category:", "options": ["'AzureAIService'", "'AzureKeyVault'", "'AzureOpenAI'"] },
+      { "label": "authType:", "options": ["'AccountKey'", "'AccountManagedIdentity'", "'ApiKey'"] }
+    ]
+  },
+  "102": {
+    "stem": "지원 티켓을 위한 Foundry Tools의 Azure Language 사용자 지정 명명된 엔터티 인식(NER) 프로젝트를 진행하고 있습니다. 프로젝트 스키마에는 ContactInfo라는 엔터티 유형이 있습니다.\n\n태그가 달린 학습 파일에서 ContactInfo는 다음에 적용됩니다.\n\n- 전화번호\n- 메일 주소\n- 소셜 미디어 핸들\n\n모델을 평가해 보니 ContactInfo 엔터티의 정밀도가 낮고, 주변 텍스트가 ContactInfo로 잘못 추출되는 거짓 양성이 있습니다.\n\n프로젝트의 정밀도를 높여야 합니다.\n\n모델을 다시 학습시키기 전에 무엇을 해야 합니까?",
+    "expl": "Azure 사용자 지정 NER의 스키마 설계 지침은 표면 패턴이 서로 다른 여러 종류의 정보를 하나로 묶은 '복합 엔터티'를 피하라고 안내합니다. 그런 엔터티는 모델이 텍스트에서 정밀하게 골라내기 어려워 경계 혼동과 거짓 양성이 생기기 때문입니다. 문서화된 해법은 복합 엔터티를 더 구체적인 엔터티 유형 여러 개로 나누어 각 유형이 더 좁고 일관된 패턴을 갖게 하는 것입니다(공식 예에서도 단일 'Address' 엔터티를 'Street Name', 'PO Box', 'City', 'State', 'Zip'으로 나눕니다). 이 프로젝트의 ContactInfo는 전화번호, 메일 주소, 소셜 미디어 핸들이라는 매우 다른 텍스트 패턴 세 가지를 한 레이블에 묶고 있어, 정밀도 저하와 주변 텍스트 거짓 양성을 일으키는 전형적인 복합·모호 엔터티 설계입니다. ContactInfo를 Phone, Email, SocialMedia 엔터티로 나누고 해당 구간을 다시 레이블링하면 재학습 전에 근본적인 스키마 문제를 해결할 수 있습니다. 반면 신뢰도 임계값 조정, 자동 레이블링 실행, 같은 결함 스키마로 학습 데이터만 늘리는 것은 근본적인 모호성을 해소하지 못합니다.\n\n**Learn more:** [Preparing data and designing a schema for custom named entity recognition (NER) - Foundry Tools | Microsoft Learn](https://learn.microsoft.com/en-us/azure/ai-services/language-service/custom-named-entity-recognition/how-to/design-schema) · [Custom Named Entity Recognition (NER) FAQ - Foundry Tools | Microsoft Learn](https://learn.microsoft.com/en-us/azure/ai-services/language-service/custom-named-entity-recognition/faq)",
+    "choices": [
+      "ContactInfo의 신뢰도 임계값을 낮춥니다.",
+      "자동 레이블링 작업을 실행합니다.",
+      "지원 티켓을 학습 데이터로 더 추가하고 ContactInfo 엔터티를 더 많이 레이블링합니다.",
+      "ContactInfo를 Phone, Email, SocialMedia 엔터티로 대체하고 해당하는 모든 구간을 다시 레이블링합니다."
+    ]
+  },
+  "103": {
+    "stem": "고객 댓글이 공개 포럼에 게시되기 전에 수집하는 Python 애플리케이션을 만들고 있습니다. 텍스트 댓글을 Azure AI Content Safety로 보내 응답에서 자해 심각도 값을 반환해야 합니다. 코드를 어떻게 완성해야 합니까?\n\n[[IMG1]]",
+    "expl": "Azure AI Content Safety Python SDK의 AnalyzeTextOptions 클래스는 str 형식의 'text' 매개 변수를 요구하므로 요청은 AnalyzeTextOptions(text=comment)로 구성해야 합니다. 목록이 아니라 원시 문자열을 넘겨야 하며 'categories' 매개 변수를 오용하거나 TextCategory.SELF_HARM을 생성자처럼 호출해서도 안 됩니다. 요청 전송에는 ContentSafetyClient의 analyze_text(request) 메서드를 사용합니다(analyze_image는 이미지용, moderate_text는 이 SDK에 없고, .path(...).post(...) 구문은 Python SDK가 아니라 JavaScript REST 클라이언트의 것입니다). 결과인 AnalyzeTextResult는 categories_analysis 컬렉션을 제공하므로 TextCategory.SELF_HARM으로 필터링해 심각도 값을 가져와 반환하며, 이는 Microsoft 공식 Content Safety Python 빠른 시작의 패턴과 같습니다.\n\n**Learn more:** [Quickstart: Analyze text content - Azure AI Content Safety](https://learn.microsoft.com/en-us/azure/ai-services/content-safety/quickstart-text) · [AnalyzeTextOptions Class - Python API reference](https://learn.microsoft.com/en-us/python/api/azure-ai-contentsafety/azure.ai.contentsafety.models.analyzetextoptions)",
+    "blanks": [
+      { "label": "요청:", "options": ["AnalyzeTextOptions(categories=comment)", "AnalyzeTextOptions(text=[comment])", "AnalyzeTextOptions(text=comment)", "TextCategory.SELF_HARM(comment)"] },
+      { "label": "응답:", "options": ["client.analyze_image(request)", "client.analyze_text(request)", "client.moderate_text(request)", "client.path(\"/text:analyze\").post(request)"] }
+    ]
+  },
+  "104": {
+    "stem": "텍스트 파일에 담긴 스크립트를 읽어 주는 텍스트 음성 변환 솔루션을 Foundry Tools의 Azure Speech로 만들고 있습니다.\n\n솔루션이 기술 용어를 자주 잘못 발음하는 것을 발견했습니다.\n\n이런 잘못된 발음이 나오지 않게 해야 합니다. 솔루션은 개발 작업을 최소화해야 합니다.\n\n무엇을 해야 합니까?",
+    "expl": "SSML의 phoneme 요소를 쓰면 IPA나 SAPI 같은 음성 기호 체계로 단어의 정확한 발음을 지정할 수 있습니다. 모델을 다시 학습시키지 않고 문제되는 단어만 SSML 마크업에 표기하면 되므로 특정 기술 용어의 오발음 문제를 최소한의 노력으로 해결합니다. 반면 say-as는 날짜나 숫자 같은 콘텐츠 유형 해석을 위한 것이지 발음 교정용이 아니고, prosody는 발음이 아니라 음높이·속도·음량을 조정하며, 사용자 지정 신경망 음성 학습은 데이터 수집과 학습에 큰 노력이 들고, Whisper는 음성 텍스트 변환 모델이라 텍스트 음성 변환의 발음 문제에는 해당하지 않습니다.\n\n**Learn more:** [Pronunciation with Speech Synthesis Markup Language (SSML) - Speech service - Foundry Tools | Microsoft Learn](https://learn.microsoft.com/en-us/azure/ai-services/speech-service/speech-synthesis-markup-pronunciation) · [Phonetic sets for Speech Synthesis Markup Language (SSML) - Microsoft Learn](https://github.com/MicrosoftDocs/azure-ai-docs/blob/main/articles/ai-services/speech-service/speech-ssml-phonetic-sets.md)",
+    "choices": [
+      "Speech Studio에서 사용자 지정 신경망 음성을 학습시킵니다.",
+      "음성 합성 마크업 언어(SSML)로 음소(phoneme)를 지정합니다.",
+      "음성 합성 마크업 언어(SSML)로 say-as 규칙을 적용합니다.",
+      "음성 합성 마크업 언어(SSML)로 음성의 운율(prosody)을 조정합니다.",
+      "Azure OpenAI에서 Whisper 모델을 사용합니다."
+    ]
+  },
+  "105": {
+    "stem": "Azure 구독이 있습니다. 사용자 프롬프트에 따라 가상의 이야기를 생성하는 새 리소스를 만들어야 합니다. 솔루션은 고객 관리 키로 데이터를 보호해야 합니다.\n\n스크립트를 어떻게 완성해야 합니까?\n\n[[IMG1]]",
+    "expl": "프롬프트로 가상의 이야기를 생성하는 것은 Azure OpenAI Service가 수행하는 생성형 AI 작업이므로 Cognitive Services 리소스를 --kind OpenAI로 만들어야 합니다. 리소스 데이터를 고객 관리 키로 보호하려면 az cognitiveservices account create 명령의 --encryption 매개 변수를 사용하며, 이 매개 변수는 keySource를 Microsoft.KeyVault로 지정하고 keyVaultProperties(keyName, keyVersion, keyVaultUri)를 담은 JSON 페이로드를 받습니다. 스크립트에 나타난 구조가 바로 그것입니다. --assign-identity는 Key Vault 접근에 필요한 관리 ID를 리소스에 부여할 뿐 암호화를 구성하지 않고, --api-properties는 암호화 구성과 무관합니다.\n\n**Learn more:** [az cognitiveservices account create](https://learn.microsoft.com/en-us/cli/azure/cognitiveservices/account?view=azure-cli-latest#az-cognitiveservices-account-create) · [Configure customer-managed keys for Azure AI services](https://learn.microsoft.com/en-us/azure/ai-services/encryption/cognitive-services-encryption-keys-portal)",
+    "blanks": [
+      { "label": "kind:", "options": ["AIServices", "LanguageAuthoring", "OpenAI"] },
+      { "label": "매개 변수:", "options": ["--api-properties", "--assign-identity", "--encryption"] }
+    ]
+  },
+  "106": {
+    "stem": "공장 생산 라인에서 만들어지는 불량 부품을 탐지하는 애플리케이션을 개발하고 있습니다. 부품은 회사 고유의 것입니다.\n\nAzure Custom Vision API로 일반적인 결함을 탐지하려 합니다.\n\n어떤 세 가지 작업을 어떤 순서로 수행해야 합니까? 작업 목록에서 알맞은 작업을 답변 영역으로 옮겨 올바른 순서로 배열하세요.",
+    "expl": "Azure Custom Vision으로 결함을 탐지하려면 먼저 Custom Vision 프로젝트를 만들면서 프로젝트 유형을 지정합니다(부품의 불량 여부를 판별하는 것이므로 분류). 다음으로 대표적인 부품 이미지를 업로드하고 태그('불량', '양호' 등)를 달아 레이블이 달린 학습 데이터를 제공합니다. 마지막으로 분류기 모델을 학습시켜 태그가 달린 이미지로 불량과 정상을 구분하는 시각적 특징을 배우게 합니다. 목표가 이미지 안에서 여러 개체나 결함 영역을 찾아내는 것이 아니라 부품의 전반적 상태를 분류하는 것이므로 개체 탐지 모델 학습은 필요하지 않습니다.\n\n**Learn more:** [Quickstart: Build an image classification model with the Custom Vision portal](https://learn.microsoft.com/en-us/azure/ai-services/custom-vision-service/getting-started-build-a-classifier) · [What is Custom Vision?](https://learn.microsoft.com/en-us/azure/ai-services/custom-vision-service/overview)",
+    "items": [
+      "학습 데이터 집합을 초기화합니다.",
+      "분류기 모델을 학습시킵니다.",
+      "프로젝트를 만듭니다.",
+      "이미지를 업로드하고 태그를 답니다.",
+      "개체 탐지 모델을 학습시킵니다."
+    ],
+    "slots": ["1", "2", "3"]
+  },
+  "107": {
+    "stem": "공개 웹 사이트를 통해 제출되는 사용자 생성 비디오와 텍스트를 처리할 새 영업 시스템을 만들고 있습니다.\n\n사용자에게 데이터가 영업 시스템에서 처리되었음을 알릴 계획입니다.\n\n이는 어떤 책임 있는 AI 원칙을 충족하는 데 도움이 됩니까?",
+    "expl": "투명성은 Microsoft의 책임 있는 AI 6대 원칙(공정성, 신뢰성과 안전, 개인정보 보호와 보안, 포용성, 투명성, 책임성) 중 하나입니다. 데이터가 어떻게 수집·사용·저장되는지 공개하고, 사람들이 AI 시스템이 자신의 정보를 어떻게 처리하고 결정을 내리는지 이해할 수 있게 해야 한다는 원칙입니다. 데이터가 처리되었음을 사용자에게 알리는 것은 데이터 수집·사용에 대한 투명성 요구를 충족해 사용자 신뢰를 높이고 데이터 처리에 대한 정보에 입각한 선택을 가능하게 합니다.\n\n**Learn more:** [What is Responsible AI - Azure Machine Learning | Microsoft Learn](https://learn.microsoft.com/en-us/azure/machine-learning/concept-responsible-ai?view=azureml-api-2) · [Responsible AI Principles and Approach | Microsoft AI](https://www.microsoft.com/en-us/ai/principles-and-approach)",
+    "choices": ["공정성", "투명성", "포용성", "신뢰성과 안전"]
+  },
+  "108": {
+    "stem": "콘텐츠 관리 시스템을 설계하고 있습니다.\n\n난독증처럼 이해력이 낮거나 학습 차이가 있는 사용자를 위해 읽기 경험을 최적화해야 합니다. 솔루션은 개발 작업을 최소화해야 합니다.\n\n솔루션에 어떤 Azure 서비스를 포함해야 합니까?",
+    "expl": "Azure AI Immersive Reader는 난독증 같은 학습 차이가 있는 사람은 물론 초보 독자와 언어 학습자의 읽기 이해를 돕도록 특별히 설계되었습니다. 소리 내어 읽기, 음절 구분, 품사 강조, 줄 포커스, 간격·글꼴 조정, 그림 사전 같은 검증된 접근성 기능을 바로 쓸 수 있는 클라이언트 라이브러리와 UI로 제공하므로 최소한의 사용자 지정 개발로 애플리케이션에 포함할 수 있습니다. 문서 데이터 추출용 Document Intelligence, 감정·핵심 구 분석 같은 일반 NLP 작업용 Language, 언어 번역용 Translator는 읽기 이해 접근성을 목표로 하지 않습니다.\n\n**Learn more:** [What is Azure AI Immersive Reader? - Azure AI services | Microsoft Learn](https://learn.microsoft.com/en-us/azure/ai-services/immersive-reader/overview) · [Azure AI Immersive Reader | Microsoft Azure](https://azure.microsoft.com/en-us/products/ai-services/ai-immersive-reader)",
+    "choices": [
+      "Foundry Tools의 Azure Document Intelligence",
+      "Foundry Tools의 Azure Language",
+      "Azure AI Immersive Reader",
+      "Foundry Tools의 Azure Translator"
+    ]
+  }
+}

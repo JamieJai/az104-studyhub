@@ -1,0 +1,108 @@
+{
+  "109": {
+    "stem": "App1이라는 Azure App Service 앱이 있는 Azure 구독이 있습니다.\n\nCSAccount1이라는 Microsoft Foundry Service 리소스를 프로비저닝합니다.\n\n관리 작업을 최소화하는 방식으로 App1이 CSAccount1에 접근하도록 구성해야 합니다.\n\nApp1 구성에 무엇을 사용해야 합니까?",
+    "expl": "시스템 할당 관리 ID는 Microsoft Entra ID에 자동으로 만들어지고 관리되는 ID를 App1에 제공합니다. Azure가 이 ID의 자격 증명으로 X.509 인증서를 발급·자동 교체하므로 관리자가 키, 토큰, 비밀을 직접 만들거나 저장하거나 교체할 필요가 없습니다. 관리 ID를 켠 뒤 App1의 ID에 CSAccount1에 대한 적절한 RBAC 역할(예: Cognitive Services User)을 할당하면, 앱은 이 관리 자격 증명으로 투명하게 발급받은 Microsoft Entra ID 토큰으로 인증합니다. 이 키 없는 방식은 구독 키, OAuth 토큰, SAS 토큰을 직접 관리하는 것보다 지속적인 관리 작업이 가장 적습니다.\n\n**Learn more:** [Managed identities for Azure resources - overview](https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/overview) · [How to use managed identities for App Service and Azure Functions](https://learn.microsoft.com/en-us/azure/app-service/overview-managed-identity)",
+    "choices": [
+      "엔드포인트 URI와 구독 키",
+      "엔드포인트 URI와 OAuth 토큰",
+      "엔드포인트 URI와 공유 액세스 서명(SAS) 토큰",
+      "시스템 할당 관리 ID와 X.509 인증서"
+    ]
+  },
+  "110": {
+    "stem": "Azure AI Search를 사용하는 웹앱이 있습니다.\n\n활동을 검토하다가 예상보다 많은 검색 쿼리 볼륨을 발견해 쿼리 키가 유출되었다고 의심하고 있습니다.\n\n사용자가 문서 컬렉션에 대한 읽기 전용 액세스를 유지하면서 검색 엔드포인트에 대한 무단 접근을 막아야 합니다. 솔루션은 앱 가동 중단을 최소화해야 합니다.\n\n어떤 세 가지 작업을 어떤 순서로 수행해야 합니까? 목록에서 알맞은 작업을 답변 영역으로 옮겨 올바른 순서로 배열하세요.",
+    "expl": "Azure AI Search의 쿼리 키는 관리 키와 달리 제자리에서 다시 생성할 수 없으며 기본/보조 교체 메커니즘도 없습니다. 유출이 의심되는 쿼리 키를 가동 중단 없이 교체하려면 먼저 새 쿼리 키를 만들고, 앱 구성이 새 키를 쓰도록 업데이트해 앱이 계속 동작하게 한 뒤, 마지막으로 유출된 키를 삭제해 접근을 취소합니다. 쿼리 키는 본래 읽기 전용이므로 이 방식은 사용자가 문서 컬렉션에 대한 읽기 전용 액세스를 유지하면서 노출된 키를 제거한다는 요구 사항을 충족합니다.\n\n**Learn more:** [Create and manage api keys - Azure AI Search](https://learn.microsoft.com/en-us/azure/search/search-security-api-keys)",
+    "items": [
+      "기본 관리 키를 다시 생성합니다",
+      "보조 관리 키를 다시 생성합니다",
+      "앱이 보조 관리 키를 사용하도록 변경합니다",
+      "새 쿼리 키를 추가합니다",
+      "앱이 새 키를 사용하도록 변경합니다",
+      "유출된 키를 삭제합니다"
+    ],
+    "slots": ["1", "2", "3"]
+  },
+  "111": {
+    "stem": "PolicyWriter와 RiskReviewer라는 에이전트 두 개가 포함된 Microsoft Foundry 프로젝트가 있습니다.\n\nPolicyWriter는 고객 정책 업데이트 초안을 만들고 RiskReviewer는 그 초안을 검토합니다.\n\n시각적 작성기에서 다음 요구 사항을 충족하는 워크플로를 만드세요.\n\n- 위험이 낮은 업데이트는 수동 개입 없이 확정해야 합니다.\n- 에이전트 간 실행이 예측 가능해야 합니다.\n- 위험이 높은 업데이트는 사용자 승인을 요구해야 합니다.\n\n무엇을 구성해야 합니까?",
+    "expl": "순차(sequential) Foundry 워크플로는 각 에이전트의 결과를 정해진 순서로 다음 단계에 전달하므로 PolicyWriter → RiskReviewer 과정이 예측 가능해집니다. '질문하기(Ask a question)' 노드는 사용자 입력을 기다리므로 위험이 높은 업데이트의 승인 지점으로 쓸 수 있고, 위험이 낮은 업데이트는 자동으로 진행됩니다.\n\n**Learn more:** [Build a workflow in Microsoft Foundry](https://learn.microsoft.com/en-us/azure/foundry/agents/concepts/workflow)",
+    "blanks": [
+      { "label": "오케스트레이션 패턴:", "options": ["출력을 노드 단위로 전달하는 순차 템플릿", "에이전트 간 제어를 동적으로 라우팅하는 그룹 채팅 템플릿", "입력을 위해 워크플로 실행을 일시 중지하는 휴먼 인 더 루프 템플릿"] },
+      { "label": "승인 지점:", "options": ["기본 채팅 노드를 추가합니다.", "조건문을 추가합니다.", "'질문하기' 노드를 추가합니다."] }
+    ]
+  },
+  "112": {
+    "stem": "프롬프트 텍스트를 언어 모델에 보내기 전에 민감한 정보를 마스킹하는 Python 애플리케이션이 있습니다. 애플리케이션 코드는 다음과 같습니다.\n\n[[IMG1]]\n\n다음 각 설명이 참이면 예, 아니면 아니요를 선택하세요.",
+    "expl": "Azure AI Language PII 탐지 요청의 piiCategories 매개 변수는 서비스가 탐지·반환할 엔터티 범주를 제한합니다. 여기서는 \"Person\"과 \"PhoneNumber\"만 지정했습니다. 사회 보장 번호나 메일 주소처럼 그 범주 밖의 엔터티는 아예 탐지되지 않으므로 doc[\"entities\"]에 나타나지 않고(즉 audit에 SSN 레코드가 없고 'Contact'는 애초에 PII 엔터티가 아님), redactedText에서도 마스킹되지 않아 text_for_model에 메일 주소와 SSN이 그대로 남습니다. 반대로 지정한 범주에 해당해 탐지된 엔터티, 즉 사람 이름 'John Doe'와 전화번호 '312-555-1234'는 entityMask redactionPolicy에 따라 엔터티 유형을 나타내는 토큰(예: [PERSON_1], [PHONENUMBER_1])으로 대체되어 redactedText에 출력됩니다.\n\n**Learn more:** [Identify and extract Personally Identifiable Information (PII) from text - Azure AI Language](https://learn.microsoft.com/en-us/azure/ai-services/language-service/personally-identifiable-information/how-to/redact-text-pii) · [What is the Personally Identifiable Information (PII) detection feature in Azure Language?](https://learn.microsoft.com/en-us/azure/ai-services/language-service/personally-identifiable-information/overview)",
+    "statements": [
+      "sample_text에 대해 audit에는 Contact와 SSN 엔터티 레코드가 포함된다.",
+      "sample_text에 대해 text_for_model에는 john.doe@contoso.com과 859-98-0987이 포함된다.",
+      "sample_text에 대해 text_for_model에는 John Doe와 312-555-1234에 대한 엔터티 유형 마스크가 포함된다."
+    ]
+  },
+  "113": {
+    "stem": "내부 문서에 Azure AI Search를 사용할 애플리케이션을 개발하고 있습니다.\n\nAzure AI Search에 문서 수준 필터링을 구현해야 합니다.\n\n솔루션에 포함해야 하는 세 가지 작업은 무엇입니까? 각 정답은 솔루션의 일부입니다.\n\n(세 개 선택)",
+    "expl": "Azure AI Search에는 행·문서 수준 보안이 기본 제공되지 않으므로 Microsoft가 문서화한 보안 필터 패턴으로 직접 구현해야 합니다. 이 패턴은 각 인덱스 문서에 그 문서를 볼 수 있는 그룹 ID(또는 사용자 ID) 목록을 담은 필터 가능한 필드를 추가하고, 쿼리 시점에 요청 사용자의 그룹 멤버 자격을 (예: Microsoft Graph나 토큰 클레임으로) 가져온 뒤, 그 그룹 ID를 OData 필터 식(예: group_ids/any(g:search.in(g, 'group_id1,group_id2')))으로 검색 요청에 제공해 사용자의 그룹 멤버 자격에 맞는 문서만 반환되게 하는 것입니다.\n\n**Learn more:** [Security filters for trimming results - Azure AI Search](https://learn.microsoft.com/en-us/azure/search/search-security-trimming-for-azure-search) · [Security trimming example using Microsoft Entra ID - Azure AI Search](https://learn.microsoft.com/en-us/azure/search/search-security-trimming-for-azure-search-with-aad)",
+    "choices": [
+      "각 인덱스 항목에 허용 그룹을 추가합니다",
+      "그룹마다 인덱스를 하나씩 만듭니다.",
+      "검색 요청과 함께 Microsoft Entra ID의 액세스 토큰을 보냅니다.",
+      "모든 그룹을 가져옵니다.",
+      "사용자의 그룹 멤버 자격을 가져옵니다",
+      "그룹을 검색 요청의 필터로 제공합니다"
+    ]
+  },
+  "114": {
+    "stem": "감정 분석과 광학 문자 인식(OCR)을 수행할 새 리소스를 만들어야 합니다. 솔루션은 다음 요구 사항을 충족해야 합니다.\n\n- 단일 키와 엔드포인트로 여러 서비스에 접근해야 합니다.\n- 앞으로 사용할 수 있는 서비스의 청구를 통합해야 합니다.\n- 향후 Foundry Tools의 Azure Vision 사용을 지원해야 합니다.\n\n새 리소스를 만드는 HTTP 요청을 어떻게 완성해야 합니까?",
+    "expl": "Azure Resource Manager REST API로 리소스를 만들거나 대체할 때는 리소스 URI를 대상으로 PUT 동사를 사용합니다. 하나의 키와 엔드포인트로 여러 AI 서비스(감정 분석용 Text Analytics, OCR용 Computer Vision)를 쓰고 청구를 통합하며 향후 Azure AI Foundry의 Azure AI Vision을 지원하려면 계정을 다중 서비스 Cognitive Services 리소스로 프로비저닝해야 하며, 이는 \"kind\": \"CognitiveServices\"로 지정합니다. 단일 서비스 종류인 \"ComputerVision\"과 \"TextAnalytics\"는 각각 하나의 서비스만 노출하므로 다중 서비스·단일 키/엔드포인트 요구 사항을 충족하지 못합니다.\n\n**Learn more:** [Create a Cognitive Services resource - Azure AI services](https://learn.microsoft.com/en-us/azure/ai-services/multi-service-resource) · [Accounts - Create - REST API (Azure Cognitive Services)](https://learn.microsoft.com/en-us/rest/api/aiservices/accountmanagement/accounts/create)",
+    "blanks": [
+      { "label": "메서드:", "options": ["PATCH", "POST", "PUT"] },
+      { "label": "kind:", "options": ["CognitiveServices", "ComputerVision", "TextAnalytics"] }
+    ]
+  },
+  "115": {
+    "stem": "PDF 정책 설명서를 수집하는 Azure AI Search 인덱서가 있습니다.\n\n클라이언트 애플리케이션은 텍스트와 이미지 모두에 대한 경계 다각형을 포함한 페이지 수준 인용을 표시해야 합니다.\n\nAzure AI Search 기술 집합에 기본 제공 멀티모달 콘텐츠 추출 기술 하나를 추가해야 합니다. 솔루션은 다음 요구 사항을 충족해야 합니다.\n\n- 텍스트와 이미지의 위치 메타데이터를 제공해야 합니다.\n- 여러 페이지에 걸친 표를 추출해야 합니다.\n\n무엇을 추가해야 합니까?",
+    "expl": "문서 레이아웃 기술(Microsoft.Skills.Util.DocumentIntelligenceLayoutSkill)은 Azure Document Intelligence 레이아웃 모델을 호출해 문서 구조를 분석합니다. extractionOptions 매개 변수에 \"images\"와 \"locationMetadata\"를 포함하면 출력(text_sections, normalized_images)마다 pageNumber와 boundingPolygons를 담은 locationMetadata 개체가 포함되어 텍스트와 이미지 모두에 대한 정확한 페이지 수준 인용 데이터를 제공합니다. Document Intelligence 레이아웃 모델을 사용하므로 구조 분석의 일부로 여러 페이지에 걸친 표를 포함한 표 구조도 감지·보존합니다. 따라서 텍스트·이미지 위치 메타데이터와 다중 페이지 표 추출 요구 사항을 모두 충족하는 단일 기본 제공 기술이며, 위치 메타데이터가 없는 문서 추출, 구조 추출이 아니라 생성형 보강인 GenAI 프롬프트, 이 고전적 레이아웃 기반 경계 다각형 출력과 맞지 않는 별도 콘텐츠 분석 서비스인 Azure Content Understanding과 구분됩니다.\n\n**Learn more:** [Document Layout Skill - Azure AI Search | Microsoft Learn](https://learn.microsoft.com/en-us/azure/search/cognitive-search-skill-document-intelligence-layout) · [Tutorial: Multimodal Chunking and Embedding with the Document Layout Skill - Azure AI Search | Microsoft Learn](https://learn.microsoft.com/en-us/azure/search/tutorial-document-layout-multimodal-embeddings)",
+    "choices": ["문서 레이아웃(Document Layout)", "문서 추출(Document Extraction)", "Azure Content Understanding", "GenAI 프롬프트"]
+  },
+  "116": {
+    "stem": "Azure AI Search를 사용할 보강 파이프라인을 만들고 있습니다. 지식 저장소에는 비구조화 JSON 데이터와 스캔된 PDF 문서에서 추출한 텍스트가 들어 있습니다.\n\n각 데이터 유형에 어떤 프로젝션 유형을 사용해야 합니까?",
+    "expl": "Azure AI Search 지식 저장소는 각각 특정 Azure Storage 대상과 데이터 형태에 대응하는 프로젝션 유형 세 가지를 지원합니다. 테이블 프로젝션은 Azure Table Storage에 기록하며 행과 열로 스키마화된 형태를 요구하므로 구조화된 표 형식 보강 출력에 적합합니다. 개체(Object) 프로젝션은 JSON 문서를 Azure Blob Storage에 기록하며 보강 트리나 전체 문서의 완전한 JSON 표현이 필요할 때 사용하므로, 경직된 테이블 스키마에 억지로 맞추지 않고 JSON 구조를 보존하는 비구조화 JSON 데이터에 알맞습니다. 파일(File) 프로젝션도 Azure Blob Storage에 기록하지만 원본 문서에서 추출·정규화한 이진 콘텐츠(정규화된 이미지, OCR로 처리한 스캔 PDF에서 파생된 텍스트·콘텐츠 등)를 보존하는 데 쓰이므로 스캔 PDF에서 나온 추출 텍스트 데이터에 적합합니다. 표 형식 데이터에는 테이블, 전체 문서 JSON에는 개체, 원본 문서에서 추출·정규화한 이진 콘텐츠에는 파일이라는 구분이 Azure AI Search 지식 저장소 프로젝션 개념 문서에 설명되어 있습니다.\n\n**Learn more:** [Knowledge store \"projections\" in Azure AI Search](https://learn.microsoft.com/en-us/azure/search/knowledge-store-projection-overview) · [Define Projections - Azure AI Search](https://learn.microsoft.com/en-us/azure/search/knowledge-store-projections-examples)",
+    "blanks": [
+      { "label": "JSON 데이터:", "options": ["파일 프로젝션", "개체 프로젝션", "테이블 프로젝션"] },
+      { "label": "추출된 텍스트 데이터:", "options": ["파일 프로젝션", "개체 프로젝션", "테이블 프로젝션"] }
+    ]
+  },
+  "117": {
+    "stem": "이미지에서 개체를 탐지하는 모델을 만들고 있습니다. 학습 데이터 기준 모델 성능은 다음 그림과 같습니다.\n\n[[IMG1]]\n\n그림의 정보를 바탕으로 각 문장을 완성하는 답을 드롭다운 메뉴에서 선택하세요.",
+    "expl": "정밀도는 TP/(TP+FP)로 정의됩니다. 그림에서 정밀도가 100.0%인데 이는 FP = 0일 때만 가능하므로 거짓 양성 비율은 0%입니다. 재현율은 TP/(TP+FN)으로 정의되며 그림의 재현율 25.0%가 참 양성을 참 양성과 거짓 음성의 합으로 나눈 값에 정확히 해당합니다.\n\n**Learn more:** [Evaluate and improve a model - Custom Vision](https://learn.microsoft.com/en-us/azure/ai-services/custom-vision-service/getting-started-improving-your-classifier)",
+    "blanks": [
+      { "label": "거짓 양성의 비율은:", "options": ["0", "25", "30", "50", "100"] },
+      { "label": "참 양성 수를 참 양성과 거짓 음성의 합으로 나눈 값은:", "options": ["0", "25", "30", "50", "100"] }
+    ]
+  },
+  "118": {
+    "stem": "데이터베이스에서 티켓 텍스트를 읽는 지원 티켓 분류 앱용 Microsoft Foundry 프로젝트가 있습니다.\n\n앱이 다음 요구 사항을 충족하도록 해야 합니다.\n\n- 후보 모델을 품질, 비용, 처리량으로 비교해야 합니다.\n- Azure 구독에 모델 가중치를 호스트하지 않아야 합니다.\n\n무엇을 구성해야 합니까?",
+    "expl": "Microsoft Foundry 모델 순위표는 모델을 품질, 비용, 처리량으로 벤치마킹해 후보 모델을 비교할 수 있게 합니다. 서버리스 배포는 Azure 구독의 컴퓨팅에 모델 가중치를 배포하지 않고 Microsoft가 호스트·관리하는 모델에 API로 접근하게 해 줍니다.\n\n**Learn more:** [Model benchmarks and leaderboards in Microsoft Foundry](https://learn.microsoft.com/en-us/azure/foundry/concepts/model-benchmarks) · [Microsoft Foundry Models overview](https://learn.microsoft.com/en-us/azure/foundry/concepts/foundry-models-overview)",
+    "blanks": [
+      { "label": "모델 평가:", "options": ["프라이빗 엔드포인트 액세스를 구성합니다.", "배포 목록과 라이선스 탭을 사용합니다.", "도구 카탈로그 연결과 실행 추적을 사용합니다.", "모델 카탈로그 순위표와 모델 카드를 사용합니다."] },
+      { "label": "배포 옵션:", "options": ["자체 모델을 가져옵니다.", "벡터 인덱스를 만듭니다.", "서버리스 배포를 사용합니다.", "관리형 컴퓨팅 배포를 사용합니다."] }
+    ]
+  },
+  "119": {
+    "stem": "HOTSPOT\n\nPDF 파일로 저장된 보도 자료 모음이 있습니다.\n\n파일에서 텍스트를 추출하고 감정 분석을 수행해야 합니다.\n\n각 작업에 어떤 서비스를 사용해야 합니까?",
+    "expl": "Azure Document Intelligence는 문서 분석과 OCR 기능으로 PDF 문서에서 텍스트를 추출합니다. Azure Language는 긍정, 부정, 중립, 혼합 감정을 식별하는 텍스트 감정 분석을 제공합니다.\n\n**Learn more:** [Azure AI Document Intelligence documentation](https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/) · [Sentiment analysis and opinion mining](https://learn.microsoft.com/en-us/azure/ai-services/language-service/sentiment-opinion-mining/overview)",
+    "blanks": [
+      { "label": "텍스트 추출:", "options": ["Azure AI Search", "Foundry Tools의 Azure Vision", "Foundry Tools의 Azure Document Intelligence"] },
+      { "label": "감정 분석 수행:", "options": ["Azure AI Search", "Azure AI Computer Vision", "Foundry Tools의 Azure Document Intelligence", "Foundry Tools의 Azure Language"] }
+    ]
+  },
+  "120": {
+    "stem": "iOS 앱의 일부로 배포할 Custom Vision 모델을 만들고 있습니다.\n\n고양이와 개 이미지가 있으며 각 이미지에는 고양이 또는 개 하나가 들어 있습니다.\n\nAzure Custom Vision으로 이미지가 고양이인지 개인지 판별해야 합니다.\n\nAzure Custom Vision 포털에서 프로젝트를 어떻게 구성해야 합니까?",
+    "expl": "분류(Classification)는 이미지 전체에 레이블을 할당하므로 고양이나 개가 정확히 하나씩 들어 있는 이미지에 적합합니다. 각 이미지에 태그가 하나뿐이면 다중 클래스(multiclass) 분류기가 알맞습니다. General (compact) 도메인은 모바일·에지 장치로 내보내기 위한 것이라 iOS 앱 배포를 지원합니다.\n\n**Learn more:** [Microsoft Learn: Build a classifier with Custom Vision](https://learn.microsoft.com/en-us/azure/ai-services/custom-vision-service/getting-started-build-a-classifier) · [Microsoft Learn: Custom Vision domains](https://learn.microsoft.com/en-us/azure/ai-services/custom-vision-service/select-domain)",
+    "blanks": [
+      { "label": "프로젝트 유형:", "options": ["분류(Classification)", "개체 탐지(Object Detection)"] },
+      { "label": "분류 유형:", "options": ["다중 클래스(이미지당 태그 1개)", "다중 레이블(이미지당 태그 여러 개)"] },
+      { "label": "도메인:", "options": ["Adult", "Food", "General", "General (compact)", "Landmarks", "Landmarks (compact)", "Retail", "Retail (compact)"] }
+    ]
+  }
+}

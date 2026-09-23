@@ -1,4 +1,4 @@
-const VERSION = 'az104-pwa-20260923-v139-three-exams';
+const VERSION = 'az104-pwa-20260923-v140-ko-translate';
 const CACHE_NAME = VERSION;
 const BASE = new URL('./', self.location.href);
 const rel = p => new URL(p, BASE).href;
