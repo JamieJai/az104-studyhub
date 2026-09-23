@@ -281,13 +281,21 @@
   const CASE_OF = new Map();
   CASE_SETS.forEach(set => set.members.forEach(n => CASE_OF.set(Number(n), set)));
   function caseSetOf(src) { return CASE_OF.get(Number(src)) || null; }
+  // "솔루션이 목표를 충족합니까?" 같은 시나리오 시리즈 — 실제 시험처럼 연달아 나와야 한다
+  const SERIES = Array.isArray(dataset.series) ? dataset.series : [];
+  const SERIES_OF = new Map();
+  SERIES.forEach(s => s.members.forEach(n => SERIES_OF.set(Number(n), s)));
+  function groupMembersOf(src) {
+    const set = caseSetOf(src); if (set) return set.members;
+    const ser = SERIES_OF.get(Number(src)); return ser ? ser.members : null;
+  }
   // 후보 목록 → [문항] 또는 [사례 연구 멤버들...] 단위. 세트는 첫 멤버 자리에 통째로 놓인다.
   function unitsOf(list) {
     const inList = new Set(list.map(Number)); const done = new Set(); const units = [];
     for (const src of list.map(Number)) {
       if (done.has(src)) continue;
-      const set = caseSetOf(src);
-      const unit = set ? set.members.map(Number).filter(m => inList.has(m)) : [src];
+      const members = groupMembersOf(src);
+      const unit = members ? members.map(Number).filter(m => inList.has(m)) : [src];
       unit.forEach(m => done.add(m)); units.push(unit);
     }
     return units;
@@ -471,7 +479,7 @@
   function buildRealExam(base) {
     const inPool = new Set(base.map(q => q.source));
     const isOx = q => binaryAnswerSequence(q).length >= 2;
-    const single = base.filter(q => !caseSetOf(q.source) && !isOx(q)).map(q => [q.source]);
+    const single = unitsOf(base.filter(q => !caseSetOf(q.source) && !isOx(q)).map(q => q.source));   // 시리즈는 묶음째
     const ox = base.filter(q => !caseSetOf(q.source) && isOx(q)).map(q => [q.source]);
     const sets = CASE_SETS.map(s => s.members.map(Number).filter(n => inPool.has(n))).filter(m => m.length);
     const target = Math.min(single.length, REAL_PLAN.singleMin + Math.floor(Math.random() * (REAL_PLAN.singleMax - REAL_PLAN.singleMin + 1)));
@@ -479,15 +487,15 @@
     const partA = []; const usedA = new Set();
     Object.keys(alloc).forEach(c => {
       let n = 0;
-      for (const u of orderUnits(single.filter(u => String((questionBySource(u[0]) || {}).chapter) === String(c) && !usedA.has(u[0])))) {
-        if (n >= alloc[c] || partA.length >= target) break;
-        partA.push(u); usedA.add(u[0]); n++;
+      for (const u of orderUnits(single.filter(u => String((questionBySource(u[0]) || {}).chapter) === String(c) && !u.some(x => usedA.has(x))))) {
+        if (n >= alloc[c] || partA.flat().length >= target) break;
+        partA.push(u); u.forEach(x => usedA.add(x)); n += u.length;
       }
     });
-    for (const u of orderUnits(single.filter(u => !usedA.has(u[0])))) { if (partA.length >= target) break; partA.push(u); usedA.add(u[0]); }
+    for (const u of orderUnits(single.filter(u => !u.some(x => usedA.has(x))))) { if (partA.flat().length >= target) break; partA.push(u); u.forEach(x => usedA.add(x)); }
     const partB = orderUnits(ox).slice(0, REAL_PLAN.oxSets);
     const partC = shuffle(sets).slice(0, REAL_PLAN.caseSets);
-    lastRealPlan = { single: partA.length, ox: partB.length, cases: partC.flat().length };
+    lastRealPlan = { single: partA.flat().length, ox: partB.length, cases: partC.flat().length };
     return [...shuffle(partA), ...partB, ...partC].flat();
   }
   let lastRealPlan = null;

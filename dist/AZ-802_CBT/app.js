@@ -307,13 +307,23 @@
       return true;
     }).map(q => q.n);
   }
-  // 후보 n 목록 → [n] 또는 [세트 멤버들...] 단위 목록. 세트는 첫 멤버가 나오는 자리에 통째로 놓인다.
+  // "Solution: … Does this achieve the goal?" 같은 시나리오 시리즈 — 실제 시험처럼 연달아 나와야 한다
+  const SERIES = Array.isArray(DATA.series) ? DATA.series : [];
+  const SERIES_OF = new Map();
+  SERIES.forEach(s => s.members.forEach(n => SERIES_OF.set(Number(n), s)));
+  function groupOf(n) {
+    const q = BY_N.get(n);
+    if (q && q.set) { const set = SET_BY_ID.get(q.set.id); if (set) return set.members; }
+    const ser = SERIES_OF.get(Number(n));
+    return ser ? ser.members : null;
+  }
+  // 후보 n 목록 → [n] 또는 [묶음 멤버들...] 단위 목록. 묶음(사례 연구·시리즈)은 첫 멤버 자리에 통째로 놓인다.
   function unitsOf(ns) {
     const inList = new Set(ns); const done = new Set(); const units = [];
     for (const n of ns) {
       if (done.has(n)) continue;
-      const q = BY_N.get(n); const set = q && q.set ? SET_BY_ID.get(q.set.id) : null;
-      const unit = set ? set.members.filter(m => inList.has(m)) : [n];
+      const members = groupOf(n);
+      const unit = members ? members.map(Number).filter(m => inList.has(m)) : [n];
       unit.forEach(m => done.add(m)); units.push(unit);
     }
     return units;
@@ -383,7 +393,7 @@
   function buildRealExam(includeLegacy) {
     const pool = examPool(includeLegacy);
     const inPool = new Set(pool.map(q => q.n));
-    const single = pool.filter(q => !q.set && q.type !== "statements").map(q => [q.n]);
+    const single = unitsOf(pool.filter(q => !q.set && q.type !== "statements").map(q => q.n));   // 시리즈는 묶음째
     const ox = pool.filter(q => !q.set && q.type === "statements").map(q => [q.n]);
     const sets = (DATA.sets || []).map(s => s.members.filter(n => inPool.has(n))).filter(m => m.length);
     const target = Math.min(single.length, REAL_PLAN.singleMin + Math.floor(Math.random() * (REAL_PLAN.singleMax - REAL_PLAN.singleMin + 1)));
@@ -391,17 +401,17 @@
     const partA = []; const usedA = new Set();
     DATA.topics.forEach((t, i) => {
       let c = 0;
-      for (const u of orderUnits(single.filter(u => topicOfUnit(u) === t.en))) {
-        if (c >= Math.round(targets[i]) || partA.length >= target) break;
-        partA.push(u); usedA.add(u[0]); c++;
+      for (const u of orderUnits(single.filter(u => topicOfUnit(u) === t.en && !usedA.has(u[0])))) {
+        if (c >= Math.round(targets[i]) || partA.flat().length >= target) break;
+        partA.push(u); u.forEach(n => usedA.add(n)); c += u.length;
       }
     });
-    for (const u of orderUnits(single.filter(u => !usedA.has(u[0])))) { if (partA.length >= target) break; partA.push(u); usedA.add(u[0]); }
+    for (const u of orderUnits(single.filter(u => !u.some(n => usedA.has(n))))) { if (partA.flat().length >= target) break; partA.push(u); u.forEach(n => usedA.add(n)); }
     const partB = orderUnits(ox).slice(0, REAL_PLAN.oxSets);
     const partC = shuffle(sets).slice(0, REAL_PLAN.caseSets);
     const queue = [...shuffle(partA), ...partB, ...partC].flat();
     const plan = {
-      single: partA.length,
+      single: partA.flat().length,
       ox: partB.length, oxPoints: pointsOfNs(partB.flat()),
       cases: partC.length, casePoints: pointsOfNs(partC.flat()),
     };
