@@ -1,0 +1,1738 @@
+{
+"1": [
+"USER",
+"사용자·테넌트 설정(도메인·브랜딩·보안 특성·대량 작업·복원·디바이스)"
+],
+"2": [
+"USER",
+"Entra 역할·관리 단위·역할 할당 가능 그룹"
+],
+"3": [
+"AUTH",
+"MFA·인증 방법(Authenticator·FIDO2·WHfB·CBA·TAP·NPS)"
+],
+"4": [
+"WL",
+"앱 등록·엔터프라이즈 앱·서비스 주체·SSO·자격 증명"
+],
+"5": [
+"AUTH",
+"조건부 액세스(할당·조건·허용·세션·템플릿·What If)"
+],
+"6": [
+"GOV",
+"권한 관리(액세스 패키지·카탈로그·연결된 조직)"
+],
+"9": [
+"USER",
+"외부 ID(B2B·교차 테넌트 동기화·셀프 서비스 등록·일회용 암호)"
+],
+"10": [
+"WL",
+"관리 ID(시스템/사용자 할당)·IMDS"
+],
+"11": [
+"WL",
+"Defender for Cloud Apps(정책·앱 제어·검색)"
+],
+"12": [
+"GOV",
+"PIM(역할 설정·활성화·승인·그룹)"
+],
+"14": [
+"AUTH",
+"Identity Protection(사용자/로그인 위험·MFA 등록 정책)"
+],
+"16": [
+"USER",
+"Entra 역할·관리 단위·역할 할당 가능 그룹"
+],
+"17": [
+"GOV",
+"PIM(역할 설정·활성화·승인·그룹)"
+],
+"18": [
+"GOV",
+"PIM(역할 설정·활성화·승인·그룹)"
+],
+"19": [
+"WL",
+"Defender for Cloud Apps(정책·앱 제어·검색)"
+],
+"20": [
+"USER",
+"하이브리드 ID(Entra Connect·Cloud Sync·PHS/PTA·페더레이션·Seamless SSO)"
+],
+"21": [
+"USER",
+"외부 ID(B2B·교차 테넌트 동기화·셀프 서비스 등록·일회용 암호)"
+],
+"22": [
+"AUTH",
+"SSPR·암호 보호·스마트 잠금·쓰기 저장"
+],
+"23": [
+"GOV",
+"액세스 검토"
+],
+"24": [
+"GOV",
+"액세스 검토"
+],
+"25": [
+"GOV",
+"액세스 검토"
+],
+"26": [
+"GOV",
+"액세스 검토"
+],
+"27": [
+"AUTH",
+"Global Secure Access(Internet/Private Access)"
+],
+"28": [
+"AUTH",
+"Global Secure Access(Internet/Private Access)"
+],
+"29": [
+"WL",
+"관리 ID(시스템/사용자 할당)·IMDS"
+],
+"30": [
+"AUTH",
+"조건부 액세스(할당·조건·허용·세션·템플릿·What If)"
+],
+"31": [
+"AUTH",
+"Global Secure Access(Internet/Private Access)"
+],
+"32": [
+"USER",
+"하이브리드 ID(Entra Connect·Cloud Sync·PHS/PTA·페더레이션·Seamless SSO)"
+],
+"33": [
+"AUTH",
+"Identity Protection(사용자/로그인 위험·MFA 등록 정책)"
+],
+"34": [
+"GOV",
+"모니터링(로그·진단 설정·KQL·Sentinel·Secure Score·통합 문서)"
+],
+"35": [
+"AUTH",
+"MFA·인증 방법(Authenticator·FIDO2·WHfB·CBA·TAP·NPS)"
+],
+"36": [
+"USER",
+"그룹·동적 멤버 자격·라이선스"
+],
+"37": [
+"USER",
+"사용자·테넌트 설정(도메인·브랜딩·보안 특성·대량 작업·복원·디바이스)"
+],
+"38": [
+"AUTH",
+"SSPR·암호 보호·스마트 잠금·쓰기 저장"
+],
+"39": [
+"WL",
+"관리 ID(시스템/사용자 할당)·IMDS"
+],
+"40": [
+"AUTH",
+"Identity Protection(사용자/로그인 위험·MFA 등록 정책)"
+],
+"41": [
+"AUTH",
+"Global Secure Access(Internet/Private Access)"
+],
+"42": [
+"AUTH",
+"Azure RBAC·ABAC·Key Vault·VM 로그인"
+],
+"43": [
+"GOV",
+"PIM(역할 설정·활성화·승인·그룹)"
+],
+"44": [
+"GOV",
+"PIM(역할 설정·활성화·승인·그룹)"
+],
+"45": [
+"WL",
+"관리 ID(시스템/사용자 할당)·IMDS"
+],
+"46": [
+"AUTH",
+"Global Secure Access(Internet/Private Access)"
+],
+"47": [
+"USER",
+"외부 ID(B2B·교차 테넌트 동기화·셀프 서비스 등록·일회용 암호)"
+],
+"48": [
+"USER",
+"외부 ID(B2B·교차 테넌트 동기화·셀프 서비스 등록·일회용 암호)"
+],
+"49": [
+"WL",
+"앱 권한·동의(위임/애플리케이션·관리자 동의·권한 분류)"
+],
+"50": [
+"GOV",
+"PIM(역할 설정·활성화·승인·그룹)"
+],
+"51": [
+"GOV",
+"Permissions Management(CIEM)"
+],
+"52": [
+"AUTH",
+"조건부 액세스(할당·조건·허용·세션·템플릿·What If)"
+],
+"53": [
+"USER",
+"하이브리드 ID(Entra Connect·Cloud Sync·PHS/PTA·페더레이션·Seamless SSO)"
+],
+"54": [
+"GOV",
+"Permissions Management(CIEM)"
+],
+"55": [
+"AUTH",
+"Identity Protection(사용자/로그인 위험·MFA 등록 정책)"
+],
+"56": [
+"GOV",
+"권한 관리(액세스 패키지·카탈로그·연결된 조직)"
+],
+"57": [
+"AUTH",
+"조건부 액세스(할당·조건·허용·세션·템플릿·What If)"
+],
+"58": [
+"WL",
+"관리 ID(시스템/사용자 할당)·IMDS"
+],
+"59": [
+"AUTH",
+"Azure RBAC·ABAC·Key Vault·VM 로그인"
+],
+"60": [
+"AUTH",
+"Global Secure Access(Internet/Private Access)"
+],
+"61": [
+"AUTH",
+"조건부 액세스(할당·조건·허용·세션·템플릿·What If)"
+],
+"62": [
+"WL",
+"Defender for Cloud Apps(정책·앱 제어·검색)"
+],
+"63": [
+"USER",
+"Entra 역할·관리 단위·역할 할당 가능 그룹"
+],
+"64": [
+"GOV",
+"액세스 검토"
+],
+"65": [
+"WL",
+"앱 권한·동의(위임/애플리케이션·관리자 동의·권한 분류)"
+],
+"66": [
+"GOV",
+"Permissions Management(CIEM)"
+],
+"67": [
+"WL",
+"Defender for Cloud Apps(정책·앱 제어·검색)"
+],
+"68": [
+"GOV",
+"액세스 검토"
+],
+"69": [
+"AUTH",
+"Global Secure Access(Internet/Private Access)"
+],
+"70": [
+"WL",
+"관리 ID(시스템/사용자 할당)·IMDS"
+],
+"71": [
+"AUTH",
+"Azure RBAC·ABAC·Key Vault·VM 로그인"
+],
+"72": [
+"WL",
+"Defender for Cloud Apps(정책·앱 제어·검색)"
+],
+"73": [
+"AUTH",
+"Azure RBAC·ABAC·Key Vault·VM 로그인"
+],
+"74": [
+"GOV",
+"Permissions Management(CIEM)"
+],
+"75": [
+"AUTH",
+"SSPR·암호 보호·스마트 잠금·쓰기 저장"
+],
+"76": [
+"USER",
+"외부 ID(B2B·교차 테넌트 동기화·셀프 서비스 등록·일회용 암호)"
+],
+"78": [
+"WL",
+"앱 권한·동의(위임/애플리케이션·관리자 동의·권한 분류)"
+],
+"79": [
+"WL",
+"앱 권한·동의(위임/애플리케이션·관리자 동의·권한 분류)"
+],
+"80": [
+"GOV",
+"액세스 검토"
+],
+"81": [
+"WL",
+"애플리케이션 프록시"
+],
+"82": [
+"USER",
+"외부 ID(B2B·교차 테넌트 동기화·셀프 서비스 등록·일회용 암호)"
+],
+"83": [
+"GOV",
+"권한 관리(액세스 패키지·카탈로그·연결된 조직)"
+],
+"84": [
+"GOV",
+"모니터링(로그·진단 설정·KQL·Sentinel·Secure Score·통합 문서)"
+],
+"85": [
+"AUTH",
+"Identity Protection(사용자/로그인 위험·MFA 등록 정책)"
+],
+"86": [
+"WL",
+"Defender for Cloud Apps(정책·앱 제어·검색)"
+],
+"87": [
+"AUTH",
+"Azure RBAC·ABAC·Key Vault·VM 로그인"
+],
+"88": [
+"AUTH",
+"Azure RBAC·ABAC·Key Vault·VM 로그인"
+],
+"89": [
+"AUTH",
+"Identity Protection(사용자/로그인 위험·MFA 등록 정책)"
+],
+"90": [
+"USER",
+"사용자·테넌트 설정(도메인·브랜딩·보안 특성·대량 작업·복원·디바이스)"
+],
+"91": [
+"USER",
+"Entra 역할·관리 단위·역할 할당 가능 그룹"
+],
+"92": [
+"USER",
+"외부 ID(B2B·교차 테넌트 동기화·셀프 서비스 등록·일회용 암호)"
+],
+"93": [
+"AUTH",
+"Identity Protection(사용자/로그인 위험·MFA 등록 정책)"
+],
+"94": [
+"WL",
+"Defender for Cloud Apps(정책·앱 제어·검색)"
+],
+"95": [
+"AUTH",
+"Azure RBAC·ABAC·Key Vault·VM 로그인"
+],
+"96": [
+"USER",
+"하이브리드 ID(Entra Connect·Cloud Sync·PHS/PTA·페더레이션·Seamless SSO)"
+],
+"97": [
+"AUTH",
+"Azure RBAC·ABAC·Key Vault·VM 로그인"
+],
+"98": [
+"GOV",
+"PIM(역할 설정·활성화·승인·그룹)"
+],
+"99": [
+"AUTH",
+"MFA·인증 방법(Authenticator·FIDO2·WHfB·CBA·TAP·NPS)"
+],
+"100": [
+"AUTH",
+"Azure RBAC·ABAC·Key Vault·VM 로그인"
+],
+"101": [
+"AUTH",
+"Azure RBAC·ABAC·Key Vault·VM 로그인"
+],
+"102": [
+"AUTH",
+"MFA·인증 방법(Authenticator·FIDO2·WHfB·CBA·TAP·NPS)"
+],
+"103": [
+"WL",
+"앱 등록·엔터프라이즈 앱·서비스 주체·SSO·자격 증명"
+],
+"105": [
+"GOV",
+"사용 약관(ToU)"
+],
+"106": [
+"GOV",
+"PIM(역할 설정·활성화·승인·그룹)"
+],
+"108": [
+"GOV",
+"권한 관리(액세스 패키지·카탈로그·연결된 조직)"
+],
+"109": [
+"GOV",
+"권한 관리(액세스 패키지·카탈로그·연결된 조직)"
+],
+"110": [
+"USER",
+"하이브리드 ID(Entra Connect·Cloud Sync·PHS/PTA·페더레이션·Seamless SSO)"
+],
+"111": [
+"GOV",
+"액세스 검토"
+],
+"112": [
+"USER",
+"Entra 역할·관리 단위·역할 할당 가능 그룹"
+],
+"113": [
+"USER",
+"외부 ID(B2B·교차 테넌트 동기화·셀프 서비스 등록·일회용 암호)"
+],
+"114": [
+"GOV",
+"권한 관리(액세스 패키지·카탈로그·연결된 조직)"
+],
+"115": [
+"GOV",
+"Permissions Management(CIEM)"
+],
+"116": [
+"WL",
+"앱 권한·동의(위임/애플리케이션·관리자 동의·권한 분류)"
+],
+"117": [
+"GOV",
+"PIM(역할 설정·활성화·승인·그룹)"
+],
+"118": [
+"WL",
+"Defender for Cloud Apps(정책·앱 제어·검색)"
+],
+"119": [
+"USER",
+"외부 ID(B2B·교차 테넌트 동기화·셀프 서비스 등록·일회용 암호)"
+],
+"120": [
+"AUTH",
+"Azure RBAC·ABAC·Key Vault·VM 로그인"
+],
+"121": [
+"GOV",
+"권한 관리(액세스 패키지·카탈로그·연결된 조직)"
+],
+"122": [
+"AUTH",
+"Identity Protection(사용자/로그인 위험·MFA 등록 정책)"
+],
+"123": [
+"WL",
+"Defender for Cloud Apps(정책·앱 제어·검색)"
+],
+"124": [
+"GOV",
+"Permissions Management(CIEM)"
+],
+"125": [
+"AUTH",
+"SSPR·암호 보호·스마트 잠금·쓰기 저장"
+],
+"126": [
+"WL",
+"Defender for Cloud Apps(정책·앱 제어·검색)"
+],
+"127": [
+"WL",
+"Defender for Cloud Apps(정책·앱 제어·검색)"
+],
+"128": [
+"USER",
+"외부 ID(B2B·교차 테넌트 동기화·셀프 서비스 등록·일회용 암호)"
+],
+"129": [
+"AUTH",
+"SSPR·암호 보호·스마트 잠금·쓰기 저장"
+],
+"130": [
+"GOV",
+"Permissions Management(CIEM)"
+],
+"131": [
+"GOV",
+"권한 관리(액세스 패키지·카탈로그·연결된 조직)"
+],
+"132": [
+"AUTH",
+"Identity Protection(사용자/로그인 위험·MFA 등록 정책)"
+],
+"133": [
+"AUTH",
+"Identity Protection(사용자/로그인 위험·MFA 등록 정책)"
+],
+"134": [
+"AUTH",
+"Identity Protection(사용자/로그인 위험·MFA 등록 정책)"
+],
+"135": [
+"AUTH",
+"MFA·인증 방법(Authenticator·FIDO2·WHfB·CBA·TAP·NPS)"
+],
+"136": [
+"AUTH",
+"Identity Protection(사용자/로그인 위험·MFA 등록 정책)"
+],
+"137": [
+"GOV",
+"Permissions Management(CIEM)"
+],
+"138": [
+"WL",
+"Defender for Cloud Apps(정책·앱 제어·검색)"
+],
+"139": [
+"GOV",
+"액세스 검토"
+],
+"140": [
+"WL",
+"Defender for Cloud Apps(정책·앱 제어·검색)"
+],
+"141": [
+"GOV",
+"PIM(역할 설정·활성화·승인·그룹)"
+],
+"142": [
+"AUTH",
+"조건부 액세스(할당·조건·허용·세션·템플릿·What If)"
+],
+"143": [
+"AUTH",
+"Global Secure Access(Internet/Private Access)"
+],
+"144": [
+"GOV",
+"Permissions Management(CIEM)"
+],
+"145": [
+"AUTH",
+"조건부 액세스(할당·조건·허용·세션·템플릿·What If)"
+],
+"146": [
+"GOV",
+"Permissions Management(CIEM)"
+],
+"147": [
+"AUTH",
+"Global Secure Access(Internet/Private Access)"
+],
+"148": [
+"AUTH",
+"Identity Protection(사용자/로그인 위험·MFA 등록 정책)"
+],
+"149": [
+"WL",
+"앱 등록·엔터프라이즈 앱·서비스 주체·SSO·자격 증명"
+],
+"150": [
+"AUTH",
+"Identity Protection(사용자/로그인 위험·MFA 등록 정책)"
+],
+"151": [
+"USER",
+"외부 ID(B2B·교차 테넌트 동기화·셀프 서비스 등록·일회용 암호)"
+],
+"152": [
+"GOV",
+"액세스 검토"
+],
+"153": [
+"USER",
+"Entra 역할·관리 단위·역할 할당 가능 그룹"
+],
+"154": [
+"USER",
+"하이브리드 ID(Entra Connect·Cloud Sync·PHS/PTA·페더레이션·Seamless SSO)"
+],
+"155": [
+"USER",
+"사용자·테넌트 설정(도메인·브랜딩·보안 특성·대량 작업·복원·디바이스)"
+],
+"156": [
+"GOV",
+"PIM(역할 설정·활성화·승인·그룹)"
+],
+"157": [
+"AUTH",
+"Identity Protection(사용자/로그인 위험·MFA 등록 정책)"
+],
+"158": [
+"GOV",
+"PIM(역할 설정·활성화·승인·그룹)"
+],
+"159": [
+"GOV",
+"권한 관리(액세스 패키지·카탈로그·연결된 조직)"
+],
+"160": [
+"AUTH",
+"Identity Protection(사용자/로그인 위험·MFA 등록 정책)"
+],
+"161": [
+"USER",
+"Entra 역할·관리 단위·역할 할당 가능 그룹"
+],
+"162": [
+"WL",
+"앱 등록·엔터프라이즈 앱·서비스 주체·SSO·자격 증명"
+],
+"163": [
+"WL",
+"Defender for Cloud Apps(정책·앱 제어·검색)"
+],
+"164": [
+"USER",
+"외부 ID(B2B·교차 테넌트 동기화·셀프 서비스 등록·일회용 암호)"
+],
+"165": [
+"WL",
+"Defender for Cloud Apps(정책·앱 제어·검색)"
+],
+"166": [
+"WL",
+"Defender for Cloud Apps(정책·앱 제어·검색)"
+],
+"167": [
+"WL",
+"Defender for Cloud Apps(정책·앱 제어·검색)"
+],
+"168": [
+"WL",
+"Defender for Cloud Apps(정책·앱 제어·검색)"
+],
+"169": [
+"GOV",
+"PIM(역할 설정·활성화·승인·그룹)"
+],
+"170": [
+"GOV",
+"액세스 검토"
+],
+"171": [
+"AUTH",
+"MFA·인증 방법(Authenticator·FIDO2·WHfB·CBA·TAP·NPS)"
+],
+"172": [
+"GOV",
+"모니터링(로그·진단 설정·KQL·Sentinel·Secure Score·통합 문서)"
+],
+"173": [
+"WL",
+"앱 등록·엔터프라이즈 앱·서비스 주체·SSO·자격 증명"
+],
+"174": [
+"WL",
+"앱 권한·동의(위임/애플리케이션·관리자 동의·권한 분류)"
+],
+"175": [
+"USER",
+"그룹·동적 멤버 자격·라이선스"
+],
+"176": [
+"USER",
+"Entra 역할·관리 단위·역할 할당 가능 그룹"
+],
+"177": [
+"AUTH",
+"조건부 액세스(할당·조건·허용·세션·템플릿·What If)"
+],
+"178": [
+"WL",
+"앱 등록·엔터프라이즈 앱·서비스 주체·SSO·자격 증명"
+],
+"180": [
+"WL",
+"Defender for Cloud Apps(정책·앱 제어·검색)"
+],
+"181": [
+"AUTH",
+"조건부 액세스(할당·조건·허용·세션·템플릿·What If)"
+],
+"182": [
+"AUTH",
+"조건부 액세스(할당·조건·허용·세션·템플릿·What If)"
+],
+"183": [
+"WL",
+"관리 ID(시스템/사용자 할당)·IMDS"
+],
+"184": [
+"AUTH",
+"조건부 액세스(할당·조건·허용·세션·템플릿·What If)"
+],
+"185": [
+"USER",
+"사용자·테넌트 설정(도메인·브랜딩·보안 특성·대량 작업·복원·디바이스)"
+],
+"186": [
+"AUTH",
+"Azure RBAC·ABAC·Key Vault·VM 로그인"
+],
+"187": [
+"AUTH",
+"조건부 액세스(할당·조건·허용·세션·템플릿·What If)"
+],
+"188": [
+"WL",
+"Defender for Cloud Apps(정책·앱 제어·검색)"
+],
+"189": [
+"USER",
+"외부 ID(B2B·교차 테넌트 동기화·셀프 서비스 등록·일회용 암호)"
+],
+"190": [
+"GOV",
+"PIM(역할 설정·활성화·승인·그룹)"
+],
+"191": [
+"USER",
+"외부 ID(B2B·교차 테넌트 동기화·셀프 서비스 등록·일회용 암호)"
+],
+"192": [
+"USER",
+"외부 ID(B2B·교차 테넌트 동기화·셀프 서비스 등록·일회용 암호)"
+],
+"193": [
+"GOV",
+"액세스 검토"
+],
+"194": [
+"WL",
+"앱 권한·동의(위임/애플리케이션·관리자 동의·권한 분류)"
+],
+"195": [
+"WL",
+"애플리케이션 프록시"
+],
+"196": [
+"GOV",
+"PIM(역할 설정·활성화·승인·그룹)"
+],
+"197": [
+"AUTH",
+"Identity Protection(사용자/로그인 위험·MFA 등록 정책)"
+],
+"198": [
+"WL",
+"관리 ID(시스템/사용자 할당)·IMDS"
+],
+"199": [
+"AUTH",
+"SSPR·암호 보호·스마트 잠금·쓰기 저장"
+],
+"200": [
+"GOV",
+"그룹 만료·명명 정책·Lifecycle Workflows"
+],
+"201": [
+"USER",
+"사용자·테넌트 설정(도메인·브랜딩·보안 특성·대량 작업·복원·디바이스)"
+],
+"202": [
+"USER",
+"Entra 역할·관리 단위·역할 할당 가능 그룹"
+],
+"203": [
+"GOV",
+"Permissions Management(CIEM)"
+],
+"204": [
+"GOV",
+"권한 관리(액세스 패키지·카탈로그·연결된 조직)"
+],
+"205": [
+"AUTH",
+"MFA·인증 방법(Authenticator·FIDO2·WHfB·CBA·TAP·NPS)"
+],
+"206": [
+"USER",
+"그룹·동적 멤버 자격·라이선스"
+],
+"207": [
+"GOV",
+"액세스 검토"
+],
+"208": [
+"AUTH",
+"MFA·인증 방법(Authenticator·FIDO2·WHfB·CBA·TAP·NPS)"
+],
+"209": [
+"AUTH",
+"조건부 액세스(할당·조건·허용·세션·템플릿·What If)"
+],
+"210": [
+"AUTH",
+"MFA·인증 방법(Authenticator·FIDO2·WHfB·CBA·TAP·NPS)"
+],
+"211": [
+"WL",
+"관리 ID(시스템/사용자 할당)·IMDS"
+],
+"212": [
+"AUTH",
+"SSPR·암호 보호·스마트 잠금·쓰기 저장"
+],
+"213": [
+"USER",
+"그룹·동적 멤버 자격·라이선스"
+],
+"214": [
+"AUTH",
+"MFA·인증 방법(Authenticator·FIDO2·WHfB·CBA·TAP·NPS)"
+],
+"215": [
+"USER",
+"사용자·테넌트 설정(도메인·브랜딩·보안 특성·대량 작업·복원·디바이스)"
+],
+"216": [
+"WL",
+"관리 ID(시스템/사용자 할당)·IMDS"
+],
+"217": [
+"GOV",
+"사용 약관(ToU)"
+],
+"218": [
+"AUTH",
+"MFA·인증 방법(Authenticator·FIDO2·WHfB·CBA·TAP·NPS)"
+],
+"219": [
+"AUTH",
+"MFA·인증 방법(Authenticator·FIDO2·WHfB·CBA·TAP·NPS)"
+],
+"220": [
+"AUTH",
+"SSPR·암호 보호·스마트 잠금·쓰기 저장"
+],
+"221": [
+"AUTH",
+"조건부 액세스(할당·조건·허용·세션·템플릿·What If)"
+],
+"222": [
+"WL",
+"앱 등록·엔터프라이즈 앱·서비스 주체·SSO·자격 증명"
+],
+"223": [
+"GOV",
+"액세스 검토"
+],
+"224": [
+"AUTH",
+"Azure RBAC·ABAC·Key Vault·VM 로그인"
+],
+"226": [
+"GOV",
+"모니터링(로그·진단 설정·KQL·Sentinel·Secure Score·통합 문서)"
+],
+"227": [
+"AUTH",
+"조건부 액세스(할당·조건·허용·세션·템플릿·What If)"
+],
+"228": [
+"WL",
+"관리 ID(시스템/사용자 할당)·IMDS"
+],
+"229": [
+"WL",
+"앱 등록·엔터프라이즈 앱·서비스 주체·SSO·자격 증명"
+],
+"231": [
+"AUTH",
+"Global Secure Access(Internet/Private Access)"
+],
+"232": [
+"AUTH",
+"MFA·인증 방법(Authenticator·FIDO2·WHfB·CBA·TAP·NPS)"
+],
+"233": [
+"AUTH",
+"조건부 액세스(할당·조건·허용·세션·템플릿·What If)"
+],
+"234": [
+"USER",
+"외부 ID(B2B·교차 테넌트 동기화·셀프 서비스 등록·일회용 암호)"
+],
+"235": [
+"AUTH",
+"SSPR·암호 보호·스마트 잠금·쓰기 저장"
+],
+"236": [
+"WL",
+"앱 등록·엔터프라이즈 앱·서비스 주체·SSO·자격 증명"
+],
+"237": [
+"AUTH",
+"Azure RBAC·ABAC·Key Vault·VM 로그인"
+],
+"238": [
+"USER",
+"그룹·동적 멤버 자격·라이선스"
+],
+"240": [
+"GOV",
+"PIM(역할 설정·활성화·승인·그룹)"
+],
+"241": [
+"WL",
+"앱 권한·동의(위임/애플리케이션·관리자 동의·권한 분류)"
+],
+"242": [
+"AUTH",
+"SSPR·암호 보호·스마트 잠금·쓰기 저장"
+],
+"243": [
+"USER",
+"사용자·테넌트 설정(도메인·브랜딩·보안 특성·대량 작업·복원·디바이스)"
+],
+"244": [
+"AUTH",
+"Identity Protection(사용자/로그인 위험·MFA 등록 정책)"
+],
+"245": [
+"USER",
+"Entra 역할·관리 단위·역할 할당 가능 그룹"
+],
+"246": [
+"USER",
+"외부 ID(B2B·교차 테넌트 동기화·셀프 서비스 등록·일회용 암호)"
+],
+"247": [
+"GOV",
+"모니터링(로그·진단 설정·KQL·Sentinel·Secure Score·통합 문서)"
+],
+"248": [
+"AUTH",
+"Azure RBAC·ABAC·Key Vault·VM 로그인"
+],
+"249": [
+"WL",
+"앱 권한·동의(위임/애플리케이션·관리자 동의·권한 분류)"
+],
+"250": [
+"GOV",
+"액세스 검토"
+],
+"251": [
+"USER",
+"외부 ID(B2B·교차 테넌트 동기화·셀프 서비스 등록·일회용 암호)"
+],
+"252": [
+"AUTH",
+"SSPR·암호 보호·스마트 잠금·쓰기 저장"
+],
+"253": [
+"GOV",
+"사용 약관(ToU)"
+],
+"254": [
+"USER",
+"외부 ID(B2B·교차 테넌트 동기화·셀프 서비스 등록·일회용 암호)"
+],
+"255": [
+"WL",
+"앱 등록·엔터프라이즈 앱·서비스 주체·SSO·자격 증명"
+],
+"256": [
+"WL",
+"앱 등록·엔터프라이즈 앱·서비스 주체·SSO·자격 증명"
+],
+"257": [
+"WL",
+"앱 등록·엔터프라이즈 앱·서비스 주체·SSO·자격 증명"
+],
+"258": [
+"GOV",
+"권한 관리(액세스 패키지·카탈로그·연결된 조직)"
+],
+"259": [
+"USER",
+"하이브리드 ID(Entra Connect·Cloud Sync·PHS/PTA·페더레이션·Seamless SSO)"
+],
+"260": [
+"GOV",
+"PIM(역할 설정·활성화·승인·그룹)"
+],
+"261": [
+"USER",
+"그룹·동적 멤버 자격·라이선스"
+],
+"262": [
+"USER",
+"외부 ID(B2B·교차 테넌트 동기화·셀프 서비스 등록·일회용 암호)"
+],
+"263": [
+"AUTH",
+"조건부 액세스(할당·조건·허용·세션·템플릿·What If)"
+],
+"264": [
+"USER",
+"그룹·동적 멤버 자격·라이선스"
+],
+"265": [
+"GOV",
+"모니터링(로그·진단 설정·KQL·Sentinel·Secure Score·통합 문서)"
+],
+"266": [
+"GOV",
+"모니터링(로그·진단 설정·KQL·Sentinel·Secure Score·통합 문서)"
+],
+"267": [
+"GOV",
+"모니터링(로그·진단 설정·KQL·Sentinel·Secure Score·통합 문서)"
+],
+"268": [
+"GOV",
+"모니터링(로그·진단 설정·KQL·Sentinel·Secure Score·통합 문서)"
+],
+"269": [
+"AUTH",
+"Global Secure Access(Internet/Private Access)"
+],
+"270": [
+"AUTH",
+"MFA·인증 방법(Authenticator·FIDO2·WHfB·CBA·TAP·NPS)"
+],
+"271": [
+"AUTH",
+"Azure RBAC·ABAC·Key Vault·VM 로그인"
+],
+"272": [
+"WL",
+"애플리케이션 프록시"
+],
+"273": [
+"WL",
+"앱 등록·엔터프라이즈 앱·서비스 주체·SSO·자격 증명"
+],
+"274": [
+"AUTH",
+"Azure RBAC·ABAC·Key Vault·VM 로그인"
+],
+"275": [
+"GOV",
+"액세스 검토"
+],
+"276": [
+"WL",
+"앱 권한·동의(위임/애플리케이션·관리자 동의·권한 분류)"
+],
+"277": [
+"GOV",
+"모니터링(로그·진단 설정·KQL·Sentinel·Secure Score·통합 문서)"
+],
+"278": [
+"WL",
+"앱 등록·엔터프라이즈 앱·서비스 주체·SSO·자격 증명"
+],
+"279": [
+"WL",
+"앱 등록·엔터프라이즈 앱·서비스 주체·SSO·자격 증명"
+],
+"281": [
+"WL",
+"관리 ID(시스템/사용자 할당)·IMDS"
+],
+"282": [
+"USER",
+"그룹·동적 멤버 자격·라이선스"
+],
+"283": [
+"USER",
+"외부 ID(B2B·교차 테넌트 동기화·셀프 서비스 등록·일회용 암호)"
+],
+"284": [
+"GOV",
+"모니터링(로그·진단 설정·KQL·Sentinel·Secure Score·통합 문서)"
+],
+"285": [
+"GOV",
+"모니터링(로그·진단 설정·KQL·Sentinel·Secure Score·통합 문서)"
+],
+"286": [
+"GOV",
+"모니터링(로그·진단 설정·KQL·Sentinel·Secure Score·통합 문서)"
+],
+"287": [
+"GOV",
+"모니터링(로그·진단 설정·KQL·Sentinel·Secure Score·통합 문서)"
+],
+"288": [
+"AUTH",
+"조건부 액세스(할당·조건·허용·세션·템플릿·What If)"
+],
+"289": [
+"AUTH",
+"Azure RBAC·ABAC·Key Vault·VM 로그인"
+],
+"290": [
+"GOV",
+"액세스 검토"
+],
+"291": [
+"AUTH",
+"SSPR·암호 보호·스마트 잠금·쓰기 저장"
+],
+"292": [
+"WL",
+"앱 등록·엔터프라이즈 앱·서비스 주체·SSO·자격 증명"
+],
+"293": [
+"WL",
+"앱 권한·동의(위임/애플리케이션·관리자 동의·권한 분류)"
+],
+"294": [
+"WL",
+"Defender for Cloud Apps(정책·앱 제어·검색)"
+],
+"295": [
+"GOV",
+"PIM(역할 설정·활성화·승인·그룹)"
+],
+"296": [
+"GOV",
+"액세스 검토"
+],
+"297": [
+"AUTH",
+"Azure RBAC·ABAC·Key Vault·VM 로그인"
+],
+"298": [
+"AUTH",
+"Global Secure Access(Internet/Private Access)"
+],
+"299": [
+"AUTH",
+"조건부 액세스(할당·조건·허용·세션·템플릿·What If)"
+],
+"300": [
+"AUTH",
+"Global Secure Access(Internet/Private Access)"
+],
+"301": [
+"USER",
+"외부 ID(B2B·교차 테넌트 동기화·셀프 서비스 등록·일회용 암호)"
+],
+"302": [
+"USER",
+"외부 ID(B2B·교차 테넌트 동기화·셀프 서비스 등록·일회용 암호)"
+],
+"303": [
+"WL",
+"관리 ID(시스템/사용자 할당)·IMDS"
+],
+"304": [
+"USER",
+"그룹·동적 멤버 자격·라이선스"
+],
+"305": [
+"WL",
+"Defender for Cloud Apps(정책·앱 제어·검색)"
+],
+"306": [
+"USER",
+"Entra 역할·관리 단위·역할 할당 가능 그룹"
+],
+"307": [
+"WL",
+"앱 등록·엔터프라이즈 앱·서비스 주체·SSO·자격 증명"
+],
+"308": [
+"USER",
+"외부 ID(B2B·교차 테넌트 동기화·셀프 서비스 등록·일회용 암호)"
+],
+"309": [
+"USER",
+"외부 ID(B2B·교차 테넌트 동기화·셀프 서비스 등록·일회용 암호)"
+],
+"310": [
+"WL",
+"앱 등록·엔터프라이즈 앱·서비스 주체·SSO·자격 증명"
+],
+"311": [
+"WL",
+"관리 ID(시스템/사용자 할당)·IMDS"
+],
+"312": [
+"USER",
+"외부 ID(B2B·교차 테넌트 동기화·셀프 서비스 등록·일회용 암호)"
+],
+"313": [
+"AUTH",
+"Global Secure Access(Internet/Private Access)"
+],
+"314": [
+"GOV",
+"모니터링(로그·진단 설정·KQL·Sentinel·Secure Score·통합 문서)"
+],
+"315": [
+"AUTH",
+"MFA·인증 방법(Authenticator·FIDO2·WHfB·CBA·TAP·NPS)"
+],
+"316": [
+"USER",
+"Entra 역할·관리 단위·역할 할당 가능 그룹"
+],
+"317": [
+"USER",
+"사용자·테넌트 설정(도메인·브랜딩·보안 특성·대량 작업·복원·디바이스)"
+],
+"318": [
+"AUTH",
+"Azure RBAC·ABAC·Key Vault·VM 로그인"
+],
+"319": [
+"USER",
+"그룹·동적 멤버 자격·라이선스"
+],
+"320": [
+"USER",
+"하이브리드 ID(Entra Connect·Cloud Sync·PHS/PTA·페더레이션·Seamless SSO)"
+],
+"321": [
+"WL",
+"Defender for Cloud Apps(정책·앱 제어·검색)"
+],
+"322": [
+"AUTH",
+"MFA·인증 방법(Authenticator·FIDO2·WHfB·CBA·TAP·NPS)"
+],
+"325": [
+"GOV",
+"PIM(역할 설정·활성화·승인·그룹)"
+],
+"326": [
+"AUTH",
+"SSPR·암호 보호·스마트 잠금·쓰기 저장"
+],
+"327": [
+"USER",
+"하이브리드 ID(Entra Connect·Cloud Sync·PHS/PTA·페더레이션·Seamless SSO)"
+],
+"328": [
+"AUTH",
+"Global Secure Access(Internet/Private Access)"
+],
+"329": [
+"GOV",
+"모니터링(로그·진단 설정·KQL·Sentinel·Secure Score·통합 문서)"
+],
+"330": [
+"AUTH",
+"조건부 액세스(할당·조건·허용·세션·템플릿·What If)"
+],
+"332": [
+"USER",
+"외부 ID(B2B·교차 테넌트 동기화·셀프 서비스 등록·일회용 암호)"
+],
+"334": [
+"AUTH",
+"Identity Protection(사용자/로그인 위험·MFA 등록 정책)"
+],
+"335": [
+"GOV",
+"액세스 검토"
+],
+"336": [
+"USER",
+"그룹·동적 멤버 자격·라이선스"
+],
+"337": [
+"USER",
+"외부 ID(B2B·교차 테넌트 동기화·셀프 서비스 등록·일회용 암호)"
+],
+"338": [
+"GOV",
+"권한 관리(액세스 패키지·카탈로그·연결된 조직)"
+],
+"339": [
+"GOV",
+"Permissions Management(CIEM)"
+],
+"340": [
+"WL",
+"앱 등록·엔터프라이즈 앱·서비스 주체·SSO·자격 증명"
+],
+"341": [
+"WL",
+"관리 ID(시스템/사용자 할당)·IMDS"
+],
+"342": [
+"WL",
+"앱 등록·엔터프라이즈 앱·서비스 주체·SSO·자격 증명"
+],
+"343": [
+"AUTH",
+"조건부 액세스(할당·조건·허용·세션·템플릿·What If)"
+],
+"344": [
+"AUTH",
+"SSPR·암호 보호·스마트 잠금·쓰기 저장"
+],
+"345": [
+"AUTH",
+"SSPR·암호 보호·스마트 잠금·쓰기 저장"
+],
+"346": [
+"USER",
+"하이브리드 ID(Entra Connect·Cloud Sync·PHS/PTA·페더레이션·Seamless SSO)"
+],
+"347": [
+"AUTH",
+"조건부 액세스(할당·조건·허용·세션·템플릿·What If)"
+],
+"348": [
+"GOV",
+"사용 약관(ToU)"
+],
+"349": [
+"GOV",
+"Permissions Management(CIEM)"
+],
+"351": [
+"USER",
+"하이브리드 ID(Entra Connect·Cloud Sync·PHS/PTA·페더레이션·Seamless SSO)"
+],
+"352": [
+"USER",
+"사용자·테넌트 설정(도메인·브랜딩·보안 특성·대량 작업·복원·디바이스)"
+],
+"353": [
+"WL",
+"애플리케이션 프록시"
+],
+"354": [
+"AUTH",
+"조건부 액세스(할당·조건·허용·세션·템플릿·What If)"
+],
+"355": [
+"AUTH",
+"SSPR·암호 보호·스마트 잠금·쓰기 저장"
+],
+"356": [
+"AUTH",
+"Identity Protection(사용자/로그인 위험·MFA 등록 정책)"
+],
+"357": [
+"USER",
+"그룹·동적 멤버 자격·라이선스"
+],
+"358": [
+"USER",
+"하이브리드 ID(Entra Connect·Cloud Sync·PHS/PTA·페더레이션·Seamless SSO)"
+],
+"359": [
+"WL",
+"앱 권한·동의(위임/애플리케이션·관리자 동의·권한 분류)"
+],
+"360": [
+"WL",
+"Defender for Cloud Apps(정책·앱 제어·검색)"
+],
+"361": [
+"USER",
+"외부 ID(B2B·교차 테넌트 동기화·셀프 서비스 등록·일회용 암호)"
+],
+"362": [
+"USER",
+"외부 ID(B2B·교차 테넌트 동기화·셀프 서비스 등록·일회용 암호)"
+],
+"363": [
+"USER",
+"Entra 역할·관리 단위·역할 할당 가능 그룹"
+],
+"364": [
+"AUTH",
+"Identity Protection(사용자/로그인 위험·MFA 등록 정책)"
+],
+"365": [
+"USER",
+"그룹·동적 멤버 자격·라이선스"
+],
+"366": [
+"WL",
+"앱 등록·엔터프라이즈 앱·서비스 주체·SSO·자격 증명"
+],
+"367": [
+"GOV",
+"사용 약관(ToU)"
+],
+"368": [
+"AUTH",
+"MFA·인증 방법(Authenticator·FIDO2·WHfB·CBA·TAP·NPS)"
+],
+"369": [
+"WL",
+"앱 권한·동의(위임/애플리케이션·관리자 동의·권한 분류)"
+],
+"370": [
+"GOV",
+"Permissions Management(CIEM)"
+],
+"371": [
+"GOV",
+"액세스 검토"
+],
+"372": [
+"AUTH",
+"조건부 액세스(할당·조건·허용·세션·템플릿·What If)"
+],
+"374": [
+"AUTH",
+"Identity Protection(사용자/로그인 위험·MFA 등록 정책)"
+],
+"375": [
+"GOV",
+"PIM(역할 설정·활성화·승인·그룹)"
+],
+"376": [
+"GOV",
+"권한 관리(액세스 패키지·카탈로그·연결된 조직)"
+],
+"377": [
+"AUTH",
+"Azure RBAC·ABAC·Key Vault·VM 로그인"
+],
+"378": [
+"GOV",
+"모니터링(로그·진단 설정·KQL·Sentinel·Secure Score·통합 문서)"
+],
+"379": [
+"WL",
+"앱 등록·엔터프라이즈 앱·서비스 주체·SSO·자격 증명"
+],
+"380": [
+"GOV",
+"그룹 만료·명명 정책·Lifecycle Workflows"
+],
+"381": [
+"WL",
+"앱 등록·엔터프라이즈 앱·서비스 주체·SSO·자격 증명"
+],
+"382": [
+"WL",
+"관리 ID(시스템/사용자 할당)·IMDS"
+],
+"383": [
+"WL",
+"관리 ID(시스템/사용자 할당)·IMDS"
+],
+"384": [
+"WL",
+"관리 ID(시스템/사용자 할당)·IMDS"
+],
+"385": [
+"AUTH",
+"SSPR·암호 보호·스마트 잠금·쓰기 저장"
+],
+"386": [
+"GOV",
+"PIM(역할 설정·활성화·승인·그룹)"
+],
+"387": [
+"USER",
+"그룹·동적 멤버 자격·라이선스"
+],
+"388": [
+"GOV",
+"Permissions Management(CIEM)"
+],
+"389": [
+"WL",
+"관리 ID(시스템/사용자 할당)·IMDS"
+],
+"390": [
+"GOV",
+"Permissions Management(CIEM)"
+],
+"391": [
+"GOV",
+"PIM(역할 설정·활성화·승인·그룹)"
+],
+"392": [
+"AUTH",
+"SSPR·암호 보호·스마트 잠금·쓰기 저장"
+],
+"393": [
+"AUTH",
+"Global Secure Access(Internet/Private Access)"
+],
+"394": [
+"GOV",
+"권한 관리(액세스 패키지·카탈로그·연결된 조직)"
+],
+"395": [
+"USER",
+"외부 ID(B2B·교차 테넌트 동기화·셀프 서비스 등록·일회용 암호)"
+],
+"396": [
+"USER",
+"그룹·동적 멤버 자격·라이선스"
+],
+"397": [
+"AUTH",
+"MFA·인증 방법(Authenticator·FIDO2·WHfB·CBA·TAP·NPS)"
+],
+"399": [
+"AUTH",
+"조건부 액세스(할당·조건·허용·세션·템플릿·What If)"
+],
+"400": [
+"USER",
+"사용자·테넌트 설정(도메인·브랜딩·보안 특성·대량 작업·복원·디바이스)"
+],
+"401": [
+"USER",
+"그룹·동적 멤버 자격·라이선스"
+],
+"402": [
+"AUTH",
+"SSPR·암호 보호·스마트 잠금·쓰기 저장"
+],
+"403": [
+"AUTH",
+"조건부 액세스(할당·조건·허용·세션·템플릿·What If)"
+],
+"404": [
+"AUTH",
+"SSPR·암호 보호·스마트 잠금·쓰기 저장"
+],
+"405": [
+"USER",
+"그룹·동적 멤버 자격·라이선스"
+],
+"406": [
+"AUTH",
+"Azure RBAC·ABAC·Key Vault·VM 로그인"
+],
+"407": [
+"GOV",
+"액세스 검토"
+],
+"408": [
+"AUTH",
+"조건부 액세스(할당·조건·허용·세션·템플릿·What If)"
+],
+"409": [
+"GOV",
+"권한 관리(액세스 패키지·카탈로그·연결된 조직)"
+],
+"410": [
+"AUTH",
+"조건부 액세스(할당·조건·허용·세션·템플릿·What If)"
+],
+"411": [
+"WL",
+"앱 권한·동의(위임/애플리케이션·관리자 동의·권한 분류)"
+],
+"412": [
+"WL",
+"Defender for Cloud Apps(정책·앱 제어·검색)"
+],
+"413": [
+"AUTH",
+"조건부 액세스(할당·조건·허용·세션·템플릿·What If)"
+],
+"414": [
+"AUTH",
+"조건부 액세스(할당·조건·허용·세션·템플릿·What If)"
+],
+"415": [
+"USER",
+"그룹·동적 멤버 자격·라이선스"
+],
+"416": [
+"USER",
+"Entra 역할·관리 단위·역할 할당 가능 그룹"
+],
+"417": [
+"AUTH",
+"MFA·인증 방법(Authenticator·FIDO2·WHfB·CBA·TAP·NPS)"
+],
+"418": [
+"USER",
+"하이브리드 ID(Entra Connect·Cloud Sync·PHS/PTA·페더레이션·Seamless SSO)"
+],
+"419": [
+"USER",
+"Entra 역할·관리 단위·역할 할당 가능 그룹"
+],
+"420": [
+"GOV",
+"모니터링(로그·진단 설정·KQL·Sentinel·Secure Score·통합 문서)"
+],
+"421": [
+"GOV",
+"액세스 검토"
+],
+"422": [
+"GOV",
+"사용 약관(ToU)"
+],
+"423": [
+"GOV",
+"모니터링(로그·진단 설정·KQL·Sentinel·Secure Score·통합 문서)"
+],
+"424": [
+"USER",
+"외부 ID(B2B·교차 테넌트 동기화·셀프 서비스 등록·일회용 암호)"
+],
+"425": [
+"WL",
+"관리 ID(시스템/사용자 할당)·IMDS"
+],
+"426": [
+"GOV",
+"Permissions Management(CIEM)"
+],
+"427": [
+"USER",
+"그룹·동적 멤버 자격·라이선스"
+],
+"428": [
+"GOV",
+"권한 관리(액세스 패키지·카탈로그·연결된 조직)"
+],
+"429": [
+"USER",
+"외부 ID(B2B·교차 테넌트 동기화·셀프 서비스 등록·일회용 암호)"
+],
+"430": [
+"USER",
+"하이브리드 ID(Entra Connect·Cloud Sync·PHS/PTA·페더레이션·Seamless SSO)"
+],
+"431": [
+"USER",
+"사용자·테넌트 설정(도메인·브랜딩·보안 특성·대량 작업·복원·디바이스)"
+],
+"432": [
+"AUTH",
+"MFA·인증 방법(Authenticator·FIDO2·WHfB·CBA·TAP·NPS)"
+],
+"433": [
+"AUTH",
+"MFA·인증 방법(Authenticator·FIDO2·WHfB·CBA·TAP·NPS)"
+],
+"434": [
+"GOV",
+"모니터링(로그·진단 설정·KQL·Sentinel·Secure Score·통합 문서)"
+],
+"435": [
+"WL",
+"Defender for Cloud Apps(정책·앱 제어·검색)"
+],
+"436": [
+"GOV",
+"PIM(역할 설정·활성화·승인·그룹)"
+],
+"437": [
+"WL",
+"Defender for Cloud Apps(정책·앱 제어·검색)"
+],
+"438": [
+"WL",
+"앱 등록·엔터프라이즈 앱·서비스 주체·SSO·자격 증명"
+],
+"439": [
+"GOV",
+"모니터링(로그·진단 설정·KQL·Sentinel·Secure Score·통합 문서)"
+],
+"441": [
+"AUTH",
+"Identity Protection(사용자/로그인 위험·MFA 등록 정책)"
+],
+"442": [
+"USER",
+"Entra 역할·관리 단위·역할 할당 가능 그룹"
+],
+"443": [
+"USER",
+"외부 ID(B2B·교차 테넌트 동기화·셀프 서비스 등록·일회용 암호)"
+],
+"445": [
+"AUTH",
+"SSPR·암호 보호·스마트 잠금·쓰기 저장"
+],
+"446": [
+"USER",
+"사용자·테넌트 설정(도메인·브랜딩·보안 특성·대량 작업·복원·디바이스)"
+],
+"447": [
+"USER",
+"Entra 역할·관리 단위·역할 할당 가능 그룹"
+],
+"452": [
+"AUTH",
+"Global Secure Access(Internet/Private Access)"
+],
+"453": [
+"WL",
+"Defender for Cloud Apps(정책·앱 제어·검색)"
+],
+"456": [
+"WL",
+"Defender for Cloud Apps(정책·앱 제어·검색)"
+],
+"457": [
+"USER",
+"하이브리드 ID(Entra Connect·Cloud Sync·PHS/PTA·페더레이션·Seamless SSO)"
+],
+"458": [
+"GOV",
+"PIM(역할 설정·활성화·승인·그룹)"
+],
+"461": [
+"GOV",
+"모니터링(로그·진단 설정·KQL·Sentinel·Secure Score·통합 문서)"
+],
+"462": [
+"AUTH",
+"조건부 액세스(할당·조건·허용·세션·템플릿·What If)"
+],
+"463": [
+"GOV",
+"PIM(역할 설정·활성화·승인·그룹)"
+]
+}
