@@ -1,0 +1,176 @@
+{
+  "129": {
+    "stem": "제로 트러스트 프레임워크를 기반으로 보안 운영 전략을 수립하고 있습니다.\n\nTier 1 Microsoft 보안 운영 센터(SOC) 분석가의 운영 부담을 줄여야 합니다.\n\n무엇을 해야 합니까?",
+    "expl": "Microsoft Defender XDR의 자동화된 조사·대응에는 장치, 메일·콘텐츠, ID 전반에서 경고를 자동으로 조사하고 위협을 수정하는 자가 복구 기능이 있습니다. 이 자동화는 Tier 1 SOC 인력을 늘린 것과 같은 효과를 내어 Tier 1 분석가의 수동 조사·수정 업무량을 줄입니다.\n\n**Learn more:** [Automated investigation and response in Microsoft Defender XDR](https://learn.microsoft.com/en-us/defender-xdr/m365d-autoir) · [Visibility, automation, and orchestration with Zero Trust](https://learn.microsoft.com/en-us/security/zero-trust/deploy/visibility-automation-orchestration)",
+    "choices": [
+      "Azure Policy에서 기본 제공 규정 준수 정책을 사용하도록 설정한다.",
+      "Microsoft 365 Defender에서 자가 복구를 사용하도록 설정한다.",
+      "데이터 분류를 자동화한다.",
+      "Microsoft 365 Defender에서 헌팅 쿼리를 만든다."
+    ]
+  },
+  "130": {
+    "stem": "회사에 온프레미스 Active Directory Domain Services(AD DS) 포리스트, Microsoft 365 구독, Azure 구독으로 구성된 하이브리드 클라우드 인프라가 있습니다.\n\n회사의 온프레미스 네트워크에는 Kerberos 인증을 사용하는 내부 웹앱이 있습니다. 현재 이 웹앱은 네트워크 안에서만 접근할 수 있습니다.\n\nWindows 11을 실행하는 개인 장치를 쓰는 원격 사용자가 있습니다.\n\n원격 사용자가 이 웹앱에 접근할 수 있게 하는 솔루션을 권장해야 합니다. 솔루션은 다음 요구 사항을 충족해야 합니다.\n\n- 원격 사용자가 다른 네트워크 리소스에는 접근하지 못하게 한다.\n- Azure Active Directory(Azure AD) 조건부 액세스를 지원한다.\n- 최종 사용자 경험을 단순하게 한다.\n\n권장 사항에 무엇을 포함해야 합니까?",
+    "expl": "Azure AD 애플리케이션 프록시는 네트워크 전체 접근을 부여하지 않고도 선택한 온프레미스 웹 애플리케이션을 원격 사용자에게 안전하게 게시합니다. Azure AD 사전 인증을 통해 트래픽이 온프레미스 애플리케이션에 도달하기 전에 조건부 액세스를 적용할 수 있고, Kerberos 제한 위임(KCD)으로 통합 Windows 인증을 쓰는 웹 애플리케이션에 단일 로그인을 제공합니다.\n\n**Learn more:** [Microsoft Entra application proxy](https://learn.microsoft.com/en-us/entra/identity/app-proxy/overview-what-is-app-proxy) · [Kerberos Constrained Delegation for single sign-on with Application Proxy](https://learn.microsoft.com/en-us/entra/identity/app-proxy/how-to-configure-sso-with-kcd)",
+    "choices": [
+      "Azure AD 애플리케이션 프록시",
+      "Microsoft Defender for Endpoint의 웹 콘텐츠 필터링",
+      "Microsoft Tunnel",
+      "Azure Virtual WAN"
+    ]
+  },
+  "131": {
+    "stem": "가상 머신 문제를 해결하는 솔루션을 권장해야 합니다.\n\n권장 사항에 무엇을 포함해야 합니까?",
+    "expl": "여기서 말하는 가상 머신 문제는 Defender for Cloud의 '컴퓨터에 취약점 평가 솔루션이 있어야 합니다' 권장 사항이며, 이 환경은 표준 검사기로 Qualys를 사용합니다. 해당 VM은 이미 Defender for Cloud에 표시되고 있으므로(권장 사항이 그 VM을 대상으로 생성되었으므로) 이미 연결되어 있어 Azure Arc 온보딩이 필요하지 않습니다. Defender for Cloud에서 통합 Qualys 취약점 검사기를 사용하도록 설정하기만 하면 권장 사항이 해결되고 컴퓨터가 규정을 준수하게 됩니다. Azure Arc(D)는 아직 Defender for Cloud에 보이지 않는 Azure 외부·온프레미스 서버에만 필요합니다. (통합 Qualys 검사기는 이후 Microsoft Defender 취약성 관리로 대체되었지만, 기본 제공 취약점 평가 솔루션을 사용하도록 설정한다는 개념은 같습니다.)\n\n**Learn more:** [Enable vulnerability scanning in Defender for Cloud](https://learn.microsoft.com/en-us/azure/defender-for-cloud/deploy-vulnerability-assessment-defender-vulnerability-management)",
+    "choices": [
+      "Defender for Cloud에서 Qualys 검사기를 사용하도록 설정한다.",
+      "가상 머신을 Microsoft Defender for Endpoint에 온보딩한다.",
+      "Microsoft Endpoint Manager에서 장치 규정 준수 정책을 만든다.",
+      "가상 머신을 Azure Arc에 온보딩한다."
+    ]
+  },
+  "132": {
+    "stem": "온프레미스 네트워크에 레거시 애플리케이션이 여러 개 있습니다. 이 애플리케이션은 기존 디렉터리 서비스에 LDAP 쿼리를 실행합니다.\n\n온프레미스 인프라를 클라우드 전용 인프라로 마이그레이션하고 있습니다.\n\n레거시 애플리케이션을 지원하는 인프라용 ID 솔루션을 권장해야 합니다. 솔루션은 인프라 유지 관리에 드는 관리 부담을 최소화해야 합니다.\n\n권장 사항에 어떤 ID 서비스를 포함해야 합니까?",
+    "expl": "Microsoft Entra Domain Services는 Active Directory Domain Services 프로토콜에 의존하는 레거시 애플리케이션을 위해 LDAP를 포함한 관리형 도메인 서비스를 제공합니다. 클라우드 전용 테넌트를 지원하고 도메인 컨트롤러를 배포·패치·모니터링·유지 관리할 필요가 없어 관리 부담이 최소화됩니다.\n\n**Learn more:** [Overview of Microsoft Entra Domain Services](https://learn.microsoft.com/en-us/entra/identity/domain-services/overview) · [Common deployment scenarios for Microsoft Entra Domain Services](https://learn.microsoft.com/en-us/entra/identity/domain-services/scenarios)",
+    "choices": [
+      "Microsoft Entra External ID",
+      "Microsoft Entra Domain Services",
+      "Microsoft Entra ID",
+      "Active Directory Domain Services(AD DS)"
+    ]
+  },
+  "133": {
+    "stem": "Microsoft Purview를 사용하는 Microsoft 365 구독이 있습니다.\n\n구독의 개인 식별 정보(PII)가 현지 개인 정보 보호 규정을 준수하도록 지침을 제공하는 솔루션을 권장해야 합니다. 솔루션은 관리 부담을 최소화해야 합니다.\n\n권장 사항에 어떤 Microsoft Purview 솔루션을 포함해야 합니까?",
+    "expl": "Microsoft Purview Compliance Manager는 규정 평가와 함께 자세한 구현 지침이 담긴 권장 개선 작업을 제공해, 조직이 데이터 보호 규정·표준에 맞추도록 돕습니다. 기본 제공 평가와 자동화된 테스트·모니터링으로 관리 부담이 줄어듭니다.\n\n**Learn more:** [Microsoft Purview Compliance Manager](https://learn.microsoft.com/en-us/purview/compliance-manager) · [Working with improvement actions in Microsoft Purview Compliance Manager](https://learn.microsoft.com/en-us/purview/compliance-manager-improvement-actions)",
+    "choices": [
+      "데이터 손실 방지",
+      "정보 보호",
+      "내부 위험 관리",
+      "Compliance Manager"
+    ]
+  },
+  "134": {
+    "stem": "회사에서 Splunk와 Microsoft Sentinel을 포함한 타사 보안 정보·이벤트 관리(SIEM) 솔루션을 사용합니다.\n\nMicrosoft Sentinel을 Splunk와 통합하려고 합니다.\n\nMicrosoft Sentinel의 보안 이벤트를 Splunk로 보내는 솔루션을 권장해야 합니다.\n\n권장 사항에 무엇을 포함해야 합니까?",
+    "expl": "Azure Event Hubs는 Microsoft Sentinel의 보안 이벤트를 외부 SIEM으로 내보내는 스트리밍 계층을 제공합니다. Splunk는 Azure 통합이나 Event Hubs 트리거 기반 전달 솔루션으로 이벤트 허브의 이벤트를 소비할 수 있습니다. Microsoft Sentinel 데이터 커넥터는 데이터를 Sentinel로 가져오는 것이고, 통합 문서는 데이터를 시각화하며, Azure Data Factory는 이벤트 스트리밍 통합 수단이 아닙니다.\n\n**Learn more:** [Stream Azure monitoring data to an event hub and external partners](https://learn.microsoft.com/en-us/azure/azure-monitor/platform/stream-monitoring-data-event-hubs) · [Stream Microsoft Defender for IoT cloud alerts to a partner SIEM](https://learn.microsoft.com/en-us/azure/defender-for-iot/organizations/integrations/send-cloud-data-to-partners)",
+    "choices": [
+      "Microsoft Sentinel 데이터 커넥터",
+      "Azure Event Hubs",
+      "Microsoft Sentinel 통합 문서",
+      "Azure Data Factory"
+    ]
+  },
+  "135": {
+    "stem": "Microsoft Purview, SharePoint Online, OneDrive for Business를 사용하는 Microsoft 365 E5 구독이 있습니다.\n\n다음 요구 사항을 충족하는 랜섬웨어 보호를 권장하세요.\n\n- 파일을 복사한 뒤 복사본을 암호화하고 원본 파일을 삭제하는 공격을 완화한다.\n- 파일을 제자리에서 암호화하는 공격을 완화한다.\n- 관리 부담을 최소화한다.\n\n권장 사항에 무엇을 포함해야 합니까?",
+    "expl": "휴지통은 삭제된 SharePoint·OneDrive 파일을 보관하므로 삭제 후에도 원본 파일을 복원할 수 있습니다. 버전 관리는 이전 파일 버전을 보관하므로 제자리 암호화 이전 버전으로 복구할 수 있습니다. DLP 정책은 중요 콘텐츠의 취급을 규율할 뿐 랜섬웨어 파일 복구 기능을 제공하지 않습니다.\n\n**Learn more:** [Restore deleted files or folders in OneDrive](https://support.microsoft.com/en-us/office/restore-deleted-files-or-folders-in-onedrive-949ada80-0026-4aeb-9d5a-a9537351aaa0) · [Enable and configure versioning for a list or library](https://support.microsoft.com/en-us/office/enable-and-configure-versioning-for-a-list-or-library-1555d642-23d8-4a64-bff8-24f2415ed7d0)",
+    "blanks": [
+      {
+        "label": "파일을 복사해 복사본을 암호화하고 원본 파일을 삭제하는 공격을 완화하려면:",
+        "options": ["데이터 손실 방지(DLP) 정책", "휴지통", "버전 관리"]
+      },
+      {
+        "label": "파일을 제자리에서 암호화하는 공격을 완화하려면:",
+        "options": ["데이터 손실 방지(DLP) 정책", "휴지통", "버전 관리"]
+      }
+    ]
+  },
+  "136": {
+    "stem": "Microsoft Defender for Cloud가 사용하도록 설정된 Azure 구독이 있습니다.\n\n구독에 새로 배포되는 리소스에 ISO 27001:2013 표준을 적용해야 합니다. 솔루션은 규정을 준수하지 않는 리소스를 자동으로 탐지해야 합니다.\n\n무엇을 사용해야 합니까?",
+    "expl": "Azure Policy는 구독 범위에서 거버넌스와 규정 요구 사항을 적용하고 리소스 구성을 지속적으로 평가해 규정을 준수하지 않는 리소스를 식별합니다. Defender for Cloud에서 규정 준수 표준은 Azure Policy 이니셔티브로 구현되며, 규정 준수 대시보드는 그 결과인 평가를 보여 줄 뿐 표준 자체를 강제하지는 않습니다.\n\n**Learn more:** [Assign regulatory compliance standards in Microsoft Defender for Cloud](https://learn.microsoft.com/en-us/azure/defender-for-cloud/assign-regulatory-compliance-standards) · [What is Azure Policy?](https://learn.microsoft.com/en-us/azure/governance/policy/overview)",
+    "choices": [
+      "Azure Blueprints",
+      "Defender for Cloud의 규정 준수 대시보드",
+      "Azure Policy",
+      "Azure 역할 기반 액세스 제어(Azure RBAC)"
+    ]
+  },
+  "137": {
+    "stem": "가상 머신이 있는 Azure 구독이 있습니다. 3389와 22 포트는 외부 접근이 차단되어 있습니다.\n\n관리자가 가상 머신에 안전하게 원격 접근할 수 있는 솔루션을 설계해야 합니다. 솔루션은 다음 요구 사항을 충족해야 합니다.\n\n- 인터넷에서 3389와 22 포트를 열 필요가 없어야 한다.\n- 필요할 때만 가상 머신 연결 권한을 부여한다.\n- 관리자가 Azure Portal을 통해 가상 머신에 연결하게 한다.\n\n솔루션에 포함해야 할 작업 두 가지는 무엇입니까? 각 정답은 솔루션의 일부입니다.\n\n> **참고:** 각 정답 선택은 1점입니다.",
+    "expl": "Azure Bastion은 3389와 22 포트를 공용 인터넷에 열지 않고도 Azure Portal에서 바로 RDP·SSH 세션을 사용할 수 있게 합니다. just-in-time VM 액세스는 요청이 있을 때만, 구성된 시간 동안만 관리 포트 접근을 허용한 뒤 이전 네트워크 제한을 복원합니다.\n\n**Learn more:** [About Azure Bastion](https://learn.microsoft.com/en-us/azure/bastion/bastion-overview) · [Enable just-in-time access](https://learn.microsoft.com/en-us/azure/defender-for-cloud/enable-just-in-time-access)",
+    "choices": [
+      "Azure VPN 게이트웨이를 구성한다.",
+      "JEA(Just Enough Administration)를 사용하도록 설정한다.",
+      "Azure Bastion을 구성한다.",
+      "just-in-time(JIT) VM 액세스를 사용하도록 설정한다.",
+      "Azure Active Directory(Azure AD) Privileged Identity Management(PIM) 역할을 가상 머신 참가자로 사용하도록 설정한다."
+    ]
+  },
+  "138": {
+    "stem": "Group1이라는 그룹이 있는 Microsoft 365 구독이 있습니다. 이 구독은 Microsoft Entra ID P1 테넌트에 연결되어 있습니다.\n\nApp1이라는 외부 SaaS(software as a service) 애플리케이션이 있습니다. App1은 웹 기반 관리 포털로 관리하며 Microsoft Entra ID 자격 증명 사용을 지원합니다.\n\nMicrosoft Entra 조인 장치에서 로그인한 Group1 구성원만 App1의 관리 포털에 접근할 수 있게 해야 합니다.\n\nMicrosoft Entra에서 가장 먼저 무엇을 만들어야 합니까?",
+    "expl": "외부 SaaS 애플리케이션은 엔터프라이즈 애플리케이션으로 추가해야 테넌트에 서비스 주체가 생기고 Microsoft Entra ID가 로그인 통합을 제공할 수 있습니다. 그런 다음 그 엔터프라이즈 애플리케이션을 대상으로 Group1을 할당하고 적절한 Microsoft Entra 조인 장치 조건을 요구하는 조건부 액세스 정책을 만들 수 있습니다.\n\n**Learn more:** [Application and service principal objects in Microsoft Entra ID](https://learn.microsoft.com/en-us/entra/identity-platform/app-objects-and-service-principals) · [Build Conditional Access policies in Microsoft Entra](https://learn.microsoft.com/en-us/entra/identity/conditional-access/concept-conditional-access-policies)",
+    "choices": [
+      "엔터프라이즈 애플리케이션",
+      "Microsoft Entra 애플리케이션 프록시 커넥터 그룹",
+      "조건부 액세스 정책",
+      "액세스 패키지"
+    ]
+  },
+  "139": {
+    "stem": "Microsoft Defender XDR로 보호되는 Windows 11 장치가 있는 Microsoft 365 구독이 있습니다.\n\n다음 요구 사항을 충족하면서 장치의 파일 공유 사이트 접근을 차단해야 합니다.\n\n- 지난 90일 동안 사용자가 접속한 파일 공유 사이트를 식별한다.\n- 사용자가 식별된 파일 공유 사이트에 접속하지 못하게 한다.\n- 관리 부담을 최소화한다.\n\n파일 공유 사이트를 식별할 서비스와 사용자의 접속을 막을 서비스를 선택하세요.",
+    "expl": "Microsoft Defender for Cloud Apps의 클라우드 검색은 통합된 Defender for Endpoint 장치에서 접근한 클라우드 애플리케이션을 식별합니다. 검색된 파일 공유 앱을 '승인되지 않음'으로 표시하면 해당 도메인이 Microsoft Defender for Endpoint의 사용자 지정 URL 표시기로 자동 동기화됩니다. 그러면 Defender for Endpoint의 네트워크 보호가 접근을 차단하므로, 개별 차단 규칙을 수동으로 만들고 유지 관리할 필요가 없습니다.\n\n**Learn more:** [Govern discovered apps using Microsoft Defender for Endpoint](https://learn.microsoft.com/en-us/defender-cloud-apps/mde-govern) · [Investigate apps discovered by Microsoft Defender for Endpoint](https://learn.microsoft.com/en-us/defender-cloud-apps/mde-investigation)",
+    "blanks": [
+      {
+        "label": "사이트를 식별하는 데 사용할 것:",
+        "options": [
+          "Microsoft Defender for Cloud",
+          "Microsoft Defender for Cloud Apps",
+          "Microsoft Defender for Endpoints",
+          "Microsoft Defender 취약성 관리"
+        ]
+      },
+      {
+        "label": "사용자가 사이트에 접속하지 못하게 하는 데 사용할 것:",
+        "options": [
+          "Microsoft Defender for Cloud",
+          "Microsoft Defender for Cloud Apps",
+          "Microsoft Defender for Endpoints",
+          "Microsoft Defender 취약성 관리"
+        ]
+      }
+    ]
+  },
+  "140": {
+    "stem": "Azure Pipelines와 Azure Repos로 애플리케이션을 Azure에 배포하는 지속적 통합·지속적 배포(CI/CD) 워크플로를 구현합니다.\n\nAzure용 Microsoft 클라우드 채택 프레임워크 원칙에 따라 동적 애플리케이션 보안 테스트(DAST)에 무엇을 포함할지 권장해야 합니다.\n\n무엇을 권장해야 합니까?",
+    "expl": "동적 애플리케이션 보안 테스트는 애플리케이션이 실행되는 동안 평가해 보안 취약점을 찾아냅니다. Microsoft는 침투 테스터나 취약점 평가자 같은 보안 전문가의 도움을 받아 DAST를 수행하도록 권장합니다.\n\n**Learn more:** [Develop secure applications on Microsoft Azure](https://learn.microsoft.com/en-us/azure/security/develop/secure-develop)",
+    "choices": ["단위 테스트", "침투 테스트", "종속성 검사", "위협 모델링"]
+  },
+  "141": {
+    "stem": "한 고객에게 Microsoft 365 구독이 있고 Azure Active Directory(Azure AD) 무료 버전을 사용합니다.\n\n이 고객은 Azure 구독을 도입해 여러 Azure 리소스를 배포할 계획입니다. 고객의 보안 환경을 평가해야 합니다.\n\nAzure AD 무료 버전에서 프리미엄 버전으로 업그레이드해야 하는 것은 무엇입니까?",
+    "expl": "Azure AD Privileged Identity Management(PIM)에는 Microsoft Entra ID P2(이전 Azure AD Premium P2)나 Microsoft Entra ID Governance 라이선스가 필요합니다. Azure 리소스용 역할 기반 액세스 제어 자체는 그 프리미엄 업그레이드가 필요하지 않고, 기본적인 Azure AD 다단계 인증은 무료 버전에서도 사용할 수 있습니다.\n\n**Learn more:** [Microsoft Entra licensing](https://learn.microsoft.com/en-us/entra/fundamentals/licensing) · [Start using Privileged Identity Management](https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-getting-started)",
+    "choices": [
+      "Azure AD Privileged Identity Management(PIM)",
+      "역할 기반 권한 부여",
+      "리소스 기반 권한 부여",
+      "Azure AD 다단계 인증"
+    ]
+  },
+  "142": {
+    "stem": "Microsoft 보안 모범 사례를 따르는 랜섬웨어 대응 계획을 만들고 있습니다.\n\n관리자 접근이 완전히 막히는 일 없이 랜섬웨어 공격의 피해 범위를 제한하는 솔루션을 권장해야 합니다.\n\n권장 사항에 무엇을 포함해야 합니까?",
+    "expl": "비상 액세스 계정은 일반 관리자 계정을 쓸 수 없거나 침해되었을 때 사용하는 클라우드 전용의 고권한 비상용(break-glass) 계정입니다. 이를 유지하면 인시던트 중에도 차단과 복구를 위한 관리자 접근을 확보할 수 있어 테넌트 전체가 잠기는 일을 막고, 권한 있는 접근 보호로 랜섬웨어 영향을 제한할 수 있습니다.\n\n**Learn more:** [Limit the impact of ransomware attacks](https://learn.microsoft.com/en-us/security/ransomware/protect-against-ransomware-phase2) · [Manage emergency access admin accounts in Microsoft Entra ID](https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/security-emergency-access)",
+    "choices": [
+      "장치 규정 준수 정책",
+      "권한 있는 액세스 워크스테이션(PAW)",
+      "Microsoft Azure용 고객 잠금 상자(Customer Lockbox)",
+      "비상 액세스 계정"
+    ]
+  },
+  "143": {
+    "stem": "회사에서 Azure용 Microsoft 클라우드 채택 프레임워크 원칙에 따라 Azure 환경의 보안을 평가하려고 합니다.\n\nAzure 리소스가 미국 국립표준기술연구소(NIST) 사이버 보안 프레임워크(CSF)를 준수하는지 평가하는 클라우드 기반 서비스를 권장해야 합니다.\n\n무엇을 권장해야 합니까?",
+    "expl": "Microsoft Defender for Cloud는 규정 프레임워크를 보안 표준으로 표현하고, 규정 준수 대시보드를 통해 대상 Azure 리소스를 해당 규정 준수 제어에 맞춰 지속적으로 평가합니다. NIST CSF v2.0은 지원되는 표준이므로 Azure 리소스의 준수 상태와 수정 권장 사항을 확인할 수 있습니다.\n\n**Learn more:** [Regulatory compliance standards in Microsoft Defender for Cloud](https://learn.microsoft.com/en-ie/azure/defender-for-cloud/concept-regulatory-compliance-standards) · [Assign regulatory compliance standards in Microsoft Defender for Cloud](https://learn.microsoft.com/en-us/azure/defender-for-cloud/assign-regulatory-compliance-standards)",
+    "choices": [
+      "Microsoft Purview의 Compliance Manager",
+      "Microsoft Defender for Cloud",
+      "Microsoft Sentinel",
+      "Microsoft Defender for Cloud Apps"
+    ]
+  },
+  "144": {
+    "stem": "Windows Server를 실행하는 가상 머신 50대와 Linux를 실행하는 가상 머신 50대가 있는 Azure 구독이 있습니다.\n\n이 가상 머신에 취약점 평가를 수행해야 합니다. 솔루션은 다음 요구 사항을 충족해야 합니다.\n\n- 누락된 업데이트와 안전하지 않은 구성을 식별한다.\n- Qualys 엔진을 사용한다.\n\n무엇을 사용해야 합니까?",
+    "expl": "Microsoft Defender for Servers는 Windows Server와 Linux를 포함해 보호되는 서버 가상 머신에 취약점 평가를 제공합니다. 누락된 OS 패치와 보안 구성 오류 평가를 지원하며, Microsoft는 Qualys를 Defender for Servers에서 지원되는 취약점 평가 솔루션으로 문서화하고 있습니다.\n\n**Learn more:** [Support for the Defender for Servers plan](https://learn.microsoft.com/en-us/azure/defender-for-cloud/support-matrix-defender-for-servers) · [Enable vulnerability scanning with a Bring Your Own License solution](https://learn.microsoft.com/en-us/azure/defender-for-cloud/deploy-vulnerability-assessment-byol-vm)",
+    "choices": [
+      "Microsoft Defender for Servers",
+      "Microsoft Defender 위협 인텔리전스(Defender TI)",
+      "Microsoft Defender for Endpoint",
+      "Microsoft Defender 외부 공격 표면 관리(Defender EASM)"
+    ]
+  }
+}

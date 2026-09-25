@@ -27,7 +27,7 @@ const req = async (p, opt = {}) => {
   check('middleware: /SC-300_CBT/ unauth → 302 /?next=', r.status === 302 && r.loc.includes('?next='), `${r.status} ${r.loc}`);
   r = await req('/SC-300_CBT/data.js');
   check('SC-300 data.js served', r.status === 200 && r.text.includes('SC300_DATA'), String(r.status));
-  for (const [ex, dir, gv] of [['az305', 'AZ-305_CBT', 'AZ305_DATA'], ['az900', 'AZ-900_CBT', 'AZ900_DATA'], ['ai103', 'AI-103_CBT', 'AI103_DATA']]) {
+  for (const [ex, dir, gv] of [['az305', 'AZ-305_CBT', 'AZ305_DATA'], ['az900', 'AZ-900_CBT', 'AZ900_DATA'], ['ai103', 'AI-103_CBT', 'AI103_DATA'], ['sc100', 'SC-100_CBT', 'SC100_DATA']]) {
     r = await req(`/${dir}/`, { headers: { Accept: 'text/html' } });
     check(`middleware: /${dir}/ unauth → 302`, r.status === 302 && r.loc.includes('?next='), `${r.status} ${r.loc}`);
     r = await req(`/${dir}/data.js`);

@@ -1,0 +1,239 @@
+{
+  "97": {
+    "stem": "Azure 랜딩 존의 보안을 계획하고 있습니다.\n\n회사에서 다음과 같은 규정 준수·개인 정보 보호 요구 사항을 확인했습니다.\n\n- 카드 소유자 데이터를 회사가 관리하는 암호화 키로 암호화한다.\n- 보험 청구 파일을 온프레미스에 보관된 암호화 키로 암호화한다.\n\n이 요구 사항을 충족하는 구성 두 가지는 무엇입니까? 각 정답은 솔루션의 일부입니다.\n\n> **참고:** 각 정답 선택은 1점입니다.",
+    "expl": "Azure SQL Database의 투명한 데이터 암호화는 Azure Key Vault Managed HSM에 저장된 고객 관리형 키를 지원하므로 회사가 키 수명 주기를 제어할 수 있습니다. Blob Storage는 요청 시 고객이 제공하는 암호화 키를 지원하며, Azure Storage는 그 키를 저장하지 않으므로 회사가 키를 온프레미스 키 저장소에 보관할 수 있습니다.\n\n**Learn more:** [Customer-managed transparent data encryption (TDE) - Azure SQL Database](https://learn.microsoft.com/en-us/azure/azure-sql/database/transparent-data-encryption-byok-overview?view=azuresql) · [Provide an encryption key on a request to Blob storage](https://learn.microsoft.com/en-us/azure/storage/blobs/encryption-customer-provided-keys)",
+    "choices": [
+      "카드 소유자 데이터를 Microsoft 관리형 키로 암호화한 Azure SQL 데이터베이스에 저장한다.",
+      "보험 청구 데이터를 고객 제공 키로 암호화한 Azure Blob 저장소에 저장한다.",
+      "카드 소유자 데이터를 Azure Key Vault Managed HSM에 저장된 키로 암호화한 Azure SQL 데이터베이스에 저장한다.",
+      "보험 청구 데이터를 Azure Key Vault Managed HSM으로 암호화한 Azure Files에 저장한다."
+    ]
+  },
+  "98": {
+    "stem": "Azure 구독이 있습니다.\n\nMicrosoft SQL Server 인스턴스를 호스트하는 온프레미스 데이터센터가 있습니다. 각 인스턴스에는 데이터베이스가 여러 개 있습니다.\n\nMicrosoft 365 구독도 있습니다.\n\n데이터 보안을 침해할 수 있는 취약점을 찾기 위해 데이터베이스를 검사하는 솔루션을 구현하려고 합니다.\n\n데이터베이스를 검사하기 전에 무엇을 구성해야 하는지 권장해야 합니다.\n\n무엇을 권장해야 합니까?",
+    "expl": "Microsoft Defender for Cloud는 Azure에 연결된 지원 온프레미스 SQL Server 인스턴스를 포함해 SQL Server 워크로드에 Microsoft Defender for SQL 보호와 취약점 평가를 사용하도록 설정할 수 있습니다. 데이터베이스 보안 구성을 평가하고 데이터 보안을 침해할 수 있는 취약점을 식별합니다.",
+    "choices": [
+      "Microsoft Purview 데이터 손실 방지(DLP)",
+      "Microsoft Purview 데이터 거버넌스",
+      "Microsoft Defender for Cloud",
+      "Microsoft Defender 취약성 관리"
+    ]
+  },
+  "99": {
+    "stem": "West US Azure 지역에 Azure 가상 머신의 SQL Server가 있는 Azure 구독이 있습니다. 이 가상 머신에는 사설 IP 주소로만 접근할 수 있습니다.\n\nEast US Azure 지역에 Windows 기반 Azure App Service 웹앱을 배포하려고 합니다.\n\n웹앱이 SQL Server 데이터베이스에 접근할 수 있게 하는 솔루션을 권장해야 합니다.\n\n권장 사항에 무엇을 포함해야 합니까?",
+    "expl": "게이트웨이가 필요한 Azure App Service VNet 통합은 Windows 앱이 다른 Azure 지역의 가상 네트워크에 연결하는 것을 지원하며, 지점 및 사이트 간 VPN용으로 구성된 경로 기반 Azure VPN 게이트웨이가 필요합니다. 이를 통해 웹앱이 SQL Server 가상 머신의 사설 IP 주소로 도달할 네트워크 경로를 얻습니다.\n\n**Learn more:** [Configure gateway-required virtual network integration for your app - Azure App Service](https://learn.microsoft.com/en-us/azure/app-service/configure-gateway-required-vnet-integration) · [Integrate your app with an Azure virtual network - Azure App Service](https://learn.microsoft.com/en-us/azure/app-service/overview-vnet-integration)",
+    "choices": [
+      "Azure VPN 게이트웨이",
+      "프라이빗 엔드포인트",
+      "서비스 엔드포인트",
+      "Azure Bastion 호스트"
+    ]
+  },
+  "100": {
+    "stem": "사용자 5,000명과 Windows 11 장치 5,000대가 있는 Microsoft 365 테넌트가 있습니다. 모든 사용자에게 Microsoft 365 E5 라이선스와 Microsoft Defender 취약성 관리 추가 기능이 있습니다. Windows 11 장치는 Microsoft Intune과 Microsoft Defender for Endpoint로 관리합니다. 배포 시 Windows 11 장치는 Windows 11용 CIS(Center for Internet Security) 벤치마크를 준수하도록 구성되었습니다.\n\nWindows 11 장치를 위한 규정 준수 솔루션을 권장해야 합니다. 솔루션은 구성이 변경되어 CIS 벤치마크를 더 이상 준수하지 않는 장치를 식별해야 합니다.\n\n권장 사항에 무엇을 포함해야 합니까?",
+    "expl": "Microsoft Defender 취약성 관리의 보안 기준 평가는 할당된 벤치마크 프로필을 기준으로 장치 구성을 지속적으로 모니터링하고 장치별 준수 상태를 보여 주며 Windows 11용 CIS 벤치마크를 지원합니다. 따라서 장치가 CIS 기준을 벗어나게 만드는 구성 변경(드리프트)을 탐지합니다.\n\n**Learn more:** [Security baselines assessment - Microsoft Defender Vulnerability Management](https://learn.microsoft.com/en-us/defender-vulnerability-management/tvm-security-baselines)",
+    "choices": [
+      "Microsoft Defender 취약성 관리의 Windows 인증된 검사",
+      "Defender for Endpoint의 장치용 Microsoft 보안 점수",
+      "Defender for Endpoint의 공격 표면 축소(ASR) 규칙",
+      "Microsoft Defender 취약성 관리의 보안 기준 평가"
+    ]
+  },
+  "101": {
+    "stem": "Microsoft 365 E5 구독이 있습니다.\n\nGlobal Secure Access의 범용 테넌트 제한 v2를 배포하려고 합니다.\n\n어떤 인증 평면 리소스와 데이터 평면 리소스가 보호됩니까?",
+    "expl": "테넌트 제한 v2는 Microsoft Entra ID로 인증하는 모든 애플리케이션, 즉 로그인에 Entra ID를 사용하는 모든 Microsoft 앱과 타사(파트너) 앱에 대해 인증 평면 보호를 제공하므로, 첫 번째 빈칸은 Entra ID 통합 앱 선택지입니다. 데이터 평면에서 문서화된 Microsoft 365 적용 범위는 SharePoint Online과 Exchange Online(테넌트 제한 v2 데이터 평면 경로로 적용)이며, 이는 '모든 Microsoft 365 앱'보다 훨씬 좁습니다. 모든 M365 앱 선택지는 적용 범위를 과장한 것입니다(예를 들어 익명 접근과 상당수 서비스는 차단되지 않습니다). Global Secure Access 시그널링 자체는 데이터 평면에서 Microsoft Graph를 포함하지만, 주어진 선택지 중에서는 SharePoint Online·Exchange Online 항목이 의도된 데이터 평면 정답이고 모든 M365 앱 항목은 과잉 오답입니다.\n\n**Learn more:** [Universal tenant restrictions](https://learn.microsoft.com/en-us/entra/global-secure-access/how-to-universal-tenant-restrictions) · [Set up tenant restrictions v2](https://learn.microsoft.com/en-us/entra/external-id/tenant-restrictions-v2)",
+    "blanks": [
+      {
+        "label": "인증 평면 리소스:",
+        "options": [
+          "타사 앱을 포함한 모든 Microsoft Entra ID 통합 앱",
+          "모든 Microsoft 365 앱",
+          "Microsoft SharePoint Online과 Exchange Online만"
+        ]
+      },
+      {
+        "label": "데이터 평면 리소스:",
+        "options": [
+          "타사 앱을 포함한 모든 Microsoft Entra ID 통합 앱",
+          "모든 Microsoft 365 앱",
+          "Microsoft SharePoint Online과 Exchange Online만"
+        ]
+      }
+    ]
+  },
+  "102": {
+    "stem": "Site1이라는 Microsoft SharePoint Online 사이트가 있는 Microsoft 365 구독이 있습니다. Site1에는 기밀 직원 정보가 담긴, 미리 정의된 양식 기반 문서가 저장되어 있습니다.\n\nMicrosoft Defender for Cloud Apps 세션 정책으로 Site1 접근을 모니터링합니다.\n\n사용자가 그 미리 정의된 양식 기반 문서를 다운로드할 때 단계별 인증(step-up authentication)이 실행되게 해야 합니다. 솔루션은 관리 부담을 최소화해야 합니다.\n\n어떤 Microsoft 데이터 분류 서비스 검사 방법을 사용하고, 세션 정책에 어떤 조건부 액세스 옵션을 추가해야 합니까?",
+    "expl": "문서 지문(document fingerprinting)은 표준 양식으로 중요 정보 유형을 만들어 그 양식에서 파생된 문서를 탐지하므로, 미리 정의된 직원 정보 양식에 적합합니다. Defender for Cloud Apps의 단계별 인증 작업은 인증 컨텍스트를 기준으로 조건부 액세스를 다시 평가하도록 세션을 리디렉션합니다.\n\n**Learn more:** [About document fingerprinting](https://learn.microsoft.com/en-us/purview/sit-document-fingerprinting) · [Create session policies - Microsoft Defender for Cloud Apps](https://learn.microsoft.com/en-us/defender-cloud-apps/session-policy-aad)",
+    "blanks": [
+      {
+        "label": "검사 방법:",
+        "options": ["정확한 데이터 일치(EDM)", "지문(Fingerprint)", "학습 가능한 분류자"]
+      },
+      {
+        "label": "옵션:",
+        "options": ["인증 컨텍스트", "인증 강도", "사용자 지정 컨트롤"]
+      }
+    ]
+  },
+  "103": {
+    "stem": "온프레미스 네트워크에 Windows 11 장치 500대가 포함된 Active Directory Domain Services(AD DS) 도메인이 있습니다.\n\nMicrosoft 365 구독과 Azure 구독이 있습니다.\n\nMicrosoft Entra 테넌트가 이 도메인과 동기화되어 있고 두 구독에 연결되어 있습니다. 장치는 Microsoft Entra 하이브리드 조인 상태입니다.\n\n권한 있는 계정을 노린 공격을 완화하는 솔루션을 배포하려고 합니다. 이 솔루션에는 가짜 캐시 자격 증명을 사용하려는 시도를 탐지하는 Microsoft Sentinel 규칙이 포함됩니다.\n\n클라이언트 컴퓨터에 가짜 캐시 자격 증명을 만드는 솔루션을 권장해야 합니다.\n\n무엇을 권장해야 합니까?",
+    "expl": "Microsoft Defender for Endpoint의 기만(deception) 규칙은 미끼 자격 증명을 포함한 기만용 엔드포인트 아티팩트를 배포해 자격 증명 접근 활동을 유인할 수 있습니다. 심어 둔 자격 증명을 사용하려는 시도가 발생하면 탐지 신호가 만들어지고, 이를 Microsoft Sentinel 규칙에서 활용할 수 있습니다.\n\n**Learn more:** [Entity tags in Microsoft Defender for Identity](https://learn.microsoft.com/en-us/defender-for-identity/entity-tags)",
+    "choices": [
+      "Microsoft Sentinel의 사용자·엔터티 행동 분석(UEBA)",
+      "Microsoft Defender for Endpoint의 기만 규칙",
+      "Microsoft Entra ID 보호의 사용자 위험 정책",
+      "Microsoft Defender for Identity의 허니토큰 태그"
+    ]
+  },
+  "104": {
+    "stem": "HOTSPOT -\n\nMicrosoft 365 구독과 Azure 구독에 연결된 Microsoft Entra 테넌트가 있습니다. 이 테넌트에는 Azure 구독의 애플리케이션에 접근하는 데 사용하는 서비스 주체가 있습니다.\n\n비용을 최소화하면서 테넌트 서비스 주체의 위험한 로그인과 그 밖의 위험한 활동을 탐지하는 솔루션을 권장해야 합니다.\n\n권장 사항에 무엇을 포함해야 합니까?",
+    "expl": "Microsoft Entra ID 보호는 서비스 주체를 포함한 워크로드 ID의 위험을 탐지하고 보고합니다. Microsoft Entra Workload ID Premium은 워크로드 ID 보호를 위한 독립 라이선스로, 광범위한 사용자 기반 P2 라이선스 없이도 해당 ID에 대한 전체 위험 정보와 제어를 제공합니다.\n\n**Learn more:** [Frequently asked questions about Microsoft Entra Workload ID](https://learn.microsoft.com/en-us/entra/workload-id/workload-identities-faqs) · [What is Microsoft Entra ID Protection?](https://learn.microsoft.com/en-in/entra/id-protection/overview-identity-protection)",
+    "blanks": [
+      {
+        "label": "서비스:",
+        "options": [
+          "Microsoft Defender for Cloud Apps",
+          "Microsoft Defender for Identity",
+          "Microsoft Entra ID 보호"
+        ]
+      },
+      {
+        "label": "라이선스 종류:",
+        "options": [
+          "Microsoft Entra ID P1",
+          "Microsoft Entra ID P2",
+          "Microsoft Entra Workload ID Premium"
+        ]
+      }
+    ]
+  },
+  "105": {
+    "stem": "Microsoft 365 구독과 Azure 구독이 있습니다. Microsoft 365 Defender와 Microsoft Defender for Cloud가 사용하도록 설정되어 있습니다.\n\nAzure 구독에는 Microsoft Sentinel 작업 영역이 있습니다. Microsoft 365, Microsoft 365 Defender, Defender for Cloud, Azure에 대한 Microsoft Sentinel 데이터 커넥터가 구성되어 있습니다.\n\nWindows Server를 실행하는 Azure 가상 머신을 배포하려고 합니다.\n\nMicrosoft Sentinel에 확장 탐지·대응(EDR)과 보안 오케스트레이션·자동화·대응(SOAR) 기능을 사용하도록 설정해야 합니다.\n\n각 기능을 어떻게 사용하도록 설정하라고 권장해야 합니까?",
+    "expl": "Microsoft Defender for Cloud의 Defender for Servers는 Defender for Endpoint와 통합되어 Windows Server VM에 EDR 기능을 제공합니다. Microsoft Sentinel 플레이북은 인시던트와 경고에 대한 대응을 자동화·오케스트레이션하는 Azure Logic Apps 워크플로입니다.\n\n**Learn more:** [Overview of Defender for Servers in Defender for Cloud](https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-servers-overview) · [Automation in Microsoft Sentinel](https://learn.microsoft.com/en-us/azure/sentinel/automation/automation)",
+    "blanks": [
+      {
+        "label": "EDR:",
+        "options": [
+          "Azure Active Directory(Azure AD)용 Microsoft Sentinel 데이터 커넥터를 추가한다.",
+          "Microsoft Defender for Cloud Apps용 Microsoft Sentinel 데이터 커넥터를 추가한다.",
+          "서버를 Azure Arc에 온보딩한다.",
+          "서버를 Defender for Cloud에 온보딩한다."
+        ]
+      },
+      {
+        "label": "SOAR:",
+        "options": [
+          "Microsoft Sentinel 분석 규칙을 구성한다.",
+          "Microsoft Sentinel 플레이북을 구성한다.",
+          "Defender for Cloud에서 규정 준수 표준을 구성한다.",
+          "Defender for Cloud에서 워크플로 자동화를 구성한다."
+        ]
+      }
+    ]
+  },
+  "106": {
+    "stem": "Azure 구독과 Amazon Web Services(AWS) 계정이 있는 멀티클라우드 환경이 있습니다.\n\n두 구독의 리소스를 관리하도록 Azure 보안 서비스를 구현하세요. 솔루션은 다음을 충족해야 합니다.\n\n- AWS CloudTrail 이벤트에서 발견된 위협을 자동으로 식별한다.\n- Azure 정책으로 AWS 가상 머신에 보안 설정을 적용한다.\n\n각 요구 사항에 무엇을 포함해야 합니까?",
+    "expl": "Microsoft Defender for Cloud는 연결된 AWS 계정을 보호하고 AWS CloudTrail 활동을 기반으로 위협을 탐지합니다. Azure Arc는 AWS 컴퓨터를 Azure로 투영해 관리·거버넌스를 적용할 수 있게 하므로, Azure Policy 할당으로 구성과 보안 설정을 적용할 수 있습니다.\n\n**Learn more:** [Microsoft Defender for Cloud security alerts for AWS resources](https://learn.microsoft.com/en-us/azure/defender-for-cloud/alerts-reference#aws-alerts) · [Azure Arc-enabled servers overview](https://learn.microsoft.com/en-us/azure/azure-arc/servers/overview)",
+    "blanks": [
+      {
+        "label": "위협 자동 식별:",
+        "options": [
+          "Azure Arc",
+          "Azure Log Analytics",
+          "Microsoft Defender for Cloud",
+          "Microsoft Sentinel"
+        ]
+      },
+      {
+        "label": "보안 설정 적용:",
+        "options": [
+          "Azure Arc",
+          "Azure Log Analytics",
+          "Microsoft Defender for Cloud",
+          "Microsoft Sentinel"
+        ]
+      }
+    ]
+  },
+  "107": {
+    "stem": "Microsoft Entra 테넌트와 Azure 구독이 있습니다.\n\n워크로드 ID의 리소스 접근을 제어하기 위해 위험 기반 조건부 액세스 정책을 평가하고 있습니다.\n\n이 정책을 어떤 ID 종류에 적용해야 하고, 정책의 일부로 어떤 신호 원본을 사용할 수 있습니까?",
+    "expl": "워크로드 ID용 조건부 액세스는 서비스 주체를 대상으로 합니다. Microsoft Entra ID 보호가 위험 기반 워크로드 ID 정책에 쓰이는 위험 신호를 제공합니다. 관리 ID는 조건부 액세스나 ID 보호 위험 정책의 대상이 될 수 없습니다.\n\n**Learn more:** [Frequently asked questions about Microsoft Entra Workload ID](https://learn.microsoft.com/en-us/entra/workload-id/workload-identities-faqs) · [Workload identities](https://learn.microsoft.com/en-us/entra/workload-id/workload-identities-overview)",
+    "blanks": [
+      {
+        "label": "ID 종류:",
+        "options": ["서비스 주체", "시스템 할당 관리 ID", "사용자 할당 관리 ID"]
+      },
+      {
+        "label": "신호 원본:",
+        "options": ["클라이언트 앱", "장치 플랫폼", "Microsoft Entra ID 보호"]
+      }
+    ]
+  },
+  "108": {
+    "stem": "회사에서 Microsoft SQL Server 데이터베이스를 온프레미스에 호스트하고 있습니다.\n\n회사는 이 데이터베이스를 Azure로 마이그레이션하려고 합니다. 패치 작업을 최소화하고, 동적 데이터 마스킹으로 중요 데이터를 보호하며, 비용을 최소화하는 안전한 데이터베이스 아키텍처를 권장해야 합니다.\n\n권장 사항에 무엇을 포함해야 합니까?",
+    "expl": "Azure SQL Database는 패치·백업·복구가 기본 제공되는 완전 관리형 PaaS 데이터베이스 서비스로 운영 관리 부담을 줄여 줍니다. 저장된 데이터를 바꾸지 않고도 권한이 없는 사용자의 쿼리 결과에서 지정된 중요 데이터를 가리는 동적 데이터 마스킹을 지원합니다. 인스턴스 범위의 SQL Server 기능이 필요하지 않다면 Azure SQL Managed Instance보다 비용 면에서 적절한 선택입니다.\n\n**Learn more:** [What is Azure SQL?](https://learn.microsoft.com/en-us/azure/azure-sql/azure-sql-iaas-vs-paas-what-is-overview?view=azuresql) · [Dynamic Data Masking - Azure SQL Database, Azure SQL Managed Instance, and Azure Synapse Analytics](https://learn.microsoft.com/en-us/azure/azure-sql/database/dynamic-data-masking-overview?view=azuresql)",
+    "choices": [
+      "Azure SQL Managed Instance",
+      "Azure Synapse Analytics 전용 SQL 풀",
+      "Azure SQL Database",
+      "Azure 가상 머신의 SQL Server"
+    ]
+  },
+  "109": {
+    "stem": "Microsoft 365 테넌트가 있습니다. 회사는 App1이라는 타사 SaaS(software-as-a-service) 앱을 사용합니다. App1은 Microsoft Entra 자격 증명을 사용한 사용자 인증을 지원합니다.\n\n사용자가 Microsoft Entra 자격 증명으로 App1에 인증할 수 있게 하는 솔루션을 권장해야 합니다.\n\n권장 사항에 무엇을 포함해야 합니까?",
+    "expl": "Microsoft Entra 엔터프라이즈 애플리케이션은 SaaS 애플리케이션을 통합하고 단일 로그인을 구성할 때 사용하는 테넌트 쪽 표현입니다. 이를 통해 Microsoft Entra ID가 할당된 사용자를 인증하고 앱에 적절한 페더레이션 어설션이나 토큰을 제공합니다.\n\n**Learn more:** [Enable SAML single sign-on for an enterprise application](https://learn.microsoft.com/en-us/entra/identity/enterprise-apps/add-application-portal-setup-sso) · [Overview of the Microsoft Entra application gallery](https://learn.microsoft.com/en-us/entra/identity/enterprise-apps/overview-application-gallery)",
+    "choices": [
+      "Active Directory Federation Services(AD FS)의 신뢰 당사자 트러스트",
+      "Microsoft Entra 엔터프라이즈 애플리케이션",
+      "Microsoft Entra 애플리케이션 프록시",
+      "Microsoft Entra External ID"
+    ]
+  },
+  "110": {
+    "stem": "AWS 요구 사항을 충족하는 솔루션을 권장해야 합니다.\n\n권장 사항에 무엇을 포함해야 합니까?",
+    "expl": "Microsoft Defender for servers는 Windows·Linux 컴퓨터를 보호하며 Defender for Cloud의 AWS 커넥터를 통해 AWS EC2 인스턴스를 지원합니다. Microsoft Sentinel의 AWS 커넥터는 CloudTrail, VPC 흐름 로그, GuardDuty 검색 결과, CloudWatch 로그를 포함한 AWS 서비스 로그를 수집합니다.\n\n**Learn more:** [Connect AWS accounts to Microsoft Defender for Cloud](https://learn.microsoft.com/en-us/azure/defender-for-cloud/quickstart-onboard-aws) · [Connect Microsoft Sentinel to Amazon Web Services to ingest AWS service log data](https://learn.microsoft.com/en-us/azure/sentinel/connect-aws?tabs=s3)",
+    "items": [
+      "Azure Blueprints",
+      "Defender for Cloud",
+      "Microsoft Defender for Cloud Apps",
+      "Microsoft Defender for servers",
+      "Microsoft Endpoint Manager",
+      "Microsoft Sentinel"
+    ],
+    "slots": ["AWS EC2 인스턴스의 경우:", "AWS 서비스 로그의 경우:"]
+  },
+  "111": {
+    "stem": "Azure 구독이 있습니다.\n\n회사의 거버넌스 요구 사항에 따라 리소스는 West Europe 또는 North Europe Azure 지역에만 만들어야 합니다.\n\n이 거버넌스 요구 사항을 적용하려면 무엇을 권장해야 합니까?",
+    "expl": "기본 제공 **허용된 위치(Allowed locations)** 정책을 West Europe과 North Europe으로 구성하고 Deny 효과로 할당하면, 허용된 지역에만 리소스를 배포하도록 제한할 수 있습니다.\n\n**Learn more:** [What is Azure Policy?](https://learn.microsoft.com/en-us/azure/governance/policy/overview) · [Azure Policy definition structure basics](https://learn.microsoft.com/en-us/azure/governance/policy/concepts/definition-structure-basics)",
+    "choices": [
+      "Azure 관리 그룹",
+      "사용자 지정 Azure 역할",
+      "Azure Policy 할당",
+      "Microsoft Defender for Cloud의 규정 준수 표준"
+    ]
+  },
+  "112": {
+    "stem": "Azure Storage Blob과 Azure Files 공유가 여러 개 있는 Azure 구독이 있습니다.\n\n다음 요구 사항을 충족하도록 Blob과 공유에 대한 접근 권한을 부여하는 보안 솔루션을 권장하세요.\n\n- SMB로 공유에 접근할 수 있게 한다.\n- Blob 접근을 지정한 기간으로 제한한다.\n- 가능하면 인증을 지원한다.\n\n각 리소스에 무엇을 권장해야 합니까?",
+    "expl": "Microsoft Entra Domain Services는 SMB를 통한 Azure Files의 ID 기반 인증을 지원합니다. Blob Storage의 사용자 위임 SAS는 Microsoft Entra 자격 증명으로 권한이 부여되고 SAS 시작·만료 시간을 지정할 수 있으므로 Blob 접근을 정해진 기간으로 제한합니다.\n\n**Learn more:** [Authorize access to Azure Files using Microsoft Entra ID](https://learn.microsoft.com/en-us/azure/storage/files/storage-files-identity-auth-active-directory-domain-service-enable) · [Grant limited access to Azure Storage resources using shared access signatures](https://learn.microsoft.com/en-us/azure/storage/common/storage-sas-overview)",
+    "blanks": [
+      {
+        "label": "Blob:",
+        "options": [
+          "계정 공유 액세스 서명(SAS)",
+          "Microsoft Entra Domain Services",
+          "서비스 공유 액세스 서명(SAS)",
+          "사용자 위임 공유 액세스 서명(SAS)"
+        ]
+      },
+      {
+        "label": "공유:",
+        "options": [
+          "계정 공유 액세스 서명(SAS)",
+          "Microsoft Entra Domain Services",
+          "서비스 공유 액세스 서명(SAS)",
+          "사용자 위임 공유 액세스 서명(SAS)"
+        ]
+      }
+    ]
+  }
+}

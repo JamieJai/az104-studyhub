@@ -1,0 +1,235 @@
+{
+  "65": {
+    "stem": "AWS 요구 사항을 충족하는 솔루션을 권장해야 합니다.\n\n권장 사항에 무엇을 포함해야 합니까?",
+    "expl": "Microsoft Defender for Cloud는 AWS에 연결된 리소스를 평가하고 AWS 보안 점수 권장 사항을 표시하므로, 보안 관리자가 규정 미준수를 통보받을 수 있습니다. Microsoft Sentinel의 AWS 커넥터는 AWS 서비스 로그를 Sentinel 작업 영역으로 수집해 쿼리·분석할 수 있게 합니다.\n\n**Learn more:** [Cloud secure score in Microsoft Defender for Cloud](https://learn.microsoft.com/en-us/azure/defender-for-cloud/secure-score-security-controls) · [Connect Microsoft Sentinel to Amazon Web Services to ingest AWS service log data](https://learn.microsoft.com/en-us/azure/sentinel/connect-aws?tabs=s3)",
+    "blanks": [
+      {
+        "label": "AWS EC2 인스턴스의 경우:",
+        "options": [
+          "Azure Blueprints",
+          "Defender for Cloud",
+          "Microsoft Defender for Cloud Apps",
+          "Microsoft Endpoint Manager",
+          "Microsoft Sentinel"
+        ]
+      },
+      {
+        "label": "AWS 서비스 로그의 경우:",
+        "options": [
+          "Azure Blueprints",
+          "Defender for Cloud",
+          "Microsoft Defender for Cloud Apps",
+          "Microsoft Endpoint Manager",
+          "Microsoft Sentinel"
+        ]
+      }
+    ]
+  },
+  "66": {
+    "stem": "규정 준수 요구 사항을 충족하는 솔루션을 권장하세요.",
+    "expl": "Defender for Cloud의 워크플로 자동화는 규정 준수 평가가 변경될 때 Logic Apps를 호출해 자동 수정 작업을 수행할 수 있습니다. Defender for Cloud는 Azure Policy 이니셔티브로 규정 표준을 구현하므로, 테스트용 리소스 그룹 같은 제외 항목은 정책 할당의 범위 구성에 들어갑니다. 따라서 그 할당을 업데이트해 TestRG를 제외합니다.\n\n**Learn more:** [Workflow automation - Microsoft Defender for Cloud](https://learn.microsoft.com/en-us/azure/defender-for-cloud/workflow-automations) · [Assign regulatory compliance standards in Microsoft Defender for Cloud](https://learn.microsoft.com/en-us/azure/defender-for-cloud/assign-regulatory-compliance-standards)",
+    "blanks": [
+      {
+        "label": "규정 표준 준수를 적용하려면 다음을 만든다:",
+        "options": ["Azure 자동화 계정", "관리 ID", "워크플로 자동화"]
+      },
+      {
+        "label": "규정 준수 평가에서 TestRG를 제외하려면:",
+        "options": [
+          "Defender for Cloud 워크플로 자동화를 수정한다",
+          "Azure 정책 정의를 수정한다",
+          "Azure 정책 할당을 업데이트한다"
+        ]
+      }
+    ]
+  },
+  "67": {
+    "stem": "Global Secure Access 클라이언트가 배포된 온프레미스 Windows 11 장치가 있습니다.\n\nMicrosoft SharePoint Online과 Exchange Online을 사용하는 Microsoft 365 구독이 있습니다.\n\n온프레미스 네트워크에서 Microsoft 365로 Microsoft Entra Internet Access를 배포합니다. 이 배포에는 Microsoft 365 프로필이 사용하도록 설정되어 있고 다음이 포함됩니다.\n\n- Microsoft 365 서비스용 기본 트래픽 정책\n- 연속 액세스 평가로 규정 준수 네트워크 검사를 수행하며 모든 사용자에게 적용되는 연결된 조건부 액세스 정책\n- 모든 장치에 대한 할당\n- 온프레미스 네트워크와 연결된 원격 네트워크에 대한 할당\n\n연속 액세스 평가로 보호되는 Microsoft 365 리소스는 무엇입니까?",
+    "expl": "연속 액세스 평가는 Exchange Online과 SharePoint Online 모두에 대해 조건부 액세스 정책 평가를 지원합니다. 사용하도록 설정한 Microsoft 트래픽 프로필이 두 서비스를 모두 Global Secure Access로 라우팅하므로, 규정 준수 네트워크 정책이 두 서비스 모두에 지속적으로 적용됩니다.\n\n**Learn more:** [Continuous access evaluation in Microsoft Entra](https://learn.microsoft.com/en-us/entra/identity/conditional-access/concept-continuous-access-evaluation) · [How to enable and manage the Microsoft traffic forwarding profile](https://learn.microsoft.com/en-us/entra/global-secure-access/how-to-manage-microsoft-profile)",
+    "choices": [
+      "SharePoint Online만",
+      "Exchange Online만",
+      "SharePoint Online과 Exchange Online 모두"
+    ]
+  },
+  "68": {
+    "stem": "Global Secure Access 클라이언트가 배포된 Windows 장치 500대가 있는 Microsoft Entra 테넌트가 있습니다.\n\nApp1이라는 타사 SaaS(software as a service) 앱이 있습니다.\n\nGlobal Secure Access로 App1에 대한 접근을 관리하려고 합니다.\n\nApp1 연결을 관리하는 솔루션을 권장해야 합니다. 솔루션은 사용자가 App1에 연결하기 전에 Microsoft Entra 자격 증명으로 인증하도록 해야 합니다.\n\n권장 사항에 무엇을 포함해야 합니까?",
+    "expl": "Microsoft Entra Internet Access는 인터넷과 SaaS 애플리케이션에 대한 접근을 보호합니다. 인터넷 액세스 트래픽 전달 프로필을 사용하도록 설정하면 Global Secure Access 클라이언트가 해당 SaaS 트래픽을 ID 인식 서비스로 라우팅하고, 거기서 Microsoft Entra 기반 조건부 액세스 제어로 사용자 인증을 요구할 수 있습니다.\n\n**Learn more:** [What is Global Secure Access?](https://learn.microsoft.com/en-us/entra/global-secure-access/overview-what-is-global-secure-access) · [Global Secure Access client overview](https://learn.microsoft.com/en-us/entra/global-secure-access/concept-clients)",
+    "choices": [
+      "Global Secure Access 앱",
+      "사설 액세스 트래픽 전달 프로필",
+      "인터넷 액세스 트래픽 전달 프로필",
+      "빠른 액세스(Quick Access) 앱"
+    ]
+  },
+  "69": {
+    "stem": "Microsoft 365 Defender로 보호되는 Microsoft 365 구독이 있습니다.\n\nMicrosoft Sentinel로 Microsoft 365와 Microsoft 365 Defender의 이벤트를 모니터링하는 보안 운영 전략을 설계하고 있습니다.\n\n다음 요구 사항을 충족하는 솔루션을 권장해야 합니다.\n\n- Microsoft Sentinel을 타사 보안 공급업체와 통합해 알려진 맬웨어 정보를 가져온다.\n- 이벤트에서 명령 제어(C2) 서버의 IP 주소가 탐지되면 인시던트를 자동으로 생성한다.\n\n각 요구 사항에 대해 Microsoft Sentinel에서 무엇을 구성해야 합니까?",
+    "expl": "위협 인텔리전스 커넥터는 타사 위협 인텔리전스 플랫폼의 지표를 수집합니다. 분석 위협 탐지 규칙은 수집된 이벤트 데이터에서 IP 지표를 대조할 수 있고, 일치하면 경고와 그에 대응하는 인시던트를 생성합니다.\n\n**Learn more:** [Use threat indicators in analytics rules - Microsoft Sentinel](https://learn.microsoft.com/en-us/azure/sentinel/use-threat-indicators-in-analytics-rules) · [Connect data sources to Microsoft Sentinel by using data connectors](https://learn.microsoft.com/en-us/azure/sentinel/configure-data-connector)",
+    "blanks": [
+      {
+        "label": "Microsoft Sentinel을 타사 보안 공급업체와 통합:",
+        "options": [
+          "사용자 지정 엔터티 활동",
+          "플레이북",
+          "위협 탐지 규칙",
+          "위협 지표",
+          "위협 인텔리전스 커넥터"
+        ]
+      },
+      {
+        "label": "인시던트 자동 생성:",
+        "options": [
+          "사용자 지정 엔터티 활동",
+          "플레이북",
+          "위협 탐지 규칙",
+          "위협 지표",
+          "위협 인텔리전스 커넥터"
+        ]
+      }
+    ]
+  },
+  "70": {
+    "stem": "storage1이라는 Azure 저장소 계정이 있습니다.\n\nBYOK(Bring Your Own Key) 방식으로 storage1을 보호하려고 합니다.\n\nAKV1이라는 Azure 키 자격 증명 모음을 만들고 호환되는 키를 업로드했습니다.\n\nstorage1이 AKV1에 저장된 키를 암호화에 사용하도록 구성해야 합니다.\n\n어떤 작업 세 가지를 순서대로 수행해야 합니까?",
+    "expl": "고객 관리형 키를 사용할 때 Azure Storage는 관리 ID로 Azure Key Vault에 인증합니다. 저장소 계정이 자격 증명 모음의 키를 사용하도록 구성하려면, 먼저 그 ID를 저장소 계정에 할당하고 필요한 키 권한이 있는 Key Vault 액세스 정책을 부여해야 합니다. Key Vault 읽기 권한자 역할은 관리 평면 읽기 접근만 제공할 뿐 암호화 키 작업 권한은 주지 않습니다.\n\n**Learn more:** [Customer-managed keys for Azure Storage encryption](https://learn.microsoft.com/en-us/azure/storage/common/customer-managed-keys-overview) · [Configure customer-managed keys for an Azure Storage account](https://learn.microsoft.com/en-us/azure/storage/common/customer-managed-keys-configure-key-vault)",
+    "items": [
+      "키에 접근할 수 있도록 storage1에 Key Vault 읽기 권한자 역할을 할당한다.",
+      "storage1용 액세스 정책을 만들고 할당한다.",
+      "관리 ID를 만들어 AKV1에 할당한다.",
+      "관리 ID를 만들어 storage1에 할당한다.",
+      "Key Vault 액세스 정책을 만들고 할당한다.",
+      "고객 관리형 키로 Azure Storage 암호화를 구성한다."
+    ],
+    "slots": ["1단계", "2단계", "3단계"]
+  },
+  "71": {
+    "stem": "Azure 웹 애플리케이션 방화벽(WAF)을 사용하는 Azure Application Gateway가 있는 Azure 구독이 있습니다.\n\n새 Azure App Service 웹앱을 배포합니다. 각 앱은 회사 DNS 도메인에 자동으로 등록되고 인터넷에서 접근할 수 있습니다.\n\n다음 요구 사항을 충족하는 보안 솔루션을 권장하세요.\n\n- 앱에 대한 취약점 검색(스캔)을 탐지한다.\n- 새로 배포한 앱이 공격에 취약한지 탐지한다.\n\n무엇을 사용하도록 권장해야 합니까?",
+    "expl": "Microsoft Defender for App Service는 웹 셸 활동과 취약점 검색 시도를 포함해 App Service 리소스를 노린 위협을 탐지합니다. Defender EASM은 조직의 DNS 자산 전반에서 외부에 노출된 자산을 검색·목록화하고 노출 지점을 표시하므로, 새로 배포되어 공격에 취약할 수 있는 공개 앱을 식별할 수 있습니다.\n\n**Learn more:** [Microsoft Defender for App Service overview](https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-app-service-introduction) · [Microsoft Defender External Attack Surface Management overview](https://learn.microsoft.com/en-us/azure/external-attack-surface-management/overview)",
+    "blanks": [
+      {
+        "label": "앱에 대한 취약점 검색을 탐지하려면:",
+        "options": [
+          "Azure WAF",
+          "Microsoft Defender 외부 공격 표면 관리(Defender EASM)",
+          "Microsoft Defender for App Service",
+          "Microsoft Defender for Cloud Apps"
+        ]
+      },
+      {
+        "label": "새로 배포한 앱이 공격에 취약한지 탐지하려면:",
+        "options": [
+          "Azure WAF",
+          "Microsoft Defender 외부 공격 표면 관리(Defender EASM)",
+          "Microsoft Defender for App Service",
+          "Microsoft Defender for Cloud Apps"
+        ]
+      }
+    ]
+  },
+  "72": {
+    "stem": "Microsoft 365 구독과 Azure 구독이 있습니다. Microsoft 365 Defender와 Microsoft Defender for Cloud가 사용하도록 설정되어 있습니다.\n\nAzure 구독에는 가상 머신 50대가 있습니다. 각 가상 머신은 Windows Server 2019에서 서로 다른 애플리케이션을 실행합니다.\n\n승인된 애플리케이션만 가상 머신에서 실행되게 하는 솔루션을 권장해야 합니다. 승인되지 않은 애플리케이션이 실행되거나 설치되려고 하면 관리자가 승인할 때까지 자동으로 차단되어야 합니다.\n\n어떤 보안 제어를 권장해야 합니까?",
+    "expl": "Microsoft Defender for Cloud의 적응형 애플리케이션 제어는 가상 머신에서 실행되는 애플리케이션을 분석해 안전하다고 알려진 애플리케이션의 허용 목록을 만들고, 애플리케이션 제어 정책을 적용해 승인되지 않은 소프트웨어가 실행되지 않게 할 수 있습니다. 앱 보호 정책은 관리되는 모바일 앱의 데이터를 보호하고, Defender for Cloud Apps 검색 정책은 클라우드 서비스 사용을 다루며, Azure 보안 벤치마크 제어는 VM 애플리케이션 허용 목록을 강제하는 것이 아니라 보안 상태를 평가합니다.\n\n**Learn more:** [Azure security baseline for Windows virtual machines](https://learn.microsoft.com/en-us/security/benchmark/azure/baselines/virtual-machines-windows-virtual-machines-security-baseline?context=%2Fpartner-support%2Fazure%2Fbackup%2Fcontext%2Fcontext) · [Microsoft Defender for Cloud compute security recommendations reference](https://learn.microsoft.com/en-us/azure/defender-for-cloud/recommendations-reference-compute)",
+    "choices": [
+      "Defender for Cloud의 적응형 애플리케이션 제어",
+      "Microsoft Endpoint Manager의 앱 보호 정책",
+      "Microsoft Defender for Cloud Apps의 앱 검색 이상 탐지 정책",
+      "Defender for Cloud의 Azure 보안 벤치마크 규정 준수 제어"
+    ]
+  },
+  "73": {
+    "stem": "한 고객이 제로 트러스트 모델을 사용하며 회사 애플리케이션에 대한 모든 접근 시도를 명시적으로 검증합니다.\n\n이 고객이 여러 엔드포인트에서 맬웨어 감염을 확인하고 감염된 엔드포인트의 접근 시도를 중단시켰습니다. 이후 엔드포인트에서 맬웨어가 제거되었습니다.\n\n엔드포인트 사용자가 다시 회사 애플리케이션에 접근하려면 충족되어야 하는 조건 두 가지는 무엇입니까? 각 정답은 솔루션의 일부입니다.\n\n> **참고:** 각 정답 선택은 1점입니다.",
+    "expl": "Microsoft Defender for Endpoint가 수정된 엔드포인트에 더 이상 장치 위험이 없음을 보여야 하고, Microsoft Intune이 그 장치를 규정 준수로 다시 평가해야 합니다. Intune은 장치 규정 준수 상태를 Microsoft Entra 조건부 액세스에 전달하며, 위협이 제거되고 장치가 규정을 준수하면 접근이 허용됩니다.\n\n**Learn more:** [Enable Conditional Access to better protect users and enterprise information](https://learn.microsoft.com/en-us/defender-endpoint/conditional-access) · [Integrate Microsoft Defender for Endpoint with Intune for Device Compliance](https://learn.microsoft.com/en-us/intune/device-security/microsoft-defender/overview)",
+    "choices": [
+      "클라이언트 액세스 토큰이 갱신된다.",
+      "Microsoft Intune이 엔드포인트를 규정 준수로 보고한다.",
+      "새 Azure Active Directory(Azure AD) 조건부 액세스 정책이 적용된다.",
+      "Microsoft Defender for Endpoint가 엔드포인트를 규정 준수로 보고한다."
+    ]
+  },
+  "74": {
+    "stem": "SharePoint Online과 Exchange Online 데이터를 보호하는 전략을 설계해야 합니다. 솔루션은 애플리케이션 보안 요구 사항을 충족해야 합니다.\n\n전략에 활용해야 할 서비스 두 가지는 무엇입니까? 각 정답은 솔루션의 일부입니다.\n\n> **참고:** 각 정답 선택은 1점입니다.",
+    "expl": "Microsoft Entra ID 조건부 액세스는 사용자·애플리케이션·위치·장치·위험 같은 조건에 따라 Exchange Online과 SharePoint Online을 포함한 클라우드 애플리케이션의 접근 제어를 적용할 수 있습니다. Microsoft Defender for Cloud Apps는 조건부 액세스와 통합되어 실시간 모니터링과 세션 제어를 제공하며, 클라우드 앱에서 중요 파일 다운로드와 접근을 제어할 수 있습니다.\n\n**Learn more:** [Build Conditional Access policies in Microsoft Entra](https://learn.microsoft.com/en-us/entra/identity/conditional-access/concept-conditional-access-policies) · [App visibility and control with Microsoft Defender for Cloud Apps](https://learn.microsoft.com/en-us/entra/identity/enterprise-apps/cloud-app-security)",
+    "choices": [
+      "Azure AD 조건부 액세스",
+      "Azure AD의 액세스 검토",
+      "Microsoft Defender for Cloud",
+      "Microsoft Defender for Cloud Apps",
+      "Microsoft Defender for Endpoint"
+    ]
+  },
+  "75": {
+    "stem": "제로 트러스트 프레임워크를 기반으로 보안 운영 전략을 수립하고 있습니다.\n\nMicrosoft 보안 운영 센터(SOC)의 운영 효율을 개선해야 합니다.\n\n제로 트러스트 프레임워크에 따라 우선순위를 두어야 할 배포 목표 세 가지는 무엇이며 순서는 어떻게 됩니까?",
+    "expl": "제로 트러스트의 가시성·자동화·오케스트레이션 배포 지침은 먼저 보안 가시성을 확보하고, 다음으로 대응을 자동화·오케스트레이션한 뒤, 마지막으로 지속적 개선을 위해 추가 보호·탐지 제어를 사용하도록 설정하는 순서를 제시합니다.\n\n**Learn more:** [Visibility, automation, and orchestration with Zero Trust](https://learn.microsoft.com/en-us/security/zero-trust/deploy/visibility-automation-orchestration)",
+    "items": [
+      "랜섬웨어 복구 준비 태세를 갖춘다.",
+      "추가 보호·탐지 제어를 사용하도록 설정한다.",
+      "가시성을 확보한다.",
+      "재해 복구를 구현한다.",
+      "자동화를 사용하도록 설정한다."
+    ],
+    "slots": ["1순위", "2순위", "3순위"]
+  },
+  "76": {
+    "stem": "회사에서 데이터를 Azure로 마이그레이션하고 있습니다. 이 데이터에는 개인 식별 정보(PII)가 포함되어 있습니다.\n\n회사는 Azure PII 데이터 저장소에 Microsoft Information Protection을 사용하려고 합니다. Azure 리소스에서 위험에 노출된 PII 데이터를 검색하는 솔루션을 권장해야 합니다.\n\n권장 사항에 무엇을 포함해야 합니까?",
+    "expl": "Azure Purview는 Azure 데이터 원본에 연결해 검사하고 중요 데이터를 검색·분류합니다. Microsoft Defender for Cloud는 Microsoft Purview 민감도 분류와 레이블을 경고와 권장 사항에 사용하므로, 보안 팀이 중요 데이터를 담은 리소스의 경고를 필터링하고 우선순위를 매길 수 있습니다.\n\n**Learn more:** [Data sources that connect to Microsoft Purview Data Map](https://learn.microsoft.com/en-us/purview/data-map-data-sources) · [Prioritize security actions by data sensitivity](https://learn.microsoft.com/en-us/azure/defender-for-cloud/information-protection)",
+    "blanks": [
+      {
+        "label": "Azure 데이터 원본을 Microsoft Information Protection에 연결하려면:",
+        "options": [
+          "Azure Purview",
+          "엔드포인트 데이터 손실 방지",
+          "Microsoft Defender for Cloud Apps",
+          "Microsoft Information Protection"
+        ]
+      },
+      {
+        "label": "PII 데이터가 있는 리소스 관련 보안 경고를 분류하려면:",
+        "options": [
+          "Azure Monitor",
+          "엔드포인트 데이터 손실 방지",
+          "Microsoft Defender for Cloud",
+          "Microsoft Defender for Cloud Apps"
+        ]
+      }
+    ]
+  },
+  "77": {
+    "stem": "Active Directory Domain Services(AD DS) 도메인과 동기화되는 Microsoft Entra 테넌트가 있습니다.\n\n온프레미스 데이터센터에 서버 100대가 있습니다. 이 서버는 Windows Server를 실행하며 Microsoft Azure Backup Server(MABS)로 백업합니다.\n\n랜섬웨어 공격에 대한 복구 솔루션을 설계하고 있습니다. 솔루션은 Microsoft 보안 모범 사례를 따릅니다.\n\n침해된 로컬 관리자 계정으로 예약 백업을 중단할 수 없게 해야 합니다.\n\n무엇을 해야 합니까?",
+    "expl": "Azure Backup의 다중 사용자 인증은 리소스 가드를 사용해 영향이 큰 중요 백업 작업에 별도의 승인을 요구합니다. 이 추가 승인 경계 덕분에 관리자 계정 하나가 침해되더라도 보호된 백업을 중단하거나 변경하지 못하게 막을 수 있으며, MABS 하이브리드 백업의 핵심적인 랜섬웨어 대응 제어입니다.\n\n**Learn more:** [Configure Multi-user authorization using Resource Guard in Azure Backup](https://learn.microsoft.com/en-us/azure/backup/multi-user-authorization) · [Security features that protect hybrid backups](https://learn.microsoft.com/en-us/azure/backup/backup-azure-security-feature)",
+    "choices": [
+      "Azure Backup에서 리소스 가드로 다중 사용자 인증을 구성한다.",
+      "Microsoft Entra Privileged Identity Management(PIM)에서 백업 참가자 역할에 대한 역할 할당을 만든다.",
+      "Microsoft Azure Backup 설치 프로그램에서 MABS를 Recovery Services 자격 증명 모음에 등록한다.",
+      "Recovery Services 자격 증명 모음에서 중요 작업용 보안 PIN을 생성한다."
+    ]
+  },
+  "78": {
+    "stem": "Windows 11 Pro를 실행하고 Microsoft Intune에 등록된 장치 500대가 있는 Microsoft 365 E5 구독이 있습니다.\n\n이 장치에 권장 구성 변경을 제시하도록 Microsoft Defender 취약성 관리를 평가해야 합니다.\n\n권장 변경 사항을 검토하려면 어떤 엔드포인트 보안 설정을 사용해야 합니까?",
+    "expl": "보안 작업(Security tasks)은 Microsoft Defender 취약성 관리를 Intune과 통합합니다. 식별된 취약점, 영향을 받는 장치, 수정 지침을 보여 주므로 Intune 관리자가 권장 구성 변경을 검토하고 조치할 수 있습니다.\n\n**Learn more:** [Endpoint security in Microsoft Intune](https://learn.microsoft.com/en-us/intune/device-security/endpoint-security-policies) · [Use Intune to remediate vulnerabilities found by Microsoft Defender for Endpoint](https://learn.microsoft.com/en-my/intune/intune-service/protect/atp-manage-vulnerabilities)",
+    "choices": [
+      "보안 작업",
+      "공격 표면 축소",
+      "엔드포인트 검색 및 대응",
+      "장치 규정 준수"
+    ]
+  },
+  "79": {
+    "stem": "회사에서 다음 그림과 같은 아키텍처로 Azure에 서버리스 애플리케이션을 개발하고 있습니다.\n\n[[IMG1]]\n\n컴퓨팅 구성 요소를 Azure 가상 네트워크에 격리하는 솔루션을 권장해야 합니다. 권장 사항에 무엇을 포함해야 합니까?",
+    "expl": "Azure App Service 환경(ASE)은 가상 네트워크에 설치되는 단일 테넌트 전용 Azure App Service 배포로 Azure Functions를 호스트할 수 있습니다. 격리된 컴퓨팅을 제공하며 애플리케이션 트래픽을 선택한 가상 네트워크 안에 유지합니다.\n\n**Learn more:** [App Service Environment overview](https://learn.microsoft.com/en-us/azure/app-service/environment/overview) · [Securing Azure Functions](https://learn.microsoft.com/en-us/azure/azure-functions/security-concepts)",
+    "choices": [
+      "Azure Active Directory(Azure AD) 엔터프라이즈 애플리케이션",
+      "Azure App Service 환경(ASE)",
+      "Azure 서비스 엔드포인트",
+      "Azure Active Directory(Azure AD) 애플리케이션 프록시"
+    ]
+  },
+  "80": {
+    "stem": "Active Directory Domain Services(AD DS) 도메인과 동기화되는 Azure AD 테넌트가 있습니다. 클라이언트 컴퓨터는 Windows를 실행하며 Azure AD에 하이브리드 조인되어 있습니다.\n\nMicrosoft 보안 모범 사례를 따르는 랜섬웨어 대응 엔드포인트 보호 전략을 설계하고 있습니다.\n\nWindows 컴퓨터의 Administrators 그룹에서 모든 도메인 계정을 제거할 계획입니다.\n\n필요할 때만 사용자에게 Windows 컴퓨터에 대한 관리 권한을 부여하는 솔루션을 권장해야 합니다. 솔루션은 컴퓨터의 관리자 계정이 침해되었을 때 랜섬웨어의 측면 이동을 최소화해야 합니다.\n\n권장 사항에 무엇을 포함해야 합니까?",
+    "expl": "Windows LAPS는 로컬 관리자 암호를 관리하고 주기적으로 회전시켜, 권한이 있는 담당자가 필요한 관리 작업을 할 때만 장치별 로컬 자격 증명을 가져오게 합니다. 장치마다 로컬 관리자 암호가 다르므로 침해된 암호 해시나 자격 증명을 다른 엔드포인트에 재사용할 수 없어 pass-the-hash와 측면 이동 위험이 줄어듭니다. Windows LAPS는 하이브리드 조인 장치를 지원합니다.\n\n**Learn more:** [Windows LAPS overview](https://learn.microsoft.com/en-us/windows-server/identity/laps/laps-overview) · [Local accounts — Microsoft Learn](https://learn.microsoft.com/en-us/windows/security/identity-protection/access-control/local-accounts)",
+    "choices": [
+      "로컬 관리자 암호 솔루션(LAPS)",
+      "Azure AD ID 보호",
+      "Azure AD Privileged Identity Management(PIM)",
+      "권한 있는 액세스 워크스테이션(PAW)"
+    ]
+  }
+}

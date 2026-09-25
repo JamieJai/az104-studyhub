@@ -121,6 +121,17 @@
           "sizes": "192x192"
         }
       ]
+    },
+    {
+      "name": "SC-100 CBT",
+      "short_name": "SC-100",
+      "url": "./SC-100_CBT/",
+      "icons": [
+        {
+          "src": "./icons/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
     }
   ]
 }

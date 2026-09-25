@@ -1,0 +1,234 @@
+{
+  "289": {
+    "stem": "RG1이라는 리소스 그룹이 있는 Azure 구독이 있습니다. RG1에는 Azure Files 공유가 여러 개 있습니다.\n\n다음 요구 사항을 충족하는 공유 백업 솔루션을 권장해야 합니다.\n\n- 백업과 백업을 저장하는 자격 증명 모음이 삭제되지 않게 한다.\n- 백업 솔루션을 노린 권한 상승 공격을 막는다.\n- 백업 보존 기간이 변경되지 않게 한다.\n\n어떤 작업 세 가지를 순서대로 수행해야 합니까?",
+    "expl": "Azure Files 백업은 Recovery Services 자격 증명 모음을 사용합니다. 자격 증명 모음의 변경 불가능성(immutability)을 사용하도록 설정하면 백업 손실 작업과 보존 기간 단축이 차단되고, 이를 잠그면 설정이 되돌릴 수 없게 되어 악의적인 권한 보유자가 변경 불가능성을 해제해 백업을 삭제하거나 변경하는 것을 막습니다. RG1의 리소스 잠금은 변경 불가능 자격 증명 모음 보호를 대신할 수 없습니다.\n\n**Learn more:** [Azure Backup immutable vault overview](https://learn.microsoft.com/en-us/azure/backup/backup-azure-immutable-vault-concept) · [Manage Azure Backup immutable vault operations](https://learn.microsoft.com/en-us/azure/backup/backup-azure-immutable-vault-how-to-manage)",
+    "items": [
+      "자격 증명 모음의 변경 불가능성을 잠근다.",
+      "자격 증명 모음의 변경 불가능성을 사용하도록 설정한다.",
+      "Recovery Services 자격 증명 모음을 만든다.",
+      "RG1에 리소스 잠금을 만든다.",
+      "Azure 백업 자격 증명 모음을 만든다."
+    ],
+    "slots": ["1단계", "2단계", "3단계"]
+  },
+  "290": {
+    "stem": "한 고객에게 Microsoft 365 구독과 Azure 구독이 있습니다. 고객의 장치는 Windows, iOS, Android 또는 macOS를 실행합니다. Windows 장치는 온프레미스와 Azure 양쪽에 배포되어 있습니다.\n\n모든 장치가 고객의 규정 준수 규칙을 충족하는지 평가하는 보안 솔루션을 설계해야 합니다. 솔루션에 무엇을 포함해야 합니까?",
+    "expl": "Microsoft Endpoint Manager는 Intune 기능을 통해 Windows, iOS, Android, macOS에 대한 크로스 플랫폼 장치 관리와 장치 규정 준수 정책을 제공합니다. 이 정책은 장치가 정의된 조직 요구 사항을 충족하는지 평가하고 준수 상태를 보고합니다.\n\n**Learn more:** [Device compliance policies in Microsoft Intune](https://learn.microsoft.com/en-us/intune/device-security/compliance/overview) · [Plan for compliance policies in Microsoft Intune](https://learn.microsoft.com/en-us/intune/fundamentals/deploy-compliance-step-3)",
+    "choices": [
+      "Microsoft Defender for Endpoint",
+      "Microsoft Endpoint Manager",
+      "Microsoft Information Protection",
+      "Microsoft Sentinel"
+    ]
+  },
+  "291": {
+    "stem": "Azure용 Microsoft 클라우드 채택 프레임워크의 보안 모범 사례를 따르는 새 Azure 환경을 설계하고 있습니다. 이 환경에는 공유 인프라 구성 요소용 구독 1개와 애플리케이션용 구독 3개가 있습니다.\n\n네트워크 보안 그룹(NSG), Azure Firewall, Azure Key Vault, Azure Bastion을 포함하는 배포 솔루션을 권장해야 합니다. 솔루션은 배포 수고를 줄이고 Azure용 Microsoft 클라우드 채택 프레임워크 보안 모범 사례를 따라야 합니다.\n\n권장 사항에 무엇을 포함해야 합니까?",
+    "expl": "Azure 랜딩 존 액셀러레이터는 Azure 랜딩 존 참조 아키텍처를 바로 배포할 수 있게 구성한 구현체입니다. 공유 인프라를 위한 중앙 플랫폼 서비스와 거버넌스가 적용된 애플리케이션 랜딩 존을 만들어, 구독 전반에 보안·네트워킹 제어를 적은 구현 수고로 일관되게 배포할 수 있게 해 줍니다.\n\n**Learn more:** [Deploy Azure landing zones](https://learn.microsoft.com/en-us/azure/architecture/landing-zones/landing-zone-deploy) · [Security design in Azure](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/security)",
+    "choices": [
+      "Azure 랜딩 존 액셀러레이터",
+      "Azure Well-Architected 프레임워크",
+      "Azure 보안 벤치마크 v3",
+      "Azure Advisor"
+    ]
+  },
+  "292": {
+    "stem": "Azure용 Microsoft 클라우드 채택 프레임워크를 기반으로 하는 운영 모델이 있습니다.\n\n엔드포인트, 데이터베이스, 파일, 저장소 계정 같은 리소스를 보호하기 위해 클라우드 중심 제어 영역에 집중하는 솔루션을 권장해야 합니다.\n\n권장 사항에 무엇을 포함해야 합니까?",
+    "expl": "Microsoft 클라우드 보안 벤치마크의 보안 기준은 서비스별로 사용할 수 있는 보안 기능과 권장 구성을 설명하는 표준화된 지침입니다. 클라우드 중심 제어 영역에 초점을 맞추며 엔드포인트와 저장소 관련 리소스를 포함한 Azure 워크로드·데이터·서비스 보호를 뒷받침합니다.\n\n**Learn more:** [Security baselines for Azure overview](https://learn.microsoft.com/en-us/security/benchmark/azure/security-baselines-overview) · [Microsoft cloud security benchmark introduction](https://learn.microsoft.com/en-us/security/benchmark/azure/introduction)",
+    "choices": [
+      "업무 복원력",
+      "최신 액세스 제어",
+      "네트워크 격리",
+      "Microsoft 클라우드 보안 벤치마크의 보안 기준"
+    ]
+  },
+  "293": {
+    "stem": "Azure 구독이 여러 개 있고 각 구독에 리소스 그룹이 여러 개 있습니다.\n\n모든 구독에서 권한 있는 역할 할당과 관련 보안 위험을 식별해야 합니다. 솔루션은 관리 부담을 최소화해야 합니다.\n\n무엇을 사용해야 합니까?",
+    "expl": "Microsoft Entra Permissions Management는 클라우드 권한 분석을 한곳에 모아 과도하거나 위험도가 높은 권한과 권한 있는 접근을 드러내는 CIEM 솔루션입니다. Analytics 대시보드가 Azure 구독 전반에 이 가시성을 제공하므로, 구독마다 별도의 액세스 검토를 구성하고 운영하는 것보다 수고가 적습니다.\n\n**Learn more:** [View analytic information about users in Permissions Management](https://learn.microsoft.com/en-us/previous-versions/entra/permissions-management/usage-analytics-users) · [View privileged role assignments in Microsoft Entra Insights](https://learn.microsoft.com/en-us/previous-versions/entra/permissions-management/product-privileged-role-insights)",
+    "choices": [
+      "Privileged Identity Management(PIM)의 액세스 검토",
+      "Microsoft Entra ID 거버넌스의 액세스 검토",
+      "Microsoft Defender 외부 공격 표면 관리(Defender EASM) 검색",
+      "Microsoft Entra Permissions Management의 Analytics 대시보드"
+    ]
+  },
+  "294": {
+    "stem": "네트워크에 Active Directory Domain Services(AD DS) 도메인이 있습니다.\n\n도메인의 기본 제공 Administrator 계정을 도메인 컨트롤러의 대화형 로그인에만 사용할 수 있게 해야 합니다.\n\n무엇을 구성해야 합니까?",
+    "expl": "도메인 컨트롤러 OU에 연결한 그룹 정책 개체의 사용자 권한 할당 설정으로, 기본 제공 Administrator 계정의 네트워크·일괄 처리·서비스·원격 데스크톱 로그온을 거부하면서 도메인 컨트롤러에서의 로컬 대화형 로그온 권한은 유지할 수 있습니다.\n\n**Learn more:** [Appendix D - Securing Built-In Administrator Accounts in Active Directory](https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/plan/security-best-practices/appendix-d--securing-built-in-administrator-accounts-in-active-directory)",
+    "choices": [
+      "Protected Users 그룹",
+      "인증 정책",
+      "사용자 권한 할당 보안 정책 설정",
+      "인증 정책 사일로"
+    ]
+  },
+  "295": {
+    "stem": "Azure 구독과 Amazon Web Services(AWS) 구독이 있는 멀티클라우드 환경이 있습니다.\n\n다음 요구 사항을 충족하는 솔루션을 설계해야 합니다.\n\n- 각 사용자에게 부여된 권한과 실제로 사용된 권한을 동적으로 검색한다.\n- 사용되지 않거나 과도한 권한과 연관된 위험 수준을 평가하는 집계 지표를 생성한다.\n- 90일 동안 사용되지 않은 권한을 자동으로 회수한다.\n- 제한된 기간 동안 주문형 권한 부여를 지원한다.\n- 관리 부담을 최소화한다.\n\n각 구독에 어떤 클라우드 서비스를 사용해야 합니까?",
+    "expl": "Microsoft Entra Permissions Management는 Azure, AWS, GCP 전반에 통합 가시성을 제공하는 CIEM 솔루션이므로 서비스 하나로 두 구독을 모두 다뤄 관리 부담을 최소화합니다. 각 ID에 부여된 권한과 실제 사용된 권한을 검색하고, 사용되지 않거나 과도한 권한의 위험을 집계한 권한 크리프 지수(Permission Creep Index)를 만들며, 90일 동안 사용되지 않은 권한을 자동으로 삭제할 수 있고, 기간이 제한된 상승을 위한 주문형 권한을 제공합니다. Privileged Identity Management(PIM)는 Azure·Entra 전용이고, 적시 역할을 부여하기는 하지만 사용된 권한을 검색하지 않고 권한 위험 지표를 계산하지 않으며 90일 미사용 권한을 자동 회수할 수도 없어 Azure 빈칸의 요구 사항을 충족하지 못합니다. Defender for Cloud(상태·워크로드 보안)와 Entra External ID(B2B·B2C ID)는 이런 권한 관리 요구를 전혀 다루지 않습니다.\n\n**Learn more:** [What's Microsoft Entra Permissions Management?](https://learn.microsoft.com/en-us/entra/permissions-management/overview)",
+    "blanks": [
+      {
+        "label": "Azure:",
+        "options": [
+          "Microsoft Defender for Cloud",
+          "Microsoft Entra External ID",
+          "Microsoft Entra Permissions Management",
+          "Microsoft Entra ID의 Privileged Identity Management(PIM)"
+        ]
+      },
+      {
+        "label": "AWS:",
+        "options": [
+          "Microsoft Defender for Cloud",
+          "Microsoft Entra External ID",
+          "Microsoft Entra Permissions Management",
+          "Microsoft Entra ID의 Privileged Identity Management(PIM)"
+        ]
+      }
+    ]
+  },
+  "296": {
+    "stem": "회사에 Microsoft 365 E5 구독, Azure 구독, 온프레미스 애플리케이션, Active Directory Domain Services(AD DS)가 있습니다.\n\n다음 요구 사항을 충족하는 ID 보안 전략을 권장하세요.\n\n- 고객이 Facebook 자격 증명으로 Azure App Service 웹사이트에 인증할 수 있어야 한다.\n- 협력사가 배정된 프로젝트의 Microsoft SharePoint Online 사이트에 접근할 수 있어야 한다.\n\n솔루션은 추가 인프라 구성 요소 배포를 최소화해야 합니다.\n\n권장 사항에 무엇을 포함해야 합니까?",
+    "expl": "Azure AD B2C는 Facebook을 포함한 소셜 ID 공급자를 통한 소비자 로그인을 지원합니다. Azure AD B2B 공동 작업과 권한 관리 액세스 패키지는 외부 협력사의 특정 SharePoint Online 프로젝트 사이트 접근을 통제합니다. Azure AD Connect와 AD FS 선택지는 온프레미스 AD DS 기반 직원 인증을 다루며 추가 연결이나 인프라가 필요하고, 소비자 소셜 로그인 요구 사항을 충족하지 못합니다.\n\n**Learn more:** [Add Facebook as an identity provider in Azure AD B2C](https://learn.microsoft.com/en-us/azure/active-directory-b2c/identity-provider-facebook) · [What are access packages?](https://learn.microsoft.com/en-us/entra/id-governance/entitlement-management-access-package-first)",
+    "blanks": [
+      {
+        "label": "고객의 경우:",
+        "options": [
+          "액세스 패키지 할당을 사용하는 Azure AD B2B 인증",
+          "Azure AD B2C 인증",
+          "Active Directory Federation Services를 사용하는 Azure AD Connect 페더레이션",
+          "Azure AD Connect의 통과 인증",
+          "Azure AD Connect의 암호 해시 동기화"
+        ]
+      },
+      {
+        "label": "협력사의 경우:",
+        "options": [
+          "액세스 패키지 할당을 사용하는 Azure AD B2B 인증",
+          "Azure AD B2C 인증",
+          "Active Directory Federation Services를 사용하는 Azure AD Connect 페더레이션",
+          "Azure AD Connect의 통과 인증",
+          "Azure AD Connect의 암호 해시 동기화"
+        ]
+      }
+    ]
+  },
+  "297": {
+    "stem": "비즈니스 요구 사항과 하이브리드 요구 사항을 충족하는 다중 테넌트·하이브리드 보안 솔루션을 권장해야 합니다.\n\n무엇을 권장해야 합니까?",
+    "expl": "Azure Lighthouse를 쓰면 관리 테넌트가 Azure RBAC로 테넌트 경계를 넘어 위임된 Azure 구독과 리소스를 관리할 수 있어, 게스트 계정을 관리하는 부담을 피할 수 있습니다. Azure Arc는 온프레미스 서버와 그 밖의 인프라를 Azure로 투영해 Azure Policy, 인벤토리·변경 추적, 업데이트 관리 기능을 적용할 수 있게 합니다.\n\n**Learn more:** [Azure Lighthouse documentation](https://learn.microsoft.com/en-us/azure/lighthouse/overview) · [Azure Arc overview](https://learn.microsoft.com/en-us/azure/azure-arc/overview)",
+    "blanks": [
+      {
+        "label": "구독 관리를 중앙화하려면:",
+        "options": ["Microsoft Entra B2B", "Microsoft Entra External ID", "Azure Lighthouse"]
+      },
+      {
+        "label": "온프레미스 리소스를 관리할 수 있게 하려면:",
+        "options": ["Azure Arc", "Azure Stack Edge", "Azure Stack Hub"]
+      }
+    ]
+  },
+  "298": {
+    "stem": "회사에 Microsoft Defender for Cloud를 사용하는 Azure 구독이 있습니다.\n\n회사가 미국 정부와 계약을 체결했습니다.\n\n기존 구독의 NIST 800-53 준수 여부를 검토해야 합니다.\n\n가장 먼저 무엇을 해야 합니까?",
+    "expl": "Microsoft Defender for Cloud는 NIST SP 800-53을 포함한 규정 준수 표준을 Azure Policy 이니셔티브로 구현합니다. 해당 기본 제공 이니셔티브를 구독에 할당하면 지속적인 규정 준수 평가 범위가 그 구독으로 지정되고, 이후 규정 준수 대시보드에서 상태를 검토할 수 있습니다.\n\n**Learn more:** [Assign regulatory compliance standards in Microsoft Defender for Cloud](https://learn.microsoft.com/en-us/azure/defender-for-cloud/assign-regulatory-compliance-standards) · [Regulatory compliance standards in Microsoft Defender for Cloud](https://learn.microsoft.com/en-us/azure/defender-for-cloud/concept-regulatory-compliance-standards)",
+    "choices": [
+      "Azure Policy에서 구독 범위로 기본 제공 이니셔티브를 할당한다.",
+      "Azure Policy에서 구독 범위로 기본 제공 정책 정의를 할당한다.",
+      "Defender for Cloud에서 감사용 Azure 보안 기준 보고서를 검토한다.",
+      "Defender for Cloud에서 Defender for Cloud 플랜을 사용하도록 설정한다."
+    ]
+  },
+  "299": {
+    "stem": "회사에 Microsoft 365 E5 구독이 있습니다.\n\n사용자는 Microsoft Teams, Exchange Online, SharePoint Online, OneDrive로 자료를 공유하고 협업합니다.\n\n회사는 저장된 문서와 커뮤니케이션에서 보호 대상 건강 정보(PHI)를 확인했습니다.\n\nPHI가 회사 외부로 공유되지 않게 하려면 무엇을 권장해야 합니까?",
+    "expl": "Microsoft Purview 데이터 손실 방지(DLP) 정책은 중요 정보 유형으로 PHI를 탐지하고, 조직 외부 사용자와 콘텐츠가 공유되는 것을 차단하는 작업을 적용할 수 있습니다. DLP는 Exchange, SharePoint, OneDrive, Teams를 포함한 관련 Microsoft 365 위치를 지원합니다.\n\n**Learn more:** [Data loss prevention and Microsoft Teams](https://learn.microsoft.com/en-us/purview/dlp-microsoft-teams) · [Help prevent sharing sensitive items via SharePoint and OneDrive with external users](https://learn.microsoft.com/en-ie/purview/dlp-create-policy-spo-odb-external)",
+    "choices": [
+      "민감도 레이블 정책",
+      "데이터 손실 방지(DLP) 정책",
+      "내부 위험 관리 정책",
+      "보존 정책"
+    ]
+  },
+  "300": {
+    "stem": "조직에 Microsoft 365 E5 라이선스와 Azure 구독이 있습니다.\n\n다음 위치에 저장된 중요 데이터에 레이블을 자동으로 적용하려고 합니다.\n\n- Microsoft SharePoint Online\n- Microsoft Exchange Online\n- Microsoft Teams\n\n중요 데이터를 식별하고 보호하는 전략을 권장해야 합니다. 민감도 레이블 정책에 어떤 범위를 권장해야 합니까?\n\n각 범위는 한 번, 여러 번 사용하거나 전혀 사용하지 않을 수 있습니다.",
+    "expl": "'파일 및 메일' 범위는 SharePoint Online 문서와 Exchange Online 메일에 민감도 레이블을 자동으로 적용하는 것을 지원합니다. '그룹 및 사이트' 범위는 Microsoft Teams, Microsoft 365 그룹, SharePoint 사이트 같은 공동 작업 컨테이너를 보호하는 데 사용합니다. '스키마화된 데이터 자산'은 이런 Microsoft 365 워크로드가 아니라 지원되는 구조적 데이터 자산에 적용됩니다.\n\n**Learn more:** [Automatically apply a sensitivity label to Microsoft 365 data](https://learn.microsoft.com/en-us/purview/apply-sensitivity-label-automatically) · [Use sensitivity labels to protect collaborative workspaces (groups and sites)](https://learn.microsoft.com/en-us/purview/sensitivity-labels-teams-groups-sites)",
+    "items": ["파일 및 메일", "그룹 및 사이트", "스키마화된 데이터 자산"],
+    "slots": ["SharePoint Online:", "Microsoft Teams:", "Exchange Online:"]
+  },
+  "301": {
+    "stem": "Microsoft Defender for Cloud를 다음 그림과 같이 열었습니다.\n\n[[IMG1]]\n\n그림의 정보에 따라 각 문장을 완성하는 답을 드롭다운 메뉴에서 선택하세요.",
+    "expl": "네트워크 보안 그룹은 가상 머신과 서브넷으로 허용되는 인바운드·아웃바운드 트래픽을 제한해 무단 네트워크 접근 문제를 다룹니다. Defender for Servers에는 Defender for Endpoint 통합과 엔드포인트 보호 기능이 포함되어 있어 엔드포인트 보호 제어를 다룹니다.\n\n**Learn more:** [Secure score in Defender for Cloud](https://learn.microsoft.com/en-us/azure/defender-for-cloud/secure-score-security-controls) · [Reference table for all networking security recommendations](https://learn.microsoft.com/en-us/azure/defender-for-cloud/recommendations-reference-networking)",
+    "blanks": [
+      {
+        "label": "무단 네트워크 접근 제한 제어의 점수를 높이려면 다음을 구현한다",
+        "options": [
+          "Azure Active Directory(Azure AD) 조건부 액세스 정책",
+          "Azure 웹 애플리케이션 방화벽(WAF)",
+          "네트워크 보안 그룹(NSG)"
+        ]
+      },
+      {
+        "label": "엔드포인트 보호 사용 제어의 점수를 높이려면 다음을 구현한다",
+        "options": [
+          "Microsoft Defender for Resource Manager",
+          "Microsoft Defender for Servers",
+          "프라이빗 엔드포인트"
+        ]
+      }
+    ]
+  },
+  "302": {
+    "stem": "가상 머신 100대가 있고 Azure Bastion으로 접근하는 Azure 구독이 있습니다.\n\n특정 위치의 특정 사용자만 가상 머신에 접근할 수 있게 하는 솔루션을 권장해야 합니다. 솔루션은 다음 요구 사항을 충족해야 합니다.\n\n- just-in-time(JIT) VM 액세스의 네트워크 기반 제어로 원본 IP 주소나 연결 요청에 따라 가상 머신 접근을 제한한다.\n- JIT VM 액세스의 권한 부여 제어로 역할 기반 액세스 제어(RBAC) 역할 할당을 통해 가상 머신 접근을 제한한다.\n\n권장 사항에 어떤 Microsoft 클라우드 서비스를 포함해야 합니까?",
+    "expl": "Microsoft Defender for Cloud는 JIT VM 액세스를 제공하며 임시 인바운드 접근을 지정한 원본 IP 주소로 제한할 수 있습니다. Microsoft Entra PIM은 사용자가 필요할 때 활성화하는 자격 기반·시간 제한 Azure RBAC 할당을 제공합니다.\n\n**Learn more:** [Enable just-in-time access - Microsoft Defender for Cloud](https://learn.microsoft.com/en-us/azure/defender-for-cloud/enable-just-in-time-access) · [Eligible and time-bound role assignments in Azure RBAC](https://learn.microsoft.com/en-us/azure/role-based-access-control/pim-integration)",
+    "blanks": [
+      {
+        "label": "네트워크 제어의 경우:",
+        "options": [
+          "Microsoft Defender for Cloud",
+          "Microsoft Defender for Cloud Apps",
+          "Microsoft Defender for Endpoint"
+        ]
+      },
+      {
+        "label": "권한 부여 제어의 경우:",
+        "options": [
+          "Microsoft Entra Privileged Identity Management(PIM)",
+          "Microsoft Purview 권한 있는 액세스 관리",
+          "Microsoft Entra Permissions Management"
+        ]
+      }
+    ]
+  },
+  "303": {
+    "stem": "Group1이라는 그룹이 있는 Microsoft 365 구독이 있습니다. 이 구독에는 Microsoft Entra 테넌트에 조인되고 Microsoft Intune으로 관리하는 Windows 장치 1,000대가 있습니다. 모든 사용자는 표준 사용자 계정으로 장치에 로그인합니다.\n\nGroup1 구성원에게 App1이라는 새 앱을 배포하려고 합니다. Group1 구성원은 App1의 새 버전을 설치할 관리자 권한이 있어야 합니다.\n\nGroup1 구성원이 App1의 새 버전을 설치할 수 있게 해야 합니다. 솔루션은 제로 트러스트 원칙을 따라야 합니다.\n\n무엇을 구현해야 합니까?",
+    "expl": "Microsoft Intune 엔드포인트 권한 관리(EPM)를 쓰면 사용자는 표준 사용자로 남으면서도 IT가 승인한 애플리케이션과 설치 프로그램(애플리케이션 설치 포함)에 한해 일시적으로 권한을 상승할 수 있습니다. 권한 상승 규칙의 범위를 App1로 한정할 수 있으므로, 영구 로컬 관리자 권한을 주지 않고 제로 트러스트에 맞는 최소 권한을 적용할 수 있습니다.\n\n**Learn more:** [Learn about using Endpoint Privilege Management with Microsoft Intune](https://learn.microsoft.com/en-us/intune/epm/overview) · [Zero Trust with Microsoft Intune](https://learn.microsoft.com/en-us/intune/intune-service/fundamentals/zero-trust-with-microsoft-intune)",
+    "choices": [
+      "Microsoft Entra Privileged Identity Management(PIM)",
+      "Microsoft Intune 엔드포인트 권한 관리(EPM)",
+      "Microsoft 로컬 관리자 암호 솔루션(Microsoft LAPS)",
+      "Microsoft Entra 권한 관리"
+    ]
+  },
+  "304": {
+    "stem": "VNet1이라는 가상 네트워크가 있는 Azure 구독이 있습니다. VNet1에는 App1이라는 웹 검색 앱을 호스트하는 10노드 가상 머신 확장 집합이 있습니다. 고객은 인터넷에서 App1에 접근하며, 노드는 인터넷으로 HTTP와 HTTPS 아웃바운드 연결을 맺습니다.\n\n다음 요구 사항을 충족하는 App1용 네트워크 보안 솔루션을 권장해야 합니다.\n\n- OWASP(Open Web Application Security Project) 핵심 규칙 집합(CRS)에 정의된 보안 위협이 포함된 App1 인바운드 연결을 차단한다.\n- Microsoft Defender 위협 인텔리전스(Defender TI) 피드가 식별한 보안 위협이 포함된, 가상 머신 확장 집합의 HTTP·HTTPS 아웃바운드 연결을 차단한다.\n\n권장 사항에 무엇을 포함해야 합니까?",
+    "expl": "Azure 웹 애플리케이션 방화벽(WAF)은 OWASP 핵심 규칙 집합 기반 관리형 규칙으로 인바운드 HTTP/S 웹 요청을 보호합니다. Azure Firewall은 Microsoft 위협 인텔리전스 필터링을 경고·거부 모드로 적용해, 알려진 악성 IP 주소·도메인·URL을 오가는 트래픽을 차단할 수 있습니다.\n\n**Learn more:** [Azure Firewall threat intelligence-based filtering](https://learn.microsoft.com/en-ie/azure/firewall/threat-intel) · [Create and use WAF v2 custom rules on Application Gateway](https://learn.microsoft.com/en-us/azure/web-application-firewall/ag/create-custom-waf-rules)",
+    "blanks": [
+      {
+        "label": "인바운드 연결의 경우:",
+        "options": [
+          "애플리케이션 보안 그룹",
+          "Azure Firewall",
+          "Azure 웹 애플리케이션 방화벽(WAF)",
+          "Microsoft Entra 애플리케이션 프록시",
+          "네트워크 보안 그룹(NSG)"
+        ]
+      },
+      {
+        "label": "아웃바운드 연결의 경우:",
+        "options": [
+          "애플리케이션 보안 그룹",
+          "Azure Firewall",
+          "Azure 웹 애플리케이션 방화벽(WAF)",
+          "Microsoft Entra 애플리케이션 프록시",
+          "네트워크 보안 그룹(NSG)"
+        ]
+      }
+    ]
+  }
+}

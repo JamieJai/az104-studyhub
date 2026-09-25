@@ -1,0 +1,124 @@
+{
+  "cbt": "SC-100",
+  "note": "examcademy sc100 스크랩의 group(시나리오·사례 연구) 객체에서 뽑은 공통 지문. 사례 연구 2건, 시리즈형 시나리오 5건.",
+  "groups": [
+    {
+      "id": "sc100-s01",
+      "exam": "SC-100",
+      "type": "case_study",
+      "titleEn": "Fabrikam Claims Security Modernization",
+      "titleKo": "Fabrikam 보험 청구 보안 현대화",
+      "contentEn": "## Overview\n\nFabrikam, Inc. is an insurance company with a main office in New York and a branch office in Paris.\n\n### Existing Environment. On-premises Environment\n\nThe on-premises network includes a single Active Directory Domain Services (AD DS) domain named `corp.fabrikam.com`.\n\n### Existing Environment. Azure Environment\n\nFabrikam has these Azure resources:\n\n- A Microsoft Entra tenant named `fabrikam.onmicrosoft.com` that syncs with `corp.fabrikam.com`\n- A single Azure subscription named `Sub1`\n- A virtual network named `Vnet1` in the East US Azure region\n- A virtual network named `Vnet2` in the West Europe Azure region\n- An instance of Azure Front Door named `FD1` that has Azure Web Application Firewall (WAF) enabled\n- A Microsoft Sentinel workspace\n- An Azure SQL database named `ClaimsDB` that contains a table named `ClaimDetails`\n- 20 virtual machines that are configured as application servers and are NOT onboarded to Microsoft Defender for Cloud\n- A resource group named `TestRG` that is used only for testing\n- An Azure Virtual Desktop host pool that contains personal assigned session hosts\n\nAll resources in `Sub1` are in either the East US or the West Europe region.\n\n### Existing Environment. Partners\n\nFabrikam has contracted a company named Contoso, Ltd. to develop applications. Contoso has the following infrastructure:\n\n- A Microsoft Entra tenant named `contoso.onmicrosoft.com`\n- An Amazon Web Services (AWS) implementation named `ContosoAWS1` that contains AWS EC2 instances used to host test workloads for the Fabrikam applications\n\nDevelopers at Contoso will connect to Fabrikam resources to test or update applications. The developers will be added to a security group named `ContosoDevelopers` in `fabrikam.onmicrosoft.com`, and that group will be assigned to roles in `Sub1`.\n\nThe `ContosoDevelopers` group is assigned the `db_owner` role for the `ClaimsDB` database.\n\n### Existing Environment. Compliance Environment\n\nFabrikam deploys the following compliance environment:\n\n- Defender for Cloud is configured to assess all resources in `Sub1` for compliance with the HIPAA HITRUST standard.\n- Resources that are currently noncompliant with the HIPAA HITRUST standard are remediated manually.\n- Qualys is used as the standard vulnerability assessment tool for servers.\n\n### Existing Environment. Problem Statements\n\nThe secure score in Defender for Cloud shows that all virtual machines generate the following recommendation: Machines should have a vulnerability assessment solution.\n\nAll virtual machines must be compliant in Defender for Cloud.\n\n### Requirements. ClaimsApp Deployment\n\nFabrikam plans to implement an internet-accessible application named `ClaimsApp` with the following specifications:\n\n- `ClaimsApp` will be deployed to Azure App Service instances that connect to `Vnet1` and `Vnet2`.\n- Users will connect to `ClaimsApp` by using a URL of `https://claims.fabrikam.com`.\n- `ClaimsApp` will access data in `ClaimsDB`.\n- `ClaimsDB` must be accessible only from Azure virtual networks.\n- The app services permission for `ClaimsApp` must be assigned to `ClaimsDB`.\n\n### Requirements. Application Development Requirements\n\nFabrikam identifies the following requirements for application development:\n\n- Azure DevTest labs will be used by developers for testing.\n- All application code must be stored in GitHub Enterprise.\n- Azure Pipelines will be used to manage application deployments.\n- All application code changes must be scanned for security vulnerabilities, including application code or configuration files that contain secrets in clear text. Scanning must occur at the time the code is pushed to a repository.\n\n### Requirements. Security Requirements\n\nFabrikam identifies the following security requirements:\n\n- Internet-accessible applications must prevent connections that originate in North Korea.\n- Only members of a group named `InfraSec` must be allowed to configure network security groups (NSGs) and instances of Azure Firewall, WAF, and Front Door in `Sub1`.\n- Administrators must connect to a secure host to perform any remote administration of the virtual machines. The secure host must be provisioned from a custom operating system image.\n\n### Requirements. AWS Requirements\n\nFabrikam identifies the following security requirements for the data hosted in `ContosoAWS1`:\n\n- Notify security administrators at Fabrikam if any AWS EC2 instances are noncompliant with secure score recommendations.\n- Ensure that the security administrators can query AWS service logs directly from the Azure environment.\n\n### Requirements. Contoso Developers Requirements\n\nFabrikam identifies the following requirements for the Contoso developers:\n\n- Every month, the membership of the `ContosoDevelopers` group must be verified.\n- The Contoso developers must use their existing `contoso.onmicrosoft.com` credentials to access the resources in `Sub1`.\n- The Contoso developers must be prevented from viewing the data in a column named `MedicalHistory` in the `ClaimDetails` table.\n\n### Requirements. Compliance Requirements\n\nFabrikam wants to automatically remediate the virtual machines in `Sub1` to be compliant with the HIPAA HITRUST standard. The virtual machines in `TestRG` must be excluded from the compliance assessment.",
+      "contentKo": "## 개요\n\nFabrikam, Inc.는 뉴욕에 본사가 있고 파리에 지사가 있는 보험 회사입니다.\n\n### 기존 환경 — 온프레미스 환경\n\n온프레미스 네트워크에는 `corp.fabrikam.com`이라는 Active Directory Domain Services(AD DS) 도메인이 하나 있습니다.\n\n### 기존 환경 — Azure 환경\n\nFabrikam에는 다음 Azure 리소스가 있습니다.\n\n- `corp.fabrikam.com`과 동기화되는 `fabrikam.onmicrosoft.com`이라는 Microsoft Entra 테넌트\n- `Sub1`이라는 Azure 구독 1개\n- East US Azure 지역의 `Vnet1`이라는 가상 네트워크\n- West Europe Azure 지역의 `Vnet2`라는 가상 네트워크\n- Azure 웹 애플리케이션 방화벽(WAF)이 사용하도록 설정된 `FD1`이라는 Azure Front Door 인스턴스\n- Microsoft Sentinel 작업 영역\n- `ClaimDetails`라는 테이블이 있는 `ClaimsDB`라는 Azure SQL 데이터베이스\n- 애플리케이션 서버로 구성되어 있으며 Microsoft Defender for Cloud에 온보딩되어 있지 **않은** 가상 머신 20대\n- 테스트 전용으로 쓰는 `TestRG`라는 리소스 그룹\n- 개인 할당 세션 호스트가 있는 Azure Virtual Desktop 호스트 풀\n\n`Sub1`의 모든 리소스는 East US 또는 West Europe 지역에 있습니다.\n\n### 기존 환경 — 협력사\n\nFabrikam은 애플리케이션 개발을 위해 Contoso, Ltd.와 계약했습니다. Contoso의 인프라는 다음과 같습니다.\n\n- `contoso.onmicrosoft.com`이라는 Microsoft Entra 테넌트\n- Fabrikam 애플리케이션의 테스트 워크로드를 호스트하는 AWS EC2 인스턴스가 있는 `ContosoAWS1`이라는 Amazon Web Services(AWS) 환경\n\nContoso 개발자는 애플리케이션을 테스트하거나 업데이트하기 위해 Fabrikam 리소스에 연결합니다. 개발자는 `fabrikam.onmicrosoft.com`의 `ContosoDevelopers`라는 보안 그룹에 추가되고, 그 그룹에 `Sub1`의 역할이 할당됩니다.\n\n`ContosoDevelopers` 그룹에는 `ClaimsDB` 데이터베이스의 `db_owner` 역할이 할당되어 있습니다.\n\n### 기존 환경 — 규정 준수 환경\n\nFabrikam은 다음과 같은 규정 준수 환경을 배포합니다.\n\n- Defender for Cloud가 `Sub1`의 모든 리소스를 HIPAA HITRUST 표준 기준으로 평가하도록 구성되어 있습니다.\n- 현재 HIPAA HITRUST 표준을 준수하지 않는 리소스는 수동으로 수정합니다.\n- 서버의 표준 취약점 평가 도구로 Qualys를 사용합니다.\n\n### 기존 환경 — 문제 상황\n\nDefender for Cloud의 보안 점수를 보면 모든 가상 머신에서 '컴퓨터에 취약점 평가 솔루션이 있어야 합니다'라는 권장 사항이 나옵니다.\n\n모든 가상 머신은 Defender for Cloud에서 규정을 준수해야 합니다.\n\n### 요구 사항 — ClaimsApp 배포\n\nFabrikam은 다음 사양으로 `ClaimsApp`이라는 인터넷 접근 가능 애플리케이션을 구현하려고 합니다.\n\n- `ClaimsApp`은 `Vnet1`과 `Vnet2`에 연결되는 Azure App Service 인스턴스에 배포한다.\n- 사용자는 `https://claims.fabrikam.com` URL로 `ClaimsApp`에 연결한다.\n- `ClaimsApp`은 `ClaimsDB`의 데이터에 접근한다.\n- `ClaimsDB`는 Azure 가상 네트워크에서만 접근할 수 있어야 한다.\n- `ClaimsApp`의 앱 서비스 권한을 `ClaimsDB`에 할당해야 한다.\n\n### 요구 사항 — 애플리케이션 개발 요구 사항\n\nFabrikam은 애플리케이션 개발에 대해 다음 요구 사항을 정했습니다.\n\n- 개발자는 테스트에 Azure DevTest Labs를 사용한다.\n- 모든 애플리케이션 코드는 GitHub Enterprise에 저장해야 한다.\n- 애플리케이션 배포 관리에는 Azure Pipelines를 사용한다.\n- 모든 애플리케이션 코드 변경은 보안 취약점 검사를 거쳐야 하며, 평문 비밀이 들어 있는 애플리케이션 코드나 구성 파일도 검사 대상이다. 검사는 코드를 리포지토리에 푸시하는 시점에 수행해야 한다.\n\n### 요구 사항 — 보안 요구 사항\n\nFabrikam은 다음 보안 요구 사항을 정했습니다.\n\n- 인터넷 접근 가능 애플리케이션은 북한에서 시작되는 연결을 차단해야 한다.\n- `InfraSec`이라는 그룹의 구성원만 `Sub1`의 네트워크 보안 그룹(NSG)과 Azure Firewall, WAF, Front Door 인스턴스를 구성할 수 있어야 한다.\n- 관리자는 가상 머신을 원격 관리할 때 보안 호스트에 접속해야 한다. 이 보안 호스트는 사용자 지정 운영 체제 이미지로 프로비저닝해야 한다.\n\n### 요구 사항 — AWS 요구 사항\n\nFabrikam은 `ContosoAWS1`에 호스트된 데이터에 대해 다음 보안 요구 사항을 정했습니다.\n\n- AWS EC2 인스턴스가 보안 점수 권장 사항을 준수하지 않으면 Fabrikam의 보안 관리자에게 알린다.\n- 보안 관리자가 Azure 환경에서 AWS 서비스 로그를 직접 쿼리할 수 있게 한다.\n\n### 요구 사항 — Contoso 개발자 요구 사항\n\nFabrikam은 Contoso 개발자에 대해 다음 요구 사항을 정했습니다.\n\n- 매월 `ContosoDevelopers` 그룹의 멤버십을 확인해야 한다.\n- Contoso 개발자는 기존 `contoso.onmicrosoft.com` 자격 증명으로 `Sub1`의 리소스에 접근해야 한다.\n- Contoso 개발자가 `ClaimDetails` 테이블의 `MedicalHistory` 열 데이터를 보지 못하게 해야 한다.\n\n### 요구 사항 — 규정 준수 요구 사항\n\nFabrikam은 `Sub1`의 가상 머신이 HIPAA HITRUST 표준을 준수하도록 자동으로 수정하려고 합니다. `TestRG`의 가상 머신은 규정 준수 평가에서 제외해야 합니다.",
+      "assets": {},
+      "members": [
+        { "n": 6, "id": null },
+        { "n": 65, "id": null },
+        { "n": 66, "id": null },
+        { "n": 244, "id": null }
+      ]
+    },
+    {
+      "id": "sc100-s02",
+      "exam": "SC-100",
+      "type": "scenario",
+      "titleEn": "Azure At-Rest Key Rotation",
+      "titleKo": "Azure 미사용 데이터 키 회전",
+      "contentEn": "You are designing the encryption standards for data at rest for an Azure resource.\n\nYou need to provide recommendations to ensure that the data at rest is encrypted by using AES-256 keys. The solution must support rotating the encryption keys monthly.",
+      "contentKo": "Azure 리소스의 미사용 데이터 암호화 표준을 설계하고 있습니다.\n\n미사용 데이터가 AES-256 키로 암호화되도록 권장 사항을 제시해야 합니다. 솔루션은 암호화 키를 매월 회전할 수 있어야 합니다.",
+      "assets": {},
+      "members": [
+        { "n": 19, "id": null },
+        { "n": 20, "id": null },
+        { "n": 21, "id": null },
+        { "n": 22, "id": null }
+      ]
+    },
+    {
+      "id": "sc100-s03",
+      "exam": "SC-100",
+      "type": "case_study",
+      "titleEn": "Litware Hybrid Landing Zone Modernization",
+      "titleKo": "Litware 하이브리드 랜딩 존 현대화",
+      "contentEn": "## Overview\n\nLitware, Inc. is a financial services company with main offices in New York and San Francisco. Litware has 30 branch offices and remote employees throughout the United States. Remote employees connect to the main offices by using a VPN.\n\nLitware has expanded significantly over the last two years because of mergers and acquisitions. The acquisitions include several companies based in France.\n\n## Existing Environment\n\nLitware has a Microsoft Entra tenant that syncs with an Active Directory Domain Services (AD DS) forest named `litware.com` and is connected to 20 Azure subscriptions. Microsoft Entra Connect is used to implement pass-through authentication. Password hash synchronization is disabled, and password writeback is enabled. All Litware users have Microsoft 365 E5 licenses.\n\nThe environment also contains several AD DS forests, Microsoft Entra tenants, and hundreds of Azure subscriptions that belong to Litware subsidiaries.\n\n## Requirements. Planned Changes\n\nLitware plans to make the following changes:\n\n- Create a management group hierarchy for each Microsoft Entra tenant.\n- Design a landing zone strategy to refactor Litware's existing Azure environment and deploy all future Azure workloads.\n- Implement Microsoft Entra Application Proxy to provide secure access to internal applications that are currently accessed by using the VPN.\n\n## Requirements. Business Requirements\n\nLitware identifies the following business requirements:\n\n- Minimize any additional on-premises infrastructure.\n- Minimize the operational costs associated with administrative overhead.\n\n## Requirements. Hybrid Requirements\n\nLitware identifies the following hybrid cloud requirements:\n\n- Enable the management of on-premises resources from Azure, including the following:\n  - Use Azure Policy for enforcement and compliance evaluation.\n  - Provide change tracking and asset inventory.\n  - Implement patch management.\n- Provide centralized, cross-tenant subscription management without the overhead of maintaining guest accounts.\n\n## Requirements. Microsoft Sentinel Requirements\n\nLitware plans to use the security information and event management (SIEM) and security orchestration automated response (SOAR) capabilities of Microsoft Sentinel. The company wants to centralize Security Operations Center (SOC) by using Microsoft Sentinel.\n\n## Requirements. Identity Requirements\n\nLitware identifies the following identity requirements:\n\n- Detect brute force attacks that directly target AD DS user accounts.\n- Implement leaked credential detection in the Microsoft Entra tenant of Litware.\n- Prevent AD DS user accounts from being locked out by brute force attacks that target Microsoft Entra user accounts.\n- Implement delegated management of users and groups in the Microsoft Entra tenant of Litware, including support for:\n  - The management of group properties, membership, and licensing\n  - The management of user properties, passwords, and licensing\n  - The delegation of user management based on business units\n\n## Requirements. Regulatory Compliance Requirements\n\nLitware identifies the following regulatory compliance requirements:\n\n- Ensure data residency compliance when collecting logs, telemetry, and data owned by each United States- and France-based subsidiary.\n- Leverage built-in Azure Policy definitions to evaluate regulatory compliance across the entire managed environment.\n- Use the principle of least privilege.\n\n## Requirements. Azure Landing Zone Requirements\n\nLitware identifies the following landing zone requirements:\n\n- Route all internet-bound traffic from landing zones through Azure Firewall in a dedicated Azure subscription.\n- Provide a secure score scoped to the landing zone.\n- Ensure that the Azure virtual machines in each landing zone communicate with Azure App Service web apps in the same zone over the Microsoft backbone network, rather than over public endpoints.\n- Minimize the possibility of data exfiltration.\n- Maximize network bandwidth.\n\nThe landing zone architecture will include the dedicated subscription, which will serve as the hub for internet and hybrid connectivity. Each landing zone will have the following characteristics:\n\n- Be created in a dedicated subscription.\n- Use a DNS namespace of `litware.com`.\n\n## Requirements. Application Security Requirements\n\nLitware identifies the following application security requirements:\n\n- Identify internal applications that will support single sign-on (SSO) by using Microsoft Entra Application Proxy.\n- Monitor and control access to Microsoft SharePoint Online and Exchange Online data in real time.",
+      "contentKo": "## 개요\n\nLitware, Inc.는 뉴욕과 샌프란시스코에 본사를 둔 금융 서비스 회사입니다. Litware에는 지사 30곳과 미국 전역의 원격 근무 직원이 있습니다. 원격 직원은 VPN으로 본사에 연결합니다.\n\nLitware는 지난 2년간 인수·합병으로 크게 성장했습니다. 인수한 회사 중에는 프랑스에 본사를 둔 회사도 여럿 있습니다.\n\n## 기존 환경\n\nLitware에는 `litware.com`이라는 Active Directory Domain Services(AD DS) 포리스트와 동기화되고 Azure 구독 20개에 연결된 Microsoft Entra 테넌트가 있습니다. Microsoft Entra Connect로 통과 인증을 구현했습니다. 암호 해시 동기화는 사용하지 않도록 설정되어 있고 암호 쓰기 저장은 사용하도록 설정되어 있습니다. 모든 Litware 사용자에게 Microsoft 365 E5 라이선스가 있습니다.\n\n이 환경에는 Litware 자회사에 속한 AD DS 포리스트, Microsoft Entra 테넌트, 수백 개의 Azure 구독도 있습니다.\n\n## 요구 사항 — 계획된 변경\n\nLitware는 다음과 같이 변경할 계획입니다.\n\n- Microsoft Entra 테넌트마다 관리 그룹 계층을 만든다.\n- Litware의 기존 Azure 환경을 리팩터링하고 앞으로의 모든 Azure 워크로드를 배포할 랜딩 존 전략을 설계한다.\n- 현재 VPN으로 접근하는 내부 애플리케이션에 안전한 접근을 제공하기 위해 Microsoft Entra 애플리케이션 프록시를 구현한다.\n\n## 요구 사항 — 비즈니스 요구 사항\n\nLitware는 다음 비즈니스 요구 사항을 정했습니다.\n\n- 추가 온프레미스 인프라를 최소화한다.\n- 관리 부담에 따른 운영 비용을 최소화한다.\n\n## 요구 사항 — 하이브리드 요구 사항\n\nLitware는 다음 하이브리드 클라우드 요구 사항을 정했습니다.\n\n- Azure에서 온프레미스 리소스를 관리할 수 있게 하며, 여기에는 다음이 포함된다.\n  - Azure Policy로 적용과 규정 준수 평가를 수행한다.\n  - 변경 추적과 자산 인벤토리를 제공한다.\n  - 패치 관리를 구현한다.\n- 게스트 계정을 유지 관리하는 부담 없이 테넌트 간 구독을 중앙에서 관리할 수 있게 한다.\n\n## 요구 사항 — Microsoft Sentinel 요구 사항\n\nLitware는 Microsoft Sentinel의 보안 정보·이벤트 관리(SIEM)와 보안 오케스트레이션 자동 대응(SOAR) 기능을 사용할 계획입니다. 회사는 Microsoft Sentinel로 보안 운영 센터(SOC)를 중앙화하려고 합니다.\n\n## 요구 사항 — ID 요구 사항\n\nLitware는 다음 ID 요구 사항을 정했습니다.\n\n- AD DS 사용자 계정을 직접 노린 무차별 암호 대입 공격을 탐지한다.\n- Litware의 Microsoft Entra 테넌트에 유출된 자격 증명 탐지를 구현한다.\n- Microsoft Entra 사용자 계정을 노린 무차별 대입 공격 때문에 AD DS 사용자 계정이 잠기지 않게 한다.\n- Litware의 Microsoft Entra 테넌트에서 사용자와 그룹의 위임 관리를 구현하며, 다음을 지원한다.\n  - 그룹 속성, 멤버십, 라이선스 관리\n  - 사용자 속성, 암호, 라이선스 관리\n  - 사업부 단위의 사용자 관리 위임\n\n## 요구 사항 — 규정 준수 요구 사항\n\nLitware는 다음 규정 준수 요구 사항을 정했습니다.\n\n- 미국과 프랑스 소재 자회사가 각각 소유한 로그, 원격 분석, 데이터를 수집할 때 데이터 상주 규정을 준수한다.\n- 기본 제공 Azure Policy 정의를 활용해 관리 환경 전체의 규정 준수를 평가한다.\n- 최소 권한 원칙을 사용한다.\n\n## 요구 사항 — Azure 랜딩 존 요구 사항\n\nLitware는 다음 랜딩 존 요구 사항을 정했습니다.\n\n- 랜딩 존에서 인터넷으로 나가는 모든 트래픽을 전용 Azure 구독의 Azure Firewall을 거쳐 라우팅한다.\n- 랜딩 존 범위의 보안 점수를 제공한다.\n- 각 랜딩 존의 Azure 가상 머신이 같은 존의 Azure App Service 웹앱과 공용 엔드포인트가 아니라 Microsoft 백본 네트워크로 통신하게 한다.\n- 데이터 반출 가능성을 최소화한다.\n- 네트워크 대역폭을 최대화한다.\n\n랜딩 존 아키텍처에는 인터넷과 하이브리드 연결의 허브 역할을 할 전용 구독이 포함됩니다. 각 랜딩 존의 특징은 다음과 같습니다.\n\n- 전용 구독에 만든다.\n- `litware.com` DNS 네임스페이스를 사용한다.\n\n## 요구 사항 — 애플리케이션 보안 요구 사항\n\nLitware는 다음 애플리케이션 보안 요구 사항을 정했습니다.\n\n- Microsoft Entra 애플리케이션 프록시로 단일 로그인(SSO)을 지원할 내부 애플리케이션을 식별한다.\n- Microsoft SharePoint Online과 Exchange Online 데이터 접근을 실시간으로 모니터링하고 제어한다.",
+      "assets": {},
+      "members": [
+        { "n": 27, "id": null },
+        { "n": 74, "id": null },
+        { "n": 159, "id": null },
+        { "n": 214, "id": null },
+        { "n": 280, "id": null },
+        { "n": 297, "id": null }
+      ]
+    },
+    {
+      "id": "sc100-s04",
+      "exam": "SC-100",
+      "type": "scenario",
+      "titleEn": "Azure Management Ports Hardening",
+      "titleKo": "Azure 관리 포트 강화",
+      "contentEn": "You have an Azure subscription that has Microsoft Defender for Cloud enabled.\n\nYou are reviewing the Azure Security Benchmark V3 report.\n\nIn the Secure management ports controls, you find that you have 0 out of a possible 8 points.\n\nYou need to recommend configurations to raise the score of the Secure management ports controls.",
+      "contentKo": "Microsoft Defender for Cloud가 사용하도록 설정된 Azure 구독이 있습니다.\n\nAzure 보안 벤치마크 V3 보고서를 검토하고 있습니다.\n\n'관리 포트 보호' 제어에서 8점 만점에 0점인 것을 확인했습니다.\n\n'관리 포트 보호' 제어의 점수를 올릴 구성을 권장해야 합니다.",
+      "assets": {},
+      "members": [
+        { "n": 150, "id": null },
+        { "n": 151, "id": null },
+        { "n": 152, "id": null },
+        { "n": 153, "id": null }
+      ]
+    },
+    {
+      "id": "sc100-s05",
+      "exam": "SC-100",
+      "type": "scenario",
+      "titleEn": "Front Door-Only App Service Access",
+      "titleKo": "Front Door를 통해서만 App Service 접근",
+      "contentEn": "You are designing a security strategy to provide access to Azure App Service web apps through an Azure Front Door instance.\n\nYou need to recommend a solution that ensures the web apps allow access only through the Front Door instance.",
+      "contentKo": "Azure Front Door 인스턴스를 통해 Azure App Service 웹앱에 접근할 수 있게 하는 보안 전략을 설계하고 있습니다.\n\n웹앱이 그 Front Door 인스턴스를 통해서만 접근을 허용하게 하는 솔루션을 권장해야 합니다.",
+      "assets": {},
+      "members": [
+        { "n": 206, "id": null },
+        { "n": 207, "id": null },
+        { "n": 208, "id": null },
+        { "n": 209, "id": null },
+        { "n": 210, "id": null },
+        { "n": 211, "id": null }
+      ]
+    },
+    {
+      "id": "sc100-s06",
+      "exam": "SC-100",
+      "type": "scenario",
+      "titleEn": "Defender XDR SaaS Risk Control",
+      "titleKo": "Defender XDR SaaS 위험 제어",
+      "contentEn": "You have a Microsoft 365 subscription that uses Microsoft Defender XDR. The subscription includes 500 devices enrolled in Microsoft Intune and 500 users who connect to external software as a service (SaaS) apps by using the devices.\n\nYou need to implement a solution that meets the following requirements:\n\n- Allow user access to SaaS apps that Microsoft has identified as low risk\n- Block user access to SaaS apps that Microsoft has identified as high risk",
+      "contentKo": "Microsoft Defender XDR를 사용하는 Microsoft 365 구독이 있습니다. 이 구독에는 Microsoft Intune에 등록된 장치 500대와, 그 장치로 외부 SaaS(software as a service) 앱에 접속하는 사용자 500명이 있습니다.\n\n다음 요구 사항을 충족하는 솔루션을 구현해야 합니다.\n\n- Microsoft가 위험도 낮음으로 판정한 SaaS 앱에는 사용자 접근을 허용한다.\n- Microsoft가 위험도 높음으로 판정한 SaaS 앱에는 사용자 접근을 차단한다.",
+      "assets": {},
+      "members": [
+        { "n": 219, "id": null },
+        { "n": 220, "id": null },
+        { "n": 221, "id": null },
+        { "n": 222, "id": null }
+      ]
+    },
+    {
+      "id": "sc100-s07",
+      "exam": "SC-100",
+      "type": "scenario",
+      "titleEn": "E-Commerce Zero Trust Migration",
+      "titleKo": "전자상거래 앱 제로 트러스트 마이그레이션",
+      "contentEn": "Your on-premises network includes an e-commerce web app developed in Angular and Node.js. The web app uses a MongoDB database.\n\nYou plan to migrate the web app to Azure. The solution architecture team proposes the following architecture as an Azure landing zone.\n\n![Scenario Image](images/1783809500739-a4plmvst.jpg)\n\nYou need to recommend how to secure the connection between the web app and the database. The solution must follow the Zero Trust model.",
+      "contentKo": "온프레미스 네트워크에 Angular와 Node.js로 개발한 전자상거래 웹앱이 있습니다. 이 웹앱은 MongoDB 데이터베이스를 사용합니다.\n\n이 웹앱을 Azure로 마이그레이션하려고 합니다. 솔루션 아키텍처 팀이 Azure 랜딩 존으로 다음 아키텍처를 제안했습니다.\n\n![Scenario Image](images/1783809500739-a4plmvst.jpg)\n\n웹앱과 데이터베이스 사이의 연결을 보호하는 방법을 권장해야 합니다. 솔루션은 제로 트러스트 모델을 따라야 합니다.",
+      "assets": {
+        "images/1783809500739-a4plmvst.jpg": "assets/1783809500739-a4plmvst.jpg"
+      },
+      "members": [
+        { "n": 327, "id": null },
+        { "n": 328, "id": null },
+        { "n": 329, "id": null },
+        { "n": 330, "id": null }
+      ]
+    }
+  ]
+}

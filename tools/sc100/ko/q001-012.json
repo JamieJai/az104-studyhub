@@ -1,0 +1,198 @@
+{
+  "1": {
+    "stem": "Contoso, Ltd.와 협력사 Fabrikam, Inc.를 위한 권한 있는 액세스(privileged-access) 전략을 설계하고 있습니다. Contoso에는 contoso.com이라는 Azure AD 테넌트가 있고, Fabrikam에는 fabrikam.com이라는 Azure AD 테넌트가 있습니다. Fabrikam 사용자는 contoso.com의 리소스에 접근할 수 있어야 합니다.\n\n액세스 패키지(access package)를 사용해 Fabrikam 사용자에게 Contoso 리소스에 대한 접근 권한을 부여해야 합니다. 각 요구 사항에 무엇을 사용해야 합니까?",
+    "expl": "연결된 조직(connected organization)은 Fabrikam을 권한 관리(entitlement management)의 외부 Microsoft Entra 디렉터리로 식별하므로, Fabrikam 사용자가 기존 조직 ID로 액세스 패키지를 요청할 수 있습니다. 게스트 ID는 접근 권한이 부여될 때 필요에 따라 만들어집니다. 카탈로그 위임을 사용하면 관리자가 아닌 카탈로그 작성자도 액세스 패키지와 정책을 만들 수 있습니다.\n\n**Learn more:** [Manage connected organizations in entitlement management](https://learn.microsoft.com/en-us/entra/id-governance/entitlement-management-organization) · [Delegate access governance to catalog creators in entitlement management](https://learn.microsoft.com/en-us/entra/id-governance/entitlement-management-delegate-catalog)",
+    "blanks": [
+      {
+        "label": "contoso.com에 게스트 계정을 명시적으로 만들지 않고도 Fabrikam 사용자가 액세스 패키지를 사용할 수 있게 하려면:",
+        "options": [
+          "연결된 조직(connected organization)",
+          "외부 조직(external organization)",
+          "ID 공급자(identity provider)"
+        ]
+      },
+      {
+        "label": "contoso.com의 관리자가 아닌 사용자가 액세스 패키지를 만들 수 있게 하려면 다음을 만든다:",
+        "options": [
+          "관리 단위(administrative unit)",
+          "카탈로그(catalog)",
+          "프로그램(program)"
+        ]
+      }
+    ]
+  },
+  "2": {
+    "stem": "Microsoft Sentinel 작업 영역이 포함된 Azure 구독이 있습니다.\n\n온프레미스 네트워크에는 CEF(Common Event Format)로 이벤트 로그를 전달할 수 있는 방화벽이 있습니다. 이 방화벽을 위한 기본 제공 Microsoft Sentinel 커넥터는 없습니다.\n\n방화벽 이벤트를 Microsoft Sentinel로 수집하는 솔루션을 권장해야 합니다.\n\n권장 사항에 무엇을 포함해야 합니까?",
+    "expl": "Microsoft Sentinel은 Linux 컴퓨터를 Syslog 로그 전달자로 두고 'CEF via Azure Monitor Agent' 커넥터를 사용해 네트워크·보안 어플라이언스의 CEF 이벤트를 수집합니다. 온프레미스 Syslog 서버가 방화벽의 CEF 메시지를 받아 Sentinel 작업 영역으로 전달합니다.\n\n**Learn more:** [Ingest syslog and CEF messages to Microsoft Sentinel with the Azure Monitor Agent](https://learn.microsoft.com/en-us/azure/sentinel/connect-cef-syslog-ama?tabs=syslog%2Cportal) · [Syslog and Common Event Format (CEF) via AMA connectors for Microsoft Sentinel](https://learn.microsoft.com/en-us/azure/sentinel/cef-syslog-ama-overview)",
+    "choices": [
+      "Azure 논리 앱(logic app)",
+      "온프레미스 Syslog 서버",
+      "온프레미스 데이터 게이트웨이",
+      "Azure Data Factory"
+    ]
+  },
+  "3": {
+    "stem": "하이브리드 요구 사항, Microsoft Sentinel 요구 사항, 규정 준수 요구 사항을 모두 충족하는 SIEM·SOAR 전략을 권장해야 합니다.\n\n무엇을 권장해야 합니까?",
+    "expl": "Microsoft Sentinel 작업 영역은 Azure 지역에 묶이므로, 작업 영역을 분리하면 지리적 데이터 상주(data residency)와 규정 준수 요구 사항을 충족할 수 있습니다. 테넌트 경계 역시 적절한 분리가 필요합니다. Azure Lighthouse는 위임된 테넌트 간 관리를 위해 구독을 온보딩합니다. Azure AD B2B·B2C 셀프 서비스 가입 사용자 흐름은 ID 기능이며 구독 통합 수단이 아닙니다.\n\n**Learn more:** [Prepare for multiple workspaces and tenants in Microsoft Sentinel](https://learn.microsoft.com/en-us/azure/sentinel/prepare-multiple-workspaces) · [Tenants, users, and roles in Azure Lighthouse scenarios](https://learn.microsoft.com/en-us/azure/lighthouse/concepts/tenants-users-roles)",
+    "blanks": [
+      {
+        "label": "Microsoft Sentinel 작업 영역을 분리하는 기준:",
+        "options": [
+          "Azure AD 테넌트",
+          "엔터프라이즈",
+          "지역과 Azure AD 테넌트"
+        ]
+      },
+      {
+        "label": "Azure 구독을 통합하는 방법:",
+        "options": [
+          "Azure AD B2B 셀프 서비스 가입 사용자 흐름",
+          "Azure AD B2C 셀프 서비스 가입 사용자 흐름",
+          "Azure Lighthouse 구독 온보딩 프로세스"
+        ]
+      }
+    ]
+  },
+  "4": {
+    "stem": "Windows Server 2022를 실행하는 가상 머신이 있는 온프레미스 Hyper-V 호스트가 여러 대 있고, Azure 구독이 있습니다.\n\nMicrosoft Sentinel을 사용해 이 가상 머신에서 보안 이벤트 로그를 수집하는 솔루션을 권장하세요. 솔루션은 다음을 충족해야 합니다.\n\n- Windows Security Events via AMA 데이터 커넥터를 사용한다.\n- 지정한 이벤트만 수집한다.\n- 비용을 최소화한다.\n\n무엇을 권장해야 합니까?",
+    "expl": "Windows Security Events via AMA는 Azure Monitor 데이터 수집 규칙(DCR)으로 이벤트 집합이나 사용자 지정 XPath 필터를 정의합니다. 에이전트 단계에서 필터링해 필요한 이벤트만 수집하면 데이터 수집 비용이 줄어듭니다. 온프레미스 Windows Server 가상 머신은 AMA 기반 Sentinel 커넥터가 이벤트를 수집하기 전에 Azure Arc를 사용하도록 설정해야 하며, Azure Connected Machine 에이전트가 Azure Arc를 활성화합니다. 레거시 Log Analytics 에이전트는 이 커넥터가 사용하는 에이전트가 아닙니다.\n\n**Learn more:** [Connect Microsoft Sentinel to other Microsoft services with a Windows agent-based data connector](https://learn.microsoft.com/en-us/azure/sentinel/connect-services-windows-based) · [Windows security event sets that can be sent to Microsoft Sentinel](https://learn.microsoft.com/en-us/azure/sentinel/windows-security-event-id-reference)",
+    "blanks": [
+      {
+        "label": "Azure에 배포할 것:",
+        "options": [
+          "Azure Monitor 데이터 수집 엔드포인트",
+          "Azure Monitor 데이터 수집 규칙(DCR)",
+          "Microsoft Defender for Cloud 데이터 수집 설정"
+        ]
+      },
+      {
+        "label": "가상 머신에 설치할 것:",
+        "options": [
+          "Azure Arc 지원 서버용 Azure Connected Machine 에이전트",
+          "Log Analytics 에이전트",
+          "Windows용 VM insights 맵 종속성 에이전트"
+        ]
+      }
+    ]
+  },
+  "5": {
+    "stem": "회사에서 Azure 저장소 계정으로 Blob 저장소를 프로비저닝하려고 합니다. 이 Blob 저장소는 인터넷에 있는 애플리케이션 서버 20대에서 사용합니다.\n\n애플리케이션 서버만 저장소 계정에 접근할 수 있게 하는 솔루션을 권장해야 합니다.\n\nBlob 저장소를 보호하기 위해 무엇을 권장해야 합니까?",
+    "expl": "Azure 저장소 계정 방화벽 규칙은 허용된 원본 IP 주소나 IP 범위를 기준으로 저장소 계정의 공용 엔드포인트 접근을 제한합니다. 애플리케이션 서버 20대의 공용 IP 주소로 규칙을 구성하면 해당 서버만 허용되고 다른 인터넷 원본은 거부됩니다.\n\n**Learn more:** [Azure Storage firewall rules and network access control](https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security)",
+    "choices": [
+      "Azure 웹 애플리케이션 방화벽(WAF) 정책의 관리형 규칙 집합",
+      "네트워크 보안 그룹(NSG)의 인바운드 규칙",
+      "저장소 계정의 방화벽 규칙",
+      "Azure Firewall의 인바운드 규칙",
+      "네트워크 보안 그룹(NSG)의 서비스 태그"
+    ]
+  },
+  "6": {
+    "stem": "`ClaimsDetail` 테이블의 `MedicalHistory` 데이터를 보호하는 솔루션을 권장해야 합니다. 솔루션은 Contoso 개발자 요구 사항을 충족해야 합니다.\n\n권장 사항에 무엇을 포함해야 합니까?",
+    "expl": "Always Encrypted는 민감한 열 데이터를 클라이언트 쪽에서 암호화하고 평문 암호화 키를 SQL Server나 Azure SQL Database 밖에 보관해 보호합니다. 데이터베이스 접근 권한이 있어도 열 마스터 키에 접근할 수 없는 사용자는 평문 값을 볼 수 없습니다. 동적 데이터 마스킹은 `db_owner`를 포함한 권한 있는 데이터베이스 역할이 마스킹되지 않은 데이터를 볼 수 있으므로 충분하지 않습니다.\n\n**Learn more:** [Always Encrypted with secure enclaves - SQL Server](https://learn.microsoft.com/en-us/sql/relational-databases/security/encryption/always-encrypted-enclaves?view=sql-server-ver17) · [Dynamic Data Masking - SQL Server](https://learn.microsoft.com/en-us/sql/relational-databases/security/dynamic-data-masking?preserve-view=true&view=sql-server-ver17)",
+    "choices": [
+      "행 수준 보안(RLS)",
+      "투명한 데이터 암호화(TDE)",
+      "Always Encrypted",
+      "데이터 분류",
+      "동적 데이터 마스킹"
+    ]
+  },
+  "7": {
+    "stem": "Microsoft 365 E5 구독이 있습니다.\n\n문서가 100만 개가 넘는 Microsoft SharePoint Online 사이트의 기밀 데이터를 보호하는 솔루션을 설계하고 있습니다.\n\n개인 식별 정보(PII)가 공유되지 않도록 막는 솔루션을 권장해야 합니다.\n\n권장 사항에 포함해야 할 구성 요소 두 가지는 무엇입니까? 각 정답은 솔루션의 일부입니다.\n\n> **참고:** 각 정답 선택은 1점입니다.",
+    "expl": "Microsoft Purview DLP 정책은 중요 정보 유형으로 SharePoint Online 콘텐츠의 PII를 검색하고, 규칙이 일치하면 외부 공유를 차단할 수 있습니다. 민감도 레이블 정책은 기밀 콘텐츠를 분류하는 레이블을 게시하고 암호화·접근 제어 같은 보호 설정을 적용합니다. 보존과 eDiscovery 기능은 레코드 관리와 조사를 위한 것이지 데이터 공유를 막는 기능이 아닙니다.\n\n**Learn more:** [Help prevent sharing sensitive items via SharePoint and OneDrive with external users](https://learn.microsoft.com/en-ie/purview/dlp-create-policy-spo-odb-external) · [Enable sensitivity labels for files in SharePoint and OneDrive](https://learn.microsoft.com/en-us/purview/sensitivity-labels-sharepoint-onedrive-files)",
+    "choices": [
+      "데이터 손실 방지(DLP) 정책",
+      "보존 레이블 정책",
+      "eDiscovery 사례",
+      "민감도 레이블 정책"
+    ]
+  },
+  "8": {
+    "stem": "회사에 Microsoft 365 구독이 있고 Microsoft Defender for Identity를 사용합니다.\n\nID 침해와 관련된 인시던트 정보를 받았습니다. 공격자가 악용하도록 계정 몇 개를 일부러 노출하는 솔루션을 권장해야 합니다. 공격자가 이 계정을 악용하려고 하면 경고가 발생해야 합니다.\n\n어떤 Defender for Identity 기능을 권장해야 합니까?",
+    "expl": "허니토큰(honeytoken) 엔터티 태그는 악의적 행위자를 잡기 위한 미끼 계정을 지정합니다. 허니토큰 계정은 평소에 사용되지 않으므로, 이 계정과 관련된 인증이 발생하면 Microsoft Defender for Identity에서 경고가 발생합니다.\n\n**Learn more:** [Entity tags in Microsoft Defender for Identity](https://learn.microsoft.com/en-us/defender-for-identity/entity-tags)",
+    "choices": [
+      "민감도 레이블",
+      "사용자 지정 사용자 태그",
+      "독립 실행형 센서",
+      "허니토큰 엔터티 태그"
+    ]
+  },
+  "9": {
+    "stem": "MWS1이라는 Microsoft Sentinel 작업 영역과 lake1이라는 Azure Data Lake Storage 계정이 있는 Azure 구독이 있습니다. 방화벽 로그 데이터가 MWS1으로 수집됩니다.\n\nMWS1의 과거 방화벽 로그 데이터를 lake1으로 내보내려고 합니다.\n\n보안 분석가가 MWS1에서 위협 헌팅을 할 때 lake1에 저장된 방화벽 로그까지 헌팅 쿼리에 포함할 수 있어야 합니다.\n\n무엇을 구성해야 합니까?",
+    "expl": "Microsoft Sentinel 노트북은 프로그래밍 방식의 조사와 위협 헌팅을 지원합니다. 과거 데이터 내보내기 노트북은 Azure Synapse로 내보낸 로그를 대규모로 처리해 Azure Data Lake Storage에 저장된 데이터를 분석할 수 있게 합니다. 플레이북과 Logic Apps 커넥터는 대응 워크플로를 자동화하고, 위협 인텔리전스 플랫폼 커넥터는 위협 지표를 수집할 뿐 보관된 방화벽 로그를 쿼리하지는 않습니다.\n\n**Learn more:** [Hunt for security threats with Jupyter notebooks - Microsoft Sentinel](https://learn.microsoft.com/en-us/azure/sentinel/notebooks-hunt) · [Export historical log data from Microsoft Sentinel](https://techcommunity.microsoft.com/blog/microsoftsentinelblog/export-historical-log-data-from-microsoft-sentinel/3413418)",
+    "blanks": [
+      {
+        "label": "Microsoft Sentinel 기능:",
+        "options": [
+          "노트북",
+          "플레이북",
+          "위협 인텔리전스 플랫폼 데이터 커넥터"
+        ]
+      },
+      {
+        "label": "Azure 리소스:",
+        "options": [
+          "Azure Data Factory 파이프라인",
+          "Azure Logic Apps 커넥터",
+          "Azure Synapse 작업 영역"
+        ]
+      }
+    ]
+  },
+  "10": {
+    "stem": "Azure 구독이 있습니다.\n\n기밀 데이터를 보관할 storage1이라는 저장소 계정을 배포하고, 그 기밀 데이터에 태그를 적용하려고 합니다.\n\n할당한 태그로 storage1에 대한 접근을 정의할 수 있어야 합니다.\n\n어떤 권한 부여 메커니즘을 사용하도록 설정하고, 데이터를 어떤 리소스 종류에 저장해야 합니까?",
+    "expl": "Azure ABAC는 Azure 역할 할당에 조건을 추가하며 Blob 인덱스 태그 같은 리소스 특성을 평가할 수 있습니다. Azure Storage는 Blob 저장소에 대해 이 태그 기반 권한 부여를 지원하므로, 태그 기반 접근 조건이 필요한 기밀 데이터는 Blob으로 저장해야 합니다.\n\n**Learn more:** [Authorize access to Azure Blob Storage using Azure role assignment conditions](https://learn.microsoft.com/en-us/azure/storage/blobs/storage-auth-abac) · [Tutorial: Add a role assignment condition to restrict access to blobs using Azure CLI](https://learn.microsoft.com/en-us/azure/storage/blobs/storage-auth-abac-cli)",
+    "blanks": [
+      {
+        "label": "권한 부여 메커니즘:",
+        "options": [
+          "액세스 제어 목록(ACL)",
+          "특성 기반 액세스 제어(ABAC)",
+          "공유 액세스 서명(SAS)"
+        ]
+      },
+      {
+        "label": "리소스 종류:",
+        "options": [
+          "Blob",
+          "파일",
+          "테이블"
+        ]
+      }
+    ]
+  },
+  "11": {
+    "stem": "클라우드 기반 SaaS(software-as-a-service) 솔루션을 설계합니다.\n\n랜섬웨어 공격에 대한 복구 솔루션을 권장해야 합니다. 솔루션은 Microsoft 보안 모범 사례를 따라야 합니다.\n\n가장 먼저 무엇을 하도록 권장해야 합니까?",
+    "expl": "Microsoft의 랜섬웨어 지침은 랜섬웨어 복구 계획을 준비하는 것에서 시작합니다. 그래야 조직이 몸값 지불 대신 택할 방안을 정해 두고 시스템과 데이터에 대한 접근을 복원할 수 있습니다. 데이터 보호는 그 계획을 뒷받침하며, 권한 있는 ID·액세스 전략은 공격의 영향을 제한하기 위한 후속 조치입니다.\n\n**Learn more:** [Prepare for ransomware attacks with a backup and recovery plan](https://learn.microsoft.com/en-us/security/ransomware/protect-against-ransomware-phase1) · [Limit the impact that ransomware attacks can have](https://learn.microsoft.com/en-us/security/ransomware/protect-against-ransomware-phase2)",
+    "choices": [
+      "권한 있는 ID 전략을 수립한다.",
+      "데이터 보호를 구현한다.",
+      "권한 있는 액세스 전략을 수립한다.",
+      "복구 계획을 준비한다."
+    ]
+  },
+  "12": {
+    "stem": "Microsoft 365 테넌트가 있습니다.\n\n테넌트 보안을 강화하고 다음 요구 사항을 충족하는 Microsoft 365 Defender 솔루션을 권장하세요.\n\n- Microsoft SharePoint Online 사이트에서 비정상적으로 많은 파일을 다운로드해 데이터 반출을 시도할 수 있는 사용자를 식별한다.\n- ZAP(zero-hour auto purge)를 사용해 악성일 수 있는 콘텐츠가 포함된 Microsoft Teams 메시지를 차단한다.\n\n각 요구 사항에 무엇을 권장해야 합니까?",
+    "expl": "Microsoft Defender for Cloud Apps는 이상 탐지와 사용자·엔터티 행동 분석(UEBA)으로 SharePoint Online의 비정상적인 다중 파일 다운로드 활동을 식별하며, 이는 데이터 반출의 징후일 수 있습니다. Microsoft Defender for Office 365는 Teams용 ZAP를 제공해, 나중에 맬웨어나 높은 신뢰도의 피싱으로 판정된 내부 Teams 메시지를 격리합니다.\n\n**Learn more:** [Create anomaly detection policies - Microsoft Defender for Cloud Apps](https://learn.microsoft.com/en-us/defender-cloud-apps/anomaly-detection-policy) · [Microsoft Defender for Office 365 support for Microsoft Teams](https://learn.microsoft.com/en-us/defender-office-365/mdo-support-teams-about)",
+    "blanks": [
+      {
+        "label": "데이터 반출 시도 식별:",
+        "options": [
+          "Microsoft Defender for Cloud Apps",
+          "Microsoft Defender for Endpoint",
+          "Microsoft Defender for Identity",
+          "Microsoft Defender for Office 365"
+        ]
+      },
+      {
+        "label": "Teams 메시지 차단:",
+        "options": [
+          "Microsoft Defender for Cloud Apps",
+          "Microsoft Defender for Endpoint",
+          "Microsoft Defender for Identity",
+          "Microsoft Defender for Office 365"
+        ]
+      }
+    ]
+  }
+}

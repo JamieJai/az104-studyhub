@@ -1,0 +1,149 @@
+{
+  "209": {
+    "stem": "솔루션: Front Door 서비스 태그에서 오는 트래픽을 허용하는 액세스 제한을 권장합니다.\n\n이 솔루션이 목표를 충족합니까?",
+    "expl": "Azure App Service 액세스 제한은 `AzureFrontDoor.Backend` 서비스 태그로 Azure Front Door에서 오는 트래픽을 허용하고 그 밖의 인바운드 공용 트래픽을 차단할 수 있습니다. `X-Azure-FDID`까지 추가로 필터링하는 것은 특정 Front Door 인스턴스로 접근을 한정해야 할 때만 필요합니다.\n\n**Learn more:** [Azure App Service access restrictions](https://learn.microsoft.com/en-us/azure/app-service/overview-access-restrictions) · [Create a multi-region app with Azure Front Door](https://learn.microsoft.com/en-us/azure/app-service/tutorial-multi-region-app)",
+    "choices": ["예", "아니요"]
+  },
+  "210": {
+    "stem": "솔루션: 게이트웨이가 필요한 가상 네트워크 통합을 구성할 것을 권장합니다.\n\n이 솔루션이 목표를 충족합니까?",
+    "expl": "게이트웨이가 필요한 가상 네트워크 통합은 Azure App Service 앱에서 가상 네트워크 리소스로 나가는 아웃바운드 연결을 제공합니다. 사설 인바운드 접근을 제공하거나 앱의 공용 엔드포인트를 Azure Front Door 트래픽으로 제한하지는 않으므로, 웹앱에 Front Door 인스턴스를 통해서만 접근할 수 있게 보장하지 못합니다.\n\n**Learn more:** [Integrate your app with an Azure virtual network](https://learn.microsoft.com/en-us/azure/app-service/overview-vnet-integration) · [Configure gateway-required virtual network integration for your app](https://learn.microsoft.com/en-us/azure/app-service/configure-gateway-required-vnet-integration)",
+    "choices": ["예", "아니요"]
+  },
+  "211": {
+    "stem": "솔루션: Front Door ID가 담긴 HTTP 헤더를 기준으로 하는 액세스 제한을 권장합니다.\n\n이 솔루션이 목표를 충족합니까?",
+    "expl": "App Service의 HTTP 헤더 필터는 액세스 제한 규칙의 원본 조건에 더해서만 평가됩니다. 특정 Azure Front Door 인스턴스를 통해서만 앱에 도달하게 하려면 `AzureFrontDoor.Backend` 서비스 태그를 허용하고 그에 맞는 `X-Azure-FDID` 헤더를 요구해야 하며, 헤더만으로 제한하면 헤더를 위조한 직접 요청을 막지 못합니다.\n\n**Learn more:** [Set up access restrictions - Azure App Service](https://learn.microsoft.com/en-us/azure/app-service/app-service-ip-restrictions) · [Secure traffic to origins - Azure Front Door](https://learn.microsoft.com/en-us/azure/frontdoor/origin-security)",
+    "choices": ["예", "아니요"]
+  },
+  "212": {
+    "stem": "회사에 Microsoft 365 E5 구독이 있습니다.\n\n회사는 Microsoft Teams, SharePoint Online, Exchange Online의 데이터를 식별하고 분류하려고 합니다.\n\n중요 정보가 포함된 문서를 식별하는 솔루션을 권장해야 합니다.\n\n권장 사항에 무엇을 포함해야 합니까?",
+    "expl": "Microsoft Purview 콘텐츠 탐색기는 중요 정보 유형, 민감도 레이블, 보존 레이블로 분류된 항목의 현재 스냅숏을 보여 줍니다. Exchange, Teams, SharePoint 위치를 파고들어 분류된 콘텐츠를 찾는 데 사용할 수 있습니다.\n\n**Learn more:** [Get started with Content Explorer](https://learn.microsoft.com/en-my/purview/data-classification-content-explorer)",
+    "choices": [
+      "콘텐츠 탐색기",
+      "데이터 손실 방지(DLP)",
+      "eDiscovery",
+      "데이터 수명 주기 관리"
+    ]
+  },
+  "213": {
+    "stem": "Microsoft 365 구독과 Azure 구독이 있습니다. Microsoft 365 Defender와 Microsoft Defender for Cloud가 사용하도록 설정되어 있습니다.\n\nAzure 구독에는 가상 머신 50대가 있습니다. 각 가상 머신은 Windows Server 2019에서 서로 다른 애플리케이션을 실행합니다.\n\n승인된 애플리케이션만 가상 머신에서 실행되게 하는 솔루션을 권장해야 합니다. 승인되지 않은 애플리케이션이 실행되거나 설치되려고 하면 관리자가 승인할 때까지 자동으로 차단되어야 합니다.\n\n어떤 보안 제어를 권장해야 합니까?",
+    "expl": "애플리케이션 제어 정책은 Windows Server 2019에서 신뢰할 수 있는 코드의 허용 목록을 적용해, 승인 규칙을 충족하기 전까지 승인되지 않은 애플리케이션과 설치 프로그램이 실행되지 않게 합니다. Microsoft는 App Control for Business(WDAC)를 실행 가능한 애플리케이션과 코드를 제한하는 기능으로 문서화하며 Windows Server 2019를 지원합니다.\n\n**Learn more:** [WDAC enforced infrastructure in Windows Admin Center](https://learn.microsoft.com/en-us/windows-server/manage/windows-admin-center/use/manage-application-control-infrastructure) · [App Control for Business feature availability](https://learn.microsoft.com/en-us/windows/security/application-security/application-control/app-control-for-business/feature-availability)",
+    "choices": [
+      "Microsoft Defender for Cloud Apps의 앱 검색 이상 탐지 정책",
+      "Defender for Cloud의 Azure 보안 벤치마크 규정 준수 제어",
+      "Azure AD의 앱 등록",
+      "Microsoft Defender for Endpoint의 애플리케이션 제어 정책"
+    ]
+  },
+  "214": {
+    "stem": "관리 환경 전반의 규정 준수를 평가하는 솔루션을 권장해야 합니다. 솔루션은 규정 준수 요구 사항과 비즈니스 요구 사항을 충족해야 합니다.\n\n무엇을 권장해야 합니까?",
+    "expl": "Azure Policy 이니셔티브는 규정 준수 목표를 위한 정책 정의를 묶으며, 관리 그룹에 할당하면 관리 그룹 계층과 그 하위 구독 전체에 적용됩니다. Azure Arc는 연결된 온프레미스 리소스에 대해 Azure Policy 규정 준수 평가를 가능하게 합니다.\n\n**Learn more:** [Azure Policy initiatives (policy sets)](https://learn.microsoft.com/en-us/azure/governance/policy/concepts/initiative-definition-structure) · [Azure Policy assignment structure](https://learn.microsoft.com/en-us/azure/governance/policy/concepts/assignment-structure)",
+    "blanks": [
+      {
+        "label": "클라우드 리소스의 규정 준수를 평가하려면 다음을 할당한다:",
+        "options": [
+          "관리 그룹에 Azure Policy 정의",
+          "관리 그룹에 Azure Policy 이니셔티브",
+          "구독에 Azure Policy 이니셔티브"
+        ]
+      },
+      {
+        "label": "온프레미스 리소스의 규정 준수를 평가하는 데 사용할 것:",
+        "options": ["Azure Arc", "그룹 정책", "PowerShell DSC(Desired State Configuration)"]
+      }
+    ]
+  },
+  "215": {
+    "stem": "회사에 Microsoft Defender for Cloud의 향상된 보안이 사용하도록 설정된 Azure 구독이 있습니다.\n\n회사가 미국 정부와 계약을 체결했습니다.\n\n현재 구독의 NIST 800-53 준수 여부를 검토해야 합니다.\n\n가장 먼저 무엇을 해야 합니까?",
+    "expl": "Microsoft Defender for Cloud는 규정 프레임워크를 규정 준수 표준으로 추가한 뒤에야 그 기준으로 구독을 평가합니다. NIST SP 800-53은 표준으로 제공되지만 Azure 구독에 기본으로 적용되어 있지 않으므로, 이를 추가해야 규정 준수 대시보드가 대상 리소스를 평가하고 준수 상태와 수정 권장 사항을 보고합니다.\n\n**Learn more:** [Assign regulatory compliance standards in Microsoft Defender for Cloud](https://learn.microsoft.com/en-us/azure/defender-for-cloud/assign-regulatory-compliance-standards) · [Regulatory compliance standards in Microsoft Defender for Cloud](https://learn.microsoft.com/en-us/azure/defender-for-cloud/concept-regulatory-compliance-standards)",
+    "choices": [
+      "Defender for Cloud에서 보안 점수 권장 사항을 검토한다.",
+      "Microsoft Sentinel에서 Microsoft Defender for Cloud 데이터 커넥터를 구성한다.",
+      "Defender for Cloud에서 감사용 Azure 보안 기준 보고서를 검토한다.",
+      "Defender for Cloud에서 규정 준수 표준을 추가한다."
+    ]
+  },
+  "216": {
+    "stem": "Windows Server를 실행하는 가상 머신 100대가 있는 Azure 구독이 있습니다. 이 가상 머신은 Azure Policy와 Microsoft Defender for Servers로 관리합니다.\n\n가상 머신의 보안을 개선해야 합니다. 솔루션은 다음 요구 사항을 충족해야 합니다.\n\n- 허용 목록에 있는 애플리케이션만 실행되게 한다.\n- 허용 목록에 추가되는 모든 앱을 관리자가 확인하도록 한다.\n- 승인되지 않은 앱을 실행하려고 시도하면 자동으로 차단 목록에 넣는다.\n- 앱을 차단 목록에서 허용 목록으로 옮기려면 관리자 승인을 받도록 한다.\n\n솔루션에 무엇을 포함해야 합니까?",
+    "expl": "Defender for Servers의 적응형 애플리케이션 제어는 안전하다고 알려진 애플리케이션을 학습해 허용 목록 규칙을 만들고, 그 규칙을 벗어나는 애플리케이션을 탐지해 관리자가 검토하고 적용하게 하는 VM 애플리케이션 제어를 제공합니다. Windows Server VM에서 실행 파일 허용 목록과 승인되지 않은 애플리케이션의 통제된 처리를 그대로 다룹니다. 현재 Microsoft는 적응형 애플리케이션 제어를 사용 중단으로 표시하고 있지만, 이 문항이 설명하는 기능이 바로 이것입니다.\n\n**Learn more:** [Reference table for compute security recommendations in Microsoft Defender for Cloud](https://learn.microsoft.com/en-us/azure/defender-for-cloud/recommendations-reference-compute) · [Microsoft Defender for Cloud release notes archive](https://learn.microsoft.com/en-us/azure/defender-for-cloud/release-notes-archive)",
+    "choices": [
+      "Azure Policy의 컴퓨팅 정책",
+      "Microsoft Defender for Cloud Apps의 앱 거버넌스",
+      "Microsoft Entra ID의 엔터프라이즈 애플리케이션 관리자 동의 설정",
+      "Defender for Servers의 적응형 애플리케이션 제어"
+    ]
+  },
+  "217": {
+    "stem": "Microsoft 365 구독이 있습니다.\n\nAzure 구독도 있습니다.\n\nMicrosoft Teams와 Yammer를 위한 Microsoft Purview 커뮤니케이션 준수 솔루션을 배포해야 합니다. 솔루션은 다음 요구 사항을 충족해야 합니다.\n\n- 사용자 지정 Microsoft Exchange Online 특성을 기준으로 Microsoft 365 그룹에 준수 정책을 할당한다.\n- 준수 정책 수를 최소화한다.\n- 관리 부담을 최소화한다.\n\n솔루션에 무엇을 포함해야 합니까?",
+    "expl": "적응형 범위(adaptive scope)는 동적 쿼리로 준수 정책의 대상이 되는 Microsoft 365 그룹을 정의합니다. Exchange 사용자 지정 특성을 지원하고 커뮤니케이션 준수 정책과 함께 쓸 수 있으며, 정책 하나에 적응형 범위를 하나 이상 넣을 수 있어 정책 수와 지속적인 수동 관리가 줄어듭니다.\n\n**Learn more:** [Adaptive scopes | Microsoft Learn](https://learn.microsoft.com/en-us/purview/purview-adaptive-scopes) · [Create and manage Communication Compliance policies | Microsoft Learn](https://learn.microsoft.com/en-us/purview/communication-compliance-policies)",
+    "choices": [
+      "적응형 범위",
+      "Microsoft 365 Defender 사용자 태그",
+      "관리 단위",
+      "Microsoft Purview 민감도 레이블"
+    ]
+  },
+  "218": {
+    "stem": "한 고객이 다음 그림과 같이 외부 사용자가 사용할 모바일 앱을 Azure에서 개발하고 있습니다.\n\n[[IMG1]]\n\n이 앱의 ID 전략을 설계해야 합니다. 솔루션은 다음 요구 사항을 충족해야 합니다.\n\n- Google, Facebook, Microsoft 계정 같은 외부 ID를 사용할 수 있게 한다.\n- 고객 ID 저장소를 사용한다.\n- 앱 브랜딩을 완전히 사용자 지정할 수 있게 한다.\n\n설계를 완성하려면 어떤 서비스를 권장해야 합니까?",
+    "expl": "Azure Active Directory(Azure AD) B2C는 B2C 테넌트에 저장된 고객 ID를 지원하며 Google, Facebook, Microsoft 계정을 포함한 소셜 ID 공급자와의 페더레이션을 지원합니다. 사용자 흐름과 사용자 지정 정책으로 애플리케이션 브랜딩에 맞는 로그인 등 ID 환경을 사용자 지정할 수 있습니다.\n\n**Learn more:** [Add an identity provider to your Azure Active Directory B2C tenant](https://learn.microsoft.com/en-us/azure/active-directory-b2c/add-identity-provider) · [Technical and feature overview - Azure Active Directory B2C](https://learn.microsoft.com/en-us/azure/active-directory-b2c/technical-overview)",
+    "choices": [
+      "Azure Active Directory(Azure AD) B2B",
+      "Azure Active Directory Domain Services(Azure AD DS)",
+      "Azure Active Directory(Azure AD) B2C",
+      "Azure AD Connect"
+    ]
+  },
+  "219": {
+    "stem": "솔루션: Microsoft Defender 포털에서 웹 콘텐츠 필터링을 켜고 웹 콘텐츠 필터링 정책을 만듭니다.\n\n이 솔루션이 목표를 충족합니까?",
+    "expl": "웹 콘텐츠 필터링은 SaaS 애플리케이션에 대한 Microsoft Defender for Cloud Apps 위험 점수가 아니라 콘텐츠 범주를 기준으로 웹사이트 접근을 제어합니다. 위험도가 낮은 SaaS 앱은 허용하고 위험도가 높은 SaaS 앱은 차단하려면 클라우드 앱 위험 점수와 고위험 앱을 식별·통제하는 정책이 필요합니다.\n\n**Learn more:** [Web content filtering - Microsoft Defender for Endpoint](https://learn.microsoft.com/en-us/defender-endpoint/web-content-filtering) · [Cloud app catalog and risk scores - Microsoft Defender for Cloud Apps](https://learn.microsoft.com/en-us/defender-cloud-apps/risk-score)",
+    "choices": ["예", "아니요"]
+  },
+  "220": {
+    "stem": "솔루션: Intune에서 앱 보호 정책을 구성하고 조건부 액세스 정책을 만듭니다.\n\n이 솔루션이 목표를 충족합니까?",
+    "expl": "Intune 앱 보호 정책은 지원되는 관리형 애플리케이션 안에서 조직 데이터를 보호하고, 조건부 액세스는 승인되었거나 보호된 클라이언트 앱을 통해서만 조직 리소스에 접근하도록 제한할 수 있습니다. 그러나 Microsoft가 검색하고 평가한 SaaS 앱에 대해 위험 점수 기반의 허용·차단 제어를 제공하지는 않습니다. 위험한 SaaS 앱을 식별하고 승인되지 않은 앱을 차단하려면 Microsoft Defender for Cloud Apps의 검색·거버넌스 기능이 필요합니다.\n\n**Learn more:** [App Protection Policies Overview - Microsoft Intune](https://learn.microsoft.com/en-us/intune/app-management/protection/overview) · [Govern discovered apps - Microsoft Defender for Cloud Apps](https://learn.microsoft.com/en-us/defender-cloud-apps/governance-discovery)",
+    "choices": ["예", "아니요"]
+  },
+  "221": {
+    "stem": "솔루션: Microsoft Defender for Cloud Apps에서 클라우드 검색 정책을 구성하고 위험한 앱을 승인되지 않음으로 표시합니다.\n\n이 솔루션이 목표를 충족합니까?",
+    "expl": "클라우드 검색 정책은 위험 점수에 따라 앱을 탐지하고 위험도가 높은 앱을 '승인되지 않음'으로 태그할 수 있습니다. Defender for Endpoint와 통합하면 승인되지 않은 앱이 차단 대상으로 동기화되고, 태그되지 않은 저위험 앱은 계속 사용할 수 있습니다.\n\n**Learn more:** [Cloud discovery policies - Microsoft Defender for Cloud Apps](https://learn.microsoft.com/en-us/defender-cloud-apps/policies-cloud-discovery) · [Govern discovered apps using Microsoft Defender for Endpoint](https://learn.microsoft.com/en-us/defender-cloud-apps/mde-govern)",
+    "choices": ["예", "아니요"]
+  },
+  "222": {
+    "stem": "솔루션: Microsoft Defender for Cloud Apps에서 SaaS 보안 상태 관리(SSPM)를 구성하고 액세스 정책을 만듭니다.\n\n이 솔루션이 목표를 충족합니까?",
+    "expl": "SSPM은 연결된 지원 SaaS 앱의 보안 상태 가시성을 제공하고, 액세스 정책은 조건부 액세스 앱 제어 범위에 있는 앱의 로그인을 제어합니다. 그러나 Microsoft의 클라우드 앱 위험 등급에 따라 검색된 SaaS 앱에 대한 일반 사용자 접근을 통제하지는 않습니다. Defender for Cloud Apps는 자체 위험 지표로 검색된 앱을 평가하며, 위험도가 높은 앱은 **승인되지 않음**으로 표시하고 Microsoft Defender for Endpoint 통합을 통해 네트워크 보호로 차단할 수 있습니다.\n\n**Learn more:** [Cloud app catalog and risk scores](https://learn.microsoft.com/en-us/defender-cloud-apps/risk-score) · [Govern discovered apps using Microsoft Defender for Endpoint](https://learn.microsoft.com/en-us/defender-cloud-apps/mde-govern)",
+    "choices": ["예", "아니요"]
+  },
+  "223": {
+    "stem": "Sub1이라는 Azure 구독과 Microsoft 365 구독에 연결된 contoso.com이라는 Microsoft Entra 테넌트가 있습니다. Sub1에는 공개적으로 접근 가능한 App1이라는 Azure App Service 웹앱이 있습니다.\n\n외부 협력사에 fabrikam.com이라는 Microsoft Entra 테넌트가 있습니다.\n\n다음 요구 사항을 충족하는 솔루션을 권장하세요.\n\n- fabrikam.com 사용자가 contoso.com의 특정 Microsoft Teams 채널에 대한 권한을 받을 수 있게 한다.\n- App1 사용자가 소셜 미디어 계정으로 인증할 수 있게 한다.\n- 관리 부담을 최소화한다.\n\n각 요구 사항에 어떤 인증 방법을 권장해야 합니까?",
+    "expl": "B2B 직접 연결은 Microsoft Entra 조직 간 Microsoft Teams 공유 채널을 지원합니다. 외부 사용자는 자기 홈 테넌트 자격 증명을 그대로 쓰며 게스트 계정을 관리하지 않고도 특정 공유 채널에 추가할 수 있습니다. 고객용 Microsoft Entra External ID는 고객 대상 애플리케이션을 위한 것으로 소셜 ID 공급자를 통한 로그인을 지원합니다.\n\n**Learn more:** [B2B direct connect overview](https://learn.microsoft.com/en-us/entra/external-id/b2b-direct-connect-overview) · [Microsoft Entra External ID for customers overview](https://learn.microsoft.com/en-us/entra/external-id/customers/overview-customers-ciam)",
+    "blanks": [
+      {
+        "label": "fabrikam.com 사용자가 contoso.com의 Teams 채널 권한을 받을 수 있게 하는 방법:",
+        "options": [
+          "B2B 직접 연결",
+          "테넌트 간 동기화",
+          "Microsoft Entra B2B 공동 작업",
+          "고객용 Microsoft Entra External ID"
+        ]
+      },
+      {
+        "label": "App1 사용자가 소셜 미디어 계정으로 인증할 수 있게 하는 방법:",
+        "options": [
+          "B2B 직접 연결",
+          "테넌트 간 동기화",
+          "Microsoft Entra B2B 공동 작업",
+          "고객용 Microsoft Entra External ID"
+        ]
+      }
+    ]
+  },
+  "224": {
+    "stem": "Microsoft 365 구독과 Azure 구독이 있습니다. Microsoft 365 Defender와 Microsoft Defender for Cloud가 사용하도록 설정되어 있습니다.\n\nAzure 구독에는 가상 머신 50대가 있습니다. 각 가상 머신은 Windows Server 2019에서 서로 다른 애플리케이션을 실행합니다.\n\n승인된 애플리케이션만 가상 머신에서 실행되게 하는 솔루션을 권장해야 합니다. 승인되지 않은 애플리케이션이 실행되거나 설치되려고 하면 관리자가 승인할 때까지 자동으로 차단되어야 합니다.\n\n어떤 보안 제어를 권장해야 합니까?",
+    "expl": "Microsoft Defender for Endpoint의 애플리케이션 제어 정책은 Windows 애플리케이션 제어 기능을 사용해 Windows Server 2019에서 신뢰할 수 있는 애플리케이션과 코드의 허용 목록을 적용합니다. 관리자가 정책을 수정해 승인하기 전까지 승인되지 않은 실행 파일, 스크립트, 설치 프로그램이 실행되지 않게 막을 수 있습니다.\n\n**Learn more:** [WDAC enforced infrastructure in Windows Admin Center](https://learn.microsoft.com/en-us/windows-server/manage/windows-admin-center/use/manage-application-control-infrastructure) · [App Control for Business operational guide](https://learn.microsoft.com/en-us/windows/security/application-security/application-control/app-control-for-business/operations/appcontrol-operational-guide)",
+    "choices": [
+      "Azure Active Directory(Azure AD)의 앱 등록",
+      "Microsoft Defender for Cloud Apps의 OAuth 앱 정책",
+      "Defender for Cloud의 Azure 보안 벤치마크 규정 준수 제어",
+      "Microsoft Defender for Endpoint의 애플리케이션 제어 정책"
+    ]
+  }
+}

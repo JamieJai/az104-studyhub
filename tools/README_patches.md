@@ -12,12 +12,12 @@
 
 | 순서 | 대상 | 명령 | 다시 입히는 것 |
 |---|---|---|---|
-| 1 | AZ-305 / AZ-900 / AI-103 | `node tools/build_cbt.js <examId> <제목> <원본.json> <이미지폴더> <dist폴더명>` | data.js 생성 |
+| 1 | AZ-305 / AZ-900 / AI-103 / SC-100 | `node tools/build_cbt.js <examId> <제목> <원본.json> <이미지폴더> <dist폴더명>` | data.js 생성 |
 | 1 | SC-300 | `python tools/sc300/build.py dist/SC-300_CBT` | data.js 생성 (번역 포함) |
 | 1 | AZ-802 | `python tools/az802/build.py dist/AZ-802_CBT` | data.js 생성 (현행+구형, 번역 포함) |
-| 2 | AZ-305 / AZ-900 / AI-103 | `node tools/ko_tools.js merge <CBT>_CBT tools/<slug>/ko` | 한국어 번역 (stemKo·해설·보기·빈칸 문장 templateKo) |
+| 2 | AZ-305 / AZ-900 / AI-103 / SC-100 | `node tools/ko_tools.js merge <CBT>_CBT tools/<slug>/ko` | 한국어 번역 (stemKo·해설·보기·빈칸 문장 templateKo) |
 | 3 | AZ-802 / SC-300 | `python tools/sets/apply_sets.py` | 손으로 만든 사례 연구 세트 2개, 유실 이미지 표시 |
-| 4 | 5개 CBT 전부 | `node tools/sets/apply_scenarios.js` | 복구한 공통 지문 51세트 200문항 |
+| 4 | 6개 CBT 전부 | `node tools/sets/apply_scenarios.js` | 공통 지문 58세트 232문항 (SC-100 은 스크랩에 처음부터 들어 있었다) |
 | 5 | AZ-104 | `node tools/apply_p119.js` | choices.js 부분 패치 (src 229/520/285) |
 | 6 | — | `dist/service-worker.js` VERSION, `dist/offline-assets.json` version·count 갱신 | PWA 캐시 무효화 |
 | 7 | — | `node tools/preflight.js <URL> x nosignup` | 배포 후 17개 검사 |
@@ -46,7 +46,7 @@ const q=d.questions;console.log('문항',q.length,'| 번역',d.translated,'| 세
 '| template',q.filter(x=>x.template).length,'| case',q.filter(x=>x.caseEn).length);"
 ```
 
-2026-09-26 기준 기대값:
+2026-09-26 기준 기대값 (SC-100 은 원본 스크랩에 `template=` 블록이 하나도 없어 template 0 이 정상):
 
 | CBT | 문항 | 세트 | template | 공통 지문 문항 |
 |---|---|---|---|---|
@@ -55,3 +55,4 @@ const q=d.questions;console.log('문항',q.length,'| 번역',d.translated,'| 세
 | AI-103 | 155 | 5 | 11 | 23 |
 | SC-300 | 434 | 9 | 7 | 45 |
 | AZ-802 | 440 | 15 | 20 | 67 |
+| SC-100 | 360 | 7 | 0 | 32 |

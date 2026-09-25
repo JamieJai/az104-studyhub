@@ -1,0 +1,136 @@
+{
+  "337": {
+    "stem": "네트워크에 Domain1이라는 온프레미스 Active Directory Domain Services(AD DS) 도메인이 있습니다. Domain1에는 도메인 컨트롤러가 10대 있습니다.\n\nWS1이라는 Microsoft Sentinel 작업 영역이 있는 Sub1이라는 Azure 구독이 있습니다.\n\n사용자 5,000명이 있는 Microsoft 365 구독이 있습니다. 모든 사용자에게 Microsoft 365 E3 라이선스가 있습니다.\n\n모든 도메인 컨트롤러의 보안 로그를 WS1으로 수집하는 솔루션을 권장해야 합니다. 솔루션은 다음 요구 사항을 충족해야 합니다.\n\n- WS1의 데이터 수집 비용을 최소화한다.\n- 도메인 컨트롤러가 생성하는 모든 Windows 보안 이벤트 로그를 WS1이 수집해야 한다.\n- 도메인 컨트롤러마다 하루 약 350MB씩 생성되는 로그를 처리할 수 있어야 한다.\n\n무엇을 권장해야 합니까?",
+    "expl": "Microsoft Defender for Servers 플랜 2에는 보호되는 노드마다 하루 500MB의 무료 데이터 수집이 포함되며, 대상 보안 데이터에 적용됩니다. Microsoft-SecurityEvent 스트림을 통해 SecurityEvent 테이블로 보내는 Windows 보안 이벤트가 여기에 해당합니다. 도메인 컨트롤러 10대면 합산 허용량이 하루 5GB로, 컨트롤러가 생성하는 하루 약 3.5GB를 넘어서므로 모든 Windows 보안 이벤트를 수집할 수 있습니다.\n\n**Learn more:** [Use the data ingestion benefit in Microsoft Defender for Cloud](https://learn.microsoft.com/en-gb/azure/defender-for-cloud/data-ingestion-benefit) · [Plan costs and understand pricing and billing - Microsoft Sentinel](https://learn.microsoft.com/en-us/azure/sentinel/billing?tabs=commitment-tier)",
+    "choices": [
+      "사용자 라이선스를 Microsoft 365 E5로 업그레이드한다.",
+      "각 도메인 컨트롤러를 Microsoft Defender for Servers 플랜 2에 온보딩한다.",
+      "WS1에 보조(Auxiliary) 로그를 구성한다.",
+      "WS1에 볼륨 상한을 구성한다.",
+      "도메인 컨트롤러 한 대의 데이터만 WS1으로 수집한다."
+    ]
+  },
+  "338": {
+    "stem": "Microsoft 365 E5 구독이 있습니다.\n\nMicrosoft 365 데이터에 대해 Microsoft Priva 정보 주체 권리 요청(Subject Rights Requests)을 구현하려고 합니다.\n\n개발 수고를 최소화하면서 정보 주체 권리 요청의 생성과 처리를 간소화해야 합니다.\n\n솔루션에 무엇을 포함해야 합니까?",
+    "expl": "Microsoft Graph의 정보 주체 권리 요청 API로 Priva 정보 주체 권리 요청을 만들고 관리할 수 있습니다. 기본 제공 Microsoft Power Automate 템플릿이 일반적인 작업에 대한 요청 처리 자동화를 확장해 주므로, Azure Automation이나 Logic Apps에 필요한 사용자 지정 개발을 피할 수 있습니다.\n\n**Learn more:** [Use the Microsoft Graph subject rights request API](https://learn.microsoft.com/en-us/graph/api/resources/subjectrightsrequest-subjectrightsrequestapioverview?view=graph-rest-1.0) · [Learn about Priva Subject Rights Requests](https://learn.microsoft.com/en-us/privacy/priva/subject-rights-requests-beyond-m365-request-forms-templates)",
+    "blanks": [
+      {
+        "label": "생성을 간소화하려면:",
+        "options": [
+          "Microsoft Graph API",
+          "Microsoft Office 365 관리 API",
+          "Microsoft Office 365 서비스",
+          "Microsoft Office 365 커뮤니케이션 API"
+        ]
+      },
+      {
+        "label": "처리를 간소화하려면:",
+        "options": ["Azure Automation", "Azure Logic Apps", "Microsoft Power Automate"]
+      }
+    ]
+  },
+  "339": {
+    "stem": "온프레미스 데이터센터와 AKS1이라는 Azure Kubernetes Service(AKS) 클러스터가 있습니다.\n\nAKS1 공용 엔드포인트의 인터넷 접근을 제한해야 합니다. 솔루션은 온프레미스 데이터센터와 연결된 공용 IP 주소에서만 AKS1에 접근할 수 있게 해야 합니다.\n\n무엇을 사용해야 합니까?",
+    "expl": "AKS의 API 서버 승인된 IP 범위는 공용 제어 평면 엔드포인트에 접근할 수 있는 공용 IP 주소나 CIDR 범위의 허용 목록을 제공합니다. 온프레미스 데이터센터의 공용 IP 주소를 구성하면 그 주소로만 접근이 제한됩니다.\n\n**Learn more:** [API Server Authorized IP Ranges in Azure Kubernetes Service (AKS)](https://learn.microsoft.com/en-us/azure/aks/api-server-authorized-ip-ranges)",
+    "choices": [
+      "프라이빗 엔드포인트",
+      "네트워크 보안 그룹(NSG)",
+      "서비스 엔드포인트",
+      "승인된 IP 범위"
+    ]
+  },
+  "340": {
+    "stem": "Microsoft Entra 테넌트에 Microsoft Entra 조인 장치 800대와 사용자 700명이 있습니다. 각 사용자에게 장치가 한 대씩 할당되어 있습니다. 모든 장치는 Global Secure Access에 온보딩되어 있습니다.\n\n타사가 호스트하는 App1이라는 SaaS(software as a service) 애플리케이션을 사용합니다. 사용자는 인터넷을 통해 App1에 접근합니다.\n\n모든 장치가 Global Secure Access 클라이언트를 통해 App1에 접근하게 해야 합니다.\n\n무엇을 사용해야 합니까?",
+    "expl": "Global Secure Access는 트래픽 전달 프로필(Microsoft 트래픽, 사설 액세스, 인터넷 액세스)로 어떤 네트워크 트래픽을 Global Secure Access 클라이언트를 통해 라우팅할지 결정합니다. App1은 인터넷에 호스트된 SaaS 애플리케이션이므로, App1로 가는 트래픽이 인터넷으로 직접 나가지 않고 Global Secure Access 클라이언트로 터널링되도록 인터넷 액세스 트래픽 전달 프로필을 사용하도록 설정하고 구성해야 합니다. 조건부 액세스 정책은 로그인 조건으로 Global Secure Access 클라이언트나 규정 준수 네트워크를 요구할 수 있지만, 실제로 어떤 트래픽이 클라이언트를 통해 전달되는지는 제어하지 않습니다. 그 전달 동작은 트래픽 전달 프로필 구성이 결정합니다.\n\n**Learn more:** [Global Secure Access traffic forwarding profiles - Global Secure Access | Microsoft Learn](https://learn.microsoft.com/en-us/entra/global-secure-access/concept-traffic-forwarding) · [Tutorial: Enable Internet Access Traffic Forwarding - Global Secure Access | Microsoft Learn](https://learn.microsoft.com/en-us/entra/global-secure-access/tutorial-internet-access-enable-traffic-forwarding)",
+    "choices": [
+      "조건부 액세스 정책",
+      "빠른 액세스(Quick Access) 앱",
+      "트래픽 전달 프로필",
+      "보안 프로필"
+    ]
+  },
+  "341": {
+    "stem": "조직의 Microsoft Entra 테넌트에 Microsoft Entra Private Access가 구성되어 있습니다.\n\nGlobal Secure Access 애플리케이션으로 내부 웹 애플리케이션 여러 개를 게시하려고 합니다.\n\n사용자가 Global Secure Access 애플리케이션을 통해 이 웹앱에 접근할 수 있게 해야 합니다.\n\n무엇을 사용해야 합니까?",
+    "expl": "Global Secure Access(사설 액세스) 엔터프라이즈 애플리케이션으로 내부 리소스를 게시하려면, 대상 리소스에 접근할 수 있는 커넥터를 담은 사설 네트워크 커넥터 그룹을 구성하고, 웹앱의 내부 정규화된 도메인 이름(또는 IP 주소·범위)과 포트를 지정하는 애플리케이션 세그먼트를 추가해야 합니다. 이 커넥터 그룹과 FQDN 엔드포인트 정의가 있어야 Global Secure Access 클라이언트가 그 FQDN으로 가는 트래픽을 가로채 서비스로 라우팅하고, 커넥터가 내부 웹앱으로 전달할 수 있습니다. 이 구성이 없으면 게시된 앱과 내부 리소스 사이의 매핑이 없으므로, 접근 정책이나 조건부 액세스 제어가 있어도 트래픽이 라우팅되지 않습니다.\n\n**Learn more:** [How to configure per-app access using Global Secure Access applications](https://learn.microsoft.com/en-us/entra/global-secure-access/how-to-configure-per-app-access) · [How to configure Quick Access for Global Secure Access](https://learn.microsoft.com/en-us/entra/global-secure-access/how-to-configure-quick-access)",
+    "choices": [
+      "규정을 준수하는 장치에서만 접근을 허용하는 조건부 액세스 정책",
+      "모든 아웃바운드 인터넷 트래픽을 Microsoft 백본 네트워크로 보내는 전달 프로필",
+      "웹앱에 접근하는 데 쓰는 커넥터를 담은 커넥터 그룹과 내부 정규화된 도메인 이름(FQDN)용 엔드포인트",
+      "사용자 그룹을 기준으로 연결을 제한하는 액세스 정책"
+    ]
+  },
+  "342": {
+    "stem": "회사에 Microsoft Defender for Cloud를 사용하는 Azure 구독이 있습니다.\n\n회사가 방금 미국 정부와 계약을 체결했습니다.\n\n현재 구독의 NIST 800-53 준수 여부를 검토해야 합니다.\n\n가장 먼저 무엇을 해야 합니까?",
+    "expl": "Microsoft Defender for Cloud의 규정 준수 대시보드는 업계·규정·벤치마크 표준을 기준으로 구독을 평가하지만, 해당 범위에 할당된 표준에 대해서만 평가합니다. NIST SP 800-53은 기본으로 켜져 있지 않으므로, 준수를 검토하려면 먼저 이를 사용하도록 설정해야 합니다. Defender for Cloud > 규정 준수 > 준수 정책 관리에서 구독을 선택하고 보안 정책을 열어 NIST SP 800-53 표준을 켭니다. 켜고 나면 Defender for Cloud가 지속적인 평가 결과를 NIST 800-53 제어에 매핑하고 규정 준수 대시보드에 준수·미준수 상태를 표시합니다.\n\n**Learn more:** [Regulatory compliance in Defender for Cloud](https://learn.microsoft.com/en-us/azure/defender-for-cloud/concept-regulatory-compliance-standards) · [Assign regulatory compliance standards in Microsoft Defender for Cloud](https://learn.microsoft.com/en-us/azure/defender-for-cloud/update-regulatory-compliance-packages)",
+    "choices": [
+      "Azure Policy에서 구독 범위로 기본 제공 정책 정의를 할당한다.",
+      "Microsoft Defender for Cloud Apps에서 클라우드 애플리케이션용 액세스 정책을 만든다.",
+      "Microsoft Defender for Cloud에서 보안 표준을 켠다.",
+      "Microsoft Defender for Cloud에서 보안 점수 권장 사항을 검토한다."
+    ]
+  },
+  "343": {
+    "stem": "네트워크에 온프레미스 Active Directory Domain Services(AD DS) 도메인이 있습니다.\n\nMicrosoft 365 구독이 있습니다.\n\n이 도메인의 보안과 거버넌스를 평가하는 솔루션을 권장해야 합니다. 솔루션은 다음 요구 사항을 충족해야 합니다.\n\n- 구성 문제와 관리 취약점을 식별한다.\n- 수고를 최소화한다.\n\n권장 사항에 무엇을 포함해야 합니까?",
+    "expl": "Microsoft Defender for Identity에는 ID 보안 상태 평가가 포함되어, 이미 배포된 센서를 통해 온프레미스 Active Directory에서 알려진 구성 오류, 레거시·안전하지 않은 프로토콜 사용, 위험한 그룹 정책 설정, 관리자 계정 취약점을 능동적으로 검사합니다. 이 평가 결과는 수정 지침과 함께 Microsoft 보안 점수에 자동으로 표시되므로, 이미 배포된 센서 외에 추가 설정 수고가 들지 않아 구성 문제와 관리 취약점을 최소한의 수고로 식별하라는 요구 사항에 그대로 부합합니다. Microsoft Entra ID 보호는 온프레미스 AD 구성 오류가 아니라 클라우드 로그인·사용자 위험을 다루고, Microsoft Defender for Servers는 서버 워크로드 위협 보호를 대상으로 하며, Microsoft Sentinel로 같은 수준의 ID 거버넌스 인사이트를 얻으려면 상당한 맞춤 구축이 필요합니다.\n\n**Learn more:** [Microsoft Defender for Identity security posture assessments](https://learn.microsoft.com/en-us/defender-for-identity/security-assessment)",
+    "choices": [
+      "Microsoft Entra ID 보호",
+      "Microsoft Defender for Servers",
+      "Microsoft Defender for Identity",
+      "Microsoft Sentinel"
+    ]
+  },
+  "344": {
+    "stem": "User1과 User2라는 사용자 두 명이 있는 Microsoft Entra 테넌트를 관리합니다.\n\n감사 결과 User1에게 사용자 관리자(User Administrator) 역할이 영구 할당되어 있었는데, 이 계정은 이미 퇴사한 계약직의 것이었습니다.\n\n보안 팀은 다음을 요구합니다.\n\n- 모든 권한 있는 역할 할당을 주기적으로 검증한다.\n- 이 검증 과정을 Privileged Identity Management(PIM)로 자동화하고 강제한다.\n\n최소 권한 원칙을 따르면서 보안 요구 사항을 충족할 수 있도록 User2를 구성해야 합니다.\n\nUser2에게 어떤 역할을 할당하고, User2는 어떤 도구를 사용해야 합니까?",
+    "expl": "권한 있는 역할 관리자(Privileged Role Administrator)는 Privileged Identity Management 설정을 관리하고 Microsoft Entra 역할 할당을 관리할 수 있는 최소 권한 기본 제공 역할로, 권한 있는 역할의 PIM과 액세스 검토를 구성할 수 있습니다. 전역 관리자는 필요 이상으로 많은 권한을 주고, 보안 관리자는 PIM 역할 할당을 관리할 권한이 없습니다. PIM 안에서 실행하는 액세스 검토를 사용하면, 퇴사한 계약직이 보유한 사용자 관리자 역할처럼 권한 있는 역할 할당이 여전히 필요한지 검토자(또는 본인)가 확인하는 반복 인증을 예약할 수 있습니다. 확인되지 않았거나 거부된 할당은 자동으로 제거할 수 있어, PIM으로 강제되는 주기적 검증 요구 사항을 충족합니다. 액세스 패키지와 수명 주기 워크플로는 각각 권한 관리와 입사·이동·퇴사 자동화를 다루며, 기존 권한 있는 역할 할당의 반복 검증과는 다릅니다.\n\n**Learn more:** [What is Privileged Identity Management? - Microsoft Entra ID Governance](https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-configure) · [Best practices for Microsoft Entra roles - Microsoft Entra ID](https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/best-practices)",
+    "blanks": [
+      {
+        "label": "역할:",
+        "options": ["전역 관리자", "권한 있는 역할 관리자", "보안 관리자"]
+      },
+      {
+        "label": "도구:",
+        "options": ["액세스 패키지", "액세스 검토", "수명 주기 워크플로"]
+      }
+    ]
+  },
+  "345": {
+    "stem": "조직에 Site1이라는 Microsoft SharePoint Online 사이트가 포함된 Microsoft 365 구독이 있습니다. 모든 사용자에게 Microsoft 365 E5 라이선스가 있습니다.\n\n회사 장치는 Microsoft Intune으로 관리합니다.\n\nMicrosoft Defender for Endpoint에 온보딩된 장치에서만 Site1 접근을 허용하는 조건부 액세스 정책을 만들려고 합니다.\n\n정책이 적용되기 전에 Intune으로 장치의 규정 준수를 평가할 수 있어야 합니다.\n\n가장 먼저 무엇을 만들어야 합니까?",
+    "expl": "장치 규정 준수를 요구하는 조건부 액세스 정책은, 장치가 Microsoft Defender for Endpoint에 온보딩되어 있고 허용 가능한 컴퓨터 위험 점수를 갖는지 등 지정한 기준을 충족하는지 Intune 규정 준수 정책이 평가한 뒤 규정 준수로 표시되는 것에 의존합니다. 규정 준수 정책을 만들고 장치를 그 기준으로 평가한 뒤에야, 조건부 액세스 정책이 '장치가 규정 준수로 표시되어야 함' 부여 제어로 SharePoint Online 사이트 같은 리소스 접근을 제한할 수 있습니다. Windows Autopilot 배포 프로필은 장치 프로비저닝을 담당할 뿐 규정 준수 평가를 하지 않고, 앱 보호 정책과 앱 구성 정책은 Defender for Endpoint 위험 신호와 연결된 장치 수준 규정 준수가 아니라 모바일 애플리케이션 관리 시나리오에 적용됩니다.\n\n**Learn more:** [Use compliance policies to set rules for devices you manage with Intune](https://learn.microsoft.com/en-us/mem/intune/protect/device-compliance-get-started) · [Conditional Access: Require compliant devices](https://learn.microsoft.com/en-us/entra/identity/conditional-access/require-managed-devices)",
+    "choices": [
+      "Windows Autopilot 배포 프로필",
+      "규정 준수 정책",
+      "앱 보호 정책",
+      "앱 구성 정책"
+    ]
+  },
+  "346": {
+    "stem": "네트워크에 Microsoft Entra 테넌트와 동기화되는 온프레미스 Active Directory Domain Services(AD DS) 도메인이 있습니다.\n\n도메인을 평가해 잠재적인 자격 증명 노출 위험을 식별해야 합니다. 솔루션은 다음 요구 사항을 충족해야 합니다.\n\n- 위험 완화에 도움이 되는 실행 가능한 권장 사항을 제공한다.\n- 필요한 관리 수고를 최소화한다.\n\n무엇을 사용해야 합니까?",
+    "expl": "Microsoft Defender for Identity는 온프레미스 AD DS(및 하이브리드 ID 인프라)를 지속적으로 모니터링하고, AD 특성에 평문 암호가 저장된 경우처럼 노출되거나 유출된 자격 증명과 그 밖의 ID 관련 구성 오류를 탐지하는 ID 보안 상태 평가를 생성합니다. 각 평가는 우선순위가 매겨진 실행 가능한 수정 지침을 제공하며, 센서를 배포하고 나면 모니터링이 자동으로 계속되므로 관리 수고를 최소화하라는 요구 사항을 충족합니다. Microsoft 보안 점수는 여러 제품의 권장 사항을 모아 보여 줄 뿐 AD 자격 증명 노출을 직접 심층 분석하지 않고, Microsoft Defender for Cloud Apps는 온프레미스 AD가 아니라 클라우드·SaaS 앱 사용과 섀도 IT를 대상으로 하며, Microsoft 평가 및 계획(MAP) 도구 키트는 마이그레이션 계획용 레거시 인벤토리 도구로 보안 위험 평가 도구가 아닙니다.\n\n**Learn more:** [Microsoft Defender for Identity security posture assessments](https://learn.microsoft.com/en-us/defender-for-identity/security-assessment) · [Accounts security posture assessment - Microsoft Defender for Identity](https://learn.microsoft.com/en-us/defender-for-identity/security-posture-assessments/accounts)",
+    "choices": [
+      "Microsoft Defender for Cloud Apps",
+      "Microsoft 보안 점수",
+      "Microsoft 평가 및 계획(MAP) 도구 키트",
+      "Microsoft Defender for Identity"
+    ]
+  },
+  "347": {
+    "stem": "Microsoft Intune에 등록된 온프레미스 Windows 장치 500대가 있습니다.\n\nMicrosoft 365 구독이 있습니다.\n\n장치에서 나가는 모든 HTTP·HTTPS 트래픽을 Microsoft Entra Internet Access로 검사하게 해야 합니다. 솔루션은 인프라와 운영 비용을 최소화해야 합니다.\n\n솔루션에 무엇을 포함해야 합니까?",
+    "expl": "Microsoft Entra Internet Access(Global Secure Access의 일부)는 장치가 인터넷으로 나가는 HTTP·HTTPS 트래픽을 Global Secure Access 클라우드 서비스로 라우팅하게 해서 검사합니다. 이를 위해 엔드포인트에 Global Secure Access 클라이언트를 설치·온보딩해야 구성된 Microsoft 트래픽 전달 프로필에 따라 트래픽을 전달할 수 있으며, 프록시 서버나 RADIUS·NPS 같은 추가 온프레미스 인프라를 배포할 필요가 없습니다. 사설 네트워크 커넥터는 Microsoft Entra Private Access가 온프레미스 사설 애플리케이션에 도달하게 하는 것이라 일반 인터넷 트래픽 검사와는 무관합니다.\n\n**Learn more:** [What is Global Secure Access?](https://learn.microsoft.com/en-us/entra/global-secure-access/overview-what-is-global-secure-access) · [Deploy the Global Secure Access client for Windows](https://learn.microsoft.com/en-us/entra/global-secure-access/how-to-install-windows-client)",
+    "choices": [
+      "사설 네트워크 커넥터를 설치한다.",
+      "네트워크 정책 서버(NPS)를 RADIUS 프록시로 배포한다.",
+      "네트워크 정책 서버(NPS)를 RADIUS 서버로 배포한다.",
+      "장치에 Global Secure Access 클라이언트를 온보딩한다."
+    ]
+  },
+  "348": {
+    "stem": "Azure 구독에 가상 머신 1,000대가 있습니다.\n\n모든 가상 머신에 just-in-time(JIT) VM 액세스를 사용하도록 설정해야 한다는 회사 표준을 적용하려고 합니다.\n\n어떤 가상 머신이 JIT VM 액세스를 지원하는지 식별하는 솔루션을 권장해야 합니다.\n\n권장 사항에 무엇을 포함해야 합니까?",
+    "expl": "just-in-time VM 액세스는 Microsoft Defender for Cloud(Defender for Servers의 일부) 기능입니다. Defender for Cloud는 네트워크 보안 그룹이 연결되어 있는지, Azure Resource Manager로 배포되었는지 등 JIT 자격 요건을 기준으로 각 VM을 평가하고, 권장 사항과 워크로드 보호 대시보드를 통해 어떤 VM이 JIT를 지원하고 어떤 VM이 지원하지 않는지 보고합니다. 이를 통해 아직 표준을 충족하지 않는 컴퓨터를 식별하고 조치할 수 있습니다. Azure Bastion은 브라우저 기반 RDP·SSH 연결을 제공할 뿐 JIT 자격 여부를 평가하거나 보고하지 않고, Microsoft Defender for Cloud Apps는 SaaS 애플리케이션용 CASB이며, Microsoft Intune은 장치·엔드포인트를 관리할 뿐 Azure VM 네트워크 보안 상태와는 무관합니다.\n\n**Learn more:** [Enable Just-in-Time Access - Microsoft Defender for Cloud | Microsoft Learn](https://learn.microsoft.com/en-us/azure/defender-for-cloud/enable-just-in-time-access) · [Just-in-time access overview - Microsoft Defender for Cloud](https://learn.microsoft.com/en-us/azure/defender-for-cloud/just-in-time-access-overview)",
+    "choices": [
+      "Azure Bastion",
+      "Microsoft Defender for Cloud",
+      "Microsoft Defender for Cloud Apps",
+      "Microsoft Intune"
+    ]
+  }
+}

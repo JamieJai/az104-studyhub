@@ -1,0 +1,162 @@
+{
+  "349": {
+    "stem": "Tenant1이라는 Microsoft Entra 테넌트에 조인되고 Microsoft Intune에 등록된 온프레미스 Windows 장치 500대가 있습니다.\n\nTenant1에 연결된 Sub1이라는 Azure 구독이 있습니다.\n\n협력사에 Sub2라는 Azure 구독이 있습니다. Sub2에는 VNet2라는 가상 네트워크와 storage1이라는 저장소 계정이 있습니다. storage1은 VNet2의 Azure Private Link 엔드포인트로 보호되어 있습니다.\n\n회사의 모든 사용자가 storage1에 접근할 수 있게 하는 솔루션을 권장해야 합니다. 솔루션은 다음 요구 사항을 충족해야 합니다.\n\n- 사용자는 규정을 준수하는 장치에서 로그인한 뒤에 storage1에 접근해야 한다.\n- 접근이 Sub2의 다른 리소스를 노출하거나 그 리소스로의 연결을 제공해서는 안 된다.\n\n권장 사항에 무엇을 포함하고, Tenant1에 무엇을 만들도록 권장해야 합니까?",
+    "expl": "Microsoft Entra Private Access(Global Secure Access 기능)는 Azure Private Link 프라이빗 엔드포인트 뒤에 있는 Azure 저장소 계정 같은 사설 리소스에 VPN 없이 제로 트러스트 접근을 확장하기 위해 만들어진 기능입니다. Global Secure Access 애플리케이션(앱별·엔터프라이즈 애플리케이션)을 만들고, 저장소 계정의 FQDN(예: storage1.blob.core.windows.net)과 443 포트를 지정하는 애플리케이션 세그먼트를 추가한 뒤, 프라이빗 엔드포인트에 네트워크로 도달할 수 있는 위치에 배포한 Microsoft Entra 사설 네트워크 커넥터를 통해 라우팅합니다. Microsoft 지침은 애플리케이션 세그먼트로 라우팅된 트래픽이 '네트워크의 다른 리소스에 연결할 수 없는 상태로' 해당 내부 리소스에 전달된다고 명시하므로, Sub2의 다른 리소스를 노출하지 않아야 한다는 요구 사항을 충족합니다. 사이트 간 VPN이나 VNet 피어링은 VNet2로 서브넷 수준의 광범위한 네트워크 연결을 부여하므로 이를 보장할 수 없습니다. Microsoft Entra Internet Access는 인터넷·SaaS 트래픽용 보안 웹 게이트웨이라 협력사 VNet의 Private Link 기반 PaaS 리소스에는 적합하지 않습니다. Global Secure Access 애플리케이션을 만든 뒤에는 애플리케이션 수준에서 조건부 액세스 정책을 적용해 장치가 Intune으로 규정 준수로 표시되도록 요구하면, 규정을 준수하는 장치에서만 로그인해 storage1에 도달할 수 있습니다. 액세스 패키지는 권한·할당 워크플로만 다루고, Global Secure Access 보안 프로필은 조건부 액세스를 트래픽 전달 프로필에 연결할 뿐 리소스별 세그먼트를 정의하지 않으며, 애플리케이션 프록시 커넥터는 HTTP·HTTPS 웹앱 게시용이라 Private Link 기반 저장소 접근 중계에는 맞지 않습니다.\n\n**Learn more:** [How to access an Azure Storage account behind Azure Private Link using Microsoft Entra Private Access](https://learn.microsoft.com/en-us/entra/global-secure-access/how-to-use-private-link-with-private-access) · [Learn about Microsoft Entra Private Access - Global Secure Access](https://learn.microsoft.com/en-us/entra/global-secure-access/concept-private-access)",
+    "blanks": [
+      {
+        "label": "포함할 것:",
+        "options": [
+          "Microsoft Entra Internet Access",
+          "Microsoft Entra Private Access",
+          "사이트 간(S2S) VPN",
+          "가상 네트워크 피어링"
+        ]
+      },
+      {
+        "label": "만들 것:",
+        "options": [
+          "액세스 패키지",
+          "Global Secure Access 애플리케이션",
+          "Global Secure Access 보안 프로필",
+          "Microsoft Entra 애플리케이션 프록시 커넥터"
+        ]
+      }
+    ]
+  },
+  "350": {
+    "stem": "Microsoft Exchange Online 사서함 1,000개가 있는 Microsoft 365 구독을 관리합니다.\n\n어떤 사용자가 피싱 공격에 취약한지 파악해야 합니다.\n\n무엇을 사용해야 합니까?",
+    "expl": "Microsoft Defender for Office 365의 일부인 공격 시뮬레이션 교육을 사용하면 관리자가 조직 사용자를 대상으로 실제와 유사한 모의 피싱(및 그 밖의 사회 공학) 공격을 실행할 수 있습니다. 결과에는 어떤 사용자가 악성 링크를 클릭했는지, 첨부 파일을 열었는지, 자격 증명을 입력했는지가 표시되므로 피싱에 취약한 사용자를 바로 식별할 수 있습니다. 이는 스푸핑된 발신자를 분석하는 스푸핑 인텔리전스, 클라우드 리소스로 가는 악용 경로를 그리는 공격 경로 분석, 데이터 유출 같은 내부 위험 행동을 추적하는 내부 위험 관리 활동 보고서와는 다릅니다.\n\n**Learn more:** [Get started using Attack simulation training in Microsoft Defender for Office 365](https://learn.microsoft.com/en-us/microsoft-365/security/office-365-security/attack-simulation-training-get-started)",
+    "choices": [
+      "Exchange Online Protection(EOP)의 스푸핑 인텔리전스 인사이트",
+      "Microsoft Defender for Cloud의 공격 경로 분석",
+      "Microsoft Defender for Office 365의 공격 시뮬레이션 교육",
+      "Microsoft Purview 내부 위험 관리의 사용자 활동 보고서"
+    ]
+  },
+  "351": {
+    "stem": "가상 머신, 저장소 계정, Azure SQL 데이터베이스가 있는 Azure 구독이 있습니다.\n\n모든 리소스는 Azure Backup으로 하루에 여러 번 백업됩니다.\n\n랜섬웨어 공격에 대비한 전략을 수립하고 있습니다.\n\n랜섬웨어 공격이 성공한 뒤에도 Azure Backup으로 리소스를 복원할 수 있도록 사용하도록 설정해야 하는 제어를 권장해야 합니다.\n\n권장 사항에 어떤 제어를 포함해야 합니까?",
+    "expl": "Azure Backup은 일시 삭제 해제, 보존 기간을 줄이는 백업 정책 변경, 백업 항목·복구 지점 삭제 같은 중요 작업을 수행하기 전에 Azure Portal에서 생성한 보안 PIN이라는 추가 인증 계층을 요구하는 보안 기능을 제공합니다. 이 제어는 랜섬웨어 공격 중에 구독을 장악한 공격자(또는 침해된 계정)가 기존 백업을 삭제하거나 변조하지 못하게 막아, 공격 이후 복원에 쓸 깨끗한 백업 데이터가 남아 있도록 보장합니다. 이는 Azure Backup의 랜섬웨어 보호 지침에 문서화된 내용입니다.\n\n**Learn more:** [Security features to help protect against ransomware attacks - Azure Backup](https://learn.microsoft.com/en-us/azure/backup/backup-azure-security-feature-cloud)",
+    "choices": [
+      "Azure Data Box로 오프라인 백업을 수행한다.",
+      "백업 구성이 변경되면 Azure Monitor 알림을 사용한다.",
+      "고객 관리형 키(CMK)로 백업을 암호화한다.",
+      "중요 작업에 PIN을 요구한다."
+    ]
+  },
+  "352": {
+    "stem": "Azure 구독이 있습니다.\n\n구독에 새로 배포되는 리소스에 ISO 27002:2022 표준을 적용해야 합니다. 솔루션은 규정을 준수하지 않는 리소스를 자동으로 탐지해야 합니다.\n\n무엇을 사용해야 합니까?",
+    "expl": "Azure Policy 이니셔티브를 쓰면 기본 제공 규정 준수 이니셔티브(예: ISO 27001·27002 이니셔티브)를 구독 범위에 할당할 수 있습니다. 할당하면 이니셔티브가 신규·기존 리소스를 표준의 제어에 비추어 자동으로 평가하고 준수하지 않는 리소스를 표시해 표준을 적용합니다. Azure RBAC는 누가 리소스에 어떤 작업을 할 수 있는지만 관리할 뿐 표준 준수 구성을 평가하지 않습니다. Microsoft Defender for Cloud의 규정 준수 대시보드는 이미 Azure Policy 이니셔티브로 할당된 표준의 준수 상태를 보여 주는 보고용 화면이지, 표준을 강제하거나 미준수 리소스 탐지를 유발하는 메커니즘이 아닙니다.\n\n**Learn more:** [Azure Policy regulatory compliance built-in initiatives](https://learn.microsoft.com/en-us/azure/governance/policy/samples/iso-27001) · [Overview of the regulatory compliance dashboard - Microsoft Defender for Cloud](https://learn.microsoft.com/en-us/azure/defender-for-cloud/regulatory-compliance-dashboard)",
+    "choices": [
+      "Microsoft Defender for Cloud의 규정 준수 대시보드",
+      "Azure 역할 기반 액세스 제어(Azure RBAC)",
+      "Azure 이니셔티브"
+    ]
+  },
+  "353": {
+    "stem": "조직의 Microsoft Entra 테넌트에서 Microsoft Entra ID 거버넌스를 사용합니다. 부서마다 전용 카탈로그와 액세스 패키지 세트를 만들어 애플리케이션과 데이터 리소스 접근을 관리합니다.\n\n각 부서 팀장이 다음을 할 수 있게 해야 합니다.\n\n- 자기 부서 사용자의 액세스 패키지 할당을 추가하거나 제거한다.\n- 해당 액세스 패키지가 각 사용자의 내 액세스(My Access) 포털에 나타나지 않게 한다.\n\n솔루션은 최소 권한 원칙을 따라야 합니다.\n\n팀장에게 어떤 역할을 할당해야 합니까?",
+    "expl": "액세스 패키지 할당 관리자(Access Package Assignment Manager)는 위임된 사용자가 관리 권한이 있는 액세스 패키지의 할당을 보고 추가·제거할 수 있게 하는 기본 제공 최소 권한 Microsoft Entra ID 거버넌스 역할로, 카탈로그나 액세스 패키지에 대한 더 넓은 관리 권한은 주지 않습니다. 이 역할로 이루어지는 할당은 사용자가 요청하는 것이 아니라 위임 관리자가 직접 수행하므로, 해당 액세스 패키지가 사용자의 내 액세스 포털에 요청 가능한 항목으로 나타나지 않습니다. 따라서 할당 관리와 내 액세스에서 숨김이라는 두 요구 사항을 모두 충족하면서 최소한의 권한만 부여합니다. ID 거버넌스 관리자(너무 광범위), 카탈로그 소유자(할당뿐 아니라 카탈로그와 리소스·패키지를 관리), 액세스 패키지 관리자(할당이 아니라 액세스 패키지 구성·정책을 관리)와는 다릅니다.\n\n**Learn more:** [View, add, and remove assignments for an access package in entitlement management - Microsoft Entra ID Governance | Microsoft Learn](https://learn.microsoft.com/en-us/entra/id-governance/entitlement-management-access-package-assignments) · [Delegation and roles in entitlement management - Microsoft Entra ID Governance | Microsoft Learn](https://learn.microsoft.com/en-us/entra/id-governance/entitlement-management-delegate)",
+    "choices": [
+      "액세스 패키지 관리자",
+      "ID 거버넌스 관리자",
+      "카탈로그 소유자",
+      "액세스 패키지 할당 관리자"
+    ]
+  },
+  "354": {
+    "stem": "조직에 사용자 1,000명과 Group1이라는 그룹이 있는 Microsoft 365 구독이 있습니다. 모든 사용자는 Windows 11 장치를 사용하며 Microsoft Entra 계정으로 로그인합니다. 사용자에게는 장치의 관리자 권한이 없습니다.\n\nGroup1 구성원은 사용자 세션을 제어해 원격으로 지원합니다. 이 원격 제어 세션은 지원 대상 사용자의 보안 컨텍스트에서 실행됩니다.\n\n다음을 충족하는 솔루션을 권장해야 합니다.\n\n- Group1 구성원이 사용자 장치에서 관리자 권한이 필요한 앱을 실행할 수 있게 한다.\n- 그 앱이 로그인한 각 표준 사용자 컨텍스트에서 실행되게 한다.\n\n권장 사항에 무엇을 포함해야 합니까?",
+    "expl": "Microsoft Intune 엔드포인트 권한 관리(EPM)를 쓰면 관리자가 특정 애플리케이션에 대한 권한 상승 규칙을 정의해, 표준(비관리자) 사용자가 그 앱을 상승된 관리자 권한으로 실행할 수 있게 하면서 상승 범위를 해당 애플리케이션으로 한정하고 별도의 관리자 계정 없이 로그인한 표준 사용자 컨텍스트에서 실행되게 할 수 있습니다. 사용자의 보안 컨텍스트에서 동작하는 원격 지원 세션에서 앱이 각 표준 사용자 컨텍스트로 실행되어야 한다는 요구 사항에 그대로 맞습니다. Entra PIM은 Entra·Azure 디렉터리 역할의 적시 상승을 제공하고, 권한 관리는 리소스에 대한 액세스 패키지 요청·승인을 자동화하며, Windows LAPS는 로컬 관리자 계정 암호를 관리할 뿐 표준 사용자 자신의 세션에서 앱별 권한 상승을 제공하지 않습니다.\n\n**Learn more:** [What is Endpoint Privilege Management? - Microsoft Intune](https://learn.microsoft.com/en-us/mem/intune/protect/epm-overview)",
+    "choices": [
+      "Microsoft Entra Privileged Identity Management",
+      "Microsoft Intune 엔드포인트 권한 관리",
+      "Microsoft Entra 권한 관리",
+      "Windows 로컬 관리자 암호 솔루션(Windows LAPS)"
+    ]
+  },
+  "355": {
+    "stem": "Microsoft Sentinel 배포가 있습니다.\n\nMITRE ATT&CK 프레임워크가 발전하더라도 준수를 유지하는 솔루션을 개발하고 있습니다.\n\n현재 Microsoft Sentinel 배포가 다루지 **않는** MITRE ATT&CK 기술이 무엇인지 식별하는 솔루션을 권장해야 합니다.\n\n권장 사항에 무엇을 포함해야 합니까?",
+    "expl": "Microsoft Sentinel에는 전용 MITRE ATT&CK 적용 범위 화면(위협 관리 > MITRE ATT&CK)이 있어, 모든 분석 규칙을 MITRE ATT&CK 프레임워크의 전술·기술에 매핑하고 각 칸에 해당 기술에 매핑된 활성 규칙 수를 보여 주는 히트맵·매트릭스를 제공합니다. 활성 규칙이 없는 기술은 미적용으로 눈에 띄게 표시되며, 기술 이름이나 ID로 검색하고 관련 헌팅 쿼리로 파고들어 공백을 메울 수 있습니다. 이 매트릭스는 현재 버전의 MITRE ATT&CK 프레임워크에 맞춰 유지되므로 프레임워크가 발전해도 준수를 계속 추적할 수 있으며, 배포가 다루지 않는 기술을 식별하라는 요구 사항에 정확히 부합합니다.\n\n**Learn more:** [View MITRE ATT&CK coverage in Microsoft Sentinel | Microsoft Learn](https://learn.microsoft.com/en-us/azure/sentinel/mitre-coverage) · [View MITRE coverage for your organization from Microsoft Sentinel | Microsoft Learn](https://learn.microsoft.com/en-us/azure/sentinel/mitre-coverage?tabs=defender-portal)",
+    "choices": [
+      "Microsoft Sentinel 상태 요약 대시보드",
+      "MITRE 분석 탐색기",
+      "MITRE 적용 범위 매트릭스",
+      "Microsoft Sentinel 분석 블레이드"
+    ]
+  },
+  "356": {
+    "stem": "공개 웹앱을 호스트하는 Azure App Service 인스턴스 5개가 있는 Azure 구독이 있습니다. 각 인스턴스는 Azure 지역 3곳에 배포되어 있습니다.\n\n이 웹앱은 민감한 고객 데이터를 처리하므로 일반적인 웹 공격과 악성 봇으로부터 보호해야 합니다.\n\n다음 요구 사항을 충족하는 보안 솔루션을 권장해야 합니다.\n\n- 보호 규칙을 중앙에서 관리하고 업데이트한다.\n- 애플리케이션 코드를 변경하지 않고 모든 웹앱을 보호한다.\n- 비용을 최소화한다.\n\n권장 사항에 무엇을 포함해야 합니까?",
+    "expl": "Azure Front Door는 전역 진입점과 통합 웹 애플리케이션 방화벽(WAF)을 제공하므로, 정책을 한 번 중앙에서 구성해 모든 지역의 백엔드 웹앱에 적용할 수 있고, OWASP 위협과 봇 보호를 위한 Microsoft 관리형 규칙 집합이 애플리케이션 코드 변경 없이 자동으로 업데이트됩니다. App Service 인스턴스가 세 지역에 걸쳐 있으므로 Application Gateway 같은 지역형 솔루션을 쓰면 지역마다 별도의 WAF 인스턴스를 배포·유지해야 해 비용과 관리 부담이 늘어납니다. Front Door의 단일 전역 WAF 정책이 중앙 관리와 비용 최소화 요구 사항을 충족합니다. Azure Firewall(네트워크 계층)과 Azure DDoS Protection(대용량 공격 완화)은 웹 애플리케이션 계층의 공격·봇 보호를 제공하지 않습니다.\n\n**Learn more:** [Web Application Firewall on Azure Front Door](https://learn.microsoft.com/en-us/azure/web-application-firewall/afds/afds-overview) · [What is Azure Front Door?](https://learn.microsoft.com/en-us/azure/frontdoor/front-door-overview)",
+    "choices": [
+      "Azure Firewall",
+      "Azure DDoS Protection",
+      "Azure Front Door",
+      "Azure Application Gateway"
+    ]
+  },
+  "357": {
+    "stem": "가상 머신 100대가 있는 Azure 구독이 있습니다. 이 가상 머신은 Linux 또는 Windows Server를 실행합니다.\n\n어떤 가상 머신이 인터넷에 노출되어 있는지 검색하는 솔루션을 권장해야 합니다.\n\n권장 사항에 무엇을 포함해야 합니까?",
+    "expl": "Microsoft Defender for Cloud에는 자산 인벤토리와 공격 표면·공격 경로 분석 기능이 있어, 공용 IP 주소가 있거나 관리 포트가 노출된 가상 머신처럼 인터넷에 노출된 VM을 식별하고 '인터넷에 노출된 가상 머신은 네트워크 보안 그룹으로 보호해야 합니다' 같은 권장 사항을 생성합니다. 따라서 어떤 VM이 인터넷에 노출되어 있는지 파악하는 데 적합한 도구입니다. Defender for Cloud Apps(SaaS 앱 검색), Microsoft Sentinel(SIEM·SOAR 로그 분석), Azure Network Watcher(인터넷 노출을 자동 분류하지 않는 네트워크 진단)와는 다릅니다.\n\n**Learn more:** [Protect your network resources - Microsoft Defender for Cloud](https://learn.microsoft.com/en-us/azure/defender-for-cloud/protect-network-resources) · [Identify and remediate attack paths - Microsoft Defender for Cloud](https://learn.microsoft.com/en-us/azure/defender-for-cloud/how-to-manage-attack-path)",
+    "choices": [
+      "Microsoft Defender for Cloud Apps",
+      "Microsoft Sentinel",
+      "Azure Network Watcher",
+      "Microsoft Defender for Cloud"
+    ]
+  },
+  "358": {
+    "stem": "개인 식별 정보(PII)를 처리해 Azure로 보내는 온프레미스 애플리케이션이 있습니다. 이 애플리케이션은 다음 구성 요소로 이루어져 있습니다.\n\n- PII를 주고받는 API\n- PII를 Azure Data Lake Storage Gen2 계정에 저장하는 데이터 수집 파이프라인\n\n규정 준수 정책상 모든 PII 데이터는 주기적으로 회전되고 중앙 저장소에 보관되는 암호화 키로 암호화해야 합니다.\n\n이 규정 준수 정책을 따르는 솔루션을 권장해야 합니다. 솔루션은 관리 수고를 최소화해야 합니다.\n\n권장 사항에 포함해야 할 구성 요소 두 가지는 무엇입니까? 각 정답은 솔루션의 일부입니다.\n\n> **참고:** 각 정답 선택은 1점입니다.",
+    "expl": "Azure Data Lake Storage Gen2는 서버 쪽 암호화(SSE)로 미사용 데이터를 자동 암호화합니다. 중앙에 저장되고 주기적으로 회전되는 암호화 키라는 규정 준수 요구 사항을 최소한의 관리 수고로 충족하려면, SSE가 고객 관리형 키를 사용하도록 구성하고 그 키를 중앙 저장·접근 제어·자동 키 회전을 제공하는 Azure Key Vault에 보관해 관리합니다. TDE, Azure Disk Encryption, Cloud HSM, Cloud PKI는 각각 데이터베이스, VM 디스크, 하드웨어 키 보호, 인증서를 다루므로 Data Lake Storage Gen2의 미사용 데이터 암호화에 적합한 메커니즘이 아닙니다.\n\n**Learn more:** [Azure Storage encryption for data at rest](https://learn.microsoft.com/en-us/azure/storage/common/storage-service-encryption) · [Configure customer-managed keys for Azure Storage encryption](https://learn.microsoft.com/en-us/azure/storage/common/customer-managed-keys-configure-key-vault)",
+    "choices": [
+      "Azure Cloud HSM",
+      "Microsoft Cloud PKI",
+      "Azure Key Vault",
+      "서버 쪽 암호화(SSE)",
+      "투명한 데이터 암호화(TDE)",
+      "Azure Disk Encryption"
+    ]
+  },
+  "359": {
+    "stem": "외부 고객에게 서비스를 제공하는 App Service 웹앱 20개가 있는 Azure 구독이 있습니다. 각 웹앱에는 고유한 인증서와 키가 있습니다.\n\n이 웹앱의 키와 인증서를 관리하는 솔루션을 권장해야 합니다. 솔루션은 다음 요구 사항을 충족해야 합니다.\n\n- 키와 인증서를 저장할 단일 테넌트를 제공한다.\n- FIPS 140-2 수준 3 준수를 유지한다.\n- 최소 권한 원칙을 따른다.\n- 비용을 최소화한다.\n- 관리 부담을 최소화한다.\n\n권장 사항에 무엇을 포함해야 합니까?",
+    "expl": "Azure Key Vault Managed HSM은 완전 관리형 고가용성 단일 테넌트 HSM 서비스로, 각 Managed HSM 인스턴스가 고객 한 곳에 전용으로 할당되어 단일 테넌시 요구 사항을 충족합니다. 다중 테넌트인 Premium·Standard Key Vault SKU와는 다릅니다. Managed HSM은 FIPS 140 수준 3 검증 HSM 하드웨어를 사용해 요구되는 준수 수준을 충족하는 반면, Key Vault Premium의 HSM 보호 키는 수준 2까지만 검증되어 있습니다. Managed HSM 인스턴스 하나에 웹앱 20개의 고유 키와 인증서를 모두 저장할 수 있으므로 비용(HSM 풀 20개 대신 1개)과 관리 부담(관리 리소스 20개 대신 1개)이 모두 최소화됩니다. Managed HSM의 데이터 평면은 레거시 액세스 정책 모델을 지원하지 않고 Managed HSM 로컬 RBAC만 사용하므로, 키별·주체별로 세분화된 역할 할당이 가능해 최소 권한 원칙을 충족합니다.\n\n**Learn more:** [Azure Key Vault Managed HSM Overview](https://learn.microsoft.com/en-us/azure/key-vault/managed-hsm/overview) · [Azure Key Vault Managed HSM access control](https://learn.microsoft.com/en-us/azure/key-vault/managed-hsm/access-control)",
+    "blanks": [
+      {
+        "label": "Azure 서비스:",
+        "options": [
+          "Azure Key Vault Premium SKU",
+          "Azure Key Vault Standard SKU",
+          "Azure Key Vault Managed HSM"
+        ]
+      },
+      {
+        "label": "권한 부여 메커니즘:",
+        "options": [
+          "역할 기반 액세스 제어(RBAC) 권한 부여를 사용하는 자격 증명 모음 1개",
+          "자격 증명 모음 액세스 정책 권한 부여를 사용하는 자격 증명 모음 1개",
+          "역할 기반 액세스 제어(RBAC) 권한 부여를 사용하는 자격 증명 모음 20개",
+          "자격 증명 모음 액세스 정책 권한 부여를 사용하는 자격 증명 모음 20개"
+        ]
+      }
+    ]
+  },
+  "360": {
+    "stem": "Windows Server 가상 머신을 실행하는 온프레미스 Hyper-V 호스트를 여러 대 관리하고 있고, Azure 구독도 있습니다.\n\nMicrosoft Sentinel로 이 가상 머신의 보안 이벤트 로그를 수집하는 솔루션을 권장해야 합니다. 솔루션은 다음을 충족해야 합니다.\n\n- Windows Security Events via AMA 데이터 커넥터를 사용한다.\n- 특정 이벤트만 수집한다.\n- 비용을 최소화한다.\n\n무엇을 권장해야 합니까?\n\n[[IMG1]]",
+    "expl": "Azure Monitor의 데이터 수집 규칙(DCR)을 사용하면 Windows Security Events via AMA 커넥터로 수집할 Windows 보안 이벤트 종류(예: 공통, 최소, 사용자 지정 필터링)를 정확히 지정할 수 있어, 필요한 이벤트만 수집해 비용을 통제하고 최소화할 수 있습니다. Hyper-V 가상 머신은 온프레미스에 있으므로(네이티브 Azure VM이 아님) 먼저 Azure Connected Machine 에이전트를 설치해 Azure Arc에 온보딩해야 합니다. 그래야 Arc 지원 서버로 등록되어 Azure Monitor 에이전트(AMA) 확장과 연결된 DCR을 적용하고 Microsoft Sentinel로 로그를 수집할 수 있습니다.\n\n**Learn more:** [Data collection rules in Azure Monitor](https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/data-collection-rule-overview) · [Collect Windows Security Events using Azure Monitor Agent](https://learn.microsoft.com/en-us/azure/sentinel/data-connectors/windows-security-events-via-ama)",
+    "blanks": [
+      {
+        "label": "Azure에 배포할 것:",
+        "options": [
+          "Azure Monitor 데이터 수집 엔드포인트",
+          "Azure Monitor 데이터 수집 규칙(DCR)",
+          "Microsoft Defender for Cloud 데이터 수집 설정"
+        ]
+      },
+      {
+        "label": "가상 머신에 설치할 것:",
+        "options": [
+          "Azure Connected Machine 에이전트",
+          "네트워크 컨트롤러 역할",
+          "Azure Pipelines 에이전트"
+        ]
+      }
+    ]
+  }
+}

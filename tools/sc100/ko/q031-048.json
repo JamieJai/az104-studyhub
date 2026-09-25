@@ -1,0 +1,266 @@
+{
+  "31": {
+    "stem": "Azure 구독과 Microsoft 365 구독이 있습니다. 모든 사용자에게 Microsoft 365 E5 라이선스가 있습니다. 모든 컴퓨터는 Windows 11을 실행하고 Microsoft Entra에 조인되어 있습니다.\n\n초기 Windows 11 빌드를 실행하는 컴퓨터가 Microsoft 365 서비스에 연결하지 못하게 막는 솔루션을 권장해야 합니다.\n\n권장 사항에 포함해야 할 정책 종류 두 가지는 무엇입니까? 각 정답은 솔루션의 일부입니다.\n\n> **참고:** 각 정답 선택은 1점입니다.",
+    "expl": "Microsoft Intune 규정 준수 정책은 최소 Windows OS 버전을 요구할 수 있고, 그보다 낮은 빌드를 실행하는 장치를 비규격으로 표시합니다. Microsoft Entra 조건부 액세스는 Microsoft 365 서비스에 접근하는 장치가 규정을 준수하도록 요구할 수 있으므로, 비규격 장치의 접근을 차단합니다.\n\n**Learn more:** [Device Compliance settings for Windows in Intune](https://learn.microsoft.com/en-us/intune/device-security/compliance/ref-windows-settings) · [Require device compliance with Conditional Access](https://learn.microsoft.com/en-us/entra/identity/conditional-access/policy-all-users-device-compliance)",
+    "choices": [
+      "Microsoft Defender for Endpoint 엔드포인트 보안 정책",
+      "Microsoft Defender for Cloud 규정 준수 정책",
+      "Microsoft Intune 규정 준수 정책",
+      "Microsoft Entra ID 보호 로그인 위험 정책",
+      "Microsoft Entra 조건부 액세스 정책"
+    ]
+  },
+  "32": {
+    "stem": "Microsoft Intune에 등록된 Windows 11 Pro 장치 1,000대가 있는 Microsoft 365 E5 구독이 있습니다.\n\n다음 요구 사항을 충족하는 Microsoft Defender for Cloud Apps 솔루션을 권장하세요. 각 요구 사항에 맞는 정책 종류를 선택하세요.",
+    "expl": "세션 정책(Session policy)은 콘텐츠 검사와 함께 파일 다운로드를 세션 수준에서 실시간으로 제어하며, 다운로드되는 파일에 Microsoft Purview 민감도 레이블을 적용할 수 있습니다. 액세스 정책(Access policy)은 Microsoft Entra 조건부 액세스가 전달한 Intune 규정 준수 장치 상태를 사용해 Dropbox 접근을 허용하거나 차단할 수 있습니다.\n\n**Learn more:** [Create session policies - Microsoft Defender for Cloud Apps](https://learn.microsoft.com/en-us/defender-cloud-apps/session-policy-aad) · [Identity-managed devices with Conditional Access app control - Microsoft Defender for Cloud Apps](https://learn.microsoft.com/en-us/defender-cloud-apps/conditional-access-app-control-identity)",
+    "blanks": [
+      {
+        "label": "사용자가 SharePoint Online에서 파일을 다운로드할 때, 파일 내용에 따라 실시간으로 레이블을 적용해야 한다:",
+        "options": ["활동 정책", "파일 정책", "세션 정책"]
+      },
+      {
+        "label": "Intune 규정 준수 장치를 사용하는 사용자만 Dropbox에 로그인할 수 있어야 한다:",
+        "options": ["액세스 정책", "활동 정책", "OAuth 앱 정책"]
+      }
+    ]
+  },
+  "33": {
+    "stem": "비즈니스 요구 사항과 하이브리드 요구 사항을 충족하는 다중 테넌트·하이브리드 보안 솔루션을 권장해야 합니다. 무엇을 권장해야 합니까?",
+    "expl": "Azure Lighthouse는 위임된 Azure 구독과 리소스를 테넌트 간에 중앙에서 관리할 수 있게 합니다. Azure Arc는 Azure 관리 서비스와 거버넌스를 온프레미스 인프라와 Azure 외부 리소스까지 확장합니다.\n\n**Learn more:** [Azure Lighthouse documentation](https://learn.microsoft.com/en-us/azure/lighthouse/overview) · [Azure Arc overview](https://learn.microsoft.com/en-us/azure/azure-arc/overview)",
+    "blanks": [
+      {
+        "label": "구독 관리를 중앙화하려면:",
+        "options": ["Azure AD B2B", "Azure AD B2C", "Azure Lighthouse"]
+      },
+      {
+        "label": "온프레미스 리소스를 관리할 수 있게 하려면:",
+        "options": ["Azure Arc", "Azure Stack Edge", "Azure Stack Hub"]
+      }
+    ]
+  },
+  "34": {
+    "stem": "회사에 Azure Storage를 사용하는 Azure 구독이 있습니다.\n\n회사는 특정 Blob을 공급업체와 공유하려고 합니다. Blob을 공개로 만들지 않으면서 공급업체가 그 특정 Blob에 안전하게 접근할 수 있는 솔루션을 권장해야 합니다. 접근은 기간이 제한되어야 합니다.\n\n권장 사항에 무엇을 포함해야 합니까?",
+    "expl": "공유 액세스 서명(SAS)은 지정한 Azure Storage 리소스에 대해 안전하게 위임된 접근을 제공합니다. 권한을 제한하고 유효 기간을 지정할 수 있으므로, 공급업체가 저장소 계정 키를 알거나 Blob이 공개되지 않고도 의도한 Blob에만 제한된 기간 동안 접근할 수 있습니다.\n\n**Learn more:** [Grant limited access to Azure Storage resources using shared access signatures (SAS)](https://learn.microsoft.com/en-us/azure/storage/common/storage-sas-overview)",
+    "choices": [
+      "프라이빗 링크 연결을 구성한다.",
+      "고객 관리형 키(CMK)로 암호화를 구성한다.",
+      "액세스 키의 연결 문자열을 공유한다.",
+      "공유 액세스 서명(SAS)을 만든다."
+    ]
+  },
+  "35": {
+    "stem": "Microsoft 365 Defender로 보호되는 Microsoft 365 구독이 있습니다.\n\nMicrosoft Sentinel로 Microsoft 365와 Microsoft 365 Defender의 이벤트를 모니터링하는 보안 운영 전략을 설계하고 있습니다.\n\n다음 요구 사항을 충족하는 솔루션을 권장하세요.\n\n- Microsoft Sentinel을 타사 보안 공급업체와 통합해 알려진 맬웨어 정보를 가져온다.\n- 이벤트에서 명령 제어(C2) 서버의 IP 주소가 탐지되면 인시던트를 자동으로 만든다.\n\n각 요구 사항에 대해 Microsoft Sentinel에서 무엇을 구성해야 합니까?",
+    "expl": "위협 인텔리전스 커넥터는 Microsoft Sentinel을 지원되는 외부 위협 인텔리전스 원본과 통합하고, 알려진 악성 IP 주소와 맬웨어 관련 인텔리전스를 포함한 지표를 수집합니다. 예약된 분석 쿼리 규칙은 수집된 이벤트를 대상으로 실행되며, 쿼리가 명령 제어 IP 주소를 식별하면 인시던트를 만들 수 있습니다.\n\n**Learn more:** [Microsoft Sentinel threat intelligence integration](https://learn.microsoft.com/en-us/azure/sentinel/connect-threat-intelligence-tip) · [Microsoft Sentinel scheduled analytics rules](https://learn.microsoft.com/en-us/azure/sentinel/detect-threats-built-in)",
+    "blanks": [
+      {
+        "label": "Microsoft Sentinel을 타사 보안 공급업체와 통합:",
+        "options": [
+          "사용자 지정 엔터티 활동",
+          "플레이북",
+          "위협 탐지 규칙",
+          "위협 지표",
+          "위협 인텔리전스 커넥터"
+        ]
+      },
+      {
+        "label": "인시던트 자동 생성:",
+        "options": [
+          "사용자 지정 엔터티 활동",
+          "플레이북",
+          "예약된 쿼리 규칙",
+          "위협 지표",
+          "위협 인텔리전스 데이터 커넥터"
+        ]
+      }
+    ]
+  },
+  "36": {
+    "stem": "ID 요구 사항을 충족하면서 litware.com 포리스트를 보호하는 전략을 권장해야 합니다.\n\n권장 사항에 무엇을 포함해야 합니까?",
+    "expl": "Azure AD ID 보호(Identity Protection)는 Azure AD·Entra ID에서 위험한 사용자와 위험한 로그인을 식별하고 대응합니다. Microsoft Defender for Identity는 온프레미스 Active Directory의 신호를 분석해 AD DS를 노린 ID 공격을 탐지·조사·대응합니다.\n\n**Learn more:** [Microsoft Entra ID Protection overview](https://learn.microsoft.com/en-us/entra/id-protection/overview-identity-protection) · [Microsoft Defender for Identity deployment overview](https://learn.microsoft.com/en-us/defender-for-identity/deploy/deploy-defender-identity)",
+    "blanks": [
+      {
+        "label": "Azure AD를 노린 위협:",
+        "options": [
+          "Azure AD ID 보호(Identity Protection)",
+          "Azure AD 암호 보호(Password Protection)",
+          "Microsoft Defender for Cloud"
+        ]
+      },
+      {
+        "label": "AD DS를 노린 위협:",
+        "options": [
+          "AD DS의 계정 잠금 정책",
+          "Microsoft Defender for Endpoint",
+          "Microsoft Defender for Identity"
+        ]
+      }
+    ]
+  },
+  "37": {
+    "stem": "가상 데스크톱 인프라(VDI)가 포함된 Active Directory Domain Services(AD DS) 도메인이 있습니다. VDI는 비영구 이미지와 복제된 가상 머신 템플릿을 사용하며, VDI 장치는 도메인에 속해 있습니다.\n\nAzure Virtual Desktop 환경이 있는 Azure 구독이 있습니다. 이 환경에는 사용자 지정 골든 이미지를 사용하는 호스트 풀이 있습니다. 모든 Azure Virtual Desktop 배포는 Microsoft Entra Domain Services 도메인 하나에 속해 있습니다.\n\n다음 요구 사항을 충족하도록 호스트에 Microsoft Defender for Endpoint를 배포하는 방법을 권장하세요.\n\n- 호스트가 첫 시작 순서 중에 Defender for Endpoint에 온보딩된다.\n- Microsoft Defender 포털에 배포된 VDI 호스트마다 항목이 하나씩 있다.\n- 관리 부담을 최소화한다.\n\n무엇을 권장해야 합니까?",
+    "expl": "비영구 VDI 복제본에서는 복제본이 템플릿의 Defender for Endpoint ID를 그대로 물려받으므로 템플릿을 온보딩하지 않아야 합니다. VDI 온보딩 스크립트를 템플릿에 넣어 두면 복제본이 최종 호스트 이름을 받은 뒤 시작 스크립트로 실행되어 장치 항목이 하나씩 만들어집니다. Azure Virtual Desktop의 경우 Microsoft는 온보딩 스크립트를 골든 이미지에 추가·구성해 프로비저닝된 호스트마다 첫 부팅 때 실행되게 하라고 권장하며, 골든 이미지 자체는 온보딩하면 안 됩니다.\n\n**Learn more:** [Onboard non-persistent virtual desktop infrastructure (VDI) devices](https://learn.microsoft.com/en-us/defender-endpoint/configure-endpoints-vdi) · [Onboard Windows devices in Azure Virtual Desktop](https://learn.microsoft.com/en-us/defender-endpoint/onboard-windows-multi-session-device)",
+    "blanks": [
+      {
+        "label": "VDI의 경우:",
+        "options": [
+          "Defender for Endpoint 온보딩 스크립트를 가상 머신 템플릿에 추가한다.",
+          "사용자 지정 그룹 정책 개체(GPO)로 Defender for Endpoint를 배포한다.",
+          "가상 머신 템플릿을 Defender for Endpoint에 온보딩한다."
+        ]
+      },
+      {
+        "label": "Azure Virtual Desktop의 경우:",
+        "options": [
+          "Defender for Endpoint 온보딩 스크립트를 골든 이미지에 추가한다.",
+          "사용자 지정 그룹 정책 개체(GPO)로 Defender for Endpoint를 배포한다.",
+          "골든 이미지를 Defender for Endpoint에 온보딩한다."
+        ]
+      }
+    ]
+  },
+  "38": {
+    "stem": "서로 다른 개발자 그룹이 서로 다른 API 집합에 서로 다른 시간과 빈도로 접근할 수 있게 하는 Azure API Management 솔루션을 배포하려고 합니다.\n\n구매할 가격 책정 계층과 속도 제한 정책을 적용할 범위를 권장하세요. 솔루션은 다음 요구 사항을 충족해야 합니다.\n\n- 각 개발자 그룹이 특정 API 집합에만 접근할 수 있게 한다.\n- 각 API 집합에 특정 속도 제한을 구성할 수 있게 한다.\n- 개발·관리 부담과 비용을 최소화한다.\n\n무엇을 권장해야 합니까?",
+    "expl": "API Management의 제품(product)은 API를 묶고, 구독으로 어떤 개발자 그룹이 각 묶음을 사용할 수 있는지 제어합니다. 제품 범위의 속도 제한 정책은 그 제품에 속한 API에 제한을 적용하므로, API 범위 정책보다 중복 구성이 적으면서 API 집합별로 다른 제한을 둘 수 있습니다. Standard V2는 프로덕션 워크로드용으로 필요한 제품·정책 모델을 지원하며, 소비(Consumption) 계층은 유연한 rate-limit-by-key 정책을 지원하지 않습니다.\n\n**Learn more:** [Azure API Management key concepts](https://learn.microsoft.com/en-us/azure/api-management/api-management-key-concepts) · [Azure API Management rate-limit policy](https://learn.microsoft.com/en-us/azure/api-management/rate-limit-policy)",
+    "blanks": [
+      {
+        "label": "가격 책정 계층:",
+        "options": ["Basic V2", "Consumption", "Standard V2"]
+      },
+      {
+        "label": "범위:",
+        "options": ["API", "제품(Product)", "작업 영역(Workspace)"]
+      }
+    ]
+  },
+  "39": {
+    "stem": "사용자 지정 앱 15개가 있는 Azure 구독이 있습니다. 앱의 소스 파일은 Git 리포지토리에 보관되며, 앱은 Azure DevOps로 배포합니다.\n\n앱 코드에 하드코딩된 비밀을 찾아내기 위해 정적 애플리케이션 보안 테스트(SAST)를 구현하는 DevSecOps 솔루션을 권장해야 합니다.\n\n권장 사항에 무엇을 포함해야 합니까?",
+    "expl": "GitHub Advanced Security for Azure DevOps는 코드 리포지토리와 Git 기록까지 비밀 검사를 수행해 토큰·암호·키·자격 증명 같은 노출된 비밀을 찾아냅니다. Microsoft Defender for Cloud가 그 결과를 표시하고 우선순위를 매길 수 있지만, 코드 리포지토리 비밀 검사 자체는 GitHub Advanced Security에 의존합니다.\n\n**Learn more:** [Protect code repository secrets with Microsoft Defender for Cloud](https://learn.microsoft.com/en-us/azure/defender-for-cloud/secrets-scanning-code)",
+    "choices": [
+      "GitHub Advanced Security",
+      "Microsoft Defender for Key Vault",
+      "Microsoft Dev Box",
+      "Microsoft Defender for Cloud DevOps 보안"
+    ]
+  },
+  "40": {
+    "stem": "Microsoft 365 구독이 있습니다.\n\nMicrosoft Purview는 Microsoft Exchange Online과 SharePoint Online의 데이터만 보호하도록 구성되어 있습니다. 기밀 데이터를 식별하기 위한 사용자 지정 중요 정보 유형(SIT)이 만들어져 있습니다.\n\n사용자가 Windows 장치에서 타사 생성형 AI 웹사이트에 접속하는 것을 확인했습니다. 기밀 데이터가 포함된 AI 프롬프트를 차단하고 타사 웹사이트에 제출되는 프롬프트를 검사하는 솔루션을 권장해야 합니다.\n\n각 요구 사항에 무엇을 권장해야 합니까?",
+    "expl": "Microsoft Purview 엔드포인트 데이터 손실 방지는 DLP 정책에서 중요 정보 유형을 사용해, 타사 생성형 AI 웹사이트 제출을 포함한 지원되는 브라우저 활동으로 공유되는 중요 데이터를 탐지하고 차단할 수 있습니다. 엔드포인트 DLP가 해당 Windows 장치의 활동을 검사하고 정책을 적용하려면 먼저 장치를 Microsoft Purview에 온보딩해야 합니다.",
+    "blanks": [
+      {
+        "label": "AI 프롬프트를 차단하는 데 사용할 Microsoft Purview 솔루션:",
+        "options": [
+          "데이터 손실 방지",
+          "정보 장벽",
+          "정보 보호",
+          "내부 위험 관리"
+        ]
+      },
+      {
+        "label": "AI 프롬프트 검사를 사용하도록 설정하려면:",
+        "options": [
+          "각 사용자에게 Microsoft 365 Copilot 라이선스를 할당한다.",
+          "Microsoft Purview 정보 보호 스캐너를 배포한다.",
+          "데이터 커넥터를 구현한다.",
+          "각 장치를 Microsoft Purview에 온보딩한다."
+        ]
+      }
+    ]
+  },
+  "41": {
+    "stem": "한 고객이 Azure 구독 4개에 걸쳐 Azure Kubernetes Service(AKS) 리소스 10개에 Docker 이미지를 배포합니다.\n\n이 고객의 보안 상태를 평가하고 있습니다. AKS 리소스가 보안 점수 권장 사항에서 제외되어 있는 것을 발견했습니다.\n\n정확한 권장 사항을 생성하고 보안 점수를 갱신해야 합니다.\n\nMicrosoft Defender for Cloud에서 권장해야 할 작업 두 가지는 무엇입니까? 각 정답은 솔루션의 일부입니다.\n\n> **참고:** 각 정답 선택은 1점입니다.",
+    "expl": "Kubernetes 보안 기능과 권장 사항을 제공하려면 Microsoft Defender for Containers를 사용하도록 설정해야 합니다. 이 플랜에 자동 프로비저닝을 사용하도록 설정하면 Defender for Cloud가 지원되는 AKS 클러스터에 Defender 센서를 배포하며, 그 권장 사항에 필요한 모니터링과 평가가 가능해집니다.\n\n**Learn more:** [Exclude Kubernetes clusters from automatic Defender sensor deployment](https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-containers-exclude-cluster) · [Containers support matrix in Defender for Cloud](https://learn.microsoft.com/en-us/azure/defender-for-cloud/support-matrix-defender-for-containers)",
+    "choices": [
+      "Defender 플랜을 사용하도록 설정한다.",
+      "자동 프로비저닝을 구성한다.",
+      "워크플로 자동화를 추가한다.",
+      "규정 준수 정책을 할당한다.",
+      "인벤토리를 검토한다."
+    ]
+  },
+  "42": {
+    "stem": "한 고객에게 Microsoft 365 E5 구독과 Azure 구독이 있습니다.\n\n이 고객은 배포된 모든 서비스에 걸쳐 보안 인시던트를 중앙에서 관리하고, 로그를 분석하고, 활동을 감사하고, 잠재적 위협을 검색하려고 합니다.\n\n고객을 위한 솔루션을 권장해야 합니다.\n\n권장 사항에 무엇을 포함해야 합니까?",
+    "expl": "Microsoft Sentinel은 클라우드 네이티브 SIEM 플랫폼으로, 보안 인시던트 조사·관리를 중앙화하고 수집한 로그 데이터를 분석하며 활동과 쿼리 감사를 지원하고 조직 데이터 원본 전반에 대한 위협 헌팅 도구를 제공합니다.\n\n**Learn more:** [What is Microsoft Sentinel SIEM?](https://learn.microsoft.com/en-us/azure/sentinel/overview) · [Audit Microsoft Sentinel queries and activities](https://learn.microsoft.com/en-us/azure/sentinel/audit-sentinel-data)",
+    "choices": [
+      "Microsoft Defender for Cloud",
+      "Microsoft Defender for Cloud Apps",
+      "Microsoft 365 Defender",
+      "Microsoft Sentinel"
+    ]
+  },
+  "43": {
+    "stem": "Microsoft 365 E5 구독이 있습니다.\n\nMicrosoft Teams 채널에 게시된 메시지와 Teams 채널에 저장된 파일을 노린 랜섬웨어 공격을 완화해야 합니다.\n\n각 콘텐츠 종류에 대해 솔루션에 무엇을 포함해야 합니까?",
+    "expl": "Teams 채널 메시지는 숨겨진 Exchange Online 사서함에 저장되고 Teams 채널 파일은 SharePoint·OneDrive에 저장되므로, 각 콘텐츠 종류는 그 기반 서비스의 기본 제어로 보호됩니다. 메시지의 경우 Exchange Online Protection(EOP)이 콘텐츠와 첨부 파일을 실시간으로 검사해 알려졌거나 의심되는 맬웨어·랜섬웨어가 포함된 항목을 삭제하며, 이것이 Microsoft가 Exchange 기반 데이터에 대해 문서화한 랜섬웨어 완화책입니다. 보존 보류 라이브러리(Preservation Hold library)는 SharePoint 파일용 구성 요소라 메시지에는 해당하지 않고, 단일 항목 복구는 삭제된 메일 항목을 복구할 뿐 랜섬웨어를 완화하지는 않습니다. 파일의 경우 파일 복원(Files Restore)으로 SharePoint·OneDrive 라이브러리를 지난 30일 이내의 정상 시점으로 되돌릴 수 있어 암호화 사고에서 바로 복구할 수 있는 반면, 소송 보존과 보존 보류 라이브러리는 보존·eDiscovery 메커니즘이지 특정 시점 복원 도구가 아닙니다.\n\n**Learn more:** [Ransomware protection in Microsoft 365](https://learn.microsoft.com/en-us/compliance/assurance/assurance-shared-ransomware-protection)",
+    "blanks": [
+      {
+        "label": "메시지:",
+        "options": [
+          "Exchange Online Protection(EOP)",
+          "단일 항목 복구",
+          "보존 보류 라이브러리"
+        ]
+      },
+      {
+        "label": "파일:",
+        "options": [
+          "파일 복원(Files Restore)",
+          "소송 보존(Litigation Hold)",
+          "보존 보류 라이브러리"
+        ]
+      }
+    ]
+  },
+  "44": {
+    "stem": "회사에서 빅 데이터 솔루션을 Azure로 마이그레이션하고 있습니다.\n\n회사는 다음 저장소 워크로드를 사용하려고 합니다.\n\n- Azure Storage Blob 컨테이너\n- Azure Data Lake Storage Gen2\n- Azure Storage 파일 공유 -\n\n[[IMG1]]\n\n- Azure Disk Storage\n\nAzure Active Directory(Azure AD) 인증을 지원하는 저장소 워크로드 두 가지는 무엇입니까? 각 정답은 완전한 해결책입니다.\n\n> **참고:** 각 정답 선택은 1점입니다.",
+    "expl": "Azure Blob Storage는 OAuth 토큰과 Azure RBAC를 통해 Microsoft Entra ID 인증을 지원합니다. Azure Data Lake Storage Gen2는 Azure Blob Storage 위에 구현되어 있어 RBAC와 ACL 기반 권한 부여에 Microsoft Entra ID를 사용할 수 있습니다. Azure Disk Storage는 이런 데이터 액세스 인증 모델을 제공하지 않습니다.\n\n**Learn more:** [Authorize access to blobs using Microsoft Entra ID](https://learn.microsoft.com/en-us/azure/storage/blobs/authorize-access-azure-active-directory) · [Access control model in Azure Data Lake Storage](https://learn.microsoft.com/en-us/azure/storage/blobs/data-lake-storage-access-control-model)",
+    "choices": [
+      "Azure Storage 파일 공유",
+      "Azure Disk Storage",
+      "Azure Storage Blob 컨테이너",
+      "Azure Data Lake Storage Gen2"
+    ]
+  },
+  "45": {
+    "stem": "회사에서 온프레미스 가상 머신을 모두 Azure로 마이그레이션하려고 합니다.\n\n네트워크 엔지니어가 다음 표와 같은 Azure 가상 네트워크 설계를 제안했습니다.\n\n[[IMG1]]\n\n모든 가상 머신에 안전한 원격 접근을 제공하는 Azure Bastion 배포를 권장해야 합니다.\n\n이 가상 네트워크 설계를 기준으로 필요한 Azure Bastion 서브넷은 몇 개입니까?",
+    "expl": "Azure Bastion 호스트는 자기 가상 네트워크와 직접 피어링된 가상 네트워크의 가상 머신에 RDP·SSH 접근을 제공합니다. Hub VNet에 배포한 Bastion은 Hub VNet, VNet1, VNet2를 담당할 수 있고, VNet3이나 VNet4 중 한 곳에 배포한 두 번째 Bastion이 그 두 피어링 가상 네트워크를 담당할 수 있습니다. 두 피어링 그룹이 서로 연결되어 있지 않으므로 전용 AzureBastionSubnet 서브넷이 두 개 필요합니다.\n\n**Learn more:** [VNet peering and Azure Bastion architecture](https://learn.microsoft.com/en-us/azure/bastion/vnet-peering)",
+    "choices": ["1", "2", "3", "4", "5"]
+  },
+  "46": {
+    "stem": "contoso.onmicrosoft.com이라는 Microsoft Entra 테넌트와 Sub1이라는 Azure 구독이 있습니다.\n\n빠른 Verified ID 설정(Quick Verified ID setup)으로 Microsoft Entra Verified ID를 구현해야 합니다.\n\n가장 먼저 무엇을 만들어야 합니까?",
+    "expl": "빠른 Verified ID 설정에는 Microsoft Entra 테넌트에 등록된 사용자 지정 도메인이 필요합니다. 사용자 지정 도메인이 없으면 빠른 설정을 사용할 수 없고 테넌트는 고급 설정 환경으로 넘어갑니다. 빠른 설정은 Microsoft가 관리하는 공유 서명 키를 사용하므로 Azure Key Vault나 사용자 할당 관리 ID가 필요하지 않습니다.\n\n**Learn more:** [Quick Microsoft Entra Verified ID setup](https://learn.microsoft.com/en-us/entra/verified-id/verifiable-credentials-configure-tenant-quick)",
+    "choices": [
+      "contoso.onmicrosoft.com의 보안 주체",
+      "contoso.onmicrosoft.com의 사용자 지정 도메인",
+      "Sub1의 사용자 할당 관리 ID",
+      "Sub1의 Azure 키 자격 증명 모음"
+    ]
+  },
+  "47": {
+    "stem": "회사에서 IT 환경에 제로 트러스트 신속한 현대화 계획(RaMP)을 적용하려고 합니다.\n\n이 계획의 일부로 집중해야 할 최우선 현대화 영역 세 가지를 권장해야 합니다.\n\nRaMP에 따라 권장해야 할 영역 세 가지는 무엇입니까? 각 정답은 솔루션의 일부입니다.\n\n> **참고:** 각 정답 선택은 1점입니다.",
+    "expl": "RaMP의 최우선 이니셔티브는 안전한 사용자 접근과 생산성, 데이터 보호와 거버넌스, 보안 운영 현대화를 다룹니다. 이 세 가지가 제로 트러스트에 필요한 명시적 접근 검증, 데이터 보호·규정 준수 제어, 탐지·조사·대응 역량을 마련합니다. OT·IoT와 인프라·개발 이니셔티브는 필요에 따라 적용하는 것이지 모든 조직의 최우선 세 가지는 아닙니다.\n\n**Learn more:** [RaMP Checklist—Explicitly validate trust for all access requests](https://learn.microsoft.com/en-us/security/zero-trust/user-access-productivity-validate-trust) · [Secure data with Zero Trust](https://learn.microsoft.com/en-us/security/zero-trust/deploy/data)",
+    "choices": [
+      "데이터·규정 준수·거버넌스",
+      "인프라와 개발",
+      "사용자 접근과 생산성",
+      "운영 기술(OT)과 IoT",
+      "현대적 보안 운영"
+    ]
+  },
+  "48": {
+    "stem": "Group1이라는 보안 그룹이 있는 Microsoft Entra 테넌트가 있습니다. Group1에는 회사 IT 지원 팀원이 포함되어 있습니다.\n\nAzure 구독에는 Microsoft Entra 조인 Windows 장치 800대와 Microsoft Entra 등록 Windows 장치 200대가 있습니다. 또한 독립 실행형 macOS 장치 200대가 있습니다.\n\nMicrosoft Entra 조인 Windows 장치 10대를 배포하고 Microsoft Entra ExtensionAttribute1을 `SecureWorkstation`으로 설정했습니다.\n\n다음 요구 사항을 충족하는 조건부 액세스 솔루션을 권장하세요.\n\n- Windows 10 또는 Windows 11을 실행하는 장치에서만 Microsoft Entra 리소스에 접근할 수 있게 한다.\n- Group1 구성원의 Windows Azure Service Management API 접근을 다단계 인증(MFA)으로 인증하고 ExtensionAttribute1이 `SecureWorkstation`인 장치에서 연결하는 사용자로 제한한다.\n\n솔루션은 보안을 최대한 강화하면서 필요한 정책 수를 최소화해야 합니다.\n\n권장 사항에 무엇을 포함해야 합니까?",
+    "expl": "장치 제한은 제외(exclude) 장치 필터를 사용하는 차단 정책으로 적용합니다. 광범위한 차단 정책에서 Windows 10·11 필터를 제외하면 해당 장치는 허용되고 그 밖의 장치는 차단됩니다. Group1과 Windows Azure Service Management API를 대상으로 하는 차단 정책에서 `SecureWorkstation` 필터를 제외하면 다른 모든 장치에서 그 API가 차단됩니다. MFA는 차단 제어와 결합해 예외를 만들 수 없으므로 MFA 부여 제어를 쓰는 별도의 조건부 액세스 정책이 필요합니다. 따라서 정책 3개와 제외 장치 필터 2개가 필요합니다.\n\n**Learn more:** [Filter for devices as a condition in Conditional Access policy](https://learn.microsoft.com/en-us/entra/identity/conditional-access/concept-condition-filters-for-devices)",
+    "blanks": [
+      {
+        "label": "조건부 액세스 정책:",
+        "options": ["1", "2", "3"]
+      },
+      {
+        "label": "장치 필터:",
+        "options": [
+          "제외 장치 필터 2개",
+          "포함 장치 필터 2개",
+          "포함 장치 필터 1개와 제외 장치 필터 1개"
+        ]
+      }
+    ]
+  }
+}

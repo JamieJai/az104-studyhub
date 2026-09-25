@@ -31,6 +31,12 @@ const WEIGHTS = {
     'Describe Azure architecture and services': [35, 40],
     'Describe Azure management and governance': [30, 35],
   },
+  sc100: {
+    'Design solutions that align with security best practices and priorities': [20, 25],
+    'Design security operations, identity, and compliance capabilities': [30, 35],
+    'Design security solutions for infrastructure': [20, 25],
+    'Design security solutions for applications and data': [20, 25],
+  },
   ai103: {
     'Plan and manage an Azure AI solution': [25, 30],
     'Implement generative AI and agentic solutions': [30, 35],
@@ -52,6 +58,10 @@ const TOPIC_KO = {
   'Implement computer vision solutions': '컴퓨터 비전 구현',
   'Implement text analysis solutions': '텍스트 분석 구현',
   'Implement information extraction solutions': '정보 추출 구현',
+  'Design solutions that align with security best practices and priorities': '보안 모범 사례·우선순위 설계',
+  'Design security operations, identity, and compliance capabilities': '보안 운영·ID·규정 준수 설계',
+  'Design security solutions for infrastructure': '인프라 보안 설계',
+  'Design security solutions for applications and data': '애플리케이션·데이터 보안 설계',
 };
 
 const src = JSON.parse(fs.readFileSync(path.resolve(REPO, srcJson), 'utf8'));
@@ -158,6 +168,7 @@ const SUBTITLES = {
   az900: 'Azure Fundamentals 연습',
   ai103: 'Azure AI Engineer 연습',
   sc300: 'Identity and Access Administrator 연습',
+  sc100: 'Cybersecurity Architect 연습',
 };
 const subtitle = SUBTITLES[examId] || process.argv[8] || String(src.source || '').split('://').pop();
 let app = fs.readFileSync(path.join(TPL, 'app.js'), 'utf8').split('\r\n').join('\n');
@@ -176,6 +187,7 @@ html = html.replace(/<title>SC-300 CBT<\/title>/, `<title>${title} CBT</title>`)
   .replace(/<strong>SC-300 CBT<\/strong><small>[^<]*<\/small>/, `<strong>${title} CBT</strong><small>${subtitle}</small>`)
   .replace(/<body class="exam-sc300">/, `<body class="exam-${examId}">`)   // 과목 색: dist/cbt-theme.css 의 body.exam-* 와 짝
   .replace(/SC-300 CBT · 진행상황/, `${title} CBT · 진행상황`)
+  .replace(/class="dataset-note">SC-300 /, `class="dataset-note">${title} `)   // 시작 화면 문항 수 안내 줄
   .replace(/SC-300 문제를<br>/, `${title} 문제를<br>`)
   .replace(/문항 번호로 이동 \(1~\d+\)/, `문항 번호로 이동 (1~${Math.max(...questions.map(q => q.n))})`)
   .replace(/출처: examcademy\.com SC-300[^<]*/, `출처: ${(src.source || '').replace(/^https?:\/\//, '')} · 번역 준비 중(영어 원문)`);

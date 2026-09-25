@@ -11,6 +11,7 @@ export const EXAMS = {
   az305: { title: "AZ-305", path: "/AZ-305_CBT/" },
   az900: { title: "AZ-900", path: "/AZ-900_CBT/" },
   ai103: { title: "AI-103", path: "/AI-103_CBT/" },
+  sc100: { title: "SC-100", path: "/SC-100_CBT/" },
 };
 export const DEFAULT_EXAM = "az104";   // 옛 클라이언트(exam 미지정)는 AZ-104
 

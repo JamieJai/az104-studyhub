@@ -1,0 +1,191 @@
+{
+  "273": {
+    "stem": "조직에 본사와 지사가 있습니다.\n\n본사에는 Microsoft Entra 애플리케이션 프록시로 게시한 애플리케이션을 호스트하는 온프레미스 Windows Server 서버 20대가 있습니다. 본사에는 Windows 11을 실행하는 온프레미스 컴퓨터 500대가 있습니다. 지사에는 Windows 11을 실행하는 온프레미스 컴퓨터 100대가 있습니다.\n\n본사의 모든 컴퓨터는 Microsoft Intune에 등록되어 있습니다. 지사 컴퓨터는 Intune에 등록되어 있지 **않습니다**.\n\nMicrosoft 365 E5 구독이 있습니다.\n\nMicrosoft Entra 테넌트가 있습니다. 타사 SaaS(software as a service) 앱이 Microsoft Entra 테넌트에 등록되어 있습니다.\n\nGlobal Secure Access를 구현하려고 합니다.\n\n조건부 액세스와 함께 규정 준수 네트워크 검사를 평가하고 있습니다.\n\n규정 준수 네트워크 검사가 지원하는 시나리오 두 가지는 무엇입니까? 각 정답은 완전한 해결책입니다.\n\n> **참고:** 각 정답 선택은 1점입니다.",
+    "expl": "Global Secure Access의 규정 준수 네트워크 검사는 조건부 액세스와 통합되어 Microsoft Entra ID 통합 리소스의 로그인을 보호하며, Microsoft 앱, 타사 SaaS 앱, 사설 업무용 애플리케이션을 명시적으로 포함합니다. 따라서 사용자가 Global Secure Access 클라이언트로 연결하는 한 타사 SaaS 앱과 Microsoft Entra 애플리케이션 프록시로 게시한 온프레미스 애플리케이션 모두 지원 범위에 들어갑니다.\n\n**Learn more:** [Enable Compliant Network Check with Conditional Access - Global Secure Access | Microsoft Learn](https://learn.microsoft.com/en-us/entra/global-secure-access/how-to-compliant-network)",
+    "choices": [
+      "타사 SaaS 앱으로의 연결",
+      "지사 컴퓨터에서 오는 연결",
+      "Microsoft Exchange Online의 연속 액세스 평가",
+      "온프레미스 앱으로의 연결"
+    ]
+  },
+  "274": {
+    "stem": "Active Directory Domain Services(AD DS) 도메인과 동기화되는 Azure AD 테넌트가 있습니다.\n\n온프레미스 데이터센터에 서버 100대가 있습니다. 이 서버는 Windows Server를 실행하며 Microsoft Azure Backup Server(MABS)로 백업합니다.\n\n랜섬웨어 공격에 대한 복구 솔루션을 설계하고 있습니다. 솔루션은 Microsoft 보안 모범 사례를 따릅니다.\n\n침해된 관리자 계정으로 백업을 삭제할 수 없게 해야 합니다.\n\n무엇을 해야 합니까?",
+    "expl": "Azure Backup의 다중 사용자 인증은 리소스 가드로 중요 작업을 보호합니다. 별도의 리소스 가드에 대한 권한이 있어야 하므로, 그 권한이 없는 백업 관리자 계정은 보호된 삭제 관련 작업을 단독으로 수행할 수 없습니다.\n\n**Learn more:** [Configure Multi-user authorization using Resource Guard in Azure Backup](https://learn.microsoft.com/en-us/azure/backup/multi-user-authorization) · [Security features that protect hybrid backups](https://learn.microsoft.com/en-us/azure/backup/backup-azure-security-feature)",
+    "choices": [
+      "Azure Backup에서 리소스 가드로 다중 사용자 인증을 구성한다.",
+      "Microsoft Azure Backup 설치 프로그램에서 MABS를 Recovery Services 자격 증명 모음에 등록한다.",
+      "Recovery Services 자격 증명 모음에서 중요 작업용 보안 PIN을 생성한다.",
+      "Azure AD Privileged Identity Management(PIM)에서 백업 참가자 역할에 대한 역할 할당을 만든다."
+    ]
+  },
+  "275": {
+    "stem": "Microsoft Defender for Cloud가 사용하도록 설정된 Azure 구독이 있습니다.\n\n다음 그림과 같은 Azure 보안 벤치마크 V3 보고서를 검토하고 있습니다.\n\n[[IMG1]]\n\nWindows를 실행하는 모든 가상 머신에 Microsoft Defender for Servers가 설치되어 있는지 확인해야 합니다.\n\n어떤 규정 준수 제어를 평가해야 합니까?",
+    "expl": "엔드포인트 보안(Endpoint Security)은 Azure 엔드포인트의 엔드포인트 탐지·대응과 맬웨어 방지 제어를 다룹니다. Microsoft Defender for Servers는 Microsoft Defender for Endpoint와 통합되어 가상 머신에 EDR 기능을 제공하므로, 그 배포 여부는 엔드포인트 보안 제어 영역에서 평가합니다.\n\n**Learn more:** [Microsoft cloud security benchmark - Endpoint security](https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-endpoint-security) · [Overview of the Azure Security Benchmark v3](https://learn.microsoft.com/en-us/security/benchmark/azure/overview-v3)",
+    "choices": [
+      "자산 관리",
+      "상태 및 취약성 관리",
+      "데이터 보호",
+      "엔드포인트 보안",
+      "인시던트 대응"
+    ]
+  },
+  "276": {
+    "stem": "Azure 구독이 있습니다.\n\nAzure DevOps로 Azure App Service 앱을 배포하려고 합니다.\n\n배포된 앱이 Microsoft 클라우드 보안 벤치마크(MCSB) 권장 사항을 계속 준수하도록 보장하는 솔루션을 권장해야 합니다.\n\n권장 사항에 무엇을 포함해야 합니까?",
+    "expl": "Microsoft 클라우드 보안 벤치마크는 Defender for Cloud에서 Azure Policy로 뒷받침되는 보안 권장 사항으로 적용되며, 배포된 App Service 리소스가 MCSB 권장 사항을 계속 준수하게 하는 것은 Azure Policy(감사, 거부, DeployIfNotExists·Enforce 효과)입니다. Azure DevOps로 배포했는지 여부와는 무관합니다. 'Microsoft Defender for Cloud의 DevOps 보안'(A)은 비밀 검사나 IaC 검사 같은 파이프라인·리포지토리 상태를 평가하고, Microsoft Defender for App Service(B)는 런타임 위협 보호를 제공할 뿐 리소스 수준의 MCSB 준수를 강제하지는 않습니다. 분기 정책(D)은 소스 제어를 규율할 뿐 Azure 리소스 준수와는 무관합니다. 따라서 Azure Policy가 정답입니다.\n\n**Learn more:** [Manage MCSB in Microsoft Defender for Cloud](https://learn.microsoft.com/en-us/azure/defender-for-cloud/manage-mcsb)",
+    "choices": [
+      "Microsoft Defender for Cloud의 DevOps 보안",
+      "Microsoft Defender for App Service",
+      "Azure Policy",
+      "Azure DevOps의 분기 정책"
+    ]
+  },
+  "277": {
+    "stem": "회사에 Office1과 Office2라는 사무실이 두 곳 있습니다. 두 사무실에는 Microsoft Entra에 조인된 온프레미스 Windows 11 장치 1,000대가 있습니다.\n\nMicrosoft 365 구독이 있고 Microsoft Intune을 사용합니다.\n\n사무실에서 Microsoft 365로 Microsoft Entra Internet Access를 배포하려고 합니다.\n\nMicrosoft 365 프로필을 사용하도록 설정하고 다음과 같이 구성합니다.\n\n- 모든 Microsoft 365 트래픽에 대한 트래픽 정책\n- 다음과 같이 구성한 연결된 조건부 액세스 정책\n  - 모든 사용자에게 적용\n  - 규정 준수 네트워크 검사 수행\n  - 규정을 준수하는 장치의 Microsoft 365 트래픽 허용\n- 모든 장치에 대한 할당\n- Office1과 연결된 원격 네트워크에 대한 할당\n\nOffice2의 모든 장치에 Global Secure Access 클라이언트를 배포하고 연결을 맺습니다.\n\n규정을 준수하는 장치에서 Microsoft 365 서비스에 접근할 수 있는 사용자와, 규정을 준수하지 않는 장치를 사용할 때 Microsoft 365 서비스 접근이 차단되는 사용자를 식별하세요.",
+    "expl": "Microsoft 트래픽 프로필은 Global Secure Access 클라이언트나 할당된 원격 네트워크를 통해 트래픽을 전달할 수 있습니다. 규정 준수 네트워크 조건부 액세스 검사는 Global Secure Access 서비스를 통해 연결한 사용자면 충족되며, 구성된 Office1 원격 네트워크 뒤에 있는 사용자도 포함됩니다. 따라서 클라이언트로 연결된 Office2의 규정 준수 장치와 Office1의 장치가 Microsoft 365에 접근할 수 있습니다. Office2의 규정 미준수 장치는 할당된 원격 네트워크 뒤에 있지 않아 규정 준수 네트워크 검사를 충족할 수 없는 반면, Office1의 장치는 원격 네트워크를 통해 충족할 수 있습니다.\n\n**Learn more:** [Enable compliant network check with Conditional Access](https://learn.microsoft.com/en-us/entra/global-secure-access/how-to-compliant-network) · [How to enable and manage the Microsoft profile](https://learn.microsoft.com/en-us/entra/global-secure-access/how-to-manage-microsoft-profile)",
+    "blanks": [
+      {
+        "label": "규정을 준수하는 장치:",
+        "options": ["Office1만", "Office2만", "Office1과 Office2"]
+      },
+      {
+        "label": "규정을 준수하지 않는 장치:",
+        "options": ["Office1만", "Office2만", "Office1과 Office2"]
+      }
+    ]
+  },
+  "278": {
+    "stem": "Microsoft Defender XDR와 Microsoft Purview를 사용하는 Microsoft 365 구독이 있습니다.\n\nMicrosoft SharePoint Online 사이트에 민감도 레이블이 적용된 File1이라는 파일이 있습니다.\n\n사용자가 SharePoint 사이트에서 File1을 다운로드할 때 조건부 액세스 정책을 다시 평가하는 솔루션을 권장해야 합니다.\n\n권장 사항에 무엇을 포함해야 합니까?",
+    "expl": "Microsoft Defender for Cloud Apps의 조건부 액세스 앱 제어는 SharePoint Online에 실시간 세션 제어를 제공합니다. 인증 컨텍스트 기능을 사용하면 민감도 레이블이 지정된 파일 다운로드처럼 세션 중 중요한 작업이 발생할 때 Microsoft Entra 조건부 액세스 정책을 다시 평가할 수 있습니다.\n\n**Learn more:** [Conditional Access app control - Microsoft Defender for Cloud Apps](https://learn.microsoft.com/el-gr/defender-cloud-apps/proxy-intro-aad)",
+    "choices": [
+      "Microsoft Defender for Cloud Apps",
+      "Microsoft Defender for Cloud",
+      "Microsoft Defender for Office 365",
+      "Microsoft Entra 애플리케이션 프록시"
+    ]
+  },
+  "279": {
+    "stem": "Azure 구독, Amazon Web Services(AWS) 구독, Google Cloud Platform(GCP) 구독이 있는 멀티클라우드 환경이 있습니다.\n\nMicrosoft Defender for Cloud로 클라우드 보안 상태 관리(CSPM)를 구현하려고 합니다.\n\n각 구독에 공격 경로 분석 기능을 제공하는 솔루션을 설계해야 합니다.\n\n솔루션에 무엇을 포함해야 합니까?",
+    "expl": "Microsoft Defender for Cloud의 공격 경로 분석은 취약점 정보를 포함한 상황 보안 데이터를 필요로 합니다. 에이전트 없는 검사를 사용하도록 설정하면 Azure VM, AWS EC2 인스턴스, GCP 컴퓨팅 인스턴스에 대한 취약점 평가 데이터가 제공되어, 연결된 멀티클라우드 환경 전반의 공격 경로 분석을 뒷받침합니다.\n\n**Learn more:** [Security explorer and attack paths in Microsoft Defender for Cloud](https://learn.microsoft.com/en-us/azure/defender-for-cloud/concept-attack-path) · [Agentless machine scanning in Microsoft Defender for Cloud](https://learn.microsoft.com/en-us/azure/defender-for-cloud/concept-agentless-data-collection)",
+    "choices": [
+      "규정 준수",
+      "Microsoft Defender 외부 공격 표면 관리(Defender EASM)",
+      "에이전트 없는 검사",
+      "Microsoft 클라우드 보안 벤치마크(MCSB)"
+    ]
+  },
+  "280": {
+    "stem": "App Service 웹앱의 연결 전략을 권장해야 합니다. 솔루션은 랜딩 존 요구 사항을 충족해야 합니다.\n\n무엇을 권장해야 합니까?",
+    "expl": "가상 네트워크 통합은 App Service 웹앱이 가상 머신을 포함한 가상 네트워크 리소스로 나가는 아웃바운드 접근을 제공합니다. 프라이빗 엔드포인트는 가상 네트워크의 리소스에서 App Service 앱으로 들어오는 사설 인바운드 접근을 제공합니다. 서비스 엔드포인트는 VNet에서 지원되는 Azure PaaS 서비스로의 접근을 보호하지만, 여기서 필요한 App Service 아웃바운드 통합은 제공하지 않습니다.\n\n**Learn more:** [Integrate your app with an Azure virtual network](https://learn.microsoft.com/en-us/azure/app-service/overview-vnet-integration) · [Use private endpoints for Azure App Service apps](https://learn.microsoft.com/en-us/azure/app-service/networking/private-endpoint)",
+    "blanks": [
+      {
+        "label": "App Service 웹앱에서 가상 머신으로 연결하려면:",
+        "options": ["프라이빗 엔드포인트", "서비스 엔드포인트", "가상 네트워크 통합"]
+      },
+      {
+        "label": "가상 머신에서 App Service 웹앱으로 연결하려면:",
+        "options": ["프라이빗 엔드포인트", "서비스 엔드포인트", "가상 네트워크 통합"]
+      }
+    ]
+  },
+  "281": {
+    "stem": "Microsoft 365 구독이 있습니다.\n\n다음과 같이 구성된 조건부 액세스 정책이 있습니다.\n\n- **이름:** Policy1\n- **할당**\n  - **사용자:**\n    - **포함:** 모든 사용자\n  - **대상 리소스:**\n    - **포함:** 앱 선택; Office 365\n  - **네트워크:**\n    - **포함:** 모든 네트워크 또는 위치\n    - **제외:** 선택한 네트워크 및 위치; Site1\n  - **액세스 제어:**\n    - **부여:** 다단계 인증 요구, 하이브리드 Microsoft Entra 조인 장치 요구\n\n제로 트러스트 신속한 현대화 계획(RaMP)을 구현하려고 합니다.\n\nPolicy1이 RaMP 모범 사례 권장 사항에 맞도록 해야 합니다.\n\n어떤 설정을 바꿔야 합니까?",
+    "expl": "RaMP는 공용 네트워크와 사설 네트워크 모두에서 접근 전에 사용자와 장치의 신뢰를 명시적으로 검증할 것을 요구합니다. Site1 제외는 그 위치에서 오는 연결에 조건부 액세스 요구 사항이 평가되지 않게 만들어, 네트워크 위치에 기반한 암묵적 신뢰를 만듭니다. 따라서 Site1 제외를 없애거나 바꿔 그곳에도 제어가 적용되게 해야 합니다.\n\n**Learn more:** [RaMP Checklist—Explicitly validate trust for all access requests](https://learn.microsoft.com/en-us/security/zero-trust/user-access-productivity-validate-trust) · [Conditional Access: Network assignment](https://learn.microsoft.com/en-us/entra/identity/conditional-access/concept-assignment-network)",
+    "choices": [
+      "포함: 모든 네트워크 또는 위치",
+      "제외: 선택한 네트워크 및 위치; Site1",
+      "부여: 하이브리드 Microsoft Entra 조인 장치 요구",
+      "부여: 다단계 인증 요구"
+    ]
+  },
+  "282": {
+    "stem": "Azure 구독이 있습니다.\n\n온프레미스 데이터센터에 Windows Server를 실행하는 서버 20대가 있습니다. 모든 서버는 Azure Arc에 온보딩되어 있고 Microsoft Defender for Servers 플랜 1로 보호됩니다.\n\nMicrosoft 365 구독이 있습니다.\n\n하드웨어 드라이버나 펌웨어가 오래된 서버를 식별하는 솔루션을 권장해야 합니다.\n\n권장 사항에 무엇을 포함해야 합니까?",
+    "expl": "Microsoft Defender 취약성 관리의 하드웨어·펌웨어 평가는 서버 하드웨어, 프로세서, BIOS를 목록화하고 관련 약점을 식별하며 펌웨어 업데이트 권장 사항을 보여 줄 수 있습니다. 이 평가는 Microsoft Defender for Servers 플랜 1이 아니라 플랜 2에서 제공되는 프리미엄 기능입니다.\n\n**Learn more:** [Hardware and firmware assessment - Microsoft Defender Vulnerability Management](https://learn.microsoft.com/en-us/defender-vulnerability-management/tvm-hardware-and-firmware) · [Compare Microsoft Defender Vulnerability Management plans and capabilities](https://learn.microsoft.com/en-us/defender-vulnerability-management/defender-vulnerability-management-capabilities)",
+    "choices": [
+      "모든 서버를 Microsoft Defender for Servers 플랜 2로 변경한다.",
+      "Microsoft Intune Suite 추가 기능을 추가한다.",
+      "모든 서버를 Azure Update Manager에 온보딩한다.",
+      "Microsoft Defender 취약성 관리 추가 기능을 추가한다."
+    ]
+  },
+  "283": {
+    "stem": "회사에서 Microsoft Defender for Cloud와 Microsoft Sentinel을 사용합니다. 회사는 다음 그림과 같은 아키텍처의 애플리케이션을 계획하고 있습니다.\n\n[[IMG1]]\n\n제안된 아키텍처를 위한 로깅·감사를 설계하고 있습니다. 솔루션은 다음 요구 사항을 충족해야 합니다.\n\n- Azure 웹 애플리케이션 방화벽(WAF) 로그를 Microsoft Sentinel과 통합한다.\n- Defender for Cloud로 가상 머신의 경고를 검토한다.\n\n솔루션에 무엇을 포함해야 합니까?",
+    "expl": "Microsoft Sentinel은 Azure 웹 애플리케이션 방화벽 데이터 커넥터로 WAF 로그 데이터를 수집해 분석합니다. Log Analytics 에이전트는 기존 Defender for Cloud 모니터링 모델에서 VM 보안 이벤트를 수집해, Defender for Cloud가 데이터를 분석하고 보안 경고를 표시할 수 있게 합니다. 이 에이전트는 이후 신규 배포에서는 사용이 중단되었지만, 주어진 선택지 중에서는 이것이 해당합니다.\n\n**Learn more:** [Using Microsoft Sentinel with Azure Web Application Firewall](https://learn.microsoft.com/en-us/azure/web-application-firewall/waf-sentinel) · [Reference table for compute security recommendations in Microsoft Defender for Cloud](https://learn.microsoft.com/en-us/azure/defender-for-cloud/recommendations-reference-compute)",
+    "blanks": [
+      {
+        "label": "WAF의 경우:",
+        "options": [
+          "Azure 진단 확장",
+          "Azure Network Watcher",
+          "데이터 커넥터",
+          "워크플로 자동화"
+        ]
+      },
+      {
+        "label": "가상 머신의 경우:",
+        "options": [
+          "Azure 진단 확장",
+          "Azure Storage 분석",
+          "데이터 커넥터",
+          "Log Analytics 에이전트",
+          "워크플로 자동화"
+        ]
+      }
+    ]
+  },
+  "284": {
+    "stem": "Microsoft Defender for Servers 플랜 1로 보호되는 Windows Server 2022 가상 머신 200대가 있는 Azure 구독이 있습니다. Amazon Web Services(AWS) 구독도 있습니다.\n\nAWS 구독에 Windows Server 2022 가상 머신 100대를 배포하려고 합니다.\n\nAWS 구독의 가상 머신에 배포할 에이전트를 권장해야 합니다. 솔루션은 다음 요구 사항을 충족해야 합니다.\n\n- 모든 클라우드 플랫폼에서 일관된 워크로드 보호를 제공한다.\n- 가상 머신마다 배포하는 에이전트 수를 최소화한다.\n\n무엇을 권장해야 합니까?",
+    "expl": "Microsoft Defender for Servers 플랜 1은 Microsoft Defender for Endpoint가 제공하는 엔드포인트 탐지·대응 기능에 중점을 둡니다. AWS 가상 머신은 Microsoft Defender for Endpoint 에이전트로 Defender for Servers 플랜 1에 직접 온보딩할 수 있으므로, 서버당 에이전트 하나로 일관된 보호를 제공할 수 있습니다.\n\n**Learn more:** [Connect your non-Azure servers to Microsoft Defender for Cloud with Defender for Endpoint](https://learn.microsoft.com/en-us/azure/defender-for-cloud/onboard-machines-with-defender-for-endpoint) · [Overview of Defender for Servers in Microsoft Defender for Cloud](https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-servers-overview)",
+    "choices": [
+      "Log Analytics 에이전트",
+      "Azure Connected Machine 에이전트",
+      "Microsoft Defender for Endpoint 에이전트",
+      "Azure Monitor 에이전트"
+    ]
+  },
+  "285": {
+    "stem": "contoso.com이라는 Microsoft Entra 테넌트가 있습니다.\n\n외부 협력사에 fabrikam.com이라는 Microsoft Entra 테넌트가 있습니다.\n\n다음 요구 사항을 충족하는 contoso.com용 ID 거버넌스 솔루션을 권장해야 합니다.\n\n- contoso.com과 fabrikam.com 사용자가 공유 Microsoft Teams 채널로 소통할 수 있게 한다.\n- fabrikam.com의 그룹으로 contoso.com의 공유 Teams 채널 접근을 관리한다.\n- 단일 로그인(SSO)을 지원한다.\n- 관리 부담을 최소화한다.\n- 보안을 최대화한다.\n\n권장 사항에 무엇을 포함해야 합니까?",
+    "expl": "Microsoft Entra B2B 직접 연결은 테넌트 간 공유 Microsoft Teams 채널을 통한 공동 작업을 위해 설계되었습니다. 외부 사용자가 자기 홈 테넌트 ID로 인증할 수 있고 SSO와 테넌트 간 접근 제어를 지원하며, 리소스 테넌트에 게스트 계정을 만들어 관리할 필요가 없습니다.",
+    "choices": [
+      "테넌트 간 동기화",
+      "Microsoft Entra B2B 공동 작업",
+      "B2B 직접 연결",
+      "Microsoft Entra Connect Sync"
+    ]
+  },
+  "286": {
+    "stem": "Vault1이라는 Azure 키 자격 증명 모음이 있는 Azure 구독이 있습니다.\n\nApp1이라는 사용자 지정 앱을 호스트할 가상 머신을 여러 대 배포하려고 합니다. App1은 Vault1에 저장된 비밀을 사용하며, 가상 머신은 App1의 사용량 요구에 따라 주기적으로 다시 배포됩니다.\n\nApp1이 Vault1의 비밀에 접근할 수 있게 하면서 다음 요구 사항을 충족하는 솔루션을 권장하세요.\n\n- Vault1에 접근할 수 있는 보안 주체 수를 최소화한다.\n- 가상 머신에 저장하는 중요 데이터를 최소화한다.\n- 관리 부담을 최소화한다.\n\nApp1은 어떤 엔드포인트 종류와 ID 종류를 사용해야 합니까?",
+    "expl": "사용자 할당 관리 ID는 여러 VM이 공유할 수 있고 수명 주기가 독립적이므로, VM을 다시 배포해도 ID 하나에 Key Vault 접근 권한을 부여해 두면 됩니다. 관리 ID를 쓰면 애플리케이션이 자격 증명을 직접 관리하지 않아도 됩니다. Azure VM의 코드는 로컬 Azure Instance Metadata Service(IMDS) 엔드포인트에서 관리 ID 토큰을 요청합니다.\n\n**Learn more:** [How managed identities work with Azure virtual machines](https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/how-managed-identities-work-vm) · [Use managed identities on a virtual machine to acquire an access token](https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/how-to-use-vm-token)",
+    "blanks": [
+      {
+        "label": "엔드포인트 종류:",
+        "options": [
+          "Azure Instance Metadata Service(IMDS)",
+          "Microsoft Graph REST API v1.0",
+          "Microsoft ID 플랫폼 OAuth 2.0 액세스 토큰"
+        ]
+      },
+      {
+        "label": "ID 종류:",
+        "options": ["서비스 주체", "시스템 할당 관리 ID", "사용자 할당 관리 ID"]
+      }
+    ]
+  },
+  "287": {
+    "stem": "회사에서 랜섬웨어 인시던트 조사를 최적화하려고 합니다.\n\nMicrosoft 탐지·대응 팀(DART) 접근 방식을 기반으로 랜섬웨어 인시던트 조사 계획을 권장해야 합니다.\n\n계획은 어떤 작업 세 가지를 순서대로 수행해야 합니까?",
+    "expl": "Microsoft 인시던트 대응의 DART 랜섬웨어 접근 방식은 먼저 현재 상황을 평가해 범위를 파악합니다. 다음으로 영향을 받은 업무용 애플리케이션을 식별해 시스템을 다시 가동할 수 있게 합니다. 마지막으로 위협 행위자를 환경에서 제거하기 위한 침해 복구 프로세스를 정합니다. 권한 있는 액세스 강화와 조직 프로세스 개선은 이 세 조사 단계라기보다 더 넓은 복원력 조치입니다.\n\n**Learn more:** [Microsoft Incident Response ransomware approach and best practices](https://learn.microsoft.com/en-us/security/ransomware/incident-response-playbook-dart-ransomware-approach)",
+    "items": [
+      "랜섬웨어 인시던트로 사용할 수 없게 된 업무용(LOB) 앱을 식별한다.",
+      "침해 복구 프로세스를 정한다.",
+      "권한 있는 액세스 침해 위험을 줄이는 포괄적 전략을 구현한다.",
+      "현재 상황을 평가하고 범위를 파악한다.",
+      "대규모 랜섬웨어 사고를 관리하고 외부 위탁을 매끄럽게 하도록 조직 프로세스를 개선한다."
+    ],
+    "slots": ["1단계", "2단계", "3단계"]
+  },
+  "288": {
+    "stem": "Azure 구독이 있습니다.\n\n컨테이너화된 마이크로서비스 기반 애플리케이션을 Azure Kubernetes Service(AKS)에 배포하려고 합니다.\n\n다음 요구 사항을 충족하는 솔루션을 권장해야 합니다.\n\n- 비밀을 관리한다.\n- 암호화를 제공한다.\n- mTLS 암호화로 서비스 간 통신을 보호한다.\n- 관리 부담을 최소화한다.\n\n권장 사항에 무엇을 포함해야 합니까?",
+    "expl": "AKS용 관리형 Dapr 확장은 비밀 관리와 암호화를 위한 API를 제공하고 mTLS로 서비스 간 통신을 보호하며, Dapr 런타임을 직접 설치·관리할 필요가 없어 관리 부담이 줄어듭니다.\n\n**Learn more:** [Dapr Extension for Azure Kubernetes Service (AKS) and Arc-enabled Kubernetes](https://learn.microsoft.com/en-us/azure/aks/dapr-overview) · [Install Dapr Extension for Azure Kubernetes Service (AKS)](https://learn.microsoft.com/en-us/azure/aks/dapr)",
+    "choices": ["Flux", "Envoy", "Dapr", "Istio"]
+  }
+}

@@ -1,0 +1,244 @@
+{
+  "113": {
+    "stem": "회사에 Microsoft 365 구독, Azure 구독, Amazon Web Services(AWS) 환경이 있는 멀티클라우드 환경이 있습니다.\n\n다음 구성 요소를 위한 보안 상태 관리 솔루션을 권장해야 합니다.\n\n- Azure IoT Edge 장치\n- AWS EC2 인스턴스\n\n[[IMG1]]\n\n권장 사항에 어떤 서비스를 포함해야 합니까?",
+    "expl": "Microsoft Defender for IoT는 IoT·OT 장치와 취약점, 위협을 식별하도록 설계되었습니다. Microsoft Defender for Cloud는 온보딩된 AWS 워크로드(EC2 인스턴스 포함)에 에이전트 없는 클라우드 보안 상태 관리(CSPM)를 제공합니다. Azure Arc는 기본 AWS CSPM 평가가 아니라 호스트 수준 보호와 에이전트·확장 배포 시나리오에 필요합니다.\n\n**Learn more:** [What is Microsoft Defender for IoT?](https://learn.microsoft.com/en-us/azure/defender-for-iot/organizations/overview) · [What is Cloud Security Posture Management (CSPM)](https://learn.microsoft.com/en-us/azure/defender-for-cloud/concept-cloud-security-posture-management)",
+    "blanks": [
+      {
+        "label": "IoT Edge 장치의 경우:",
+        "options": [
+          "Azure Arc",
+          "Microsoft Defender for Cloud",
+          "Microsoft Defender for Cloud Apps",
+          "Microsoft Defender for Endpoint",
+          "Microsoft Defender for IoT"
+        ]
+      },
+      {
+        "label": "AWS EC2 인스턴스의 경우:",
+        "options": [
+          "Azure Arc만",
+          "Microsoft Defender for Cloud와 Azure Arc",
+          "Microsoft Defender for Cloud Apps만",
+          "Microsoft Defender for Cloud만",
+          "Microsoft Defender for Endpoint와 Azure Arc",
+          "Microsoft Defender for Endpoint만"
+        ]
+      }
+    ]
+  },
+  "114": {
+    "stem": "보안 액세스 전략을 위한 보안 수준을 계획하고 있습니다.\n\n각 직무 역할에 구성할 보안 수준을 식별하세요. 솔루션은 Microsoft 사이버 보안 참조 아키텍처(MCRA)의 보안 모범 사례를 따라야 합니다.\n\n각 직무 역할에 어떤 보안 수준을 구성해야 합니까?",
+    "expl": "MCRA는 역할의 민감도와 권한에 따라 보안을 구분합니다. 일반 사용자는 엔터프라이즈 보안, 코드와 개발 리소스에 접근하는 개발자는 특수 보안, 상승된 권한을 가진 IT 관리자는 권한 있는 보안을 사용합니다.\n\n**Learn more:** [Microsoft Cybersecurity Reference Architectures overview](https://learn.microsoft.com/en-us/security/cybersecurity-reference-architecture/mcra)",
+    "blanks": [
+      {
+        "label": "개발자:",
+        "options": ["엔터프라이즈 보안", "권한 있는 보안", "특수 보안"]
+      },
+      {
+        "label": "일반 사용자:",
+        "options": ["엔터프라이즈 보안", "권한 있는 보안", "특수 보안"]
+      },
+      {
+        "label": "IT 관리자:",
+        "options": ["엔터프라이즈 보안", "권한 있는 보안", "특수 보안"]
+      }
+    ]
+  },
+  "115": {
+    "stem": "Azure 구독에 App1이라는 웹앱이 있습니다. App1은 SRV1이라는 Microsoft Entra 사용자 계정을 서비스 계정으로 사용해 DB1이라는 Azure SQL 데이터베이스에 인증합니다.\n\n한 개발자가 SRV1을 사용해 DB1에 직접 접근한 것을 발견했습니다.\n\nApp1 외부에서 자격 증명이 오용되지 않게 막으면서 관리 부담을 최소화하는 안전한 인증 방법을 권장해야 합니다.\n\n무엇을 권장해야 합니까?",
+    "expl": "관리 ID를 쓰면 App1이 자동으로 관리되는 Microsoft Entra ID를 갖게 되어, 사용자 자격 증명을 저장하거나 공유하지 않고도 Azure SQL Database용 토큰을 받을 수 있습니다. 그 ID에 DB1 권한을 부여하면 데이터베이스 접근이 앱 워크로드로 제한되고 개발자가 관리하는 자격 증명 재사용이 사라집니다.\n\n**Learn more:** [Use managed identities for App Service and Azure Functions](https://learn.microsoft.com/en-us/azure/app-service/overview-managed-identity) · [Use managed identity to connect an Azure web app to an Azure SQL database without secrets](https://learn.microsoft.com/en-us/azure/app-service/tutorial-connect-msi-sql-database?tabs=windowsclient%2Cdotnet)",
+    "choices": [
+      "관리 ID",
+      "그룹 관리 서비스 계정(gMSA)",
+      "위임된 관리 서비스 계정(dMSA)",
+      "페더레이션 ID 자격 증명"
+    ]
+  },
+  "116": {
+    "stem": "가상 머신, 저장소 계정, Azure SQL 데이터베이스가 있는 Azure 구독이 있습니다.\n\n모든 리소스는 Azure Backup으로 하루에 여러 번 백업됩니다.\n\n랜섬웨어 공격에 대비한 전략을 수립하고 있습니다.\n\n랜섬웨어 공격이 성공한 뒤에도 Azure Backup으로 리소스를 복원할 수 있도록 사용하도록 설정해야 하는 제어를 권장해야 합니다.\n\n권장 사항에 포함해야 할 제어 두 가지는 무엇입니까? 각 정답은 완전한 해결책입니다.\n\n> **참고:** 각 정답 선택은 1점입니다.",
+    "expl": "일시 삭제는 삭제된 백업 데이터를 보존 기간 동안 유지해 실수나 악의적 삭제 후에도 복구할 수 있게 합니다. 중요 작업에 보안 PIN을 요구하면 온라인 백업을 파괴적으로 변경하기 전에 인증 단계가 하나 더 생기므로, 공격자가 복원에 필요한 백업을 삭제하거나 약화시키는 것을 막는 데 도움이 됩니다.\n\n**Learn more:** [Azure backup and restore plan to protect against ransomware](https://learn.microsoft.com/en-us/azure/security/fundamentals/backup-plan-to-protect-against-ransomware) · [Azure Backup security best practices for data protection](https://learn.microsoft.com/en-us/azure/backup/azure-backup-data-protection-best-practices)",
+    "choices": [
+      "백업 일시 삭제를 사용하도록 설정한다.",
+      "중요 작업에 PIN을 요구한다.",
+      "고객 관리형 키(CMK)로 백업을 암호화한다.",
+      "Azure Data Box로 오프라인 백업을 수행한다.",
+      "백업 구성이 변경되면 Azure Monitor 알림을 사용한다."
+    ]
+  },
+  "117": {
+    "stem": "회사에 온프레미스 네트워크와 Azure 구독이 있습니다.\n\n회사에는 Azure로 연결되는 사이트 간 VPN이나 ExpressRoute 연결이 **없습니다**.\n\nAzure App Service 웹앱의 보안 표준을 설계하고 있습니다. 이 웹앱은 네트워크의 Microsoft SQL Server 데이터베이스에 접근합니다.\n\n웹앱이 데이터베이스에 접근할 수 있게 하는 보안 표준을 권장해야 합니다. 솔루션은 온프레미스 네트워크에 열어 두는 인터넷 접근 가능 엔드포인트 수를 최소화해야 합니다.\n\n권장 사항에 무엇을 포함해야 합니까?",
+    "expl": "Azure App Service 하이브리드 연결은 웹앱에서 SQL Server 엔드포인트 같은 특정 온프레미스 호스트와 포트로 안전한 아웃바운드 TCP 접근을 제공합니다. 온프레미스의 하이브리드 연결 관리자가 443 포트로 Azure Relay에 아웃바운드 연결을 맺으므로, 데이터베이스에 인터넷에서 접근 가능한 인바운드 엔드포인트가 필요하지 않습니다.\n\n**Learn more:** [Hybrid Connections in Azure App Service](https://learn.microsoft.com/en-us/azure/app-service/app-service-hybrid-connections)",
+    "choices": [
+      "가상 네트워크 NAT 게이트웨이 통합",
+      "하이브리드 연결",
+      "가상 네트워크 통합",
+      "프라이빗 엔드포인트"
+    ]
+  },
+  "118": {
+    "stem": "Azure, Amazon Web Services(AWS), Google Cloud Platform(GCP) 구독이 있는 멀티클라우드 환경이 있습니다.\n\n구독 전반의 역할 할당을 검색하고 검토해야 합니다.\n\n무엇을 사용해야 합니까?",
+    "expl": "Microsoft Entra Permissions Management는 Azure·AWS·GCP 전반에서 ID에 부여된 권한을 한곳에서 볼 수 있게 해 멀티클라우드 역할 할당을 검색·검토할 수 있습니다. 이후 Microsoft는 독립 제품을 단종했고, CIEM 기능은 현재 Microsoft Defender for Cloud에서 제공됩니다.\n\n**Learn more:** [Cloud infrastructure entitlement management (CIEM) - Microsoft Defender for Cloud](https://learn.microsoft.com/en-us/azure/defender-for-cloud/permissions-management) · [Discover, remediate, and monitor permissions in multicloud infrastructures using permissions management APIs](https://learn.microsoft.com/en-us/graph/api/resources/permissions-management-api-overview?view=graph-rest-beta)",
+    "choices": [
+      "Azure Lighthouse",
+      "Microsoft Defender for Identity",
+      "Microsoft Entra ID 거버넌스",
+      "Microsoft Entra Permissions Management"
+    ]
+  },
+  "119": {
+    "stem": "온프레미스 네트워크에 Active Directory Domain Services(AD DS) 도메인이 있고, Microsoft Exchange Server 2019 조직과 Exchange Online 테넌트가 하이브리드로 배포되어 있습니다. AD DS 도메인에는 Group1이라는 그룹이 있습니다. Group1은 Exchange 배포의 Organization Management 역할 그룹에 속해 있습니다.\n\nMicrosoft Defender를 사용하는 Microsoft 365 E5 구독이 있습니다.\n\nMicrosoft Sentinel을 사용하는 Azure 구독이 있습니다.\n\nGroup1을 중요 그룹으로 표시하고 Group1이 변경되면 Microsoft Sentinel에서 경고를 발생시키는 솔루션을 권장해야 합니다. 솔루션은 관리 부담을 최소화해야 합니다.\n\n권장 사항에 무엇을 포함해야 합니까?",
+    "expl": "Microsoft Defender for Identity는 Active Directory 그룹에 '중요(Sensitive)' 태그를 수동으로 적용할 수 있고, 이를 통해 중요 그룹 변경 탐지가 활성화됩니다. Defender for Identity 경고는 Microsoft Defender XDR 커넥터를 통해 Microsoft Sentinel에서 사용할 수 있으므로, 추가 관리 부담을 최소화하면서 태그가 지정된 그룹의 변경에 대해 경고를 받을 수 있습니다.\n\n**Learn more:** [Defender for Identity entity tags in Microsoft Defender XDR](https://learn.microsoft.com/en-us/defender-for-identity/entity-tags) · [Microsoft Defender XDR integration with Microsoft Sentinel](https://learn.microsoft.com/en-us/azure/sentinel/microsoft-365-defender-sentinel-integration)",
+    "choices": [
+      "Microsoft Defender for Identity",
+      "Microsoft Entra ID 보호",
+      "Microsoft Entra Privileged Identity Management(PIM)",
+      "Microsoft Defender for Office 365"
+    ]
+  },
+  "120": {
+    "stem": "AKS1이라는 Azure Kubernetes Service(AKS) 클러스터가 있는 Azure 구독이 있습니다. AKS1은 Pool1이라는 Windows 노드 풀과 Pool2라는 Linux 노드 풀을 호스트합니다.\n\nAKS1의 풀 업데이트 전략을 설계하고 있습니다.\n\n노드에 배포된 운영 체제 이미지를 얼마나 자주 교체할지 권장해야 합니다. 솔루션은 다음 요구 사항을 충족해야 합니다.\n\n- 운영 체제 업데이트가 릴리스된 뒤 적용까지 걸리는 시간을 최소화한다.\n- 관리 부담을 최소화한다.\n\n각 풀에 무엇을 권장해야 합니까?",
+    "expl": "AKS는 Linux 노드 이미지를 매주, Windows 노드 이미지를 매월 릴리스합니다. 각 풀의 교체 주기를 이미지 릴리스 주기에 맞추면 관리 부담을 최소화하면서 업데이트를 신속히 적용할 수 있습니다. 즉 Windows는 매월, Linux는 매주입니다.\n\n**Learn more:** [Node Images in Azure Kubernetes Service (AKS)](https://learn.microsoft.com/en-us/azure/aks/node-images)",
+    "blanks": [
+      {
+        "label": "Pool1:",
+        "options": ["매주", "매월", "분기마다"]
+      },
+      {
+        "label": "Pool2:",
+        "options": ["매주", "매월", "분기마다"]
+      }
+    ]
+  },
+  "121": {
+    "stem": "규정 준수 요구 사항을 충족하는 솔루션을 권장해야 합니다.\n\n권장 사항에 무엇을 포함해야 합니까?",
+    "expl": "청사진(blueprint)은 정책 할당을 포함한 재사용 가능한 거버넌스 아티팩트를 묶어 표준을 구현하고 규정 준수를 유지합니다. 정책 할당은 notScopes 속성으로 제외 범위를 지원하므로, 리소스 그룹 제외는 정책 정의가 아니라 할당을 업데이트해서 처리합니다.\n\n**Learn more:** [Overview of Azure Blueprints](https://learn.microsoft.com/en-us/azure/governance/blueprints/overview) · [Microsoft.Authorization/policyAssignments 2026-06-01](https://learn.microsoft.com/en-us/azure/templates/microsoft.authorization/2026-06-01/policyassignments)",
+    "blanks": [
+      {
+        "label": "규정 표준 준수를 적용하려면 다음을 만든다:",
+        "options": ["Azure 자동화 계정", "청사진", "관리 ID", "워크플로 자동화"]
+      },
+      {
+        "label": "규정 준수 평가에서 TestRG를 제외하려면:",
+        "options": [
+          "Azure 청사진을 편집한다",
+          "Defender for Cloud 워크플로 자동화를 수정한다",
+          "Azure 정책 정의를 수정한다",
+          "Azure 정책 할당을 업데이트한다"
+        ]
+      }
+    ]
+  },
+  "122": {
+    "stem": "Microsoft Teams를 사용하는 Microsoft 365 E5 구독이 있습니다.\n\n회사에는 투자 부서와 연구 부서가 있습니다. 각 부서에는 규정 준수 팀이 있습니다.\n\n부서 간 통신을 제한하는 Microsoft Purview 정보 장벽(IB) 솔루션을 설계하고 있습니다. 솔루션은 다음 요구 사항을 충족해야 합니다.\n\n- 각 부서 직원은 자기 부서 직원하고만 통신할 수 있어야 한다.\n- 각 부서의 규정 준수 팀 직원은 상대 부서의 규정 준수 팀 직원과 통신할 수 있어야 한다.\n\n필요한 세그먼트와 IB 정책의 최소 개수는 몇 개입니까?",
+    "expl": "세그먼트 4개로 두 부서의 일반 직원과 규정 준수 직원을 분리합니다. Microsoft Purview 정보 장벽 정책은 방향성이 있고 한 세그먼트에는 정책을 하나만 둘 수 있습니다. 각 부서의 내부 통신을 유지하면서 두 규정 준수 세그먼트만 부서를 넘어 통신하게 하려면 세그먼트마다 정책이 하나씩 필요합니다.\n\n**Learn more:** [Get started with Information Barriers](https://learn.microsoft.com/en-us/purview/information-barriers-policies) · [Information Barriers in Microsoft Teams](https://learn.microsoft.com/en-us/purview/information-barriers-teams)",
+    "blanks": [
+      {
+        "label": "세그먼트:",
+        "options": ["2", "3", "4"]
+      },
+      {
+        "label": "정책:",
+        "options": ["2", "3", "4"]
+      }
+    ]
+  },
+  "123": {
+    "stem": "회사에서 Azure Active Directory(Azure AD) B2C를 사용하는 청구 애플리케이션을 만들고 있습니다. 이 애플리케이션은 App Service 웹앱으로 배포됩니다.\n\nID 관련 공격으로부터 애플리케이션을 보호하는 솔루션을 애플리케이션 개발 팀에 권장해야 합니다.\n\n권장해야 할 구성 두 가지는 무엇입니까? 각 정답은 솔루션의 일부입니다.\n\n> **참고:** 각 정답 선택은 1점입니다.",
+    "expl": "Azure AD B2C 조건부 액세스는 ID 보호 신호로 위험한 로그인을 식별해 접근을 차단하거나 다단계 인증 같은 조치를 요구할 수 있습니다. 스마트 계정 잠금은 로그인 실패 양상에 따라 계정을 잠가 무차별 대입과 사전 공격 같은 자격 증명 공격을 완화합니다.\n\n**Learn more:** [Add Conditional Access to a user flow in Azure AD B2C](https://learn.microsoft.com/en-us/azure/active-directory-b2c/conditional-access-user-flow) · [Mitigate credential attacks in Azure AD B2C with smart lockout](https://learn.microsoft.com/en-us/azure/active-directory-b2c/threat-management)",
+    "choices": [
+      "위험 탐지를 모니터링하는 Azure AD 통합 문서",
+      "사용자 흐름·사용자 지정 정책과 Azure AD 조건부 액세스 통합",
+      "Azure AD B2C의 스마트 계정 잠금",
+      "ID 거버넌스의 액세스 패키지",
+      "Azure AD B2C의 사용자 지정 ROPC(리소스 소유자 암호 자격 증명) 흐름"
+    ]
+  },
+  "124": {
+    "stem": "회사에서 Microsoft 보안 모범 사례에 맞춰 랜섬웨어로부터 리소스를 보호하기 위해 Microsoft Defender for Endpoint 활용을 최적화하려고 합니다.\n\nMicrosoft 보안 모범 사례의 Microsoft 탐지·대응 팀(DART) 접근 방식을 기반으로, 침해된 컴퓨터에 대한 사후 대응 계획을 수립해야 합니다.\n\n대응 계획에 무엇을 포함해야 합니까?",
+    "expl": "랜섬웨어 확산 차단에 대한 Microsoft 인시던트 대응 지침은 침해된 시스템을 네트워크에서 격리해 측면 이동과 추가 확산을 막으면서, 조사와 수정을 위해 시스템 자체는 보존하도록 요구합니다. Microsoft Defender for Endpoint는 이를 컴퓨터 격리(machine isolation)로 제공합니다.\n\n**Learn more:** [Microsoft Incident Response ransomware approach and best practices](https://learn.microsoft.com/en-us/security/ransomware/incident-response-playbook-dart-ransomware-approach) · [Limit the impact that ransomware attacks can have](https://learn.microsoft.com/en-us/security/ransomware/protect-against-ransomware-phase2)",
+    "choices": [
+      "제어된 폴더 액세스",
+      "애플리케이션 격리",
+      "메모리 검사",
+      "컴퓨터 격리",
+      "사용자 격리"
+    ]
+  },
+  "125": {
+    "stem": "GitHub로 Node.js 기반 앱의 개발과 배포를 자동화하려고 합니다.\n\n다음 요구 사항을 충족하는 DevSecOps 솔루션을 권장하세요.\n\n- 식별된 취약점을 수정하는 풀 리퀘스트를 자동으로 생성한다.\n- 공개 리포지토리와 비공개 리포지토리 모두에 대해 취약점 코드 검사를 자동화한다.\n- 관리 부담을 최소화한다.\n- 비용을 최소화한다.\n\n무엇을 권장해야 합니까?",
+    "expl": "GitHub Enterprise Cloud는 GitHub Advanced Security로 비공개 리포지토리의 코드 검사를 수행하면서 GitHub 호스팅 관리 방식을 유지할 수 있고, 공개 리포지토리의 코드 검사는 GitHub.com에서 제공됩니다. Dependabot은 취약한 종속성을 찾아내고 안전한 버전으로 업데이트하는 풀 리퀘스트를 만듭니다.\n\n**Learn more:** [GitHub Docs — About code scanning](https://docs.github.com/en/code-security/code-scanning/introduction-to-code-scanning/about-code-scanning) · [GitHub Docs — About Dependabot security updates](https://docs.github.com/en/code-security/dependabot/dependabot-security-updates/about-dependabot-security-updates)",
+    "blanks": [
+      {
+        "label": "취약점 코드 검사를 자동화하려면:",
+        "options": ["GitHub Enterprise Cloud", "GitHub Enterprise Server", "GitHub Team"]
+      },
+      {
+        "label": "풀 리퀘스트를 자동으로 생성하려면:",
+        "options": ["Codespaces", "Dependabot", "Dependency Tracker"]
+      }
+    ]
+  },
+  "126": {
+    "stem": "점프 서버를 호스트하기 위해 동적으로 확장되는 Linux 기반 Azure 가상 머신 확장 집합을 배포하려고 합니다. 지원 담당자는 인터넷을 통해 개인 장치와 키오스크 장치에서 이 점프 서버를 사용하며, 점프 서버 서브넷에는 네트워크 보안 그룹(NSG)이 연결됩니다.\n\n다음 요구 사항을 충족하는 Azure 가상 머신 확장 집합 접근 솔루션을 설계하세요.\n\n- 지원 담당자가 점프 서버에 연결할 때마다 접근을 요청해야 한다.\n- 승인된 지원 담당자만 점프 서버로 SSH 연결을 시작할 수 있어야 한다.\n- 내부 네트워크와 인터넷에서 오는 무차별 대입 공격에 대한 보호를 최대화해야 한다.\n- 사용자는 인터넷에서만 점프 서버에 연결할 수 있어야 한다.\n- 관리 부담을 최소화해야 한다.\n\n솔루션에 무엇을 포함해야 합니까?",
+    "expl": "just-in-time(JIT) VM 액세스는 기본적으로 서브넷 NSG에서 SSH 포트(22)를 닫아 두고, 승인된 사용자가 RBAC로 접근을 요청할 때만 우선순위가 높은 임시 허용 규칙을 열었다가 자동으로 되돌립니다. 연결할 때마다 요청, 승인된 사용자만, 무차별 대입 보호 최대화, 관리 부담 최소화라는 요구 사항을 Azure Automation(수동 스크립트)이나 Bastion(요청별 승인 워크플로를 강제하지 못하고 NSG 원본이 인터넷이 아니라 AzureBastionSubnet이 됨)보다 훨씬 잘 충족합니다. 지원 담당자가 인터넷 IP를 예측할 수 없는 개인·키오스크 장치에서 연결하므로, JIT 허용 규칙은 연결을 맺기 전에 요청 시점에 제공되는 클라이언트의 공용 IP로 범위가 지정됩니다. AzureBastionSubnet과 GatewaySubnet은 Azure 내부 원본이라 인터넷에서만 연결해야 한다는 요구 사항에 어긋납니다.\n\n**Learn more:** [Understand JIT VM access](https://learn.microsoft.com/en-us/azure/defender-for-cloud/just-in-time-access-overview) · [Enable JIT access](https://learn.microsoft.com/en-us/azure/defender-for-cloud/enable-just-in-time-access)",
+    "blanks": [
+      {
+        "label": "NSG 규칙 관리에 사용할 것:",
+        "options": ["Azure Automation", "Azure Bastion", "just-in-time(JIT) VM 액세스"]
+      },
+      {
+        "label": "점프 서버로의 SSH 연결을 허용할 원본:",
+        "options": [
+          "연결을 맺기 전에 제공되는 모든 공용 IP 주소",
+          "AzureBastionSubnet",
+          "GatewaySubnet"
+        ]
+      }
+    ]
+  },
+  "127": {
+    "stem": "App1이라는 Azure App Service 웹앱에 대한 보안 권장 사항을 준비하고 있습니다. App1의 사양은 다음과 같습니다.\n\n- 사용자는 내 앱(My Apps) 포털을 통해 App1 접근을 요청하고, 인사 관리자가 그 요청을 승인한다.\n- 사용자는 Azure Active Directory(Azure AD) 사용자 계정으로 인증한다.\n\nApp1의 접근 보안 아키텍처를 권장해야 합니다. 권장 사항에 무엇을 포함해야 합니까?",
+    "expl": "Azure AD 애플리케이션 등록은 Azure App Service 인증을 사용하도록 설정할 때 쓰는 Entra ID 구성입니다. ID 거버넌스의 액세스 패키지를 사용하면 사용자가 접근을 요청할 수 있고 인사 관리자 같은 지정된 승인자의 승인을 요구할 수 있습니다. 액세스 검토는 기존 접근을 재인증하는 기능이라 접근 요청 워크플로를 제공하지 않습니다.\n\n**Learn more:** [Tutorial - Add authentication to Azure App Service](https://learn.microsoft.com/en-us/entra/identity-platform/multi-service-web-app-authentication-app-service) · [Request an access package - entitlement management](https://learn.microsoft.com/en-us/entra/id-governance/entitlement-management-request-access)",
+    "blanks": [
+      {
+        "label": "App1에 Azure AD 인증을 사용하도록 설정하려면:",
+        "options": [
+          "Azure AD 애플리케이션",
+          "Azure AD 애플리케이션 프록시",
+          "Azure Application Gateway",
+          "Azure AD의 관리 ID",
+          "Microsoft Defender for App"
+        ]
+      },
+      {
+        "label": "App1의 접근 요청을 구현하려면:",
+        "options": [
+          "ID 거버넌스의 액세스 패키지",
+          "Microsoft Defender for Cloud Apps의 액세스 정책",
+          "ID 거버넌스의 액세스 검토",
+          "Azure AD 조건부 액세스 앱 제어",
+          "Microsoft Defender for Cloud Apps의 OAuth 앱 정책"
+        ]
+      }
+    ]
+  },
+  "128": {
+    "stem": "온프레미스 네트워크에 Group1과 Windows Server 컴퓨터 5대가 있는 Active Directory Domain Services(AD DS) 도메인이 있습니다. 각 서버는 Group1 구성원이 사용하는 독립 실행형 앱을 호스트합니다.\n\nMicrosoft Entra 테넌트가 이 도메인과 동기화됩니다.\n\nGlobal Secure Access를 배포해 이 앱의 접근을 관리하려고 합니다. 조건부 액세스 정책이 앱에 대한 모든 연결에 보안 제어를 적용합니다.\n\n관리 부담을 최소화하면서 고가용성을 갖춘 Global Secure Access 앱과 Microsoft Entra 사설 네트워크 커넥터 구성을 권장하세요.\n\n권장할 Global Secure Access 앱과 사설 네트워크 커넥터의 최소 개수는 몇 개입니까?",
+    "expl": "빠른 액세스(Quick Access)를 사용하면 사설 액세스 앱 하나에 여러 사설 FQDN이나 IP 주소를 담을 수 있고 조건부 액세스 정책으로 그 앱을 보호할 수 있습니다. 5개 앱에 동일한 사용자와 제어가 적용된다면 관리 부담이 가장 적은 방식입니다. 커넥터 그룹은 고가용성을 위해 사설 네트워크 커넥터가 최소 두 개 필요합니다.\n\n**Learn more:** [Learn about Microsoft Entra Private Access](https://learn.microsoft.com/en-us/entra/global-secure-access/concept-private-access) · [Microsoft Entra private network connectors](https://learn.microsoft.com/en-us/entra/global-secure-access/concept-connectors)",
+    "blanks": [
+      {
+        "label": "Global Secure Access 앱:",
+        "options": [
+          "엔터프라이즈 애플리케이션 1개",
+          "빠른 액세스 앱 1개",
+          "엔터프라이즈 애플리케이션 5개",
+          "빠른 액세스 앱 5개"
+        ]
+      },
+      {
+        "label": "사설 네트워크 커넥터:",
+        "options": ["1", "2", "5", "10"]
+      }
+    ]
+  }
+}

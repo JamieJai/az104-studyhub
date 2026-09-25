@@ -1,0 +1,199 @@
+{
+  "193": {
+    "stem": "Microsoft Entra 테넌트에 연결된 Azure 구독이 있습니다.\n\nApp1이라는 엔터프라이즈 애플리케이션을 배포하려고 합니다. App1은 Microsoft Entra 사용자와 연결된 특성을 조회하기 위해 LDAP가 필요합니다.\n\nLDAP 요구 사항을 지원하는 솔루션을 권장해야 합니다.\n\n무엇을 권장해야 합니까?",
+    "expl": "Microsoft Entra Domain Services는 Microsoft Entra ID와 통합된 관리형 도메인을 제공하며, 사용자 특성 조회가 필요한 애플리케이션을 위해 LDAP 바인드·읽기 접근을 포함한 LDAP와 보안 LDAP(LDAPS)를 지원합니다.\n\n**Learn more:** [Overview of Microsoft Entra Domain Services](https://learn.microsoft.com/en-us/entra/identity/domain-services/overview) · [LDAP authentication with Microsoft Entra ID](https://learn.microsoft.com/en-us/entra/architecture/auth-ldap)",
+    "choices": [
+      "신뢰할 수 있는 네트워크 위치를 사용하는 조건부 액세스 정책을 구성한다.",
+      "Microsoft Entra Private Access를 배포한다.",
+      "Microsoft Entra Domain Services를 배포한다.",
+      "통과 인증을 구현한다."
+    ]
+  },
+  "194": {
+    "stem": "Microsoft 365 테넌트가 있습니다.\n\n회사는 Azure AD 테넌트와 통합된 App1이라는 타사 SaaS(software as a service) 애플리케이션을 사용합니다.\n\n다음 요구 사항을 충족하는 보안 전략을 설계해야 합니다.\n\n- 사용자가 셀프 서비스 요청으로 App1 접근을 요청할 수 있어야 한다.\n- 사용자가 App1 접근을 요청할 때 요청에 대한 추가 정보를 입력하도록 해야 한다.\n- 3개월마다 관리자가 사용자에게 App1 접근이 여전히 필요한지 확인해야 한다.\n\n설계에 무엇을 포함해야 합니까?",
+    "expl": "Microsoft Entra ID 거버넌스는 셀프 서비스 애플리케이션 접근 요청과 사용자 지정 요청 질문을 위한 권한 관리 액세스 패키지를 제공합니다. 또한 분기마다 예약해 각 사용자의 관리자에게 할당할 수 있는 액세스 검토를 제공하므로, 관리자가 접근 필요성을 계속 확인할 수 있습니다.\n\n**Learn more:** [Request an access package - entitlement management](https://learn.microsoft.com/en-us/entra/id-governance/entitlement-management-request-access) · [Create an access review of an access package in entitlement management](https://learn.microsoft.com/en-us/entra/id-governance/entitlement-management-access-reviews-create)",
+    "choices": [
+      "Microsoft Entra ID 거버넌스",
+      "Microsoft Defender for Cloud Apps의 연결된 앱",
+      "Microsoft Defender for Cloud Apps의 액세스 정책",
+      "Azure AD 애플리케이션 프록시"
+    ]
+  },
+  "195": {
+    "stem": "사용자 1,000명과 Group1이라는 그룹이 있는 Microsoft 365 구독이 있습니다. 모든 사용자는 Windows 11 장치를 사용합니다. 사용자는 Microsoft Entra 계정으로 장치에 로그인합니다. 사용자에게는 장치의 관리자 권한이 **없습니다**.\n\nGroup1 구성원은 사용자 세션을 제어해 원격으로 지원합니다. 원격 제어 세션은 지원 대상 사용자의 보안 컨텍스트에서 실행됩니다.\n\nGroup1 구성원이 사용자 장치에서 관리자 권한이 필요한 앱을 실행할 수 있게 하는 솔루션을 권장해야 합니다. 솔루션은 그 앱이 로그인한 표준 사용자 컨텍스트에서 실행되게 해야 합니다.\n\n권장 사항에 무엇을 포함해야 합니까?",
+    "expl": "Microsoft Intune 엔드포인트 권한 관리(Endpoint Privilege Management)를 쓰면 표준 사용자가 영구적인 로컬 관리자 권한 없이도 상승된 권한이 필요한 승인 애플리케이션을 실행할 수 있습니다. **현재 사용자로 상승** 권한 상승 유형은 상승된 프로세스를 로그인한 사용자 계정으로 실행하므로 원격 지원 세션에 필요한 사용자 컨텍스트가 유지됩니다.\n\n**Learn more:** [Plan and Prepare for Endpoint Privilege Management Deployment](https://learn.microsoft.com/en-us/intune/epm/deployment-planning) · [Deploy Endpoint Privilege Management with Microsoft Intune](https://learn.microsoft.com/en-us/intune/epm/deploy)",
+    "choices": [
+      "Windows 로컬 관리자 암호 솔루션(Windows LAPS)",
+      "Microsoft Entra Permissions Management",
+      "Microsoft Intune 엔드포인트 권한 관리",
+      "Microsoft Entra ID의 Privileged Identity Management(PIM)"
+    ]
+  },
+  "196": {
+    "stem": "ID 요구 사항과 규정 준수 요구 사항을 충족하는 Litware의 Azure AD 테넌트용 ID 보안 솔루션을 권장해야 합니다. 무엇을 권장해야 합니까?",
+    "expl": "관리 단위를 사용하면 선택한 사용자와 그룹에 대한 위임 관리를 위해 Microsoft Entra ID 역할의 범위를 지정할 수 있습니다. Microsoft Entra ID 보호의 유출된 자격 증명 탐지에는 암호 해시 동기화가 필요하며, 통과 인증과 함께 사용하도록 설정할 수 있습니다.\n\n**Learn more:** [Create or delete administrative units - Microsoft Entra ID](https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/admin-units-manage) · [Microsoft Entra ID Protection FAQ](https://learn.microsoft.com/en-us/entra/id-protection/id-protection-faq)",
+    "blanks": [
+      {
+        "label": "사용자와 그룹의 위임 관리에 사용할 것:",
+        "options": [
+          "AD DS 조직 구성 단위",
+          "Azure AD 관리 단위",
+          "사용자 지정 Azure AD 역할"
+        ]
+      },
+      {
+        "label": "유출된 자격 증명 탐지를 수행할 수 있게 하려면:",
+        "options": [
+          "Azure AD Connect 배포에서 암호 해시 동기화를 사용하도록 설정한다",
+          "Litware의 Azure AD 테넌트에서 보안 기본값을 사용하도록 설정한다",
+          "통과 인증을 Active Directory Federation Services로 교체한다"
+        ]
+      }
+    ]
+  },
+  "197": {
+    "stem": "Microsoft 365 테넌트가 있습니다. 회사는 App1이라는 타사 SaaS(software-as-a-service) 앱을 사용합니다. App1은 Azure AD 자격 증명을 사용한 사용자 인증을 지원합니다.\n\n사용자가 Azure AD 자격 증명으로 App1에 인증할 수 있게 하는 솔루션을 권장해야 합니다.\n\n권장 사항에 무엇을 포함해야 합니까?",
+    "expl": "Azure AD 엔터프라이즈 애플리케이션은 타사 SaaS 앱을 통합·관리하고 Azure AD 자격 증명으로 단일 로그인을 구성할 때 사용하는 테넌트 쪽 표현입니다. Azure AD 애플리케이션 프록시는 온프레미스 애플리케이션을 게시하는 기능이고, Azure AD B2C는 고객 ID용이며, Azure AD 인증을 직접 지원하는 애플리케이션에는 AD FS 신뢰 당사자 트러스트가 필요하지 않습니다.\n\n**Learn more:** [Overview of the Microsoft Entra application gallery](https://learn.microsoft.com/en-us/entra/identity/enterprise-apps/overview-application-gallery) · [Enable SAML single sign-on for an enterprise application](https://learn.microsoft.com/en-us/entra/identity/enterprise-apps/add-application-portal-setup-sso)",
+    "choices": [
+      "Azure AD 애플리케이션 프록시",
+      "Azure AD B2C",
+      "Azure AD 엔터프라이즈 애플리케이션",
+      "Active Directory Federation Services(AD FS)의 신뢰 당사자 트러스트"
+    ]
+  },
+  "198": {
+    "stem": "Microsoft 365 E5 구독과 Azure 구독이 있습니다.\n\nMicrosoft 배포를 설계하고 있습니다.\n\n보안 운영 팀을 위한 솔루션을 권장해야 합니다. 솔루션은 보안 이벤트를 분석할 사용자 지정 뷰와 대시보드를 제공해야 합니다.\n\nMicrosoft Sentinel에서 무엇을 사용하도록 권장해야 합니까?",
+    "expl": "Microsoft Sentinel 통합 문서는 표와 차트를 포함해 보안 데이터를 시각화·모니터링할 수 있는 사용자 지정 대화형 시각 보고서를 제공합니다. 사용자 지정 쿼리로 만들 수 있고 보안 이벤트 분석용 대시보드로 사용할 수 있습니다.\n\n**Learn more:** [Visualize and monitor your data by using workbooks in Microsoft Sentinel](https://learn.microsoft.com/en-us/azure/sentinel/monitor-your-data) · [What is Microsoft Sentinel SIEM?](https://learn.microsoft.com/en-us/azure/sentinel/overview)",
+    "choices": ["노트북", "플레이북", "통합 문서", "위협 인텔리전스"]
+  },
+  "199": {
+    "stem": "Microsoft 365 구독이 있습니다.\n\nMicrosoft 사이버 보안 참조 아키텍처(MCRA)의 제로 트러스트 원칙을 따르는 사용자 접근 솔루션을 설계하고 있습니다.\n\n다음 Azure AD 이벤트가 발생하면 Microsoft Exchange Online, SharePoint Online, Teams 접근을 거의 실시간(NRT)으로 자동 제한하는 솔루션을 권장해야 합니다.\n\n- 사용자 계정이 사용 중지되거나 삭제된다.\n- 사용자 암호가 변경되거나 재설정된다.\n- 사용자의 모든 새로 고침 토큰이 해지된다.\n- 사용자에게 다단계 인증(MFA)이 사용하도록 설정된다.\n\n권장 사항에 포함해야 할 기능 두 가지는 무엇입니까? 각 정답은 솔루션의 일부입니다.\n\n> **참고:** 각 정답 선택은 1점입니다.",
+    "expl": "연속 액세스 평가를 사용하면 Exchange Online, SharePoint Online, Teams가 사용자 삭제·사용 중지, 암호 변경·재설정, MFA 사용 설정, 모든 새로 고침 토큰의 명시적 해지 같은 Microsoft Entra 중요 이벤트 신호를 거의 실시간으로 받아 적용할 수 있습니다. 조건부 액세스는 이 서비스들이 평가하고 적용할 접근 제어 정책을 제공해 제로 트러스트 접근 솔루션을 완성합니다.\n\n**Learn more:** [Continuous access evaluation in Microsoft Entra](https://learn.microsoft.com/en-us/entra/identity/conditional-access/concept-continuous-access-evaluation) · [Secure applications with Continuous Access Evaluation](https://learn.microsoft.com/en-us/security/zero-trust/develop/secure-with-cae)",
+    "choices": [
+      "연속 액세스 평가",
+      "Azure AD 애플리케이션 프록시",
+      "로그인 위험 정책",
+      "Azure AD Privileged Identity Management(PIM)",
+      "조건부 액세스"
+    ]
+  },
+  "200": {
+    "stem": "네트워크에 온프레미스 Active Directory Domain Services(AD DS) 도메인이 있습니다. 이 도메인에는 공유 폴더를 호스트하는 Windows Server가 있습니다. 도메인은 그룹 쓰기 저장(group writeback)을 사용하도록 설정한 Azure AD Connect로 Azure AD와 동기화됩니다.\n\nMicrosoft SharePoint Online을 사용하는 Microsoft 365 구독이 있습니다.\n\n프로젝트 팀이 여러 개 있고, 팀마다 Azure AD와 동기화되는 AD DS 그룹이 있습니다.\n\n각 그룹에는 자기 프로젝트용 고유 SharePoint Online 사이트와 Windows Server 공유 폴더에 대한 권한이 있습니다. 사용자는 프로젝트 팀 사이를 자주 옮겨 다닙니다.\n\n다음 요구 사항을 충족하는 Azure AD ID 거버넌스 솔루션을 권장하세요.\n\n- 프로젝트 관리자가 자기 프로젝트 그룹에 현재 프로젝트 팀원만 포함되어 있는지 확인해야 한다.\n- 각 프로젝트 팀 구성원은 자기가 맡은 프로젝트의 리소스에만 접근할 수 있어야 한다.\n- 프로젝트 관리자가 30일 안에 그룹 멤버십을 확인하지 않으면 사용자를 프로젝트 그룹에서 자동으로 제거해야 한다.\n- 관리 작업을 최소화해야 한다.\n\n권장 사항에 무엇을 포함해야 합니까?",
+    "expl": "Microsoft Entra ID의 액세스 검토를 사용하면 프로젝트 그룹 소유자가 멤버십을 검토할 수 있고, 검토가 끝날 때 거부되었거나 응답하지 않은 사용자를 자동으로 제거할 수 있습니다. Azure AD·Microsoft Entra ID에서 만든 보안 그룹은 SharePoint Online용으로 클라우드에서 관리되며, Windows Server 공유 폴더를 위해 AD DS로 다시 쓸 수 있습니다. 이렇게 하면 관리되는 그룹 하나로 두 리소스를 모두 처리하면서 액세스 검토의 자동 조치가 멤버십을 제어할 수 있습니다.\n\n**Learn more:** [Microsoft Entra access reviews](https://learn.microsoft.com/en-us/entra/id-governance/access-reviews-overview) · [Group writeback in Microsoft Entra Connect Sync](https://learn.microsoft.com/en-us/entra/identity/hybrid/connect/how-to-connect-group-writeback-v2)",
+    "blanks": [
+      {
+        "label": "ID 거버넌스 기능:",
+        "options": [
+          "액세스 검토",
+          "Azure AD Privileged Identity Management(PIM)",
+          "권한 관리",
+          "수명 주기 워크플로"
+        ]
+      },
+      {
+        "label": "프로젝트 팀 구성:",
+        "options": [
+          "기존 동기화 그룹에 그룹 쓰기 저장을 사용하도록 설정한다.",
+          "Azure AD에서 프로젝트마다 클라우드 전용 보안 그룹을 새로 만든다.",
+          "Azure AD에서 프로젝트마다 보안 그룹을 만들고 각 그룹에 그룹 쓰기 저장을 사용하도록 설정한다."
+        ]
+      }
+    ]
+  },
+  "201": {
+    "stem": "Microsoft Defender XDR와 Microsoft Purview를 사용하는 Microsoft 365 E5 구독이 있습니다.\n\nMicrosoft SharePoint Online에서 비정상적으로 많은 양의 데이터를 다운로드하는 사용자를 식별할 수 있는 데이터 보호 솔루션을 권장해야 합니다.\n\n권장 사항에 어떤 서비스를 포함하고 어떤 정책을 구성해야 합니까?",
+    "expl": "Microsoft Defender for Cloud Apps의 이상 탐지 정책은 학습된 행동 기준을 사용해 사용자의 비정상적인 다중 파일 다운로드 활동을 탐지합니다. 이를 통해 비정상적인 SharePoint Online 다운로드 행동을 식별할 수 있는 반면, DLP와 파일 정책은 비정상적인 사용자 활동을 탐지하기보다 콘텐츠를 보호하거나 평가하는 데 중점을 둡니다.\n\n**Learn more:** [Create Defender for Cloud Apps anomaly detection policies](https://learn.microsoft.com/en-us/defender-cloud-apps/anomaly-detection-policy) · [Common threat protection policies - Microsoft Defender for Cloud Apps](https://learn.microsoft.com/en-us/defender-cloud-apps/policies-threat-protection)",
+    "blanks": [
+      {
+        "label": "서비스:",
+        "options": [
+          "Microsoft Defender for Cloud Apps",
+          "Microsoft Defender for Office 365",
+          "Microsoft Purview 데이터 손실 방지(DLP)",
+          "Microsoft Purview 정보 보호"
+        ]
+      },
+      {
+        "label": "정책:",
+        "options": [
+          "SharePoint Online에 적용한 데이터 손실 방지(DLP) 정책",
+          "파일 정책",
+          "이상 탐지 정책",
+          "엔드포인트 데이터 손실 방지(엔드포인트 DLP) 정책"
+        ]
+      }
+    ]
+  },
+  "202": {
+    "stem": "Active Directory Domain Services(AD DS)와 동기화되는 Microsoft 365 구독이 있습니다.\n\n구독의 데이터를 암호화한 랜섬웨어 공격에 대한 복구 단계를 정의해야 합니다. 솔루션은 Microsoft 보안 모범 사례를 따라야 합니다.\n\n복구 계획의 첫 단계는 무엇이어야 합니까?",
+    "expl": "랜섬웨어 대응은 확산 차단에서 시작합니다. OneDrive 동기화를 사용하지 않도록 설정하면 감염되었을 수 있는 장치가 클라우드 데이터를 업데이트하지 못하고, Exchange ActiveSync를 사용하지 않도록 설정하면 모바일 동기화가 중단됩니다. Microsoft의 랜섬웨어 플레이북은 이 조치를 맬웨어 제거, 보안 검사, 파일 복구보다 앞선 확산 방지 단계로 제시합니다.\n\n**Learn more:** [Responding to ransomware attacks - Microsoft Defender XDR](https://learn.microsoft.com/en-us/defender-xdr/playbook-responding-ransomware-m365-defender)",
+    "choices": [
+      "Microsoft Defender for Endpoint에서 보안 검사를 수행한다.",
+      "정리된 컴퓨터나 장치로 파일을 복구한다.",
+      "사법 기관에 연락한다.",
+      "Microsoft OneDrive 동기화와 Exchange ActiveSync를 사용하지 않도록 설정한다."
+    ]
+  },
+  "203": {
+    "stem": "회사에서 Azure DevSecOps용 Microsoft 클라우드 채택 프레임워크 모범 사례에 따라 DevSecOps 프로세스를 지속적 통합·지속적 배포(CI/CD) DevOps 파이프라인에 통합하려고 합니다.\n\n각 보안 관련 작업을 통합할 DevOps 파이프라인 단계를 권장해야 합니다.\n\n무엇을 권장해야 합니까?",
+    "expl": "인프라 검사는 릴리스 전에 빌드·테스트 단계에서 코드형 인프라와 배포 구성을 검증합니다. SAST는 코드를 커밋할 때 소스 코드를 분석하므로 코드 커밋 단계에 속합니다.\n\n**Learn more:** [DevOps security considerations overview - Cloud Adoption Framework](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/considerations/security-considerations-overview)",
+    "blanks": [
+      {
+        "label": "인프라 검사",
+        "options": [
+          "빌드 및 테스트",
+          "코드 커밋",
+          "프로덕션 배포",
+          "운영",
+          "계획 및 개발"
+        ]
+      },
+      {
+        "label": "정적 애플리케이션 보안 테스트",
+        "options": [
+          "빌드 및 테스트",
+          "코드 커밋",
+          "프로덕션 배포",
+          "운영",
+          "계획 및 개발"
+        ]
+      }
+    ]
+  },
+  "204": {
+    "stem": "저장소 계정이 여러 개 있는 Azure 구독이 있습니다. 레거시 애플리케이션은 액세스 키로 인증해 저장소 계정에 접근합니다.\n\n새 애플리케이션이 저장소 계정 액세스 키를 가져가지 못하게 막는 솔루션을 권장해야 합니다. 솔루션은 레거시 애플리케이션에 미치는 영향을 최소화해야 합니다.\n\n권장 사항에 무엇을 포함해야 합니까?",
+    "expl": "Azure Resource Manager의 읽기 전용 잠금은 계정 액세스 키를 반환하는 저장소 계정의 List Keys 작업을 차단합니다. 이미 액세스 키를 갖고 있는 애플리케이션은 계속 데이터 접근에 사용할 수 있으므로, 키 인증을 쓰는 레거시 애플리케이션에 미치는 영향이 최소화됩니다.\n\n**Learn more:** [Lock resources to protect your infrastructure](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/lock-resources) · [Apply an Azure Resource Manager lock to a storage account](https://learn.microsoft.com/en-us/azure/storage/common/lock-account-resource)",
+    "choices": [
+      "AllowSharedKeyAccess 속성을 false로 설정한다.",
+      "저장소 계정에 읽기 전용 잠금을 적용한다.",
+      "AllowBlobPublicAccess 속성을 false로 설정한다.",
+      "자동 키 회전을 구성한다."
+    ]
+  },
+  "205": {
+    "stem": "Azure로 온보딩되는 컨테이너화된 애플리케이션의 보안 표준을 정의하고 있습니다.\n\nMicrosoft Defender for Containers 사용을 평가하고 있습니다.\n\nDefender for Containers가 알려진 취약점을 검사할 수 있는 환경 두 가지는 무엇입니까? 각 정답은 완전한 해결책입니다.\n\n> **참고:** 각 정답 선택은 1점입니다.",
+    "expl": "Defender for Containers는 Azure Container Registry(ACR)에 있는 이미지에 대해 컨테이너 레지스트리 취약점 평가를 수행하며, 지원 운영 체제에는 Linux 배포판과 Windows Server 컨테이너 이미지가 포함됩니다. 따라서 ACR에 저장된 Linux와 Windows 컨테이너 이미지 모두 알려진 취약점을 검사할 수 있습니다.\n\n**Learn more:** [Containers support matrix in Defender for Cloud](https://learn.microsoft.com/en-us/azure/defender-for-cloud/support-matrix-defender-for-containers) · [Overview of Microsoft Defender for Containers](https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-containers-introduction)",
+    "choices": [
+      "Azure Container Instances에 배포한 Linux 컨테이너",
+      "Azure Kubernetes Service(AKS)에 배포한 Windows 컨테이너",
+      "Azure Container Registry에 배포한 Windows 컨테이너",
+      "Azure Container Registry에 배포한 Linux 컨테이너",
+      "Azure Kubernetes Service(AKS)에 배포한 Linux 컨테이너"
+    ]
+  },
+  "206": {
+    "stem": "솔루션: Front Door 인스턴스의 백엔드 IP 주소에서 오는 트래픽을 허용하는 액세스 제한을 권장합니다.\n\n이 솔루션이 목표를 달성합니까?",
+    "expl": "Azure Front Door의 원본 트래픽은 백엔드 IP 주소 하나가 아니라 `AzureFrontDoor.Backend` 서비스 태그로 표현되는, 계속 바뀌는 IP 범위 집합을 사용합니다. App Service를 특정 Front Door 인스턴스로 제한하려면 그 인스턴스의 식별자가 담긴 `X-Azure-FDID` 헤더 필터링도 필요합니다.\n\n**Learn more:** [App Service access restrictions](https://learn.microsoft.com/en-us/azure/app-service/overview-access-restrictions) · [Secure traffic to Azure Front Door origins](https://learn.microsoft.com/en-us/azure/frontdoor/origin-security)",
+    "choices": ["예", "아니요"]
+  },
+  "207": {
+    "stem": "솔루션: Front Door 서비스 태그에서 오는 트래픽을 허용하는 액세스 제한을 권장합니다.\n\n이 솔루션이 목표를 충족합니까?",
+    "expl": "`AzureFrontDoor.Backend` 서비스 태그는 특정 인스턴스가 아니라 모든 Azure Front Door 인스턴스가 사용하는 백엔드 IP 범위의 트래픽을 허용합니다. App Service 원본을 특정 Azure Front Door 인스턴스로 제한하려면 Front Door가 보내는 고유한 `X-Azure-FDID` 헤더 필터링도 필요합니다.\n\n**Learn more:** [Azure App Service access restrictions](https://learn.microsoft.com/en-us/azure/app-service/overview-access-restrictions) · [Secure traffic to Azure Front Door origins](https://learn.microsoft.com/en-us/azure/frontdoor/origin-security)",
+    "choices": ["예", "아니요"]
+  },
+  "208": {
+    "stem": "솔루션: Front Door ID가 담긴 HTTP 헤더를 기준으로 하는 액세스 제한을 권장합니다.\n\n이 솔루션이 목표를 충족합니까?",
+    "expl": "`X-Azure-FDID` 헤더만으로 App Service 액세스 제한을 걸면, 같은 헤더를 넣은 직접 요청으로 우회할 수 있습니다. 특정 Azure Front Door 인스턴스로 접근을 제한하려면 `AzureFrontDoor.Backend` 서비스 태그 허용 규칙과 `X-Azure-FDID` 헤더 제한이 모두 필요합니다.\n\n**Learn more:** [Set Up Access Restrictions - Azure App Service](https://learn.microsoft.com/en-us/azure/app-service/app-service-ip-restrictions)",
+    "choices": ["예", "아니요"]
+  }
+}

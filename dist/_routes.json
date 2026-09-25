@@ -24,6 +24,9 @@
     "/AI-103_CBT",
     "/AI-103_CBT/",
     "/AI-103_CBT/index.html",
+    "/SC-100_CBT",
+    "/SC-100_CBT/",
+    "/SC-100_CBT/index.html",
     "/api/*"
   ],
   "exclude": []
