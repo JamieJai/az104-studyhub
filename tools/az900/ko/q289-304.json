@@ -1,6 +1,7 @@
 {
   "289": {
     "stem": "HOTSPOT —\n\n답변 영역에서 알맞은 옵션을 선택해 문장을 완성하세요.\n\nHot Area:",
+    "template": "Azure에서 ____ 을(를) 사용하면 Azure 구독의 현재 청구 기간 비용이 지정한 한도를 넘을 때 메일 경고를 보낼 수 있습니다.",
     "expl": "Azure Cost Management 예산은 실제 비용이나 예측 비용이 설정한 예산에 도달하거나 초과하면 경고 임계값과 메일 등 알림 수신자를 지정해 알릴 수 있습니다.\n\n**Learn more:** [Microsoft Learn: Create and manage Azure budgets](https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/tutorial-acm-create-budgets)",
     "blanks": [
       { "label": "정답:", "options": ["Advisor 권장 사항", "액세스 제어(IAM)", "예산 경고", "규정 준수"] }

@@ -50,6 +50,7 @@
   },
   "248": {
     "stem": "문장을 올바르게 완성하는 답을 선택하세요.",
+    "template": "클라우드에서 호스트되고 소프트웨어 업데이트를 Azure가 관리하는 Microsoft SQL Server 데이터베이스는 ____ 의 예입니다.",
     "expl": "Azure SQL Database는 완전 관리형 PaaS 데이터베이스 서비스입니다. Azure가 업그레이드와 패치 같은 플랫폼 관리를 담당하고, 고객은 데이터와 데이터베이스 구성을 책임집니다.\n\n**Learn more:** [What Is Azure SQL?](https://learn.microsoft.com/en-us/azure/azure-sql/azure-sql-iaas-vs-paas-what-is-overview?view=azuresql)",
     "blanks": [
       { "label": "Azure SQL Database는 다음의 예입니다:", "options": ["서비스형 재해 복구(DRaaS)", "서비스형 인프라(IaaS)", "서비스형 플랫폼(PaaS)", "서비스형 소프트웨어(SaaS)"] }

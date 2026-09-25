@@ -1,0 +1,429 @@
+{
+ "cbt": "AZ-802",
+ "note": "빌드 후 tools/sets/apply_scenarios.js 로 다시 입힌다",
+ "groups": [
+  {
+   "id": "az802-s01",
+   "exam": "AZ-802",
+   "type": "scenario",
+   "titleEn": "BitLocker Recovery in AD DS",
+   "titleKo": "AD DS의 BitLocker 복구 키",
+   "contentEn": "Your network includes an Active Directory Domain Services (AD DS) domain. The domain contains servers running Windows Server, and BitLocker recovery keys are stored in AD DS.\n\nA server named Server1 starts in BitLocker recovery mode.\n\nYou need to identify the BitLocker recovery key for Server1.",
+   "contentKo": "네트워크에 Active Directory Domain Services(AD DS) 도메인이 있습니다. 이 도메인에는 Windows Server를 실행하는 서버가 있고 BitLocker 복구 키는 AD DS에 저장됩니다.\n\nServer1이라는 서버가 BitLocker 복구 모드로 시작됩니다.\n\nServer1의 BitLocker 복구 키를 확인해야 합니다.",
+   "assets": {},
+   "members": [
+    {
+     "n": 10,
+     "id": "a1b97672-f746-41de-96dc-37c735b37d01"
+    },
+    {
+     "n": 12,
+     "id": "af23caf5-39b2-4e3a-a7a9-c5acb7ccf368"
+    },
+    {
+     "n": 13,
+     "id": "f8ef9a39-1c46-4988-a699-16aeb5994e4d"
+    },
+    {
+     "n": 46,
+     "id": "7ef18b7e-6dfc-4ad6-989a-715b88b8ec4c"
+    }
+   ]
+  },
+  {
+   "id": "az802-s02",
+   "exam": "AZ-802",
+   "type": "scenario",
+   "titleEn": "Contoso Domain Trust Failure",
+   "titleKo": "Contoso 도메인 트러스트 오류",
+   "contentEn": "**Overview**\n\nYour network contains an Active Directory Domain Services (AD DS) domain named `contoso.com`.\n\n**Existing environment**\n\nThe domain contains a domain controller named `DC1` and a member server named `Server1`.\n\n**Issue**\n\nUsers cannot sign in to `Server1` by using domain credentials and receive the following error message:\n\n> The trust relationship between this workstation and the primary domain failed.\n\n**Requirement**\n\nYou need to restore domain authentication on `Server1` without removing `Server1` from the domain.",
+   "contentKo": "**개요**\n\n네트워크에 `contoso.com`이라는 Active Directory Domain Services(AD DS) 도메인이 있습니다.\n\n**기존 환경**\n\n이 도메인에는 `DC1`이라는 도메인 컨트롤러와 `Server1`이라는 멤버 서버가 있습니다.\n\n**문제**\n\n사용자가 도메인 자격 증명으로 `Server1`에 로그인할 수 없고 다음 오류 메시지가 표시됩니다.\n\n> 이 워크스테이션과 주 도메인 간의 트러스트 관계가 실패했습니다.\n\n**요구 사항**\n\n`Server1`을 도메인에서 제거하지 않고 도메인 인증을 복구해야 합니다.",
+   "assets": {},
+   "members": [
+    {
+     "n": 31,
+     "id": "11c27799-cc5a-4004-9622-36e0ac32faa0"
+    },
+    {
+     "n": 39,
+     "id": "612b71f0-866c-45ac-b7da-814053df52de"
+    },
+    {
+     "n": 40,
+     "id": "57f7102b-b5ca-4742-9aaf-1930b62cc726"
+    },
+    {
+     "n": 41,
+     "id": "79b95505-9e24-4604-9d66-a47d40686d64"
+    }
+   ]
+  },
+  {
+   "id": "az802-s03",
+   "exam": "AZ-802",
+   "type": "scenario",
+   "titleEn": "Branch Office Authentication Routing",
+   "titleKo": "지사 인증 라우팅",
+   "contentEn": "Your network includes an Active Directory Domain Services (AD DS) forest. The forest contains three Active Directory sites named Site1, Site2, and Site3. Each site contains two domain controllers. The sites are connected by using DEFAULTIPSITELINK.\n\nYou open a new branch office that contains only client computers.\n\nYou need to make sure that the client computers in the new office are primarily authenticated by the domain controllers in Site1.",
+   "contentKo": "네트워크에 Active Directory Domain Services(AD DS) 포리스트가 있습니다. 이 포리스트에는 Site1, Site2, Site3이라는 Active Directory 사이트 세 개가 있고 각 사이트에는 도메인 컨트롤러가 두 대씩 있습니다. 사이트는 DEFAULTIPSITELINK로 연결되어 있습니다.\n\n클라이언트 컴퓨터만 있는 새 지사를 엽니다.\n\n새 사무실의 클라이언트 컴퓨터가 주로 Site1의 도메인 컨트롤러에서 인증되도록 해야 합니다.",
+   "assets": {},
+   "members": [
+    {
+     "n": 49,
+     "id": "1bab751a-cfbd-415b-8926-b73f833ccf0f"
+    },
+    {
+     "n": 50,
+     "id": "4a861fe2-9214-4c21-afe6-e8683a340f7f"
+    },
+    {
+     "n": 52,
+     "id": "a7a5d9a5-569e-4ad2-9f0c-16011660935f"
+    },
+    {
+     "n": 53,
+     "id": "5273874d-7b9c-4d3d-816b-dd807301d558"
+    }
+   ]
+  },
+  {
+   "id": "az802-s04",
+   "exam": "AZ-800",
+   "type": "scenario",
+   "titleEn": "Contoso Group Policy Central Store",
+   "titleKo": "Contoso 그룹 정책 중앙 저장소",
+   "contentEn": "## Overview\n\nYour network includes an Active Directory Domain Services (AD DS) domain named `contoso.com`.\n\nYou implement a central store.\n\nYou create a new Group Policy Object (GPO) named `GPO1`.\n\nWhen you try to edit `GPO1`, you see the settings shown in the exhibit. (Click the Exhibit tab.)\n\n![Scenario Image](images/1783896411093-5vnmjvf1.png)\n\nYou need to make sure that all settings are available.",
+   "contentKo": "## 개요\n\n네트워크에 `contoso.com`이라는 Active Directory Domain Services(AD DS) 도메인이 있습니다.\n\n중앙 저장소(central store)를 구현합니다.\n\n`GPO1`이라는 새 그룹 정책 개체(GPO)를 만듭니다.\n\n`GPO1`을 편집하려고 하면 전시에 표시된 설정이 보입니다. (전시 탭을 클릭하세요.)\n\n![Scenario Image](images/1783896411093-5vnmjvf1.png)\n\n모든 설정을 사용할 수 있게 해야 합니다.",
+   "assets": {
+    "images/1783896411093-5vnmjvf1.png": "assets/az-800/1783896411093-5vnmjvf1.png"
+   },
+   "members": [
+    {
+     "n": 104,
+     "id": "AZ-800-Q13"
+    },
+    {
+     "n": 105,
+     "id": "AZ-800-Q14"
+    },
+    {
+     "n": 106,
+     "id": "AZ-800-Q15"
+    },
+    {
+     "n": 166,
+     "id": "AZ-800-Q307"
+    }
+   ]
+  },
+  {
+   "id": "az802-s05",
+   "exam": "AZ-800",
+   "type": "case_study",
+   "titleEn": "Case study — Fabrikam Hybrid Cloud Migration",
+   "titleKo": "사례 연구 — Fabrikam 하이브리드 클라우드 마이그레이션",
+   "contentEn": "## Overview\n\nFabrikam, Inc. is a manufacturing company with a main office in New York and a branch office in Seattle.\n\n## Existing Environment\n\n### On-premises Servers\n\nThe on-premises network includes servers that run Windows Server, as shown in the following table.\n\n![Scenario Image](images/1783921173566-b6scp4lp.png)\n\nDC1 hosts all the operation master roles.\n\nVM1 and VM2 are connected to the internet.\n\nWEB1 and WEB2 run an Internet Information Services (IIS) web app named Webapp1.\n\n### On-premises Network\n\nThe New York and Seattle offices are connected by redundant WAN links.\n\nClient computers in each office receive IP addresses from their local DHCP server.\n\nDHCP1 contains a scope named Scope1 that has addresses for the New York office, and DHCP2 contains a scope named Scope2 that has addresses for the Seattle office.\n\n### Identity Infrastructure\n\nThe network contains a single on-premises Active Directory Domain Services (AD DS) domain named `corp.fabrikam.com`. Currently, all the service accounts use individual domain user accounts.\n\nAll domain controllers have the DNS Server role installed and host a copy of the Active Directory integrated DNS zone of `corp.fabrikam.com`.\n\nThe `corp.fabrikam.com` AD DS domain syncs with a Microsoft Entra tenant.\n\n### Group Policy Objects (GPOs)\n\nThe `corp.fabrikam.com` domain contains the organizational units (OUs) and custom Group Policy Objects (GPOs) shown in the following table.\n\n![Scenario Image](images/1783921177254-4qgz5py9.png)\n\n## Requirements\n\n### Planned Changes\n\nFabrikam identifies the following planned changes:\n\n- Create a single Azure subscription named `Sub1` that will contain a single Azure virtual network named `Vnet1`.\n- Replace the WAN links between the Seattle and New York offices by using Azure Virtual WAN and FxpressRoute. Both on premises offices will be connected to `Vnet1` by using ExpressRoute.\n- Create three Azure file shares named `newyorkfiles`, `seattlefiles`, and `companyfiles`.\n- Create a domain controller named `dc3.corp.fabrikam.com` in `Vnet1`.\n- Deploy an Azure Virtual Desktop host pool to `Vnet1`. The Azure Virtual Desktop session hosts will be hybrid Microsoft Entra joined.\n- License all servers for Microsoft Defender for servers.\n- Use Azure Policy to enforce configuration management policies on the servers in Azure and on-premises.\n\n### Networking Requirements\n\nFabrikam identifies the following networking requirements:\n\n- Implement Virtual WAN and ensure that all the network traffic between the sites uses Virtual WAN. All communications must occur over ExpressRoute.\n- If a DHCP server fails, ensure that the client computers can continue to receive their dynamic IP address and renew their existing lease.\n- Ensure that the resources in `Vnet1` can resolve the names of the on-premises servers in the `corp.fabrikam.com` domain.\n\n### Security Requirements\n\nFabrikam identifies the following security requirements:\n\n- Apply GPO4 to the Azure Virtual Desktop session hosts. Ensure that Azure Virtual Desktop user sessions lock after being idle for 10 minutes. Users must be able to control the lockout time manually from their client computer.\n- Ensure that server administrators request approval before they can establish a Remote Desktop connection to an Azure virtual machine. If the request is approved, the connection must be established within two hours.\n- Prevent user passwords from containing all or part of words that are based on the company name, such as Fab, f@br1kAm or fabr!.\n- Ensure that all instances of Webapp1 use the same service account. The password of the service account must change automatically every 30 days.\n- Prevent domain controllers from directly contacting hosts on the internet.\n\n### File Sharing Requirements\n\nYou need to configure the synchronization of Azure files to meet the following requirements:\n\n- Ensure that `seattlefiles` syncs to `FS2`.\n- Ensure that `newyorkfiles` syncs to `FS1`.\n- Ensure that `companyfiles` syncs to both `FS1` and `FS2`.",
+   "contentKo": "## 개요\n\nFabrikam, Inc.는 뉴욕에 본사를, 시애틀에 지사를 둔 제조 회사입니다.\n\n## 기존 환경\n\n### 온프레미스 서버\n\n온프레미스 네트워크에는 다음 표와 같이 Windows Server를 실행하는 서버가 있습니다.\n\n![Scenario Image](images/1783921173566-b6scp4lp.png)\n\nDC1이 모든 작업 마스터 역할을 호스트합니다.\n\nVM1과 VM2는 인터넷에 연결되어 있습니다.\n\nWEB1과 WEB2는 Webapp1이라는 IIS(인터넷 정보 서비스) 웹앱을 실행합니다.\n\n### 온프레미스 네트워크\n\n뉴욕과 시애틀 사무실은 이중화된 WAN 링크로 연결되어 있습니다.\n\n각 사무실의 클라이언트 컴퓨터는 로컬 DHCP 서버에서 IP 주소를 받습니다.\n\nDHCP1에는 뉴욕 사무실 주소가 담긴 Scope1이라는 범위가, DHCP2에는 시애틀 사무실 주소가 담긴 Scope2라는 범위가 있습니다.\n\n### ID 인프라\n\n네트워크에는 `corp.fabrikam.com`이라는 온프레미스 Active Directory Domain Services(AD DS) 도메인 하나가 있습니다. 현재 모든 서비스 계정은 개별 도메인 사용자 계정을 사용합니다.\n\n모든 도메인 컨트롤러에는 DNS 서버 역할이 설치되어 있고 `corp.fabrikam.com`의 Active Directory 통합 DNS 영역 사본을 호스트합니다.\n\n`corp.fabrikam.com` AD DS 도메인은 Microsoft Entra 테넌트와 동기화됩니다.\n\n### 그룹 정책 개체(GPO)\n\n`corp.fabrikam.com` 도메인에는 다음 표와 같은 조직 구성 단위(OU)와 사용자 지정 그룹 정책 개체(GPO)가 있습니다.\n\n![Scenario Image](images/1783921177254-4qgz5py9.png)\n\n## 요구 사항\n\n### 계획된 변경\n\nFabrikam은 다음 변경을 계획하고 있습니다.\n\n- `Vnet1`이라는 Azure 가상 네트워크 하나가 들어갈 `Sub1`이라는 Azure 구독 하나를 만듭니다.\n- Azure Virtual WAN과 ExpressRoute로 시애틀·뉴욕 사무실 간 WAN 링크를 대체합니다. 두 온프레미스 사무실 모두 ExpressRoute로 `Vnet1`에 연결됩니다.\n- `newyorkfiles`, `seattlefiles`, `companyfiles`라는 Azure 파일 공유 세 개를 만듭니다.\n- `Vnet1`에 `dc3.corp.fabrikam.com`이라는 도메인 컨트롤러를 만듭니다.\n- `Vnet1`에 Azure Virtual Desktop 호스트 풀을 배포합니다. Azure Virtual Desktop 세션 호스트는 하이브리드 Microsoft Entra 조인 상태가 됩니다.\n- 모든 서버에 Microsoft Defender for Servers 라이선스를 부여합니다.\n- Azure Policy로 Azure와 온프레미스의 서버에 구성 관리 정책을 적용합니다.\n\n### 네트워킹 요구 사항\n\nFabrikam은 다음 네트워킹 요구 사항을 파악했습니다.\n\n- Virtual WAN을 구현하고 사이트 간 모든 네트워크 트래픽이 Virtual WAN을 사용하도록 합니다. 모든 통신은 ExpressRoute를 통해 이루어져야 합니다.\n- DHCP 서버에 장애가 나도 클라이언트 컴퓨터가 동적 IP 주소를 계속 받고 기존 임대를 갱신할 수 있어야 합니다.\n- `Vnet1`의 리소스가 `corp.fabrikam.com` 도메인의 온프레미스 서버 이름을 확인할 수 있어야 합니다.\n\n### 보안 요구 사항\n\nFabrikam은 다음 보안 요구 사항을 파악했습니다.\n\n- Azure Virtual Desktop 세션 호스트에 GPO4를 적용합니다. Azure Virtual Desktop 사용자 세션이 10분간 유휴 상태면 잠기도록 하되, 사용자가 클라이언트 컴퓨터에서 잠금 시간을 직접 조정할 수 있어야 합니다.\n- 서버 관리자가 Azure 가상 머신에 원격 데스크톱으로 연결하기 전에 승인을 요청하도록 합니다. 요청이 승인되면 2시간 안에 연결이 이루어져야 합니다.\n- 사용자 암호에 Fab, f@br1kAm, fabr! 처럼 회사 이름을 기반으로 한 단어의 전체나 일부가 들어가지 못하게 합니다.\n- Webapp1의 모든 인스턴스가 같은 서비스 계정을 사용하도록 합니다. 이 서비스 계정의 암호는 30일마다 자동으로 변경되어야 합니다.\n- 도메인 컨트롤러가 인터넷의 호스트에 직접 연결하지 못하게 합니다.\n\n### 파일 공유 요구 사항\n\n다음 요구 사항을 충족하도록 Azure 파일 동기화를 구성해야 합니다.\n\n- `seattlefiles`를 `FS2`에 동기화합니다.\n- `newyorkfiles`를 `FS1`에 동기화합니다.\n- `companyfiles`를 `FS1`과 `FS2` 양쪽에 동기화합니다.",
+   "assets": {
+    "images/1783921173566-b6scp4lp.png": "assets/az-800/1783921173566-b6scp4lp.png",
+    "images/1783921177254-4qgz5py9.png": "assets/az-800/1783921177254-4qgz5py9.png"
+   },
+   "members": [
+    {
+     "n": 121,
+     "id": "AZ-800-Q113"
+    },
+    {
+     "n": 130,
+     "id": "AZ-800-Q142"
+    },
+    {
+     "n": 226,
+     "id": "AZ-800-Q144"
+    },
+    {
+     "n": 277,
+     "id": "AZ-800-Q183"
+    },
+    {
+     "n": 306,
+     "id": "AZ-800-Q82"
+    },
+    {
+     "n": 362,
+     "id": "AZ-800-Q204"
+    }
+   ]
+  },
+  {
+   "id": "az802-s06",
+   "exam": "AZ-800",
+   "type": "case_study",
+   "titleEn": "Case study — ADatum Fabrikam Cross-Forest Integration",
+   "titleKo": "사례 연구 — ADatum·Fabrikam 포리스트 간 통합",
+   "contentEn": "## Overview\n\n### Company Information\n\nADatum Corporation is a manufacturing company with a main office in Seattle and two branch offices in Los Angeles and Montreal.\n\n### Fabrikam Partnership\n\nADatum recently partnered with 2 company named Fabrikam, Inc.\n\nFabrikam is a manufacturing company with a main office in Boston and a branch office in Orlando.\n\nBoth companies plan to collaborate on several joint projects.\n\n## Existing Environment\n\n### ADatum AD DS Environment\n\nThe on-premises network of ADatum contains an Active Directory Domain Services (AD DS) forest named `adatum.com`.\n\nThe forest contains two domains named `adatum.com` and `east.adatum.com` and the domain controllers shown in the following table.\n\n![Scenario Image](images/1785751866399-v9lryoem.png)\n\n### Fabrikam AD DS Environment\n\nThe on-premises network of Fabrikam contains an AD DS forest named `fabrikam.com`.\n\nThe forest contains two domains named `fabrikam.com` and `south.fabrikam.com`.\n\nThe `fabrikam.com` domain contains an organizational unit (OU) named `Marketing`.\n\n### Server Infrastructure\n\nThe `adatum.com` domain contains the servers shown in the following table.\n\n![Scenario Image](images/1785751869992-lo8vfemt.png)\n\n`HyperV1` contains the virtual machines shown in the following table.\n\n![Scenario Image](images/1785751874241-ucj0urig.png)\n\nAll the virtual machines on `HyperV1` have only the default management tools installed.\n\n`SSPace1` contains the Storage Spaces virtual disks shown in the following table.\n\n![Scenario Image](images/1785751877525-z0n398jx.png)\n\n### Azure Resources\n\nADatum has an Azure subscription that contains an Azure AD tenant. Azure AD Connect is configured to synchronize the `adatum.com` forest with Azure AD.\n\nThe subscription contains the virtual networks shown in the following table.\n\n![Scenario Image](images/1785751880703-gsq50jz3.png)\n\nThe subscription contains the Azure Private DNS zones shown in the following table.\n\n![Scenario Image](images/1785751883881-pw59l4x3.png)\n\nThe subscription contains the virtual machines shown in the following table.\n\n![Scenario Image](images/1785751886846-vevdu8pw.png)\n\nAll the servers are in a workgroup.\n\nThe subscription contains a storage account named `storage1` that has a file share named `share1`.\n\n## Requirements\n\n### Planned Changes\n\nADatum plans to implement the following changes:\n\n- Sync `Data1` to `share1`.\n- Configure an Azure runbook named `Task1`.\n- Enable Azure AD users to sign in to `Server1`.\n- Create an Azure DNS Private Resolver with the following configurations:\n  - Name: `Private1`\n  - Region: West US\n  - Virtual network: `VNet1`\n  - Inbound endpoint: `SubnetB`\n- Enable users in the `adatum.com` domain to access the resources in the `south.fabrikam.com` domain.\n\n### Technical Requirements\n\nADatum identifies the following technical requirements:\n\n- The data on `SSPace1` must always be available.\n- `DC2` must become the schema master if `DC1` fails.\n- `VM3` must be configured to enable per-folder quotas.\n- Trusts must allow access to only the required resources.\n- The users in the `Marketing` OU must have access to `storage1`.\n- Azure Automanage must be used on all supported Azure virtual machines.\n- A direct SSH session must be used to manage all the supported virtual machines on `HyperV1`.",
+   "contentKo": "## 개요\n\n### 회사 정보\n\nADatum Corporation은 시애틀에 본사를, 로스앤젤레스와 몬트리올에 지사 두 곳을 둔 제조 회사입니다.\n\n### Fabrikam 파트너십\n\nADatum은 최근 Fabrikam, Inc.라는 회사와 파트너 관계를 맺었습니다.\n\nFabrikam은 보스턴에 본사를, 올랜도에 지사를 둔 제조 회사입니다.\n\n두 회사는 여러 공동 프로젝트를 함께 진행할 계획입니다.\n\n## 기존 환경\n\n### ADatum AD DS 환경\n\nADatum의 온프레미스 네트워크에는 `adatum.com`이라는 Active Directory Domain Services(AD DS) 포리스트가 있습니다.\n\n이 포리스트에는 `adatum.com`과 `east.adatum.com`이라는 도메인 두 개와 다음 표의 도메인 컨트롤러가 있습니다.\n\n![Scenario Image](images/1785751866399-v9lryoem.png)\n\n### Fabrikam AD DS 환경\n\nFabrikam의 온프레미스 네트워크에는 `fabrikam.com`이라는 AD DS 포리스트가 있습니다.\n\n이 포리스트에는 `fabrikam.com`과 `south.fabrikam.com`이라는 도메인 두 개가 있습니다.\n\n`fabrikam.com` 도메인에는 `Marketing`이라는 조직 구성 단위(OU)가 있습니다.\n\n### 서버 인프라\n\n`adatum.com` 도메인에는 다음 표의 서버가 있습니다.\n\n![Scenario Image](images/1785751869992-lo8vfemt.png)\n\n`HyperV1`에는 다음 표의 가상 머신이 있습니다.\n\n![Scenario Image](images/1785751874241-ucj0urig.png)\n\n`HyperV1`의 모든 가상 머신에는 기본 관리 도구만 설치되어 있습니다.\n\n`SSPace1`에는 다음 표의 저장소 공간 가상 디스크가 있습니다.\n\n![Scenario Image](images/1785751877525-z0n398jx.png)\n\n### Azure 리소스\n\nADatum에는 Azure AD 테넌트가 포함된 Azure 구독이 있습니다. Azure AD Connect가 `adatum.com` 포리스트를 Azure AD와 동기화하도록 구성되어 있습니다.\n\n구독에는 다음 표의 가상 네트워크가 있습니다.\n\n![Scenario Image](images/1785751880703-gsq50jz3.png)\n\n구독에는 다음 표의 Azure 프라이빗 DNS 영역이 있습니다.\n\n![Scenario Image](images/1785751883881-pw59l4x3.png)\n\n구독에는 다음 표의 가상 머신이 있습니다.\n\n![Scenario Image](images/1785751886846-vevdu8pw.png)\n\n모든 서버는 작업 그룹에 있습니다.\n\n구독에는 `share1`이라는 파일 공유가 있는 `storage1`이라는 저장소 계정이 있습니다.\n\n## 요구 사항\n\n### 계획된 변경\n\nADatum은 다음 변경을 구현할 계획입니다.\n\n- `Data1`을 `share1`에 동기화합니다.\n- `Task1`이라는 Azure 런북을 구성합니다.\n- Azure AD 사용자가 `Server1`에 로그인할 수 있게 합니다.\n- 다음 구성으로 Azure DNS 프라이빗 확인자를 만듭니다.\n  - 이름: `Private1`\n  - 지역: 미국 서부\n  - 가상 네트워크: `VNet1`\n  - 인바운드 엔드포인트: `SubnetB`\n- `adatum.com` 도메인의 사용자가 `south.fabrikam.com` 도메인의 리소스에 접근할 수 있게 합니다.\n\n### 기술 요구 사항\n\nADatum은 다음 기술 요구 사항을 파악했습니다.\n\n- `SSPace1`의 데이터는 항상 사용할 수 있어야 합니다.\n- `DC1`에 장애가 나면 `DC2`가 스키마 마스터가 되어야 합니다.\n- `VM3`에는 폴더별 할당량을 사용하도록 구성해야 합니다.\n- 트러스트는 필요한 리소스에만 접근을 허용해야 합니다.\n- `Marketing` OU의 사용자는 `storage1`에 접근할 수 있어야 합니다.\n- 지원되는 모든 Azure 가상 머신에 Azure Automanage를 사용해야 합니다.\n- `HyperV1`의 지원되는 모든 가상 머신은 직접 SSH 세션으로 관리해야 합니다.",
+   "assets": {
+    "images/1785751866399-v9lryoem.png": "assets/az-800/1785751866399-v9lryoem.png",
+    "images/1785751869992-lo8vfemt.png": "assets/az-800/1785751869992-lo8vfemt.png",
+    "images/1785751874241-ucj0urig.png": "assets/az-800/1785751874241-ucj0urig.png",
+    "images/1785751877525-z0n398jx.png": "assets/az-800/1785751877525-z0n398jx.png",
+    "images/1785751880703-gsq50jz3.png": "assets/az-800/1785751880703-gsq50jz3.png",
+    "images/1785751883881-pw59l4x3.png": "assets/az-800/1785751883881-pw59l4x3.png",
+    "images/1785751886846-vevdu8pw.png": "assets/az-800/1785751886846-vevdu8pw.png"
+   },
+   "members": [
+    {
+     "n": 315,
+     "id": "AZ-800-Q122"
+    }
+   ]
+  },
+  {
+   "id": "az802-s07",
+   "exam": "AZ-800",
+   "type": "scenario",
+   "titleEn": "Site1 Branch Office Authentication",
+   "titleKo": "Site1 지사 인증",
+   "contentEn": "## Overview\n\nYour network contains an Active Directory Domain Services (AD DS) forest. The forest includes three Active Directory sites named Site1, Site2, and Site3. Each site has two domain controllers. The sites are connected by using `DEFAULTIPSITELINK`.\n\nYou open a new branch office that contains only client computers.\n\nYou need to ensure that the client computers in the new office are primarily authenticated by the domain controllers in Site1.",
+   "contentKo": "## 개요\n\n네트워크에 Active Directory Domain Services(AD DS) 포리스트가 있습니다. 이 포리스트에는 Site1, Site2, Site3이라는 Active Directory 사이트 세 개가 있고 각 사이트에는 도메인 컨트롤러가 두 대씩 있습니다. 사이트는 `DEFAULTIPSITELINK`로 연결되어 있습니다.\n\n클라이언트 컴퓨터만 있는 새 지사를 엽니다.\n\n새 사무실의 클라이언트 컴퓨터가 주로 Site1의 도메인 컨트롤러에서 인증되도록 해야 합니다.",
+   "assets": {},
+   "members": [
+    {
+     "n": 125,
+     "id": "AZ-800-Q137"
+    },
+    {
+     "n": 126,
+     "id": "AZ-800-Q138"
+    },
+    {
+     "n": 127,
+     "id": "AZ-800-Q139"
+    },
+    {
+     "n": 128,
+     "id": "AZ-800-Q140"
+    },
+    {
+     "n": 129,
+     "id": "AZ-800-Q141"
+    }
+   ]
+  },
+  {
+   "id": "az802-s08",
+   "exam": "AZ-800",
+   "type": "case_study",
+   "titleEn": "Case study — ADatum Fabrikam Hybrid Cloud Integration",
+   "titleKo": "사례 연구 — ADatum·Fabrikam 하이브리드 클라우드 통합",
+   "contentEn": "## Overview\n\n### Company Information\n\nADatum Corporation is a manufacturing company with a main office in Seattle and two branch offices in Los Angeles and Montreal.\n\n### Fabrikam Partnership\n\nADatum recently partnered with a company named Fabrikam, Inc.\n\nFabrikam is a manufacturing company with a main office in Boston and a branch office in Orlando.\n\nBoth companies plan to work together on several joint projects.\n\n## Existing Environment\n\n### ADatum AD DS Environment\n\nThe on-premises network for ADatum includes an Active Directory Domain Services (AD DS) forest named `adatum.com`.\n\nThe forest contains two domains named `adatum.com` and `east.adatum.com`, and the domain controllers shown in the following table.\n\n![Scenario Image](images/1783847785113-cjyqqram.png)\n\n### Fabrikam AD DS Environment\n\nThe on-premises network for Fabrikam includes an AD DS forest named `fabrikam.com`.\n\nThe forest contains two domains named `fabrikam.com` and `south.fabrikam.com`.\n\nThe `fabrikam.com` domain contains an organizational unit (OU) named `Marketing`.\n\n### Server Infrastructure\n\nThe `adatum.com` domain contains the servers shown in the following table.\n\n![Scenario Image](images/1783847788266-n6rjvmzx.png)\n\n`HyperV1` contains the virtual machines shown in the following table.\n\n![Scenario Image](images/1783847790323-8x6mt8hj.png)\n\nAll virtual machines on `HyperV1` have only the default management tools installed.\n\n`SSPace1` contains the Storage Spaces virtual disks shown in the following table.\n\n![Scenario Image](images/1783847793291-xhosdg4i.png)\n\n### Azure Resources\n\nADatum has an Azure subscription that contains an Azure AD tenant. Azure AD Connect is configured to synchronize the `adatum.com` forest with Azure AD.\n\nThe subscription contains the virtual networks shown in the following table.\n\n![Scenario Image](images/1783847796792-rvz775c0.png)\n\nThe subscription contains the Azure Private DNS zones shown in the following table.\n\n![Scenario Image](images/1783847799872-nb3tkgin.png)\n\nThe subscription contains the virtual machines shown in the following table.\n\n![Scenario Image](images/1783847803769-c6os4bfq.png)\n\nAll the servers are in a workgroup.\n\nThe subscription contains a storage account named `storage1` that has a file share named `share1`.\n\n## Requirements\n\n### Planned Changes\n\nADatum plans to implement these changes:\n\n- Sync `Data1` to `share1`.\n- Configure an Azure runbook named `Task1`.\n- Allow Azure AD users to sign in to `Server1`.\n- Create an Azure DNS Private Resolver with the following settings:\n  - Name: `Private1`\n  - Region: West US\n  - Virtual network: `VNet1`\n  - Inbound endpoint: `SubnetB`\n- Enable users in the `adatum.com` domain to access resources in the `south.fabrikam.com` domain.\n\n### Technical Requirements\n\nADatum identifies these technical requirements:\n\n- The data on `SSPace1` must always be available.\n- `DC2` must become the schema master if `DC1` fails.\n- `VM3` must be configured to enable per-folder quotas.\n- Trusts must allow access only to the required resources.\n- Users in the `Marketing OU` must have access to `storage1`.\n- Azure Automanage must be used on all supported Azure virtual machines.\n- A direct SSH session must be used to manage all supported virtual machines on `HyperV1`.",
+   "contentKo": "## 개요\n\n### 회사 정보\n\nADatum Corporation은 시애틀에 본사를, 로스앤젤레스와 몬트리올에 지사 두 곳을 둔 제조 회사입니다.\n\n### Fabrikam 파트너십\n\nADatum은 최근 Fabrikam, Inc.라는 회사와 파트너 관계를 맺었습니다.\n\nFabrikam은 보스턴에 본사를, 올랜도에 지사를 둔 제조 회사입니다.\n\n두 회사는 여러 공동 프로젝트를 함께 진행할 계획입니다.\n\n## 기존 환경\n\n### ADatum AD DS 환경\n\nADatum의 온프레미스 네트워크에는 `adatum.com`이라는 Active Directory Domain Services(AD DS) 포리스트가 있습니다.\n\n이 포리스트에는 `adatum.com`과 `east.adatum.com`이라는 도메인 두 개와 다음 표의 도메인 컨트롤러가 있습니다.\n\n![Scenario Image](images/1783847785113-cjyqqram.png)\n\n### Fabrikam AD DS 환경\n\nFabrikam의 온프레미스 네트워크에는 `fabrikam.com`이라는 AD DS 포리스트가 있습니다.\n\n이 포리스트에는 `fabrikam.com`과 `south.fabrikam.com`이라는 도메인 두 개가 있습니다.\n\n`fabrikam.com` 도메인에는 `Marketing`이라는 조직 구성 단위(OU)가 있습니다.\n\n### 서버 인프라\n\n`adatum.com` 도메인에는 다음 표의 서버가 있습니다.\n\n![Scenario Image](images/1783847788266-n6rjvmzx.png)\n\n`HyperV1`에는 다음 표의 가상 머신이 있습니다.\n\n![Scenario Image](images/1783847790323-8x6mt8hj.png)\n\n`HyperV1`의 모든 가상 머신에는 기본 관리 도구만 설치되어 있습니다.\n\n`SSPace1`에는 다음 표의 저장소 공간 가상 디스크가 있습니다.\n\n![Scenario Image](images/1783847793291-xhosdg4i.png)\n\n### Azure 리소스\n\nADatum에는 Azure AD 테넌트가 포함된 Azure 구독이 있습니다. Azure AD Connect가 `adatum.com` 포리스트를 Azure AD와 동기화하도록 구성되어 있습니다.\n\n구독에는 다음 표의 가상 네트워크가 있습니다.\n\n![Scenario Image](images/1783847796792-rvz775c0.png)\n\n구독에는 다음 표의 Azure 프라이빗 DNS 영역이 있습니다.\n\n![Scenario Image](images/1783847799872-nb3tkgin.png)\n\n구독에는 다음 표의 가상 머신이 있습니다.\n\n![Scenario Image](images/1783847803769-c6os4bfq.png)\n\n모든 서버는 작업 그룹에 있습니다.\n\n구독에는 `share1`이라는 파일 공유가 있는 `storage1`이라는 저장소 계정이 있습니다.\n\n## 요구 사항\n\n### 계획된 변경\n\nADatum은 다음 변경을 구현할 계획입니다.\n\n- `Data1`을 `share1`에 동기화합니다.\n- `Task1`이라는 Azure 런북을 구성합니다.\n- Azure AD 사용자가 `Server1`에 로그인할 수 있게 합니다.\n- 다음 설정으로 Azure DNS 프라이빗 확인자를 만듭니다.\n  - 이름: `Private1`\n  - 지역: 미국 서부\n  - 가상 네트워크: `VNet1`\n  - 인바운드 엔드포인트: `SubnetB`\n- `adatum.com` 도메인의 사용자가 `south.fabrikam.com` 도메인의 리소스에 접근할 수 있게 합니다.\n\n### 기술 요구 사항\n\nADatum은 다음 기술 요구 사항을 파악했습니다.\n\n- `SSPace1`의 데이터는 항상 사용할 수 있어야 합니다.\n- `DC1`에 장애가 나면 `DC2`가 스키마 마스터가 되어야 합니다.\n- `VM3`에는 폴더별 할당량을 사용하도록 구성해야 합니다.\n- 트러스트는 필요한 리소스에만 접근을 허용해야 합니다.\n- `Marketing OU`의 사용자는 `storage1`에 접근할 수 있어야 합니다.\n- 지원되는 모든 Azure 가상 머신에 Azure Automanage를 사용해야 합니다.\n- `HyperV1`의 지원되는 모든 가상 머신은 직접 SSH 세션으로 관리해야 합니다.",
+   "assets": {
+    "images/1783847785113-cjyqqram.png": "assets/az-800/1783847785113-cjyqqram.png",
+    "images/1783847788266-n6rjvmzx.png": "assets/az-800/1783847788266-n6rjvmzx.png",
+    "images/1783847790323-8x6mt8hj.png": "assets/az-800/1783847790323-8x6mt8hj.png",
+    "images/1783847793291-xhosdg4i.png": "assets/az-800/1783847793291-xhosdg4i.png",
+    "images/1783847796792-rvz775c0.png": "assets/az-800/1783847796792-rvz775c0.png",
+    "images/1783847799872-nb3tkgin.png": "assets/az-800/1783847799872-nb3tkgin.png",
+    "images/1783847803769-c6os4bfq.png": "assets/az-800/1783847803769-c6os4bfq.png"
+   },
+   "members": [
+    {
+     "n": 134,
+     "id": "AZ-800-Q167"
+    },
+    {
+     "n": 198,
+     "id": "AZ-800-Q166"
+    },
+    {
+     "n": 229,
+     "id": "AZ-800-Q170"
+    },
+    {
+     "n": 276,
+     "id": "AZ-800-Q169"
+    },
+    {
+     "n": 318,
+     "id": "AZ-800-Q165"
+    },
+    {
+     "n": 319,
+     "id": "AZ-800-Q171"
+    }
+   ]
+  },
+  {
+   "id": "az802-s09",
+   "exam": "AZ-800",
+   "type": "scenario",
+   "titleEn": "Contoso DNS Resolution Design",
+   "titleKo": "Contoso DNS 이름 확인 설계",
+   "contentEn": "You are planning the deployment of DNS to a new network.\n\nYou have three internal DNS servers as shown in the following table.\n\n![Scenario Image](images/1783808807404-cjd9e8ed.png)\n\nThe `contoso.local` zone includes zone delegations for `east.contoso.local` and `west.contoso.local`. All DNS servers use root hints.\n\nYou need to make sure that all the DNS servers can resolve the names of all internal namespaces and internet hosts.",
+   "contentKo": "새 네트워크에 DNS 배포를 계획하고 있습니다.\n\n다음 표와 같이 내부 DNS 서버가 세 대 있습니다.\n\n![Scenario Image](images/1783808807404-cjd9e8ed.png)\n\n`contoso.local` 영역에는 `east.contoso.local`과 `west.contoso.local`에 대한 영역 위임이 있습니다. 모든 DNS 서버는 루트 힌트를 사용합니다.\n\n모든 DNS 서버가 모든 내부 네임스페이스와 인터넷 호스트의 이름을 확인할 수 있게 해야 합니다.",
+   "assets": {
+    "images/1783808807404-cjd9e8ed.png": "assets/az-800/1783808807404-cjd9e8ed.png"
+   },
+   "members": [
+    {
+     "n": 284,
+     "id": "AZ-800-Q286"
+    },
+    {
+     "n": 285,
+     "id": "AZ-800-Q287"
+    },
+    {
+     "n": 286,
+     "id": "AZ-800-Q288"
+    },
+    {
+     "n": 287,
+     "id": "AZ-800-Q289"
+    }
+   ]
+  },
+  {
+   "id": "az802-s10",
+   "exam": "AZ-800",
+   "type": "scenario",
+   "titleEn": "DHCP Printer Reservation Management",
+   "titleKo": "DHCP 프린터 예약 관리",
+   "contentEn": "**Existing environment**\n\nYou have a server named `Server1` running Windows Server 2022 with the DHCP Server role installed. `Server1` has a single DHCP scope named `Scope1`.\n\nYou deploy five printers on the network.\n\n**Requirement**\n\nYou need to make sure the printers are always assigned the same IP address.",
+   "contentKo": "**기존 환경**\n\nDHCP 서버 역할이 설치된 Windows Server 2022 실행 서버 `Server1`이 있습니다. `Server1`에는 `Scope1`이라는 DHCP 범위 하나가 있습니다.\n\n네트워크에 프린터 다섯 대를 배포합니다.\n\n**요구 사항**\n\n프린터에 항상 같은 IP 주소가 할당되도록 해야 합니다.",
+   "assets": {},
+   "members": [
+    {
+     "n": 288,
+     "id": "AZ-800-Q290"
+    },
+    {
+     "n": 289,
+     "id": "AZ-800-Q291"
+    },
+    {
+     "n": 290,
+     "id": "AZ-800-Q292"
+    },
+    {
+     "n": 291,
+     "id": "AZ-800-Q293"
+    }
+   ]
+  },
+  {
+   "id": "az802-s11",
+   "exam": "AZ-800",
+   "type": "scenario",
+   "titleEn": "Contoso PDC Emulator Discovery",
+   "titleKo": "Contoso PDC 에뮬레이터 확인",
+   "contentEn": "Your network contains an Active Directory Domain Services (AD DS) domain named `contoso.com`.\n\nYou need to identify which server is the PDC emulator for the domain.",
+   "contentKo": "네트워크에 `contoso.com`이라는 Active Directory Domain Services(AD DS) 도메인이 있습니다.\n\n이 도메인의 PDC 에뮬레이터가 어느 서버인지 확인해야 합니다.",
+   "assets": {},
+   "members": [
+    {
+     "n": 161,
+     "id": "AZ-800-Q295"
+    },
+    {
+     "n": 162,
+     "id": "AZ-800-Q296"
+    },
+    {
+     "n": 163,
+     "id": "AZ-800-Q297"
+    },
+    {
+     "n": 164,
+     "id": "AZ-800-Q298"
+    }
+   ]
+  },
+  {
+   "id": "az802-s12",
+   "exam": "AZ-801",
+   "type": "case_study",
+   "titleEn": "Case study — Contoso Domain and Server Security",
+   "titleKo": "사례 연구 — Contoso 도메인·서버 보안",
+   "contentEn": "## Existing Environment\n\nThe network contains an Active Directory Domain Services (AD DS) domain named `contoso.com`.\n\n### Domain controllers\n\n| Name | Operating system | Operation master role |\n|---|---|---|\n| DC1 | Windows Server 2012 R2 | RID master, schema master |\n| DC2 | Windows Server 2016 | PDC emulator, infrastructure master |\n| DC3 | Windows Server 2016 | Domain naming master |\n\n### Users and groups\n\n| Name | Organizational unit (OU)/Container | Member of |\n|---|---|---|\n| User1 | OU1 | Group2, Group4 |\n| User2 | Users | Group2 |\n| User3 | OU1 | Group3, Group4 |\n| Admin1 | OU1 | Domain Admins |\n\n### Password policies\n\n| Name | Minimum password length | Linked to |\n|---|---|---|\n| Default Domain Policy | 8 | contoso.com |\n| GPO1 | 10 | OU1 |\n\nThe domain contains the following fine-grained password policies (PSOs):\n\n| Name | Precedence | Minimum password length | Directly applies to |\n|---|---|---|---|\n| PSO1 | 10 | 9 | Group2 |\n| PSO2 | 20 | 11 | Group4 |\n\n### Member servers\n\n| Name | Description |\n|---|---|\n| Server1 | Contains a share named Share1 |\n| Server2 | None |\n| Server3 | None |\n| Server4 | Has Remote Desktop enabled |\n\n### Connection security rules\n\n| Name | Endpoint1 | Endpoint2 | Authentication mode |\n|---|---|---|---|\n| Server1 | Any | Any | Request inbound and outbound |\n| Server2 | Any | Any | Require inbound and request outbound |\n| Server3 | Any | Any | Require inbound and outbound |\n| DC1 | Any | Any | Request inbound and outbound |\n| DC2 | Any | Any | Request inbound and outbound |\n| DC3 | Any | Any | Request inbound and outbound |\n\n### Effective user rights on the servers\n\n| Policy | Security setting |\n|---|---|\n| Access this computer from the network | Group1, Administrators, Backup Operators, Everyone, Users |\n| Deny access to this computer from the network | Group4 |\n| Allow log on through Remote Desktop Services | Group2, Administrators, Remote Desktop Users |\n| Deny log on through Remote Desktop Services | Group3 |\n\n### Server4 disks\n\n| Disk | Volume | Size | File system | Notes |\n|---|---|---|---|---|\n| Disk 0 | System Reserved | 100 MB | NTFS | System, Active |\n| Disk 0 | C: | 126.39 GB | NTFS | Boot, page file, crash dump (operating system volume) |\n| Disk 0 | Recovery | 523 MB | — | Recovery partition |\n| Disk 1 | D: (Data) | 127.00 GB | NTFS | Primary partition |\n| Disk 2 | E: (Data) | 127.00 GB | ReFS | Primary partition |\n| Disk 3 | F: (Data) | 127.00 GB | ReFS | Primary partition |\n\n### Failover clusters\n\n| Name | Number of nodes | Number of virtual machines |\n|---|---|---|\n| Cluster1 | 6 | 18 |\n| Cluster2 | 4 | 12 |\n| Cluster3 | 2 | 6 |",
+   "contentKo": "## 기존 환경\n\n네트워크에 `contoso.com`이라는 Active Directory Domain Services(AD DS) 도메인이 있습니다.\n\n### 도메인 컨트롤러\n\n| 이름 | 운영 체제 | 작업 마스터 역할 |\n|---|---|---|\n| DC1 | Windows Server 2012 R2 | RID 마스터, 스키마 마스터 |\n| DC2 | Windows Server 2016 | PDC 에뮬레이터, 인프라 마스터 |\n| DC3 | Windows Server 2016 | 도메인 명명 마스터 |\n\n### 사용자와 그룹\n\n| 이름 | 조직 구성 단위(OU)/컨테이너 | 소속 |\n|---|---|---|\n| User1 | OU1 | Group2, Group4 |\n| User2 | Users | Group2 |\n| User3 | OU1 | Group3, Group4 |\n| Admin1 | OU1 | Domain Admins |\n\n### 암호 정책\n\n| 이름 | 최소 암호 길이 | 연결 대상 |\n|---|---|---|\n| Default Domain Policy | 8 | contoso.com |\n| GPO1 | 10 | OU1 |\n\n도메인에는 다음과 같은 세분화된 암호 정책(PSO)이 있습니다.\n\n| 이름 | 우선 순위 | 최소 암호 길이 | 직접 적용 대상 |\n|---|---|---|---|\n| PSO1 | 10 | 9 | Group2 |\n| PSO2 | 20 | 11 | Group4 |\n\n### 멤버 서버\n\n| 이름 | 설명 |\n|---|---|\n| Server1 | Share1이라는 공유가 있음 |\n| Server2 | 없음 |\n| Server3 | 없음 |\n| Server4 | 원격 데스크톱이 사용하도록 설정됨 |\n\n### 연결 보안 규칙\n\n| 이름 | 엔드포인트1 | 엔드포인트2 | 인증 모드 |\n|---|---|---|---|\n| Server1 | 모두 | 모두 | 인바운드·아웃바운드 요청 |\n| Server2 | 모두 | 모두 | 인바운드 필요, 아웃바운드 요청 |\n| Server3 | 모두 | 모두 | 인바운드·아웃바운드 필요 |\n| DC1 | 모두 | 모두 | 인바운드·아웃바운드 요청 |\n| DC2 | 모두 | 모두 | 인바운드·아웃바운드 요청 |\n| DC3 | 모두 | 모두 | 인바운드·아웃바운드 요청 |\n\n### 서버의 유효 사용자 권한\n\n| 정책 | 보안 설정 |\n|---|---|\n| 네트워크에서 이 컴퓨터 액세스 | Group1, Administrators, Backup Operators, Everyone, Users |\n| 네트워크에서 이 컴퓨터 액세스 거부 | Group4 |\n| 원격 데스크톱 서비스를 통한 로그온 허용 | Group2, Administrators, Remote Desktop Users |\n| 원격 데스크톱 서비스를 통한 로그온 거부 | Group3 |\n\n### Server4 디스크\n\n| 디스크 | 볼륨 | 크기 | 파일 시스템 | 비고 |\n|---|---|---|---|---|\n| 디스크 0 | 시스템 예약 | 100 MB | NTFS | 시스템, 활성 |\n| 디스크 0 | C: | 126.39 GB | NTFS | 부팅, 페이지 파일, 크래시 덤프(운영 체제 볼륨) |\n| 디스크 0 | 복구 | 523 MB | — | 복구 파티션 |\n| 디스크 1 | D: (데이터) | 127.00 GB | NTFS | 주 파티션 |\n| 디스크 2 | E: (데이터) | 127.00 GB | ReFS | 주 파티션 |\n| 디스크 3 | F: (데이터) | 127.00 GB | ReFS | 주 파티션 |\n\n### 장애 조치 클러스터\n\n| 이름 | 노드 수 | 가상 머신 수 |\n|---|---|---|\n| Cluster1 | 6 | 18 |\n| Cluster2 | 4 | 12 |\n| Cluster3 | 2 | 6 |",
+   "assets": {},
+   "members": [
+    {
+     "n": 214,
+     "id": "AZ-801-Q139"
+    },
+    {
+     "n": 334,
+     "id": "AZ-801-Q4"
+    },
+    {
+     "n": 375,
+     "id": "AZ-801-Q84"
+    },
+    {
+     "n": 389,
+     "id": "AZ-801-Q181"
+    }
+   ]
+  },
+  {
+   "id": "az802-s13",
+   "exam": "AZ-801",
+   "type": "scenario",
+   "titleEn": "Server1 Protected Folder Access",
+   "titleKo": "Server1 보호된 폴더 접근",
+   "contentEn": "You have a server named `Server1` running Windows Server.\n\nYou need to make sure that only specific applications can modify the data in protected folders on `Server1`.",
+   "contentKo": "Windows Server를 실행하는 `Server1`이라는 서버가 있습니다.\n\n`Server1`의 보호된 폴더에 있는 데이터를 특정 애플리케이션만 수정할 수 있게 해야 합니다.",
+   "assets": {},
+   "members": [
+    {
+     "n": 368,
+     "id": "AZ-801-Q53"
+    },
+    {
+     "n": 369,
+     "id": "AZ-801-Q54"
+    },
+    {
+     "n": 370,
+     "id": "AZ-801-Q55"
+    },
+    {
+     "n": 371,
+     "id": "AZ-801-Q56"
+    }
+   ]
+  },
+  {
+   "id": "az802-s14",
+   "exam": "AZ-801",
+   "type": "scenario",
+   "titleEn": "Azure Migrate Physical Server Readiness",
+   "titleKo": "Azure Migrate 물리 서버 준비 상태",
+   "contentEn": "You deploy Azure Migrate to an on-premises network.\n\nYou have an on-premises physical server named Server1 that runs Windows Server and has the following configurations:\n\n- Operating system disk: 600 GB\n- Data disk: 3 TB\n- NIC Teaming: Enabled\n- Mobility service: Installed\n- Windows Defender Firewall: Enabled\n- Microsoft Defender Antivirus: Enabled\n\nYou need to ensure that you can use Azure Migrate to migrate Server1.",
+   "contentKo": "온프레미스 네트워크에 Azure Migrate를 배포합니다.\n\n온프레미스에 Windows Server를 실행하는 Server1이라는 물리 서버가 있으며 구성은 다음과 같습니다.\n\n- 운영 체제 디스크: 600GB\n- 데이터 디스크: 3TB\n- NIC 팀 구성: 사용\n- Mobility service: 설치됨\n- Windows Defender 방화벽: 사용\n- Microsoft Defender 바이러스 백신: 사용\n\nAzure Migrate로 Server1을 마이그레이션할 수 있게 해야 합니다.",
+   "assets": {},
+   "members": [
+    {
+     "n": 454,
+     "id": "AZ-801-Q190"
+    },
+    {
+     "n": 455,
+     "id": "AZ-801-Q191"
+    },
+    {
+     "n": 456,
+     "id": "AZ-801-Q192"
+    },
+    {
+     "n": 457,
+     "id": "AZ-801-Q193"
+    }
+   ]
+  }
+ ]
+}

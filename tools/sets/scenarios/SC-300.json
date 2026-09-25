@@ -1,0 +1,281 @@
+{
+ "cbt": "SC-300",
+ "note": "빌드 후 tools/sets/apply_scenarios.js 로 다시 입힌다",
+ "groups": [
+  {
+   "id": "sc300-s01",
+   "exam": "SC-300",
+   "type": "case_study",
+   "titleEn": "Case study — Contoso Identity and Access Modernization",
+   "titleKo": "사례 연구 — Contoso ID·액세스 현대화",
+   "contentEn": "HOTSPOT\n\n## Overview\n\nContoso, Ltd. is a consulting company with a main office in Montreal and branch offices in London and Seattle.\n\nContoso has a partnership with a company named Fabrikam, Inc. Fabrikam has an Azure Active Directory (Azure AD) tenant named fabrikam.com.\n\n## Existing environment\n\nThe on-premises network of Contoso contains an Active Directory domain named contoso.com. The domain includes an organizational unit (OU) named Contoso_Resources. The Contoso_Resources OU contains all users and computers.\n\nThe contoso.com Active Directory domain contains the relevant users shown in the following table.\n\n![Scenario Image](images/1783709421182-yjif94kq.png)\n\nContoso also has a marketing department with users in each office.\n\n## Existing environment. Microsoft 365/Azure environment\n\nContoso has an Azure AD tenant named contoso.com that has the following associated licenses:\n\n- Microsoft Office 365 Enterprise E5\n- Enterprise Mobility + Security E5\n- Windows 10 Enterprise E3\n- Project Plan 3\n\nAzure AD Connect is configured between Azure AD and Active Directory Domain Services (AD DS). Only the Contoso_Resources OU is synced.\n\nHelpdesk administrators regularly use the Microsoft 365 admin center to manage user settings.\n\nUser administrators currently use the Microsoft 365 admin center to manually assign licenses. All users have all licenses assigned except for the following exceptions:\n\n- The users in the London office have the Microsoft 365 Phone System license unassigned.\n- The users in the Seattle office have the Yammer Enterprise license unassigned.\n\nSecurity defaults are disabled for contoso.com.\n\nContoso uses Azure AD Privileged Identity Management (PIM) to protect administrative roles.\n\n## Existing environment. Problem statements\n\nContoso identifies the following issues:\n\n- Currently, all the helpdesk administrators can manage user licenses throughout the entire Microsoft 365 tenant.\n- The user administrators report that it is tedious to manually configure the different license requirements for each Contoso office.\n- The helpdesk administrators spend too much time provisioning internal and guest access to the required Microsoft 365 services and apps.\n- Currently, the helpdesk administrators can perform tasks by using the User administrator role without justification or approval.\n- When the Logs node is selected in Azure AD, an error message appears stating that Log Analytics integration is not enabled.\n\n## Requirements. Planned changes\n\nContoso plans to implement the following changes:\n\n- Implement self-service password reset (SSPR).\n- Analyze Azure audit activity logs by using Azure Monitor.\n- Simplify license allocation for new users added to the tenant.\n- Collaborate with the users at Fabrikam on a joint marketing campaign.\n- Configure the User administrator role to require justification and approval to activate.\n- Implement a custom line-of-business Azure web app named App1. App1 will be accessible from the internet and authenticated by using Azure AD accounts.\n- For new users in the marketing department, implement an automated approval workflow to provide access to a Microsoft SharePoint Online site, group, and app.\n\nContoso plans to acquire a company named ADatum Corporation. One hundred new ADatum users will be created in an Active Directory OU named Adatum. The users will be located in London and Seattle.\n\n## Requirements. Technical requirements\n\nContoso identifies the following technical requirements:\n\n- All users must be synced from AD DS to the contoso.com Azure AD tenant.\n- App1 must have a redirect URI pointed to https://contoso.com/auth-response.\n- License allocation for new users must be assigned automatically based on the location of the user.\n- Fabrikam users must have access to the marketing department’s SharePoint site for a maximum of 90 days.\n- Administrative actions performed in Azure AD must be audited. Audit logs must be retained for one year.\n- The helpdesk administrators must be able to manage licenses for only the users in their respective office.\n- Users must be forced to change their password if there is a probability that the users’ identity was compromised.",
+   "contentKo": "HOTSPOT\n\n## 개요\n\nContoso, Ltd.는 몬트리올에 본사를 두고 런던과 시애틀에 지사를 둔 컨설팅 회사입니다.\n\nContoso는 Fabrikam, Inc.라는 회사와 파트너 관계입니다. Fabrikam에는 fabrikam.com이라는 Azure Active Directory(Azure AD) 테넌트가 있습니다.\n\n## 기존 환경\n\nContoso의 온프레미스 네트워크에는 contoso.com이라는 Active Directory 도메인이 있습니다. 이 도메인에는 Contoso_Resources라는 조직 구성 단위(OU)가 있으며, Contoso_Resources OU에 모든 사용자와 컴퓨터가 들어 있습니다.\n\ncontoso.com Active Directory 도메인에는 다음 표와 같은 사용자가 있습니다.\n\n![Scenario Image](images/1783709421182-yjif94kq.png)\n\nContoso에는 각 사무실에 사용자가 있는 마케팅 부서도 있습니다.\n\n## 기존 환경. Microsoft 365/Azure 환경\n\nContoso에는 contoso.com이라는 Azure AD 테넌트가 있으며 다음 라이선스가 연결되어 있습니다.\n\n- Microsoft Office 365 Enterprise E5\n- Enterprise Mobility + Security E5\n- Windows 10 Enterprise E3\n- Project Plan 3\n\nAzure AD와 Active Directory Domain Services(AD DS) 사이에 Azure AD Connect가 구성되어 있습니다. Contoso_Resources OU만 동기화됩니다.\n\n헬프데스크 관리자는 Microsoft 365 관리 센터로 사용자 설정을 자주 관리합니다.\n\n사용자 관리자는 현재 Microsoft 365 관리 센터에서 라이선스를 수동으로 할당합니다. 다음 예외를 제외하면 모든 사용자에게 모든 라이선스가 할당되어 있습니다.\n\n- 런던 사무실 사용자에게는 Microsoft 365 Phone System 라이선스가 할당되어 있지 않습니다.\n- 시애틀 사무실 사용자에게는 Yammer Enterprise 라이선스가 할당되어 있지 않습니다.\n\ncontoso.com에서는 보안 기본값이 사용하지 않도록 설정되어 있습니다.\n\nContoso는 Azure AD Privileged Identity Management(PIM)로 관리 역할을 보호합니다.\n\n## 기존 환경. 문제점\n\nContoso는 다음 문제를 파악했습니다.\n\n- 현재 모든 헬프데스크 관리자가 Microsoft 365 테넌트 전체에서 사용자 라이선스를 관리할 수 있습니다.\n- 사용자 관리자는 Contoso 사무실마다 다른 라이선스 요구 사항을 일일이 수동 구성하는 것이 번거롭다고 보고합니다.\n- 헬프데스크 관리자가 내부·게스트 사용자에게 필요한 Microsoft 365 서비스와 앱 액세스를 프로비저닝하는 데 시간을 너무 많이 씁니다.\n- 현재 헬프데스크 관리자는 사유나 승인 없이 사용자 관리자(User administrator) 역할로 작업을 수행할 수 있습니다.\n- Azure AD에서 로그(Logs) 노드를 선택하면 Log Analytics 통합이 사용하도록 설정되지 않았다는 오류 메시지가 나타납니다.\n\n## 요구 사항. 계획된 변경\n\nContoso는 다음 변경을 구현할 계획입니다.\n\n- 셀프 서비스 암호 재설정(SSPR)을 구현합니다.\n- Azure Monitor로 Azure 감사 활동 로그를 분석합니다.\n- 테넌트에 추가되는 새 사용자의 라이선스 할당을 단순화합니다.\n- Fabrikam 사용자와 공동 마케팅 캠페인을 진행합니다.\n- 사용자 관리자 역할을 활성화할 때 사유와 승인을 요구하도록 구성합니다.\n- App1이라는 사용자 지정 기간 업무 Azure 웹앱을 구현합니다. App1은 인터넷에서 접근할 수 있고 Azure AD 계정으로 인증합니다.\n- 마케팅 부서의 신규 사용자에게 Microsoft SharePoint Online 사이트·그룹·앱 액세스를 제공하는 자동 승인 워크플로를 구현합니다.\n\nContoso는 ADatum Corporation이라는 회사를 인수할 계획입니다. Adatum이라는 Active Directory OU에 ADatum 사용자 100명이 새로 만들어지며, 이 사용자들은 런던과 시애틀에 있습니다.\n\n## 요구 사항. 기술 요구 사항\n\nContoso는 다음 기술 요구 사항을 파악했습니다.\n\n- 모든 사용자는 AD DS에서 contoso.com Azure AD 테넌트로 동기화되어야 합니다.\n- App1의 리디렉션 URI는 https://contoso.com/auth-response 를 가리켜야 합니다.\n- 새 사용자의 라이선스 할당은 사용자 위치에 따라 자동으로 이루어져야 합니다.\n- Fabrikam 사용자는 마케팅 부서의 SharePoint 사이트에 최대 90일 동안 접근할 수 있어야 합니다.\n- Azure AD에서 수행한 관리 작업은 감사되어야 하며 감사 로그는 1년간 보존해야 합니다.\n- 헬프데스크 관리자는 자기 사무실 사용자의 라이선스만 관리할 수 있어야 합니다.\n- 사용자의 ID가 손상되었을 가능성이 있으면 암호를 강제로 변경하게 해야 합니다.",
+   "assets": {
+    "images/1783709421182-yjif94kq.png": "assets/1783709421182-yjif94kq.png"
+   },
+   "members": [
+    {
+     "n": 14,
+     "id": "3b8f35f8-f5a2-492c-ba3c-5c0c9b0e2c67"
+    },
+    {
+     "n": 141,
+     "id": "7ac5299c-57e3-48b5-a24c-759db231145a"
+    },
+    {
+     "n": 161,
+     "id": "c6784eb2-dd53-4864-ab0f-4f04837e5baf"
+    },
+    {
+     "n": 162,
+     "id": "d409de4e-af3c-45ce-8cd6-d7d51ac852de"
+    },
+    {
+     "n": 306,
+     "id": "19cf60b0-c624-461d-a8fa-47300ed1f8c7"
+    },
+    {
+     "n": 415,
+     "id": "82849fdb-c767-4747-9464-d6294a76804b"
+    }
+   ]
+  },
+  {
+   "id": "sc300-s02",
+   "exam": "SC-300",
+   "type": "scenario",
+   "titleEn": "Departmental Access Review Delegation",
+   "titleKo": "부서별 액세스 검토 위임",
+   "contentEn": "You have a Microsoft 365 tenant.\n\nYou have 100 IT administrators who are organized into 10 departments.\n\nYou create the access review shown in the exhibit. (Click the Exhibit tab.)\n\n![Scenario Image](images/1783706488962-60ldyxde.png)\n\nYou discover that all access review requests are being received by Megan Bowen.\n\nYou need to make sure that the manager of each department receives the access reviews for their own department.",
+   "contentKo": "Microsoft 365 테넌트가 있습니다.\n\n10개 부서로 나뉜 IT 관리자 100명이 있습니다.\n\n전시에 표시된 액세스 검토를 만듭니다. (전시 탭을 클릭하세요.)\n\n![Scenario Image](images/1783706488962-60ldyxde.png)\n\n모든 액세스 검토 요청을 Megan Bowen이 받고 있다는 것을 발견했습니다.\n\n각 부서의 관리자가 자기 부서의 액세스 검토를 받도록 해야 합니다.",
+   "assets": {
+    "images/1783706488962-60ldyxde.png": "assets/1783706488962-60ldyxde.png"
+   },
+   "members": [
+    {
+     "n": 23,
+     "id": "fb6bec34-3767-4408-b1b5-c79b2d8a253a"
+    },
+    {
+     "n": 24,
+     "id": "41dcd563-869d-478e-b8ea-eff913c5d9e1"
+    },
+    {
+     "n": 25,
+     "id": "25961fb5-2e63-41fe-8764-836e3cca8c2b"
+    },
+    {
+     "n": 26,
+     "id": "88407b29-fc45-46dd-9918-bfd56586bbc0"
+    }
+   ]
+  },
+  {
+   "id": "sc300-s03",
+   "exam": "SC-300",
+   "type": "scenario",
+   "titleEn": "Microsoft 365 MFA Prompt Abuse",
+   "titleKo": "Microsoft 365 MFA 프롬프트 남용",
+   "contentEn": "You have a Microsoft 365 tenant.\n\nAll users must use the Microsoft Authenticator app for multi-factor authentication (MFA) when accessing Microsoft 365 services.\n\nSome users report that they received an MFA prompt on their Microsoft Authenticator app without having initiated a sign-in request.\n\nYou need to automatically block users when they report an MFA request that they did not initiate.",
+   "contentKo": "Microsoft 365 테넌트가 있습니다.\n\n모든 사용자는 Microsoft 365 서비스에 접근할 때 다단계 인증(MFA)으로 Microsoft Authenticator 앱을 사용해야 합니다.\n\n일부 사용자가 로그인을 시도하지도 않았는데 Microsoft Authenticator 앱에 MFA 프롬프트가 떴다고 보고합니다.\n\n사용자가 자신이 시작하지 않은 MFA 요청을 신고하면 해당 사용자를 자동으로 차단해야 합니다.",
+   "assets": {},
+   "members": [
+    {
+     "n": 132,
+     "id": "870115ab-1c51-4cf0-af33-3e0bf9a99076"
+    },
+    {
+     "n": 133,
+     "id": "fca8eeee-6df5-4f36-abfb-8c204d1e373e"
+    },
+    {
+     "n": 134,
+     "id": "8009ff60-c864-4f62-9de6-4f9f1b45ffde"
+    },
+    {
+     "n": 135,
+     "id": "9ade6fba-3460-43bf-834f-8c13793ab944"
+    },
+    {
+     "n": 136,
+     "id": "0c20dad0-c249-4d43-b85d-b528ad5bca9e"
+    }
+   ]
+  },
+  {
+   "id": "sc300-s04",
+   "exam": "SC-300",
+   "type": "case_study",
+   "titleEn": "Case study — ADatum Litware Identity Governance",
+   "titleKo": "사례 연구 — ADatum·Litware ID 거버넌스",
+   "contentEn": "## Overview\n\nADatum Corporation is a consulting company in Montreal.\n\nADatum recently acquired a Vancouver-based company named Litware, Inc.\n\n## Existing Environment\n\n### ADatum Environment\n\nThe on-premises network at ADatum includes an Active Directory Domain Services (AD DS) forest named `adatum.com`.\n\nADatum has a Microsoft 365 E5 subscription. The subscription includes a verified domain that synchronizes with the `adatum.com` AD DS domain by using Azure AD Connect.\n\nADatum has an Azure Active Directory (Azure AD) tenant named `adatum.com`. Security defaults are disabled in the tenant.\n\nThe tenant contains the users shown in the following table.\n\n![Scenario Image](images/1783709424075-84ek27y8.png)\n\nThe tenant contains the groups shown in the following table.\n\n![Scenario Image](images/1783709426504-usq6acy2.png)\n\n### Litware Environment\n\nLitware has an AD DS forest named `litware.com`.\n\n### Problem Statements\n\nADatum identifies the following issues:\n\n- Multiple users in the sales department have up to five devices. The sales department users report that they sometimes must contact the support department to join their devices to the Azure AD tenant because they have reached their device limit.\n- A recent security incident shows that several users leaked their credentials, a suspicious browser was used for a sign-in, and resources were accessed from an anonymous IP address.\n- When you try to assign the Device Administrators role to `IT_Group1`, the group does not appear in the selection list.\n- Anyone in the organization can invite guest users, including other guests and non-administrators.\n- The helpdesk spends too much time resetting user passwords.\n- Users currently use only passwords for authentication.\n\n## Requirements\n\n### Planned Changes\n\nADatum plans to implement the following changes:\n\n- Configure self-service password reset (SSPR).\n- Configure multi-factor authentication (MFA) for all users.\n- Configure an access review for an access package named `Package1`.\n- Require admin approval for application access to organizational data.\n- Synchronize the AD DS users and groups of `litware.com` with the Azure AD tenant.\n- Ensure that only users assigned specific admin roles can invite guest users.\n- Increase the maximum number of devices that can be joined or registered to Azure AD to 10.\n\n### Technical Requirements\n\nADatum identifies the following technical requirements:\n\n- Users assigned the User administrator role must be able to request permission to use the role when needed for up to one year.\n- Users must be prompted to register for MFA and given an option to skip registration for a grace period.\n- Users must provide one authentication method to reset their password by using SSPR. Available methods must include:\n  - Email\n  - Phone\n  - Security questions\n  - The Microsoft Authenticator app\n- Trust relationships must not be established between the `adatum.com` and `litware.com` AD DS domains.\n- The principle of least privilege must be used.\n\n### Licensing Requirements\n\nADatum identifies the following licensing requirements:\n\n- Litware wants to manage the assignment of Azure AD licenses by modifying the value of the `LWLicenses` attribute.\n- Users who have the appropriate value for `LWLicenses` must be added automatically to a Microsoft 365 group that has the appropriate licenses assigned.",
+   "contentKo": "## 개요\n\nADatum Corporation은 몬트리올에 있는 컨설팅 회사입니다.\n\nADatum은 최근 밴쿠버에 본사를 둔 Litware, Inc.라는 회사를 인수했습니다.\n\n## 기존 환경\n\n### ADatum 환경\n\nADatum의 온프레미스 네트워크에는 `adatum.com`이라는 Active Directory Domain Services(AD DS) 포리스트가 있습니다.\n\nADatum에는 Microsoft 365 E5 구독이 있습니다. 이 구독에는 Azure AD Connect로 `adatum.com` AD DS 도메인과 동기화되는 확인된 도메인이 포함되어 있습니다.\n\nADatum에는 `adatum.com`이라는 Azure Active Directory(Azure AD) 테넌트가 있습니다. 테넌트에서 보안 기본값은 사용하지 않도록 설정되어 있습니다.\n\n테넌트에는 다음 표와 같은 사용자가 있습니다.\n\n![Scenario Image](images/1783709424075-84ek27y8.png)\n\n테넌트에는 다음 표와 같은 그룹이 있습니다.\n\n![Scenario Image](images/1783709426504-usq6acy2.png)\n\n### Litware 환경\n\nLitware에는 `litware.com`이라는 AD DS 포리스트가 있습니다.\n\n### 문제점\n\nADatum은 다음 문제를 파악했습니다.\n\n- 영업 부서의 여러 사용자가 디바이스를 최대 다섯 대까지 사용합니다. 영업 부서 사용자는 디바이스 한도에 도달해 Azure AD 테넌트에 디바이스를 조인하려면 지원 부서에 문의해야 할 때가 있다고 보고합니다.\n- 최근 보안 사고에서 여러 사용자의 자격 증명이 유출되고, 의심스러운 브라우저로 로그인이 이루어졌으며, 익명 IP 주소에서 리소스에 접근한 정황이 확인되었습니다.\n- `IT_Group1`에 디바이스 관리자(Device Administrators) 역할을 할당하려 하면 선택 목록에 그룹이 나타나지 않습니다.\n- 다른 게스트와 비관리자를 포함해 조직의 누구나 게스트 사용자를 초대할 수 있습니다.\n- 헬프데스크가 사용자 암호를 재설정하는 데 시간을 너무 많이 씁니다.\n- 사용자는 현재 인증에 암호만 사용합니다.\n\n## 요구 사항\n\n### 계획된 변경\n\nADatum은 다음 변경을 구현할 계획입니다.\n\n- 셀프 서비스 암호 재설정(SSPR)을 구성합니다.\n- 모든 사용자에게 다단계 인증(MFA)을 구성합니다.\n- `Package1`이라는 액세스 패키지에 액세스 검토를 구성합니다.\n- 조직 데이터에 대한 애플리케이션 액세스에 관리자 승인을 요구합니다.\n- `litware.com`의 AD DS 사용자와 그룹을 Azure AD 테넌트와 동기화합니다.\n- 특정 관리 역할이 할당된 사용자만 게스트 사용자를 초대할 수 있게 합니다.\n- Azure AD에 조인·등록할 수 있는 디바이스의 최대 개수를 10대로 늘립니다.\n\n### 기술 요구 사항\n\nADatum은 다음 기술 요구 사항을 파악했습니다.\n\n- 사용자 관리자(User administrator) 역할이 할당된 사용자는 필요할 때 최대 1년 동안 그 역할 사용 권한을 요청할 수 있어야 합니다.\n- 사용자에게 MFA 등록을 요구하되 유예 기간 동안은 등록을 건너뛸 수 있는 옵션을 제공해야 합니다.\n- 사용자는 SSPR로 암호를 재설정할 때 인증 방법 하나를 제공해야 합니다. 사용할 수 있는 방법에는 다음이 포함되어야 합니다.\n  - 메일\n  - 전화\n  - 보안 질문\n  - Microsoft Authenticator 앱\n- `adatum.com`과 `litware.com` AD DS 도메인 사이에 트러스트 관계를 맺어서는 안 됩니다.\n- 최소 권한 원칙을 적용해야 합니다.\n\n### 라이선스 요구 사항\n\nADatum은 다음 라이선스 요구 사항을 파악했습니다.\n\n- Litware는 `LWLicenses` 특성 값을 수정해 Azure AD 라이선스 할당을 관리하려 합니다.\n- `LWLicenses`에 알맞은 값이 있는 사용자는 해당 라이선스가 할당된 Microsoft 365 그룹에 자동으로 추가되어야 합니다.",
+   "assets": {
+    "images/1783709424075-84ek27y8.png": "assets/1783709424075-84ek27y8.png",
+    "images/1783709426504-usq6acy2.png": "assets/1783709426504-usq6acy2.png"
+   },
+   "members": [
+    {
+     "n": 150,
+     "id": "f941362e-6816-4a10-a56e-1f38fb4e2f9b"
+    },
+    {
+     "n": 151,
+     "id": "ef7bbc24-ef64-465f-abe2-6c53278d63b2"
+    },
+    {
+     "n": 152,
+     "id": "dba2202a-d423-4867-a176-35db29928550"
+    },
+    {
+     "n": 153,
+     "id": "787fdc9f-92cd-4a04-b89b-7c969caa15b3"
+    },
+    {
+     "n": 154,
+     "id": "031032bc-4f92-4240-918d-47ec1f986f63"
+    },
+    {
+     "n": 155,
+     "id": "b278180d-df46-4093-b74b-2a83751fdba3"
+    },
+    {
+     "n": 156,
+     "id": "f92d3209-7f0a-4a40-a705-18743eb5c55c"
+    },
+    {
+     "n": 157,
+     "id": "751e9ead-0ef2-49dc-b592-36a60df91271"
+    },
+    {
+     "n": 356,
+     "id": "36769bd3-50df-4426-919a-dc1b5cea0e5a"
+    },
+    {
+     "n": 374,
+     "id": "50b3103e-2012-4f02-a133-6cb2af40ca0d"
+    },
+    {
+     "n": 418,
+     "id": "a90e70e0-f106-4a9b-917c-f04bd3c61f78"
+    }
+   ]
+  },
+  {
+   "id": "sc300-s05",
+   "exam": "SC-300",
+   "type": "scenario",
+   "titleEn": "Cross-Cloud OAuth Monitoring",
+   "titleKo": "멀티 클라우드 OAuth 모니터링",
+   "contentEn": "You have an Amazon Web Services (AWS) account, a Google Workspace subscription, and a GitHub account.\n\nYou deploy an Azure subscription and turn on Microsoft 365 Defender.\n\nYou need to ensure that you can monitor OAuth authentication requests by using Microsoft Defender for Cloud Apps.",
+   "contentKo": "Amazon Web Services(AWS) 계정, Google Workspace 구독, GitHub 계정이 있습니다.\n\nAzure 구독을 배포하고 Microsoft 365 Defender를 켭니다.\n\nMicrosoft Defender for Cloud Apps로 OAuth 인증 요청을 모니터링할 수 있어야 합니다.",
+   "assets": {},
+   "members": [
+    {
+     "n": 165,
+     "id": "2dfbcc20-13dd-4322-8650-4f4aaea3c883"
+    },
+    {
+     "n": 166,
+     "id": "80f28a00-3943-478e-a877-350a830b3c69"
+    },
+    {
+     "n": 167,
+     "id": "aecc1a30-60ad-4a8e-8c7d-a08806776b8e"
+    },
+    {
+     "n": 168,
+     "id": "50d30a82-a57e-4c39-b8a4-13f0222f2c42"
+    }
+   ]
+  },
+  {
+   "id": "sc300-s06",
+   "exam": "SC-300",
+   "type": "scenario",
+   "titleEn": "Azure AD Sign-In Alert Handoff",
+   "titleKo": "Azure AD 로그인 경고 인계",
+   "contentEn": "### Overview\n\nYou use Azure Monitor to analyze Azure Active Directory (Azure AD) activity logs.\n\nYou receive more than 100 email alerts each day for failed Azure AD user sign-in attempts.\n\nYou need to ensure that a new security administrator receives the alerts instead of you.",
+   "contentKo": "### 개요\n\nAzure Monitor로 Azure Active Directory(Azure AD) 활동 로그를 분석합니다.\n\nAzure AD 사용자 로그인 실패에 대한 메일 경고를 하루에 100건 넘게 받고 있습니다.\n\n이제 본인 대신 새 보안 관리자가 경고를 받도록 해야 합니다.",
+   "assets": {},
+   "members": [
+    {
+     "n": 265,
+     "id": "0b34c045-1597-4a16-b394-511c90b981a1"
+    },
+    {
+     "n": 266,
+     "id": "29a562e2-71e8-41b6-b545-64f03f2fd5a3"
+    },
+    {
+     "n": 267,
+     "id": "9e95d789-7a30-46f4-9cce-b09d98da245d"
+    },
+    {
+     "n": 268,
+     "id": "fc5fdb80-697f-4b2a-b686-ff9a0c95fef1"
+    }
+   ]
+  },
+  {
+   "id": "sc300-s07",
+   "exam": "SC-300",
+   "type": "scenario",
+   "titleEn": "Identity Secure Score Delegation",
+   "titleKo": "ID 보안 점수 권한 위임",
+   "contentEn": "You have a Microsoft 365 E5 subscription.\n\nYou create a user named User1.\n\nYou need to make sure that User1 can update the status of Identity Secure Score improvement actions.",
+   "contentKo": "Microsoft 365 E5 구독이 있습니다.\n\nUser1이라는 사용자를 만듭니다.\n\nUser1이 ID 보안 점수(Identity Secure Score) 개선 작업의 상태를 업데이트할 수 있게 해야 합니다.",
+   "assets": {},
+   "members": [
+    {
+     "n": 284,
+     "id": "877a34a4-289a-431c-90e0-f6de1426b712"
+    },
+    {
+     "n": 285,
+     "id": "1460f534-20d0-4e0c-895c-5dae61813ac0"
+    },
+    {
+     "n": 286,
+     "id": "ee7782b4-e153-4c53-9b60-9d90919b2319"
+    },
+    {
+     "n": 287,
+     "id": "3abf95bc-3b0c-4aa5-a797-651d7463cbc3"
+    }
+   ]
+  },
+  {
+   "id": "sc300-s08",
+   "exam": "SC-300",
+   "type": "scenario",
+   "titleEn": "Hybrid Identity Disable Enforcement",
+   "titleKo": "하이브리드 ID 사용 안 함 즉시 적용",
+   "contentEn": "You have an Azure Active Directory (Azure AD) tenant that synchronizes with an Active Directory forest.\n\nYou discover that when a user account is disabled in Active Directory, the disabled user can still authenticate to Azure AD for up to 30 minutes.\n\nYou need to ensure that when a user account is disabled in Active Directory, the user account is immediately prevented from authenticating to Azure AD.",
+   "contentKo": "Active Directory 포리스트와 동기화되는 Azure Active Directory(Azure AD) 테넌트가 있습니다.\n\nActive Directory에서 사용자 계정을 사용하지 않도록 설정해도 그 사용자가 최대 30분 동안 Azure AD에 계속 인증할 수 있다는 것을 발견했습니다.\n\nActive Directory에서 사용자 계정을 사용하지 않도록 설정하면 즉시 Azure AD 인증이 차단되도록 해야 합니다.",
+   "assets": {},
+   "members": [
+    {
+     "n": 343,
+     "id": "0e282952-bf9a-42c0-87bd-f4998f542fb3"
+    },
+    {
+     "n": 344,
+     "id": "1273e997-c049-4388-9eab-fb9944b8b19f"
+    },
+    {
+     "n": 345,
+     "id": "17614e5e-b951-407b-9661-d5c4a55be7e9"
+    },
+    {
+     "n": 346,
+     "id": "3bb379f3-bf0c-4d4b-8b3c-dfc8e7a90c02"
+    },
+    {
+     "n": 347,
+     "id": "5bf1dfce-0363-42f2-a934-7529eeb1419d"
+    }
+   ]
+  }
+ ]
+}

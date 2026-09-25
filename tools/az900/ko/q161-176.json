@@ -57,6 +57,7 @@
   },
   "169": {
     "stem": "답변 영역에서 알맞은 옵션을 선택해 문장을 완성하세요.",
+    "template": "Azure Site Recovery는 가상 머신에 ____ 을(를) 제공합니다.",
     "expl": "Azure Site Recovery는 워크로드를 복제하고 보조 위치로의 장애 조치를 조율해 가상 머신에 재해 복구를 제공합니다.\n\n**Learn more:** [Azure Site Recovery documentation](https://learn.microsoft.com/en-us/azure/site-recovery/site-recovery-overview)",
     "blanks": [
       { "label": "Azure Site Recovery가 제공하는 것은", "options": ["내결함성", "재해 복구", "탄력성", "고가용성"] }

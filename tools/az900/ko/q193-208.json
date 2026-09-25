@@ -93,6 +93,7 @@
   },
   "207": {
     "stem": "HOTSPOT — 문장을 올바르게 완성하는 답을 선택하세요.",
+    "template": "Azure 서비스의 감사 보고서와 규정 준수 관련 정보는 ____ 에서 검토할 수 있습니다.",
     "expl": "Microsoft 서비스 신뢰 포털은 Microsoft 클라우드 서비스의 감사 보고서와 규정 준수 관련 정보를 게시합니다. Azure 감사 문서도 보고서 섹션에서 확인할 수 있습니다.\n\n**Learn more:** [Get started with the Microsoft Service Trust Portal](https://learn.microsoft.com/en-us/compliance/assurance/stp-get-started?view=o365-worldwide) · [Azure and other Microsoft cloud services compliance offerings](https://learn.microsoft.com/en-us/azure/compliance/offerings/)",
     "blanks": [
       { "label": "정답:", "options": ["Microsoft Defender for Cloud", "Microsoft Defender for Identity 관리 센터", "Microsoft 365 규정 준수 센터", "Microsoft 서비스 신뢰 포털"] }

@@ -95,6 +95,7 @@
   },
   "287": {
     "stem": "답변 영역에서 알맞은 옵션을 선택해 문장을 완성하세요.",
+    "template": "____ 은(는) 온프레미스 Microsoft SQL 서버를 Azure로 마이그레이션해 전기 사용량이 줄어드는 데 따른 비용 절감액을 계산할 수 있습니다.",
     "expl": "Azure 총소유비용(TCO) 계산기는 온프레미스 인프라 비용과 Azure 비용을 비교하며 전기 요금 절감액도 포함합니다. Azure Migrate는 서버를 평가하고, Database Migration Assistant는 마이그레이션 호환성을 평가하며, Azure 가격 계산기는 Azure 서비스 비용을 추정합니다.\n\n**Learn more:** [Azure ROI Calculator - Microsoft Q&A](https://learn.microsoft.com/en-us/answers/questions/1166229/azure-roi-calculator)",
     "blanks": [
       { "label": "정답:", "options": ["Azure Migrate: 서버 평가 도구", "Azure 총소유비용(TCO) 계산기", "Database Migration Assistant", "Azure 가격 계산기"] }

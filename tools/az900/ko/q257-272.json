@@ -25,6 +25,7 @@
   },
   "260": {
     "stem": "HOTSPOT -\n\n답변 영역에서 알맞은 옵션을 선택해 문장을 완성하세요.\n\nHot Area:\n\n[[IMG1]]",
+    "template": "회사는 신용카드 정보가 들어 있는 Microsoft Word 문서에 워터마크를 자동으로 추가하기 위해 ____ 을(를) 구현합니다.",
     "expl": "Azure Information Protection은 민감도 레이블로 민감한 문서를 분류하고 보호합니다. 신용 카드 정보가 감지되면 레이블을 자동으로 적용할 수 있고 콘텐츠 표시로 워터마크를 추가할 수도 있습니다.\n\n**Learn more:** [Learn about sensitivity labels](https://learn.microsoft.com/en-us/purview/sensitivity-labels?view=o365-worldwide) · [Default sensitivity labels and policies](https://learn.microsoft.com/en-us/purview/default-sensitivity-labels-policies)",
     "blanks": [
       { "label": "정답:", "options": ["Azure 정책", "DDoS 보호", "Azure Information Protection", "Azure Active Directory(Azure AD) Identity Protection"] }

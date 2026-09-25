@@ -41,6 +41,7 @@ if (cmd === 'dump') {
     if (q.statements) e.statements = q.statements.map(s => s.en);
     if (q.items) e.items = q.items.map(i => i.en);
     if (q.slots) e.slots = q.slots.map(s => s.labelEn);
+    if (q.templateKo || q.template) e.template = q.templateKo || '';   // 빈칸 문장의 한국어 (코드·명령형은 비워 둔다)
     if (q.answerTextEn) e.answerText = q.answerTextEn;
     out[q.n] = e;
   }
@@ -70,6 +71,7 @@ if (cmd === 'dump') {
     if (k.statements && q.statements) { count('statements', k.statements, q.statements); q.statements.forEach((s, i) => { if (k.statements[i]) s.ko = k.statements[i]; }); }
     if (k.items && q.items) { count('items', k.items, q.items); q.items.forEach((it, i) => { if (k.items[i]) it.ko = k.items[i]; }); }
     if (k.slots && q.slots) { count('slots', k.slots, q.slots); q.slots.forEach((s, i) => { if (k.slots[i]) s.labelKo = k.slots[i]; }); }
+    if (k.template) q.templateKo = k.template;
     if (k.answerText) q.answerTextKo = k.answerText;
     // 자리표시자 유실 검사
     const need = (q.stemEn.match(/\[\[IMG\d+\]\]/g) || []).join(',');

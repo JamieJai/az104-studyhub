@@ -1,0 +1,158 @@
+{
+ "cbt": "AI-103",
+ "note": "빌드 후 tools/sets/apply_scenarios.js 로 다시 입힌다",
+ "groups": [
+  {
+   "id": "ai103-s01",
+   "exam": "AI-103",
+   "type": "scenario",
+   "titleEn": "Foundry Regulatory Clause Coverage",
+   "titleKo": "Foundry 규제 조항 누락",
+   "contentEn": "You have a Microsoft Foundry project that contains an agent. The agent generates summaries from retrieved policy documents.\n\nUsers report that some responses omit required regulatory clauses, even though the clauses are present in the retrieved content.\n\nYou need to improve the completeness of the responses.",
+   "contentKo": "에이전트가 포함된 Microsoft Foundry 프로젝트가 있습니다. 이 에이전트는 검색된 정책 문서로 요약을 생성합니다.\n\n사용자들은 필요한 규제 조항이 검색된 콘텐츠에 있는데도 일부 응답에서 그 조항이 빠진다고 보고합니다.\n\n응답의 완전성을 높여야 합니다.",
+   "assets": {},
+   "members": [
+    {
+     "n": 17,
+     "id": null
+    },
+    {
+     "n": 18,
+     "id": null
+    },
+    {
+     "n": 19,
+     "id": null
+    },
+    {
+     "n": 20,
+     "id": null
+    }
+   ]
+  },
+  {
+   "id": "ai103-s02",
+   "exam": "AI-103",
+   "type": "case_study",
+   "titleEn": "Case study — Contoso Foundry Retail AI Transformation",
+   "titleKo": "사례 연구 — Contoso Foundry 리테일 AI 전환",
+   "contentEn": "## Overview\n\n### Company Information\nContoso, Ltd is a multinational retail company that builds, deploys, and manages generative AI and agent-based solutions using Microsoft Foundry.\n\n## Existing Environment\n\n### Identity Environment\nContoso relies on Microsoft Entra ID for identity management, authentication, and authorization, enabling agents to access organizational resources and services.\nContoso recently created a new AI engineering team called Agent1Dev Team to optimize and maintain existing AI solutions.\nThis team works with solution architects, DevOps engineers, and security engineers to design, implement, monitor, and secure AI applications.\nContoso also has a team named Agent1Test Team that is responsible for validating AI solutions before the solutions are deployed.\n\n### Generative Environment\nContoso has a Microsoft Foundry deployment that contains two projects named Project1 and Project2.\n\n#### Project1\nProject1 contains a customer support agent named Agent1 that helps customers with product inquiries and troubleshooting requests.\nAgent1 has the following configurations:\n\n- Agent1 uses a base model deployment.\n- A safety evaluation pipeline is NOT enabled.\n- Tool invocation approval workflows are NOT enabled.\n- Conversation memory constraints are NOT configured.\n\nAgent1 interacts with customers through digital support channels and answers general questions about Contoso products.\nProject1 is deployed to an Azure region located in the European Union (EU).\nAgent1Dev Team will use Project1 to optimize and maintain Agent1.\n\n#### Project2\nProject2 contains a deployed video generation model. The marketing department at Contoso has access to Project2 and plans to use the model to build a video creation solution.\nDevelopment of the solution is not yet complete.\n\n### Data Environment\nContoso stores product-related information in Azure resources that support AI applications.\nThe Azure environment includes an Azure Blob Storage account named storage1 that stores product detail sheets for all Contoso products.\nThe product sheets include specifications, feature descriptions, and product support information that Agent1 can use to answer customer questions. The product sheets are stored in PDF format.\n\n## Problem Statements\nContoso identifies the following issues:\n\n- Agent1 has only general knowledge of the Contoso products.\n- A recent chat interaction with Agent1 was analyzed for sentiment. The results of the analysis have NOT been processed yet.\n- Agent1 does NOT use the detailed product information in the product sheets stored in storage1 when responding to customer questions.\n- The finance department at Contoso reports that vendor invoices must be reviewed manually to ensure that the invoices match the terms defined in the vendor contracts. The invoices contain tables, logos, and varied layouts that make the documents difficult to process consistently.\n\n## Requirements\n\n### Planned Changes\nContoso plans to implement the following changes:\n\n- Implement a solution for Project1 that analyzes the vendor invoices by evaluating both the visual layout and the textual content of the invoices, so that the invoice details can be verified against the vendor contract terms.\n- Update the base model deployment used by Agent1 and standardize the model version to ensure continuity and consistent responses.\n- Enable Agent1 to retrieve and use the detailed product information from the product sheets stored in storage1.\n- Implement an indexing solution for the product sheets that Agent1 can use to answer customer questions.\n- Complete the development of the video creation solution.\n\n### Technical Requirements\nContoso identifies the following technical requirements:\n\n- The model deployment used by Agent1 must support scalable, high-throughput generative AI workloads and dynamically scale to handle variable customer support traffic, without requiring reserved throughput capacity.\n- The product sheets must be processed using an indexing pipeline that enables semantic and vector search, so that Agent1 can retrieve the relevant product information.\n- Responses generated using the product sheet information must be relevant, complete, and accurate.\n- Agent1 must be able to use the product sheets to answer natural language questions about product details.\n- The model version used by Agent1 must remain consistent to ensure stable responses.\n- The data processed by the model must remain within the EU.\n\n### Security and Compliance Requirements\nContoso identifies the following security and compliance requirements:\n\n- API keys must NOT be used to access Foundry-deployed models.\n- Access to the Azure resources must follow the principle of least privilege.\n- The developers at Contoso must authenticate to Microsoft Foundry resources using Microsoft Entra authentication.\n- Access to Project1 must be assigned to the members of Agent1Dev Team using a security group named SC_Agent1_Dev.\n- Access to Project1 must be assigned to the members of Agent1Test Team using a security group named SC_Agent1_Test.\n- Agent1 must never reveal customer information, even if a document that contains customer data is added erroneously to the product sheet repository in storage1.\n- The product sheets might contain images that include embedded text. Agent1 must be protected from malicious instructions potentially hidden within the images.\n\n### Business Requirements\nContoso identifies the following business requirements:\n\n- Users that interact with Agent1 must have a personalized experience in future interactions, including the ability for Agent1 to retain conversation context and recall relevant information from previous interactions.\n- Agent1 must answer questions only about the products sold by Contoso.",
+   "contentKo": "## 개요\n\n### 회사 정보\nContoso, Ltd는 Microsoft Foundry로 생성형 AI·에이전트 기반 솔루션을 만들고 배포하고 관리하는 다국적 소매 회사입니다.\n\n## 기존 환경\n\n### ID 환경\nContoso는 ID 관리·인증·권한 부여에 Microsoft Entra ID를 사용하며, 이를 통해 에이전트가 조직 리소스와 서비스에 접근합니다.\nContoso는 최근 기존 AI 솔루션을 최적화·유지하기 위해 Agent1Dev Team이라는 AI 엔지니어링 팀을 새로 만들었습니다.\n이 팀은 솔루션 아키텍트, DevOps 엔지니어, 보안 엔지니어와 함께 AI 애플리케이션을 설계·구현·모니터링·보호합니다.\nContoso에는 솔루션 배포 전에 검증을 담당하는 Agent1Test Team이라는 팀도 있습니다.\n\n### 생성형 환경\nContoso에는 Project1과 Project2라는 프로젝트 두 개가 있는 Microsoft Foundry 배포가 있습니다.\n\n#### Project1\nProject1에는 제품 문의와 문제 해결 요청을 돕는 Agent1이라는 고객 지원 에이전트가 있습니다.\nAgent1의 구성은 다음과 같습니다.\n\n- Agent1은 기준(base) 모델 배포를 사용합니다.\n- 안전 평가 파이프라인이 사용하도록 설정되어 있지 **않습니다**.\n- 도구 호출 승인 워크플로가 사용하도록 설정되어 있지 **않습니다**.\n- 대화 메모리 제약이 구성되어 있지 **않습니다**.\n\nAgent1은 디지털 지원 채널로 고객과 상호작용하며 Contoso 제품에 대한 일반적인 질문에 답합니다.\nProject1은 유럽 연합(EU)에 있는 Azure 지역에 배포되어 있습니다.\nAgent1Dev Team이 Project1으로 Agent1을 최적화·유지할 예정입니다.\n\n#### Project2\nProject2에는 배포된 비디오 생성 모델이 있습니다. Contoso 마케팅 부서가 Project2에 접근할 수 있으며 이 모델로 비디오 제작 솔루션을 만들 계획입니다.\n솔루션 개발은 아직 완료되지 않았습니다.\n\n### 데이터 환경\nContoso는 AI 애플리케이션을 지원하는 Azure 리소스에 제품 관련 정보를 저장합니다.\nAzure 환경에는 모든 Contoso 제품의 제품 사양서를 저장하는 storage1이라는 Azure Blob Storage 계정이 있습니다.\n제품 사양서에는 Agent1이 고객 질문에 답하는 데 쓸 수 있는 사양, 기능 설명, 제품 지원 정보가 들어 있으며 PDF 형식으로 저장되어 있습니다.\n\n## 문제점\nContoso는 다음 문제를 파악했습니다.\n\n- Agent1은 Contoso 제품에 대해 일반적인 지식만 갖고 있습니다.\n- 최근 Agent1과의 채팅 상호작용을 감정 분석했습니다. 분석 결과는 아직 처리되지 **않았습니다**.\n- Agent1은 고객 질문에 답할 때 storage1에 저장된 제품 사양서의 상세 제품 정보를 사용하지 **않습니다**.\n- Contoso 재무 부서는 공급업체 송장이 공급업체 계약에 정의된 조건과 맞는지 확인하기 위해 송장을 수동으로 검토해야 한다고 보고합니다. 송장에는 표, 로고가 있고 레이아웃이 제각각이어서 일관되게 처리하기 어렵습니다.\n\n## 요구 사항\n\n### 계획된 변경\nContoso는 다음 변경을 구현할 계획입니다.\n\n- 송장의 시각적 레이아웃과 텍스트 내용을 모두 평가해 공급업체 계약 조건과 대조 확인할 수 있도록 Project1에 송장 분석 솔루션을 구현합니다.\n- Agent1이 사용하는 기준 모델 배포를 업데이트하고 모델 버전을 고정해 연속성과 일관된 응답을 보장합니다.\n- Agent1이 storage1의 제품 사양서에서 상세 제품 정보를 가져와 사용할 수 있게 합니다.\n- Agent1이 고객 질문에 답할 때 쓸 수 있도록 제품 사양서 인덱싱 솔루션을 구현합니다.\n- 비디오 제작 솔루션 개발을 완료합니다.\n\n### 기술 요구 사항\nContoso는 다음 기술 요구 사항을 파악했습니다.\n\n- Agent1이 사용하는 모델 배포는 확장 가능한 고처리량 생성형 AI 워크로드를 지원하고, 예약된 처리량 용량 없이도 변동하는 고객 지원 트래픽에 맞춰 동적으로 확장되어야 합니다.\n- 제품 사양서는 시맨틱·벡터 검색이 가능한 인덱싱 파이프라인으로 처리되어 Agent1이 관련 제품 정보를 가져올 수 있어야 합니다.\n- 제품 사양서 정보로 생성한 응답은 관련성 있고 완전하며 정확해야 합니다.\n- Agent1은 제품 사양서를 사용해 제품 상세에 대한 자연어 질문에 답할 수 있어야 합니다.\n- Agent1이 사용하는 모델 버전은 안정적인 응답을 위해 일관되게 유지되어야 합니다.\n- 모델이 처리하는 데이터는 EU 안에 있어야 합니다.\n\n### 보안·규정 준수 요구 사항\nContoso는 다음 보안·규정 준수 요구 사항을 파악했습니다.\n\n- Foundry에 배포된 모델에 접근할 때 API 키를 사용해서는 **안 됩니다**.\n- Azure 리소스 접근은 최소 권한 원칙을 따라야 합니다.\n- Contoso 개발자는 Microsoft Entra 인증으로 Microsoft Foundry 리소스에 인증해야 합니다.\n- Project1 액세스는 SC_Agent1_Dev라는 보안 그룹으로 Agent1Dev Team 구성원에게 할당해야 합니다.\n- Project1 액세스는 SC_Agent1_Test라는 보안 그룹으로 Agent1Test Team 구성원에게 할당해야 합니다.\n- storage1의 제품 사양서 저장소에 고객 데이터가 담긴 문서가 실수로 추가되더라도 Agent1은 고객 정보를 절대 노출해서는 안 됩니다.\n- 제품 사양서에는 텍스트가 삽입된 이미지가 들어 있을 수 있습니다. Agent1은 이미지 안에 숨어 있을 수 있는 악의적 지시로부터 보호되어야 합니다.\n\n### 업무 요구 사항\nContoso는 다음 업무 요구 사항을 파악했습니다.\n\n- Agent1과 상호작용하는 사용자는 이후 상호작용에서 개인화된 경험을 받아야 하며, 여기에는 Agent1이 대화 컨텍스트를 유지하고 이전 상호작용의 관련 정보를 기억하는 기능이 포함됩니다.\n- Agent1은 Contoso가 판매하는 제품에 대한 질문에만 답해야 합니다.",
+   "assets": {},
+   "members": [
+    {
+     "n": 23,
+     "id": null
+    },
+    {
+     "n": 24,
+     "id": null
+    },
+    {
+     "n": 25,
+     "id": null
+    },
+    {
+     "n": 26,
+     "id": null
+    },
+    {
+     "n": 27,
+     "id": null
+    },
+    {
+     "n": 28,
+     "id": null
+    },
+    {
+     "n": 29,
+     "id": null
+    },
+    {
+     "n": 66,
+     "id": null
+    },
+    {
+     "n": 67,
+     "id": null
+    },
+    {
+     "n": 68,
+     "id": null
+    }
+   ]
+  },
+  {
+   "id": "ai103-s03",
+   "exam": "AI-103",
+   "type": "scenario",
+   "titleEn": "Image Prompt Injection Controls",
+   "titleKo": "이미지 프롬프트 삽입 대응",
+   "contentEn": "You have a multimodal generative AI model that accepts image uploads and uses extracted image text to generate responses.\n\nYou discover that users can upload unsafe images and embed hidden instructions within images to manipulate the model.\n\nYou need to implement controls to mitigate this risk.",
+   "contentKo": "이미지 업로드를 받아 이미지에서 추출한 텍스트로 응답을 생성하는 멀티모달 생성형 AI 모델이 있습니다.\n\n사용자가 안전하지 않은 이미지를 업로드하거나 이미지 안에 숨은 지시를 삽입해 모델을 조작할 수 있다는 것을 발견했습니다.\n\n이 위험을 완화하는 제어를 구현해야 합니다.",
+   "assets": {},
+   "members": [
+    {
+     "n": 52,
+     "id": null
+    },
+    {
+     "n": 53,
+     "id": null
+    },
+    {
+     "n": 54,
+     "id": null
+    },
+    {
+     "n": 55,
+     "id": null
+    }
+   ]
+  },
+  {
+   "id": "ai103-s04",
+   "exam": "AI-103",
+   "type": "scenario",
+   "titleEn": "Foundry Content Filter Testing",
+   "titleKo": "Foundry 콘텐츠 필터 테스트",
+   "contentEn": "You have an Azure subscription containing a Microsoft Foundry resource named AI1 and a Content Safety in Foundry Control Plane resource named CS1.\n\nYou build an agent that uses AI1 to generate answers to specific questions and uses CS1 to check both input and output for objectionable content.\n\nYou need to optimize the content filter configurations by testing sample questions.",
+   "contentKo": "AI1이라는 Microsoft Foundry 리소스와 CS1이라는 Foundry 제어 평면의 Content Safety 리소스가 있는 Azure 구독이 있습니다.\n\nAI1으로 특정 질문에 대한 답을 생성하고 CS1으로 입력과 출력 모두에서 불쾌한 콘텐츠를 검사하는 에이전트를 만듭니다.\n\n샘플 질문으로 테스트해 콘텐츠 필터 구성을 최적화해야 합니다.",
+   "assets": {},
+   "members": [
+    {
+     "n": 145,
+     "id": null
+    },
+    {
+     "n": 147,
+     "id": null
+    },
+    {
+     "n": 154,
+     "id": null
+    },
+    {
+     "n": 159,
+     "id": null
+    }
+   ]
+  },
+  {
+   "id": "ai103-s05",
+   "exam": "AI-103",
+   "type": "case_study",
+   "titleEn": "Case study — Contoso Agent1 Modernization",
+   "titleKo": "사례 연구 — Contoso Agent1 현대화",
+   "contentEn": "## Overview\n\n### Company Information\n\nContoso, Ltd is a multinational retail company that builds, deploys, and manages generative AI and agent-based solutions using Microsoft Foundry.\n\n## Existing Environment\n\n### Identity Environment\n\nContoso uses Microsoft Entra ID for identity management, authentication, and authorization capabilities that allow agents to access organizational resources and services.\n\nContoso recently created a new AI engineering team named Agent1Dev Team to optimize and maintain existing AI solutions.\n\nThe team works with solution architects, DevOps engineers, and security engineers to design, implement, monitor, and secure AI applications.\n\nContoso also has a team named Agent1Test Team that is responsible for validating AI solutions before solution deployments.\n\n### Generative Environment\n\nContoso has a Microsoft Foundry deployment containing two projects named Project1 and Project2.\n\n### Project1\n\nProject1 contains a customer support agent named Agent1 that helps customers with product inquiries and troubleshooting requests.\n\nAgent1 has the following configurations:\n\n- Agent1 uses a base model deployment.\n- A safety evaluation pipeline is NOT enabled.\n- Tool invocation approval workflows are NOT enabled.\n- Conversation memory constraints are NOT configured.\n\nAgent1 interacts with customers through digital support channels and answers general questions about Contoso products.\n\nProject1 is deployed to an Azure region in the European Union (EU).\n\nAgent1Dev Team will use Project1 to optimize and maintain Agent1.\n\n### Project2\n\nProject2 contains a deployed video generation model. The marketing department at Contoso has access to Project2 and intends to use the model to develop a video creation solution.\n\nDevelopment of the solution is incomplete.\n\n### Data Environment\n\nContoso stores product-related information in Azure resources that support AI applications.\n\nThe Azure environment includes an Azure Blob Storage account named storage1 that stores product detail sheets for all Contoso products.\n\nThe product sheets contain specifications, feature descriptions, and product support information that Agent1 can use to answer customer questions. The product sheets are stored in PDF format.\n\n## Problem Statements\n\nContoso identifies the following issues:\n\n- Agent1 has only general knowledge of the Contoso products.\n- A recent chat interaction with Agent1 was analyzed for sentiment. The results of the analysis have NOT been processed yet.\n- Agent1 does NOT use the detailed product information in the product sheets stored in storage1 when responding to customer questions.\n- The finance department at Contoso reports that vendor invoices must be reviewed manually to ensure that the invoices match the terms defined in the vendor contracts. The invoices contain tables, logos, and varied layouts that make the documents difficult to process consistently.\n\n## Requirements\n\n### Planned Changes\n\nContoso plans to implement the following changes:\n\n- Implement a solution for Project1 that analyzes the vendor invoices by evaluating both the visual layout and the textual content of the invoices, so that the invoice details can be verified against the vendor contract terms.\n- Update the base model deployment used by Agent1 and standardize the model version to ensure continuity and consistent responses.\n- Enable Agent1 to retrieve and use the detailed product information from the product sheets stored in storage1.\n- Implement an indexing solution for the product sheets that Agent1 can use to answer customer questions.\n- Complete the development of the video creation solution.\n\n### Technical Requirements\n\nContoso identifies the following technical requirements:\n\n- The model deployment used by Agent1 must support scalable, high-throughput generative AI workloads and dynamically scale to handle variable customer support traffic, without requiring reserved throughput capacity.\n- The product sheets must be processed by using an indexing pipeline that enables semantic and vector search, so that Agent1 can retrieve the relevant product information.\n- Responses generated by using the product sheet information must be relevant, complete, and accurate.\n- Agent1 must be able to use the product sheets to answer natural language questions about product details.\n- The model version used by Agent1 must remain consistent to ensure stable responses.\n- The data processed by the model must remain within the EU.\n\n### Security and Compliance Requirements\n\nContoso identifies the following security and compliance requirements:\n\n- API keys must NOT be used to access Foundry-deployed models.\n- Access to the Azure resources must follow the principle of least privilege.\n- The developers at Contoso must authenticate to Microsoft Foundry resources by using Microsoft Entra authentication.\n- Access to Project1 must be assigned to the members of Agent1Dev Team by using a security group named SC_Agent1_Dev.\n- Access to Project1 must be assigned to the members of Agent1Test Team by using a security group named SC_Agent1_Test.\n- Agent1 must never reveal customer information, even if a document that contains customer data is added erroneously to the product sheet repository in storage1.\n- The product sheets might contain images that include embedded text. Agent1 must be protected from malicious instructions potentially hidden within the images.\n\n### Business Requirements\n\nContoso identifies the following business requirements:\n\n- Users that interact with Agent1 must have a personalized experience in future interactions, including the ability for Agent1 to retain conversation context and recall relevant information from previous interactions.\n- Agent1 must answer questions only about the products sold by Contoso.",
+   "contentKo": "## 개요\n\n### 회사 정보\n\nContoso, Ltd는 Microsoft Foundry로 생성형 AI·에이전트 기반 솔루션을 만들고 배포하고 관리하는 다국적 소매 회사입니다.\n\n## 기존 환경\n\n### ID 환경\n\nContoso는 에이전트가 조직 리소스와 서비스에 접근할 수 있도록 ID 관리·인증·권한 부여에 Microsoft Entra ID를 사용합니다.\n\nContoso는 최근 기존 AI 솔루션을 최적화·유지하기 위해 Agent1Dev Team이라는 AI 엔지니어링 팀을 새로 만들었습니다.\n\n이 팀은 솔루션 아키텍트, DevOps 엔지니어, 보안 엔지니어와 함께 AI 애플리케이션을 설계·구현·모니터링·보호합니다.\n\nContoso에는 솔루션 배포 전에 AI 솔루션을 검증하는 Agent1Test Team이라는 팀도 있습니다.\n\n### 생성형 환경\n\nContoso에는 Project1과 Project2라는 프로젝트 두 개가 있는 Microsoft Foundry 배포가 있습니다.\n\n### Project1\n\nProject1에는 제품 문의와 문제 해결 요청을 돕는 Agent1이라는 고객 지원 에이전트가 있습니다.\n\nAgent1의 구성은 다음과 같습니다.\n\n- Agent1은 기준(base) 모델 배포를 사용합니다.\n- 안전 평가 파이프라인이 사용하도록 설정되어 있지 **않습니다**.\n- 도구 호출 승인 워크플로가 사용하도록 설정되어 있지 **않습니다**.\n- 대화 메모리 제약이 구성되어 있지 **않습니다**.\n\nAgent1은 디지털 지원 채널로 고객과 상호작용하며 Contoso 제품에 대한 일반적인 질문에 답합니다.\n\nProject1은 유럽 연합(EU)에 있는 Azure 지역에 배포되어 있습니다.\n\nAgent1Dev Team이 Project1으로 Agent1을 최적화·유지할 예정입니다.\n\n### Project2\n\nProject2에는 배포된 비디오 생성 모델이 있습니다. Contoso 마케팅 부서가 Project2에 접근할 수 있으며 이 모델로 비디오 제작 솔루션을 개발할 계획입니다.\n\n솔루션 개발은 아직 완료되지 않았습니다.\n\n### 데이터 환경\n\nContoso는 AI 애플리케이션을 지원하는 Azure 리소스에 제품 관련 정보를 저장합니다.\n\nAzure 환경에는 모든 Contoso 제품의 제품 사양서를 저장하는 storage1이라는 Azure Blob Storage 계정이 있습니다.\n\n제품 사양서에는 Agent1이 고객 질문에 답하는 데 쓸 수 있는 사양, 기능 설명, 제품 지원 정보가 들어 있으며 PDF 형식으로 저장되어 있습니다.\n\n## 문제점\n\nContoso는 다음 문제를 파악했습니다.\n\n- Agent1은 Contoso 제품에 대해 일반적인 지식만 갖고 있습니다.\n- 최근 Agent1과의 채팅 상호작용을 감정 분석했습니다. 분석 결과는 아직 처리되지 **않았습니다**.\n- Agent1은 고객 질문에 답할 때 storage1에 저장된 제품 사양서의 상세 제품 정보를 사용하지 **않습니다**.\n- Contoso 재무 부서는 공급업체 송장이 공급업체 계약에 정의된 조건과 맞는지 확인하기 위해 송장을 수동으로 검토해야 한다고 보고합니다. 송장에는 표, 로고가 있고 레이아웃이 제각각이어서 일관되게 처리하기 어렵습니다.\n\n## 요구 사항\n\n### 계획된 변경\n\nContoso는 다음 변경을 구현할 계획입니다.\n\n- 송장의 시각적 레이아웃과 텍스트 내용을 모두 평가해 공급업체 계약 조건과 대조 확인할 수 있도록 Project1에 송장 분석 솔루션을 구현합니다.\n- Agent1이 사용하는 기준 모델 배포를 업데이트하고 모델 버전을 고정해 연속성과 일관된 응답을 보장합니다.\n- Agent1이 storage1의 제품 사양서에서 상세 제품 정보를 가져와 사용할 수 있게 합니다.\n- Agent1이 고객 질문에 답할 때 쓸 수 있도록 제품 사양서 인덱싱 솔루션을 구현합니다.\n- 비디오 제작 솔루션 개발을 완료합니다.\n\n### 기술 요구 사항\n\nContoso는 다음 기술 요구 사항을 파악했습니다.\n\n- Agent1이 사용하는 모델 배포는 확장 가능한 고처리량 생성형 AI 워크로드를 지원하고, 예약된 처리량 용량 없이도 변동하는 고객 지원 트래픽에 맞춰 동적으로 확장되어야 합니다.\n- 제품 사양서는 시맨틱·벡터 검색이 가능한 인덱싱 파이프라인으로 처리되어 Agent1이 관련 제품 정보를 가져올 수 있어야 합니다.\n- 제품 사양서 정보로 생성한 응답은 관련성 있고 완전하며 정확해야 합니다.\n- Agent1은 제품 사양서를 사용해 제품 상세에 대한 자연어 질문에 답할 수 있어야 합니다.\n- Agent1이 사용하는 모델 버전은 안정적인 응답을 위해 일관되게 유지되어야 합니다.\n- 모델이 처리하는 데이터는 EU 안에 있어야 합니다.\n\n### 보안·규정 준수 요구 사항\n\nContoso는 다음 보안·규정 준수 요구 사항을 파악했습니다.\n\n- Foundry에 배포된 모델에 접근할 때 API 키를 사용해서는 **안 됩니다**.\n- Azure 리소스 접근은 최소 권한 원칙을 따라야 합니다.\n- Contoso 개발자는 Microsoft Entra 인증으로 Microsoft Foundry 리소스에 인증해야 합니다.\n- Project1 액세스는 SC_Agent1_Dev라는 보안 그룹으로 Agent1Dev Team 구성원에게 할당해야 합니다.\n- Project1 액세스는 SC_Agent1_Test라는 보안 그룹으로 Agent1Test Team 구성원에게 할당해야 합니다.\n- storage1의 제품 사양서 저장소에 고객 데이터가 담긴 문서가 실수로 추가되더라도 Agent1은 고객 정보를 절대 노출해서는 안 됩니다.\n- 제품 사양서에는 텍스트가 삽입된 이미지가 들어 있을 수 있습니다. Agent1은 이미지 안에 숨어 있을 수 있는 악의적 지시로부터 보호되어야 합니다.\n\n### 업무 요구 사항\n\nContoso는 다음 업무 요구 사항을 파악했습니다.\n\n- Agent1과 상호작용하는 사용자는 이후 상호작용에서 개인화된 경험을 받아야 하며, 여기에는 Agent1이 대화 컨텍스트를 유지하고 이전 상호작용의 관련 정보를 기억하는 기능이 포함됩니다.\n- Agent1은 Contoso가 판매하는 제품에 대한 질문에만 답해야 합니다.",
+   "assets": {},
+   "members": [
+    {
+     "n": 158,
+     "id": null
+    }
+   ]
+  }
+ ]
+}

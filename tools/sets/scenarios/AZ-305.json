@@ -1,0 +1,118 @@
+{
+ "cbt": "AZ-305",
+ "note": "빌드 후 tools/sets/apply_scenarios.js 로 다시 입힌다",
+ "groups": [
+  {
+   "id": "az305-s01",
+   "exam": "AZ-305",
+   "type": "scenario",
+   "titleEn": "Multi-Region Azure Web App Resilience",
+   "titleKo": "다중 지역 Azure 웹앱 복원력",
+   "contentEn": "You plan to deploy multiple instances of an Azure web app across several Azure regions.\n\nYou need to design an access solution for the app. The solution must meet the following replication requirements:\n\n- Support rate limiting.\n- Balance requests across all instances.\n- Ensure that users can access the app in the event of a regional outage.",
+   "contentKo": "여러 Azure 지역에 Azure 웹앱 인스턴스를 여러 개 배포할 계획입니다.\n\n이 앱을 위한 액세스 솔루션을 설계해야 합니다. 솔루션은 다음 복제 요구 사항을 충족해야 합니다.\n\n- 속도 제한(rate limiting)을 지원해야 합니다.\n- 모든 인스턴스에 요청을 분산해야 합니다.\n- 지역 장애가 발생해도 사용자가 앱에 접근할 수 있어야 합니다.",
+   "assets": {},
+   "members": [
+    {
+     "n": 28,
+     "id": null
+    },
+    {
+     "n": 29,
+     "id": null
+    },
+    {
+     "n": 30,
+     "id": null
+    },
+    {
+     "n": 31,
+     "id": null
+    }
+   ]
+  },
+  {
+   "id": "az305-s02",
+   "exam": "AZ-305",
+   "type": "scenario",
+   "titleEn": "Resilient .NET Web Hosting",
+   "titleKo": "복원력 있는 .NET 웹 호스팅",
+   "contentEn": "You need to deploy resources to host a stateless web app in an Azure subscription. The solution must meet these requirements:\n\n- Provide access to the full .NET Framework.\n- Provide redundancy if an Azure region fails.\n- Grant administrators access to the operating system so they can install custom application dependencies.",
+   "contentKo": "Azure 구독에 상태 비저장(stateless) 웹앱을 호스트할 리소스를 배포해야 합니다. 솔루션은 다음 요구 사항을 충족해야 합니다.\n\n- 전체 .NET Framework에 접근할 수 있어야 합니다.\n- Azure 지역에 장애가 발생해도 중복성을 제공해야 합니다.\n- 관리자가 운영 체제에 접근해 사용자 지정 애플리케이션 종속성을 설치할 수 있어야 합니다.",
+   "assets": {},
+   "members": [
+    {
+     "n": 239,
+     "id": null
+    },
+    {
+     "n": 240,
+     "id": null
+    },
+    {
+     "n": 241,
+     "id": null
+    },
+    {
+     "n": 242,
+     "id": null
+    }
+   ]
+  },
+  {
+   "id": "az305-s03",
+   "exam": "AZ-305",
+   "type": "scenario",
+   "titleEn": "Azure App Service Regional Compliance",
+   "titleKo": "Azure App Service 지역 규정 준수",
+   "contentEn": "Your company plans to deploy multiple Azure App Service instances that will use Azure SQL databases. The App Service instances will be deployed at the same time as the Azure SQL databases.\n\nThe company has a regulatory requirement to deploy the App Service instances only in specific Azure regions. The resources for the App Service instances must reside in the same region.\n\nYou need to recommend a solution to meet the regulatory requirement.",
+   "contentKo": "회사는 Azure SQL 데이터베이스를 사용할 Azure App Service 인스턴스를 여러 개 배포할 계획입니다. App Service 인스턴스는 Azure SQL 데이터베이스와 동시에 배포됩니다.\n\n회사에는 App Service 인스턴스를 지정된 Azure 지역에만 배포해야 하는 규제 요구 사항이 있습니다. App Service 인스턴스의 리소스는 같은 지역에 있어야 합니다.\n\n이 규제 요구 사항을 충족하는 솔루션을 추천해야 합니다.",
+   "assets": {},
+   "members": [
+    {
+     "n": 244,
+     "id": null
+    },
+    {
+     "n": 245,
+     "id": null
+    },
+    {
+     "n": 246,
+     "id": null
+    },
+    {
+     "n": 247,
+     "id": null
+    }
+   ]
+  },
+  {
+   "id": "az305-s04",
+   "exam": "AZ-305",
+   "type": "scenario",
+   "titleEn": "ExpressRoute Connectivity Diagnostics",
+   "titleKo": "ExpressRoute 연결 진단",
+   "contentEn": "Your company has deployed several virtual machines both on-premises and in Azure. ExpressRoute is deployed and configured for connectivity from on-premises to Azure.\n\nSeveral virtual machines are experiencing network connectivity issues.\n\nYou need to analyze the network traffic to determine whether packets are being allowed or denied to the virtual machines.",
+   "contentKo": "회사는 온프레미스와 Azure 양쪽에 가상 머신을 여러 대 배포했습니다. 온프레미스에서 Azure로의 연결을 위해 ExpressRoute가 배포·구성되어 있습니다.\n\n가상 머신 여러 대에서 네트워크 연결 문제가 발생하고 있습니다.\n\n네트워크 트래픽을 분석해 가상 머신으로 오가는 패킷이 허용되는지 거부되는지 판단해야 합니다.",
+   "assets": {},
+   "members": [
+    {
+     "n": 258,
+     "id": null
+    },
+    {
+     "n": 259,
+     "id": null
+    },
+    {
+     "n": 260,
+     "id": null
+    },
+    {
+     "n": 261,
+     "id": null
+    }
+   ]
+  }
+ ]
+}

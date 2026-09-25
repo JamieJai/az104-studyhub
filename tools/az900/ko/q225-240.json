@@ -109,6 +109,7 @@
   },
   "240": {
     "stem": "RG1이라는 리소스 그룹에 삭제 잠금이 걸려 있다면,",
+    "template": "____ 이(가) RG1을 삭제할 수 있습니다.",
     "expl": "Azure 삭제 잠금은 사용자의 Azure RBAC 권한과 무관하게 잠긴 리소스와 그 하위 리소스의 삭제를 막습니다. 관리자가 리소스 그룹을 삭제하려면 먼저 잠금을 제거해야 합니다.\n\n**Learn more:** [Lock your Azure resources to protect your infrastructure](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/lock-resources)",
     "blanks": [
       { "label": "정답:", "options": ["전역 관리자 그룹의 구성원만", "관리자가 삭제하려면 먼저 삭제 잠금을 제거해야", "관리자가 삭제하려면 먼저 Azure 정책을 수정해야", "관리자가 삭제하려면 먼저 Azure 태그를 추가해야"] }

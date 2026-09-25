@@ -16,6 +16,7 @@
   },
   "356": {
     "stem": "문장을 올바르게 완성하는 답을 선택하세요.\n\nHot Area:",
+    "template": "Azure Firewall의 ____ 을(를) 사용하면 인터넷의 사용자가 가상 네트워크의 서버에 접근할 수 있습니다.",
     "expl": "Azure Firewall의 네트워크 주소 변환(NAT) 규칙은 대상 NAT로 방화벽 공용 IP 주소·포트를 사설 IP 주소·포트로 변환해, 가상 네트워크에 호스트된 서버에 인터넷에서 인바운드로 접근할 수 있게 합니다.\n\n**Learn more:** [Azure Firewall rule processing logic](https://learn.microsoft.com/en-us/azure/firewall/rule-processing) · [Tutorial: Deploy and configure Azure Firewall using the Azure portal](https://learn.microsoft.com/en-us/azure/firewall/tutorial-firewall-deploy-portal)",
     "blanks": [
       { "label": "정답:", "options": ["애플리케이션 규칙", "네트워크 주소 변환(NAT) 규칙", "네트워크 규칙", "서비스 태그"] }
@@ -80,6 +81,7 @@
   },
   "364": {
     "stem": "문장을 완성하세요.",
+    "template": "____ 은(는) 사용자의 자격 증명을 확인하는 과정입니다.",
     "expl": "인증(authentication)은 사용자 이름과 암호, 인증서, 생체 요소 같은 자격 증명을 검증해 사용자의 ID를 확인하는 과정입니다.",
     "blanks": [
       { "label": "정답:", "options": ["권한 부여(Authorization)", "인증(Authentication)", "페더레이션(Federation)", "티켓팅(Ticketing)"] }
@@ -104,6 +106,7 @@
   },
   "367": {
     "stem": "문장을 올바르게 완성하는 옵션을 선택하세요.",
+    "template": "____ 을(를) 사용하면 가상 머신을 업데이트 도메인이나 장애 도메인으로 묶을 수 있습니다.",
     "expl": "가용성 집합은 가상 머신을 장애 도메인과 업데이트 도메인에 분산해 하드웨어 장애와 계획된 유지 관리의 영향을 줄입니다.\n\n**Learn more:** [Availability sets overview](https://learn.microsoft.com/en-us/azure/virtual-machines/availability-set-overview)",
     "blanks": [
       { "label": "사용하는 기능:", "options": ["가용성 집합", "가용성 영역", "Azure Load Balancer", "Azure 가상 머신 확장 집합"] }

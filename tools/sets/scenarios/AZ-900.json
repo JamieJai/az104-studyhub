@@ -1,0 +1,486 @@
+{
+ "cbt": "AZ-900",
+ "note": "빌드 후 tools/sets/apply_scenarios.js 로 다시 입힌다",
+ "groups": [
+  {
+   "id": "az900-s01",
+   "exam": "AZ-900",
+   "type": "scenario",
+   "titleEn": "Active Directory Cloud Transition",
+   "titleKo": "Active Directory 클라우드 전환",
+   "contentEn": "Your company's Active Directory forest contains thousands of user accounts.\n\nYou have been told that all network resources will be migrated to Azure. After that, the on-premises data center will be retired.\n\nYou are required to use a strategy that minimizes the impact on users once the planned migration has been completed.",
+   "contentKo": "회사의 Active Directory 포리스트에는 사용자 계정이 수천 개 있습니다.\n\n모든 네트워크 리소스를 Azure로 마이그레이션한 뒤 온프레미스 데이터센터를 폐기할 예정이라고 전달받았습니다.\n\n계획된 마이그레이션이 끝난 뒤 사용자에게 미치는 영향을 최소화하는 전략을 사용해야 합니다.",
+   "assets": {},
+   "members": [
+    {
+     "n": 17,
+     "id": null
+    },
+    {
+     "n": 18,
+     "id": null
+    }
+   ]
+  },
+  {
+   "id": "az900-s02",
+   "exam": "AZ-900",
+   "type": "scenario",
+   "titleEn": "Mixed-OS VM Lifecycle Automation",
+   "titleKo": "혼합 OS 가상 머신 수명 주기 자동화",
+   "contentEn": "## Scenario\n\nYour company’s developers plan to deploy a large number of custom virtual machines on a weekly basis. They will also remove these virtual machines during the same week they were deployed. Sixty percent of the virtual machines have Windows Server 2016 installed, while the other forty percent have Ubuntu Linux installed.\n\nYou are required to ensure that the administrative effort needed for this process is reduced by using an appropriate Azure service.",
+   "contentKo": "## 시나리오\n\n회사의 개발자들이 매주 사용자 지정 가상 머신을 대량으로 배포할 계획입니다. 그리고 배포한 그 주에 해당 가상 머신을 다시 제거합니다. 가상 머신의 60퍼센트에는 Windows Server 2016이, 나머지 40퍼센트에는 Ubuntu Linux가 설치되어 있습니다.\n\n알맞은 Azure 서비스를 사용해 이 작업에 드는 관리 부담을 줄여야 합니다.",
+   "assets": {},
+   "members": [
+    {
+     "n": 41,
+     "id": null
+    },
+    {
+     "n": 42,
+     "id": null
+    },
+    {
+     "n": 43,
+     "id": null
+    }
+   ]
+  },
+  {
+   "id": "az900-s03",
+   "exam": "AZ-900",
+   "type": "scenario",
+   "titleEn": "Azure VM Data Center Resilience",
+   "titleKo": "Azure 가상 머신 데이터센터 복원력",
+   "contentEn": "You are planning to deploy several Azure virtual machines.\n\nYou need to ensure that the services running on the virtual machines remain available if a single data center fails.",
+   "contentKo": "Azure 가상 머신을 여러 대 배포할 계획입니다.\n\n데이터센터 한 곳에 장애가 발생해도 가상 머신에서 실행되는 서비스를 계속 사용할 수 있어야 합니다.",
+   "assets": {},
+   "members": [
+    {
+     "n": 45,
+     "id": null
+    },
+    {
+     "n": 46,
+     "id": null
+    },
+    {
+     "n": 49,
+     "id": null
+    },
+    {
+     "n": 50,
+     "id": null
+    },
+    {
+     "n": 57,
+     "id": null
+    }
+   ]
+  },
+  {
+   "id": "az900-s04",
+   "exam": "AZ-900",
+   "type": "scenario",
+   "titleEn": "VM1 Internet HTTP Access",
+   "titleKo": "VM1 인터넷 HTTP 접근",
+   "contentEn": "Your Azure environment contains multiple Azure virtual machines.\n\nYou need to ensure that a virtual machine named VM1 is accessible from the Internet over HTTP.",
+   "contentKo": "Azure 환경에 Azure 가상 머신이 여러 대 있습니다.\n\nVM1이라는 가상 머신에 인터넷에서 HTTP로 접근할 수 있게 해야 합니다.",
+   "assets": {},
+   "members": [
+    {
+     "n": 47,
+     "id": null
+    },
+    {
+     "n": 48,
+     "id": null
+    },
+    {
+     "n": 51,
+     "id": null
+    },
+    {
+     "n": 52,
+     "id": null
+    }
+   ]
+  },
+  {
+   "id": "az900-s05",
+   "exam": "AZ-900",
+   "type": "scenario",
+   "titleEn": "Create Azure VM from Android Tablet",
+   "titleKo": "Android 태블릿에서 Azure 가상 머신 만들기",
+   "contentEn": "You have an Azure environment.\n\nYou need to create a new Azure virtual machine from a tablet that runs the Android operating system.",
+   "contentKo": "Azure 환경이 있습니다.\n\nAndroid 운영 체제를 실행하는 태블릿에서 새 Azure 가상 머신을 만들어야 합니다.",
+   "assets": {},
+   "members": [
+    {
+     "n": 53,
+     "id": null
+    },
+    {
+     "n": 54,
+     "id": null
+    },
+    {
+     "n": 55,
+     "id": null
+    },
+    {
+     "n": 56,
+     "id": null
+    }
+   ]
+  },
+  {
+   "id": "az900-s06",
+   "exam": "AZ-900",
+   "type": "scenario",
+   "titleEn": "Azure Web-Database Segmentation Strategy",
+   "titleKo": "Azure 웹·데이터베이스 분할 전략",
+   "contentEn": "You are planning a strategy to deploy numerous web servers and database servers to Azure.\n\nThis strategy should allow the connection types between the web servers and database servers to be controlled.",
+   "contentKo": "Azure에 웹 서버와 데이터베이스 서버를 여러 대 배포하는 전략을 계획하고 있습니다.\n\n이 전략은 웹 서버와 데이터베이스 서버 사이의 연결 종류를 제어할 수 있어야 합니다.",
+   "assets": {},
+   "members": [
+    {
+     "n": 149,
+     "id": null
+    },
+    {
+     "n": 150,
+     "id": null
+    }
+   ]
+  },
+  {
+   "id": "az900-s07",
+   "exam": "AZ-900",
+   "type": "scenario",
+   "titleEn": "Azure AD Unknown IP Password Reset",
+   "titleKo": "알 수 없는 IP에서의 Azure AD 암호 재설정",
+   "contentEn": "Your company has an Azure Active Directory (Azure AD) environment. Users occasionally connect to Azure AD over the Internet.\n\nYou have been tasked with ensuring that users who connect to Azure AD from the internet from an unidentified IP address are automatically prompted to change passwords.",
+   "contentKo": "회사에 Azure Active Directory(Azure AD) 환경이 있습니다. 사용자는 이따금 인터넷을 통해 Azure AD에 연결합니다.\n\n식별되지 않은 IP 주소로 인터넷에서 Azure AD에 연결하는 사용자에게 자동으로 암호 변경을 요구해야 합니다.",
+   "assets": {},
+   "members": [
+    {
+     "n": 153,
+     "id": null
+    },
+    {
+     "n": 154,
+     "id": null
+    }
+   ]
+  },
+  {
+   "id": "az900-s08",
+   "exam": "AZ-900",
+   "type": "scenario",
+   "titleEn": "Hyper-V to Azure Migration",
+   "titleKo": "Hyper-V에서 Azure로 마이그레이션",
+   "contentEn": "Your company is planning to migrate all of its virtual machines to an Azure pay-as-you-go subscription. The virtual machines are currently hosted on Hyper-V hosts in a data center.\n\nYou must make sure that the intended Azure solution uses the correct expenditure model.",
+   "contentKo": "회사는 모든 가상 머신을 Azure 종량제 구독으로 마이그레이션할 계획입니다. 가상 머신은 현재 데이터센터의 Hyper-V 호스트에서 실행되고 있습니다.\n\n계획된 Azure 솔루션이 올바른 지출 모델을 사용하도록 해야 합니다.",
+   "assets": {},
+   "members": [
+    {
+     "n": 204,
+     "id": null
+    },
+    {
+     "n": 205,
+     "id": null
+    },
+    {
+     "n": 206,
+     "id": null
+    }
+   ]
+  },
+  {
+   "id": "az900-s09",
+   "exam": "AZ-900",
+   "type": "scenario",
+   "titleEn": "Azure Resource Provisioning Environment",
+   "titleKo": "Azure 리소스 프로비저닝 환경",
+   "contentEn": "An Azure administrator plans to run a PowerShell script that creates Azure resources.\n\nYou need to recommend which computer configuration to use to run the script.",
+   "contentKo": "Azure 관리자가 Azure 리소스를 만드는 PowerShell 스크립트를 실행하려 합니다.\n\n스크립트를 실행할 컴퓨터 구성을 추천해야 합니다.",
+   "assets": {},
+   "members": [
+    {
+     "n": 280,
+     "id": null
+    },
+    {
+     "n": 281,
+     "id": null
+    },
+    {
+     "n": 282,
+     "id": null
+    },
+    {
+     "n": 283,
+     "id": null
+    }
+   ]
+  },
+  {
+   "id": "az900-s10",
+   "exam": "AZ-900",
+   "type": "scenario",
+   "titleEn": "Ubuntu VM Creation in Subscription1",
+   "titleKo": "Subscription1에 Ubuntu 가상 머신 만들기",
+   "contentEn": "You have an Azure subscription named `Subscription1`. You sign in to the Azure portal and create a resource group named `RG1`.\n\nFrom Azure documentation, you have the following command that creates a virtual machine named `VM1`:\n\n```bash\n\naz vm create --resource-group RG1 --name VM1 --image UbuntuLTS --generate-ssh-keys\n\n```\n\nYou need to create `VM1` in `Subscription1` by using the command.",
+   "contentKo": "`Subscription1`이라는 Azure 구독이 있습니다. Azure Portal에 로그인해 `RG1`이라는 리소스 그룹을 만듭니다.\n\nAzure 설명서에서 `VM1`이라는 가상 머신을 만드는 다음 명령을 확인했습니다.\n\n```bash\n\naz vm create --resource-group RG1 --name VM1 --image UbuntuLTS --generate-ssh-keys\n\n```\n\n이 명령으로 `Subscription1`에 `VM1`을 만들어야 합니다.",
+   "assets": {},
+   "members": [
+    {
+     "n": 298,
+     "id": null
+    },
+    {
+     "n": 299,
+     "id": null
+    },
+    {
+     "n": 300,
+     "id": null
+    },
+    {
+     "n": 301,
+     "id": null
+    }
+   ]
+  },
+  {
+   "id": "az900-s11",
+   "exam": "AZ-900",
+   "type": "scenario",
+   "titleEn": "Business Unit Resource Automation",
+   "titleKo": "사업부 리소스 자동화",
+   "contentEn": "## Scenario\n\nThe question is included in a number of questions that use the same setup. However, each question has a different result. Determine whether the solution meets the requirements.\n\nYour company's infrastructure includes several business units, and each one requires a large number of different Azure resources for day-to-day operations.\n\nThe resources required by each business unit are identical.\n\nYou are required to approve a strategy to create Azure resources automatically.",
+   "contentKo": "## 시나리오\n\n이 문항은 같은 설정을 사용하는 여러 문항 중 하나입니다. 다만 문항마다 결과가 다릅니다. 솔루션이 요구 사항을 충족하는지 판단하세요.\n\n회사 인프라에는 사업부가 여러 개 있고, 각 사업부는 일상 업무에 서로 다른 Azure 리소스를 많이 사용합니다.\n\n각 사업부가 필요로 하는 리소스는 동일합니다.\n\nAzure 리소스를 자동으로 만드는 전략을 승인해야 합니다.",
+   "assets": {},
+   "members": [
+    {
+     "n": 307,
+     "id": null
+    },
+    {
+     "n": 308,
+     "id": null
+    },
+    {
+     "n": 309,
+     "id": null
+    }
+   ]
+  },
+  {
+   "id": "az900-s12",
+   "exam": "AZ-900",
+   "type": "scenario",
+   "titleEn": "Azure PaaS-Only Migration",
+   "titleKo": "Azure PaaS 전용 마이그레이션",
+   "contentEn": "Your company plans to migrate all its data and resources to Azure.\n\nThe company’s migration plan states that only Platform as a Service (PaaS) solutions must be used in Azure.\n\nYou need to deploy an Azure environment that meets the company migration plan.",
+   "contentKo": "회사는 모든 데이터와 리소스를 Azure로 마이그레이션할 계획입니다.\n\n회사의 마이그레이션 계획에 따르면 Azure에서는 서비스형 플랫폼(PaaS) 솔루션만 사용해야 합니다.\n\n회사의 마이그레이션 계획을 충족하는 Azure 환경을 배포해야 합니다.",
+   "assets": {},
+   "members": [
+    {
+     "n": 317,
+     "id": null
+    },
+    {
+     "n": 318,
+     "id": null
+    },
+    {
+     "n": 319,
+     "id": null
+    },
+    {
+     "n": 320,
+     "id": null
+    }
+   ]
+  },
+  {
+   "id": "az900-s13",
+   "exam": "AZ-900",
+   "type": "scenario",
+   "titleEn": "Azure VM High Availability Design",
+   "titleKo": "Azure 가상 머신 고가용성 설계",
+   "contentEn": "## Scenario\n\nYou are responsible for deploying a critical LOB application to Azure. The application will be installed on a virtual machine.\n\nThe application deployment strategy must provide a guaranteed availability of 99.99 percent. You need to ensure that the strategy uses as few virtual machines and availability zones as possible.",
+   "contentKo": "## 시나리오\n\n업무에 중요한 기간 업무(LOB) 애플리케이션을 Azure에 배포하는 일을 맡았습니다. 이 애플리케이션은 가상 머신에 설치됩니다.\n\n애플리케이션 배포 전략은 99.99퍼센트 가용성을 보장해야 합니다. 이때 사용하는 가상 머신과 가용성 영역의 수는 가능한 한 적어야 합니다.",
+   "assets": {},
+   "members": [
+    {
+     "n": 351,
+     "id": null
+    },
+    {
+     "n": 352,
+     "id": null
+    },
+    {
+     "n": 353,
+     "id": null
+    }
+   ]
+  },
+  {
+   "id": "az900-s14",
+   "exam": "AZ-900",
+   "type": "scenario",
+   "titleEn": "Azure Support Plan Requirement",
+   "titleKo": "Azure 지원 플랜 요구 사항",
+   "contentEn": "## Scenario\n\nYour company plans to purchase an Azure subscription.\n\nThe company’s support policy states that the Azure environment must include an option to contact support engineers by phone or email.\n\nYou need to recommend which support plan meets the support policy requirement.",
+   "contentKo": "## 시나리오\n\n회사는 Azure 구독을 구매할 계획입니다.\n\n회사의 지원 정책에 따르면 Azure 환경에는 전화나 메일로 지원 엔지니어에게 문의할 수 있는 옵션이 포함되어야 합니다.\n\n이 지원 정책 요구 사항을 충족하는 지원 플랜을 추천해야 합니다.",
+   "assets": {},
+   "members": [
+    {
+     "n": 368,
+     "id": null
+    },
+    {
+     "n": 369,
+     "id": null
+    },
+    {
+     "n": 370,
+     "id": null
+    },
+    {
+     "n": 371,
+     "id": null
+    }
+   ]
+  },
+  {
+   "id": "az900-s15",
+   "exam": "AZ-900",
+   "type": "scenario",
+   "titleEn": "Unused Azure Resource Cleanup",
+   "titleKo": "사용하지 않는 Azure 리소스 정리",
+   "contentEn": "Your company has an Azure subscription that contains the following unused resources:\n\n- 20 user accounts in Azure Active Directory (Azure AD)\n- Five groups in Azure AD\n- 10 public IP addresses\n- 10 network interfaces\n\nYou need to reduce the Azure costs for the company.",
+   "contentKo": "회사의 Azure 구독에는 사용하지 않는 다음 리소스가 있습니다.\n\n- Azure Active Directory(Azure AD) 사용자 계정 20개\n- Azure AD 그룹 5개\n- 공용 IP 주소 10개\n- 네트워크 인터페이스 10개\n\n회사의 Azure 비용을 줄여야 합니다.",
+   "assets": {},
+   "members": [
+    {
+     "n": 375,
+     "id": null
+    },
+    {
+     "n": 376,
+     "id": null
+    },
+    {
+     "n": 377,
+     "id": null
+    },
+    {
+     "n": 378,
+     "id": null
+    }
+   ]
+  },
+  {
+   "id": "az900-s16",
+   "exam": "AZ-900",
+   "type": "scenario",
+   "titleEn": "Azure Predictive Analytics Deployment",
+   "titleKo": "Azure 예측 분석 배포",
+   "contentEn": "You are required to deploy an Artificial Intelligence (AI) solution in Azure.\n\nYou want to ensure that you can build, test, and deploy predictive analytics for the solution.",
+   "contentKo": "Azure에 인공지능(AI) 솔루션을 배포해야 합니다.\n\n이 솔루션을 위한 예측 분석을 만들고 테스트하고 배포할 수 있어야 합니다.",
+   "assets": {},
+   "members": [
+    {
+     "n": 420,
+     "id": null
+    },
+    {
+     "n": 421,
+     "id": null
+    }
+   ]
+  },
+  {
+   "id": "az900-s17",
+   "exam": "AZ-900",
+   "type": "scenario",
+   "titleEn": "Azure Credential Encryption Automation",
+   "titleKo": "Azure 자격 증명 암호화 자동화",
+   "contentEn": "You have been informed by your superiors that the company plans to automate server deployment to Azure. However, there is concern that administrative credentials could be exposed during this process.\n\nYou are required to ensure that, during deployment, the administrative credentials are encrypted by using a suitable Azure solution.",
+   "contentKo": "회사가 Azure로의 서버 배포를 자동화할 계획이라고 상부로부터 전달받았습니다. 다만 이 과정에서 관리 자격 증명이 노출될 수 있다는 우려가 있습니다.\n\n배포 중에 관리 자격 증명이 적절한 Azure 솔루션으로 암호화되도록 해야 합니다.",
+   "assets": {},
+   "members": [
+    {
+     "n": 422,
+     "id": null
+    },
+    {
+     "n": 423,
+     "id": null
+    }
+   ]
+  },
+  {
+   "id": "az900-s18",
+   "exam": "AZ-900",
+   "type": "scenario",
+   "titleEn": "Azure Design Review Upgrade",
+   "titleKo": "Azure 설계 검토를 위한 지원 플랜 상향",
+   "contentEn": "Your company's Azure subscription includes a Basic support plan.\n\nThey want to request Microsoft to assess the design of an Azure environment. However, this is not supported by the current plan.\n\nYou want to ensure the company subscribes to a support plan that enables this capability while keeping costs to a minimum.",
+   "contentKo": "회사의 Azure 구독에는 Basic 지원 플랜이 포함되어 있습니다.\n\n회사는 Microsoft에 Azure 환경의 설계 평가를 요청하려 하지만 현재 플랜에서는 지원되지 않습니다.\n\n비용을 최소한으로 유지하면서 이 기능을 쓸 수 있는 지원 플랜을 구독하도록 해야 합니다.",
+   "assets": {},
+   "members": [
+    {
+     "n": 446,
+     "id": null
+    }
+   ]
+  },
+  {
+   "id": "az900-s19",
+   "exam": "AZ-900",
+   "type": "scenario",
+   "titleEn": "Azure VM Deployment Strategy",
+   "titleKo": "Azure 가상 머신 배포 전략",
+   "contentEn": "## Scenario\n\nYou are responsible for deploying Azure virtual machines for your company.\n\nYou need to use the appropriate cloud deployment solution.",
+   "contentKo": "## 시나리오\n\n회사의 Azure 가상 머신 배포를 맡고 있습니다.\n\n알맞은 클라우드 배포 솔루션을 사용해야 합니다.",
+   "assets": {},
+   "members": [
+    {
+     "n": 448,
+     "id": null
+    },
+    {
+     "n": 449,
+     "id": null
+    },
+    {
+     "n": 450,
+     "id": null
+    }
+   ]
+  },
+  {
+   "id": "az900-s20",
+   "exam": "AZ-900",
+   "type": "scenario",
+   "titleEn": "Azure Division Segmentation",
+   "titleKo": "Azure 부서 분할",
+   "contentEn": "You are planning to migrate a company to Azure.\n\nEach of the company’s numerous divisions will have an administrator assigned to manage the Azure resources used by their respective division.\n\nYou want to make sure that the Azure deployment you use allows Azure to be segmented for the divisions, while keeping administrative effort to a minimum.",
+   "contentKo": "회사를 Azure로 마이그레이션할 계획입니다.\n\n회사의 여러 부서마다 관리자가 한 명씩 배정되어 각 부서가 사용하는 Azure 리소스를 관리합니다.\n\n관리 작업을 최소화하면서 부서별로 Azure를 분리할 수 있는 배포 방식을 사용해야 합니다.",
+   "assets": {},
+   "members": [
+    {
+     "n": 451,
+     "id": null
+    }
+   ]
+  }
+ ]
+}
