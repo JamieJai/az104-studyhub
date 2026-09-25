@@ -1,12 +1,27 @@
-r"""python tools/kdigest.py 24 52 130 ... — CBT 번호로 한국어 문제 요약 출력 (이론서 확인문제 작성용)"""
+r"""CBT 번호로 한국어 문제 요약 출력 (이론서 확인문제 작성용)
+
+    python tools/az802/kdigest.py 24 52 130          # 기본 AZ-802
+    python tools/az802/kdigest.py --cbt AZ-900 66    # 다른 시험도 같은 형식이라 그대로 읽힌다
+"""
 import json, re, sys, os
 here = os.path.dirname(os.path.abspath(__file__))
-src = open(os.path.join(here, '..', 'data.js'), encoding='utf-8').read()
+root = os.path.abspath(os.path.join(here, '..', '..'))   # 저장소 루트 (tools/az802 -> ../..)
+args = sys.argv[1:]
+cbt = 'AZ-802'
+if args and args[0] == '--cbt':
+    cbt = args[1]
+    args = args[2:]
+src = open(os.path.join(root, 'dist', cbt + '_CBT', 'data.js'), encoding='utf-8').read()
 d = json.loads(src[src.index('{'):src.rindex('}') + 1])
 byn = {q['n']: q for q in d['questions']}
-for n in [int(a) for a in sys.argv[1:]]:
+for n in [int(a) for a in args]:
     q = byn[n]
     print(f"\n##### #{n} [{q['type']}] {q['topicKo']} " + (f"(구형 {q['legacy']['id']})" if q.get('legacy') else ''))
+    if q.get('caseKo'):
+        st = next((x for x in d.get('sets', []) if x['id'] == q['set']['id']), None)
+        print(f"  [공통 지문 {q['set']['idx']}/{q['set']['size']}] " + (st['titleKo'] if st else q['set']['id']))
+        print(re.sub(r'\n{2,}', '\n', q['caseKo'].strip()))
+        print('  ---')
     print(q['stemKo'].strip())
     t = q['type']
     if t == 'multiple_choice':
