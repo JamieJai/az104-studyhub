@@ -6,3 +6,7 @@ Thumbs.db
 .dev.vars
 
 backups/
+
+# python
+__pycache__/
+*.pyc
