@@ -507,7 +507,7 @@
     $("casePanel").innerHTML = inSet ? casePanelHtml(q, s, imgOpts) : "";
     $("questionText").innerHTML = mdToHtml(inSet ? q.askEn : q.stemEn, imgOpts);
     // 3) 한국어 번역은 참고용 패널 — 한 번 펼치면 다음 문항에서도 펼쳐진 채로 유지
-    $("questionTextKo").innerHTML = mdToHtml(inSet ? q.askKo : q.stemKo);
+    $("questionTextKo").innerHTML = mdToHtml((inSet ? q.askKo : q.stemKo) + (q.templateKo ? "\n\n" + q.templateKo : ""));   // 빈칸 문장(template)의 한국어도 참고 패널에 같이 보여 준다
     const kw = $("koWrap"); kw.classList.toggle("hidden", !!q.koMissing); kw.open = !!state.koOpen;
     // 3) 답 입력
     const answeredNow = s.mode !== "exam" && s.answeredNow && s.answeredNow[q.n] && rec.result;

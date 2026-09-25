@@ -98,7 +98,7 @@ const questions = src.questions.map(q => {
       id: String(b.id), labelEn: b.label || `항목 ${b.id}`, labelKo: b.label || `항목 ${b.id}`,
       options: (b.options || []).map(pair), answer: b.answer,
     }));
-    out.template = q.templateMode ? (q.template || '') : '';
+    out.template = q.template || '';   // templateMode 플래그가 없어도 빈칸 문장/코드는 문제 본문이므로 항상 살린다
   } else if (q.type === 'statements') {
     out.statements = (q.statements || []).map(s => ({ en: s.text, ko: s.text, answer: s.answer }));
     out.columns = q.columns || ['Yes', 'No'];
