@@ -72,7 +72,7 @@
  "explanation": "Windows Server Storage Spaces 스토리지 계층은 자주 액세스하는 데이터에 더 빠른 SSD 계층을, 덜 액세스하는 데이터에 더 느린 HDD 계층을 사용합니다. Pool2와 Pool3에는 SSD와 HDD 미디어가 모두 있지만 Pool1에는 SSD가 없습니다."
 },
 "AZ-801-Q4": {
- "stem": "*(참고: 케이스 스터디 문항으로 원본 사이트에 시나리오 본문이 누락되어 있습니다. 해설로 보면 Server4의 C는 운영 체제 볼륨이고 D·E·F는 NTFS/ReFS 데이터 볼륨입니다.)*\n\nServer4에 BitLocker를 구성해야 합니다.\n\nBitLocker를 사용할 수 있는 볼륨과 자동 잠금 해제를 사용할 수 있는 볼륨을 고르십시오.",
+ "stem": "Server4에 BitLocker를 구성해야 합니다.\n\nBitLocker를 사용할 수 있는 볼륨과 자동 잠금 해제를 사용할 수 있는 볼륨을 고르십시오.",
  "blanks": {
   "bitlocker": {"label": "BitLocker:", "options": ["D만", "C와 D만", "D, E, F만", "C, D, E, F"]},
   "auto_unlock": {"label": "자동 잠금 해제:", "options": ["D만", "C와 D만", "D, E, F만", "C, D, E, F"]}

@@ -67,12 +67,12 @@
  "explanation": "제외 범위는 DHCP 서버가 포함된 주소를 DHCP 클라이언트에 임대하지 못하게 합니다. 고정 할당된 연속 주소 192.168.16.242~192.168.16.245는 범위의 주소 풀 안에 있으므로, 그 범위를 제외하면 구성 한 번으로 주소 충돌을 막을 수 있습니다. DHCP 예약은 MAC 주소를 기준으로 DHCP 클라이언트에 주소를 할당하는 것이라 이미 고정 주소로 구성된 장치에는 적합하지 않습니다."
 },
 "AZ-800-Q169": {
- "stem": "*(참고: 케이스 스터디 문항으로 원본 사이트에 시나리오 본문이 누락되어 있습니다. 해설로 보면 Private Resolver Private1은 VNet1에 배포되고, Zone1.com은 VNet1에, Zone2.com은 VNet2에 가상 네트워크 링크가 있으며, Zone3.com은 링크가 없습니다.)*\n\n계획된 Azure DNS Private Resolver 변경을 구현해야 합니다.\n\n이름 확인에 어떤 프라이빗 DNS 영역을 사용할 수 있습니까?",
+ "stem": "*(참고: 케이스 스터디 문항입니다. 지문은 원본 사이트에 없어 해설을 근거로 보완했습니다. 해설로 보면 Private Resolver Private1은 VNet1에 배포되고, Zone1.com은 VNet1에, Zone2.com은 VNet2에 가상 네트워크 링크가 있으며, Zone3.com은 링크가 없습니다.)*\n\n계획된 Azure DNS Private Resolver 변경을 구현해야 합니다.\n\n이름 확인에 어떤 프라이빗 DNS 영역을 사용할 수 있습니까?",
  "choices": {"A": "Zone1.com만", "B": "Zone2.com만", "C": "Zone1.com과 Zone2.com만", "D": "Zone2.com과 Zone3.com만", "E": "Zone1.com, Zone2.com, Zone3.com"},
  "explanation": "Azure DNS Private Resolver 인바운드 엔드포인트는 리졸버가 배포된 가상 네트워크에 연결된 프라이빗 DNS 영역을 확인합니다. Private1은 VNet1에 배포되어 있고, VNet1에 가상 네트워크 링크가 있는 영역은 Zone1.com뿐입니다. Zone2.com은 VNet2에 연결되어 있고 Zone3.com은 가상 네트워크에 연결되어 있지 않습니다."
 },
 "AZ-800-Q183": {
- "stem": "*(참고: 케이스 스터디 문항으로 원본 사이트에 시나리오 본문이 누락되어 있습니다. 해설로 보면 Azure VNet1의 VM들이 AD 도메인 corp.fabrikam.com의 이름과 온-프레미스 이름을 확인해야 하고, VNet1에는 도메인 컨트롤러 DC3이 있습니다.)*\n\n네트워킹 요구 사항을 충족하는 이름 확인 솔루션을 구현해야 합니다.\n\n어떤 두 가지 작업을 수행해야 합니까? 각 정답은 솔루션의 일부입니다.\n\n참고: 각 올바른 선택은 1점입니다.",
+ "stem": "네트워킹 요구 사항을 충족하는 이름 확인 솔루션을 구현해야 합니다.\n\n어떤 두 가지 작업을 수행해야 합니까? 각 정답은 솔루션의 일부입니다.\n\n참고: 각 올바른 선택은 1점입니다.",
  "choices": {
   "A": "Vnet1의 DNS 서버 설정을 구성한다.",
   "B": "DC3에 DNS 서버 역할을 설치한다.",

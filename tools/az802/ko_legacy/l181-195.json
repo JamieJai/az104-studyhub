@@ -21,42 +21,42 @@
  "explanation": "Zone1.com은 복제 범위가 \"이 도메인의 모든 DNS 서버\"로 설정된 Active Directory 통합 영역입니다. AD 통합 영역은 DomainDnsZones 애플리케이션 디렉터리 파티션에 저장되어 Active Directory 복제로 복제되므로, 그 도메인(contoso.com)의 도메인 컨트롤러이면서 DNS 서버인 서버에만 도달합니다. Server2는 contoso.com의 DC + DNS 서버이므로 복사본을 받습니다. Server3은 DNS 서버이지만 도메인 컨트롤러가 아니라 AD 통합 복사본을 가질 수 없고, Server4와 Server5는 east.contoso.com 소속이라 \"이 도메인\" 밖입니다. 영역이 Server1에서 만들어졌으므로 추가로 복제되는 서버는 Server2뿐입니다."
 },
 "AZ-800-Q286": {
- "stem": "*(참고: 이 문제는 동일한 시나리오를 공유하는 시리즈 문항입니다. 원본 사이트에 시나리오 본문이 누락되어 있으며, 해설로 볼 때 Server1(10.0.1.10)은 부모 영역 contoso.local을 호스팅하고 자식 영역 east.contoso.local(Server2)·west.contoso.local(Server3)에 대한 위임이 있으며, 목표는 \"Server2와 Server3이 모든 내부 네임스페이스와 인터넷 이름을 확인할 수 있게 하는 것\"입니다.)*\n\n솔루션: Server2와 Server3이 DNS 쿼리를 `10.0.1.10`으로 전달하도록 구성합니다.\n\n이 방법으로 목표를 달성할 수 있습니까?",
+ "stem": "*(참고: 이 문제는 동일한 시나리오를 공유하는 시리즈 문항입니다. 지문은 원본 사이트에 없어 해설을 근거로 보완했습니다. 해설로 볼 때 Server1(10.0.1.10)은 부모 영역 contoso.local을 호스팅하고 자식 영역 east.contoso.local(Server2)·west.contoso.local(Server3)에 대한 위임이 있으며, 목표는 \"Server2와 Server3이 모든 내부 네임스페이스와 인터넷 이름을 확인할 수 있게 하는 것\"입니다.)*\n\n솔루션: Server2와 Server3이 DNS 쿼리를 `10.0.1.10`으로 전달하도록 구성합니다.\n\n이 방법으로 목표를 달성할 수 있습니까?",
  "choices": {"A": "예", "B": "아니요"},
  "explanation": "Server1은 부모 `contoso.local` 영역을 호스팅하고 두 자식 영역에 대한 위임을 갖고 있으므로 `east.contoso.local`과 `west.contoso.local`의 권한 있는 DNS 서버로 쿼리를 보낼 수 있습니다. 전달자로서 Server1은 루트 힌트로 인터넷 이름도 확인할 수 있습니다. Microsoft 문서에 따르면 부모 영역 DNS 서버는 전달 전에 위임 정보를 사용하며, 루트 힌트가 재귀 확인을 가능하게 합니다."
 },
 "AZ-800-Q287": {
- "stem": "*(참고: 이 문제는 동일한 시나리오를 공유하는 시리즈 문항입니다. 원본 사이트에 시나리오 본문이 누락되어 있으며, 해설로 볼 때 Server1은 부모 영역 contoso.local을 호스팅하고 자식 영역 east.contoso.local(Server2)·west.contoso.local(Server3)에 대한 위임이 있으며, 목표는 \"Server2와 Server3이 모든 내부 네임스페이스와 인터넷 이름을 확인할 수 있게 하는 것\"입니다.)*\n\n솔루션: Server2에 **contoso.local**과 **west.contoso.local**의 조건부 전달자를 만듭니다. Server3에 **contoso.local**과 **east.contoso.local**의 조건부 전달자를 만듭니다.\n\n이 방법으로 목표를 달성할 수 있습니까?",
+ "stem": "*(참고: 이 문제는 동일한 시나리오를 공유하는 시리즈 문항입니다. 지문은 원본 사이트에 없어 해설을 근거로 보완했습니다. 해설로 볼 때 Server1은 부모 영역 contoso.local을 호스팅하고 자식 영역 east.contoso.local(Server2)·west.contoso.local(Server3)에 대한 위임이 있으며, 목표는 \"Server2와 Server3이 모든 내부 네임스페이스와 인터넷 이름을 확인할 수 있게 하는 것\"입니다.)*\n\n솔루션: Server2에 **contoso.local**과 **west.contoso.local**의 조건부 전달자를 만듭니다. Server3에 **contoso.local**과 **east.contoso.local**의 조건부 전달자를 만듭니다.\n\n이 방법으로 목표를 달성할 수 있습니까?",
  "choices": {"A": "예", "B": "아니요"},
  "explanation": "조건부 전달자는 지정한 DNS 접미사에 대한 쿼리를 구성된 DNS 서버로 보내며, 더 구체적인 자식 영역 전달자가 자식 영역 쿼리를 처리합니다. Server1은 부모 영역을 확인하고 위임된 자식 영역 쿼리를 Server2나 Server3에 참조시킬 수 있으며, 두 자식 서버는 서로의 자식 영역으로 직접 전달할 수도 있습니다. 인터넷 호스트는 루트 힌트로 확인합니다."
 },
 "AZ-800-Q288": {
- "stem": "*(참고: 이 문제는 동일한 시나리오를 공유하는 시리즈 문항입니다. 원본 사이트에 시나리오 본문이 누락되어 있으며, 해설로 볼 때 Server1은 부모 영역 contoso.local을 호스팅하고 자식 영역 east.contoso.local(Server2)·west.contoso.local(Server3)에 대한 위임이 있으며, 목표는 \"Server2와 Server3이 모든 내부 네임스페이스와 인터넷 이름을 확인할 수 있게 하는 것\"입니다.)*\n\n솔루션: Server2와 Server3에 `contoso.local`의 조건부 전달자를 구성합니다.\n\n이 방법으로 목표를 달성할 수 있습니까?",
+ "stem": "*(참고: 이 문제는 동일한 시나리오를 공유하는 시리즈 문항입니다. 지문은 원본 사이트에 없어 해설을 근거로 보완했습니다. 해설로 볼 때 Server1은 부모 영역 contoso.local을 호스팅하고 자식 영역 east.contoso.local(Server2)·west.contoso.local(Server3)에 대한 위임이 있으며, 목표는 \"Server2와 Server3이 모든 내부 네임스페이스와 인터넷 이름을 확인할 수 있게 하는 것\"입니다.)*\n\n솔루션: Server2와 Server3에 `contoso.local`의 조건부 전달자를 구성합니다.\n\n이 방법으로 목표를 달성할 수 있습니까?",
  "choices": {"A": "예", "B": "아니요"},
  "explanation": "조건부 전달자는 지정한 DNS 네임스페이스의 쿼리를 구성된 DNS 서버로 라우팅합니다. Server2와 Server3의 `contoso.local` 쿼리를 Server1으로 전달하면 부모 영역이 확인되고, Server1이 위임을 사용해 east.contoso.local과 west.contoso.local 영역에 도달할 수 있습니다. 인터넷 호스트 쿼리는 루트 힌트로 계속 확인됩니다. DNS 위임은 NS 레코드를 사용해 위임된 자식 영역으로 확인을 이끕니다."
 },
 "AZ-800-Q289": {
- "stem": "*(참고: 이 문제는 동일한 시나리오를 공유하는 시리즈 문항입니다. 원본 사이트에 시나리오 본문이 누락되어 있으며, 해설로 볼 때 Server1은 부모 영역 contoso.local을 호스팅하고 자식 영역 east.contoso.local(Server2)·west.contoso.local(Server3)에 대한 위임이 있으며, 목표는 \"Server2와 Server3이 모든 내부 네임스페이스와 인터넷 이름을 확인할 수 있게 하는 것\"입니다.)*\n\n솔루션: Server2에 west.contoso.local의 조건부 전달자를 만듭니다. Server3에 east.contoso.local의 조건부 전달자를 만듭니다.\n\n이 방법으로 목표를 달성할 수 있습니까?",
+ "stem": "*(참고: 이 문제는 동일한 시나리오를 공유하는 시리즈 문항입니다. 지문은 원본 사이트에 없어 해설을 근거로 보완했습니다. 해설로 볼 때 Server1은 부모 영역 contoso.local을 호스팅하고 자식 영역 east.contoso.local(Server2)·west.contoso.local(Server3)에 대한 위임이 있으며, 목표는 \"Server2와 Server3이 모든 내부 네임스페이스와 인터넷 이름을 확인할 수 있게 하는 것\"입니다.)*\n\n솔루션: Server2에 west.contoso.local의 조건부 전달자를 만듭니다. Server3에 east.contoso.local의 조건부 전달자를 만듭니다.\n\n이 방법으로 목표를 달성할 수 있습니까?",
  "choices": {"A": "예", "B": "아니요"},
  "explanation": "조건부 전달자는 지정한 DNS 도메인의 쿼리를 구성된 DNS 서버로 보냅니다. east.contoso.local과 west.contoso.local 사이에서만 전달하면 그 두 자식 네임스페이스는 확인되지만, Server2나 Server3이 부모 contoso.local 영역의 레코드를 확인할 방법이 없습니다. 공용 루트 힌트는 사설 contoso.local 네임스페이스를 확인할 수 없으므로 모든 내부 네임스페이스라는 요구를 충족하지 못합니다."
 },
 "AZ-800-Q290": {
- "stem": "*(참고: 이 문제는 동일한 시나리오를 공유하는 시리즈 문항입니다. 원본 사이트에 시나리오 본문이 누락되어 있으며, 해설로 볼 때 목표는 \"Scope1에서 임대를 받는 프린터들이 항상 같은 IP 주소를 받도록 하는 것\"입니다.)*\n\n솔루션: Scope1의 DHCP 범위 옵션을 구성합니다.\n\n이 방법으로 요구 사항을 충족할 수 있습니까?",
+ "stem": "솔루션: Scope1의 DHCP 범위 옵션을 구성합니다.\n\n이 방법으로 요구 사항을 충족할 수 있습니까?",
  "choices": {"A": "예", "B": "아니요"},
  "explanation": "DHCP 범위 옵션은 DNS 서버·기본 게이트웨이 주소 같은 공통 구성 값을 클라이언트에 적용합니다. 특정 프린터에 같은 IP 주소를 할당하려면 프린터의 MAC 주소를 특정 IP 주소에 매핑하는 DHCP 예약이 필요합니다."
 },
 "AZ-800-Q291": {
- "stem": "*(참고: 이 문제는 동일한 시나리오를 공유하는 시리즈 문항입니다. 원본 사이트에 시나리오 본문이 누락되어 있으며, 해설로 볼 때 목표는 \"Scope1에서 임대를 받는 프린터들이 항상 같은 IP 주소를 받도록 하는 것\"입니다.)*\n\n솔루션: 모든 프린터에 대해 DHCP 예약을 만듭니다.\n\n이 방법으로 요구 사항을 충족할 수 있습니까?",
+ "stem": "솔루션: 모든 프린터에 대해 DHCP 예약을 만듭니다.\n\n이 방법으로 요구 사항을 충족할 수 있습니까?",
  "choices": {"A": "예", "B": "아니요"},
  "explanation": "DHCP 예약은 각 프린터의 DHCP 클라이언트 식별자 또는 MAC 주소를 특정 IP 주소와 연결하므로, DHCP 서버가 그 프린터에 항상 같은 주소를 할당합니다."
 },
 "AZ-800-Q292": {
- "stem": "*(참고: 이 문제는 동일한 시나리오를 공유하는 시리즈 문항입니다. 원본 사이트에 시나리오 본문이 누락되어 있으며, 해설로 볼 때 목표는 \"Scope1에서 임대를 받는 프린터들이 항상 같은 IP 주소를 받도록 하는 것\"입니다.)*\n\n솔루션: 각 프린터에 대해 DHCP 주소 제외를 만듭니다.\n\n이 방법으로 요구 사항을 충족할 수 있습니까?",
+ "stem": "솔루션: 각 프린터에 대해 DHCP 주소 제외를 만듭니다.\n\n이 방법으로 요구 사항을 충족할 수 있습니까?",
  "choices": {"A": "예", "B": "아니요"},
  "explanation": "DHCP 주소 제외는 지정한 IP 주소가 범위에서 임대되지 않게 할 뿐입니다. 특정 프린터에 일관된 주소를 할당하지는 않습니다. 고정 IP 할당을 보장하려면 각 프린터의 하드웨어 주소와 연결된 DHCP 예약이 필요합니다."
 },
 "AZ-800-Q293": {
- "stem": "*(참고: 이 문제는 동일한 시나리오를 공유하는 시리즈 문항입니다. 원본 사이트에 시나리오 본문이 누락되어 있으며, 해설로 볼 때 목표는 \"Scope1에서 임대를 받는 프린터들이 항상 같은 IP 주소를 받도록 하는 것\"입니다.)*\n\n솔루션: 네트워크에 DHCP 릴레이 에이전트를 배포합니다.\n\n이 방법으로 요구 사항을 충족할 수 있습니까?",
+ "stem": "솔루션: 네트워크에 DHCP 릴레이 에이전트를 배포합니다.\n\n이 방법으로 요구 사항을 충족할 수 있습니까?",
  "choices": {"A": "예", "B": "아니요"},
  "explanation": "DHCP 릴레이 에이전트는 서브넷 경계를 넘어 DHCP 클라이언트 요청과 서버 응답을 중계할 뿐입니다. 프린터에 특정 주소를 예약하지 않습니다. 일관된 DHCP 할당 주소에는 프린터에 대한 DHCP 예약이 필요합니다."
 },

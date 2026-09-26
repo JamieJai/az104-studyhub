@@ -82,7 +82,7 @@
  "explanation": "양방향 미러는 데이터 복사본 두 개를 저장하며 물리 디스크 1개의 실패를 견딥니다. 단일 패리티 Storage Spaces 레이아웃도 물리 디스크 1개의 실패를 견디며, 두 번째 디스크가 실패하면 데이터가 손실될 수 있습니다."
 },
 "AZ-800-Q82": {
- "stem": "*(참고: 케이스 스터디 문항으로 원본 사이트에 시나리오 본문이 누락되어 있습니다. 해설로 보면 Azure 파일 공유는 newyorkfiles·seattlefiles·companyfiles 세 개이고, FS1은 newyorkfiles + companyfiles를, FS2는 seattlefiles + companyfiles를 동기화해야 합니다.)*\n\n파일 공유 요구 사항을 충족하도록 Azure File Sync를 구성해야 합니다.\n\n어떻게 해야 합니까?",
+ "stem": "파일 공유 요구 사항을 충족하도록 Azure File Sync를 구성해야 합니다.\n\n어떻게 해야 합니까?",
  "blanks": {
   "sync_groups": {"label": "만들어야 하는 동기화 그룹의 최소 수:", "options": ["1", "2", "3", "4"]},
   "storage_sync_services": {"label": "만들어야 하는 Storage Sync Service의 최소 수:", "options": ["1", "2", "3", "4"]}

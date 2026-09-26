@@ -14,7 +14,7 @@
  "explanation": "Server1의 ICMPv4 에코 인바운드 규칙이 ping을 허용하고, 연결 보안 규칙은 TCP에만 적용됩니다. Server1과 Server2는 Kerberos로 서로 인증할 수 있고 요구되는 인바운드/아웃바운드 TCP IPsec 정책을 만족하며, Server1은 SMB 인바운드 트래픽도 허용합니다. Server3에는 일치하는 아웃바운드 연결 보안 규칙이 없어 Server1으로 요구되는 인증된 TCP 연결을 맺을 수 없고, Server1은 인증되지 않은 인바운드 트래픽을 버립니다."
 },
 "AZ-801-Q181": {
- "stem": "*(참고: 케이스 스터디 문항으로 원본 사이트에 시나리오 본문이 누락되어 있습니다. 해설로 보면 Server1은 인증 '요청' 규칙, Server3은 인바운드·아웃바운드 인증 '필요' 규칙을 갖고, Server4에는 연결 보안 규칙이 없으며, Server1·Server2·Server3은 도메인 서버입니다.)*\n\nServer1과 Server3이 통신할 수 있는 서버를 고르십시오.",
+ "stem": "Server1과 Server3이 통신할 수 있는 서버를 고르십시오.",
  "blanks": {
   "server1": {"label": "Server1이 통신할 수 있는 대상:", "options": ["Server2만", "Server3만", "Server2와 Server3만", "Server2, Server3, Server4", "없음"]},
   "server3": {"label": "Server3이 통신할 수 있는 대상:", "options": ["Server2만", "Server1과 Server2만", "Server2, Server3, Server4", "Server1, Server3, Server4", "없음"]}

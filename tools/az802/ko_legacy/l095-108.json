@@ -23,7 +23,7 @@
  "explanation": "Azure의 Hotpatch는 Windows Server 2022 Datacenter: Azure Edition **Core** 이미지를 지원하며, 이는 VM2입니다. Azure Automanage와 함께 쓰는 SMB over QUIC은 Windows Server 2022 Datacenter: Azure Edition이 필요합니다. VM1과 VM2가 이 요구를 만족하고, VM3은 Azure Edition이 아니며 VM4는 Windows Server 2019입니다."
 },
 "AZ-800-Q166": {
- "stem": "*(참고: 케이스 스터디 문항으로 원본 사이트에 시나리오 본문이 누락되어 있습니다. 문맥상 Server1·Server4는 신뢰할 수 있는 시작(Trusted Launch)을 사용하고, Server2·Server3은 표준 보안으로 Windows Server 2022를 실행하는 Azure VM입니다.)*\n\nAutomanage가 기술 요구 사항을 충족하도록 해야 합니다.\n\n어떤 Azure 가상 머신에 Automanage를 사용하도록 설정해야 합니까?",
+ "stem": "*(참고: 케이스 스터디 문항입니다. 지문은 원본 사이트에 없어 해설을 근거로 보완했습니다. 문맥상 Server1·Server4는 신뢰할 수 있는 시작(Trusted Launch)을 사용하고, Server2·Server3은 표준 보안으로 Windows Server 2022를 실행하는 Azure VM입니다.)*\n\nAutomanage가 기술 요구 사항을 충족하도록 해야 합니다.\n\n어떤 Azure 가상 머신에 Automanage를 사용하도록 설정해야 합니까?",
  "choices": {"A": "Server1만", "B": "Server2만", "C": "Server1과 Server2만", "D": "Server2와 Server3만", "E": "Server1과 Server4만"},
  "explanation": "Azure Automanage는 신뢰할 수 있는 시작(Trusted Launch)을 사용하는 가상 머신을 지원하지 않습니다. 따라서 Server1과 Server4는 지원되지 않습니다. Server2와 Server3은 표준 보안이고 Windows Server 2022를 실행하므로 Automanage를 사용하도록 설정할 수 있는 지원 대상 Azure 가상 머신입니다."
 },

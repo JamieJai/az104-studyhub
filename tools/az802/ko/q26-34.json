@@ -45,7 +45,7 @@
  "explanation": "Windows Server의 데이터 중복 제거는 NTFS 또는 ReFS로 포맷된 고정·쓰기 가능 볼륨에서 사용할 수 있습니다. ReFS 지원은 Windows Server 2019에서 추가되었으며 클러스터나 Storage Spaces Direct 배포에 한정되지 않는 일반 ReFS 기능으로 문서화되어 있습니다. 중복 제거는 **시스템/부팅 볼륨**에는 절대 사용할 수 없고, 이동식 미디어용인 exFAT를 포함한 다른 파일 시스템에서도 사용할 수 없습니다.\n\n볼륨이 C(NTFS), D(NTFS), E(ReFS), F(exFAT)인 파일 서버에서 C는 NTFS이지만 운영 체제의 시스템/부팅 볼륨이라 제외되고, D는 NTFS 데이터 볼륨이라 가능하며, E는 ReFS로 Windows Server 2019 이상에서 가능하고, F는 exFAT라 지원되지 않습니다. ReFS 볼륨은 부팅 자체가 불가능하므로 이런 구성에서 부팅 볼륨은 반드시 NTFS인 C입니다. 따라서 이 기능을 지원하는 모든 볼륨에 중복 제거를 켠다는 것은 **D와 E**에만 켜는 것을 의미합니다. 이는 데이터 중복 제거 상호 운용성 문서(Windows Server 2019부터 ReFS를 지원 시나리오로 나열)와 ReFS 개요의 기능 비교(ReFS에서 데이터 중복 제거 사용 가능, ReFS는 부팅 불가)에 문서화되어 있습니다."
 },
 "31": {
- "stem": "*(참고: 이 문제는 동일한 시나리오를 공유하는 시리즈 문항입니다. 원본 사이트에 시나리오 본문이 누락되어 있으며, 해설로 볼 때 목표는 \"Server1과 도메인 간 보안 채널(트러스트 관계)이 깨진 상태를 도메인 재가입 없이 복구하는 것\"입니다.)*\n\n솔루션: Server1에서 `Reset-ComputerMachinePassword -Server DC1`을 실행합니다.\n\n이 방법으로 목표를 달성할 수 있습니까?",
+ "stem": "솔루션: Server1에서 `Reset-ComputerMachinePassword -Server DC1`을 실행합니다.\n\n이 방법으로 목표를 달성할 수 있습니까?",
  "choices": {"A": "예", "B": "아니요"},
  "explanation": "`Reset-ComputerMachinePassword`는 로컬 컴퓨터의 머신 계정 암호를 재설정해 도메인 인증에 사용되는 **보안 채널**을 다시 수립합니다. `-Server DC1` 매개변수는 재설정에 사용할 도메인 컨트롤러로 DC1을 지정하며, 컴퓨터는 도메인에 가입된 상태를 유지합니다."
 },

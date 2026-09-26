@@ -29,7 +29,7 @@
  "explanation": "클러스터 공유 볼륨(CSV)은 Windows Server 장애 조치 클러스터의 여러 노드가 같은 공유 LUN을 동시에 읽고 쓸 수 있게 하며, 이를 하나의 일관된 파일 네임스페이스(보통 C:\\ClusterStorage 아래)로 제공합니다. 모든 노드가 볼륨에 동시 액세스를 유지하므로 디스크 리소스를 분리·재연결하지 않고도 VM이 노드 간에 이동할 수 있어, 라이브 마이그레이션이 가능한 고가용성 Hyper-V 가상 머신에 필요한 스토리지 구성입니다. DFS 복제는 서버·사이트 간 폴더 내용을 복제하는 용도이며 클러스터 VM 스토리지에 필요한 동시 블록 수준 액세스를 제공하지 않습니다. 스토리지 풀과 미러 볼륨은 물리 디스크를 집계·보호하는 Storage Spaces 구성 요소이지, 라이브 마이그레이션을 가능하게 하는 클러스터 리소스가 아닙니다."
 },
 "AZ-800-Q144": {
- "stem": "*(참고: 케이스 스터디 문항으로 원본 사이트에 시나리오 본문이 누락되어 있습니다. 해설로 볼 때 보안 요구 사항은 \"Azure VM에 대한 RDP 액세스를 요청·승인 후 2시간으로 제한한다\"입니다.)*\n\n보안 요구 사항을 충족하도록 원격 관리를 설정해야 합니다.\n\n무엇을 사용해야 합니까?",
+ "stem": "*(참고: 케이스 스터디 문항입니다. 지문은 원본 사이트에 없어 해설을 근거로 보완했습니다. 해설로 볼 때 보안 요구 사항은 \"Azure VM에 대한 RDP 액세스를 요청·승인 후 2시간으로 제한한다\"입니다.)*\n\n보안 요구 사항을 충족하도록 원격 관리를 설정해야 합니다.\n\n무엇을 사용해야 합니까?",
  "choices": {"A": "Azure Cloud Services용 원격 데스크톱 확장", "B": "JIT(just in time) VM 액세스", "C": "Azure Bastion 호스트", "D": "Microsoft Entra Private Access"},
  "explanation": "Microsoft Defender for Cloud의 JIT(just-in-time) VM 액세스는 액세스가 요청될 때까지 RDP 같은 관리 포트를 제한합니다. JIT 정책에서 최대 요청 시간을 지정할 수 있으므로 승인된 요청 후 RDP 액세스를 2시간으로 제한할 수 있습니다."
 },
@@ -47,7 +47,7 @@
  "explanation": "Hyper-V 중첩 가상화를 하려면 물리 호스트의 가상화 확장을 Hyper-V를 실행할 게스트에 노출해야 합니다. `Set-VMProcessor VM1 -ExposeVirtualizationExtensions $true`가 게스트에 Hyper-V 역할을 설치하기 전에 VM1에 대해 그 노출을 활성화합니다."
 },
 "AZ-800-Q170": {
- "stem": "*(참고: 케이스 스터디 문항으로 원본 사이트에 시나리오 본문이 누락되어 있습니다. 해설로 볼 때 HyperV1 호스트의 VM2는 RHEL(Linux)을 실행하고 로컬 계정 User2가 있으며, 호스트에서 SSH Direct로 VM2에 연결해야 하는 요구 사항입니다.)*\n\nHyperV1에 대한 기술 요구 사항을 충족해야 합니다.\n\n어떤 명령을 실행해야 합니까?",
+ "stem": "*(참고: 케이스 스터디 문항입니다. 지문은 원본 사이트에 없어 해설을 근거로 보완했습니다. 해설로 볼 때 HyperV1 호스트의 VM2는 RHEL(Linux)을 실행하고 로컬 계정 User2가 있으며, 호스트에서 SSH Direct로 VM2에 연결해야 하는 요구 사항입니다.)*\n\nHyperV1에 대한 기술 요구 사항을 충족해야 합니다.\n\n어떤 명령을 실행해야 합니까?",
  "blanks": {
   "command": {"label": "명령", "options": ["Connect-PSSession", "Connect-WSMan", "hvc.exe", "mstsc.exe"]},
   "target": {"label": "대상", "options": ["User1@VM1", "User1@VM2", "User2@VM2", "VM1"]}

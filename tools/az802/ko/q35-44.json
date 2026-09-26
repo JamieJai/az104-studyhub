@@ -38,17 +38,17 @@
  "explanation": "이 WSUS 오류는 `SyncUpdates` 중에 제출된 설치된 필수 구성 요소 업데이트 ID의 수가 WSUS ClientWebService 제한을 초과했음을 의미합니다. ClientWebService의 `web.config` 파일에서 `maxInstalledPrerequisites`(필요하면 `maxCachedUpdates`도)를 늘리고 IIS를 다시 시작하면 업데이트 승인이나 컴퓨터 그룹 멤버십을 바꾸지 않고 검색 실패를 해결할 수 있습니다.\n\n- B: 대체된 업데이트 거부는 WSUS 정리 방법일 뿐 이 오류(80244007)의 직접 해결책이 아닙니다.\n- C/D: 클라이언트 쪽 초기화는 서버 측 제한값 문제를 해결하지 못합니다."
 },
 "39": {
- "stem": "*(참고: 이 문제는 동일한 시나리오를 공유하는 시리즈 문항입니다. 원본 사이트에 시나리오 본문이 누락되어 있으며, 해설로 볼 때 목표는 \"Server1과 도메인 간 보안 채널(트러스트 관계)이 깨진 상태를 도메인 재가입 없이 복구하는 것\"입니다.)*\n\n솔루션: Server1에서 `Test-ComputerSecureChannel -Repair`를 실행합니다.\n\n이 방법으로 목표를 달성할 수 있습니까?",
+ "stem": "솔루션: Server1에서 `Test-ComputerSecureChannel -Repair`를 실행합니다.\n\n이 방법으로 목표를 달성할 수 있습니까?",
  "choices": {"A": "예", "B": "아니요"},
  "explanation": "`Test-ComputerSecureChannel -Repair`는 도메인 멤버 컴퓨터와 도메인 사이의 NetLogon 보안 채널을 다시 구축합니다. 이 채널을 복구하면 컴퓨터를 도메인에서 제거하지 않고도 실패한 워크스테이션-도메인 트러스트 관계가 복원됩니다."
 },
 "40": {
- "stem": "*(참고: 이 문제는 동일한 시나리오를 공유하는 시리즈 문항입니다. 원본 사이트에 시나리오 본문이 누락되어 있으며, 해설로 볼 때 목표는 \"Server1과 도메인 간 보안 채널(트러스트 관계)이 깨진 상태를 도메인 재가입 없이 복구하는 것\"입니다.)*\n\n솔루션: Server1에서 `Set-ADAccountPassword -Identity \"Server1$\" -Reset`을 실행합니다.\n\n이 방법으로 목표를 달성할 수 있습니까?",
+ "stem": "솔루션: Server1에서 `Set-ADAccountPassword -Identity \"Server1$\" -Reset`을 실행합니다.\n\n이 방법으로 목표를 달성할 수 있습니까?",
  "choices": {"A": "예", "B": "아니요"},
  "explanation": "컴퓨터 트러스트 실패를 해결하려면 로컬 머신 계정 비밀과 Active Directory 컴퓨터 계정 암호가 **동기화**되어야 합니다. `Set-ADAccountPassword -Reset`은 Active Directory의 컴퓨터 계정 암호만 갱신할 뿐 Server1의 로컬 머신 암호를 갱신하거나 보안 채널을 복구하지 않습니다. `Reset-ComputerMachinePassword`나 `Test-ComputerSecureChannel -Repair` 같은 머신 암호 또는 보안 채널 복구 작업이 필요합니다."
 },
 "41": {
- "stem": "*(참고: 이 문제는 동일한 시나리오를 공유하는 시리즈 문항입니다. 원본 사이트에 시나리오 본문이 누락되어 있으며, 해설로 볼 때 목표는 \"Server1과 도메인 간 보안 채널(트러스트 관계)이 깨진 상태를 도메인 재가입 없이 복구하는 것\"입니다.)*\n\n솔루션: Server1에서 `Add-Computer -DomainName contoso.com -Server DC1`을 실행합니다.\n\n이 방법으로 목표를 달성할 수 있습니까?",
+ "stem": "솔루션: Server1에서 `Add-Computer -DomainName contoso.com -Server DC1`을 실행합니다.\n\n이 방법으로 목표를 달성할 수 있습니까?",
  "choices": {"A": "예", "B": "아니요"},
  "explanation": "실패한 워크스테이션-도메인 트러스트 관계는 `Test-ComputerSecureChannel -Repair`나 `Reset-ComputerMachinePassword`처럼 컴퓨터의 보안 채널을 복원하거나 머신 계정 암호를 재설정해 복구합니다. `Add-Computer`는 컴퓨터를 도메인이나 워크그룹에 추가하는 용도이며 기존 도메인 트러스트 관계를 복구하지 않습니다."
 },

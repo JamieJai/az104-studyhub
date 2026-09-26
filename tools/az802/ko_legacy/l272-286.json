@@ -29,7 +29,7 @@
  "explanation": "Azure AD Password Protection은 Microsoft의 전역 금지 암호 목록과 테넌트 사용자 지정 금지 암호 목록을 강제하므로 회사 이름을 금지할 수 있습니다. DC 에이전트가 온-프레미스 AD DS 암호 변경 시 그 정책을 강제합니다. 인터넷에 연결된 멤버 서버의 Password Protection 프록시 서비스가 DC 에이전트를 위해 Azure AD에서 정책을 가져오므로 DC1 자체는 인터넷 액세스가 필요 없습니다."
 },
 "AZ-801-Q84": {
- "stem": "*(참고: 케이스 스터디 문항으로 원본 사이트에 시나리오 본문이 누락되어 있습니다. 해설로 보면 Default Domain Policy는 최소 8자, User1에게 적용되는 PSO1은 9자, Admin1에게 적용되는 PSO는 없고 OU 연결 GPO에 별도 길이가 있는 구성입니다.)*\n\nUser1과 Admin1의 유효 최소 암호 길이는 각각 얼마입니까?",
+ "stem": "User1과 Admin1의 유효 최소 암호 길이는 각각 얼마입니까?",
  "blanks": {
   "user1": {"label": "User1:", "options": ["8", "9", "10", "11", "12"]},
   "admin1": {"label": "Admin1:", "options": ["8", "9", "10", "11", "12"]}
