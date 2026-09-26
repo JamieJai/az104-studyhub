@@ -1699,6 +1699,20 @@
     return text;
   }
 
+  // examcademy 해설은 마크다운이다(굵게·코드·링크·빈 줄). 링크와 문단까지 살려서 그린다.
+  function formatMarkdownText(value = "") {
+    return String(value == null ? "" : value)
+      .split(/\n{2,}/)
+      .map(block => {
+        let html = formatStudyText(block.trim());
+        html = html.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,
+          (m, label, href) => `<a href="${href}" target="_blank" rel="noopener">${label}</a>`);
+        return `<p>${html.replace(/\n/g, "<br>")}</p>`;
+      })
+      .filter(p => p !== "<p></p>")
+      .join("");
+  }
+
   function normalizeAnswerValue(value) {
     if (Array.isArray(value)) return value.filter(Boolean).map(v => String(v).trim()).filter(Boolean);
     if (value == null || value === "") return [];
@@ -1804,6 +1818,11 @@
           ${v2?.discussionUrl ? `<p class="dist-link"><a href="${escapeHtml(v2.discussionUrl)}" target="_blank" rel="noopener">원문 토론 열기</a></p>` : ""}
         </section>`
       : "";
+    // examcademy 수집분에서 옮겨 온 한국어 해설 (기존 해설은 그대로 두고 아래에 덧붙인다)
+    const examcademyKo = v2?.examcademyKo || "";
+    const examcademyBlock = examcademyKo
+      ? `<section class="explanation-section examcademy-ko"><h4>examcademy 해설${v2?.examcademyPair ? ` <span class="source-label">${escapeHtml(v2.examcademyPair)}</span>` : ""}</h4>${formatMarkdownText(examcademyKo)}</section>`
+      : "";
     const currentNote = detail.current_note || "";
     const currentNoteBlock = currentNote
       ? `<section class="explanation-section current-difference"><h4>현행 Azure 기준 참고</h4><p>${formatStudyText(currentNote)}</p></section>`
@@ -1833,6 +1852,7 @@
       ${applicationBlock}
       ${optionBlock}
       ${examPoint ? `<section class="explanation-section exam-point"><h4>${optionLines.length ? "⑥" : "⑤"} 시험장에서 기억할 포인트</h4><p>${formatStudyText(examPoint)}</p></section>` : ""}
+      ${examcademyBlock}
       ${conflictBlock}
       ${explainImg}
       ${distBlock}

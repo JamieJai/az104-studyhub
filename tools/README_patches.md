@@ -19,10 +19,23 @@
 | 3 | AZ-802 / SC-300 | `python tools/sets/apply_sets.py` | 손으로 만든 사례 연구 세트 2개, 유실 이미지 표시 |
 | 4 | 6개 CBT 전부 | `node tools/sets/apply_scenarios.js` | 공통 지문 58세트 232문항 (SC-100 은 스크랩에 처음부터 들어 있었다) |
 | 5 | AZ-104 | `node tools/apply_p119.js` | choices.js 부분 패치 (src 229/520/285) |
+| 5 | AZ-104 | `node tools/az104/apply_ko_explanations.js` | examcademy 한국어 해설 580문항 (explanations_v2.js 에 `examcademyKo` 로 덧붙임) |
 | 6 | — | `dist/service-worker.js` VERSION, `dist/offline-assets.json` version·count 갱신 | PWA 캐시 무효화 |
 | 7 | — | `node tools/preflight.js <URL> x nosignup` | 배포 후 17개 검사 |
 
 3·4번은 `--check` 를 붙이면 파일을 쓰지 않고 결과만 보여 준다. 4번은 멱등이라 여러 번 돌려도 된다.
+
+## examcademy 한국어 해설 (p142)
+
+`tools/az104/ko_explanations.json` 이 원본이다. 키는 **CBT 문항번호**, `src` 는 대응하는
+examcademy 문항번호다. 대응표는 `D:\Users\USER\Downloads\az-104\az104_mapping_full.csv`
+(examcademy 593문항 ↔ CBT 603문항, 593/593 대응).
+
+- 기존 해설(`detailed_explanation`)은 **건드리지 않는다.** 새 필드 `examcademyKo` 로만 얹는다.
+- `app.js` 의 `renderV2Explanation` 이 `examcademyBlock` 으로 그리고, 마크다운(굵게·코드·링크·문단)은
+  `formatMarkdownText()` 가 처리한다. 스타일은 `styles.css` 의 `.examcademy-ko`.
+- 짝이 계열 안에서 확정되지 않은 문항은 `examcademyPair` 가 붙고 섹션 제목 옆에 표시된다.
+- 원본을 다시 만들려면: `python D:\Users\USER\Downloads\az-104\scripts\build_ko_explanations.py`
 
 ## 빌더가 버리면 안 되는 필드
 

@@ -466,3 +466,11 @@ body.guest-mode .guest-note{display:block}
 .gate-card.busy .primary{opacity:.6;pointer-events:none}
 .explain-figure img{width:100%;height:auto;border-radius:10px;border:1px solid rgba(128,128,150,.25);margin-top:8px}
 .explain-figure-open{margin:8px 0 0}
+
+/* examcademy 에서 옮겨 온 한국어 해설 (기존 해설 아래에 덧붙는 섹션) */
+.examcademy-ko { padding: 13px 15px; border-left: 4px solid #2f9e6e; background: #f1faf5; border-radius: 0 10px 10px 0; }
+.examcademy-ko p { margin: 8px 0; line-height: 1.72; }
+.examcademy-ko p:first-of-type { margin-top: 4px; }
+.examcademy-ko a { color: #14684a; text-decoration: underline; }
+body.dark .examcademy-ko { color: #172033; }
+body.dark .examcademy-ko a { color: #0f5238; }
