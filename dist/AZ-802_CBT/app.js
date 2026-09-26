@@ -405,20 +405,28 @@
   // ---------- 실전 모의고사 ----------
   // 실제 시험 구성 그대로: 다지선다·짧은 HOTSPOT 40~45문항 → 같은 지문 OX 2세트 → 사례 연구 1세트
   // oxPick·casePick: 세트를 통째로 내지 않고 그 안에서 몇 문항만 뽑는다(회차마다 다른 문항이 나오도록).
-  const REAL_PLAN = { singleMin: 40, singleMax: 45, oxSets: 2, oxPick: 4, caseSets: 1, casePick: 4 };
+  const REAL_PLAN = { singleMin: 40, singleMax: 45, oxSets: 2, oxPick: 3, caseSets: 1, casePick: 4 };
   function buildRealExam(includeLegacy) {
     const pool = examPool(includeLegacy);
     const inPool = new Set(pool.map(q => q.n));
-    // 3부에는 진짜 사례 연구만 넣는다. 세트 중 상당수는 사례 연구가 아니라 그냥 공통 지문이라,
-    // 전부를 후보로 두면 "3부 사례 연구"에 지문 공유 세트가 뽑혀 사례 연구가 없는 회차가 생긴다.
+    const ALL_SETS = DATA.sets || [];
+    // 3부 = 진짜 사례 연구. 세트에는 사례 연구가 아닌 것도 섞여 있어서 제목으로 갈라낸다.
     const isCaseSet = s => /사례 연구|Case study/i.test((s.titleKo || "") + " " + (s.titleEn || ""));
-    const CASE_IDS = new Set((DATA.sets || []).filter(isCaseSet).map(s => s.id));
-    const inCase = q => !!(q.set && CASE_IDS.has(q.set.id));
-    // 사례 연구가 아닌 세트는 1부에 묶음째 넣는다. 그러지 않으면 3부에서만 나올 수 있어 출제에서 거의 빠진다.
-    const single = unitsOf(pool.filter(q => !inCase(q) && (q.set || q.type !== "statements")).map(q => q.n));
-    const ox = pool.filter(q => !q.set && q.type === "statements").map(q => [q.n]);
-    let sets = (DATA.sets || []).filter(isCaseSet).map(s => s.members.filter(n => inPool.has(n))).filter(m => m.length);
-    if (!sets.length) sets = (DATA.sets || []).map(s => s.members.filter(n => inPool.has(n))).filter(m => m.length);   // 사례 연구가 없는 시험이면 종전대로
+    const CASE_IDS = new Set(ALL_SETS.filter(isCaseSet).map(s => s.id));
+    // 2부 = 같은 설정을 놓고 해결책만 바꿔 가며 묻는 예/아니요 시리즈(지문 공유). 실제 시험의 2부가 이것이다.
+    // 한 문항 안에 문장이 여러 개인 statements 형(핫에어리어)은 여기가 아니라 1부에 둔다.
+    const isYnQ = q => (q.choices || []).length === 2 && q.choices.every(c => {
+      const t = ((c.en || "") + " " + (c.ko || "")).trim();
+      return /^(yes|no)($| )/i.test(t) || /^(예|아니요)/.test(t);
+    });
+    const YN_IDS = new Set(ALL_SETS.filter(s => !CASE_IDS.has(s.id)
+      && s.members.length > 1 && s.members.every(n => { const m = BY_N.get(n); return m && isYnQ(m); })).map(s => s.id));
+    const partOf = q => q.set ? (CASE_IDS.has(q.set.id) ? 3 : YN_IDS.has(q.set.id) ? 2 : 1) : 1;
+    const single = unitsOf(pool.filter(q => partOf(q) === 1).map(q => q.n));   // 1부: 단답 + 핫에어리어 + 사례/시리즈 아닌 세트
+    let ox = ALL_SETS.filter(s => YN_IDS.has(s.id)).map(s => s.members.filter(n => inPool.has(n))).filter(m => m.length);
+    if (!ox.length) ox = pool.filter(q => !q.set && q.type === "statements").map(q => [q.n]);   // 시리즈가 없는 시험이면 종전대로
+    let sets = ALL_SETS.filter(isCaseSet).map(s => s.members.filter(n => inPool.has(n))).filter(m => m.length);
+    if (!sets.length) sets = ALL_SETS.map(s => s.members.filter(n => inPool.has(n))).filter(m => m.length);   // 사례 연구가 없는 시험이면 종전대로
     const big = sets.filter(m => m.length >= 3);
     const casePool = big.length ? big : sets;   // 1~2문항짜리 사례 연구가 3부로 뽑히면 너무 빈약하다
     const target = Math.min(single.length, REAL_PLAN.singleMin + Math.floor(Math.random() * (REAL_PLAN.singleMax - REAL_PLAN.singleMin + 1)));
