@@ -492,6 +492,21 @@ body.dark .topic-pill { background:#2e2350; color:#d7c7ff; }
 .question-body pre { margin:8px 0 12px; padding:12px 14px; border-radius:9px; background:#0f1726; color:#e8f0ff; font-size:13px; line-height:1.6; overflow:auto; white-space:pre; }
 .question-body .scenario-note { display:block; margin:0 0 12px; padding:9px 12px; border-left:3px solid #d97904; background:#fff8e8; color:#6b4a00; border-radius:0 8px 8px 0; font-size:12.5px; line-height:1.6; }
 body.dark .question-body .scenario-note { background:rgba(217,121,4,.15); color:#ffd89a; }
+/* 마크다운 표·인용·중첩 목록 (mdToHtml) */
+.question-body .md-table-wrap, .explain-body .md-table-wrap { margin:8px 0 14px; overflow-x:auto; -webkit-overflow-scrolling:touch; }
+.question-body .md-table, .explain-body .md-table { border-collapse:collapse; width:100%; min-width:min(100%,420px); font-size:13.5px; line-height:1.55; background:var(--panel); border:1px solid var(--line); border-radius:9px; overflow:hidden; }
+.question-body .md-table th, .question-body .md-table td, .explain-body .md-table th, .explain-body .md-table td { padding:7px 11px; border:1px solid var(--line); text-align:left; vertical-align:top; white-space:normal; }
+.question-body .md-table th, .explain-body .md-table th { background:rgba(127,127,127,.10); font-weight:700; color:var(--primary-dark); }
+.question-body .md-table tbody tr:nth-child(even) td, .explain-body .md-table tbody tr:nth-child(even) td { background:rgba(127,127,127,.045); }
+body.dark .md-table th { background:rgba(255,255,255,.07); }
+body.dark .md-table tbody tr:nth-child(even) td { background:rgba(255,255,255,.035); }
+.question-body h4, .explain-body h4 { margin:12px 0 6px; font-size:13.5px; color:var(--primary-dark); }
+.question-body blockquote, .explain-body blockquote { margin:8px 0 12px; padding:6px 14px; border-left:3px solid var(--line); color:var(--muted); }
+.question-body blockquote p, .explain-body blockquote p { margin:4px 0; }
+.question-body ol, .explain-body ol { margin:6px 0 12px 22px; padding:0; }
+.question-body ol li, .explain-body ol li { margin:4px 0; }
+.question-body li > ul, .question-body li > ol, .explain-body li > ul, .explain-body li > ol { margin:4px 0 4px 18px; }
+.question-body hr, .explain-body hr { margin:12px 0; border:0; border-top:1px solid var(--line); }
 .img-chip { display:inline-flex; align-items:center; gap:4px; margin:2px 0; padding:3px 9px; border:1px dashed #9fb8dc; border-radius:999px; background:var(--panel); color:var(--primary-dark); font-size:12px; font-weight:700; cursor:pointer; }
 .img-chip:hover { background:#eaf3ff; }
 .question-text-wrap { padding:16px 22px 18px; }

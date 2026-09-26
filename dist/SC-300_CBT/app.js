@@ -247,6 +247,8 @@
     s = s.replace(/`([^`]+)`/g, "<code>$1</code>");
     s = s.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
     s = s.replace(/(^|[\s(])\*([^*\n]+)\*(?=[\s).,!?]|$)/g, "$1<em>$2</em>");
+    // [보이는 글자](주소) — 해설의 Learn 링크가 그대로 노출되고 있었다
+    s = s.replace(/\[([^\]\n]+)\]\((https?:(?:&amp;|[^\s)])+)\)/g, (m, t, u) => `<a href="${u}" target="_blank" rel="noopener">${t}</a>`);
     s = s.replace(/\[\[IMG(\d+)\]\]/g, (m, i) => `<button type="button" class="img-chip" data-img="${i}">🖼 이미지 ${i}</button>`);
     return s;
   }
@@ -256,24 +258,67 @@
     return `<figure class="q-figure inline"><img src="${escapeHtml(src)}" alt="이미지 ${i}" data-img="${i}" loading="lazy"><figcaption>이미지 ${i}${n > 1 ? ` / ${n}` : ""} · 클릭하면 크게 봅니다</figcaption></figure>`;
   }
   // opts.images 를 주면 [[IMGn]] 줄이 그 자리의 <figure> 가 되고, 없으면 클릭용 칩으로 남긴다 (한국어 번역 패널)
+  // 마크다운 → HTML. 지원: 제목(#~####), 목록(-,*,1. · 한 단계 중첩), 인용(>), 표(GFM),
+  // 코드블록(```), 수평선(---), 그리고 inline() 이 처리하는 강조·코드·링크·이미지 칩.
   function mdToHtml(text, opts = {}) {
     const lines = text.replace(/\r/g, "").replace(/([^\n])[ \t]*(\[\[IMG\d+\]\])/g, "$1\n$2").replace(/(\[\[IMG\d+\]\])[ \t]*([^\n])/g, "$1\n$2").split("\n");
-    const out = []; let para = []; let list = null; let code = null;
+    const out = []; let para = []; let list = null; let quote = null; let code = null;
     const flushPara = () => { if (para.length) { const t = para.join(" ").trim(); if (t) out.push(/^\*\(참고:.*\)\*$/.test(t) ? `<span class="scenario-note">${inline(t.slice(1, -1))}</span>` : `<p>${inline(t)}</p>`); para = []; } };
-    const flushList = () => { if (list) { out.push(`<ul>${list.map(l => `<li>${inline(l)}</li>`).join("")}</ul>`); list = null; } };
-    for (const raw of lines) {
-      const line = raw.replace(/\s+$/, "");
+    const flushList = () => {
+      if (!list) return;
+      const sub = it => it.sub.length ? `<${it.subOrdered ? "ol" : "ul"}>${it.sub.map(t => `<li>${inline(t)}</li>`).join("")}</${it.subOrdered ? "ol" : "ul"}>` : "";
+      const tag = list.ordered ? "ol" : "ul";
+      const start = list.ordered && list.start > 1 ? ` start="${list.start}"` : "";
+      out.push(`<${tag}${start}>${list.items.map(it => `<li>${inline(it.text)}${sub(it)}</li>`).join("")}</${tag}>`);
+      list = null;
+    };
+    const flushQuote = () => { if (quote) { out.push(`<blockquote>${quote.map(t => `<p>${inline(t)}</p>`).join("")}</blockquote>`); quote = null; } };
+    const flushAll = () => { flushPara(); flushList(); flushQuote(); };
+    for (let i = 0; i < lines.length; i++) {
+      const line = lines[i].replace(/\s+$/, "");
       if (code !== null) { if (/^```/.test(line)) { out.push(`<pre>${escapeHtml(code.join("\n"))}</pre>`); code = null; } else code.push(line); continue; }
-      if (/^```/.test(line)) { flushPara(); flushList(); code = []; continue; }
-      if (!line.trim()) { flushPara(); flushList(); continue; }
+      if (/^```/.test(line)) { flushAll(); code = []; continue; }
+      if (!line.trim()) { flushAll(); continue; }
       let m;
-      if ((m = /^(#{1,3})\s+(.*)$/.exec(line))) { flushPara(); flushList(); const lv = Math.min(3, m[1].length + 1); out.push(`<h${lv}>${inline(m[2])}</h${lv}>`); continue; }
-      if ((m = /^[-*]\s+(.*)$/.exec(line))) { flushPara(); if (!list) list = []; list.push(m[1]); continue; }
+      if ((m = /^(#{1,6})\s+(.*)$/.exec(line))) { flushAll(); const lv = Math.min(4, m[1].length + 1); out.push(`<h${lv}>${inline(m[2])}</h${lv}>`); continue; }
+      if (/^(-{3,}|\*{3,}|_{3,})$/.test(line.trim())) { flushAll(); out.push("<hr>"); continue; }
+      if ((m = /^>\s?(.*)$/.exec(line))) { flushPara(); flushList(); if (!quote) quote = []; quote.push(m[1]); continue; }
+      if (quote) flushQuote();
+      // 목록: 들여쓰기가 있으면 바로 위 항목의 하위 목록으로 붙인다
+      if ((m = /^(\s*)(?:([-*+])|(\d{1,3})[.)])\s+(.*)$/.exec(line))) {
+        flushPara();
+        const indent = m[1].length, ordered = !!m[3], body = m[4];
+        if (list && indent >= 2 && list.items.length) {
+          const last = list.items[list.items.length - 1];
+          if (!last.sub.length) last.subOrdered = ordered;
+          last.sub.push(body);
+        } else {
+          if (list && list.ordered !== ordered) flushList();
+          if (!list) list = { ordered, start: ordered ? Number(m[3]) : 1, items: [] };
+          list.items.push({ text: body, sub: [], subOrdered: false });
+        }
+        continue;
+      }
       if (list) flushList();
-      if ((m = /^\[\[IMG(\d+)\]\]$/.exec(line.trim()))) { flushPara(); flushList(); out.push(opts.images ? figureHtml(Number(m[1]), opts) : `<p>${inline(line.trim())}</p>`); continue; }
+      if ((m = /^\[\[IMG(\d+)\]\]$/.exec(line.trim()))) { flushAll(); out.push(opts.images ? figureHtml(Number(m[1]), opts) : `<p>${inline(line.trim())}</p>`); continue; }
+      // 표(GFM): 머리글 줄 다음에 |---|---| 구분 줄이 오면 표로 그린다
+      if (/^\|.*\|$/.test(line.trim()) && /^\|[\s:|-]+\|$/.test((lines[i + 1] || "").trim())) {
+        flushAll();
+        const cells = t => t.trim().replace(/^\|/, "").replace(/\|$/, "").split("|").map(c => c.trim());
+        const head = cells(line);
+        const align = cells(lines[i + 1]).map(c => /^:-+:$/.test(c) ? "center" : /^-+:$/.test(c) ? "right" : "");
+        const body = [];
+        let j = i + 2;
+        while (j < lines.length && /^\|.*\|$/.test(lines[j].trim())) { body.push(cells(lines[j])); j++; }
+        i = j - 1;
+        const cell = (c, k, tag) => `<${tag}${align[k] ? ` style="text-align:${align[k]}"` : ""}>${inline(c)}</${tag}>`;
+        out.push(`<div class="md-table-wrap"><table class="md-table"><thead><tr>${head.map((c, k) => cell(c, k, "th")).join("")}</tr></thead>`
+          + `<tbody>${body.map(r => `<tr>${r.map((c, k) => cell(c, k, "td")).join("")}</tr>`).join("")}</tbody></table></div>`);
+        continue;
+      }
       para.push(line.trim());
     }
-    flushPara(); flushList();
+    flushAll();
     if (code) out.push(`<pre>${escapeHtml(code.join("\n"))}</pre>`);
     return out.join("");
   }
@@ -386,13 +431,31 @@
 
   // ---------- 실전 모의고사 ----------
   // 실제 시험 구성 그대로: 다지선다·짧은 HOTSPOT 40~45문항 → 같은 지문 OX 2세트 → 사례 연구 1세트
-  const REAL_PLAN = { singleMin: 40, singleMax: 45, oxSets: 2, caseSets: 1 };
+  const REAL_PLAN = { singleMin: 40, singleMax: 45, oxSets: 2, oxPick: 3, caseSets: 1, casePick: 4 };
   function buildRealExam(includeLegacy) {
     const pool = examPool(includeLegacy);
     const inPool = new Set(pool.map(q => q.n));
-    const single = unitsOf(pool.filter(q => !q.set && q.type !== "statements").map(q => q.n));   // 시리즈는 묶음째
-    const ox = pool.filter(q => !q.set && q.type === "statements").map(q => [q.n]);
-    const sets = (DATA.sets || []).map(s => s.members.filter(n => inPool.has(n))).filter(m => m.length);
+    const ALL_SETS = DATA.sets || [];
+    // 3부 = 진짜 사례 연구. 세트에는 사례 연구가 아닌 것도 섞여 있어서 제목으로 갈라낸다.
+    const isCaseSet = s => /사례 연구|Case study/i.test((s.titleKo || "") + " " + (s.titleEn || ""));
+    const CASE_IDS = new Set(ALL_SETS.filter(isCaseSet).map(s => s.id));
+    // 2부 = 같은 설정을 놓고 해결책만 바꿔 가며 묻는 예/아니요 시리즈(지문 공유). 실제 시험의 2부가 이것이다.
+    // 한 문항 안에 문장이 여러 개인 statements 형(핫에어리어)은 여기가 아니라 1부에 둔다.
+    const isYnQ = q => (q.choices || []).length === 2 && q.choices.every(c => {
+      const t = ((c.en || "") + " " + (c.ko || "")).trim();
+      return /^(yes|no)($| )/i.test(t) || /^(예|아니요)/.test(t);
+    });
+    const YN_IDS = new Set(ALL_SETS.filter(s => !CASE_IDS.has(s.id)
+      && s.members.length > 1 && s.members.every(n => { const m = BY_N.get(n); return m && isYnQ(m); })).map(s => s.id));
+    const partOf = q => q.set ? (CASE_IDS.has(q.set.id) ? 3 : YN_IDS.has(q.set.id) ? 2 : 1) : 1;
+    const single = unitsOf(pool.filter(q => partOf(q) === 1).map(q => q.n));   // 1부: 단답 + 핫에어리어 + 사례/시리즈 아닌 세트
+    let ox = ALL_SETS.filter(s => YN_IDS.has(s.id)).map(s => s.members.filter(n => inPool.has(n))).filter(m => m.length);
+    if (!ox.length) ox = pool.filter(q => !q.set && q.type === "statements").map(q => [q.n]);   // 시리즈가 없는 시험이면 종전대로
+    let sets = ALL_SETS.filter(isCaseSet).map(s => s.members.filter(n => inPool.has(n))).filter(m => m.length);
+    // 사례 연구가 아예 없는 시험(AZ-900 등)은 3부 없이 1부 -> 2부로 끝난다.
+    // 예전에는 아무 세트나 3부로 써서 지문 공유 시리즈가 '사례 연구' 이름으로 나왔다.
+    const big = sets.filter(m => m.length >= 3);
+    const casePool = big.length ? big : sets;   // 1~2문항짜리 사례 연구가 3부로 뽑히면 너무 빈약하다
     const target = Math.min(single.length, REAL_PLAN.singleMin + Math.floor(Math.random() * (REAL_PLAN.singleMax - REAL_PLAN.singleMin + 1)));
     const targets = topicTargets(target);
     const partA = []; const usedA = new Set();
@@ -404,13 +467,16 @@
       }
     });
     for (const u of orderUnits(single.filter(u => !u.some(n => usedA.has(n))))) { if (partA.flat().length >= target) break; partA.push(u); u.forEach(n => usedA.add(n)); }
-    const partB = orderUnits(ox).slice(0, REAL_PLAN.oxSets);
-    const partC = shuffle(sets).slice(0, REAL_PLAN.caseSets);
+    // 지문 순서는 지키고 그 안에서만 무작위로 고른다(사례 연구는 앞 문항이 뒤 문항의 전제가 되기도 한다)
+    const pickSome = (ns, k) => ns.length <= k ? ns
+      : shuffle(ns.slice()).slice(0, k).sort((x, y) => ns.indexOf(x) - ns.indexOf(y));
+    const partB = orderUnits(ox).slice(0, REAL_PLAN.oxSets).map(u => pickSome(u, REAL_PLAN.oxPick));
+    const partC = shuffle(casePool).slice(0, REAL_PLAN.caseSets).map(m => pickSome(m, REAL_PLAN.casePick));
     const queue = [...shuffle(partA), ...partB, ...partC].flat();
     const plan = {
       single: partA.flat().length,
-      ox: partB.length, oxPoints: pointsOfNs(partB.flat()),
-      cases: partC.length, casePoints: pointsOfNs(partC.flat()),
+      ox: partB.length, oxCount: partB.flat().length, oxPoints: pointsOfNs(partB.flat()),
+      cases: partC.length, caseCount: partC.flat().length, casePoints: pointsOfNs(partC.flat()),
     };
     return { queue, plan };
   }
@@ -433,8 +499,11 @@
     if (timed) { s.endsAt = Date.now() + points * 120 * 1000; startExamTimer(); }
     saveState();
     renderQuestion();   // real/plan/points 를 세션에 채운 뒤 다시 그려야 1번 문항부터 파트가 표시된다
+    const bits = [`단답 ${plan.single}문항`];
+    if (plan.oxCount) bits.push(`지문 공유 예/아니요 ${plan.oxCount}문항 ${plan.oxPoints}점`);
+    if (plan.caseCount) bits.push(`사례 연구 ${plan.caseCount}문항 ${plan.casePoints}점`);
     toast(real
-      ? `실전 모의고사 · ${queue.length}문항 ${points}점 (단답 ${plan.single} · OX ${plan.ox}세트 ${plan.oxPoints}점 · 사례 연구 ${plan.cases}세트 ${plan.casePoints}점)`
+      ? `실전 모의고사 · ${queue.length}문항 ${points}점 (${bits.join(" · ")})`
       : `모의고사 · ${queue.length}문항 ${points}점`);
   }
   function startExamTimer() {
@@ -455,9 +524,9 @@
   // 실전 모의고사에서 지금 몇 부인지 (1부 단답 → 2부 예/아니요 → 3부 사례 연구)
   function realPartLabel(s) {
     if (!s || !s.real || !s.plan) return "";
-    const a = s.plan.single, b = a + s.plan.ox;
+    const a = s.plan.single, b = a + (s.plan.oxCount || s.plan.ox);
     if (s.cursor < a) return ` · 1부 단답 ${s.cursor + 1}/${a}`;
-    if (s.cursor < b) return ` · 2부 예/아니요 ${s.cursor - a + 1}/${s.plan.ox}세트`;
+    if (s.cursor < b) return ` · 2부 예/아니요 ${s.cursor - a + 1}/${s.plan.oxCount || s.plan.ox}`;
     return ` · 3부 사례 연구 ${s.cursor - b + 1}/${s.queue.length - b}`;
   }
   function currentQuestion() { const s = state.session; return s ? BY_N.get(s.queue[s.cursor]) : null; }
@@ -769,7 +838,7 @@
     $("examScore").textContent = `${gotPts} / ${maxPts}`;
     const pct = maxPts ? Math.round(gotPts / maxPts * 100) : 0;
     $("examPercent").textContent = pct + "%";
-    $("examSummary").textContent = mode === "exam" ? `${maxPts}점 만점에 ${gotPts}점 (${pct}%) · ${results.length}문항 중 ${correct}문항 완전 정답${run && run.plan ? ` · 실전 구성(단답 ${run.plan.single} · OX ${run.plan.ox}세트 · 사례 연구 ${run.plan.cases}세트)` : ""}. 실제 시험 합격선은 1000점 만점에 700점(약 70%)입니다.` : `이번 세션에서 ${answered.length}문항을 풀어 ${correct}문항을 맞혔습니다.`;
+    $("examSummary").textContent = mode === "exam" ? `${maxPts}점 만점에 ${gotPts}점 (${pct}%) · ${results.length}문항 중 ${correct}문항 완전 정답${run && run.plan ? ` · 실전 구성(단답 ${run.plan.single}문항${run.plan.oxCount ? ` · 예/아니요 시리즈 ${run.plan.oxCount}문항` : ""}${run.plan.caseCount ? ` · 사례 연구 ${run.plan.caseCount}문항` : ""})` : ""}. 실제 시험 합격선은 1000점 만점에 700점(약 70%)입니다.` : `이번 세션에서 ${answered.length}문항을 풀어 ${correct}문항을 맞혔습니다.`;
     const grid = $("resultChapters"); grid.innerHTML = "";
     for (const t of DATA.topics) {
       const rs = results.filter(r => r.q.topic === t.en && (mode === "exam" || r.answered)); if (!rs.length) continue;
