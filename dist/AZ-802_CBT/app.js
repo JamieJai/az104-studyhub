@@ -262,8 +262,8 @@
     const out = []; let para = []; let list = null; let code = null;
     const flushPara = () => { if (para.length) { const t = para.join(" ").trim(); if (t) out.push(/^\*\(참고:.*\)\*$/.test(t) ? `<span class="scenario-note">${inline(t.slice(1, -1))}</span>` : `<p>${inline(t)}</p>`); para = []; } };
     const flushList = () => { if (list) { out.push(`<ul>${list.map(l => `<li>${inline(l)}</li>`).join("")}</ul>`); list = null; } };
-    for (const raw of lines) {
-      const line = raw.replace(/\s+$/, "");
+    for (let i = 0; i < lines.length; i++) {
+      const line = lines[i].replace(/\s+$/, "");
       if (code !== null) { if (/^```/.test(line)) { out.push(`<pre>${escapeHtml(code.join("\n"))}</pre>`); code = null; } else code.push(line); continue; }
       if (/^```/.test(line)) { flushPara(); flushList(); code = []; continue; }
       if (!line.trim()) { flushPara(); flushList(); continue; }
@@ -272,6 +272,21 @@
       if ((m = /^[-*]\s+(.*)$/.exec(line))) { flushPara(); if (!list) list = []; list.push(m[1]); continue; }
       if (list) flushList();
       if ((m = /^\[\[IMG(\d+)\]\]$/.exec(line.trim()))) { flushPara(); flushList(); out.push(opts.images ? figureHtml(Number(m[1]), opts) : `<p>${inline(line.trim())}</p>`); continue; }
+      // 표(GFM): 머리글 줄 다음에 |---|---| 구분 줄이 오면 표로 그린다
+      if (/^\|.*\|$/.test(line.trim()) && /^\|[\s:|-]+\|$/.test((lines[i + 1] || "").trim())) {
+        flushPara(); flushList();
+        const cells = t => t.trim().replace(/^\|/, "").replace(/\|$/, "").split("|").map(c => c.trim());
+        const head = cells(line);
+        const align = cells(lines[i + 1]).map(c => /^:-+:$/.test(c) ? "center" : /^-+:$/.test(c) ? "right" : "");
+        const body = [];
+        let j = i + 2;
+        while (j < lines.length && /^\|.*\|$/.test(lines[j].trim())) { body.push(cells(lines[j])); j++; }
+        i = j - 1;
+        const cell = (c, k, tag) => `<${tag}${align[k] ? ` style="text-align:${align[k]}"` : ""}>${inline(c)}</${tag}>`;
+        out.push(`<div class="md-table-wrap"><table class="md-table"><thead><tr>${head.map((c, k) => cell(c, k, "th")).join("")}</tr></thead>`
+          + `<tbody>${body.map(r => `<tr>${r.map((c, k) => cell(c, k, "td")).join("")}</tr>`).join("")}</tbody></table></div>`);
+        continue;
+      }
       para.push(line.trim());
     }
     flushPara(); flushList();
@@ -389,13 +404,23 @@
 
   // ---------- 실전 모의고사 ----------
   // 실제 시험 구성 그대로: 다지선다·짧은 HOTSPOT 40~45문항 → 같은 지문 OX 2세트 → 사례 연구 1세트
-  const REAL_PLAN = { singleMin: 40, singleMax: 45, oxSets: 2, caseSets: 1 };
+  // oxPick·casePick: 세트를 통째로 내지 않고 그 안에서 몇 문항만 뽑는다(회차마다 다른 문항이 나오도록).
+  const REAL_PLAN = { singleMin: 40, singleMax: 45, oxSets: 2, oxPick: 4, caseSets: 1, casePick: 4 };
   function buildRealExam(includeLegacy) {
     const pool = examPool(includeLegacy);
     const inPool = new Set(pool.map(q => q.n));
-    const single = unitsOf(pool.filter(q => !q.set && q.type !== "statements").map(q => q.n));   // 시리즈는 묶음째
+    // 3부에는 진짜 사례 연구만 넣는다. 세트 중 상당수는 사례 연구가 아니라 그냥 공통 지문이라,
+    // 전부를 후보로 두면 "3부 사례 연구"에 지문 공유 세트가 뽑혀 사례 연구가 없는 회차가 생긴다.
+    const isCaseSet = s => /사례 연구|Case study/i.test((s.titleKo || "") + " " + (s.titleEn || ""));
+    const CASE_IDS = new Set((DATA.sets || []).filter(isCaseSet).map(s => s.id));
+    const inCase = q => !!(q.set && CASE_IDS.has(q.set.id));
+    // 사례 연구가 아닌 세트는 1부에 묶음째 넣는다. 그러지 않으면 3부에서만 나올 수 있어 출제에서 거의 빠진다.
+    const single = unitsOf(pool.filter(q => !inCase(q) && (q.set || q.type !== "statements")).map(q => q.n));
     const ox = pool.filter(q => !q.set && q.type === "statements").map(q => [q.n]);
-    const sets = (DATA.sets || []).map(s => s.members.filter(n => inPool.has(n))).filter(m => m.length);
+    let sets = (DATA.sets || []).filter(isCaseSet).map(s => s.members.filter(n => inPool.has(n))).filter(m => m.length);
+    if (!sets.length) sets = (DATA.sets || []).map(s => s.members.filter(n => inPool.has(n))).filter(m => m.length);   // 사례 연구가 없는 시험이면 종전대로
+    const big = sets.filter(m => m.length >= 3);
+    const casePool = big.length ? big : sets;   // 1~2문항짜리 사례 연구가 3부로 뽑히면 너무 빈약하다
     const target = Math.min(single.length, REAL_PLAN.singleMin + Math.floor(Math.random() * (REAL_PLAN.singleMax - REAL_PLAN.singleMin + 1)));
     const targets = topicTargets(target);
     const partA = []; const usedA = new Set();
@@ -407,13 +432,16 @@
       }
     });
     for (const u of orderUnits(single.filter(u => !u.some(n => usedA.has(n))))) { if (partA.flat().length >= target) break; partA.push(u); u.forEach(n => usedA.add(n)); }
-    const partB = orderUnits(ox).slice(0, REAL_PLAN.oxSets);
-    const partC = shuffle(sets).slice(0, REAL_PLAN.caseSets);
+    // 지문 순서는 지키고 그 안에서만 무작위로 고른다(사례 연구는 앞 문항이 뒤 문항의 전제가 되기도 한다)
+    const pickSome = (ns, k) => ns.length <= k ? ns
+      : shuffle(ns.slice()).slice(0, k).sort((x, y) => ns.indexOf(x) - ns.indexOf(y));
+    const partB = orderUnits(ox).slice(0, REAL_PLAN.oxSets).map(u => pickSome(u, REAL_PLAN.oxPick));
+    const partC = shuffle(casePool).slice(0, REAL_PLAN.caseSets).map(m => pickSome(m, REAL_PLAN.casePick));
     const queue = [...shuffle(partA), ...partB, ...partC].flat();
     const plan = {
       single: partA.flat().length,
-      ox: partB.length, oxPoints: pointsOfNs(partB.flat()),
-      cases: partC.length, casePoints: pointsOfNs(partC.flat()),
+      ox: partB.length, oxCount: partB.flat().length, oxPoints: pointsOfNs(partB.flat()),
+      cases: partC.length, caseCount: partC.flat().length, casePoints: pointsOfNs(partC.flat()),
     };
     return { queue, plan };
   }
@@ -437,7 +465,7 @@
     saveState();
     renderQuestion();   // real/plan/points 를 세션에 채운 뒤 다시 그려야 1번 문항부터 파트가 표시된다
     toast(real
-      ? `실전 모의고사 · ${queue.length}문항 ${points}점 (단답 ${plan.single} · OX ${plan.ox}세트 ${plan.oxPoints}점 · 사례 연구 ${plan.cases}세트 ${plan.casePoints}점)`
+      ? `실전 모의고사 · ${queue.length}문항 ${points}점 (단답 ${plan.single} · OX ${plan.oxCount}문항 ${plan.oxPoints}점 · 사례 연구 ${plan.caseCount}문항 ${plan.casePoints}점)`
       : `모의고사 · ${queue.length}문항 ${points}점`);
   }
   function startExamTimer() {
@@ -458,9 +486,9 @@
   // 실전 모의고사에서 지금 몇 부인지 (1부 단답 → 2부 예/아니요 → 3부 사례 연구)
   function realPartLabel(s) {
     if (!s || !s.real || !s.plan) return "";
-    const a = s.plan.single, b = a + s.plan.ox;
+    const a = s.plan.single, b = a + (s.plan.oxCount || s.plan.ox);
     if (s.cursor < a) return ` · 1부 단답 ${s.cursor + 1}/${a}`;
-    if (s.cursor < b) return ` · 2부 예/아니요 ${s.cursor - a + 1}/${s.plan.ox}세트`;
+    if (s.cursor < b) return ` · 2부 예/아니요 ${s.cursor - a + 1}/${s.plan.oxCount || s.plan.ox}`;
     return ` · 3부 사례 연구 ${s.cursor - b + 1}/${s.queue.length - b}`;
   }
   function currentQuestion() { const s = state.session; return s ? BY_N.get(s.queue[s.cursor]) : null; }
@@ -773,7 +801,7 @@
     const pct = maxPts ? Math.round(gotPts / maxPts * 100) : 0;
     $("examPercent").textContent = pct + "%";
     const legacyN = results.filter(r => isLegacy(r.q)).length;
-    $("examSummary").textContent = mode === "exam" ? `${maxPts}점 만점에 ${gotPts}점 (${pct}%) · ${results.length}문항 중 ${correct}문항 완전 정답${run && run.plan ? ` · 실전 구성(단답 ${run.plan.single} · OX ${run.plan.ox}세트 · 사례 연구 ${run.plan.cases}세트)` : ""}${legacyN ? ` · 구형 AZ-800/801 문항 ${legacyN}개 포함` : " · 현행 AZ-802 문항만"}. 실제 시험 합격선은 1000점 만점에 700점(약 70%)입니다.` : `이번 세션에서 ${answered.length}문항을 풀어 ${correct}문항을 맞혔습니다.`;
+    $("examSummary").textContent = mode === "exam" ? `${maxPts}점 만점에 ${gotPts}점 (${pct}%) · ${results.length}문항 중 ${correct}문항 완전 정답${run && run.plan ? ` · 실전 구성(단답 ${run.plan.single} · OX ${run.plan.oxCount || run.plan.ox}문항 · 사례 연구 ${run.plan.caseCount || run.plan.cases}문항)` : ""}${legacyN ? ` · 구형 AZ-800/801 문항 ${legacyN}개 포함` : " · 현행 AZ-802 문항만"}. 실제 시험 합격선은 1000점 만점에 700점(약 70%)입니다.` : `이번 세션에서 ${answered.length}문항을 풀어 ${correct}문항을 맞혔습니다.`;
     const grid = $("resultChapters"); grid.innerHTML = "";
     for (const t of DATA.topics) {
       const rs = results.filter(r => r.q.topic === t.en && (mode === "exam" || r.answered)); if (!rs.length) continue;
